@@ -1,0 +1,3 @@
+# Getting Started with Amazon FreeRTOS<a name="freertos-getting-started"></a>
+
+This section shows you how to download and configure Amazon FreeRTOS and run a demo application on one of the qualified microcontroller boards\. In this tutorial, we assume you are familiar with AWS IoT and the AWS IoT console\. If not, we recommend that you start with the [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) tutorial\.
