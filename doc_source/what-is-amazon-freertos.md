@@ -20,7 +20,7 @@ Amazon FreeRTOS includes libraries that enable you to:
 + Securely connect devices to the AWS IoT cloud using MQTT and device shadows\.
 + Discover and connect to AWS Greengrass cores\.
 + Manage Wi\-Fi connections\.
-+ Audit the configuration of your devices, monitor connected devices to detect abnormal behavior, and to mitigate security risks\. For more information, see [AWS IoT Device Defender](http://docs.aws.amazon.com/iot/latest/developerguide/developerguide/device-defender.html)\. Amazon FreeRTOS provides a library that enables your Amazon FreeRTOS\-based devices to write metrics to AWS IoT Device Defender\. For more information, see [Amazon FreeRTOS Device Defender Library](https://docs.aws.amazon.com/freertos/latest/userguide/afr-device-defender-library.html)\.
++ Audit the configuration of your devices, monitor connected devices to detect abnormal behavior, and to mitigate security risks\. For more information, see [AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html)\. Amazon FreeRTOS provides a library that enables your Amazon FreeRTOS\-based devices to write metrics to AWS IoT Device Defender\. For more information, see [Amazon FreeRTOS Device Defender Library](https://docs.aws.amazon.com/freertos/latest/userguide/afr-device-defender-library.html)\.
 **Note**  
 The Device Defender library currently works on the Microchip Curiosity PIC32MZEF development board and the Windows simulator\.
 + Listen for and process over\-the\-air \(OTA\) updates\.
@@ -45,7 +45,7 @@ The Amazon FreeRTOS configuration wizard is part of the AWS IoT console\. You ca
 
 1. Under **Amazon FreeRTOS Device Software** choose **Configure Download**\.
 
-## Over\-the\-Air Updates \(Beta\)<a name="freertos-ota-updates"></a>
+## Over\-the\-Air Updates<a name="freertos-ota-updates"></a>
 
 Internet\-connected devices can be in use for a long time, and must be updated periodically to fix bugs and improve functionality\. Often these devices must be updated in the field and need to be updated remotely or "over\-the\-air"\. The Amazon FreeRTOS Over\-the\-Air \(OTA\) Update service enables you to:
 + Digitally sign firmware prior to deployment\.

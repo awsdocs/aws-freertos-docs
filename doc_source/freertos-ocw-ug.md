@@ -2,16 +2,39 @@
 
 ## Managing Amazon FreeRTOS Configurations<a name="freertos-manage-configurations"></a>
 
-You can use the [Amazon FreeRTOS Console](https://console.aws.amazon.com/freertos) to manage software configurations and download Amazon FreeRTOS software for your device\. The Amazon FreeRTOS software is pre qualified on a variety of platforms\. It includes the required hardware drivers, libraries, and example projects to help get you started quickly\. You can choose between predefined configurations or create custom configurations\.
+You can use the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) to manage software configurations and download Amazon FreeRTOS software for your device\. The Amazon FreeRTOS software is prequalified on a variety of platforms\. It includes the required hardware drivers, libraries, and example projects to help get you started quickly\. You can choose between predefined configurations or create custom configurations\.
 
-Predefined configurations are defined for the pre qualified platforms:
+### Predefined Amazon FreeRTOS Configurations<a name="freertos-predefined-configurations"></a>
+
+Predefined configurations are defined for the prequalified platforms:
 + TI CC3220SF\-LAUNCHXL
 + STM32 IoT Discovery Kit
 + NXP LPC54018 IoT Module
 + Microchip Curiosity PIC32MZEF
++ Espressif ESP32\-DevKitC
++ Espressif ESP3\-WROVER\-KIT
++ Infineon XMC4800 IoT Connectivity Kit
 + FreeRTOS Windows Simulator
 
 The predefined configurations make it possible for you to get started quickly with the supported use cases without thinking about which libraries are required\. To use a predefined configuration, browse to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), find the configuration you want to use, and then choose **Download**\.
+
+You can also customize a predefined configuration if you want to change the Amazon FreeRTOS version, hardware platform, or libraries of the configuration\. Customizing a predefined configuration creates a new custom configuration and does not overwrite the predefined configuration in the Amazon FreeRTOS console\.
+
+**To create a custom configuration from a predefined configuration**
+
+1. Browse to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
+
+1. In the navigation pane, choose **Software**\.
+
+1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
+
+1. Choose the ellipsis next to the predefined configuration that you want to customize, and then choose **Customize**\.
+
+1. On the **Configure Amazon FreeRTOS Software** page, choose the Amazon FreeRTOS version, hardware platform, and libraries, and give the new configuration a name and a description\.
+
+1. At the bottom of the page, choose **Create and download** to create and download the custom configuration\.
+
+### Custom Amazon FreeRTOS Configurations<a name="freertos-custom-configurations"></a>
 
 Custom configurations allow you to specify your hardware platform, integrated development platform \(IDE\), compiler, and only those RTOS libraries you require\. This leaves more space on your devices for application code\.
 
@@ -19,7 +42,9 @@ Custom configurations allow you to specify your hardware platform, integrated de
 
 1. Browse to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) and choose **Create new**\.
 
-1. On the **New Software Configuration** page, choose **Select a hardware platform**, and choose one of the pre qualified platforms\.
+1. Select the version of Amazon FreeRTOS that you want to use\. The latest version is used by default\.
+
+1. On the **New Software Configuration** page, choose **Select a hardware platform**, and choose one of the prequalified platforms\.
 
 1. Choose the IDE and compiler you want use\.
 
@@ -27,17 +52,29 @@ Custom configurations allow you to specify your hardware platform, integrated de
 
 1. In the **Demo Projects** section, enable one of the demo projects\. This enables the demo in the project files\.
 
-1. In **Name required**, type a name for your custom configuration\.
+1. In **Name required**, enter a name for your custom configuration\.
 **Note**  
-Do not use any personally identifiable information for your custom configuration name\.
+Do not use any personally identifiable information in your custom configuration name\.
 
-1. In **Description**, you can type a description for your custom configuration\.
+1. In **Description**, enter a description for your custom configuration\.
 
 1. At the bottom of the page, choose **Create and download** to create and download your custom configuration\.
 
-### Deleting a Configuration<a name="freertos-delete-configuration"></a>
+**To edit a custom configuration**
 
-**To delete an Amazon FreeRTOS configuration**
+1. Browse to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
+
+1. In the navigation pane, choose **Software**\.
+
+1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
+
+1. Choose the ellipsis next to the configuration you want to edit, and then choose **Edit**\.
+
+1. On the **Configure Amazon FreeRTOS Software** page, you can change your configuration's Amazon FreeRTOS version, hardware platform, libraries, and description\.
+
+1. At the bottom of the page, choose **Save and download** to save and download the configuration\.
+
+**To delete a custom configuration**
 
 1. Browse to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
 

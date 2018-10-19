@@ -3,61 +3,65 @@
 Both the [ESP32\-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview) and the [ESP\-WROVER KIT](https://www.espressif.com/en/products/hardware/esp-wrover-kit/overview) are supported on Amazon FreeRTOS\. To check which development module you have, see [ESP32 Modules and Boards](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html)\.
 
 **Note**  
-Amazon FreeRTOS’s port for ESP32\-WROVER\-KIT and ESP DevKitC currently does not support the following:  
-Over the Air \(OTA\) update functionality\.
+Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following:  
 Lightweight IP\.
-Support for symmetric multiprocessing \(SMP\)\.
+Symmetric multiprocessing \(SMP\)\.
 Bluetooth Low Energy \(BLE\)\.
 
-## Setting up the Espressif Hardware<a name="setup-hw-espressif"></a>
+## Setting Up the Espressif Hardware<a name="setup-hw-espressif"></a>
 
-For the ESP32\-DevKitC development board, please refer to the [Getting Started with the ESP32\-DevKitC development board](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html)\.
+For the ESP32\-DevKitC development board, see [Getting Started with the ESP32\-DevKitC development board](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html)\.
 
-For the ESP\-WROVER\-KIT development board, please refer to the [Getting Started with the ESP\-WROVER\-KIT development board](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-wrover-kit.html)\.
+For the ESP\-WROVER\-KIT development board, see [Getting Started with the ESP\-WROVER\-KIT development board](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-wrover-kit.html)\.
 
 ## Setting Up Your Environment<a name="setup-env-esspressif"></a>
 
 ### Establishing a Serial Connection<a name="establish-serial-connection"></a>
 
-To establish a serial connection with the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. If you are running Windows 10, install v6\.7\.5 of the CP210x USB to UART Bridge drivers\. If you are running an older verion of Windows, install the version indicated in the list of downloads\.
+To establish a serial connection with the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. If you are running Windows 10, install v6\.7\.5 of the CP210x USB to UART Bridge drivers\. If you are running an older version of Windows, install the version indicated in the list of downloads\.
 
-For more information see, [Establishing a Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\.
+For more information, see [Establishing a Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\.
 
-Note the serial port you configure \(based on host OS\), you will need it during the build process\.
+Make a note of the serial port you configure \(based on host OS\)\. You need it during the build process\.
 
 ### Setting Up the Toolchain<a name="setup-toolchain"></a>
 
 When following the links below, do not install the ESP\-IDF library from Espressif, Amazon FreeRTOS already contains this library\. In addition, make sure the `IDF_PATH` environment variable has not been set\.
 + [Setting up the toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/windows-setup.html)
-+ [Setting up the toolchain for Mac OS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
++ [Setting up the toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
 + [Setting up the toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html)
 
-## Download and Build Amazon FreeRTOS<a name="download-and-build-espressif"></a>
+## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
 
-After your environment is set up, you can download Amazon FreeRTOS and run the sample code\.
+After your environment is set up, you can download Amazon FreeRTOS\.
 
 ### Downloading Amazon FreeRTOS<a name="download-espressif"></a>
 
-Clone the Amazon FreeRTOS repository from [GitHub](https://github.com/aws/amazon-freertos)\. This document assumes you have cloned the repository into a directory called *BASE\_FOLDER*\.
+Clone the Amazon FreeRTOS repository from [GitHub](https://github.com/aws/amazon-freertos)\. These procedures are written with the assumption you have cloned the repository into a directory called *BASE\_FOLDER*\.
 
 **Note**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS repository is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.
 
 ### Configure Your Project<a name="config-project-espressif"></a>
 
-1. If you are running MacOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
+1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
-1. Install python on your system\. Minimum version should be 2\.7\.10\.
+1. Install Python 2\.7\.10 or later\. 
 
-1. If you are running on Windows, install the AWS CLI inside the mingw32 enviroment using the following command: `easy_install awscli`\. If you are running on MacOS or Linux, make sure the AWS CLI is installed on your system\. For more information about installing the AWS CLI, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)\. 
+1. If you are running Windows, use the easy\_install awscli to install the AWS CLI in the mingw32 environment\. 
 
-1. Configure the AWS CLI by running `aws configure`\. For information about configuring the AWS CLI, see [Configuring the AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+   If you are running macOS or Linux, make sure the AWS CLI is installed on your system\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\. 
 
-1. Install the boto3 Python module using the following command:
-   + On Windows in the mingw32 environment: `easy_install boto3`
-   + On MacOS or Linux: `pip install boto3`
+1. Run aws configure to configure the AWS CLI\. For more information, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
-Amazon FreeRTOS comes with a set of scripts that makes setting up your Espressif board easier\. To configure the Espressif scripts, open *<BASE\_FOLDER>*/demos/common/tools/aws\_config\_quick\_start/configure\.json and set the following attributes:
+1. Use the following command to install the boto3 Python module:
+   + On Windows, in the mingw32 environment, use easy\_install boto3
+   + On macOS or Linux, use pip install boto3
+
+Amazon FreeRTOS includes scripts to make it easier to set up your Espressif board\. To configure the Espressif scripts, open `<BASE_FOLDER>/tools/aws_config_quick_start/configure.json` and set the following attributes:
+
+`afr_source_dir`  
+The complete path to the Amazon FreeRTOS directory\.
 
 `thing_name`  
 The name of the IoT thing that represents your board\.
@@ -69,63 +73,54 @@ The SSID of your Wi\-Fi network\.
 The password for your Wi\-Fi network\.
 
 `wifi_security`  
-The security type for your Wi\-Fi network\. Valid security types are:  
-+ eWiFiSecurityOpen: Open, no security
-+ eWiFiSecurityWEP: WEP security
-+ eWiFiSecurityWPA: WPA security
-+ eWiFiSecurityWPA2: WPA2 security
+The security type for your Wi\-Fi network\.   
+Valid security types are:  
++ `eWiFiSecurityOpen` \(Open, no security\)
++ `eWiFiSecurityWEP` \(WEP security\)
++ `eWiFiSecurityWPA` \(WPA security\)
++ `eWiFiSecurityWPA2` \(WPA2 security\)
 
-``  
+**To run the configuration script**
 
-``  
+1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
-``  
+1. Go to the `<BASE_FOLDER>/tools/aws_config_quick_start` directory and run the following command:
 
-``  
+   python SetupAWS\.py setup
 
-**To run the configuration script:**
+This script creates an IoT thing, certificate, and policy\. It attaches the IoT policy to the certificate and the certificate to the IoT thing\. It also populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials\. Finally, it formats your certificate and private key and writes them to the `aws_clientcredential.h` header file\. For more information about the script, see the README\.md in the `<BASE_FOLDER>/tools/aws_config_quick_start` directory\.
 
-1. If you are running MacOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
-
-1. Go to the `<BASE_FOLDER>/demos/common/tools/aws_config_quick_start` directory and run the following command:
-
-   `python SetupAWS.py setup`
-
-This script will create an IoT thing, certificate, and an IoT policy\. It will attach the IoT policy to the certificate and the certificate to the IoT thing\. It will also populate the file aws\_clientcredential\.h with your AWS IoT endpoint, Wi\-Fi SSID and credentials\. Finally it will format your certificate and private key and write them to the aws\_clientcredential\_keys\.h header file\. For further information about the script, please refer the README\.md in the `<BASE_FOLDER>/demos/common/tools/aws_config_quick_start` directory\.
-
-### Run the FreeRTOS Samples<a name="run-example-espressif"></a>
+## Build and Run Amazon FreeRTOS Samples<a name="build-and-run-example-espressif"></a>
 
 **To flash the demo application onto your board**
 
 1. Connect your board to your computer\.
 
-1. In MacOS or Linux, open a terminal\. In Windows, open mingw32\.exe \(downloaded from mysys toolchain\)\.
+1. In macOS or Linux, open a terminal\. In Windows, open mingw32\.exe \(downloaded from mysys toolchain\)\.
 
-1. Navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and type following command:
+1. Navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and enter following command:
 
    ```
    make menuconfig
    ```
 
-   An Espressif IoT Development Framework Configuration menu will be displayed\.
+   In the Espressif IoT Development Framework Configuration menu, navigate to **Serial flasher config**, and then to **Default serial port** to configure the serial port\.
 
-   In the menu, navigate to **Serial flasher config** and then **Default serial port** to configure the serial port\.
+   On Windows, serial ports have names like `COM1`\. On macOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\.
 
-   On Windows, serial ports have names like `COM1`\. On MacOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\.
+   The serial port you configure here is used to write the demo application to your board\.
 
-   The serial port you configure here will be used to write the demo application to your board\.
+   Depending on your hardware, you can increase the default baud rate up to 921600\. This can reduce the time required to flash your board\. To increase the baud rate, choose **Serial flash config**, and then choose **Default baud rate**\. 
 
-   Optionally, you can increase the default baud rate up to 921600 \(depending upon your hardware\), by choosing **Serial flash config** and then choosing **Default baud rate**\. This can reduce the time required to flash your board\.
+   To confirm your selection, choose ENTER\. To save the configuration, choose **Save** and then choose **Exit**\.
 
-   Confirm your selection by pressing \[ENTER\], save the configuration by choosing **< Save >** and then exit application by choosing **< Exit >**\.
-
-To build and flash firmware \(including boot loader & partition table\) and monitor serial console output, open a command prompt and navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit/make` and run the following command:
+To build and flash firmware \(including boot loader and partition table\) and monitor serial console output, open a command prompt\. Navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit/make` and run the following command:
 
 ```
 make flash monitor
 ```
 
-At the end of the compilation output you should see text like the following:
+At the end of the compilation output, you should see text like the following:
 
 ```
 I (31) boot: ESP-IDF v3.1-dev-322-gf307f41-dirty 2nd stage bootloader
@@ -293,224 +288,23 @@ I (20956) PKCS11: Partition size: total: 52961, used: 0
 356 8668 [MQTTEcho] MQTT echo demo finished.
 ```
 
-### Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>
-+ If you are using a Mac and it does not recognize your ESP\-WROVER\-KIT make sure you do not have the D2XX drivers installed\. You can uninstall them following the instructions in the [FTDI Drivers Installation Guide for Mac OSX](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
-+ The ESP\-IDF provided monitor utility \(invoked using make monitor\) helps in decoding addresses, thus helps in getting some meaningful backtraces in case the application crashes\. For more information, see [Automatically decoding addresses]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses)\.
-+ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware, for more information, see [Launch GDB for GDBStub]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub)\.
-+ If full\-fledged JTAG hardware\-based debugging is required, see [JTAG Debugging]( https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/jtag-debugging) for information about setting up an OpenOCD based environment\.
-+ If `pyserial` cannot be installed using `pip` on MacOS, download it from [pyserial](https://pypi.org/simple/pyserial)\.
-+ If the board resets continuously, try erasing the flash by typing the following command on the terminal:
+## Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>
++ If you are using a Mac and it does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [FTDI Drivers Installation Guide for macOS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
++ The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [Automatically Decoding Addresses]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses) on the Espressif website\.
++ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [Launch GDB for GDBStub]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub)\.
++ For information about setting up an OpenOCD\-based environment if JTAG hardware\-based debugging is required, see [JTAG Debugging]( https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/jtag-debugging)\.
++ If `pyserial` cannot be installed using `pip` on macOS, download it from [pyserial](https://pypi.org/simple/pyserial)\.
++ If the board resets continuously, try erasing the flash by entering the following command on the terminal:
 
   ```
   make erase_flash
   ```
-+ If you see errors when running `idf_monitor.py`, please use Python 2\.7\.
++ If you see errors when you run `idf_monitor.py`, use Python 2\.7\.
 
-**Additional Notes**
-+ Required libraries from ESP\-IDF are part of Amazon FreeRTOS, so there is no need to download ESP\-IDF externally\. If `IDF_PATH` is set then we recommend that you remove it before building Amazon FreeRTOS\. 
-+ On Window systems it can take 3 \- 4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time\. For example:
+**Other Notes**
++ Required libraries from ESP\-IDF are included in Amazon FreeRTOS , so there is no need to download them externally\. If `IDF_PATH` is set, we recommend that you remove it before you build Amazon FreeRTOS\. 
++ On Window systems, it can take 3\-4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time:
 
   ```
   make flash monitor -j4
   ```
-
-## Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
-
-You will need a JTAG to USB cable\. We use a USB to MPSSE cable, for example the [FTDI C232HM\-DDHSL\-0](http://www.ftdichip.com/Products/Cables/USBMPSSE.htm)\. 
-
-### ESP\-DevKitC JTAG Setup<a name="jtag-devkitc"></a>
-
-For the FTDI C232HM\-DDHSL\-0 cable the connections to the ESP32 DevkitC are as follows:
-
-
-| C232HM\-DDHSL\-0 Wire Color | ESP32 GPIO Pin | JTAG Signal Name | 
-| --- | --- | --- | 
-|  Brown \(pin 5\)  |  IO14  | TMS | 
-|  Yellow \(pin 3\)  |  IO12  | TDI | 
-| Black \(pin 10\) | GND | GND | 
-| Orange \(pin 2\) | IO13 | TCK | 
-| Green \(pin 4\) | IO15 | TDO | 
-
-### ESP\-WROVER\-KIT JTAG Setup<a name="jtag-wrover"></a>
-
-For the FTDI C232HM\-DDHSL\-0 cable the connections to the ESP32\-WROVER\-KIT are as follows:
-
-
-| C232HM\-DDHSL\-0 Wire Color | ESP32 GPIO Pin | JTAG Signal Name | 
-| --- | --- | --- | 
-|  Brown \(pin 5\)  |  IO14  | TMS | 
-|  Yellow \(pin 3\)  |  IO12  | TDI | 
-| Orange \(pin 2\) | IO13 | TCK | 
-| Green \(pin 4\) | IO15 | TDO | 
-
-To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO\. TDI, TCK, and S\_TDI pins as shown below:
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/JP8-jumpers.png)
-
-The tables above were developed from the FTDI C232HM\-DDHSL\-0 [datasheet](http://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_C232HM_MPSSE_CABLE.PDF), see section C232HM MPSSE Cable connection and Mechanical Details in the data sheet for more information\. 
-
-### Debugging on Windows<a name="debugging-espressif-windows"></a>
-
-**To set up for debugging on Windows**
-
-1. Connect the USB side of the FTDI C232HM\-DDHSL\-0 to your computer and the other side as described in the previous section\. The FTDI C232HM\-DDHSL\-0 device should be listed in the **Device Manager** under **Universal Serial Bus Controllers**\.
-
-1. From the list of USB controllers, right\-click the FTDI C232HM\-DDHSL\-0 device \(the manufacturer is FTDI\) and choose **Properties**\. In the properties window, select the **Details** tab to see the properties of the device\. If this device is not listed, install the [Windows driver for FTDI C232HM\-DDHSL\-0](http://www.ftdichip.com/Drivers/D2XX.htm)\.
-
-1. Verify the vendor ID and product ID you saw in **Device Manager** matches the IDs in `demos\espressif\esp32_devkitc_esp_wrover_kit\esp32_devkitj_v1.cfg`\. The ID are specified on a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID, for example:
-
-   ```
-   ftdi_vid_pid 0x0403 0x6014
-   ```
-
-1. Download [OpenOCD for Windows](https://github.com/espressif/openocd-esp32/releases)\.
-
-1. Unzip the file to `C:\` and add `C:\openocd-esp32\bin` to your system path\.
-
-1. OpenOCD requires libusb which is not installed by default on Windows\. To install it:
-
-   1. Download [zadig\.exe](https://zadig.akeo.ie)\.
-
-   1. Run `zadig.exe`, from the **Options** menu select **List All Devices**\.
-
-   1. In the dropdown menu, choose **C232HM\-DDHSL\-0**\.
-
-   1. In the target driver listbox, to the right of the green arrow, choose **WinUSB**\.
-
-   1. In the dropdown box below the target driver listbox, click the arrow and select **Install Driver**\. The control should then display **Replace Driver**\. Click **Replace Driver**\.
-
-1. Open a command prompt, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run:
-
-   ```
-   openocd.exe -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
-   ```
-
-   Leave this command prompt open\.
-
-1. Open a new command prompt, navigate to your `msys32` directory and run `mingw32.exe`\. In the mingw32 terminal navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run `make flash monitor`\.
-
-1. Open another mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run `xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf`\. The program should stop in the `main` function\.
-
-**Note**  
-The ESP32 supports a maximum of two break points\.
-
-### Debugging on Mac OS<a name="debugging-espressif-macos"></a>
-
-1. Download the [FTDI driver for MacOS](http://www.ftdichip.com/Drivers/VCP.htm)\.
-
-1. Download [OpenOCD](https://github.com/espressif/openocd-esp32/releases)\.
-
-1. Extract the downloaded tar file and set the path in `.bash_profile` to `<OCD_INSTALL_DIR>/openocd-esp32/bin`\.
-
-1. Install `libusb` on MacOS with following command:
-
-   ```
-   brew install libusb
-   ```
-
-1. Unload the serial port driver using the following command:
-
-   ```
-   sudo kextunload -b com.FTDI.driver.FTDIUSBSerialDriver
-   ```
-
-1. If you are running MacOS version greater than 10\.9, unload Apple's FTDI driver by using the following command:
-
-   ```
-   sudo kextunload -b com.apple.driver.AppleUSBFTDI
-   ```
-
-1. Get the product ID and vendor ID of FTDI cable by listing the attached USB devices using the following command:
-
-   ```
-   system_profiler SPUSBDataType
-   ```
-
-   The output from `system_profile` should look like the following:
-
-   ```
-   C232HM-DDHSL-0:
-   Product ID: 0x6014
-   Vendor ID: 0x0403 (Future Technology Devices International Limited)
-   ```
-
-1. Verify the vendor ID and product ID matches the IDs in `demos/espressif/esp32_devkitc_esp_wrover_kit/esp32_devkitj_v1.cfg`\. The ID are specified on a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID, for example:
-
-   ```
-   ftdi_vid_pid 0x0403 0x6014
-   ```
-
-1. Open a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run OpenOCD with the following command:
-
-   ```
-   openocd -f esp32_devkitj_v1.cfg -f
-   								esp-wroom-32.cfg
-   ```
-
-1. Open a new terminal, load the FTDI serial port driver using the following command:
-
-   ```
-   sudo kextload -b com.FTDI.driver.FTDIUSBSerialDriver
-   ```
-
-1. Navigate to `<BASE_FOLDER>>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and run:
-
-   ```
-   make flash monitor
-   ```
-
-1. Open another new terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and run the following command:
-
-   ```
-   xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf
-   ```
-
-   The program should stop at `main()`\.
-
-### Debugging on Linux<a name="debugging-espressif-linux"></a>
-
-1. Download [OpenOCD](https://github.com/espressif/openocd-esp32/releases)\. Extract the tarball and follow the installation instructions in the readme file\.
-
-1. Install libusb on Linux with following command:
-
-   ```
-   sudo apt-get install libusb-1.0
-   ```
-
-1. Open a terminal, enter `ls -l /dev/ttyUSB*` to list all USB devices connected to your computer\.and check if board’s USB ports are recognized by the OS\. You should see output similar to the following:
-
-   ```
-   $ls -l /dev/ttyUSB*
-   crw-rw----	1	root	dialout	188,	0	Jul	10	19:04	/dev/ttyUSB0
-   crw-rw----	1	root	dialout	188,	1	Jul	10	19:04	/dev/ttyUSB1
-   ```
-
-1. Log off and log in and then cycle the power to the board to make the changes effective\. In a terminal prompt list the USB devices and make sure the group\-owner has changed from `dialout` to `plugdev`:
-
-   ```
-   $ls -l /dev/ttyUSB*
-   crw-rw----	1	root	plugdev	188,	0	Jul	10	19:04	/dev/ttyUSB0
-   crw-rw----	1	root	plugdev	188,	1	Jul	10	19:04	/dev/ttyUSB1
-   ```
-
-   The `/dev/ttyUSBn` interface with lower number is used for JTAG communication\. The other interface is routed to the ESP32’s serial port \(UART\) and is used for uploading code to the ESP32’s flash memory\.
-
-1. In a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make` and run OpenOCD:
-
-   ```
-   openocd -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
-   ```
-
-1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make` and run:
-
-   ```
-   make flash monitor
-   ```
-
-1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make` and run:
-
-   ```
-   xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf
-   ```
-
-   The program should stop in `main()`\.

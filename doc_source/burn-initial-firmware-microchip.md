@@ -1,128 +1,122 @@
 # Install the Initial Version of Firmware on the Microchip Curiosity PIC32MZEF<a name="burn-initial-firmware-microchip"></a>
 
-These steps assume you have already built the aws\_demos project as described in [Download and Build Amazon FreeRTOS for the Microchip Curiosity PIC32MZEF](ota-prereqs.md#download-ota-mchip)\.<a name="mch-burn-demo"></a>
+These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download and Build Amazon FreeRTOS for the Microchip Curiosity PIC32MZEF](ota-download-freertos.md#download-ota-mchip)\.<a name="mch-burn-demo"></a>
 
 **To burn the demo application onto your board**
 
-1. Open `aws_demos/lib/aws/ota/aws_codesign_keys.h`\.
+1. Rebuild the `aws_demos` project and make sure it compiles without errors\.
 
-1. Paste the contents of "ecdsasigner\.crt" created earlier into the `static const char signingcredentialSIGNING_CERTIFICATE_PEM` variable\. Following the same format as aws\_clientcredential\_keys\.h, each line must end with the new line character \('\\n'\) and be surrounded by quotes\.
-
-   For example, your certificate should look similar to the following:
-
-   ```
-   "-----BEGIN CERTIFICATE-----\n"
-   "MIIBXTCCAQOgAwIBAgIJAM4DeybZcTwKMAoGCCqGSM49BAMCMCExHzAdBgNVBAMM\n"
-   "FnRlc3Rf62lnbmVyQGFtYXpvbi5jb20wHhcNMTcxMTAzMTkxODM1WhcNMTgxMTAz\n"
-   "MTkxODM2WjAhMR8wHQYDVQBBZZZ0ZXN0X3NpZ25lckBhbWF6b24uY29tMFkwEwYH\n"
-   "KoZIzj0CAQYIKoZIzj0DAQcDQgAERavZfvwL1X+E4dIF7dbkVMUn4IrJ1CAsFkc8\n"
-   "gZxPzn683H40XMKltDZPEwr9ng78w9+QYQg7ygnr2stz8yhh06MkMCIwCwYDVR0P\n"
-   "BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMDMAoGCCqGSM49BAMCA0gAMEUCIF0R\n"
-   "r5cb7rEUNtWOvGd05MacrgOABfSoVYvBOK9fP63WAqt5h3BaS123coKSGg84twlq\n"
-   "TkO/pV/xEmyZmZdV+HxV/OM=\n"
-   "-----END CERTIFICATE-----\n";
-   ```
-
-1. Paste the contents of "ecdsasigner\.key" created earlier into the `static const char signingcredentialSIGNING_PRIVATE_KEY_PEM` variable\. Following the same format as aws\_clientcredential\_keys\.h, each line must end with the new line character \('\\n'\) and be surrounded by quotes\.
-
-1. Rebuild the aws\_demos project and make sure it compiles without errors\.
-
-1. Click on the ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/MakeAndProgram.png) from the top tool bar\.
+1. On the tool bar, choose ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/MakeAndProgram.png)\.
 
 1. After the programming process is complete, disconnect the ICD 4 debugger and reset the board\. Reconnect your terminal emulator to make sure the output is the same as when you debugged the demo with MPLAB X IDE\.
 
-The terminal should display output similar to the following:
+   The terminal should display output similar to the following:
 
-```
-AWS Validate: no valid signature in descr: 0xbd000000
-AWS Validate: no valid signature in descr: 0xbd100000
+   ```
+   Bootloader version 00.09.00
+   [prvBOOT_Init] Watchdog timer initialized.
+   [prvBOOT_Init] Crypto initialized.
+   
+   [prvValidateImage] Validating image at Bank : 0
+   [prvValidateImage] No application image or magic code present at: 0xbd000000
+   [prvBOOT_ValidateImages] Validation failed for image at 0xbd000000
+   
+   [prvValidateImage] Validating image at Bank : 1
+   [prvValidateImage] No application image or magic code present at: 0xbd100000
+   [prvBOOT_ValidateImages] Validation failed for image at 0xbd100000
+   
+   [prvBOOT_ValidateImages] Booting default image.
+   
+   
+   >0 36246 [IP-task] vDHCPProcess: offer ac140a0eip
+                                                    1 36297 [IP-task] vDHCPProcess: offer ac140a0eip
+                    2 36297 [IP-task]
+   
+   IP Address: 172.20.10.14
+   3 36297 [IP-task] Subnet Mask: 255.255.255.240
+   4 36297 [IP-task] Gateway Address: 172.20.10.1
+   5 36297 [IP-task] DNS Server Address: 172.20.10.1
+   
+   
+   6 36299 [OTA] OTA demo version 0.9.2
+   7 36299 [OTA] Creating MQTT Client...
+   8 36299 [OTA] Connecting to broker...
+   9 38673 [OTA] Connected to broker.
+   10 38793 [OTA Task] [prvSubscribeToJobNotificationTopics] OK: $aws/things/devthingota/jobs/$next/get/accepted
+   11 38863 [OTA Task] [prvSubscribeToJobNotificationTopics] OK: $aws/things/devthingota/jobs/notify-next
+   12 38863 [OTA Task] [OTA_CheckForUpdate] Request #0
+   13 38964 [OTA] [OTA_AgentInit] Ready.
+   14 38973 [OTA Task] [prvParseJSONbyModel] Extracted parameter [ clientToken: 0:devthingota ]
+   15 38973 [OTA Task] [prvParseJSONbyModel] parameter not present: execution
+   16 38973 [OTA Task] [prvParseJSONbyModel] parameter not present: jobId
+   17 38973 [OTA Task] [prvParseJSONbyModel] parameter not present: jobDocument
+   18 38973 [OTA Task] [prvParseJSONbyModel] parameter not present: streamname
+   19 38973 [OTA Task] [prvParseJSONbyModel] parameter not present: files
+   20 38975 [OTA Task] [prvParseJSONbyModel] parameter not present: filepath
+   21 38975 [OTA Task] [prvParseJSONbyModel] parameter not present: filesize
+   22 38975 [OTA Task] [prvParseJSONbyModel] parameter not present: fileid
+   23 38975 [OTA Task] [prvParseJSONbyModel] parameter not present: certfile
+   24 38975 [OTA Task] [prvParseJSONbyModel] parameter not present: sig-sha256-ecdsa
+   25 38975 [OTA Task] [prvParseJobDoc] Ignoring job without ID.
+   26 38975 [OTA Task] [prvOTA_Close] Context->0x8003b620
+   27 38975 [OTA Task] [prvPAL_Abort] Abort - OK
+   28 39964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   29 40964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   30 41964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   31 42964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   32 43964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   33 44964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   34 45964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   35 46964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   36 47964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
+   ```
 
+The following procedure creates a unified hex file or factory image consisting of a reference bootloader and an application with a cryptographic signature\. The bootloader verifies the cryptographic signature of the application on boot and supports OTA updates\.
 
->AWS Launch:  No Map performed. Running directly from address: 0x9d000020?
-AWS Launch:  wait for app at: 0x9d000020
-WILC1000: Initializing...
-0 0 
+**To build and flash a factory image**
 
->[None] Seed for randomizer: 838152022
-1 0 [None] Random numbers: 0000066B 0000062C 0000030B 00000533
-Chip ID 1503a0
+1. Make sure you have the SRecord tools installed from [Source Forge](http://srecord.sourceforge.net/)\. Verify that the directory that contains the `srec_cat` and `srec_info` programs is in your system path\.
 
-Firmware ver. : 4.2.1
+1. Update the OTA sequence number and application version for the factory image\.
 
-Min driver ver : 4.2.1
+1. Build the aws\_demos project\.
 
-Curr driver ver: 4.2.1
+1. Run the factory\_image\_generator\.py script to generate the factory image\.
 
-WILC1000: Initialization successful!
+   ```
+   factory_image_generator.py -b mplab.production.bin -p MCHP-Curiosity-PIC32MZEF –k private_key.pem  -x aws_bootloader.X.production.hex
+   ```
 
-Start Wi-Fi Connection...
-Wi-Fi Connected
-2 1962 [IP-task] vDHCPProcess: offer c0a80f16ip
-3 1973 [IP-task] vDHCPProcess: offer c0a80f16ip
-4 1973 [IP-task] 
+   This command takes the following parameters:
+   + `mplab.production.bin`: The application binary\.
+   + `MCHP-Curiosity-PIC32MZEF`: The platform name\.
+   + `private_key.pem`: The code\-signing private key\.
+   + `aws_bootloader.X.production.hex`: The bootloader hex file\.
 
-IP Address: 111.222.33.44
-5 1973 [IP-task] Subnet Mask: 255.255.240.0
-6 1973 [IP-task] Gateway Address: 111.222.3.4
-7 1973 [IP-task] DNS Server Address: 111.22.333.444
+   When you build the aws\_demos project, the application binary image and bootloader hex file are built as part of the process\. Each project under the `demos/microchip/` directory contains a `dist/pic32mz_ef_curiosity/production/` directory that contains these files\. The generated unified hex file is named `mplab.production.unified.factory.hex`\.
 
+1. Use the MPLab IPE tool to program the generated hex file onto the device\.
 
-8 1975 [OTA] OTA demo version 0.9.0
-9 1975 [OTA] Creating MQTT Client...
-10 1975 [OTA] Connecting to broker...
-11 1975 [OTA] Sending command to MQTT task.
-12 1975 [MQTT] Received message 10000 from queue.
-13 3184 [IP-task] Socket sending wakeup to MQTT task.
-14 4911 [MQTT] Received message 0 from queue.
-15 4968 [IP-task] Socket sending wakeup to MQTT task.
-16 4968 [MQTT] Received message 0 from queue.
-17 4979 [IP-task] Socket sending wakeup to MQTT task.
-18 4979 [MQTT] Received message 0 from queue.
-19 4979 [MQTT] MQTT Connect was accepted. Connection established.
-20 4979 [MQTT] Notifying task.
-21 4980 [OTA] Command sent to MQTT task passed.
-22 4980 [OTA] Connected to broker.
-23 4981 [OTA Task] Sending command to MQTT task.
-24 4981 [MQTT] Received message 20000 from queue.
-25 4998 [IP-task] Socket sending wakeup to MQTT task.
-26 4998 [MQTT] Received message 0 from queue.
-27 5029 [IP-task] Socket sending wakeup to MQTT task.
-28 5029 [MQTT] Received message 0 from queue.
-29 5029 [MQTT] MQTT Subscribe was accepted. Subscribed.
-30 5029 [MQTT] Notifying task.
-31 5030 [OTA Task] Command sent to MQTT task passed.
-32 5030 [OTA Task] [OTA] Subscribed to topic: $aws/things/Microchip/jobs/$next/get/accepted
+1. You can check that your factory image works by watching the board's UART output as the image is uploaded\. If everything is set up correctly, you should see the image boot successfully:
 
-33 5030 [OTA Task] Sending command to MQTT task.
-34 5030 [MQTT] Received message 30000 from queue.
-35 6069 [IP-task] Socket sending wakeup to MQTT task.
-36 6069 [MQTT] Received message 0 from queue.
-37 6069 [MQTT] MQTT Subscribe was accepted. Subscribed.
-38 6069 [MQTT] Notifying task.
-39 6070 [OTA Task] Command sent to MQTT task passed.
-40 6070 [OTA Task] [OTA] Subscribed to topic: $aws/things/Microchip/jobs/notify-next
+   ```
+   [prvValidateImage] Validating image at Bank : 0
+   [prvValidateImage] Valid magic code at: 0xbd000000
+   [prvValidateImage] Valid image flags: 0xfc at: 0xbd000000
+   [prvValidateImage] Addresses are valid.
+   [prvValidateImage] Crypto signature is valid.
+   [...]
+   [prvBOOT_ValidateImages] Booting image with sequence number 1 at 0xbd000000
+   ```
 
-41 6070 [OTA Task] [OTA] Check For Update #0
-42 6070 [OTA Task] Sending command to MQTT task.
-43 6070 [MQTT] Received message 40000 from queue.
-44 7109 [IP-task] Socket sending wakeup to MQTT task.
-45 7109 [MQTT] Received message 0 from queue.
-46 7110 [MQTT] MQTT Publish was successful.
-47 7110 [MQTT] Notifying task.
-48 7111 [OTA Task] Command sent to MQTT task passed.
-49 7111 [OTA Task] [OTA] Set job doc parameter [ clientToken: 0:Microchip ]
-50 7111 [OTA Task] [OTA] Missing job parameter: execution
-51 7111 [OTA Task] [OTA] Missing job parameter: jobId
-52 7111 [OTA Task] [OTA] Missing job parameter: jobDocument
-53 7111 [OTA Task] [OTA] Missing job parameter: ts_ota
-54 7111 [OTA Task] [OTA] Missing job parameter: files
-55 7111 [OTA Task] [OTA] Missing job parameter: streamname
-56 7111 [OTA Task] [OTA] Missing job parameter: certfile
-57 7111 [OTA Task] [OTA] Missing job parameter: filepath
-58 7111 [OTA Task] [OTA] Missing job parameter: filesize
-59 7111 [OTA Task] [OTA] Missing job parameter: sig-sha256-ecdsa
-60 7111 [OTA Task] [OTA] Missing job parameter: fileid
-61 7111 [OTA Task] [OTA] Missing job parameter: attr
-62 7111 [OTA Task] [OTA] Returned buffer to MQTT Client.
-63 8112 [OTA] [OTA] Queued: 1   Processed: 1   Dropped: 0
-```
+1. If your certificates are incorrectly configured or if an OTA image is not properly signed, you might see messages like the following before the chip's bootloader erases the invalid update\. Check that your code\-signing certificates are consistent and review the previous steps carefully\.
+
+   ```
+   [prvValidateImage] Validating image at Bank : 0
+   [prvValidateImage] Valid magic code at: 0xbd000000
+   [prvValidateImage] Valid image flags: 0xfc at: 0xbd000000
+   [prvValidateImage] Addresses are valid.
+   [prvValidateImage] Crypto signature is not valid.
+   [prvBOOT_ValidateImages] Validation failed for image at 0xbd000000
+   [BOOT_FLASH_EraseBank] Bank erased at : 0xbd000000
+   ```

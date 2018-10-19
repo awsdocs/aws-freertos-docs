@@ -1,20 +1,20 @@
 # Install the Initial Version of Firmware on the Texas Instruments CC3200SF\-LAUNCHXL<a name="burn-initial-firmware-ti"></a>
 
-These steps assume you have already built the aws\_demos project as described in [Download and Build Amazon FreeRTOS for the Texas Instruments CC3200SF\-LAUNCHXL](ota-prereqs.md#download-ota-ti)\.<a name="burn-demo-ti"></a>
+These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download and Build Amazon FreeRTOS for the Texas Instruments CC3200SF\-LAUNCHXL](ota-download-freertos.md#download-ota-ti)\.<a name="burn-demo-ti"></a>
 
 1. On your Texas Instruments CC3200SF\-LAUNCHXL, place the SOP jumper on the middle set of pins \(position = 1\) and reset the board\.
 
 1. Download and install the [TI Uniflash tool](http://www.ti.com/tool/UNIFLASH)\.
 
-1. Start Uniflash and from the list of configurations, choose **CC3220SF\-LAUNCHXL**, and then choose **Start Image Creator**\.
+1. Start Uniflash and from the list of configurations, choose **CC3220SF\-LAUNCHXL**, then choose **Start Image Creator**\.
 
 1. Choose **New Project**\.
 
-1. On the **Start new project** page, type a name for your project\. Set **Device Type** to **CC3220SF**, set **Device Mode** to **Develop**, and then choose **Create Project**\.
+1. On the **Start new project** page, enter a name for your project\. For **Device Type**, choose **CC3220SF**\. For **Device Mode**, choose **Develop**\. Choose **Create Project**\.
 
-1. Disconnect your terminal emulator and choose the **Connect** button on the right side of the Uniflash application window\.
+1. Disconnect your terminal emulator\. On the right side of the Uniflash application window, choose **Connect**\.
 
-1. On the left, under **Files**, choose **User Files**\.
+1. Under **Files**, choose **User Files**\.
 
 1. In the **File** selector pane, choose the **Add File** icon ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/add-file.png)\.
 
@@ -22,23 +22,33 @@ These steps assume you have already built the aws\_demos project as described in
 
 1. In the **File** selector pane, choose the **Add File** icon ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/add-file.png)\.
 
-1. Browse to the working directory where you created the code signing certificate and private key, choose `tisigner.crt.der`, choose **Open**, and then choose **Write**\.
+1. Browse to the working directory where you created the code\-signing certificate and private key, choose `tisigner.crt.der`, choose **Open**, and then choose **Write**\.
 
 1. From the **Action** drop\-down list, choose **Select MCU Image**, and then choose **Browse** to choose the firmware image to use write to your device \(**aws\_demos\.bin**\)\. This file is located in the `AmazonFreeRTOS/demos/ti/cc3200_launchpad/ccs/Debug` directory\. Choose **Open**\.
 
-1. In the file dialog box, confirm the file name is set to **mcuflashimg\.bin**\. Select the **Vendor** check box\. Under **File Token**, type **1952007250**\. Under **Private Key File Name**, choose **Browse** and then choose `tisigner.key` from the working directory where you created the code\-signing certificate and private key\. Under **Certification File Name**, choose `tisigner.crt.der`, and then choose **Write**\.
+   1. In the file dialog box, confirm the file name is set to **mcuflashimg\.bin**\.
 
-1. In the left pane, under **Files**, select **Service Pack**\.
+   1. Select the **Vendor** check box\.
 
-1. Under **Service Pack File Name** choose **Browse** and browse to `simplelink_cc32x_sdk_2_10_00_04/tools/servicepack-cc3x20` and choose `sp_3.4.0.0_2.0.0.0_2.2.0.5.bin` and choose **Open**\.
+   1. Under **File Token**, type **1952007250**\.
 
-1. In the left pane, under **Files**, select **Trusted Root\-Certificate Catalog**\.
+   1. Under **Private Key File Name**, choose **Browse** and then choose `tisigner.key` from the working directory where you created the code\-signing certificate and private key\.
+
+   1. Under **Certification File Name**, choose `tisigner.crt.der`\.
+
+   1. Choose **Write**\.
+
+1. In the left pane, under **Files**, choose **Service Pack**\.
+
+1. Under **Service Pack File Name**, choose **Browse**, browse to `simplelink_cc32x_sdk_2_10_00_04/tools/cc32xx_tools/servicepack-cc3x20`, choose `sp_3.7.0.1_2.0.0.0_2.2.0.6.bin`, and then choose **Open**\.
+
+1. In the left pane, under **Files**, choose **Trusted Root\-Certificate Catalog**\.
 
 1. Clear the **Use default Trusted Root\-Certificate Catalog** check box\.
 
-1. Under **Source File**, choose **Browse**, select **simplelink\_cc32xx\_sdk\_2\_10\_00\_04/tools/certificate\-playground\\certcatalogPlayGround20160911\.lst**, and then choose **Open**\.
+1. Under **Source File**, choose **Browse**, choose **simplelink\_cc32xx\_sdk\_2\_10\_00\_04/tools/cc32xx\_tools/certificate\-playground\\certcatalogPlayGround20160911\.lst**, and then choose **Open**\.
 
-1. Under **Signature Source File**, choose **Browse**, select **simplelink\_cc32xx\_sdk\_2\_10\_00\_04/tools/certificate\-playground\\certcatalogPlayGround20160911\.lst\.signed\.bin**, and then choose **Open**\.
+1. Under **Signature Source File**, choose **Browse**, choose **simplelink\_cc32xx\_sdk\_2\_10\_00\_04/tools/cc32xx\_tools/certificate\-playground\\certcatalogPlayGround20160911\.lst\.signed\.bin**, and then choose **Open**\.
 
 1. Choose the ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/save.png) button to save your project\.
 
@@ -46,7 +56,7 @@ These steps assume you have already built the aws\_demos project as described in
 
 1. Choose **Program Image \(Create and Program\)**\.
 
-1. After programming process is complete, place the SOP jumper onto the first set of pins \(position = 0\), reset the board, and reconnect your terminal emulator to make sure the output is the same as when you debugged the demo with Code Composer Studio\. Notice the application version number in the terminal output\. You will use this version number to verify that your firmware has been updated by an OTA update\.
+1. After the programming process is complete, place the SOP jumper onto the first set of pins \(position = 0\), reset the board, and reconnect your terminal emulator to make sure the output is the same as when you debugged the demo with Code Composer Studio\. Make a note of the application version number in the terminal output\. You use this version number later to verify that your firmware has been updated by an OTA update\.
 
    The terminal should display output like the following:
 

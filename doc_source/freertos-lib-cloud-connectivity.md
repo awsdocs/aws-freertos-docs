@@ -33,7 +33,7 @@ These flags can be specified during the MQTT connection request:
 + `mqttagentREQUIRE_TLS`: Set this bit in `xFlags` to use TLS\.
 + `mqttagentUSE_AWS_IOT_ALPN_443`: Set this bit in `xFlags` to use AWS IoT support for MQTT over TLS port 443\.
 
-For more information about ALPN, see the [AWS IoT Protocols](http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) in the AWS IoT Developer Guide and the [MQTT with TLS Client Authentication on Port 443: Why It Is Useful and How It Works](https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works) on the Internet of Things on AWS blog\. 
+For more information about ALPN, see the [AWS IoT Protocols](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) in the AWS IoT Developer Guide and the [MQTT with TLS Client Authentication on Port 443: Why It Is Useful and How It Works](https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works) blog post on the Internet of Things on AWS blog\. 
 
 ## Device Shadows<a name="freertos-lib-cloud-shadows"></a>
 
@@ -41,7 +41,7 @@ The Amazon FreeRTOS API provides functions to create, delete, and update a devic
 
 The Amazon FreeRTOS device shadow APIs define functions to create, update, and delete device shadows\. 
 
-### Prerequisites For Using the Device Shadows API<a name="freertos-lib-cloud-shadows-prereq"></a>
+### Prerequisites for Using the Device Shadows API<a name="freertos-lib-cloud-shadows-prereq"></a>
 
 You need to create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. You must set values for the following constants in the `AmazonFreeRTOS/demos/common/include/aws_client_credentials.h` file:
 
@@ -60,11 +60,11 @@ Your Wi\-Fi password\.
 `clientcredentialWIFI_SECURITY`  
 The type of Wi\-Fi security used by your network\.
 
-`clientcredentialCLIENT_CERTIFICATE_PEM`  
-The certificate PEM associated with your IoT thing\. For more information, see [Configure Your AWS IoT Credentials](getting_started_st.md#ti-configure-credentials)\.
+`keyCLIENT_CERTIFICATE_PEM`  
+The certificate PEM associated with your IoT thing\. For more information, see [Configure Your Project](getting_started_ti.md#ti-freertos-config-project)\.
 
-`clientcredentialCLIENT_PRIVATE_KEY_PEM`  
-The private key PEM associated with your IoT thing\. For more information, see [Configure Your AWS IoT Credentials](getting_started_st.md#ti-configure-credentials)\.
+`keyCLIENT_PRIVATE_KEY_PEM`  
+The private key PEM associated with your IoT thing\. For more information, see [Configure Your Project](getting_started_ti.md#ti-freertos-config-project)\.
 
 Make sure the Amazon FreeRTOS MQTT library is installed on your device\. For more information, see [MQTT](#freertos-lib-cloud-mqtt)\. Make sure that the MQTT buffers are large enough to contain the shadow JSON files\. The maximum size for a device shadow document is 8 KB\. All default settings for the device shadow API can be set in the `lib\include\private\aws_shadow_config_defaults.h` file\. You can modify any of these settings in the `demos/<platform>/common/config_files/aws_shadow_config.h` file\.
 

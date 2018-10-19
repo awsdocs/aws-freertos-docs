@@ -4,7 +4,7 @@ The Secure Sockets interface is based on the Berkeley socket interface\. It is p
 
 ## Secure Sockets Ports<a name="secure-socket-ports"></a>
 
-This section contains information about Secure Socket ports for Amazon FreeRTOS\-qualified boards\. For information about creating your own port for Amazon FreeRTOS, see the [Amazon FreeRTOS Porting Guide](http://docs.aws.amazon.com/freertos/latest/userguide/porting-guide.html)\.
+This section contains information about Secure Socket ports for Amazon FreeRTOS\-qualified boards\. For information about creating your own port for Amazon FreeRTOS, see the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/userguide/porting-guide.html)\.
 
 ### STM32 IoT Discovery Kit Secure Sockets Port<a name="stm-sockets-port"></a>
 + This port supports up to four sockets\.

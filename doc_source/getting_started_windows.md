@@ -12,33 +12,26 @@ Amazon FreeRTOS is released as a zip file that contains the Amazon FreeRTOS libr
 
 1. Make sure that you have an active hard\-wired Ethernet connection\.
 
-## Download and Build Amazon FreeRTOS<a name="win-download-and-build"></a>
+## Download and Configure Amazon FreeRTOS<a name="win-download-and-configure"></a>
 
-After your environment is set up, you can download Amazon FreeRTOS and run the sample code\.
+After your environment is set up, you can download Amazon FreeRTOS\.
 
 ### Download Amazon FreeRTOS<a name="win-download"></a><a name="win-download-free-rtos"></a>
 
 1. In the AWS IoT console, browse to the [Amazon FreeRTOS page](https://console.aws.amazon.com/freertos)\.
 
-1. In the left navigation pane, choose **Software**\.
+1. In the navigation pane, choose **Software**\.
 
 1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
 
 1. Choose **Download FreeRTOS Software**\.
 
-1. In the list of software configurations, find the **Connect to AWS IoT\- Windows** predefined configuration for the Windows simulator, and then choose **Download**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/download-freertos.png)
+1. In the list of software configurations, find the **Connect to AWS IoT\- Windows** predefined configuration for the Windows simulator, and then choose **Download**\.
 
 1. Unzip the downloaded file to a folder, and make a note of the folder path\. In this tutorial, this folder is referred to as `BASE_FOLDER`\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.
-
-### Load the Amazon FreeRTOS Sample Code into Visual Studio<a name="win-load-project"></a>
-
-1. In Visual Studio, go to the **File** menu, choose **Open**, choose **File/Solution**, navigate to `<BASE_FOLDER>\AmazonFreeRTOS\demos\pc\windows\visual_studio\aws_demos.sln`, and then choose **Open**\.
-
-1. From the **Build** menu, choose **Build Solution**, and make sure the solution builds without errors or warnings\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.
 
 ### Configure Your Project<a name="win-config-project"></a>
 
@@ -60,7 +53,7 @@ The maximum length of a file path on Microsoft Windows is 260 characters\. The l
 
    You might see output in the debugger that says **Cannot find or open the PDB file**\. You can ignore these messages\.
 
-   You can close the application window after you have identified the number for your hard\-wired Ethernet interface\.
+   After you have identified the number for your hard\-wired Ethernet interface, close the application window\.
 
 1. Open `AmazonFreeRTOS\demos\pc\windows\common\config_files\FreeRTOSConfig.h` and set `configNETWORK_INTERFACE_TO_USE` to the number that corresponds to your hard\-wired network interface\.
 
@@ -70,7 +63,7 @@ You must specify a custom AWS IoT endpoint for the FreeRTOS sample code to conne
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the left navigation pane, choose **Settings**\.
+1. In the navigation pane, choose **Settings**\.
 
 1. Copy your custom AWS IoT endpoint from the **Endpoint** text box\. It should look like `<c3p0r2d2a1b2c3>.iot.<us-east-1>.amazonaws.com`\.
 
@@ -78,11 +71,11 @@ You must specify a custom AWS IoT endpoint for the FreeRTOS sample code to conne
 
 #### Configure Your AWS IoT Credentials<a name="win-configure-credentials"></a>
 
-The certificate and private key must be hard\-coded into the Amazon FreeRTOS demo code\. This is for demo purposes only\. Production level applications should store these files in a secure location\. Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\.
+The certificate and private key must be hard\-coded into the Amazon FreeRTOS demo code\. This is for demonstration purposes only\. Production\-level applications should store these files in a secure location\. Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\.
 
 **To format your certificate and private key**
 
-1. In a browser window, open `<BASE_FOLDER>\demos\common\devmode_key_provisioning\CertificateConfigurationTool\CertificateConfigurator.html`\.
+1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
 
 1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` you downloaded from the AWS IoT console\.
 
@@ -90,15 +83,23 @@ The certificate and private key must be hard\-coded into the Amazon FreeRTOS dem
 
 1. Choose **Generate and save aws\_clientcredential\_keys\.h** and save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the stub file in the directory\.
 
-## Run the FreeRTOS Samples<a name="win-run-example"></a>
+## Build and Run Amazon FreeRTOS Samples<a name="win-build-and-run-example"></a>
+
+### Load the Amazon FreeRTOS Sample Code into Visual Studio<a name="win-load-project"></a>
+
+1. In Visual Studio, from the **File** menu, choose **Open**\. Choose **File/Solution**, navigate to `<BASE_FOLDER>\AmazonFreeRTOS\demos\pc\windows\visual_studio\aws_demos.sln`, and then choose **Open**\.
+
+1. From the **Build** menu, choose **Build Solution**, and make sure the solution builds without errors or warnings\.
+
+### Run the Amazon FreeRTOS Samples<a name="win-run-example"></a>
 
 1. Rebuild your Visual Studio project to pick up changes made in the header files\.
 
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the left navigation pane, choose **Test** to open the MQTT client\.
+1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In the **Subscription topic** text box, type `freertos/demos/echo`, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 1. From the **Debug** menu in Visual Studio, choose **Start Debugging**\.
 

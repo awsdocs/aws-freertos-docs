@@ -21,10 +21,10 @@ Your Wi\-Fi password\.
 `clientcredentialWIFI_SECURITY`  
 The type of security used by your Wi\-Fi network\.
 
-`clientcredentialCLIENT_CERTIFICATE_PEM`  
+`keyCLIENT_CERTIFICATE_PEM`  
 The certificate PEM associated with your thing\.
 
-`clientcredentialCLIENT_PRIVATE_KEY_PEM`  
+`keyCLIENT_PRIVATE_KEY_PEM`  
 The private key PEM associated with your thing\.
 
 You must have a Greengrass group and core device set up in the console\. For more information, see [Getting Started with AWS Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/)\.

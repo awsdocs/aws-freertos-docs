@@ -1,14 +1,14 @@
 # OTA Demo Application<a name="ota-demo"></a>
 
-Amazon FreeRTOS includes a demo application that demonstrates the use of the OTA library\. The OTA demo application is located in the demos\\common\\ota subdirectory\.
+Amazon FreeRTOS includes a demo application that demonstrates the use of the OTA library\. The OTA demo application is located in the `demos\common\ota` subdirectory\.
 
 Before you create an OTA update, read [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
 
 The OTA demo application:
 
-1. Initializes the FreeRTOS network stack and MQTT buffer pool\. \(See main\.c\.\)
+1. Initializes the FreeRTOS network stack and MQTT buffer pool\. \(See `main.c`\.\)
 
-1. Creates a task to exercise the OTA library\. \(See `vOTAUpdateDemoTask` in aws\_ota\_update\_demo\.c\.\)
+1. Creates a task to exercise the OTA library\. \(See `vOTAUpdateDemoTask` in `aws_ota_update_demo.c`\.\)
 
 1. Creates an MQTT client using `MQTT_AGENT_Create`\.
 
@@ -16,9 +16,9 @@ The OTA demo application:
 
 1. Calls `OTA_AgentInit` to create the OTA task and registers a callback to be used when the OTA task is complete\.
 
-After you have created an OTA update job using either the AWS IoT console or the AWS CLI, connect a terminal emulator to see the progress of the OTA update and note any errors generated during the process\.
+You can use the AWS IoT console or the AWS CLI to create an OTA update job\. After you have created an OTA update job, connect a terminal emulator to see the progress of the OTA update\. Make a note of any errors generated during the process\.
 
-A successful OTA update job will display output like the following\. Some lines in the example below have been removed from the listing for brevity\.
+A successful OTA update job displays output like the following\. Some lines in this example have been removed from the listing for brevity\.
 
 ```
 313 267848 [OTA] [OTA] Queued: 1   Processed: 1   Dropped: 0

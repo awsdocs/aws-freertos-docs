@@ -2,7 +2,7 @@
 
 The FreeRTOS kernel is a real\-time operating system that supports numerous architectures\. It is ideal for building embedded microcontroller applications\. It provides:
 + A multitasking scheduler\. 
-+ Multiple memory allocation options \(including the ability to create completely statically allocated systems\)\. 
++ Multiple memory allocation options \(including the ability to create completely statically\-allocated systems\)\. 
 + Inter\-task coordination primitives, including task notifications, message queues, multiple types of semaphore, and stream and message buffers\.
 
 The FreeRTOS kernel never performs non\-deterministic operations, such as walking a linked list, inside a critical section or interrupt\. The FreeRTOS kernel includes an efficient software timer implementation that does not use any CPU time unless a timer needs servicing\. Blocked tasks do not require time\-consuming periodic servicing\. Direct\-to\-task notifications allow fast task signaling, with practically no RAM overhead\. They can be used in the majority of inter\-task and interrupt\-to\-task signaling scenarios\.
@@ -11,11 +11,13 @@ The FreeRTOS kernel is designed to be small, simple, and easy to use\. A typical
 
 ## FreeRTOS Kernel Scheduler<a name="freertos-kernel-scheduler"></a>
 
-An embedded application that uses an RTOS can be structured as a set of independent tasks\. Each task executes within its own context with no dependency on other tasks\. Only one task within the application is running at any point in time\. The real\-time RTOS scheduler determines when each task should run\. Each task is provided with its own stack\. When a task is swapped out so another task can run, the task’s execution context is saved to the task stack so it can be restored when the same task is later swapped back in to resume its execution\. 
+An embedded application that uses an RTOS can be structured as a set of independent tasks\. Each task executes within its own context, with no dependency on other tasks\. Only one task in the application is running at any point in time\. The real\-time RTOS scheduler determines when each task should run\. Each task is provided with its own stack\. When a task is swapped out so another task can run, the task’s execution context is saved to the task stack so it can be restored when the same task is later swapped back in to resume its execution\. 
 
 To provide deterministic real\-time behavior, the FreeRTOS tasks scheduler allows tasks to be assigned strict priorities\. RTOS ensures the highest priority task that is able to execute is given processing time\. This requires sharing processing time between tasks of equal priority if they are ready to run simultaneously\. FreeRTOS also creates an idle task that executes only when no other tasks are ready to run\.
 
 ## Memory Management<a name="kernel-memory-management"></a>
+
+This section provides information about kernel memory allocation and application memory management\.
 
 ### Kernel Memory Allocation<a name="kernel-memory-allocation"></a>
 
@@ -38,7 +40,7 @@ When applications need memory, they can allocate it from the FreeRTOS heap\. Fre
 The FreeRTOS kernel includes five heap implementations:
 
 `heap_1`  
-The simplest implementation\. Does not permit memory to be freed\.
+Is the simplest implementation\. Does not permit memory to be freed\.
 
 `heap_2`  
 Permits memory to be freed, but not does coalescence adjacent free blocks\.
@@ -50,13 +52,15 @@ Wraps the standard `malloc()` and `free()` for thread safety\.
 Coalesces adjacent free blocks to avoid fragmentation\. Includes an absolute address placement option\.
 
 `heap_5`  
-Similar to heap\_4\. Can span the heap across multiple, non\-adjacent memory areas\.
+Is similar to heap\_4\. Can span the heap across multiple, non\-adjacent memory areas\.
 
 ## Inter\-task Coordination<a name="inter-task-coordination"></a>
 
+This section contains information about FreeRTOS primitives\.
+
 ### Queues<a name="inter-task-queues"></a>
 
-Queues are the primary form of inter\-task communication\. They can be used to send messages between tasks and between interrupts and tasks\. In most cases, they are used as thread\-safe FIFO \(First In First Out\) buffers with new data being sent to the back of the queue\. \(Data can also be sent to the front of the queue\.\) Messages are sent through queues by copy, meaning the data \(which can be a pointer to larger buffers\) is itself copied into the queue rather than simply storing a reference to the data\.
+Queues are the primary form of inter\-task communication\. They can be used to send messages between tasks and between interrupts and tasks\. In most cases, they are used as thread\-safe First In First Out \(FIFO\) buffers with new data being sent to the back of the queue\. \(Data can also be sent to the front of the queue\.\) Messages are sent through queues by copy, meaning the data \(which can be a pointer to larger buffers\) is itself copied into the queue rather than simply storing a reference to the data\.
 
 Queue APIs permit a block time to be specified\. When a task attempts to read from an empty queue, the task is placed into the Blocked state until data becomes available on the queue or the block time elapses\. Tasks in the Blocked state do not consume any CPU time, allowing other tasks to run\. Similarly, when a task attempts to write to a full queue, the task is placed into the Blocked state until space becomes available in the queue or the block time elapses\. If more than one task blocks on the same queue, the task with the highest priority is unblocked first\. 
 

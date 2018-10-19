@@ -36,7 +36,7 @@ The following subset of PKCS\#11 is used\. This list is in roughly the order in 
 
 ## Asymmetric Cryptosystem Support<a name="pkcs-asym-crypto"></a>
 
-The Amazon FreeRTOS PKCS\#11 reference implementation supports 2048\-bit RSA \(signing only\) as well as ECDSA with the NIST P\-256 curve\. The following instructions describe how to create an AWS IoT thing based on a P\-256 client certificate\.
+The Amazon FreeRTOS PKCS\#11 reference implementation supports 2048\-bit RSA \(signing only\) and ECDSA with the NIST P\-256 curve\. The following instructions describe how to create an AWS IoT thing based on a P\-256 client certificate\.
 
 Make sure you are using the following \(or more recent\) versions of the AWS CLI and OpenSSL:
 
@@ -48,7 +48,7 @@ openssl version
 OpenSSL 1.0.2g  1 Mar 2016
 ```
 
-The following steps are written with the assumption that you have used the `aws configure` command to configure the AWS CLI\.
+The following steps are written with the assumption that you have used the aws configure command to configure the AWS CLI\.
 
 **Creating an AWS IoT thing based on a P\-256 client certificate**
 
@@ -62,7 +62,7 @@ The following steps are written with the assumption that you have used the `aws 
 
 1. Run `aws iot attach-thing-principal --thing-name dcgecc --principal "arn:aws:iot:us-east-1:123456789012:cert/86e41339a6d1bbc67abf31faf455092cdebf8f21ffbc67c4d238d1326c7de729"` to attach the certificate \(referenced by the ARN output by the previous command\) to the thing\.
 
-1. Run `aws iot create-policy --policy-name FullControl --policy-document file://policy.json` to create a policy\. \(This policy is too permissive and should be used for development purposes only\.\)
+1. Run `aws iot create-policy --policy-name FullControl --policy-document file://policy.json` to create a policy\. \(This policy is too permissive\. It should be used for development purposes only\.\)
 
    The following is a listing of the policy\.json file specified in the `create-policy` command\. You can omit the `greengrass:*` action if you don't want to run the Amazon FreeRTOS demo for Greengrass connectivity and discovery\.
 

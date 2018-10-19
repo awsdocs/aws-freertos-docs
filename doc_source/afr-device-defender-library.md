@@ -6,9 +6,11 @@ Amazon FreeRTOS provides a library that allows your Amazon FreeRTOS\-based devic
 
 ## Amazon FreeRTOS Device Defender API<a name="afr-device-defender-api"></a>
 
+This section contains information about the Device Defender API\.
+
 ### DEFENDER\_MetricsInit<a name="dd_metrics_init"></a>
 
-Specifies the Device Defender metrics your device will send to the Device Defender service\.
+Specifies the Device Defender metrics your device will send to AWS IoT Device Defender\.
 
 ```
 DefenderErr_t DEFENDER_MetricsInit(DefenderMetric_t * pxMetricsList);
@@ -19,21 +21,21 @@ A list of Device Defender metrics\. Valid values are:
 + `DEFENDER_tcp_connections` \- tracks the number of TCP connections\.Return Value
 
   
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)
+Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
 
 ### DEFENDER\_ReportPeriodSet<a name="dd_reportperiodset"></a>
 
-Sets the report period interval in seconds\. Device Defender provides metric reports on an interval\. If the device is awake, and the interval has elapsed, the device will report the metrics\.
+Sets the report period interval in seconds\. Device Defender provides metric reports on an interval\. If the device is awake, and the interval has elapsed, the device reports the metrics\.
 
 ```
 DefenderErr_t DEFENDER_ReportPeriodSet(int32_t LPeriodSec);
 ```Arguments
 
 `period_sec`  
-The number of seconds after which a report is sent to the Device Defender service\.Return Value
+The number of seconds after which a report is sent to AWS IoT Device Defender\.Return Value
 
   
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)
+Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
 
 ### DEFENDER\_Start<a name="dd_start"></a>
 
@@ -44,7 +46,7 @@ Starts the Device Defender agent\.
 ```Return Value
 
   
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)
+Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
 
 ### DEFENDER\_Stop<a name="dd_start"></a>
 
@@ -55,7 +57,7 @@ DefenderErr_t DEFENDER_Stop(void);
 ```Return Value
 
   
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)
+Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
 
 ### DEFENDER\_ReportStatusGet<a name="dd_reportstatusget"></a>
 
@@ -65,7 +67,7 @@ Gets the status of the last Device Defender report\. Valid status code values ar
 The last report was successfully sent and acknowledged\.
 
 `eDefenderRepInit`  
-Device Defender has been started but no report has been sent\.
+Device Defender has been started, but no report has been sent\.
 
 `eDefenderRepRejected`  
 The last report was rejected\.
@@ -74,7 +76,7 @@ The last report was rejected\.
 The last report was not acknowledged\.
 
 `eDefenderRepNotSent`  
-The last report failed to send, likely due to a connectivity issue\.
+The last report was not sent, likely due to a connectivity issue\.
 
 ```
 DefenderReportStatus_t DEFENDER_ReportStatusGet(void);
@@ -97,9 +99,9 @@ The Device Defender agent has not been started\.
 `eDefenderErrOther`  
 An unspecified error occurred\.
 
-### Using Device Defender in your Embedded Application<a name="calling_dd"></a>
+### Using Device Defender in Your Embedded Application<a name="calling_dd"></a>
 
-The following code illustrates how to configure and start the Device Defender agent from your embedded application:
+The following code shows how to configure and start the Device Defender agent from your embedded application:
 
 ```
 void MyDefenderInit(void)

@@ -1,44 +1,44 @@
 # Prerequisites<a name="freertos-prereqs"></a>
 
-Before you begin, you need an AWS account, an IAM user with permission to access AWS IoT and Amazon FreeRTOS, and one of the supported hardware platforms\.
+To follow along with this tutorial, you need an AWS account, an IAM user with permission to access AWS IoT and Amazon FreeRTOS, and one of the supported hardware platforms\.
 
 ## AWS Account and Permissions<a name="freertos-account-and-permissions"></a>
 
 To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
 
-To add an IAM user to your AWS account, see [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)\. IAM users must be granted access to AWS IoT and Amazon FreeRTOS\. To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, attach the following IAM policies to your IAM user account:
+To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, attach the following IAM policies to your IAM user account:
 + `AmazonFreeRTOSFullAccess`
 + `AWSIoTFullAccess`
 
-**To attach the `AmazonFreeRTOSFullAccess` policy to your IAM user**
+**To attach the AmazonFreeRTOSFullAccess policy to your IAM user**
 
-1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home), and from the left navigation pane, choose ** Users**\.
+1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home), and from the navigation pane, choose ** Users**\.
 
-1. Type your user name in the search text box, and then choose your user name from the list\.
-
-1. Choose **Add permissions**\.
-
-1. Choose **Attach existing policies directly**\.
-
-1. In the search box, type **AmazonFreeRTOSFullAccess**, select it from the list, and then choose **Next: Review**\.
-
-1. Choose **Add permissions**\.
-
-**To attach the `AWSIoTFullAccess` policy to your IAM user**
-
-1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home), and from the left navigation pane, choose ** Users**\.
-
-1. Type your user name in the search text box, and then choose your user name from the list\.
+1. Enter your user name in the search text box, and then choose it from the list\.
 
 1. Choose **Add permissions**\.
 
 1. Choose **Attach existing policies directly**\.
 
-1. In the search box, type **AWSIoTFullAccess**, select it from the list, and then choose **Next: Review**\.
+1. In the search box, enter **AmazonFreeRTOSFullAccess**, choose it from the list, and then choose **Next: Review**\.
 
 1. Choose **Add permissions**\.
 
-For more information about IAM and user accounts, see [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+**To attach the AWSIoTFullAccess policy to your IAM user**
+
+1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home), and from the navigation pane, choose ** Users**\.
+
+1. Enter your user name in the search text box, and then choose it from the list\.
+
+1. Choose **Add permissions**\.
+
+1. Choose **Attach existing policies directly**\.
+
+1. In the search box, enter **AWSIoTFullAccess**, choose it from the list, and then choose **Next: Review**\.
+
+1. Choose **Add permissions**\.
+
+For more information about IAM and user accounts, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
 For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
@@ -49,22 +49,34 @@ You need one of the supported MCU boards:
 + [Texas Instruments CC3220SF\-LAUNCHXL](http://www.ti.com/tool/CC3220SF-LAUNCHXL)
 + [NXP LPC54018 IoT Module](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/lpc-cortex-m-mcus/lpc54000-series-cortex-m4-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007)
 + [Microchip Curiosity PIC32MZEF bundle](http://www.microchip.com/developmenttools/productdetails.aspx?partno=dm320104)
++ [Espressif ESP32\-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview)
++ [Espressif ESP\-WROVER\-KIT](https://www.espressif.com/en/products/hardware/esp-wrover-kit/overview)
++ [Infineon XMC4800 IoT Connectivity Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc48_iot_aws_wifi)
 + Microsoft Windows 7 or later, with at least a dual core and a hard\-wired Ethernet connection
 
 ## Registering Your MCU Board with AWS IoT<a name="get-started-freertos-thing"></a>
 
- You must register your MCU board so it can communicate with AWS IoT\. Registering your device involves creating an IoT thing, a private key, an X\.509 certificate, and an AWS IoT policy\. An IoT thing allows you to manage your devices in AWS IoT\. The private key and certificate allow your device to authenticate with AWS IoT\. The AWS IoT policy grants your device permissions to access AWS IoT resources\.
+ You must register your MCU board so it can communicate with AWS IoT\. To register your device, you must create:
++ An IoT thing\.
+
+  An IoT thing allows you to manage your devices in AWS IoT\. 
++ A private key and X\.509 certificate\.
+
+  The private key and certificate allow your device to authenticate with AWS IoT\.
++ An AWS IoT policy\. 
+
+  The AWS IoT policy grants your device permissions to access AWS IoT resources\.
 
 **To create an AWS IoT policy**
 
-1. To create an IAM policy, you need to know your AWS region and AWS account number\. 
+1. To create an IAM policy, you need to know your AWS Region and AWS account number\. 
 
-   To find your AWS account number, in the upper\-right corner of the AWS Management Console, choose **My Account**\. Your account ID is displayed under **Account Settings**
+   To find your AWS account number, in the upper\-right corner of the AWS Management Console, choose **My Account**\. Your account ID is displayed under **Account Settings**\.
 
-   To find the region your AWS account is in, open a command prompt window and type the following command:
+   To find the AWS Region for your AWS account, open a command prompt window and enter the following command:
 
    ```
-   aws iot describe-endpoint
+   AWS IoT describe-endpoint
    ```
 
    The output should look like this:
@@ -79,9 +91,9 @@ You need one of the supported MCU boards:
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the left navigation pane, choose **Secure**, choose **Policies**, and then choose **Create**\.
+1. In the navigation pane, choose **Secure**, choose **Policies**, and then choose **Create**\.
 
-1. Type a name to identify your policy\.
+1. Enter a name to identify your policy\.
 
 1. In the **Add statements** section, choose **Advanced mode**\. Copy and paste the following JSON into the policy editor window\. Replace *aws\-region* and *aws\-account* with your region and account ID \.
 
@@ -129,13 +141,13 @@ Grants your device the permission to receive messages from the AWS IoT message b
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the left navigation pane, choose **Manage**, and then choose **Things**\.
+1. In the navigation pane, choose **Manage**, and then choose **Things**\.
 
 1. If you do not have any IoT things registered in your account, the **You don't have any things yet** page is displayed\. If you see this page, choose **Register a thing**\. Otherwise, choose **Create**\.
 
 1. On the **Creating AWS IoT things** page, choose **Create a single thing**\.
 
-1. On the **Add your device to the thing registry** page, type a name for your thing, and then choose **Next**\.
+1. On the **Add your device to the thing registry** page, enter a name for your thing, and then choose **Next**\.
 
 1. On the **Add a certificate for your thing** page, under **One\-click certificate creation**, choose **Create certificate**\.
 
@@ -149,12 +161,14 @@ Grants your device the permission to receive messages from the AWS IoT message b
 
 ## Install a Terminal Emulator<a name="uart-term"></a>
 
-To verify your device code is running properly or to help in diagnosing problems, a terminal emulator can be very helpful\. There are a variety of terminal emulators available for Windows, OS X, and Linux\. You will need to connect your device to your computer before attempting to connect a terminal emulator to your device\. Use these settings in your terminal emulator:
+A terminal emulator can help you diagnose problems or verify your device code is running properly\. There are a variety of terminal emulators available for Windows, macOS, and Linux\. You must connect your device to your computer before you attempt to connect a terminal emulator to your device\.
+
+ Use these settings in your terminal emulator:
 
 
 | Terminal Setting | Value | 
 | --- | --- | 
-|  Port  |  Depends on platform and what other devices you have connected to your computer\.  | 
+|  Port  |  Depends on platform and other devices you have connected to your computer\.  | 
 |  BAUD rate  |  115200  | 
 |  Data  |  8 bit  | 
 |  Parity  |  none  | 

@@ -1,6 +1,6 @@
 # Greengrass Discovery Demo Application<a name="gg-demo"></a>
 
-Before you run the FreeRTOS Greengrass discovery demo, you must create a Greengrass group and then add a Greengrass core\. For more information, see [Getting Started with AWS Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\.
+Before you run the FreeRTOS Greengrass Discovery demo, you must create a Greengrass group and then add a Greengrass core\. For more information, see [Getting Started with AWS Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\.
 
 After you have a core running the Greengrass software, create an AWS IoT thing, certificate, and policy for your Amazon FreeRTOS device\. For more information, see [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing)\.
 
@@ -12,6 +12,7 @@ Use the [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-starte
 + [Getting Started with the STMicroelectronics STM32L4 Discovery Kit IoT Node](getting_started_st.md)
 + [Getting Started with the NXP LPC54018 IoT Module](getting_started_nxp.md)
 + [ Getting Started with the Microchip Curiosity PIC32MZEF](getting_started_mch.md)
++ [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)
 + [Getting Started with the FreeRTOS Windows Simulator](getting_started_windows.md)
 
 At this point, you have downloaded the Amazon FreeRTOS software, imported it into your IDE, and built the project without errors\. The project is already configured to run the Greengrass Connectivity demo\. In the AWS IoT console, choose **Test**, and then add a subscription to `freertos/demos/ggd`\. The demo publishes a series of messages to the Greengrass core\. The messages are also published to AWS IoT, where they are received by the AWS IoT MQTT client\.

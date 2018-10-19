@@ -7,3 +7,4 @@ This section contains resources that are useful after you have a basic understan
 + [Device Shadow Demo Application](shadow-demo.md)
 + [Greengrass Discovery Demo Application](gg-demo.md)
 + [OTA Demo Application](ota-demo.md)
++ [Demo Bootloader for the Microchip Curiosity PIC32MZEF](microchip-bootloader.md)
