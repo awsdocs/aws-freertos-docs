@@ -6,7 +6,6 @@ Both the [ESP32\-DevKitC](https://www.espressif.com/en/products/hardware/esp32-d
 Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following:  
 Lightweight IP\.
 Symmetric multiprocessing \(SMP\)\.
-Bluetooth Low Energy \(BLE\)\.
 
 ## Setting Up the Espressif Hardware<a name="setup-hw-espressif"></a>
 
@@ -20,7 +19,7 @@ For the ESP\-WROVER\-KIT development board, see [Getting Started with the ESP\-W
 
 To establish a serial connection with the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. If you are running Windows 10, install v6\.7\.5 of the CP210x USB to UART Bridge drivers\. If you are running an older version of Windows, install the version indicated in the list of downloads\.
 
-For more information, see [Establishing a Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\.
+To establish a serial connection with the ESP32\-WROVER\-KIT, you must install some FTDI virtual COM port drivers\. For more information, see [Establishing a Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\.
 
 Make a note of the serial port you configure \(based on host OS\)\. You need it during the build process\.
 
@@ -37,10 +36,11 @@ After your environment is set up, you can download Amazon FreeRTOS\.
 
 ### Downloading Amazon FreeRTOS<a name="download-espressif"></a>
 
-Clone the Amazon FreeRTOS repository from [GitHub](https://github.com/aws/amazon-freertos)\. These procedures are written with the assumption you have cloned the repository into a directory called *BASE\_FOLDER*\.
+Clone the Amazon FreeRTOS repository from [GitHub](https://github.com/aws/amazon-freertos)\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS repository is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
+In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
 
 ### Configure Your Project<a name="config-project-espressif"></a>
 
@@ -61,7 +61,7 @@ The maximum length of a file path on Microsoft Windows is 260 characters\. The l
 Amazon FreeRTOS includes scripts to make it easier to set up your Espressif board\. To configure the Espressif scripts, open `<BASE_FOLDER>/tools/aws_config_quick_start/configure.json` and set the following attributes:
 
 `afr_source_dir`  
-The complete path to the Amazon FreeRTOS directory\.
+The complete path to the Amazon FreeRTOS download on your computer\.
 
 `thing_name`  
 The name of the IoT thing that represents your board\.
@@ -139,14 +139,14 @@ I (90) boot: End of partition table
 I (94) esp_image: segment 0: paddr=0x00010020 vaddr=0x3f400020 size=0x12710 ( 75536) map
 I (129) esp_image: segment 1: paddr=0x00022738 vaddr=0x3ffb0000 size=0x0240c (  9228) load
 I (133) esp_image: segment 2: paddr=0x00024b4c vaddr=0x40080000 size=0x00400 (  1024) load
-0x40080000: _iram_start at /Users/michgre/Desktop/AmazonFreeRTOS-Espressif/lib/FreeRTOS/portable/GCC/Xtensa_ESP32/xtensa_vectors.S:1685
+0x40080000: _iram_start at BASE_FOLDER/AmazonFreeRTOS-Espressif/lib/FreeRTOS/portable/GCC/Xtensa_ESP32/xtensa_vectors.S:1685
 
 I (136) esp_image: segment 3: paddr=0x00024f54 vaddr=0x40080400 size=0x0b0bc ( 45244) load
 I (164) esp_image: segment 4: paddr=0x00030018 vaddr=0x400d0018 size=0x6d454 (447572) map
 0x400d0018: _stext at ??:?
 
 I (319) esp_image: segment 5: paddr=0x0009d474 vaddr=0x4008b4bc size=0x02d44 ( 11588) load
-0x4008b4bc: xStreamBufferSend at /Users/michgre/Desktop/AmazonFreeRTOS-Espressif/lib/FreeRTOS/stream_buffer.c:636
+0x4008b4bc: xStreamBufferSend at BASE_FOLDER/AmazonFreeRTOS-Espressif/lib/FreeRTOS/stream_buffer.c:636
 
 I (324) esp_image: segment 6: paddr=0x000a01c0 vaddr=0x400c0000 size=0x00000 (     0) load
 I (334) boot: Loaded app from partition at offset 0x10000
@@ -288,6 +288,19 @@ I (20956) PKCS11: Partition size: total: 52961, used: 0
 356 8668 [MQTTEcho] MQTT echo demo finished.
 ```
 
+### Run the Bluetooth Low\-Energy Demos<a name="espressif-run-ble"></a>
+
+
+|  | 
+| --- |
+| Amazon FreeRTOS support for Bluetooth Low Energy is in public beta release\. BLE demos are subject to change\. | 
+
+Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\.
+
+For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
+
+For instructions about how to run the Wi\-Fi Provisioning demo on your board, see the [Wi\-Fi Provisioning demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-wifi)\.
+
 ## Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>
 + If you are using a Mac and it does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [FTDI Drivers Installation Guide for macOS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
 + The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [Automatically Decoding Addresses]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses) on the Espressif website\.
@@ -308,3 +321,204 @@ I (20956) PKCS11: Partition size: total: 52961, used: 0
   ```
   make flash monitor -j4
   ```
+
+### Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
+
+You need a JTAG to USB cable\. We use a USB to MPSSE cable \(for example, the [FTDI C232HM\-DDHSL\-0](http://www.ftdichip.com/Products/Cables/USBMPSSE.htm)\)\. 
+
+#### ESP\-DevKitC JTAG Setup<a name="jtag-devkitc"></a>
+
+For the FTDI C232HM\-DDHSL\-0 cable, these are the connections to the ESP32 DevkitC:
+
+
+| C232HM\-DDHSL\-0 Wire Color | ESP32 GPIO Pin | JTAG Signal Name | 
+| --- | --- | --- | 
+|  Brown \(pin 5\)  |  IO14  | TMS | 
+|  Yellow \(pin 3\)  |  IO12  | TDI | 
+| Black \(pin 10\) | GND | GND | 
+| Orange \(pin 2\) | IO13 | TCK | 
+| Green \(pin 4\) | IO15 | TDO | 
+
+#### ESP\-WROVER\-KIT JTAG Setup<a name="jtag-wrover"></a>
+
+For the FTDI C232HM\-DDHSL\-0 cable, these are the connections to the ESP32\-WROVER\-KIT:
+
+
+| C232HM\-DDHSL\-0 Wire Color | ESP32 GPIO Pin | JTAG Signal Name | 
+| --- | --- | --- | 
+|  Brown \(pin 5\)  |  IO14  |  TMS  | 
+|  Yellow \(pin 3\)  |  IO12  |  TDI  | 
+|  Orange \(pin 2\)  |  IO13  |  TCK  | 
+|  Green \(pin 4\)  |  IO15  |  TDO  | 
+
+These tables were developed from the FTDI C232HM\-DDHSL\-0 [datasheet](http://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_C232HM_MPSSE_CABLE.PDF)\. For more information, see C232HM MPSSE Cable Connection and Mechanical Details in the datasheet\.
+
+To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO, TDI, TCK, and S\_TDI pins as shown here:
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/JP8-jumpers.png)
+
+#### Debugging on Windows<a name="debugging-espressif-windows"></a>
+
+**To set up for debugging on Windows**
+
+1. Connect the USB side of the FTDI C232HM\-DDHSL\-0 to your computer and the other side as described in [Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT](#debugging-espressif)\. The FTDI C232HM\-DDHSL\-0 device should appear in **Device Manager** under **Universal Serial Bus Controllers**\.
+
+1. From the list of USB controllers, right\-click the FTDI C232HM\-DDHSL\-0 device \(the manufacturer is FTDI\), and choose **Properties**\. In the properties window, choose the **Details** tab to see the properties of the device\. If the device is not listed, install the [Windows driver for FTDI C232HM\-DDHSL\-0](http://www.ftdichip.com/Drivers/D2XX.htm)\.
+
+1. Verify that the vendor ID and product ID displayed in **Device Manager** match the IDs in `demos\espressif\esp32_devkitc_esp_wrover_kit\esp32_devkitj_v1.cfg`\. The IDs are specified in a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
+
+   ```
+   ftdi_vid_pid 0x0403 0x6014
+   ```
+
+1. Download [OpenOCD for Windows](https://github.com/espressif/openocd-esp32/releases)\.
+
+1. Unzip the file to `C:\` and add `C:\openocd-esp32\bin` to your system path\.
+
+1. OpenOCD requires libusb, which is not installed by default on Windows\. To install it:
+
+   1. Download [zadig\.exe](https://zadig.akeo.ie)\.
+
+   1. Run `zadig.exe`\. From the **Options** menu, choose **List All Devices**\.
+
+   1. From the drop\-down menu, choose **C232HM\-DDHSL\-0**\.
+
+   1. In the target driver box, to the right of the green arrow, choose **WinUSB**\.
+
+   1. From the drop\-down box under the target driver box, choose the arrow, and then choose **Install Driver**\. Choose **Replace Driver**\.
+
+1. Open a command prompt, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run:
+
+   ```
+   openocd.exe -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
+   ```
+
+   Leave this command prompt open\.
+
+1. Open a new command prompt, navigate to your `msys32` directory, and run `mingw32.exe`\. In the mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run make flash monitor\.
+
+1. Open another mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run `xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf`\. The program should stop in the `main` function\.
+
+**Note**  
+The ESP32 supports a maximum of two break points\.
+
+#### Debugging on macOS<a name="debugging-espressif-macos"></a>
+
+1. Download the [FTDI driver for macOS](http://www.ftdichip.com/Drivers/VCP.htm)\.
+
+1. Download [OpenOCD](https://github.com/espressif/openocd-esp32/releases)\.
+
+1. Extract the downloaded \.tar file and set the path in `.bash_profile` to `<OCD_INSTALL_DIR>/openocd-esp32/bin`\.
+
+1. Use the following command to install `libusb` on macOS:
+
+   ```
+   brew install libusb
+   ```
+
+1. Use the following command to unload the serial port driver:
+
+   ```
+   sudo kextunload -b com.FTDI.driver.FTDIUSBSerialDriver
+   ```
+
+1. If you are running a macOS version later than 10\.9, use the following command to unload Apple's FTDI driver:
+
+   ```
+   sudo kextunload -b com.apple.driver.AppleUSBFTDI
+   ```
+
+1. Use the following command to get the product ID and vendor ID of the FTDI cable\. It lists the attached USB devices:
+
+   ```
+   system_profiler SPUSBDataType
+   ```
+
+   The output from `system_profiler` should look like the following:
+
+   ```
+   C232HM-DDHSL-0:
+   Product ID: 0x6014
+   Vendor ID: 0x0403 (Future Technology Devices International Limited)
+   ```
+
+1. Verify the vendor and product IDs match the IDs in `demos/espressif/esp32_devkitc_esp_wrover_kit/esp32_devkitj_v1.cfg`\. The IDs are specified on a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
+
+   ```
+   ftdi_vid_pid 0x0403 0x6014
+   ```
+
+1. Open a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
+
+   ```
+   openocd -f esp32_devkitj_v1.cfg -f
+   								esp-wroom-32.cfg
+   ```
+
+1. Open a new terminal, and use the following command to load the FTDI serial port driver:
+
+   ```
+   sudo kextload -b com.FTDI.driver.FTDIUSBSerialDriver
+   ```
+
+1. Navigate to `<BASE_FOLDER>>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+
+   ```
+   make flash monitor
+   ```
+
+1. Open another new terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+
+   ```
+   xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf
+   ```
+
+   The program should stop at `main()`\.
+
+#### Debugging on Linux<a name="debugging-espressif-linux"></a>
+
+1. Download [OpenOCD](https://github.com/espressif/openocd-esp32/releases)\. Extract the tarball and follow the installation instructions in the readme file\.
+
+1. Use the following command to install libusb on Linux:
+
+   ```
+   sudo apt-get install libusb-1.0
+   ```
+
+1. Open a terminal and enter **ls \-l /dev/ttyUSB\***to list all USB devices connected to your computer\. This helps you check if the board’s USB ports are recognized by the operating system\. You should see output similar to the following:
+
+   ```
+   $ls -l /dev/ttyUSB*
+   crw-rw----	1	root	dialout	188,	0	Jul	10	19:04	/dev/ttyUSB0
+   crw-rw----	1	root	dialout	188,	1	Jul	10	19:04	/dev/ttyUSB1
+   ```
+
+1. Sign off and then sign in and cycle the power to the board to make the changes take effect\. In a terminal prompt, list the USB devices\. Make sure the group\-owner has changed from `dialout` to `plugdev`:
+
+   ```
+   $ls -l /dev/ttyUSB*
+   crw-rw----	1	root	plugdev	188,	0	Jul	10	19:04	/dev/ttyUSB0
+   crw-rw----	1	root	plugdev	188,	1	Jul	10	19:04	/dev/ttyUSB1
+   ```
+
+   The `/dev/ttyUSBn` interface with the lower number is used for JTAG communication\. The other interface is routed to the ESP32’s serial port \(UART\) and is used for uploading code to the ESP32’s flash memory\.
+
+1. In a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
+
+   ```
+   openocd -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
+   ```
+
+1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+
+   ```
+   make flash monitor
+   ```
+
+1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+
+   ```
+   xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf
+   ```
+
+   The program should stop in `main()`\.

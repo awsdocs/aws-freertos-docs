@@ -1,7 +1,3 @@
 # Troubleshooting Amazon FreeRTOS<a name="troubleshooting_overview-afr"></a>
 
-Amazon FreeRTOS supports Amazon CloudWatch and AWS CloudTrail logging services to help troubleshoot issues with Amazon FreeRTOS\.
-
-**Topics**
-+ [Setting Up Cloudwatch Logs for OTA Updates](ota-logging.md)
-+ [Logging AWS IoT OTA API Calls with AWS CloudTrail](iot-using-cloudtrail-afr.md)
+Amazon FreeRTOS supports Amazon CloudWatch and AWS CloudTrail logging services to help troubleshoot issues with Amazon FreeRTOS Over\-the\-Air updates\. For more information about troubleshooting OTA updates, see [OTA Troubleshooting](https://docs.aws.amazon.com/freertos/latest/userguide/ota-troubleshooting.html)\.

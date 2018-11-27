@@ -29,7 +29,7 @@ aws signer put-signing-profile --profile-name <your_profile_name>
 ```
 aws signer start-signing-job --source
 							's3={bucketName=<your_s3_bucket>,key=<your_s3_object_key>,version=<your_s3_object_version_id>}'
-								--destination 's3={bucketName=<your_destination_bucket>}' --profile
+								--destination 's3={bucketName=<your_destination_bucket>}' --profile-name
 							<your_profile_name>
 ```
 
@@ -54,10 +54,8 @@ The ARN of your code\-signing certificate\. This ARN is generated when you impor
 A map of key\-value pairs for signing\. These can include any information that you want to use during signing\.
 
 `platform`  
-The hardware platform to which you are distributing the OTA update\. Valid values are:  
-+ `TexasInstruments`
-+ `MicrochipTechnologyInc`
-+ `WindowsSimulator`
+The `platformId` of the hardware platform to which you are distributing the OTA update\.  
+To return a list of the available platforms and their `platformId` values, use the `aws signer list-signing-platforms` command\.
 
 The signing job starts and writes the signed firmware image into the destination Amazon S3 bucket\. The file name for the signed firmware image is a GUID\. You need this file name when you create a stream\. You can find the generated file name by browsing to the Amazon S3 console and choosing your bucket\. If you don't see a file with a GUID file name, refresh your browser\.
 

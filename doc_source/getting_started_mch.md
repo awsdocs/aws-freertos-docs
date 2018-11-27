@@ -79,61 +79,62 @@ After your environment is set up, you can download Amazon FreeRTOS\.
 
 1. In **Software Configurations**, find **Connect to AWS IoT\- Microchip**, and then choose **Download**\.
 
-1. Unzip the downloaded file to a folder, and make a note of the folder path\. In this tutorial, this folder is referred to as `BASE_FOLDER`\.
+1. Unzip the downloaded file to the AmazonFreeRTOS folder, and make a note of the folder's path\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
+In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
 
 ### Configure Your Project<a name="mch-freertos-config-project"></a>
 
-To run the demo, you must configure your project to work with AWS IoT and a Wi\-Fi network\. 
+To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
 
-**Configure your AWS IoT endpoint**
+**To configure your AWS IoT endpoint**
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
 1. In the navigation pane, choose **Settings**\.
 
-1. Copy your AWS IoT endpoint from the **Endpoint** text box\. It should look like `<1234567890123>.iot.<us-east-1>.amazonaws.com`\.
+   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
 
-1. Open `aws_demos\application_code\common_demos\include\aws_clientcredential.h` in your IDE\.
+1. In the navigation pane, choose **Manage**, and then choose **Things**\.
 
-1. Set **clientcredentialMQTT\_BROKER\_ENDPOINT** to your AWS IoT endpoint\.
+   Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-**Configure your Wi\-Fi**
+1. In your IDE, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
+   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
+   + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
-1. Open the same `aws_clientcredential.h` file\.
+**To configure your Wi\-Fi**
 
-1. Specify values for the following `#define` constants:  
-`clientcredentialMQTT_BROKER_ENDPOINT`  
-*Your AWS IoT endpoint*  
-`clientcredentialIOT_THING_NAME`  
-*The AWS IoT thing for your board*  
-`clientcredentialWIFI_SSID`  
-*The SSID for your Wi\-Fi network*  
-`clientcredentialWIFI_PASSWORD`  
-*The password for your Wi\-Fi network*  
-`clientcredentialWIFI_SECURITY`  
-*The security type of your Wi\-Fi network\.*   
-Valid security types are:  
-   + `eWiFiSecurityOpen` \(Open, no security\)
-   + `eWiFiSecurityWEP` \(WEP security\)
-   + `eWiFiSecurityWPA` \(WPA security\)
-   + `eWiFiSecurityWPA2` \(WPA2 security\)
+1. Open the `aws_clientcredential.h` file\.
 
-**Configure your AWS IoT credentials**
+1. Specify values for the following `#define` constants:
+   + `clientcredentialWIFI_SSID` *The SSID for your Wi\-Fi network*
+   + `clientcredentialWIFI_PASSWORD` *The password for your Wi\-Fi network*
+   + `clientcredentialWIFI_SECURITY` *The security type of your Wi\-Fi network*
 
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You need to format the certificate and private key for your device\. 
+     Valid security types are:
+     + `eWiFiSecurityOpen` \(Open, no security\)
+     + `eWiFiSecurityWEP` \(WEP security\)
+     + `eWiFiSecurityWPA` \(WPA security\)
+     + `eWiFiSecurityWPA2` \(WPA2 security\)
 
-1. In a browser window, open `tools\certificate_configuration\CertificateConfigurator.html`\.
+**To configure your AWS IoT credentials**
+**Note**  
+To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
+
+Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You must format the certificate and private key for your device\.
+
+1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
 
 1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
 
 1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
 
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `demos\common\include`\. This overwrites the existing file in the directory\.
+1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
 **Note**  
-The certificate and private key should be hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
+The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 ## Build and Run Amazon FreeRTOS Samples<a name="mch-build-and-run-example"></a>
 
@@ -141,7 +142,7 @@ The certificate and private key should be hard\-coded for demonstration purposes
 
 1. In the MPLAB IDE, from the **File** menu, choose **Open Project**\.
 
-1. Browse to and open `<BASE_FOLDER>\AmazonFreeRTOS\demos\microchip\curiosity_pic32mzef\mplab`\.
+1. Browse to and open `<BASE_FOLDER>\demos\microchip\curiosity_pic32mzef\mplab`\.
 
 1. Choose **Open project**\.
 

@@ -4,6 +4,8 @@ This section contains resources that are useful after you have a basic understan
 
 **Topics**
 + [Navigating the Demo Applications](freertos-mds-projects-struct.md)
++ [Bluetooth Low Energy Demo Applications \(Beta\)](ble-demo.md)
++ [Secure Sockets Echo Client Demo](secure-sockets-demo.md)
 + [Device Shadow Demo Application](shadow-demo.md)
 + [Greengrass Discovery Demo Application](gg-demo.md)
 + [OTA Demo Application](ota-demo.md)

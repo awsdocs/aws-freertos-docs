@@ -14,6 +14,7 @@ Predefined configurations are defined for the prequalified platforms:
 + Espressif ESP32\-DevKitC
 + Espressif ESP3\-WROVER\-KIT
 + Infineon XMC4800 IoT Connectivity Kit
++ Xilinx Avnet MicroZed Industrial IoT Starter Kit
 + FreeRTOS Windows Simulator
 
 The predefined configurations make it possible for you to get started quickly with the supported use cases without thinking about which libraries are required\. To use a predefined configuration, browse to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), find the configuration you want to use, and then choose **Download**\.

@@ -1,8 +1,89 @@
-# Amazon FreeRTOS Device Defender Library<a name="afr-device-defender-library"></a>
+# Amazon FreeRTOS AWS IoT Device Defender Library<a name="afr-device-defender-library"></a>
+
+## Overview<a name="freertos-defender-overview"></a>
 
 AWS IoT Device Defender is an AWS IoT service that allows you to audit the configuration of your devices, monitor connected devices to detect abnormal behavior, and to mitigate security risks\. It gives you the ability to enforce consistent IoT configurations across your AWS IoT device fleet and respond quickly when devices are compromised\.
 
 Amazon FreeRTOS provides a library that allows your Amazon FreeRTOS\-based devices to work with AWS IoT Device Defender\. You can download the Amazon FreeRTOS Device Defender library using the [Amazon FreeRTOS Console](http://console.aws.amazon.com/freertos) by adding the Device Defender library to your software configuration\. You can also clone the Amazon FreeRTOS GitHub repository and find the library in the `lib` directory\.
+
+The source files for the Amazon FreeRTOS AWS IoT Device Defender library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/defender](https://github.com/aws/amazon-freertos/blob/master/lib/defender)\.
+
+## Source and Header Files<a name="freertos-defender-source"></a>
+
+```
+Amazon FreeRTOS
+|
++ - lib    
+    |
+    + - defender
+    |    + ─ aws_defender.c
+    |    + ─ aws_defender_states.dot
+    |    + ─ aws_defender_states.png
+    |    + ─ draw_states.py
+    |    + ─ portable
+    |    |   + ─ freertos
+    |    |   |   + ─ aws_defender_cpu.c
+    |    |   |   + ─ aws_defender_tcp_conn.c
+    |    |   |   + ─ aws_defender_uptime.c
+    |    |   + ─ stub
+    |    |   |   + ─ aws_defender_cpu.c
+    |    |   |   + ─ aws_defender_tcp_conn.c
+    |    |   |   + ─ aws_defender_uptime.c
+    |    |   |   + ─ makefile
+    |    |   + ─ template
+    |    |   |   + ─ aws_defender_cpu.c
+    |    |   |   + ─ aws_defender_tcp_conn.c
+    |    |   |   + ─ aws_defender_uptime.c
+    |    |   |   + ─ makefile
+    |    |   + ─ unit_test
+    |    |   |   + ─ aws_defender_cpu.c
+    |    |   |   + ─ aws_defender_tcp_conn.c
+    |    |   |   + ─ aws_defender_uptime.c
+    |    |   + ─ unix
+    |    |        + ─ aws_defender_cpu.c
+    |    |        + ─ aws_defender_tcp_conn.c
+    |    |        + ─ aws_defender_uptime.c
+    |    |        + ─ makefile
+    |    + ─ report
+    |        + ─ aws_defender_report.c
+    |        + ─ aws_defender_report_cpu.c
+    |        + ─ aws_defender_report_header.c
+    |        + ─ aws_defender_report_tcp_conn.c
+    |        + ─ aws_defender_report_uptime.c
+    + - include
+        + - aws_defender.h
+        + - private
+            + - aws_defender_cpu.h
+            + - aws_defender_internals.h
+            + - aws_defender_report_cpu.h
+            + - aws_defender_report.h
+            + - aws_defender_report_header.h
+            + - aws_defender_report_tcp_conn.h
+            + - aws_defender_report_types.h
+            + - aws_defender_report_uptime.h
+            + - aws_defender_report_utils.h
+            + - aws_defender_tcp_conn.h
+            + - aws_defender_uptime.h
+```
+
+## Developer Support<a name="freertos-defender-support"></a>
+
+### Amazon FreeRTOS Device Defender API Error Codes<a name="afr-device-defender-error-codes"></a>
+
+`eDefenderErrSuccess`  
+The operation was successful\.
+
+`eDefenderErrFailedToCreateTask`  
+The operation could not be started\.
+
+`eDefenderErrAlreadyStarted`  
+The operation is already in progress\.
+
+`eDefenderErrNotStarted`  
+The Device Defender agent has not been started\.
+
+`eDefenderErrOther`  
+An unspecified error occurred\.
 
 ## Amazon FreeRTOS Device Defender API<a name="afr-device-defender-api"></a>
 
@@ -82,22 +163,7 @@ The last report was not sent, likely due to a connectivity issue\.
 DefenderReportStatus_t DEFENDER_ReportStatusGet(void);
 ```
 
-### Amazon FreeRTOS Device Defender API Error Codes<a name="afr-device-defender-error-codes"></a>
-
-`eDefenderErrSuccess`  
-The operation was successful\.
-
-`eDefenderErrFailedToCreateTask`  
-The operation could not be started\.
-
-`eDefenderErrAlreadyStarted`  
-The operation is already in progress\.
-
-`eDefenderErrNotStarted`  
-The Device Defender agent has not been started\.
-
-`eDefenderErrOther`  
-An unspecified error occurred\.
+## Example Usage<a name="freertos-defender-example"></a>
 
 ### Using Device Defender in Your Embedded Application<a name="calling_dd"></a>
 

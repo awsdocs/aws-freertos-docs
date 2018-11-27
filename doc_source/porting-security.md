@@ -12,7 +12,7 @@ The `mbedtls_hardware_poll` function provides randomness for the deterministic r
 
 ### Using TLS Libraries Other Than mbed TLS<a name="porting-security-other"></a>
 
-If you are porting another TLS library to Amazon FreeRTOS, make sure that a compatible TLS cipher suite is implemented in your port\. For more information, see [Cipher Suites Compatible with AWS IoT](http://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html)\. The following cipher suites are compatible with AWS Greengrass devices:
+If you are porting another TLS library to Amazon FreeRTOS, make sure that a compatible TLS cipher suite is implemented in your port\. For more information, see [Cipher Suites Compatible with AWS IoT](http://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html)\. The following cipher suites are compatible with AWS IoT Greengrass devices:
 + `TLS_RSA_WITH_AES_128_GCM_SHA256`
 + `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`
 + `TLS_RSA_WITH_AES_256_GCM_SHA384`

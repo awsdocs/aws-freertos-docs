@@ -45,14 +45,16 @@ For more information about policies, see [IAM Permissions and Policies](https://
 ## Amazon FreeRTOS Supported Hardware Platforms<a name="freertos-hardware"></a>
 
 You need one of the supported MCU boards:
-+ [STMicroelectronicsSTM32L4 Discovery kit IoT node](http://www.st.com/en/evaluation-tools/b-l475e-iot01a.html)
++ [STMicroelectronicsSTM32L4 Discovery Kit IoT Node](http://www.st.com/en/evaluation-tools/b-l475e-iot01a.html)
 + [Texas Instruments CC3220SF\-LAUNCHXL](http://www.ti.com/tool/CC3220SF-LAUNCHXL)
 + [NXP LPC54018 IoT Module](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/lpc-cortex-m-mcus/lpc54000-series-cortex-m4-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007)
-+ [Microchip Curiosity PIC32MZEF bundle](http://www.microchip.com/developmenttools/productdetails.aspx?partno=dm320104)
++ [Microchip Curiosity PIC32MZEF Bundle](http://www.microchip.com/developmenttools/productdetails.aspx?partno=dm320104)
 + [Espressif ESP32\-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview)
 + [Espressif ESP\-WROVER\-KIT](https://www.espressif.com/en/products/hardware/esp-wrover-kit/overview)
 + [Infineon XMC4800 IoT Connectivity Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc48_iot_aws_wifi)
++ [Xilinx Avnet MicroZed Industrial IoT Kit](https://www.xilinx.com/products/boards-and-kits/1-8dyf-85.html)
 + Microsoft Windows 7 or later, with at least a dual core and a hard\-wired Ethernet connection
++ [Nordic nRF52840\-DK \[BETA\]](https://www.nordicsemi.com/eng/Products/nRF52840-DK)
 
 ## Registering Your MCU Board with AWS IoT<a name="get-started-freertos-thing"></a>
 

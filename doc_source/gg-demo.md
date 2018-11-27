@@ -7,7 +7,7 @@ After you have a core running the Greengrass software, create an AWS IoT thing, 
 After you have created an IoT thing for your Amazon FreeRTOS device, follow the instructions to set up your environment and build Amazon FreeRTOS on one of the supported devices:
 
 **Note**  
-Use the [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) instructions, but instead of downloading one of the predefined Connect to AWS IoT\- XX configurations \(where XX is TI, ST, NXP, Microchip, or Windows\), download one of the Connect to AWS Greengrass \- XX configurations \(where XX is TI, ST, NXP, Microchip, or Windows\)\. Follow the steps in "Configure Your Project\." Return to this topic after you have built Amazon FreeRTOS for your device\.
+Use the [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) instructions, but instead of downloading one of the predefined Connect to AWS IoT\- XX configurations \(where XX is TI, ST, NXP, Microchip, or Windows\), download one of the Connect to AWS IoT Greengrass \- XX configurations \(where XX is TI, ST, NXP, Microchip, or Windows\)\. Follow the steps in "Configure Your Project\." Return to this topic after you have built Amazon FreeRTOS for your device\.
 + [Getting Started with the Texas Instruments CC3220SF\-LAUNCHXL](getting_started_ti.md)
 + [Getting Started with the STMicroelectronics STM32L4 Discovery Kit IoT Node](getting_started_st.md)
 + [Getting Started with the NXP LPC54018 IoT Module](getting_started_nxp.md)

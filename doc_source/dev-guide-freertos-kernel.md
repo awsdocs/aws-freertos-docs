@@ -2,10 +2,10 @@
 
 The FreeRTOS kernel is a real\-time operating system that supports numerous architectures\. It is ideal for building embedded microcontroller applications\. It provides:
 + A multitasking scheduler\. 
-+ Multiple memory allocation options \(including the ability to create completely statically\-allocated systems\)\. 
-+ Inter\-task coordination primitives, including task notifications, message queues, multiple types of semaphore, and stream and message buffers\.
++ Multiple memory allocation options \(including the ability to create completely statically allocated systems\)\. 
++ Intertask coordination primitives, including task notifications, message queues, multiple types of semaphore, and stream and message buffers\.
 
-The FreeRTOS kernel never performs non\-deterministic operations, such as walking a linked list, inside a critical section or interrupt\. The FreeRTOS kernel includes an efficient software timer implementation that does not use any CPU time unless a timer needs servicing\. Blocked tasks do not require time\-consuming periodic servicing\. Direct\-to\-task notifications allow fast task signaling, with practically no RAM overhead\. They can be used in the majority of inter\-task and interrupt\-to\-task signaling scenarios\.
+The FreeRTOS kernel never performs non\-deterministic operations, such as walking a linked list, inside a critical section or interrupt\. The FreeRTOS kernel includes an efficient software timer implementation that does not use any CPU time unless a timer needs servicing\. Blocked tasks do not require time\-consuming periodic servicing\. Direct\-to\-task notifications allow fast task signaling, with practically no RAM overhead\. They can be used in the majority of intertask and interrupt\-to\-task signaling scenarios\.
 
 The FreeRTOS kernel is designed to be small, simple, and easy to use\. A typical RTOS kernel binary image is in the range of 4000 to 9000 bytes\.
 
@@ -54,13 +54,13 @@ Coalesces adjacent free blocks to avoid fragmentation\. Includes an absolute add
 `heap_5`  
 Is similar to heap\_4\. Can span the heap across multiple, non\-adjacent memory areas\.
 
-## Inter\-task Coordination<a name="inter-task-coordination"></a>
+## Intertask Coordination<a name="inter-task-coordination"></a>
 
 This section contains information about FreeRTOS primitives\.
 
 ### Queues<a name="inter-task-queues"></a>
 
-Queues are the primary form of inter\-task communication\. They can be used to send messages between tasks and between interrupts and tasks\. In most cases, they are used as thread\-safe First In First Out \(FIFO\) buffers with new data being sent to the back of the queue\. \(Data can also be sent to the front of the queue\.\) Messages are sent through queues by copy, meaning the data \(which can be a pointer to larger buffers\) is itself copied into the queue rather than simply storing a reference to the data\.
+Queues are the primary form of intertask communication\. They can be used to send messages between tasks and between interrupts and tasks\. In most cases, they are used as thread\-safe First In First Out \(FIFO\) buffers with new data being sent to the back of the queue\. \(Data can also be sent to the front of the queue\.\) Messages are sent through queues by copy, meaning the data \(which can be a pointer to larger buffers\) is itself copied into the queue rather than simply storing a reference to the data\.
 
 Queue APIs permit a block time to be specified\. When a task attempts to read from an empty queue, the task is placed into the Blocked state until data becomes available on the queue or the block time elapses\. Tasks in the Blocked state do not consume any CPU time, allowing other tasks to run\. Similarly, when a task attempts to write to a full queue, the task is placed into the Blocked state until space becomes available in the queue or the block time elapses\. If more than one task blocks on the same queue, the task with the highest priority is unblocked first\. 
 

@@ -2,7 +2,7 @@
 
 This section contains a tutorial for updating firmware on devices running Amazon FreeRTOS using OTA updates\. You can, however, use OTA updates to send files to any devices connected to AWS IoT\.
 
-You can use the AWS IoT console or the AWS CLI to create an OTA update\. The console is the easiest way to get started with OTA because it does a lot of the work for you\. The AWS CLI is useful when you are automating OTA update jobs, working with a large number of devices, or are using devices that have not been qualified for Amazon FreeRTOS\. For more information, see [Amazon FreeRTOS Qualification Program](https://aws.amazon.com/freertos/partners/)\.<a name="create-update"></a>
+You can use the AWS IoT console or the AWS CLI to create an OTA update\. The console is the easiest way to get started with OTA because it does a lot of the work for you\. The AWS CLI is useful when you are automating OTA update jobs, working with a large number of devices, or are using devices that have not been qualified for Amazon FreeRTOS\. For more information about qualifying devices for Amazon FreeRTOS, see the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.<a name="create-update"></a>
 
 **To create a OTA update**
 
