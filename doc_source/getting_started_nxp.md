@@ -2,7 +2,7 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not have an NXP LPC54018 IoT Module, you can order one from [NXP](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/lpc-cortex-m-mcus/lpc54000-series-cortex-m4-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007?fsrch=1&sr=1&pageNum=1)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
+If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
 
 ## Setting Up Your Environment<a name="setup-env_nxp"></a>
 
@@ -87,7 +87,7 @@ In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `
 
 ### Configure Your Project<a name="nxp-freertos-config-project"></a>
 
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
+To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -105,7 +105,7 @@ To run the demo, you must configure your project to work with AWS IoT\. To confi
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
-**To configure your Wi\-Fi**
+**To configure your Wi\-Fi settings**
 
 1. Open the `aws_clientcredential.h` file\.
 
@@ -136,9 +136,9 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="nxp-build-and-run"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="nxp-build-and-run"></a>
 
-### Import the Amazon FreeRTOS Sample Code into Your IDE<a name="nxp-freertos-import-project"></a><a name="nxp-load-project"></a>
+### Import the Amazon FreeRTOS Demo into Your IDE<a name="nxp-freertos-import-project"></a><a name="nxp-load-project"></a>
 
 **To import the Amazon FreeRTOS sample code into the IAR Embedded Workbench IDE**
 
@@ -156,7 +156,7 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 
 1. From the **Project** menu, choose **Build All**\.
 
-### Run the FreeRTOS Samples<a name="nxp-run-example"></a>
+### Run the Amazon FreeRTOS Demo Project<a name="nxp-run-example"></a>
 
 To run the Amazon FreeRTOS demos on the NXP LPC54018 IoT Module board, connect the USB port on the NXP IoT Module to your host computer, open a terminal program, and connect to the port identified as USB Serial Device\.
 

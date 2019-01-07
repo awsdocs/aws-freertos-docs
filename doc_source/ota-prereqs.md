@@ -1,10 +1,9 @@
 # Over\-the\-Air Update Prerequisites<a name="ota-prereqs"></a>
 
-To use over\-the\-air updates, you need to:
-+ Create an S3 bucket to store your firmware update\.
-+ Create an OTA service role\.
-+ Create an OTA user policy\.
-+ Create or purchase a code\-signing certificate\.
-+ If you are using Code Signing for Amazon FreeRTOS, import your code\-signing key into ACM\.
-+ If you are using Code Signing for Amazon FreeRTOS, create a code\-signing policy\.
-+ Download Amazon FreeRTOS with the OTA library for your platform or, if you are not using Amazon FreeRTOS, provide your own OTA agent implementation\.
+To use over\-the\-air updates, you need to do the following:
++ [Create an Amazon S3 Bucket to Store Your Update](dg-ota-bucket.md)\.
++ [Create an OTA Update Service Role](create-service-role.md)\.
++ [Create an OTA User Policy](create-ota-user-policy.md)\.
++ [Create a Code\-Signing Certificate](ota-code-sign-cert.md)\.
++ If you are using Code Signing for AWS IoT, [Grant Access to Code Signing for AWS IoT](code-sign-policy.md)\.
++ [Download Amazon FreeRTOS with the OTA Library](ota-download-freertos.md)\. If you are not using Amazon FreeRTOS, you can provide your own OTA agent implementation\.

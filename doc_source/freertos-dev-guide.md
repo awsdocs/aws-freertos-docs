@@ -7,4 +7,5 @@ This section contains information required for writing embedded applications wit
 + [FreeRTOS Kernel Fundamentals](dev-guide-freertos-kernel.md)
 + [Amazon FreeRTOS Libraries](dev-guide-freertos-libraries.md)
 + [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)
-+ [Amazon FreeRTOS Console User Guide](freertos-ocw-ug.md)
++ [Amazon FreeRTOS Console](freertos-ocw-ug.md)
++ [Troubleshooting Amazon FreeRTOS](troubleshooting_overview-afr.md)

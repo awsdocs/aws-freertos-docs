@@ -9,57 +9,131 @@
 
 Amazon FreeRTOS BLE includes three demo applications:
 
-### [MQTT over BLE](#ble-demo-mqtt) Demo<a name="w3aac12b9b5b5"></a>
+### [MQTT over BLE](#ble-demo-mqtt) Demo<a name="w3aac11b9b5b5"></a>
 
 This application demonstrates how to use the MQTT over BLE service\.
 
-### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w3aac12b9b5b7"></a>
+### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w3aac11b9b5b7"></a>
 
 This application demonstrates how to use the Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) Demo<a name="w3aac12b9b5b9"></a>
+### [Generic Attributes Server](#ble-demo-server) Demo<a name="w3aac11b9b5b9"></a>
 
 This application demonstrates how to use the Amazon FreeRTOS BLE middleware APIs to create a simple GATT server\.
 
 ## Prerequisites<a name="ble-demo-prereqs"></a>
 
-To follow along with these demos, you need a microcontroller with Bluetooth Low Energy capabilities\.
+To follow along with these demos, you need a microcontroller with Bluetooth Low Energy capabilities\. You also need the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-ios) or the [Android SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android)\.
 
-Before you begin, do the following:
+### Set Up AWS IoT and Amazon Cognito for Amazon FreeRTOS BLE<a name="set-up-ble-demo-aws"></a>
 
-### Set Up AWS IoT<a name="w3aac12b9b7b7"></a>
+To connect your devices to AWS IoT across MQTT, you need to set up AWS IoT and Amazon Cognito\.
 
-To set up AWS IoT, you need to do the following:
-+ Set up an AWS account\.
-+ Register your device as an AWS IoT thing\.
-+ Download your AWS IoT credentials\.
+**To set up AWS IoT**
 
-For more information about setting up AWS IoT, see the [AWS IoT Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/)\.
+1. Set up an AWS account on [https://aws\.amazon\.com](https://aws.amazon.com)\.
 
-### Set Up Amazon Cognito<a name="w3aac12b9b7b9"></a>
+1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/), and from the navigation pane, choose **Manage**, and then choose **Things**\.
 
-To set up Amazon Cognito, you need to do the following:
-+ Set up an AWS account\.
-+ Create an Amazon Cognito user pool\.
-+ Create an Amazon Cognito identity pool\.
-+ Attach an IAM policy to the authenticated identity\.
+1. Choose **Create**, and then choose **Create a single thing**\.
 
-For more information about setting up Amazon Cognito, see the [Amazon Cognito Developer Guide](https://docs.aws.amazon.com/cognito/latest/developerguide/)\.
+1. Enter a name for your device, and then choose **Next**\.
 
-### Set Up Your Environment<a name="w3aac12b9b7c11"></a>
+1. If you are connecting your microcontroller to the cloud through a mobile device, choose **Create thing without certificate**\. Because the Mobile SDKs use Amazon Cognito for device authentication, you do not need to create a device certificate for demos that use BLE\.
 
-To set up your enviroment, do the following:
-+ Set up your microcontroller's environment with Amazon FreeRTOS and the Amazon FreeRTOS BLE library\. You can download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\.
+   If you are connecting your microcontroller to the cloud directly over Wi\-Fi, choose **Create certificate**, choose **Activate**, and then download the thing's certificate, public key, and private key\.
 
-  For information about getting started with Amazon FreeRTOS on an Amazon FreeRTOS\-qualified microcontroller, see information for your board in [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
+1. Choose the thing that you just created from the list of registered things, and then choose **Interact** from your thing's page\. Make a note of the AWS IoT REST API endpoint\.
+
+For more information about setting up, see the [Getting Started with AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\.
+
+**To create an Amazon Cognito user pool**
+
+1. Open the Amazon Cognito console, and choose **Manage User Pools**\.
+
+1. Choose **Create a user pool**\.
+
+1. Give the user pool a name, and then choose **Review defaults**\.
+
+1. From the navigation pane, choose **App clients**, and then choose **Add an app client**\.
+
+1. Enter a name for the app client, and then choose **Create app client**\.
+
+1. From the navigation pane, choose **Review**, and then choose **Create pool**\.
+
+   Make a note of the pool ID that appears on the **General Settings** page of your user pool\.
+
+1. From the navigation pane, choose **App clients**, and then choose **Show details**\. Make a note of the app client ID and app client secret\.
+
+**To create an Amazon Cognito identity pool**
+
+1. Open the Amazon Cognito console, and choose **Manage Identity Pools**\.
+
+1. Enter a name for your identity pool\.
+
+1. Expand **Authentication providers**, choose the **Cognito** tab, and then enter your user pool ID and app client ID\.
+
+1. Choose **Create Pool**\.
+
+1. Expand **View Details**, and make a note of the two IAM role names\. Choose **Allow** to create the IAM roles for authenticated and unauthenticated identities to access Amazon Cognito\.
+
+1. Choose **Edit identity pool**\. Make a note of the identity pool ID\. It should be of the form `us-west-2:12345678-1234-1234-1234-123456789012`\.
+
+For more information about setting up Amazon Cognito, see the [Getting Started with Amazon Cognito](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-getting-started.html)\.
+
+**To create and attach an IAM policy to the authenticated identity**
+
+1. Open the IAM console, and from the navigation pane, choose **Roles**\.
+
+1. Find and choose your authenticated identity's role, choose **Attach policies**, and then choose **Add inline policy**\.
+
+1. Choose the **JSON** tab, and paste the following JSON:
+
+   ```
+   {
+      "Version":"2012-10-17",
+      "Statement":[
+         {
+            "Effect":"Allow",
+            "Action":[
+               "iot:AttachPolicy",
+               "iot:AttachPrincipalPolicy",
+               "iot:Connect",
+               "iot:Publish",
+               "iot:Subscribe",
+               "iot:Receive",
+               "iot:GetThingShadow",
+               "iot:UpdateThingShadow",
+               "iot:DeleteThingShadow"
+            ],
+            "Resource":[
+               "*"
+            ]
+         }
+      ]
+   }
+   ```
+
+1. Choose **Review policy**, enter a name for the policy, and then choose **Create policy**\.
+
+Keep your AWS IoT and Amazon Cognito information on hand\. You need the endpoint and IDs to authenticate your mobile application with the AWS Cloud\.
+
+### Set Up Your Amazon FreeRTOS Environment for BLE<a name="ble-demo-set-up"></a>
+
+To set up your enviroment, you need to download Amazon FreeRTOS with the [Amazon FreeRTOS Bluetooth Low Energy Library \(Beta\)](freertos-ble-library.md) on your microcontroller, and download and configure the Mobile SDK for Amazon FreeRTOS Bluetooth Devices on your mobile device\.
+
+**To set up your microcontroller's environment with Amazon FreeRTOS BLE**
+
+1. Download the `feature/ble-beta` branch of the Amazon FreeRTOS [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta) repository\.
+
+1. Set up Amazon FreeRTOS on your microcontroller\.
+
+   For information about getting started with Amazon FreeRTOS on an Amazon FreeRTOS\-qualified microcontroller, see the guide for your board in [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
 **Note**  
 You can run the demos on any BLE\-enabled microcontroller with Amazon FreeRTOS and ported Amazon FreeRTOS BLE libraries\. Currently, the Amazon FreeRTOS [MQTT over BLE](#ble-demo-mqtt) demo project is fully ported to the following BLE\-enabled devices:  
 [STMicroelectronics STM32L4 Discovery Kit IoT Node](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_st.html), with the STBTLE\-1S BLE module
 [Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html)
 [Nordic nRF52840\-DK](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_nordic.html)
-+ Install the [Amazon FreeRTOS BLE Mobile SDK Demo Application](#ble-sdk-app) on your Android or iOS device\. The demo application is a common component of the demos\.
-
-  For information about installing the demo app, see the GitHub README files for the [Amazon FreeRTOS BLE Mobile SDK for Android](https://github.com/aws/amazon-freertos-ble-android-sdk/) or the [Amazon FreeRTOS BLE Mobile SDK for iOS](https://github.com/aws/amazon-freertos-ble-ios-sdk/)\.
 
 ## Common Components<a name="ble-demo-common"></a>
 
@@ -69,7 +143,7 @@ The Amazon FreeRTOS demo applications have two common components:
 
 ### Network Manager<a name="ble-demo-network-manager"></a>
 
-Network Manager manages your microcontroller's network connection\. It is located in your Amazon FreeRTOS directory at `\demos\common\network_manager\aws_iot_network_manager.c`\. If the network manager is enabled for both Wi\-Fi and BLE, the demos start with BLE by default\. If the BLE connection is disrupted, and your board is Wi\-Fi\-enabled, the Network Manager switches to an available Wi\-Fi connection to prevent you from disconnecting from the network\.
+Network Manager manages your microcontroller's network connection\. It is located in your Amazon FreeRTOS directory at `\demos\common\network_manager\aws_iot_network_manager.c`\. If the Network Manager is enabled for both Wi\-Fi and BLE, the demos start with BLE by default\. If the BLE connection is disrupted, and your board is Wi\-Fi\-enabled, the Network Manager switches to an available Wi\-Fi connection to prevent you from disconnecting from the network\.
 
 To enable a network connection type with the Network Manager, add the network connection type to the `configENABLED_NETWORKS` parameter in `demos/vendor/board/common/config_files/aws_iot_network_config.h`\. For example, if you have both BLE and Wi\-Fi enabled, the line that starts with `#define configENABLED_NETWORKS` in `aws_iot_network_config.h` reads as follows:
 
@@ -77,22 +151,88 @@ To enable a network connection type with the Network Manager, add the network co
 #define  configENABLED_NETWORKS  ( AWSIOT_NETWORK_TYPE_BLE | AWSIOT_NETWORK_TYPE_WIFI )
 ```
 
-To get a list of currently supported network connection types, see `lib\include\aws_iot_network_manager.h`\.
+To get a list of currently supported network connection types, see the lines that begin with `#define AWSIOT_NETWORK_TYPE` in `lib\include\aws_iot_network.h`\.
 
 ### Amazon FreeRTOS BLE Mobile SDK Demo Application<a name="ble-sdk-app"></a>
 
-Each demo uses the Amazon FreeRTOS BLE Mobile SDK demo application, which can be found in the [BLE Android SDK](https://github.com/aws/amazon-freertos-ble-android-sdk/tree/master/FreeRTOSDemo/Examples) or the [BLE iOS SDK](https://github.com/aws/amazon-freertos-ble-ios-sdk/tree/master/FreeRTOSDemo/Examples) under `FreeRTOSDemo/Examples`\. In this example, we use the iOS version of the demo mobile application\.
+The Amazon FreeRTOS BLE Mobile SDK demo application is located in the [Android SDK for Amazon FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-android-sdk/tree/beta/app) under `amazon-freertos-ble-android-sdk/app` and the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-ios-sdk/tree/beta/Example/AmazonFreeRTOSDemo) under `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo`\. In this example, we use screenshots of the iOS version of the demo mobile application\.
 
-To discover and establish secure connections with your microcontroller across BLE with the demo mobile application, for each demo, do the following:
+**To configure the iOS SDK demo application**
 
-1. Run the [MQTT over BLE](#ble-demo-mqtt), [Wi\-Fi Provisioning](#ble-demo-wifi), or [Generic Attributes Server](#ble-demo-server) demo on your microcontroller\.
+When you define configuration variables, use the format of the placeholder values provided in the configuration files\.
 
-1. Start the BLE mobile SDK demo application on your mobile device\.
+1. Confirm that you the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-ios) is installed\.
 
-1. Confirm that your microcontroller appears under **Devices** on the BLE mobile SDK demo app\.  
+1. Issue the following command from `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/`:
+
+   ```
+   $ sudo pod install
+   ```
+
+1. Open the project with Xcode, and change the signing developer account to your account\.
+
+1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Amazon/AmazonConstants.swift`, and redefine the following variables:
+   + `region`: Your AWS Region\.
+   + `iotPolicyName`: Your AWS IoT policy name\.
+   + `mqttCustomTopic`: The MQTT topic that you want to publish to\.
+
+1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Support/awsconfiguration.json`\.
+
+   Under `CognitoIdentity`, redefine the following variables:
+   + `PoolId`: Your Amazon Cognito identity pool ID\.
+   + `Region`: Your AWS Region\.
+
+   Under `CognitoUserPool`, redefine the following variables:
+   + `PoolId`: Your Amazon Cognito user pool ID\.
+   + `AppClientId`: Your app client ID\.
+   + `AppClientSecret`: Your app client secret\.
+   + `Region`: Your AWS Region\.
+
+**To configure the Android SDK demo application**
+
+When you define configuration variables, use the format of the placeholder values provided in the configuration files\.
+
+1. Confirm that the [Android SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android) is installed\.
+
+1. Open `amazon-freertos-ble-android-sdk/app/src/main/java/com/amazon/aws/freertosandroid/AuthenticatorActivity.java`, and redefine the following variables:
+   + `AWS_IOT_POLICY_NAME`: Your AWS IoT policy name\.
+   + `AWS_IOT_REGION`: Your AWS Region\.
+   + `COGNITO_POOL_ID`: Your Amazon Cognito identity pool ID\.
+   + `COGNITO_REGION`: Your AWS Region\.
+
+1. Open `amazon-freertos-ble-android-sdk/app/src/main/java/com/amazon/aws/freertosandroid/MainActivity.java`, and redefine the following variables:
+   + `BLE_DEVICE_MAC_ADDR`: The MAC address of your device\.
+   + `BLE_DEVICE_NAME`: Your device name\.
+   + `MTU`: The desired MTU between your microcontroller and mobile device\.
+
+1. Open `amazon-freertos-ble-android-sdk/app/src/main/res/raw/awsconfiguration.json`\.
+
+   Under `CognitoIdentity`, redefine the following variables:
+   + `PoolId`: Your Amazon Cognito identity pool ID\.
+   + `Region`: Your AWS Region\.
+
+   Under `CognitoUserPool`, redefine the following variables:
+   + `PoolId`: Your Amazon Cognito user pool ID\.
+   + `AppClientId`: Your app client ID\.
+   + `AppClientSecret`: Your app client secret\.
+   + `Region`: Your AWS Region\.
+
+**To discover and establish secure connections with your microcontroller over BLE**
+
+1. Run the BLE demo project on your microcontroller\.
+
+1. Run the BLE Mobile SDK demo application on your mobile device\.
+
+   To start the demo application in the Android SDK from the command line, run the following command:
+
+   ```
+   $ ./gradlew installDebug
+   ```
+
+1. Confirm that your microcontroller appears under **Devices** on the BLE Mobile SDK demo app\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list1.png)
 **Note**  
-Only devices with Amazon FreeRTOS and the device information service \(`\lib\bluetooth_low_energy\services\device_information`\) appear in the list\.
+All devices with Amazon FreeRTOS and the device information service \(`\lib\bluetooth_low_energy\services\device_information`\) that are in range appear in the list\.
 
 1. Choose your microcontroller from the list of devices\. The application establishes a connection with the board, and a green line appears next to the connected device\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list2.png)
@@ -111,7 +251,7 @@ The BLE Mobile SDK demo application uses Amazon Cognito for user authentication\
 
 ## MQTT over BLE<a name="ble-demo-mqtt"></a>
 
-In the MQTT over BLE demo, your microcontroller publishes messages to the AWS IoT cloud through an MQTT proxy\.
+In the MQTT over BLE demo, your microcontroller publishes messages to the AWS Cloud through an MQTT proxy\.
 
 **To subscribe to a demo MQTT topic**
 
@@ -122,17 +262,19 @@ In the MQTT over BLE demo, your microcontroller publishes messages to the AWS Io
 1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-hw-test-console.png)
 
-You can run the MQTT demo across a BLE or Wi\-Fi connection\. The configuration of the [Network Manager](#ble-demo-network-manager) determines which connection type is used\. 
+You can run the MQTT demo over a BLE or Wi\-Fi connection\. The configuration of the [Network Manager](#ble-demo-network-manager) determines which connection type is used\. 
 
-If you use BLE to pair the microcontroller with your mobile device, the MQTT messages are routed through the BLE mobile SDK demo application on your mobile device\.
+If you use BLE to pair the microcontroller with your mobile device, the MQTT messages are routed through the BLE Mobile SDK demo application on your mobile device\.
 
-If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located in [https://github.com/aws/amazon-freertos/tree/master/demos/vendor/board/ide](https://github.com/aws/amazon-freertos/tree/master/demos/vendor/board/ide)\. That demo is used in most of the [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
+If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at [demos/common/mqtt/aws\_hello\_world\.c](https://github.com/aws/amazon-freertos/blob/master/demos/common/mqtt/aws_hello_world.c)\. That demo is used in most of the [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
 
 **To enable the demo**
 
-If you have already enabled the demo by following the instructions in the getting started guide for your device, you can skip these instructions\.
+If you have already enabled the BLE demo by following the instructions in the Getting Started guide for your device, you can skip these instructions\.
 
-1. Confirm that the MQTT over BLE and Wi\-Fi Provisioning services are enabled in `lib\utils\aws_ble_services_init.c`\. The services are enabled by default\.
+1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1`\.
+**Note**  
+The Wi\-Fi Provisioning service is disabled by default\.
 
 1. Open `demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\.
 
@@ -146,7 +288,7 @@ If the Network Manager is configured for BLE, do the following:
 
 1. Make sure that you have paired your board and your mobile device using the [Amazon FreeRTOS BLE Mobile SDK Demo Application](#ble-sdk-app)\.
 
-1. From the **Devices**list in the demo mobile app, choose your microcontroller, and then choose **MQTT Proxy** to open the MQTT proxy settings\.  
+1. From the **Devices** list in the demo mobile app, choose your microcontroller, and then choose **MQTT Proxy** to open the MQTT proxy settings\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)
 
 1. Touch **Enable MQTT proxy** to enable the MQTT proxy\. The slider should turn green\.  
@@ -160,12 +302,14 @@ If the Network Manager is configured for BLE, do the following:
 Wi\-Fi Provisioning is an Amazon FreeRTOS BLE service that allows you to securely send Wi\-Fi network credentials from a mobile device to a microcontroller over BLE\. The source code for the Wi\-Fi Provisioning service can be found at `lib/bluetooth_low_energy/services/wifi_provisioning`\.
 
 **Note**  
-The Wi\-Fi provisioning demo is currently supported on the Espressif ESP32\-DevKitC\.  
+The Wi\-Fi Provisioning demo is currently supported on the Espressif ESP32\-DevKitC\.  
 The Android version of the demo mobile application does not currently support Wi\-Fi Provisioning\.
 
 **To enable the demo**
 
-1. Confirm that the Wi\-Fi Provisioning service is enabled in the `lib\utils\aws_ble_services_init.c` file\. The service is enabled by default\.
+1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1`\.
+**Note**  
+The Wi\-Fi Provisioning service is disabled by default\.
 
 1. Configure the [Network Manager](#ble-demo-network-manager) to enable both BLE and Wi\-Fi\.
 
@@ -184,7 +328,7 @@ The Android version of the demo mobile application does not currently support Wi
    From the **Scanned Networks** list, choose your network, and then enter the SSID and password, if required\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-wifi-password.png)
 
-   The micrcontroller connects to and saves the network\. The network appears under the **Saved Networks**\.  
+   The micrcontroller connects to and saves the network\. The network appears under **Saved Networks**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-network-config2.png)
 
 You can save several networks in the demo mobile app\. When you restart the application and demo, the microcontroller connects to the first available saved network, starting from the top of the **Saved Networks** list\. 
@@ -195,9 +339,17 @@ To change the network priority order or delete networks, on the **Network Config
 
 ## Generic Attributes Server<a name="ble-demo-server"></a>
 
-In this example, a demo Generic Attributes \(GATT\) server application on your microcontroller sends a simple counter value to the [Amazon FreeRTOS BLE Mobile SDK Demo Application](#ble-sdk-app) that is used for [MQTT over BLE](#ble-demo-mqtt) and [Wi\-Fi Provisioning](#ble-demo-wifi)\.
+In this example, a demo Generic Attributes \(GATT\) server application on your microcontroller sends a simple counter value to the [Amazon FreeRTOS BLE Mobile SDK Demo Application](#ble-sdk-app)\.
 
 Using the BLE Mobile SDKs, you can create your own GATT client for a mobile device that connects to the GATT server on your microcontroller and runs in parallel with the demo mobile application\.
+
+**To enable the demo**
+
+1. Enable the BLE GATT demo\. In `demos/vendor/board/common/config_files/aws_ble_config.h`, add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
+**Note**  
+The BLE GATT demo is disabled by default\.
+
+1. Open `demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\.
 
 **To run the demo**
 
@@ -205,12 +357,14 @@ Using the BLE Mobile SDKs, you can create your own GATT client for a mobile devi
 
 1. Make sure that you have paired your board and your mobile device using the [Amazon FreeRTOS BLE Mobile SDK Demo Application](#ble-sdk-app)\.
 
-1. From the **Devices** list in the mobile SDK app, choose your board, and then choose **Custom GATT MQTT** to open the custom GATT service options\.  
+1. From the **Devices** list in the app, choose your board, and then choose **MQTT Proxy** to open the MQTT proxy options\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)
 
-1. Touch **Enable MQTT proxy** to enable the MQTT proxy\. The slider should turn green\.
-
-1. Choose **Start Counter** to start publishing data to the `freertos/demos/echo` MQTT topic\.  
+1. Touch **Enable MQTT proxy** to enable the MQTT proxy\. The slider should turn green\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-proxy.png)
+
+1. Return to the **Devices** list, choose your board, and then choose **Custom GATT MQTT** to open the custom GATT service options\.
+
+1. Choose **Start Counter** to start publishing data to the `freertos/demos/echo` MQTT topic\.
 
    After you enable the MQTT proxy, Hello World and incrementing counter messages appear on the `freertos/demos/echo` topic\.

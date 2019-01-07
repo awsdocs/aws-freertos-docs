@@ -1,4 +1,4 @@
-# Creating an OTA User Policy<a name="create-ota-user-policy"></a>
+# Create an OTA User Policy<a name="create-ota-user-policy"></a>
 
 You must grant your IAM user permission to perform over\-the\-air updates\. Your IAM user must have permissions to:
 + Access the S3 bucket where your firmware updates are stored\.
@@ -7,10 +7,10 @@ You must grant your IAM user permission to perform over\-the\-air updates\. Your
 + Access Amazon FreeRTOS OTA updates\.
 + Access AWS IoT jobs\.
 + Access IAM\.
-+ Access Code Signing for Amazon FreeRTOS\.
++ Access Code Signing for AWS IoT\.
 + List Amazon FreeRTOS hardware platforms\.
 
-To grant your IAM user the required permissions, create an OTA user policy and then attach it to your IAM user\. For more information, see [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)\.<a name="create-ota-user-policy"></a>
+To grant your IAM user the required permissions, create an OTA user policy and then attach it to your IAM user\. For more information, see [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)\.<a name="create-ota-user-policy-steps"></a>
 
 **To create an OTA user policy**
 

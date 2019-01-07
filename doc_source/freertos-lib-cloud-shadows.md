@@ -26,7 +26,7 @@ Your Wi\-Fi password\.
 The type of Wi\-Fi security used by your network\.
 
 `keyCLIENT_CERTIFICATE_PEM`  
-The certificate PEM associated with your IoT thing\. For more information, see [Configure Your Project](getting_started_ti.md#ti-freertos-config-project)\.
+The certificate PEM associated with your IoT thing\.
 
 `keyCLIENT_PRIVATE_KEY_PEM`  
 The private key PEM associated with your IoT thing\. For more information, see [Configure Your Project](getting_started_ti.md#ti-freertos-config-project)\.
@@ -43,8 +43,8 @@ Amazon FreeRTOS
 + - lib    
     |
     + - shadow
-    |   + ─ aws_shadow.c
-    |   + ─ aws_shadow_json.c
+    |   + - aws_shadow.c
+    |   + - aws_shadow_json.c
     + - include
         + - aws_shadow.h
         + - private

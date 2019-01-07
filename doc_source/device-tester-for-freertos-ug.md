@@ -72,11 +72,11 @@ To add library porting layers for Amazon FreeRTOS device libraries \(TCP/IP, WiF
 
 1. Implement the `configPRINT_STRING()` method before running AWS IoT Device Tester tests\. AWS IoT Device Tester calls the `configPRINT_STRING()` macro to output test results as human\-readable ASCII strings\. 
 
-1. Port the drivers to implement the Amazon FreeRTOS library's interfaces\. For more information, see the [Amazon FreeRTOS Qualification Developer Guide](https://github.com/aws/amazon-freertos/blob/master/tests/Amazon%20FreeRTOS%20Qualification%20Program%20Developer%20Guide.pdf)\.
+1. Port the drivers to implement the Amazon FreeRTOS library's interfaces\. For more information, see the [Amazon FreeRTOS Qualification Developer Guide](https://github.com/aws/amazon-freertos/blob/master/tests/Amazon%20FreeRTOS%20Qualification%20Developer%20Guide.pdf)\.
 
 ### Configure Your AWS Credentials<a name="cfg-aws-afr"></a>
 
-You must configure your AWS credentials in the `<devicetester_extract_location>/devicetester_afreertos_[win|mac|linux]/configs/ config.json`\. You can specify your credentials in one of two ways:
+You must configure your AWS credentials in the `<devicetester_extract_location>/devicetester_afreertos_[win|mac|linux]/configs/config.json`\. You can specify your credentials in one of two ways:
 + Environment variables
 + Credentials file
 
@@ -339,7 +339,6 @@ Client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to c
 
 `testWifiConfig`  
 Test Wi\-Fi configuration\. The Wi\-Fi library tests require a board to connect to two access points\. This attribute configures the second access point\. The test Wi\-Fi settings are configured in `$AFR_HOME/tests/common/wifi/aws_test_wifi.c.`\. The following macros are set by using the values found in `aws_test_wifi.c`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
-If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` and `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 + testwifiWIFI\_SSID: The Wi\-Fi SSID as a C string\.
 + testwifiWIFI\_PASSWORD: The Wi\-Fi password as a C string\.
 + testwifiWIFI\_SECURITY: The type of Wi\-Fi security used\. One of the following values:
@@ -359,7 +358,7 @@ The signing algorithm used by AWS Code Signer while creating the OTA update job\
 `awsSignerCertificateArn`  
 The Amazon Resource Name \(ARN\) for the trusted certificate uploaded to AWS Certificate Manager \(ACM\)\. For more information about creating a trusted certificate, see [Creating a Code Signing Certificate](https://docs.aws.amazon.com/freertos/latest/userguide/ota-code-sign-cert.html)\.  
 `awsUntrustedSignerCertificateArn`  
-The Amazon Resource Name \(ARN\) for a certificate uploaded to ACM which your device should not trust\. This is used to test invalid certificate test cases\.  
+The Amazon Resource Name \(ARN\) for a code\-signing certificate uploaded to ACM which your device should not trust\. This is used to test invalid certificate test cases\.  
 `compileCodesignerCertificate`  
 Set to `true` if the code\-signer signature verification certificate is not provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate from ACM and compiles it into `aws_codesigner_certifiate.h`\.
 
@@ -437,9 +436,9 @@ If your board does not support Wi\-Fi, you must still include the `clientWifiCon
 `otaConfiguration`  
 The OTA configuration\.    
 `otaFirmwareFilePath`  
-The full path to the OTA image created after the build\.  
+The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/<relative-path/to/ota/image/from/source/root>`\.  
 `deviceFirmwareFileName`  
-The name of the OTA firmware file to be downloaded to the board\.  
+The full ﬁle path on the MCU device where the OTA ﬁrmware is located\. Some devices do not use this ﬁeld, but you still must provide a value\.  
 `awsSignerPlatform`  
 The signing algorithm used by AWS Code Signer while creating the OTA update job\. Currently, the possible values for this field are `AmazonFreeRTOS-TI-CC3220SF` and `AmazonFreeRTOS-Default`\.  
 `awsSignerCertificateArn`  
@@ -452,6 +451,19 @@ Set to `true` if the code\-signer signature verification certificate is not prov
 #### AWS IoT Device Tester Variables<a name="dt-vars"></a>
 
 The commands to build your code and flash the device might require connectivity or other information about your devices to run successfully\. AWS IoT Device Tester allows you to reference device information in flash and build commands using [JsonPath](http://goessner.net/articles/JsonPath/)\. By using simple JsonPath expressions, you can fetch the required information as specified in your `device.json` file\.
+
+##### Path Variables<a name="path-variables"></a>
+
+AWS IoT Device Tester defines the following path variables that can be used in command lines and configuration files:
+
+`{{testData.sourcePath}}`  
+A variable that expands to the source code path\.
+
+`{{device.connectivity.serialPort}}`  
+A variable that expands to the serial port\.
+
+`{{device.identifiers[?(@.name == 'serialNo')].value}}`  
+A variable that expands to the serial number of your device\.
 
 ##### AWS IoT Device Tester Variables and Concurrent Testing<a name="dt-var-concurrent-testing"></a>
 
@@ -472,13 +484,9 @@ The `userdata.json` file should be located in the `<devicetester_extract_locatio
 **Note**  
 If you are running AWS IoT Device Tester on Windows, specify the path to the `userdata.json` by using forward slashes \(/\)\.
 
-Use the following command to run all test groups in a specified suite:
-
-devicetester\_*\[linux \| mac \| win\_x86\-64\]* run\-suite \-\-suite\-id AFQ\_1 \-\-pool\-id *<pool\-id>*
-
 Use the following command to run a specific test group:
 
-devicetester\_*\[linux \| mac \| win\_x86\-64\]* run\-suite \-\-suite\-id AFQ\_1 \-\-group\-id *<group\-id>* \-\-pool\-id *<pool\-id>* *<pool\-id>*
+devicetester\_*\[linux \| mac \| win\_x86\-64\]* run\-suite \-\-suite\-id AFQ\_1 \-\-group\-id *<group\-id>* \-\-pool\-id *<pool\-id>* \-\-userdata *<userdata\.json>*
 
 `suite-id` and `pool-id` are optional if you are running a single test suite on a single device pool \(that is, you have only one device pool defined in your `device.json` file\)\.AWS IoT Device Tester command line options
 
@@ -520,13 +528,13 @@ After AWS IoT Device Tester executes the qualification test suite, it generates 
 + The aggregate summary of test case results\.
 + A breakdown of test case results by libraries that were tested based on the device features \(for example, FullWiFi, FullMQTT, and so on\)\.
 
- The `AFQ_report.xml` is a report in standard junit\.xml format, which you can integrate into your exiting CI/CD platforms like Jenkins, Bamboo, and so on\. The report contains the following elements:
+ The `AFQ_Report.xml` is a report in standard junit\.xml format, which you can integrate into your exiting CI/CD platforms like Jenkins, Bamboo, and so on\. The report contains the following elements:
 + An aggregate summary of test case results\.
 + A breakdown of test case results by libraries that were tested based on the device features \(for example, FullWiFi, FullMQTT, and so on\)\.
 
 #### Interpreting AWS IoT Device Tester Results<a name="interpreting-results"></a>
 
-The report section in `awsiotdevicetester_report.xml` or `AFQ_report.xml` lists the tests that were run and the results of the tests\.
+The report section in `awsiotdevicetester_report.xml` or `AFQ_Report.xml` lists the tests that were run and the results of the tests\.
 
 The first XML tag `<testsuites>` contains the overall summary of the test execution\. For example:
 
@@ -619,7 +627,7 @@ If you are still having issues, see the debugging following process\.
 
 #### Where Do I Look?<a name="where-to-look"></a>
 
-Start by looking in the `results.xml` file in the `/results/<uuid>` directory\. This file contains all of the test cases that were run and error snippets for each failure\. To get all of the execution logs, look under `/results/<uuid>/<test-case-id>.log` for each test group\.
+Start by looking in the `AFQ_Report.xml` file in the `/results/<uuid>` directory\. This file contains all of the test cases that were run and error snippets for each failure\. To get all of the execution logs, look under `/results/<uuid>/<test-case-id>.log` for each test group\.
 
 #### Parsing Errors<a name="parse-error"></a>
 
@@ -723,105 +731,3 @@ When AWS IoT Device Tester is run, failures are reported to console with brief m
 ##### Log Errors<a name="err-log"></a>
 
 The *<test\-group\-id>*\.log file is located in the `/results/<uuid>` directory\. Each test execution has a unique test ID that is used to create the *<uuid>* directory\. Individual test group logs are under the *<uuid>* directory\. Use the AWS IoT console to look up the test group that failed and then open the log file for that group in the `/results/<uuid>` directory\. The information in this file includes the full build and flash command output, as well as test execution output and more verbose AWS IoT Device Tester console output\.
-
-##### Path Variables<a name="path-variables"></a>
-
-AWS IoT Device Tester defines the following path variables that can be used in command lines and configuration files:
-
-`{{testData.sourcePath}}`  
-A variable that expands to the source code path\.
-
-`{{device.connectivity.serialPort}}`  
-A variable that expands to the serial port\.
-
-`{{device.identifiers[?(@.name == 'serialNo')].value}}`  
-A variable that expands to the serial number of your device\.
-
-##### <a name="config-files"></a>
-
-The following is an example `userdata.json` file:
-
-```
-{  
-       "sourcePath":"</path/to/amazon-freertos>",
-       "buildTool":{  
-          "name":"<TOOL_NAME>",
-          "version":"<TOOL_VERSION>",
-          "command":[  
-             "</path/to/build>.sh {{testData.sourcePath}}"
-          ]
-       },
-       "flashTool":{  
-          "name":"<TOOL_NAME>",
-          "version":"<TOOL_VERSION>",
-          "command":[  
-             "</path/to/flash>.sh {{device.connectivity.serialPort}} {{testData.sourcePath}}"
-          ]
-       },
-       "clientWifiConfig":{  
-          "wifiSSID":"<SSID1>",
-          "wifiPassword":"<PASSWORD>",
-          "wifiSecurityType":"eWiFiSecurityWPA2"
-       },
-       "testWifiConfig":{  
-          "wifiSSID":"<SSID2>",
-          "wifiPassword":"<PASSWORD>",
-          "wifiSecurityType":"eWiFiSecurityWPA2"
-       },
-       "otaConfiguration":{  
-          "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path/to/ota-image/from/root/of/afrsourcecode>",
-          "deviceFirmwareFileName":"<deviceFirmwareFileName>",
-          "awsSignerPlatform":"AmazonFreeRTOS-Default",
-          "awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
-          "awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
-          "awsSignerCertificateFileName":"<awsSignerCertificateFileName>",
-          "compileCodesignerCertificate":true
-       }
-    }
-```
-
-The following is an example `device.json` file:
-
-```
-[
-	{
-		"id": "<POOL_NAME>",
-		"sku": "<armsku>",
-		"features": [
-		{
-			"name": "WIFI",
-			"value": "<Yes>"
-		},
-		{
-			"name": "OTA",
-			"value": "<Yes>"
-		},
-		{
-			"name": "TCP/IP",
-			"value": "Offloaded"
-		},
-		{
-			"name": "TLS",
-			"value": "On-chip"
-		}
-	],
-	"devices": [
-	{
-		"id": "<DEVICE_NAME>",
-		"connectivity": {
-			"protocol": "uart",
-			"serialPort": "/dev/tty<PORT>" OR "/dev/tty.<PORT>"
-		},
-		"identifiers": [
-		{
-			"name": "serialNo",
-			"value": "<ABCDEZAGHJI>"
-		}
-		]
-	}
-	]
-}
-]
-```
-
-On the Windows platform, the userdata and device configuration files are formatted in the same manner\. Pay close attention to the direction of the path\-separator slashes\. We recommend using the forward slash \(/\) because newer versions of Windows support it\. If you are using Windows 7 or earlier, use the back slash \(\\\)\.

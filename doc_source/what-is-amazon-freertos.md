@@ -5,7 +5,6 @@ Amazon FreeRTOS consists of the following components:
 + Amazon FreeRTOS libraries for connectivity, security, and over\-the\-air \(OTA\) updates\.
 + A console that allows you to download a zip file that contains everything you need to get started with Amazon FreeRTOS\.
 + Over\-the\-air \(OTA\) Updates\.
-+ The Amazon FreeRTOS Qualification Program\.
 
 ## The FreeRTOS Kernel<a name="freertos-kernel"></a>
 
@@ -20,10 +19,9 @@ Amazon FreeRTOS includes libraries that enable you to:
 + Securely connect devices to the AWS IoT cloud using MQTT and device shadows\.
 + Discover and connect to AWS IoT Greengrass cores\.
 + Manage Wi\-Fi connections\.
-+ Audit the configuration of your devices, monitor connected devices to detect abnormal behavior, and to mitigate security risks\. For more information, see [AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html)\. Amazon FreeRTOS provides a library that enables your Amazon FreeRTOS\-based devices to write metrics to AWS IoT Device Defender\. For more information, see [Amazon FreeRTOS Device Defender Library](https://docs.aws.amazon.com/freertos/latest/userguide/afr-device-defender-library.html)\.
-**Note**  
-The Device Defender library currently works on the Microchip Curiosity PIC32MZEF development board and the Windows simulator\.
 + Listen for and process over\-the\-air \(OTA\) updates\.
+
+For more information, see [Amazon FreeRTOS Libraries](https://docs.aws.amazon.com/freertos/latest/userguide/dev-guide-freertos-libraries.html)\.
 
 ## Amazon FreeRTOS Console<a name="freertos-ocw"></a>
 
@@ -45,6 +43,8 @@ The Amazon FreeRTOS console is part of the AWS IoT console\. You can find it by 
 
 1. Under **Amazon FreeRTOS Device Software** choose **Configure Download**\.
 
+For more information, see [Amazon FreeRTOS Console](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ocw-ug.html)\.
+
 ## Downloading Amazon FreeRTOS Source Code<a name="freertos-mds-projects-github"></a>
 
 You can download the RTOS kernel and software libraries from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) or from [GitHub](https://github.com/aws/amazon-freertos)\.
@@ -59,8 +59,16 @@ Internet\-connected devices can be in use for a long time, and must be updated p
 + Monitor the progress of a deployment\.
 + Debug a failed deployment\.
 
-When you send files over the air, it is a best practice to digitally sign them so that the devices that receive the files can verify they have not been tampered with en route\. You can use Code Signing for Amazon FreeRTOS to sign and encrypt your files or you can sign your files with your own code\-signing tools\. For more information about Code Signing for Amazon FreeRTOS, see the [Code Signing for Amazon FreeRTOS Developer Guide](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
+When you send files over the air, it is a best practice to digitally sign them so that the devices that receive the files can verify they have not been tampered with en route\. You can use Code Signing for AWS IoT to sign and encrypt your files or you can sign your files with your own code\-signing tools\. For more information about Code Signing for AWS IoT, see the [Code Signing for AWS IoT Developer Guide](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
 
 For more information about OTA updates, see:
 + [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)
 + [OTA Demo Application](ota-demo.md)
+
+## Development Workflow<a name="development-workflow"></a>
+
+You start development by downloading Amazon FreeRTOS\. You unzip the package and import it into your IDE\. You can then develop an application on your selected hardware platform and manufacture and deploy these devices using the development process appropriate for your device\. Deployed devices can connect to the AWS IoT service or AWS IoT Greengrass as part of a complete IoT solution\. The following diagram shows the development workflow and the subsequent connectivity from Amazon FreeRTOS\-based devices\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/workflow.png)
+
+For more information about developing applications with Amazon FreeRTOS, see the [Amazon FreeRTOS Developer Guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-dev-guide.html)\.

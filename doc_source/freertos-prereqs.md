@@ -45,29 +45,31 @@ For more information about policies, see [IAM Permissions and Policies](https://
 ## Amazon FreeRTOS Supported Hardware Platforms<a name="freertos-hardware"></a>
 
 You need one of the supported MCU boards:
-+ [STMicroelectronicsSTM32L4 Discovery Kit IoT Node](http://www.st.com/en/evaluation-tools/b-l475e-iot01a.html)
-+ [Texas Instruments CC3220SF\-LAUNCHXL](http://www.ti.com/tool/CC3220SF-LAUNCHXL)
-+ [NXP LPC54018 IoT Module](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/lpc-cortex-m-mcus/lpc54000-series-cortex-m4-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007)
-+ [Microchip Curiosity PIC32MZEF Bundle](http://www.microchip.com/developmenttools/productdetails.aspx?partno=dm320104)
-+ [Espressif ESP32\-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview)
-+ [Espressif ESP\-WROVER\-KIT](https://www.espressif.com/en/products/hardware/esp-wrover-kit/overview)
-+ [Infineon XMC4800 IoT Connectivity Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc48_iot_aws_wifi)
-+ [Xilinx Avnet MicroZed Industrial IoT Kit](https://www.xilinx.com/products/boards-and-kits/1-8dyf-85.html)
++ [STMicroelectronicsSTM32L4 Discovery Kit IoT Node](https://devices.amazonaws.com/detail/a3G0L00000AANsWUAX/STM32L4-Discovery-Kit-IoT-Node)
++ [Texas Instruments CC3220SF\-LAUNCHXL](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)
++ [NXP LPC54018 IoT Module](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)
++ [Microchip Curiosity PIC32MZEF Bundle](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)
++ [Espressif ESP32\-DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC)
++ [Espressif ESP\-WROVER\-KIT](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)
++ [Infineon XMC4800 IoT Connectivity Kit](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)
++ [Xilinx Avnet MicroZed Industrial IoT Kit](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)
++ [MediaTek MT7697Hx Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)
++ [Renesas RX65N RSK IoT Module](https://devices.amazonaws.com/detail/a3G0L00000AAOQxUAP/AE-CLOUD2-Global-LTE-IoT-Connectivity-Kit)
 + Microsoft Windows 7 or later, with at least a dual core and a hard\-wired Ethernet connection
-+ [Nordic nRF52840\-DK \[BETA\]](https://www.nordicsemi.com/eng/Products/nRF52840-DK)
++ [Nordic nRF52840\-DK \[BETA\]](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)
 
 ## Registering Your MCU Board with AWS IoT<a name="get-started-freertos-thing"></a>
 
  You must register your MCU board so it can communicate with AWS IoT\. To register your device, you must create:
++ An AWS IoT policy\. 
+
+  The AWS IoT policy grants your device permissions to access AWS IoT resources\.
 + An IoT thing\.
 
   An IoT thing allows you to manage your devices in AWS IoT\. 
 + A private key and X\.509 certificate\.
 
   The private key and certificate allow your device to authenticate with AWS IoT\.
-+ An AWS IoT policy\. 
-
-  The AWS IoT policy grants your device permissions to access AWS IoT resources\.
 
 **To create an AWS IoT policy**
 
@@ -161,18 +163,39 @@ Grants your device the permission to receive messages from the AWS IoT message b
 
 1. Choose the policy you just created and choose **Register thing**\.
 
-## Install a Terminal Emulator<a name="uart-term"></a>
+## Installing a Terminal Emulator<a name="uart-term"></a>
 
-A terminal emulator can help you diagnose problems or verify your device code is running properly\. There are a variety of terminal emulators available for Windows, macOS, and Linux\. You must connect your device to your computer before you attempt to connect a terminal emulator to your device\.
+A terminal emulator can help you diagnose problems or verify that your device code is running properly\. There are a variety of terminal emulators available for Windows, macOS, and Linux\.
 
- Use these settings in your terminal emulator:
+You must connect your board to your computer before you attempt to establish a serial connection to your board with a terminal emulator\.
+
+Use the following settings to configure your terminal emulator:
 
 
 | Terminal Setting | Value | 
 | --- | --- | 
-|  Port  |  Depends on platform and other devices you have connected to your computer\.  | 
 |  BAUD rate  |  115200  | 
 |  Data  |  8 bit  | 
 |  Parity  |  none  | 
 |  Stop  |  1 bit  | 
 |  Flow control  |  none  | 
+
+If you do not know your board's serial port, you can issue one of the following commands from the command line or terminal to return the serial ports for all devices connected to your host computer:
+
+Windows  
+
+```
+chgport
+```
+
+Linux  
+
+```
+ls /dev/tty*
+```
+
+macOS  
+
+```
+ls /dev/cu.*
+```

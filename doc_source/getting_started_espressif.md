@@ -1,6 +1,6 @@
 # Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT<a name="getting_started_espressif"></a>
 
-Both the [ESP32\-DevKitC](https://www.espressif.com/en/products/hardware/esp32-devkitc/overview) and the [ESP\-WROVER KIT](https://www.espressif.com/en/products/hardware/esp-wrover-kit/overview) are supported on Amazon FreeRTOS\. To check which development module you have, see [ESP32 Modules and Boards](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html)\.
+If you don't have an Espressif ESP32\-DevKitC, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC)\. If you don't have an Espressif ESP32=WROVER\-KIT, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. Both devices are supported on Amazon FreeRTOS\. To check which development module you have, see [ESP32 Modules and Boards](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html)\.
 
 **Note**  
 Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following:  
@@ -36,11 +36,12 @@ After your environment is set up, you can download Amazon FreeRTOS\.
 
 ### Downloading Amazon FreeRTOS<a name="download-espressif"></a>
 
-Clone the Amazon FreeRTOS repository from [GitHub](https://github.com/aws/amazon-freertos)\.
+Clone the `amazon-freertos` repository from [GitHub](https://github.com/aws/amazon-freertos)\.
+
+In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
-In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `amazon-freertos` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\amazon-freertos` works, but `C:\Users\Username\Documents\Development\Projects\amazon-freertos` causes build failures\.
 
 ### Configure Your Project<a name="config-project-espressif"></a>
 
@@ -61,7 +62,7 @@ In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `
 Amazon FreeRTOS includes scripts to make it easier to set up your Espressif board\. To configure the Espressif scripts, open `<BASE_FOLDER>/tools/aws_config_quick_start/configure.json` and set the following attributes:
 
 `afr_source_dir`  
-The complete path to the Amazon FreeRTOS download on your computer\.
+The complete path to the `amazon-freertos` directory on your computer\. Make sure that you use forward slashes to specify this path\.
 
 `thing_name`  
 The name of the IoT thing that represents your board\.
@@ -90,7 +91,7 @@ Valid security types are:
 
 This script creates an IoT thing, certificate, and policy\. It attaches the IoT policy to the certificate and the certificate to the IoT thing\. It also populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials\. Finally, it formats your certificate and private key and writes them to the `aws_clientcredential.h` header file\. For more information about the script, see the README\.md in the `<BASE_FOLDER>/tools/aws_config_quick_start` directory\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="build-and-run-example-espressif"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="build-and-run-example-espressif"></a>
 
 **To flash the demo application onto your board**
 
@@ -104,15 +105,13 @@ This script creates an IoT thing, certificate, and policy\. It attaches the IoT 
    make menuconfig
    ```
 
-   In the Espressif IoT Development Framework Configuration menu, navigate to **Serial flasher config**, and then to **Default serial port** to configure the serial port\.
+   In the Espressif IoT Development Framework Configuration menu, navigate to **Serial flasher config**\.
 
-   On Windows, serial ports have names like `COM1`\. On macOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\.
+   To confirm a selection in the menu, choose **Select**\. To save a configuration, choose **Save**\. To exit the Espressif IoT Development Framework Configuration menu, choose **Exit**\.
 
-   The serial port you configure here is used to write the demo application to your board\.
+   Choose **Default serial port** to configure the serial port\. The serial port you configure here is used to write the demo application to your board\. On Windows, serial ports have names like `COM1`\. On macOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\.
 
-   Depending on your hardware, you can increase the default baud rate up to 921600\. This can reduce the time required to flash your board\. To increase the baud rate, choose **Serial flash config**, and then choose **Default baud rate**\. 
-
-   To confirm your selection, choose ENTER\. To save the configuration, choose **Save** and then choose **Exit**\.
+   Choose **Default baud rate** to change the default baud rate to use while communicating with your board\. Increasing the baud rate can reduce the time required to flash your board\. Depending on your hardware, you can increase the default baud rate up to 921600\.
 
 To build and flash firmware \(including boot loader and partition table\) and monitor serial console output, open a command prompt\. Navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit/make` and run the following command:
 
@@ -295,7 +294,15 @@ I (20956) PKCS11: Partition size: total: 52961, used: 0
 | --- |
 | Amazon FreeRTOS support for Bluetooth Low Energy is in public beta release\. BLE demos are subject to change\. | 
 
-Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\.
+Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\. The Amazon FreeRTOS BLE library is still in public beta, so you need to switch branches to access the code for your board\. Check out the branch named `feature/ble-beta`\.
+
+To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon FreeRTOS BLE Mobile SDK Demo Application on an iOS or Android mobile device\.
+
+**To set up the the Amazon FreeRTOS BLE Mobile SDK Demo Application**
+
+1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
+
+1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
 
 For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
 
@@ -315,7 +322,7 @@ For instructions about how to run the Wi\-Fi Provisioning demo on your board, se
 + If you see errors when you run `idf_monitor.py`, use Python 2\.7\.
 
 **Other Notes**
-+ Required libraries from ESP\-IDF are included in Amazon FreeRTOS , so there is no need to download them externally\. If `IDF_PATH` is set, we recommend that you remove it before you build Amazon FreeRTOS\. 
++ Required libraries from ESP\-IDF are included in Amazon FreeRTOS, so there is no need to download them externally\. If the `IDF_PATH` environment variable is set, we recommend that you clear it before you build Amazon FreeRTOS\. 
 + On Window systems, it can take 3\-4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time:
 
   ```
@@ -437,22 +444,18 @@ The ESP32 supports a maximum of two break points\.
    The output from `system_profiler` should look like the following:
 
    ```
-   C232HM-DDHSL-0:
-   Product ID: 0x6014
-   Vendor ID: 0x0403 (Future Technology Devices International Limited)
+   DEVICE:
+   							
+   Product ID: product-ID
+   Vendor ID: vendor-ID (Future Technology Devices International Limited)
    ```
 
-1. Verify the vendor and product IDs match the IDs in `demos/espressif/esp32_devkitc_esp_wrover_kit/esp32_devkitj_v1.cfg`\. The IDs are specified on a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
-
-   ```
-   ftdi_vid_pid 0x0403 0x6014
-   ```
+1. Open `demos/espressif/esp32_devkitc_esp_wrover_kit/esp32_devkitj_v1.cfg`\. The vendor ID and product ID for your device are specified in a line that begins with `ftdi_vid_pid`\. Change the IDs to match the IDs from the `system_profiler` output in the previous step\.
 
 1. Open a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
 
    ```
-   openocd -f esp32_devkitj_v1.cfg -f
-   								esp-wroom-32.cfg
+   openocd -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
    ```
 
 1. Open a new terminal, and use the following command to load the FTDI serial port driver:

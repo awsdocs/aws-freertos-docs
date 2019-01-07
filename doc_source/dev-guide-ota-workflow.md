@@ -14,7 +14,7 @@ You can use the AWS IoT console or the AWS CLI to create an OTA update\. The con
 
 1. If you are manually signing your firmware, sign and then upload the signed firmware image to your Amazon S3 bucket\.
 
-   If you are using Code Signing for Amazon FreeRTOS, upload your unsigned firmware image to an Amazon S3 bucket\.
+   If you are using Code Signing for AWS IoT, upload your unsigned firmware image to an Amazon S3 bucket\.
 
 1. Create an OTA update\.
 

@@ -38,4 +38,4 @@ The Espressif ESP32 boards support a self\-signed SHA256 with ECDSA code\-signin
 
    This command displays an ARN for your certificate\. You need this ARN when you create an OTA update job\.
 **Note**  
-This step is written with the assumption that you are going to use Code Signing for Amazon FreeRTOS to sign your firmware images\. Although the use of Code Signing for Amazon FreeRTOS is recommended, you can sign your firmware images manually\.
+This step is written with the assumption that you are going to use Code Signing for AWS IoT to sign your firmware images\. Although the use of Code Signing for AWS IoT is recommended, you can sign your firmware images manually\.

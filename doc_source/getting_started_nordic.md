@@ -7,7 +7,9 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not have the Nordic nRF52840\-DK, you can purchase one from [Nordic](https://www.nordicsemi.com/eng/Products/nRF52840-DK)\.
+If you do not have the Nordic nRF52840\-DK, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)\.
+
+To run the Amazon FreeRTOS BLE demo, you also need an iOS or Android mobile device with Bluetooth and Wi\-Fi capabilities\.
 
 ## Setting Up the Nordic Hardware<a name="nordic-setup-env"></a>
 
@@ -21,23 +23,40 @@ For more information about setting up the Nordic nRF52840\-DK, see the [nRF52840
 
 Amazon FreeRTOS supports Segger Embedded Studio as a development environment for the Nordic nRF52840\-DK\.
 
-To set up your environment, you need to download and install Segger Embedded Studio\.
+To set up your environment, you need to download and install Segger Embedded Studio on your host computer\.
 
-1. Go to the [Segger Embedded Studio Downloads](https://www.segger.com/downloads/embedded-studio/) page and choose the Embedded Studio for ARM option for your operating system\.
+**To download and install Segger Embedded Studio**
+
+1. Go to the [Segger Embedded Studio Downloads](https://www.segger.com/downloads/embedded-studio/) page, and choose the Embedded Studio for ARM option for your operating system\.
 
 1. Run the installer and follow the prompts to completion\.
 
+### Download the Mobile SDK for Amazon FreeRTOS Bluetooth Devices<a name="install-mobile-sdks"></a>
+
+To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon FreeRTOS BLE Mobile SDK Demo Application on your mobile device\.
+
+**To set up the the Amazon FreeRTOS BLE Mobile SDK Demo Application**
+
+1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
+
+1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
+
 ### Establish a Serial Connection<a name="nordic-serial-connection"></a>
 
-After you connect your computer to your Nordic nRF52840 board and install Segger Embedded Studio, open a terminal tool, like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection\. Set the COM port to **JLink CDC UART Port** with the following serial port settings:
-+ Baud Rate: **115200**
-+ Data: **8 bit**
-+ Parity: **None**
-+ Stop: **1 bit**
-+ Flow Control: **None**
+Segger Embedded Studio includes a terminal emulator that you can use to receive log messages across a serial connection to your board\.
+
+**To establish a serial connection with Segger Embedded Studio**
+
+1. Open Segger Embedded Studio\.
+
+1. From the top menu, choose **Target**, **Connect J\-Link**\.
+
+1. From the top menu, choose **Tools**, **Terminal Emulator**, **Properties**, and set the properties as instructed in [Installing a Terminal Emulator](freertos-prereqs.md#uart-term)\.
+
+1. From the top menu, choose **Tools**, **Terminal Emulator**, **Connect *port* \(115200,N,8,1\)**\.
 
 **Note**  
-Depending on your terminal tool, the serial port settings might vary in name\.
+You can also establish a serial connection with a terminal tool of your choice, like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a Terminal Emulator](freertos-prereqs.md#uart-term)\.
 
 ## Download and Configure Amazon FreeRTOS<a name="nordic-download-and-configure"></a>
 
@@ -69,41 +88,28 @@ To run the demo, you must configure your project to work with AWS IoT\. To confi
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *Your board's AWS IoT thing name*
 
-**To configure your AWS IoT credentials**
-
-To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device as an AWS IoT thing\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
-
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You need to format the certificate and private key for your device\. 
-
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
-
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
-
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
-
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
-**Note**  
-The certificate and private key should be hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
-
 **To enable the demo**
 
 1. Check that the BLE GATT Demo is enabled\. Go to `<BASE_FOLDER>\demos\nordic\nrf52840-dk\common\config_files\aws_ble_config.h`, and make sure that `bleconfigENABLE_GATT_DEMO` is set to `1`\.
 
-1. Open `<BASE_FOLDER>\demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\. \.
+1. Open `<BASE_FOLDER>\demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="nordic-build-and-run-example"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="nordic-build-and-run-example"></a>
 
 After you download Amazon FreeRTOS and configure your demo project, you are ready to build and run the demo project on your board\.
 
-Open Segger Embedded Studio\. From the top menu, choose **File**, choose **Open Solution**, and then navigate to the project file `<BASE_FOLDER>\demos\nordic\nrf52840-dk\ses\aws_demos_ble.emProject`
+**To build and run the Amazon FreeRTOS BLE demo from Segger Embedded Studio**
 
-From the top menu, choose **View**, and then choose **Debug Terminal** to display information from your serial connection terminal\.
+1. Open Segger Embedded Studio\. From the top menu, choose **File**, choose **Open Solution**, and then navigate to the project file `<BASE_FOLDER>\demos\nordic\nrf52840-dk\ses\aws_demos_ble.emProject`
 
-To build the BLE demo, right\-click the `aws_ble_demos` demo project, and choose **Build**\.
+1. If you are using the Segger Embedded Studio terminal emulator, choose **Tools** from the top menu, and then choose **Terminal Emulator**, **Terminal Emulator** to display information from your serial connection\.
 
+   If you are using another terminal tool, you can monitor that tool for output from your serial connection\.
+
+1. Right\-click the `aws_ble_demos` demo project in the **Project Explorer**, and choose **Build**\.
 **Note**  
 If this is your first time using Segger Embedded Studio, you might see you a warning "No license for commercial use"\. Segger Embedded Studio can be used free of charge for Nordic Semiconductor devices\. Choose **Activate Your Free License**, and follow the instructions\.
 
-To run the BLE demo on your board, from the Segger Embedded Studio menu, choose **Debug**, and then choose **Go**\.
+1. Choose **Debug**, and then choose **Go**\.
 
-For more information about completing the demo with the Amazon FreeRTOS BLE Mobile SDK demo application as the mobile MQTT proxy, see [MQTT over BLE Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
+1. Follow the instructions for the [MQTT over BLE Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt) to complete the demo with the Amazon FreeRTOS BLE Mobile SDK demo application as the mobile MQTT proxy\.

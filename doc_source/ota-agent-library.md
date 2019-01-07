@@ -40,13 +40,13 @@ Amazon FreeRTOS
 |
 + - lib
     + - ota
-    |   + ─ aws_ota_agent.c
-    |   + ─ aws_ota_cbor.c
-    |   + ─ portable
-    |       + ─ README.md
-    |       + ─ vendor
-    |           + ─ board
-    |               + ─ aws_ota_pal.c
+    |   + - aws_ota_agent.c
+    |   + - aws_ota_cbor.c
+    |   + - portable
+    |       + - README.md
+    |       + - vendor
+    |           + - board
+    |               + - aws_ota_pal.c
     + - include
         + - aws_ota_agent.h
         + - private

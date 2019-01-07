@@ -11,7 +11,7 @@ Amazon FreeRTOS supports publishing and subscribing to MQTT topics over Bluetoot
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/blediagram.png)
 
-Using the Amazon FreeRTOS BLE Mobile SDKs, you can write native mobile applications that communicate with the embedded applications on your microcontroller over BLE\. For more information about the Amazon FreeRTOS BLE Mobile SDKs, see [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md)\. Amazon FreeRTOS BLE uses Amazon Cognito for user authentication on mobile devices\. 
+Using the Mobile SDKs for Amazon FreeRTOS Bluetooth Devices, you can write native mobile applications that communicate with the embedded applications on your microcontroller over BLE\. For more information about the mobile SDKs, see [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md)\. 
 
 In addition to supporting MQTT, the Amazon FreeRTOS BLE library includes services for configuring Wi\-Fi networks\. The Amazon FreeRTOS BLE library also includes some middleware and lower\-level APIs for more direct control over your BLE stack\. The source files for the Amazon FreeRTOS BLE library are located in [https://github.com/aws/amazon-freertos/tree/feature/ble-beta/lib/bluetooth_low_energy](https://github.com/aws/amazon-freertos/tree/feature/ble-beta/lib/bluetooth_low_energy)\. 
 

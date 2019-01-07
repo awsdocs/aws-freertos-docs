@@ -2,7 +2,7 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, you can purchase one from [Avnet](http://www.zedboard.org/product/microzed-iiot-bundle-afreertos)\.
+If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)\.
 
 ## Setting Up the MicroZed Hardware<a name="xilinx-setup-hardware"></a>
 
@@ -110,7 +110,7 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key should be hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="xilinx-build-and-run-example"></a>
+## Build and Run Amazon FreeRTOS Demo Project<a name="xilinx-build-and-run-example"></a>
 
 Now that you have configured your project, you are ready to build and run the demo project on your board\.
 
@@ -124,7 +124,7 @@ Before you run the demo project, use the MQTT client in the AWS IoT console to s
 
 1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
-### Open the Amazon FreeRTOS Sample Code in the XSDK IDE<a name="xilinx-freertos-import-project"></a>
+### Open the Amazon FreeRTOS Demo in the XSDK IDE<a name="xilinx-freertos-import-project"></a>
 
 1. Launch the XSDK IDE with the workspace directory set to `<BASE_FOLDER>\demos\xilinx\microzed\xsdk`\. 
 
@@ -151,7 +151,7 @@ If you see a warning at the top of the **Import Projects** page \("Some projects
 1. In **New String Substitution Variable**, for **Name**, enter **AFR\_ROOT**\. For **Value**, enter the root path of the `aws_demos`\. Choose **OK**, and then choose **OK** to save the variable and close **Preferences**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk-string-sub.png)
 
-### Build the Amazon FreeRTOS Project<a name="xilinx-freertos-build-project"></a>
+### Build the Amazon FreeRTOS Demo Project<a name="xilinx-freertos-build-project"></a>
 
 1. In the XSDK IDE, from the menu, choose **Project**, and then choose **Clean**\. 
 
@@ -179,9 +179,9 @@ Before you debug, be sure to back up any content that you have on the MicroSD ca
 **Note**  
 The first time you run the application, a new certificate\-key pair is generated\. For subsequent runs, you can comment out `vDevModeKeyProvisioning()` in the `main.c` file before you rebuild the images and the `BOOT.bin` file\. This prevents the copying of the certificates and key to storage on every run\.
 
-You can opt to boot your MicroZed board from a MicroSD card or from QSPI ﬂash to run the Amazon FreeRTOS demo project\. For instructions, see [Generate the Boot Image for the Amazon FreeRTOS Project](#xilinx-build-boot-image) and [Run the Amazon FreeRTOS Project](#xilinx-run)\.
+You can opt to boot your MicroZed board from a MicroSD card or from QSPI ﬂash to run the Amazon FreeRTOS demo project\. For instructions, see [Generate the Boot Image for the Amazon FreeRTOS Demo Project](#xilinx-build-boot-image) and [Run the Amazon FreeRTOS Demo Project](#xilinx-run)\.
 
-### Generate the Boot Image for the Amazon FreeRTOS Project<a name="xilinx-build-boot-image"></a>
+### Generate the Boot Image for the Amazon FreeRTOS Demo Project<a name="xilinx-build-boot-image"></a>
 
 1. In the XSDK IDE, right\-click **aws\_demos**, and then choose **Create Boot Image**\. 
 
@@ -198,7 +198,7 @@ You can opt to boot your MicroZed board from a MicroSD card or from QSPI ﬂash 
 
 1. On **Create Boot Image**, choose **Create Image**\. On **Override Files**, choose **OK** to overwrite the existing `aws_demos.bif` and generate the `BOOT.bin` file at `demos\xilinx\microzed\xsdk\aws_demos\bootimage\BOOT.bin`\.
 
-### Run the Amazon FreeRTOS Project<a name="xilinx-run"></a>
+### Run the Amazon FreeRTOS Demo Project<a name="xilinx-run"></a>
 
 To run the Amazon FreeRTOS demo project, you can boot your MicroZed board from a MicroSD card or from QSPI flash\.
 
@@ -217,7 +217,7 @@ Format the MicroSD card that is provided with the Xilinx MicroZed Industrial IoT
 
 1. Press the RST button to reset the device and start booting the application\. You can also unplug the USB\-UART cable from the USB\-UART port, and then reinsert the cable\.
 
-#### Boot the Amazon FreeRTOS Project from QSPI flash<a name="xilinx-build-boot-qspi"></a>
+#### Boot the Amazon FreeRTOS Demo Project from QSPI flash<a name="xilinx-build-boot-qspi"></a>
 
 1. Set your MicroZed board's boot mode jumpers to the JTAG boot mode:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xilinx-jtag.png)
@@ -255,6 +255,6 @@ Be sure to back up any content that you have on the MicroSD card\.
 ## Troubleshooting<a name="xilinx-troubleshooting"></a>
 
 ### General Troubleshooting Tips<a name="xilinx-troubleshooting-general"></a>
-+ If you encounter build errors that are related to incorrect paths, try to clean and rebuild the project, as described in [Build the Amazon FreeRTOS Project](#xilinx-freertos-build-project)\.
++ If you encounter build errors that are related to incorrect paths, try to clean and rebuild the project, as described in [Build the Amazon FreeRTOS Demo Project](#xilinx-freertos-build-project)\.
 **Note**  
 If you are using Windows, make sure that you use forward slashes when you set the string substitution variables in the Windows XSDK IDE\.

@@ -2,7 +2,7 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not have the Microchip Curiosity PIC32MZEF bundle, you can purchase one from [Microchip](http://www.microchipdirect.com/product/search/all/dm320104-BNDL)\. You need the following items:
+If you do not have the Microchip Curiosity PIC32MZEF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\. You need the following items:
 + [MikroElectronika USB UART Click Board](https://www.mikroe.com/usb-uart-click)
 + [RJ\-11 to ICSP Adapter](https://www.microchipdirect.com/product/search/all/ac164110)
 + [MPLAB ICD 4 In\-Circuit Debugger](http://www.microchip.com/Developmenttools/ProductDetails.aspx?PartNO=DV164045)
@@ -87,7 +87,7 @@ In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `
 
 ### Configure Your Project<a name="mch-freertos-config-project"></a>
 
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
+To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -105,7 +105,7 @@ To run the demo, you must configure your project to work with AWS IoT\. To confi
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
-**To configure your Wi\-Fi**
+**To configure your Wi\-Fi settings**
 
 1. Open the `aws_clientcredential.h` file\.
 
@@ -136,9 +136,9 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="mch-build-and-run-example"></a>
+## Build and Run Amazon FreeRTOS Demo Project<a name="mch-build-and-run-example"></a>
 
-### Open the Amazon FreeRTOS Demo Application in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
+### Open the Amazon FreeRTOS Demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
 
 1. In the MPLAB IDE, from the **File** menu, choose **Open Project**\.
 
@@ -154,7 +154,7 @@ warning: Configuration "pic32mz_ef_curiosity" builds with "XC32", but indicates 
 warning: Configuration "pic32mz_ef_curiosity" refers to file "AmazonFreeRTOS/lib/third_party/mcu_vendor/microchip/harmony/framework/bootloader/src/bootloader.h" which does not exist in the disk. The make process might not build correctly.
 ```
 
-### Run the Amazon FreeRTOS Samples<a name="mch-run-example"></a>
+### Run the Amazon FreeRTOS Demo Project<a name="mch-run-example"></a>
 
 1. Rebuild your project\.
 

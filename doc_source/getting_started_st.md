@@ -2,7 +2,7 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not already have the STMicroelectronics STM32L4 Discovery Kit IoT Node, you can purchase one from [STMicroelectronics](http://www.st.com/en/evaluation-tools/b-l475e-iot01a.html)\.
+If you do not already have the STMicroelectronics STM32L4 Discovery Kit IoT Node, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsWUAX/STM32L4-Discovery-Kit-IoT-Node)\.
 
 Make sure you have installed the latest Wi\-Fi firmware\. To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, BLE, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. Under **Binary Resources**, choose **Inventek ISM 43362 Wi\-Fi module firmware update \(read the readme file for instructions\) **\.
 
@@ -42,7 +42,7 @@ In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `
 
 ### Configure Your Project<a name="st-freertos-config-project"></a>
 
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
+To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -60,7 +60,7 @@ To run the demo, you must configure your project to work with AWS IoT\. To confi
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
-**To configure your Wi\-Fi**
+**To configure your Wi\-Fi settings**
 
 1. Open the `aws_clientcredential.h` file\.
 
@@ -91,9 +91,9 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="st-build-and-run-example"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="st-build-and-run-example"></a>
 
-### Import the Amazon FreeRTOS Sample Code into the STM32 System Workbench<a name="st-freertos-import-project"></a><a name="st-import-project"></a>
+### Import the Amazon FreeRTOS Demo into the STM32 System Workbench<a name="st-freertos-import-project"></a><a name="st-import-project"></a>
 
 1. Open the STM32 System Workbench and enter a name for a new workspace\.
 
@@ -107,7 +107,7 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 
 1. From the **Project** menu, choose **Build All**\. Confirm the project compiles without any errors or warnings\.
 
-### Run the Amazon FreeRTOS Samples<a name="st-run-example"></a>
+### Run the Amazon FreeRTOS Demo Project<a name="st-run-example"></a>
 
 1. Use a USB cable to connect your STMicroelectronics STM32L4 Discovery Kit IoT Node to your computer\. 
 
@@ -147,9 +147,17 @@ You should see MQTT messages sent by your device in the MQTT client in the AWS I
 **Note**  
 To run the BLE demo, you need the SPBTLE\-1S BLE module for the STM32L475 Discovery Kit\.
 
-Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\.
+Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\. The Amazon FreeRTOS BLE library is still in public beta, so you need to switch branches to access the code for your board\. Check out the branch named `feature/ble-beta`\.
 
-For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
+To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon FreeRTOS BLE Mobile SDK Demo Application on an iOS or Android mobile device\.
+
+**To set up the the Amazon FreeRTOS BLE Mobile SDK Demo Application**
+
+1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
+
+1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
+
+ For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
 
 ## Troubleshooting<a name="st-troubleshooting"></a>
 

@@ -37,22 +37,22 @@ MQTT task wakeup wakes up whenever the user calls an API to perform any operatio
 ```
 Amazon FreeRTOS
   |
-  +-lib
+  + - lib
       |
-      +-mqtt
-      |   +-aws_mqtt_lib.c                     [Required to use the MQTT library and the MQTT agent]
-      |   +-aws_mqtt_agent.c                   [Required to use the MQTT agent]
+      + - mqtt
+      |   + - aws_mqtt_lib.c                     [Required to use the MQTT library and the MQTT agent]
+      |   + - aws_mqtt_agent.c                   [Required to use the MQTT agent]
       |
-      +-include
+      + - include
           |
-          +-private                            [For internal library use only!]
-          |   +-aws_doubly_linked_list.h
-          |   +-aws_mqtt_agent_config_defaults.h
-          |   +-aws_mqtt_buffer.h
-          |   +-aws_mqtt_config_defaults.h
+          + - private                            [For internal library use only!]
+          |   + - aws_doubly_linked_list.h
+          |   +-  aws_mqtt_agent_config_defaults.h
+          |   + - aws_mqtt_buffer.h
+          |   + - aws_mqtt_config_defaults.h
           |
-          +-aws_mqtt_agent.h                   [Include to use the MQTT agent API]
-          +-aws_mqtt_lib.h                     [Include to use the MQTT library API]
+          + - aws_mqtt_agent.h                   [Include to use the MQTT agent API]
+          + - aws_mqtt_lib.h                     [Include to use the MQTT library API]
 ```
 
 ## Major Configurations<a name="freertos-lib-cloud-mqtt-config"></a>
@@ -93,29 +93,29 @@ You should set these constants to the minimum values possible\.
 
 ### Requirements and Usage Restrictions<a name="freertos-mqtt-requirements-restrictions"></a>
 
-#### <a name="w3aac10c11c19c15b7b3"></a>
+#### <a name="w3aab9c11c19c15b7b3"></a>
 
 The MQTT agent task is created using the xTaskCreateStatic\(\) API function \- so the task's stack and control block are statically allocated at compile time\. That ensures the MQTT agent can be used in applications that do not allow dynamic memory allocation, but does mean there is a dependency on configSUPPORT\_STATIC\_ALLOCATION being set to 1 in FreeRTOSConfig\.h\. 
 
-#### <a name="w3aac10c11c19c15b7b5"></a>
+#### <a name="w3aab9c11c19c15b7b5"></a>
 
 he MQTT agent uses the FreeRTOS direct to task notification feature\. Calling an MQTT agent API function may change the calling task's notification value and state\. 
 
-#### <a name="w3aac10c11c19c15b7b7"></a>
+#### <a name="w3aab9c11c19c15b7b7"></a>
 
 MQTT packets are stored in buffers provided by the Buffer Pool module\. It is highly recommended to ensure the number of buffers in the pool is at least double the number of MQTT transactions that will be in progress at any one time\.
 
 ## Developer Support<a name="freertos-mqtt-support"></a>
 
-### `mqttconfigASSERT`<a name="w3aac10c11c19c17b3"></a>
+### `mqttconfigASSERT`<a name="w3aab9c11c19c17b3"></a>
 
 mqttconfigASSERT\(\) is equivalent to, and used in exactly the same way as, the FreeRTOS configASSERT\(\) macro\. If you want assert statements in the MQTT agent then define mqttconfigASSERT\(\)\. If you do not want assert statements in the MQTT agent then leave mqttconfigASSERT\(\) undefined\. If you define mqttconfigASSERT\(\) to call the FreeRTOS configASSERT\(\), as shown below, then the MQTT agent will only include assert statements if the FreeRTOS configASSERT\(\) is defined\. 
 
 `#define mqttconfigASSERT( x ) configASSERT( x )`
 
-### `mqttconfigENABLE_DEBUG_LOGS`<a name="w3aac10c11c19c17b5"></a>
+### `mqttconfigENABLE_DEBUG_LOGS`<a name="w3aab9c11c19c17b5"></a>
 
-#### <a name="w3aac10c11c19c17b5b3"></a>
+#### <a name="w3aab9c11c19c17b5b3"></a>
 
 Set `mqttconfigENABLE_DEBUG_LOGS` to **1** to print debug logs via calls to vLoggingPrintf\(\)\.
 

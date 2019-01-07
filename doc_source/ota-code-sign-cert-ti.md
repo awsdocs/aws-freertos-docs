@@ -16,7 +16,7 @@ Install the [SimpleLink CC3220 SDK version 2\.10\.00\.04](http://www.ti.com/tool
 
 The certificates in the SimpleLink CC3220 SDK are in DER format\. To create a self‐signed code\-signing certificate, you must convert them to PEM format\.
 
-Follow these steps to create a code\-signing certificate that is linked to the Texas Instruments playground certificate hierarchy and meets AWS Certificate Manager and Code Signing for Amazon FreeRTOS criteria\.
+Follow these steps to create a code\-signing certificate that is linked to the Texas Instruments playground certificate hierarchy and meets AWS Certificate Manager and Code Signing for AWS IoT criteria\.
 
 **To create a self‐signed code signing certificate**
 
@@ -87,4 +87,4 @@ You write the `tisigner.crt.der` certificate onto the TI development board later
 
    This command displays an ARN for your certificate\. You need this ARN when you create an OTA update job\.
 **Note**  
-This step is written with the assumption that you are going to use Code Signing for Amazon FreeRTOS to sign your firmware images\. Although the use of Code Signing for Amazon FreeRTOS is recommended, you can sign your firmware images manually\.
+This step is written with the assumption that you are going to use Code Signing for AWS IoT to sign your firmware images\. Although the use of Code Signing for AWS IoT is recommended, you can sign your firmware images manually\.

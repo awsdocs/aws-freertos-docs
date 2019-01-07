@@ -90,15 +90,15 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key should be hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="win-build-and-run-example"></a>
+## Build and Run Amazon FreeRTOS Demo Project<a name="win-build-and-run-example"></a>
 
-### Load the Amazon FreeRTOS Sample Code into Visual Studio<a name="win-load-project"></a>
+### Load the Amazon FreeRTOS Demo into Visual Studio<a name="win-load-project"></a>
 
 1. In Visual Studio, from the **File** menu, choose **Open**\. Choose **File/Solution**, navigate to `<BASE_FOLDER>\demos\pc\windows\visual_studio\aws_demos.sln`, and then choose **Open**\.
 
 1. From the **Build** menu, choose **Build Solution**, and make sure the solution builds without errors or warnings\.
 
-### Run the Amazon FreeRTOS Samples<a name="win-run-example"></a>
+### Run the Amazon FreeRTOS Demo<a name="win-run-example"></a>
 
 1. Rebuild your Visual Studio project to pick up changes made in the header files\.
 

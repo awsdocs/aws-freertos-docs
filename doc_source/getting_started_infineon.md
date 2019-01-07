@@ -2,7 +2,7 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not have the Infineon XMC4800 IoT Connectivity Kit, you can purchase one from [Infineon](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc48_iot_aws_wifi/)\.
+If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
 
@@ -69,7 +69,7 @@ In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `
 
 ### Configure Your Project<a name="infineon-freertos-config-project"></a>
 
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
+To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -87,7 +87,7 @@ To run the demo, you must configure your project to work with AWS IoT\. To confi
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
-**To configure your Wi\-Fi**
+**To configure your Wi\-Fi settings**
 
 1. Open the `aws_clientcredential.h` file\.
 
@@ -118,9 +118,9 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="infineon-build-and-run-example"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="infineon-build-and-run-example"></a>
 
-### Import the Amazon FreeRTOS Sample Code into DAVE<a name="infineon-freertos-import-project"></a><a name="infineon-load-project"></a>
+### Import the Amazon FreeRTOS Demo into DAVE<a name="infineon-freertos-import-project"></a><a name="infineon-load-project"></a>
 
 1. Start DAVE\.
 
@@ -142,7 +142,7 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 
    Make sure that the project builds without errors\.
 
-### Run the FreeRTOS Demo<a name="infineon-run-examples"></a>
+### Run the Amazon FreeRTOS Demo Project<a name="infineon-run-examples"></a>
 
 After you have configured your project, you are ready to run the demo project on your board\.
 

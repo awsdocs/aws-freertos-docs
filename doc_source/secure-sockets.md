@@ -44,20 +44,20 @@ Amazon FreeRTOS Secure Sockets library features include:
 ```
 Amazon FreeRTOS
 |
-+ ─ lib
-   + ─ include
-   |   + ─ aws_secure_sockets.h
-   |   + ─ private
-   |       + ─ aws_secure_sockets_config_defaults.h
-   + ─ secure_sockets
++ - lib
+   + - include
+   |   + - aws_secure_sockets.h
+   |   + - private
+   |       + - aws_secure_sockets_config_defaults.h
+   + - secure_sockets
        + - portable
            + - ...
-               + ─ aws_secure_sockets.c
+               + - aws_secure_sockets.c
 ```
 
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w3aac10c11c25c13b5"></a>
+### Error codes<a name="w3aab9c11c25c13b5"></a>
 
 The error codes that the Amazon FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 

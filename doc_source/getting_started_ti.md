@@ -2,7 +2,7 @@
 
 Before you begin, see [Prerequisites](freertos-prereqs.md)\.
 
-If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, you can purchase one from [Texas Instruments](http://www.ti.com/tool/CC3220SF-LAUNCHXL)\.
+If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)\.
 
 ## Setting Up Your Environment<a name="ti-setup-env"></a>
 
@@ -39,7 +39,7 @@ If you experience issues when you are installing Code Composer Studio, see [TI D
 
 ### Install the SimpleLink CC3220 SDK<a name="install-ti-sdk"></a>
 
-Install the [SimpleLink CC3200 SDK](http://www.ti.com/tool/CC3200SDK)\. The SimpleLink Wi\-Fi CC3200 SDK contains drivers for the CC3200 programmable MCU, more than 40 sample applications, and documentation required to use the samples\.
+Install the [SimpleLink CC3220 SDK](http://www.ti.com/tool/SIMPLELINK-CC3220-SDK)\. The SimpleLink Wi\-Fi CC3220 SDK contains drivers for the CC3220SF programmable MCU, more than 40 sample applications, and documentation required to use the samples\.
 
 ### Install Uniflash<a name="install-uniflash"></a>
 
@@ -48,14 +48,14 @@ Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalo
 ### Configure Wi\-Fi Provisioning<a name="wifi-provision"></a>
 
 To configure the Wi\-Fi settings for your board, do one of the following:
-+ Complete the Amazon FreeRTOS demo application described in [Configure Your Project](#ti-freertos-config-project)\.
-+ Use [SmartConfig](http://processors.wiki.ti.com/index.php/CC3200_SmartConfig_Provisioning) from Texas Instruments\.
++ Configure the Amazon FreeRTOS demo application described in [Configure Your Project](#ti-freertos-config-project)\.
++ Use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments\.
 
 ### Install the Latest Service Pack<a name="ti-servicepack"></a>
 
 1. On your TI CC3220SF\-LAUNCHXL, place the SOP jumper on the middle set of pins \(position = 1\) and reset the board\.
 
-1. Start Uniflash, and from the list of configurations, choose **CC3200SF\-LAUNCHXL**\. Choose **Start Image Creator**\.
+1. Start Uniflash, and from the list of configurations, choose **CC3220SF\-LAUNCHXL**\. Choose **Start Image Creator**\.
 
 1. Choose **New Project**\.
 
@@ -87,7 +87,7 @@ After your environment is set up, you can download Amazon FreeRTOS\.
 
    If you are using IAR Embedded Workbench, choose **Connect to AWS IoT\-TI**\. Under **Hardware platform**, choose **Edit**\. Under **Integrated Development Environment \(IDE\)**, choose **IAR Embedded Workbench**\. Make sure the compiler is set to IAR, and then choose **Create and Download**\.
 
-1. Unzip the downloaded file to your hard drive\. When unzipped, you have a directory named `AmazonFreeRTOS`\. You can place this directory anywhere you want, but be aware of path length limitations on Windows\.
+1. Unzip the downloaded file to your hard drive\. When unzipped, you have a directory named `AmazonFreeRTOS`\.
 
 **Note**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
@@ -95,7 +95,7 @@ In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `
 
 ### Configure Your Project<a name="ti-freertos-config-project"></a>
 
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
+To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -113,7 +113,7 @@ To run the demo, you must configure your project to work with AWS IoT\. To confi
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
-**To configure your Wi\-Fi**
+**To configure your Wi\-Fi settings**
 
 1. Open the `aws_clientcredential.h` file\.
 
@@ -144,11 +144,11 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="ti-build-and-run-examples"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="ti-build-and-run-examples"></a>
 
-### Build and Run Amazon FreeRTOS Samples in TI Code Composer<a name="ti-build-and-run-ccs"></a><a name="ti-load-project"></a>
+### Build and Run the Amazon FreeRTOS Demo Project in TI Code Composer<a name="ti-build-and-run-ccs"></a><a name="ti-load-project"></a>
 
-**Import the Amazon FreeRTOS Sample Code into TI Code Composer**
+**To import the Amazon FreeRTOS demo into TI Code Composer**
 
 1. Open TI Code Composer, and choose **OK** to accept the default workspace name\.
 
@@ -160,11 +160,11 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 
 1. From **Project**, choose **Build Project** to make sure the project compiles without errors or warnings\.
 
-**Subscribe to MQTT topic**
+**To subscribe to MQTT topic**
 **Note**  
 Before you run the Amazon FreeRTOS samples, do the following:
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3200 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru372b/swru372b.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -174,7 +174,7 @@ Before you run the Amazon FreeRTOS samples, do the following:
 
 1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.<a name="ti-run-project-css"></a>
 
-**Run the Amazon FreeRTOS samples in TI Code Composer**
+**To run the Amazon FreeRTOS demo in TI Code Composer**
 
 1. Rebuild your project\.
 
@@ -184,9 +184,9 @@ Before you run the Amazon FreeRTOS samples, do the following:
 
 In the MQTT client in the AWS IoT console, you should see the MQTT messages sent by your device\.
 
-### Build and Run Amazon FreeRTOS Samples in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
+### Build and Run Amazon FreeRTOS Demo Project in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
 
-**Import the Amazon FreeRTOS Sample Code into IAR Embedded Workbench**
+**To import the Amazon FreeRTOS demo into IAR Embedded Workbench**
 
 1. Open IAR Embedded Workbench, choose **File**, and then choose **Open Workspace**\.
 
@@ -194,9 +194,9 @@ In the MQTT client in the AWS IoT console, you should see the MQTT messages sent
 
 1. Right\-click the project name \(`aws_demos`\), and then choose **Make**\.
 
-**Subscribe to MQTT topic**
+**To subscribe to MQTT topic**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3200 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru372b/swru372b.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -206,7 +206,7 @@ In the MQTT client in the AWS IoT console, you should see the MQTT messages sent
 
 1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
-**Run the Amazon FreeRTOS samples in IAR Embedded Workbench**
+**To run the Amazon FreeRTOS demo in IAR Embedded Workbench**
 
 1. Rebuild your project\.
 

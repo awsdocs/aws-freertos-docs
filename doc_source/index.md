@@ -1,7 +1,7 @@
 # Amazon FreeRTOS User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -15,7 +15,6 @@ Amazon's trademarks and trade dress may not be used in
 -----
 ## Contents
 + [What Is Amazon FreeRTOS?](what-is-amazon-freertos.md)
-   + [Development Workflow](development-workflow.md)
 + [Getting Started with Amazon FreeRTOS](freertos-getting-started.md)
    + [Prerequisites](freertos-prereqs.md)
    + [Getting Started with the Texas Instruments CC3220SF-LAUNCHXL](getting_started_ti.md)
@@ -25,6 +24,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Getting Started with the Espressif ESP32-DevKitC and the ESP-WROVER-KIT](getting_started_espressif.md)
    + [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)
    + [Getting Started with the Xilinx Avnet MicroZed Industrial IoT Kit](getting_started_xilinx.md)
+   + [Getting Started with the Renesas Starter Kit+ for RX65N-2MB](getting_started_renesas.md)
+   + [Getting Started with the MediaTek MT7697Hx Development Kit](getting_started_mediatek.md)
    + [Getting Started with the FreeRTOS Windows Simulator](getting_started_windows.md)
    + [Getting Started with the Nordic nRF52840-DK](getting_started_nordic.md)
 + [Amazon FreeRTOS Developer Guide](freertos-dev-guide.md)
@@ -46,15 +47,15 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon FreeRTOS Over-the-Air Updates](freertos-ota-dev.md)
       + [Over-the-Air Update Prerequisites](ota-prereqs.md)
          + [Create an Amazon S3 Bucket to Store Your Update](dg-ota-bucket.md)
-         + [Creating an OTA Update Service Role](create-service-role.md)
-         + [Creating an OTA User Policy](create-ota-user-policy.md)
-         + [Creating a Code-Signing Certificate](ota-code-sign-cert.md)
+         + [Create an OTA Update Service Role](create-service-role.md)
+         + [Create an OTA User Policy](create-ota-user-policy.md)
+         + [Create a Code-Signing Certificate](ota-code-sign-cert.md)
             + [Creating a Code-Signing Certificate for the Texas Instruments CC3200SF-LAUNCHXL](ota-code-sign-cert-ti.md)
             + [Creating a Code-Signing Certificate for the Microchip Curiosity PIC32MZEF](ota-code-sign-cert-mchip.md)
             + [Creating a Code-Signing Certificate for the Espressif ESP32](ota-code-sign-cert-esp.md)
             + [Creating a Code-Signing Certificate for the Amazon FreeRTOS Windows Simulator](ota-code-sign-cert-win.md)
             + [Creating a Code-Signing Certificate for Custom Hardware](ota-code-sign-cert-other.md)
-         + [Granting Access to Code Signing for Amazon FreeRTOS](code-sign-policy.md)
+         + [Grant Access to Code Signing for AWS IoT](code-sign-policy.md)
          + [Download Amazon FreeRTOS with the OTA Library](ota-download-freertos.md)
       + [OTA Tutorial](dev-guide-ota-workflow.md)
          + [Installing the Initial Firmware](dg-ota-initial-firmware.md)
@@ -73,7 +74,8 @@ Amazon's trademarks and trade dress may not be used in
          + [Setting Up Cloudwatch Logs for OTA Updates](ota-logging.md)
          + [Logging AWS IoT OTA API Calls with AWS CloudTrail](iot-using-cloudtrail-afr.md)
          + [Troubleshooting OTA Updates with the Texas Instruments CC3220SF Launchpad](ota-troubleshooting-ti.md)
-   + [Amazon FreeRTOS Console User Guide](freertos-ocw-ug.md)
+   + [Amazon FreeRTOS Console](freertos-ocw-ug.md)
+   + [Troubleshooting Amazon FreeRTOS](troubleshooting_overview-afr.md)
 + [Amazon FreeRTOS Demo Projects](freertos-next-steps.md)
    + [Navigating the Demo Applications](freertos-mds-projects-struct.md)
    + [Bluetooth Low Energy Demo Applications (Beta)](ble-demo.md)
@@ -82,7 +84,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Greengrass Discovery Demo Application](gg-demo.md)
    + [OTA Demo Application](ota-demo.md)
    + [Demo Bootloader for the Microchip Curiosity PIC32MZEF](microchip-bootloader.md)
-+ [Troubleshooting Amazon FreeRTOS](troubleshooting_overview-afr.md)
 + [Amazon FreeRTOS Porting Guide](porting-guide.md)
    + [Bootloader](porting-bootloader.md)
    + [Logging](porting-logging.md)
@@ -90,6 +91,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Security](porting-security.md)
    + [Using Custom Libraries with Amazon FreeRTOS](freertos-custom-libs.md)
    + [OTA Portable Abstraction Layer](porting-ota-pal.md)
-+ [Amazon FreeRTOS Qualification Program](freertos-dqp.md)
++ [Amazon FreeRTOS Qualification Program](freertos-qualification-program.md)
 + [AWS IoT Device Tester for Amazon FreeRTOS User Guide](device-tester-for-freertos-ug.md)
    + [Permissions Policy Template](policy-template.md)

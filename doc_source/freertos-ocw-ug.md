@@ -1,19 +1,19 @@
-# Amazon FreeRTOS Console User Guide<a name="freertos-ocw-ug"></a>
-
-## Managing Amazon FreeRTOS Configurations<a name="freertos-manage-configurations"></a>
+# Amazon FreeRTOS Console<a name="freertos-ocw-ug"></a>
 
 You can use the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) to manage software configurations and download Amazon FreeRTOS software for your device\. The Amazon FreeRTOS software is prequalified on a variety of platforms\. It includes the required hardware drivers, libraries, and example projects to help get you started quickly\. You can choose between predefined configurations or create custom configurations\.
 
-### Predefined Amazon FreeRTOS Configurations<a name="freertos-predefined-configurations"></a>
+Make sure that you have completed the Getting Started with Amazon FreeRTOS [Prerequisites](https://docs.aws.amazon.com/iot/latest/userguide/freertos-prereqs.html)\.
+
+## Predefined Amazon FreeRTOS Configurations<a name="freertos-predefined-configurations"></a>
 
 Predefined configurations are defined for the prequalified platforms:
 + TI CC3220SF\-LAUNCHXL
 + STM32 IoT Discovery Kit
 + NXP LPC54018 IoT Module
 + Microchip Curiosity PIC32MZEF
-+ Espressif ESP32\-DevKitC
-+ Espressif ESP3\-WROVER\-KIT
 + Infineon XMC4800 IoT Connectivity Kit
++ Renesas RSK\+ for RX65N\-2MB
++ MediaTek MT7697Hx Development Kit
 + Xilinx Avnet MicroZed Industrial IoT Starter Kit
 + FreeRTOS Windows Simulator
 
@@ -35,7 +35,7 @@ You can also customize a predefined configuration if you want to change the Amaz
 
 1. At the bottom of the page, choose **Create and download** to create and download the custom configuration\.
 
-### Custom Amazon FreeRTOS Configurations<a name="freertos-custom-configurations"></a>
+## Custom Amazon FreeRTOS Configurations<a name="freertos-custom-configurations"></a>
 
 Custom configurations allow you to specify your hardware platform, integrated development platform \(IDE\), compiler, and only those RTOS libraries you require\. This leaves more space on your devices for application code\.
 
@@ -84,3 +84,7 @@ Do not use any personally identifiable information in your custom configuration 
 1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
 
 1. Choose the ellipsis next to the configuration you want to delete, and then choose **Delete**\.
+
+## Quick Connect Workflow<a name="freertos-quick-connect"></a>
+
+The Amazon FreeRTOS console also includes the Quick Connect workflow option for all boards with predefined configurations\. The Quick Connect workflow helps you configure and run Amazon FreeRTOS demo applications for AWS IoT and AWS IoT Greengrass\. To get started, choose the **Predefined configurations** tab, find your board, and then choose **Quick connect** and follow the Quick Connect workflow steps\. 
