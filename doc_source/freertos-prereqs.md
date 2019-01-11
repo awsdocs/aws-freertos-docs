@@ -4,7 +4,7 @@ To follow along with this tutorial, you need an AWS account, an IAM user with pe
 
 ## AWS Account and Permissions<a name="freertos-account-and-permissions"></a>
 
-To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/)\.
+To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
 To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, attach the following IAM policies to your IAM user account:
 + `AmazonFreeRTOSFullAccess`
@@ -60,7 +60,11 @@ You need one of the supported MCU boards:
 
 ## Registering Your MCU Board with AWS IoT<a name="get-started-freertos-thing"></a>
 
- You must register your MCU board so it can communicate with AWS IoT\. To register your device, you must create:
+Your board must be registered with AWS IoT to communicate with the AWS Cloud\.
+
+If you are just getting started, you can use the Quick Connect workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) to quickly register your board with AWS IoT\.
+
+To register your board manually, you must create:
 + An AWS IoT policy\. 
 
   The AWS IoT policy grants your device permissions to access AWS IoT resources\.
@@ -77,10 +81,10 @@ You need one of the supported MCU boards:
 
    To find your AWS account number, in the upper\-right corner of the AWS Management Console, choose **My Account**\. Your account ID is displayed under **Account Settings**\.
 
-   To find the AWS Region for your AWS account, open a command prompt window and enter the following command:
+   To find the AWS Region for your AWS account, use the AWS Command Line Interface\. To install the AWS CLI, follow the instructions in the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\. After you install the AWS CLI, open a command prompt window and enter the following command:
 
    ```
-   AWS IoT describe-endpoint
+   aws iot describe-endpoint
    ```
 
    The output should look like this:

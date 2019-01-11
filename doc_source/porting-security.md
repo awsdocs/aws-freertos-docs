@@ -6,7 +6,7 @@ Amazon FreeRTOS has two libraries that work together to provide platform securit
 
 If you choose to use an mbed TLS\-based implementation, you can use aws\_tls\.c as\-is, provided that PKCS\#11 is implemented\.
 
-The public interfaces of this library and a detailed explanation for each TLS interface are listed in `lib/include/aws _tls.h`\. The Amazon FreeRTOS implementation of the TLS library is in `lib/tls/aws_tls.c`\. If you decide to use your own TLS support, you can either implement the TLS public interfaces and plug them into the sockets public interfaces, or you can directly port the sockets library using your own TLS interfaces\.
+The public interfaces of this library and a detailed explanation for each TLS interface are listed in `lib/include/aws_tls.h`\. The Amazon FreeRTOS implementation of the TLS library is in `lib/tls/aws_tls.c`\. If you decide to use your own TLS support, you can either implement the TLS public interfaces and plug them into the sockets public interfaces, or you can directly port the sockets library using your own TLS interfaces\.
 
 The `mbedtls_hardware_poll` function provides randomness for the deterministic random bit generator\. For security, no two boards should provide identical randomness, and a board must not provide the same random value repeatedly, even if the board is reset\. Examples of implementations for this function can be found in ports using mbed TLS at `demos\<vendor>\<platform>\common\application_code\<vendor code> \aws_entropy_hardware_poll.c`
 
