@@ -1,6 +1,6 @@
-## AWS Freertos Docs
+## Amazon FreeRTOS Documentation
 
-Amazon FreeRTOS Documentation
+[Amazon FreeRTOS User Guide](./doc_source/index.md)
 
 ## License
 
