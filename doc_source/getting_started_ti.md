@@ -61,13 +61,13 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. On the **Start new project** page, enter a name for your project\. For **Device Type**, choose **CC3220SF**\. For **Device Mode**, choose **Develop**, and then choose **Create Project**\.
 
-1. Disconnect your serial terminal \(if previously connected\) and on the right side of the Uniflash application window, choose **Connect**\.
+1. On the right side of the Uniflash application window, choose **Connect**\.
 
-1. From the left column, choose **Service Pack**\.
+1. From the left column, choose **Advanced**, **Files**, and then **Service Pack**\.
 
 1. Choose **Browse**, and then navigate to where you installed the CC3220SF SimpleLink SDK\. The service pack is located at `ti\simplelink_cc32xx_sdk_VERSION\tools\cc32xx_tools\servicepack-cc3x20\sp_VERSION.bin`\.
 
-1. Choose the ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/flame.png) button and then choose **Program Image \(Create & Program\)** to install the service pack\. Remember to switch the SOP jumper back to position 0 and reset the board\.
+1. Choose the **Burn** \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/flame.png)\) button, and then choose **Program Image \(Create & Program\)** to install the service pack\. Remember to switch the SOP jumper back to position 0 and reset the board\.
 
 ## Download and Configure Amazon FreeRTOS<a name="ti-download-and-configure"></a>
 
@@ -75,17 +75,13 @@ After your environment is set up, you can download Amazon FreeRTOS\.
 
 ### Download Amazon FreeRTOS<a name="ti-download"></a><a name="ti-download-free-rtos"></a>
 
-1. Browse to the AWS IoT console\.
+1. Go to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
 
-1. In the navigation pane, choose **Software**\.
-
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
-
-1. Under **Software Configurations**, find **Connect to AWS IoT\- TI**, and then:
+1. Under **Predefined configurations**, find **Connect to AWS IoT\- TI**, and then:
 
    If you are using Code Composer Studio, choose **Download**\.
 
-   If you are using IAR Embedded Workbench, choose **Connect to AWS IoT\-TI**\. Under **Hardware platform**, choose **Edit**\. Under **Integrated Development Environment \(IDE\)**, choose **IAR Embedded Workbench**\. Make sure the compiler is set to IAR, and then choose **Create and Download**\.
+   If you are using IAR Embedded Workbench, choose **Connect to AWS IoT\-TI**\. Under **Hardware platform**, choose **Edit**\. Under **Integrated Development Environment \(IDE\)**, choose **IAR Embedded Workbench**\. Make sure the compiler is set to IAR\. Leave the other configuration options at their default values, and then choose **Create and Download**\.
 
 1. Unzip the downloaded file to your hard drive\. When unzipped, you have a directory named `AmazonFreeRTOS`\.
 
@@ -160,7 +156,7 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 
 1. From **Project**, choose **Build Project** to make sure the project compiles without errors or warnings\.
 
-**To subscribe to MQTT topic**
+**To subscribe to an MQTT topic**
 **Note**  
 Before you run the Amazon FreeRTOS samples, do the following:
 
@@ -194,7 +190,7 @@ In the MQTT client in the AWS IoT console, you should see the MQTT messages sent
 
 1. Right\-click the project name \(`aws_demos`\), and then choose **Make**\.
 
-**To subscribe to MQTT topic**
+**To subscribe to an MQTT topic**
 
 1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
