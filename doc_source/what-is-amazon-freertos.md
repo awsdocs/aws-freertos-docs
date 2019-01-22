@@ -72,3 +72,15 @@ You start development by downloading Amazon FreeRTOS\. You unzip the package and
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/workflow.png)
 
 For more information about developing applications with Amazon FreeRTOS, see the [Amazon FreeRTOS Developer Guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-dev-guide.html)\.
+
+## Additional Resources<a name="resources"></a>
+
+If you have other questions about AWS or Amazon FreeRTOS, you might find the following resources helpful\.
+
+
+| Resource | Description | 
+| --- | --- | 
+| [Amazon FreeRTOS on GitHub](https://github.com/aws/amazon-freertos/issues) | If you have questions about Amazon FreeRTOS for the Amazon FreeRTOS engineering team, you can open an issue on the Amazon FreeRTOS GitHub page\. | 
+|  [AWS Discussion Forums](https://forums.aws.amazon.com/)  | To discuss technical questions about AWS and Amazon FreeRTOS with the AWS community, visit the Discussion Forums\. | 
+|  [AWS Support Center](https://aws.amazon.com/support) |  To get technical support for AWS, visit the Support Center\.  | 
+| [Contact Us](https://aws.amazon.com/contact-us/) |  To contact us about AWS billing, account services, events, abuse, and other issues with AWS, visit the Contact Us page\.  | 

@@ -20,6 +20,8 @@ You can download the version of Amazon FreeRTOS that you want to test from [GitH
 
 ### Download AWS IoT Device Tester for Amazon FreeRTOS<a name="download-dev-tester-afr"></a>
 
+To download AWS Device Tester for Amazon FreeRTOS, see [AWS IoT Device Tester for Amazon FreeRTOS](https://aws.amazon.com/freertos/device-tester/)\.
+
 Every version of Amazon FreeRTOS has a corresponding version of AWS IoT Device Tester for performing qualification tests\. Download the appropriate version of [AWS IoT Device Tester](https://aws.amazon.com/freertos/device-tester)\.
 
 Extract AWS IoT Device Tester into a location on the file system where you have read and write permissions\. Due to a path length limitation, on Microsoft Windows, extract AWS IoT Device Tester into a root directory like C:\\ or D:\\\.

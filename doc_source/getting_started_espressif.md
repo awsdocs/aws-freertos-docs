@@ -338,7 +338,7 @@ The ESP32 supports a maximum of two break points\.
    sudo kextload -b com.FTDI.driver.FTDIUSBSerialDriver
    ```
 
-1. Navigate to `<BASE_FOLDER>>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
 
    ```
    make flash monitor
@@ -380,19 +380,19 @@ The ESP32 supports a maximum of two break points\.
 
    The `/dev/ttyUSBn` interface with the lower number is used for JTAG communication\. The other interface is routed to the ESP32’s serial port \(UART\) and is used for uploading code to the ESP32’s flash memory\.
 
-1. In a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
+1. In a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
 
    ```
    openocd -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
    ```
 
-1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
 
    ```
    make flash monitor
    ```
 
-1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/ esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
 
    ```
    xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf
