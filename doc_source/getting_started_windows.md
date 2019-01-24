@@ -82,7 +82,7 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 
 1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
 
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
+1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
 
 1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
 

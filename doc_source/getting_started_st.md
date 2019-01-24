@@ -56,7 +56,7 @@ To run the demo, you must configure your project to work with AWS IoT, which req
 
    Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-1. In your IDE, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
+1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
@@ -83,7 +83,7 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 
 1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
 
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
+1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
 
 1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
 

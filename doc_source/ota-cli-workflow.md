@@ -10,7 +10,7 @@ To create an OTA update with the AWS CLI you:
 
 ## Digitally Signing Your Firmware Update<a name="ota-sign-cli"></a>
 
-When you use the CLI to perform OTA updates, you can use Code Signing for AWS IoT or sign your firmware update yourself\.
+When you use the CLI to perform OTA updates, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For a list of the cryptographic signing and hashing algorithms supported by Code Signing for AWS IoT, see [SigningConfigurationOverrides](https://docs.aws.amazon.com/signer/latest/api/API_SigningConfigurationOverrides.html)\. If you want to use a cryptographic algorithm that is not supported by Code Signing for AWS IoT, you need to sign your firmware binary before uploading it to Amazon S3\.
 
 ### Signing Your Firmware Image with Code Signing for Amazon FreeRTOS<a name="ota-sign-csfa"></a>
 

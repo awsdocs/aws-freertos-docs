@@ -10,6 +10,32 @@ The following diagram shows the test infrastructure setup:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/devicetester_afr.png)
 
+## AWS IoT Device Tester for Amazon FreeRTOS Versions<a name="dev-test-versions-afr"></a>
+
+The following tabs describe the versions of AWS IoT Device Tester for Amazon FreeRTOS\. By downloading the software you agree to the AWS IoT Device Tester License agreement\. Each version of Amazon FreeRTOS has a corresponding version of AWS IoT Device Tester\. Newer versions of AWS IoT Device Tester will be added to this page with each new release of Amazon FreeRTOS\. Please refer to the [ AWS IoT Device Tester for Amazon FreeRTOS User Guide](https://docs.aws.amazon.com/freertos/latest/userguide/what-is-amazon-freertos.html) for more details about AWS IoT Device Tester for Amazon FreeRTOS\.
+
+------
+#### [ v1\.4\.4 ]
+
+Current version\.
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181213003249.zip) \(MD5 64613157503fc55ce581310f819d6b3c\)
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181213003249.zip) \(MD5 b15840ab9dc14f076ce36cb9d111070f\)
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181213003249.zip) \(MD5 b84178c6cf98b376f50c360eb7a5208f\)
+
+------
+#### [ v1\.4\.3 ]
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181211220033.zip) \(MD5 49946aec8634d20d38c449f39ac58fef\)
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181211220033.zip) \(MD5 c8cc6c388a35482ea50f1693b40b5e72\)
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181211220033.zip) MD5 a1ca9101729bc41ad29fc32458c8920d\)
+
+------
+#### [ v1\.4\.2 ]
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181119201633.zip) \(MD5 eb9cfd1ae803d309f8d8b6698e40ae96\)
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181119201633.zip) \(MD5 10cb6c8aa2a54f7a0d26095f18753c2f\)
++ AWS IoT Device Tester for AWS IoT Greengrass \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181119201633.zip) \(MD5 57ac5703924e3a2e2f039e97baaca44f\)
+
+------
+
 ## Prerequisites<a name="dev-tester-prereqs"></a>
 
 This section describes the prerequisites for testing microcontrollers with AWS IoT Device Tester\.

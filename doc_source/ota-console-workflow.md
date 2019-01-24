@@ -18,7 +18,7 @@
 
    1. Under **Device hardware platform**, choose your hardware platform\.
 **Note**  
-Only hardware platforms that have been qualified for Amazon FreeRTOS are displayed in this list\. If you are using a non\-qualified platform, you must use the CLI to create the OTA update\. For more information, see [Creating an OTA Update with the AWS CLI](ota-cli-workflow.md)\.
+Only hardware platforms that have been qualified for Amazon FreeRTOS are displayed in this list\. If you are testing a non\-qualified platform, and you are using the ECDSA P\-256 SHA\-256 ciphersuite for signing, you can pick the Windows Simulator code signing profile to produce a compatible signature\. If you are using a non\-qualified platform, and you are using a ciphersuite other than ECDSA P\-256 SHA\-256 for signing, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For more information, see [Digitally Signing Your Firmware Update](ota-cli-workflow.md#ota-sign-cli)\. 
 
    1. Under **Code signing certificate**, choose **Select** to select a previously imported certificate or **Import** to import a new certificate\.
 

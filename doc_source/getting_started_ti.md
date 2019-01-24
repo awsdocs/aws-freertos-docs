@@ -6,19 +6,17 @@ If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development K
 
 ## Setting Up Your Environment<a name="ti-setup-env"></a>
 
-Amazon FreeRTOS supports two IDEs for the TI CC3220SF\-LAUNCHXL development kit: Code Composer Studio and IAR Embedded Workbench\.
+Follow the steps below to set up your development environment to get started with Amazon FreeRTOS\.
 
-For information about installing Code Composer Studio, see [Install Code Composer Studio](#install-ccs)\.
-
-For information about installing IAR Embedded Workbench, see [Install IAR Embedded Workbench](#install-iar)\.
-
-You also need to [Install the SimpleLink CC3220 SDK](#install-ti-sdk), [Install Uniflash](#install-uniflash), [Configure Wi\-Fi Provisioning](#wifi-provision), and [Install the Latest Service Pack](#ti-servicepack)\.
+Note that Amazon FreeRTOS supports two IDEs for the TI CC3220SF\-LAUNCHXL Development Kit: Code Composer Studio and IAR Embedded Workbench\. You can use either IDE to get started\.
 
 ### Install Code Composer Studio<a name="install-ccs"></a>
 
 1. Browse to [TI Code Composer Studio](http://processors.wiki.ti.com/index.php/Download_CCS)\.
 
 1. Download the offline installer for version 7\.3\.0 for the platform of your host machine \(Windows, macOS, or Linux 64\-bit\)\.
+**Note**  
+Currently, Amazon FreeRTOS demo code is only compatible with version 7\.3\.0 of TI Code Composer Studio\. Newer versions of Code Composer Studio might cause build errors\.
 
 1. Unzip and run the offline installer\. Follow the prompts\.
 
@@ -26,7 +24,7 @@ You also need to [Install the SimpleLink CC3220 SDK](#install-ti-sdk), [Install 
 
 1. On the next page, accept the default settings for debugging probes, and then choose **Finish**\.
 
-If you experience issues when you are installing Code Composer Studio, see [TI Development Tools Support](http://software-dl.ti.com/ccs/esd/documents/ccs_support.html), [Code Composer Studio FAQs](http://processors.wiki.ti.com/index.php/FAQ_-_CCS), and [Troubleshooting Code Composer Studio](http://processors.wiki.ti.com/index.php/Troubleshooting_CCS)\.
+If you experience issues when you are installing Code Composer Studio, see [TI Development Tools Support](http://software-dl.ti.com/ccs/esd/documents/ccs_support.html), [Code Composer Studio FAQs](http://processors.wiki.ti.com/index.php/FAQ_-_CCS), and [Troubleshooting CCS](http://processors.wiki.ti.com/index.php/Troubleshooting_CCSv7)\.
 
 ### Install IAR Embedded Workbench<a name="install-iar"></a>
 
@@ -45,17 +43,11 @@ Install the [SimpleLink CC3220 SDK](http://www.ti.com/tool/SIMPLELINK-CC3220-SDK
 
 Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalone tool used to program on\-chip flash memory on TI MCUs\. Uniflash has a GUI, command line, and scripting interface\.
 
-### Configure Wi\-Fi Provisioning<a name="wifi-provision"></a>
-
-To configure the Wi\-Fi settings for your board, do one of the following:
-+ Configure the Amazon FreeRTOS demo application described in [Configure Your Project](#ti-freertos-config-project)\.
-+ Use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments\.
-
 ### Install the Latest Service Pack<a name="ti-servicepack"></a>
 
 1. On your TI CC3220SF\-LAUNCHXL, place the SOP jumper on the middle set of pins \(position = 1\) and reset the board\.
 
-1. Start Uniflash, and from the list of configurations, choose **CC3220SF\-LAUNCHXL**\. Choose **Start Image Creator**\.
+1. Start Uniflash\. If your CC3220SF LaunchPad board appears under **Detected Devices**, choose **Start**\. If your board is not detected, choose **CC3220SF\-LAUNCHXL** from the list of boards under **New Configuration**, and then choose **Start Image Creator**\.
 
 1. Choose **New Project**\.
 
@@ -105,7 +97,7 @@ To run the demo, you must configure your project to work with AWS IoT, which req
 
    Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-1. In your IDE, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
+1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
 
@@ -123,6 +115,8 @@ To run the demo, you must configure your project to work with AWS IoT, which req
      + `eWiFiSecurityWEP` \(WEP security\)
      + `eWiFiSecurityWPA` \(WPA security\)
      + `eWiFiSecurityWPA2` \(WPA2 security\)
+**Note**  
+You can alternatively use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments to configure your board's Wi\-Fi settings\.
 
 **To configure your AWS IoT credentials**
 **Note**  
@@ -132,7 +126,7 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 
 1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
 
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
+1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
 
 1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
 
@@ -172,7 +166,7 @@ Before you run the Amazon FreeRTOS samples, do the following:
 
 **To run the Amazon FreeRTOS demo in TI Code Composer**
 
-1. Rebuild your project\.
+1. In the project explorer, make sure the `CC3220SF.ccxml` is selected as the active target configuration\. To make it active, right\-click the file and choose **Set as active target configuration**\.
 
 1. In TI Code Composer,from **Run**, choose **Debug**\.
 
