@@ -1,4 +1,4 @@
-# Device Shadow Demo Application<a name="shadow-demo"></a>
+# AWS IoT Device Shadow Demo Application<a name="shadow-demo"></a>
 
 The device shadow example demonstrates how to programmatically update and respond to changes in a device shadow\. The device in this scenario is a light bulb whose color can be set to red or green\. The device shadow example app is located in the `AmazonFreeRTOS/demos/common/shadow` directory\. This example creates three tasks:
 + A main demo task that calls `prvShadowMainTask`\.

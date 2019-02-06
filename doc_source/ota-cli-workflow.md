@@ -538,4 +538,4 @@ As with the delete\-job CLI command, you can pass the `--force` parameter to the
 **Note**  
 Deleting a job execution with a status of IN\_PROGRESS interrupts any job executions that are IN\_PROGRESS on your devices and can result in a device being left in a nondeterministic state\. Make sure that each device executing a job that has been deleted is able to recover to a known state\.
 
-For more information about using the OTA update demo application, see [OTA Demo Application](ota-demo.md)\.
+For more information about using the OTA update demo application, see [Over\-the\-Air Updates Demo Application](ota-demo.md)\.

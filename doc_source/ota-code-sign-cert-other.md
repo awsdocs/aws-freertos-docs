@@ -2,7 +2,9 @@
 
 Using an appropriate toolset, create a self\-signed certificate and private key for your hardware\.
 
-After you create your code\-signing certificate, import it into ACM:
+You need to use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
+
+After you create your code\-signing certificate, you can import it into ACM with the AWS CLI:
 
 ```
 aws acm import-certificate --certificate file://code-sign.crt --private-key file://code-sign.key

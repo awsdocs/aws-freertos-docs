@@ -1,6 +1,6 @@
 # Getting Started with the Xilinx Avnet MicroZed Industrial IoT Kit<a name="getting_started_xilinx"></a>
 
-Before you begin, see [Prerequisites](freertos-prereqs.md)\.
+Before you begin, see [First Steps](freertos-prereqs.md)\.
 
 If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)\.
 
@@ -55,60 +55,6 @@ To install Xilinx software, you need a free Xilinx account\.
 If your computer does not detect the MicroZed's USB\-UART connection, install the CP210x USB\-to\-UART Bridge VCP drivers manually\. For instructions, see the [Silicon Labs CP210x USB\-to\-UART Installation Guide](https://www.xilinx.com/support/documentation/boards_and_kits/install/ug1033-cp210x-usb-uart-install.pdf)\.
 
 For more information about XSDK, see the [Getting Started with Xilinx SDK](https://www.xilinx.com/html_docs/xilinx2018_2/SDK_Doc/index.html) on the Xilink website\.
-
-## Download and Configure Amazon FreeRTOS<a name="xilinx-download-and-configure"></a>
-
-After you set up your environment, you can download Amazon FreeRTOS\.
-
-### Download Amazon FreeRTOS<a name="xilinx-download"></a><a name="xilinx-download-free-rtos"></a>
-
-1. Browse to the AWS IoT console\.
-
-1. In the navigation pane, choose **Software**\.
-
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
-
-1. Under **Software Configurations**, find **Connect to AWS IoT\- Xilinx**, and then choose **Download**\.
-
-1. Unzip the downloaded file to the `AmazonFreeRTOS` folder, and make a note of the folder's path\.
-
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
-In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
-
-### Configure Your Project<a name="xilinx-freertos-config-project"></a>
-
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. This is a step in the [Prerequisites](freertos-prereqs.md)\.
-
-**To configure your AWS IoT endpoint**
-
-1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Settings**\.
-
-   Your AWS IoT endpoint appears in the **Endpoint** text box\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
-
-1. In the navigation pane, choose **Manage**, and then choose **Things**\. Make a note of the AWS IoT thing name for your device\. 
-
-1. With your AWS IoT endpoint and your AWS IoT thing name on hand, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` in your IDE, and specify values for the following `#define` constants:
-   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
-   + `clientcredentialIOT_THING_NAME` *Your board's AWS IoT thing name*
-
-**To configure your AWS IoT credentials**
-
-To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device as an AWS IoT thing\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
-
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You need to format the certificate and private key for your device\. 
-
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
-
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
-
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
-
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
-**Note**  
-The certificate and private key should be hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 ## Build and Run Amazon FreeRTOS Demo Project<a name="xilinx-build-and-run-example"></a>
 
@@ -254,7 +200,8 @@ Be sure to back up any content that you have on the MicroSD card\.
 
 ## Troubleshooting<a name="xilinx-troubleshooting"></a>
 
-### General Troubleshooting Tips<a name="xilinx-troubleshooting-general"></a>
-+ If you encounter build errors that are related to incorrect paths, try to clean and rebuild the project, as described in [Build the Amazon FreeRTOS Demo Project](#xilinx-freertos-build-project)\.
-**Note**  
+If you encounter build errors that are related to incorrect paths, try to clean and rebuild the project, as described in [Build the Amazon FreeRTOS Demo Project](#xilinx-freertos-build-project)\.
+
 If you are using Windows, make sure that you use forward slashes when you set the string substitution variables in the Windows XSDK IDE\.
+
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

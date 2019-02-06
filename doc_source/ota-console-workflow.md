@@ -22,7 +22,7 @@ Only hardware platforms that have been qualified for Amazon FreeRTOS are display
 
    1. Under **Code signing certificate**, choose **Select** to select a previously imported certificate or **Import** to import a new certificate\.
 
-   1. Under **Pathname of code signing certificate on device**, enter the fully\-qualified path name to the code\-signing certificate on your device\. This likely varies by platform\.
+   1. Under **Pathname of code signing certificate on device**, enter the fully\-qualified path name to the code\-signing certificate on your device\. The certificate's location varies by platform, and should be the location where you put the code\-signing certificate when you followed the instructions at [Installing the Initial Firmware](dg-ota-initial-firmware.md)\.
 **Note**  
 When running on the Microchip Curiosity PIC32MZEF, the code\-signing certificate is first searched for in the certificate store by name\. If not found, a built\-in certificate is used\.
 **Important**  
@@ -96,4 +96,4 @@ Connect your serial UART terminal to your device\. You should see output that in
 
 After the device downloads the updated firmware, it restarts and then installs the firmware\. You can see what's happening in the UART terminal\.
 
-For a complete walkthrough of how to use the console to create an OTA update, see [OTA Demo Application](ota-demo.md)\.
+For a complete walkthrough of how to use the console to create an OTA update, see [Over\-the\-Air Updates Demo Application](ota-demo.md)\.

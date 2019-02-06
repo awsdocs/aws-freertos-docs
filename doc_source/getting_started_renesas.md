@@ -1,6 +1,6 @@
 # Getting Started with the Renesas Starter Kit\+ for RX65N\-2MB<a name="getting_started_renesas"></a>
 
-Before you begin, see [Prerequisites](freertos-prereqs.md)\.
+Before you begin, see [First Steps](freertos-prereqs.md)\.
 
 If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
 
@@ -57,62 +57,6 @@ For more information, see the [C/C\+\+ Compiler Package for RX Family](https://w
 
 **Note**  
 The compiler is available free for evaluation version only and valid for 60 days\. On the 61st day, you need to get a License Key\. For more information, see [Evaluation Software Tools](https://www.renesas.com/us/en/products/software-tools/evaluation-software-tools.html)\.
-
-## Download and Configure Amazon FreeRTOS<a name="renesas-download-and-configure"></a>
-
-After you set up your environment, you can download Amazon FreeRTOS\.
-
-### Download Amazon FreeRTOS<a name="renesas-download"></a><a name="renesas-download-free-rtos"></a>
-
-**To download Amazon FreeRTOS**
-
-1. Browse to the AWS IoT console\.
-
-1. In the navigation pane, choose **Software**\.
-
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
-
-1. Under **Software Configurations**, find **Connect to AWS IoT\- Renesas**, and then choose **Download**\.
-
-1. Unzip the downloaded file to the `AmazonFreeRTOS` folder, and make a note of the folder's path\.
-
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
-In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
-
-### Configure Your Project<a name="renesas-freertos-config-project"></a>
-
-To run the demo, you must configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your board must be registered as an AWS IoT thing\. This is a step in the [Prerequisites](freertos-prereqs.md)\.
-
-**To configure your AWS IoT endpoint**
-
-1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Settings**\.
-
-   Your AWS IoT endpoint appears in the **Endpoint** text box\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
-
-1. In the navigation pane, choose **Manage**, and then choose **Things**\. Make a note of the AWS IoT thing name for your device\. 
-
-1. With your AWS IoT endpoint and your AWS IoT thing name on hand, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` in your IDE, and specify values for the following `#define` constants:
-   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
-   + `clientcredentialIOT_THING_NAME` *Your board's AWS IoT thing name*
-
-**To configure your AWS IoT credentials**
-
-To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device as an AWS IoT thing\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
-
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You need to format the certificate and private key for your device\. 
-
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
-
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
-
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
-
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
-**Note**  
-The certificate and private key should be hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 ## Build and Run Amazon FreeRTOS Samples<a name="renesas-build-and-run-example"></a>
 
@@ -188,3 +132,7 @@ Before you run the demo project, use the MQTT client in the AWS IoT console to s
    In the AWS IoT console's MQTT client, you see MQTT messages sent by your device\.
 
 For the latest projects released by Renesas, see the `renesas-rx` fork of the `amazon-freertos` repository on [GitHub](https://github.com/renesas-rx/amazon-freertos)\.
+
+## Troubleshooting<a name="renesas-troubleshooting"></a>
+
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

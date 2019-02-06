@@ -14,11 +14,11 @@ These steps are written with the assumption that you have already built the `aws
 
 1. Disconnect your terminal emulator\. On the right side of the Uniflash application window, choose **Connect**\.
 
-1. Under **Files**, choose **User Files**\.
+1. Under **Advanced**, **Files**, choose **User Files**\.
 
 1. In the **File** selector pane, choose the **Add File** icon ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/add-file.png)\.
 
-1. Browse to the `/Applications/Ti/simplelink_cc32xx_sdk_2_10_00_04/tools/cc32xx_tools/certificate-playground` directory, select `dummy-root-ca-cert`, choose **Open**, and then choose **Write**\.
+1. Browse to the `/Applications/Ti/simplelink_cc32xx_sdk_version/tools/cc32xx_tools/certificate-playground` directory, select `dummy-root-ca-cert`, choose **Open**, and then choose **Write**\.
 
 1. In the **File** selector pane, choose the **Add File** icon ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/add-file.png)\.
 
@@ -40,15 +40,15 @@ These steps are written with the assumption that you have already built the `aws
 
 1. In the left pane, under **Files**, choose **Service Pack**\.
 
-1. Under **Service Pack File Name**, choose **Browse**, browse to `simplelink_cc32x_sdk_2_10_00_04/tools/cc32xx_tools/servicepack-cc3x20`, choose `sp_3.7.0.1_2.0.0.0_2.2.0.6.bin`, and then choose **Open**\.
+1. Under **Service Pack File Name**, choose **Browse**, browse to `simplelink_cc32x_sdk_version/tools/cc32xx_tools/servicepack-cc3x20`, choose `sp_3.7.0.1_2.0.0.0_2.2.0.6.bin`, and then choose **Open**\.
 
 1. In the left pane, under **Files**, choose **Trusted Root\-Certificate Catalog**\.
 
 1. Clear the **Use default Trusted Root\-Certificate Catalog** check box\.
 
-1. Under **Source File**, choose **Browse**, choose **simplelink\_cc32xx\_sdk\_2\_10\_00\_04/tools/cc32xx\_tools/certificate\-playground\\certcatalogPlayGround20160911\.lst**, and then choose **Open**\.
+1. Under **Source File**, choose **Browse**, choose **simplelink\_cc32xx\_sdk\_*version*/tools/cc32xx\_tools/certificate\-playground/certcatalogPlayGround20160911\.lst**, and then choose **Open**\.
 
-1. Under **Signature Source File**, choose **Browse**, choose **simplelink\_cc32xx\_sdk\_2\_10\_00\_04/tools/cc32xx\_tools/certificate\-playground\\certcatalogPlayGround20160911\.lst\.signed\.bin**, and then choose **Open**\.
+1. Under **Signature Source File**, choose **Browse**, choose **simplelink\_cc32xx\_sdk\_*version*/tools/cc32xx\_tools/certificate\-playground/certcatalogPlayGround20160911\.lst\.signed\_3220\.bin**, and then choose **Open**\.
 
 1. Choose the ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/save.png) button to save your project\.
 

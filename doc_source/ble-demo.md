@@ -1,4 +1,4 @@
-# Bluetooth Low Energy Demo Applications \(Beta\)<a name="ble-demo"></a>
+# Bluetooth Low Energy Demo Applications<a name="ble-demo"></a>
 
 
 |  | 
@@ -9,15 +9,15 @@
 
 Amazon FreeRTOS BLE includes three demo applications:
 
-### [MQTT over BLE](#ble-demo-mqtt) Demo<a name="w3aac11b9b5b5"></a>
+### [MQTT over BLE](#ble-demo-mqtt) Demo<a name="w3aac11c11b5b5"></a>
 
 This application demonstrates how to use the MQTT over BLE service\.
 
-### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w3aac11b9b5b7"></a>
+### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w3aac11c11b5b7"></a>
 
 This application demonstrates how to use the Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) Demo<a name="w3aac11b9b5b9"></a>
+### [Generic Attributes Server](#ble-demo-server) Demo<a name="w3aac11c11b5b9"></a>
 
 This application demonstrates how to use the Amazon FreeRTOS BLE middleware APIs to create a simple GATT server\.
 
@@ -166,15 +166,17 @@ When you define configuration variables, use the format of the placeholder value
 1. Issue the following command from `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/`:
 
    ```
-   $ sudo pod install
+   $ pod install
    ```
 
-1. Open the project with Xcode, and change the signing developer account to your account\.
+1. Open the `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo.xcodeproj` project with Xcode, and change the signing developer account to your account\.
 
 1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Amazon/AmazonConstants.swift`, and redefine the following variables:
    + `region`: Your AWS Region\.
    + `iotPolicyName`: Your AWS IoT policy name\.
    + `mqttCustomTopic`: The MQTT topic that you want to publish to\.
+**Note**  
+You need to have set up AWS and AWS IoT to have an AWS region and an AWS IoT policy\.
 
 1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Support/awsconfiguration.json`\.
 

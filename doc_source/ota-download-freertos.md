@@ -338,4 +338,4 @@ Download the Amazon FreeRTOS source from [GitHub](https://github.com/aws/amazon-
 
 Build and run the project to make sure it can connect to AWS IoT\.
 
-For more information about porting Amazon FreeRTOS to a new platform, see [Amazon FreeRTOS Porting Guide](porting-guide.md)\.
+For more information about porting Amazon FreeRTOS to a new platform, see [Porting Your Device](porting-guide.md)\.

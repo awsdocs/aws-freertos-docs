@@ -2,7 +2,9 @@
 
 The Espressif ESP32 boards support a self\-signed SHA256 with ECDSA code\-signing certificate\.
 
-1. In your working directory, use the following text to create a file named `cert_config`\. Replace *test\_signer@amazon\.com* with your email address:
+You need to use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
+
+1. In your working directory, use the following text to create a file named `cert_config.txt`\. Replace *test\_signer@amazon\.com* with your email address:
 
    ```
    [ req ]
@@ -26,7 +28,7 @@ The Espressif ESP32 boards support a self\-signed SHA256 with ECDSA code\-signin
 1. Create an ECDSA code\-signing certificate:
 
    ```
-   openssl req -new -x509 -config cert_config -extensions my_exts -nodes -days 365 -key ecdsasigner.key -out ecdsasigner.crt
+   openssl req -new -x509 -config cert_config.txt -extensions my_exts -nodes -days 365 -key ecdsasigner.key -out ecdsasigner.crt
    ```
 
 1. Import the code\-signing certificate, private key, and certificate chain into AWS Certificate Manager:

@@ -1,6 +1,6 @@
 # Getting Started with the Microchip Curiosity PIC32MZEF<a name="getting_started_mch"></a>
 
-Before you begin, see [Prerequisites](freertos-prereqs.md)\.
+Before you begin, see [First Steps](freertos-prereqs.md)\.
 
 If you do not have the Microchip Curiosity PIC32MZEF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\. You need the following items:
 + [MikroElectronika USB UART Click Board](https://www.mikroe.com/usb-uart-click)
@@ -62,79 +62,6 @@ The LED on in\-circuit debugger turns a solid blue when it is ready\.
    + Parity: None
    + Stop bits: 1
    + Flow control: None
-
-## Download and Configure Amazon FreeRTOS<a name="mch-download-and-configure"></a>
-
-After your environment is set up, you can download Amazon FreeRTOS\.
-
-### Download Amazon FreeRTOS<a name="mch-download"></a><a name="mch-download-free-rtos"></a>
-
-1. Browse to the [Amazon FreeRTOS page](https://console.aws.amazon.com/freertos) in the AWS IoT console\.
-
-1. In the navigation pane, choose **Software**\.
-
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
-
-1. Choose **Download FreeRTOS Software**\.
-
-1. In **Software Configurations**, find **Connect to AWS IoT\- Microchip**, and then choose **Download**\.
-
-1. Unzip the downloaded file to the AmazonFreeRTOS folder, and make a note of the folder's path\.
-
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
-In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
-
-### Configure Your Project<a name="mch-freertos-config-project"></a>
-
-To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
-
-**To configure your AWS IoT endpoint**
-
-1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Settings**\.
-
-   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
-
-1. In the navigation pane, choose **Manage**, and then choose **Things**\.
-
-   Your device should have an AWS IoT thing name\. Make a note of this name\.
-
-1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
-   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
-   + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
-
-**To configure your Wi\-Fi settings**
-
-1. Open the `aws_clientcredential.h` file\.
-
-1. Specify values for the following `#define` constants:
-   + `clientcredentialWIFI_SSID` *The SSID for your Wi\-Fi network*
-   + `clientcredentialWIFI_PASSWORD` *The password for your Wi\-Fi network*
-   + `clientcredentialWIFI_SECURITY` *The security type of your Wi\-Fi network*
-
-     Valid security types are:
-     + `eWiFiSecurityOpen` \(Open, no security\)
-     + `eWiFiSecurityWEP` \(WEP security\)
-     + `eWiFiSecurityWPA` \(WPA security\)
-     + `eWiFiSecurityWPA2` \(WPA2 security\)
-
-**To configure your AWS IoT credentials**
-**Note**  
-To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
-
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You must format the certificate and private key for your device\.
-
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
-
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
-
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
-
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
-**Note**  
-The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 ## Build and Run Amazon FreeRTOS Demo Project<a name="mch-build-and-run-example"></a>
 
@@ -228,8 +155,4 @@ You should see MQTT messages sent by your device in the MQTT client of the AWS I
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 
-If no messages appear in the AWS IoT console, try the following:
-
-1. Open a terminal window to view the logging output of the sample\. This can help you determine what is going wrong\.
-
-1. Check that your network credentials are valid\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

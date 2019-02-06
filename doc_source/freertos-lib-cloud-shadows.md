@@ -29,7 +29,7 @@ The type of Wi\-Fi security used by your network\.
 The certificate PEM associated with your IoT thing\.
 
 `keyCLIENT_PRIVATE_KEY_PEM`  
-The private key PEM associated with your IoT thing\. For more information, see [Configure Your Project](getting_started_ti.md#ti-freertos-config-project)\.
+The private key PEM associated with your IoT thing\.
 
 Make sure the Amazon FreeRTOS MQTT library is installed on your device\. For more information, see [Amazon FreeRTOS MQTT Library \(Legacy\)](freertos-lib-cloud-mqtt.md)\. Make sure that the MQTT buffers are large enough to contain the shadow JSON files\. The maximum size for a device shadow document is 8 KB\. All default settings for the device shadow API can be set in the `lib\include\private\aws_shadow_config_defaults.h` file\. You can modify any of these settings in the `demos/<platform>/common/config_files/aws_shadow_config.h` file\.
 

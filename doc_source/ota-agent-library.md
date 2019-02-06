@@ -4,9 +4,9 @@
 
 The OTA agent enables you to manage the notification, download, and verification of firmware updates for Amazon FreeRTOS devices\. By using the OTA agent library, you can logically separate firmware updates and the application running on your devices\. The OTA agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA agent library allows you to define application\-specific logic for testing, committing, or rolling back a firmware update\.
 
-The source files for the Amazon FreeRTOS OTA agent library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/ota](https://github.com/aws/amazon-freertos/blob/master/lib/ota)\.
+For more information about setting up Over\-the\-Air updates with Amazon FreeRTOS, see [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
 
-For more information about using Over\-the\-Air updates with Amazon FreeRTOS, see [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
+The source files for the Amazon FreeRTOS OTA agent library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/ota](https://github.com/aws/amazon-freertos/blob/master/lib/ota)\.
 
 ## Features<a name="freertos-ota-features"></a>
 

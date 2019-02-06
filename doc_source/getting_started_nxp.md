@@ -1,6 +1,6 @@
 # Getting Started with the NXP LPC54018 IoT Module<a name="getting_started_nxp"></a>
 
-Before you begin, see [Prerequisites](freertos-prereqs.md)\.
+Before you begin, see [First Steps](freertos-prereqs.md)\.
 
 If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
 
@@ -48,93 +48,6 @@ You need a JTAG debugger to launch and debug your code running on the NXP LPC540
 
 **Note**  
 If you are using a Segger J\-Link debugger, you need a converter cable to connect the 20\-pin connector from the debugger to the 10\-pin connector on the NXP IoT module\. 
-
-## Download and Configure Amazon FreeRTOS<a name="nxp-download-and-configure"></a>
-
-After your environment is set up, you can download Amazon FreeRTOS\.
-
-### Download Amazon FreeRTOS<a name="nxp-download"></a><a name="nxp-download-free-rtos"></a>
-
-1. Browse to the [Amazon FreeRTOS page](https://console.aws.amazon.com/freertos) in the AWS IoT console\.
-
-1. In the navigation pane, choose **Software**\.
-
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
-
-1. Choose **Download FreeRTOS Software**\.
-
-1. Under **Software Configurations**, find **Connect to AWS IoT\- NXP**, and then:
-
-   If you are using IAR Workbench, choose **Download**\.
-
-   If you are using MCUXpresso:
-
-   1. In **Software Configurations**, find **Connect to AWS IoT\- NXP**\. Select **Connect to AWS IoT\- NXP**, but do not choose **Download**\.
-
-   1. Under **Hardware Platform**, choose **Edit**\.
-
-   1. Under **Integrated Development Environment \(IDE\)**, choose **MCUXpresso**\.
-
-   1. Under **Compiler**, choose **GCC**\.
-
-   1. At the bottom of the page, choose **Create and Download**\.
-
-1. Unzip the downloaded file to the AmazonFreeRTOS folder and make a note of the folder's path\.
-
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
-In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
-
-### Configure Your Project<a name="nxp-freertos-config-project"></a>
-
-To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
-
-**To configure your AWS IoT endpoint**
-
-1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Settings**\.
-
-   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
-
-1. In the navigation pane, choose **Manage**, and then choose **Things**\.
-
-   Your device should have an AWS IoT thing name\. Make a note of this name\.
-
-1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
-   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
-   + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
-
-**To configure your Wi\-Fi settings**
-
-1. Open the `aws_clientcredential.h` file\.
-
-1. Specify values for the following `#define` constants:
-   + `clientcredentialWIFI_SSID` *The SSID for your Wi\-Fi network*
-   + `clientcredentialWIFI_PASSWORD` *The password for your Wi\-Fi network*
-   + `clientcredentialWIFI_SECURITY` *The security type of your Wi\-Fi network*
-
-     Valid security types are:
-     + `eWiFiSecurityOpen` \(Open, no security\)
-     + `eWiFiSecurityWEP` \(WEP security\)
-     + `eWiFiSecurityWPA` \(WPA security\)
-     + `eWiFiSecurityWPA2` \(WPA2 security\)
-
-**To configure your AWS IoT credentials**
-**Note**  
-To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
-
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You must format the certificate and private key for your device\.
-
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
-
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
-
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
-
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
-**Note**  
-The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 ## Build and Run the Amazon FreeRTOS Demo Project<a name="nxp-build-and-run"></a>
 
@@ -196,8 +109,4 @@ You should see MQTT messages sent by your device in the MQTT client of the AWS I
 
 ## Troubleshooting<a name="getting_started_nxp_troubleshooting"></a>
 
-If no messages appear in the AWS IoT console, try the following:
-
-1. Open a terminal window to view the logging output of the sample\. This can help you determine what is going wrong\.
-
-1. Check that your network credentials are valid\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

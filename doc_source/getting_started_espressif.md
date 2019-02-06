@@ -7,6 +7,48 @@ Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does 
 Lightweight IP\.
 Symmetric multiprocessing \(SMP\)\.
 
+## Prerequisites<a name="setup-espressif-prereqs"></a>
+
+Before you get started with Amazon FreeRTOS on your Espressif board, you need to set up your AWS account and permissions\.
+
+To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
+
+To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, attach the following IAM policies to your IAM user account:
++ `AmazonFreeRTOSFullAccess`
++ `AWSIoTFullAccess`
+
+**To attach the AmazonFreeRTOSFullAccess policy to your IAM user**
+
+1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home), and from the navigation pane, choose ** Users**\.
+
+1. Enter your user name in the search text box, and then choose it from the list\.
+
+1. Choose **Add permissions**\.
+
+1. Choose **Attach existing policies directly**\.
+
+1. In the search box, enter **AmazonFreeRTOSFullAccess**, choose it from the list, and then choose **Next: Review**\.
+
+1. Choose **Add permissions**\.
+
+**To attach the AWSIoTFullAccess policy to your IAM user**
+
+1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home), and from the navigation pane, choose ** Users**\.
+
+1. Enter your user name in the search text box, and then choose it from the list\.
+
+1. Choose **Add permissions**\.
+
+1. Choose **Attach existing policies directly**\.
+
+1. In the search box, enter **AWSIoTFullAccess**, choose it from the list, and then choose **Next: Review**\.
+
+1. Choose **Add permissions**\.
+
+For more information about IAM and user accounts, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+
+For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
+
 ## Setting Up the Espressif Hardware<a name="setup-hw-espressif"></a>
 
 See the [ESP32\-DevKitC Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html) for information about setting up the ESP32\-DevKitC development board hardware\.
@@ -194,14 +236,14 @@ For instructions about how to run the Wi\-Fi Provisioning demo on your board, se
   make erase_flash
   ```
 + If you see errors when you run `idf_monitor.py`, use Python 2\.7\.
-
-**Other Notes**
 + Required libraries from ESP\-IDF are included in Amazon FreeRTOS, so there is no need to download them externally\. If the `IDF_PATH` environment variable is set, we recommend that you clear it before you build Amazon FreeRTOS\. 
 + On Window systems, it can take 3\-4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time:
 
   ```
   make flash monitor -j4
   ```
+
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
 
 ### Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
 

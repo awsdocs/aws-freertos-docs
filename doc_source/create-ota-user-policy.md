@@ -30,40 +30,40 @@ To grant your IAM user the required permissions, create an OTA user policy and t
 
    ```
    {
-   	"Version":"2012-10-17",
-   	"Statement":[
-   	{
-   		"Effect":"Allow",
-   		"Action":[
-   			"s3:ListBucket",
-   			"s3:ListAllMyBuckets",
-   			"s3:CreateBucket",
-   			"s3:PutBucketVersioning",
-   			"s3:GetBucketLocation",
-   			"s3:GetObjectVersion",
-   			"acm:ImportCertificate",
-   			"acm:ListCertificates",
-   			"iot:*",
-   			"iam:ListRoles",
-   			"freertos:ListHardwarePlatforms",
-   			"freertos:DescribeHardwarePlatform"
-   		],
-   		"Resource":"*"
-   	},
-   	{
-   	"Effect":"Allow",
-   	"Action":[
-   		"s3:GetObject",
-   		"s3:PutObject"
-   	],
-   	"Resource":"arn:aws:s3:::<example-bucket>/*"
-   	},
-   	{
-   		"Effect":"Allow",
-   		"Action":"iam:PassRole",
-   		"Resource":"arn:aws:iam::<your-account-id>:role/<role-name>"
-   	}
-   	]
+       "Version":"2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "s3:ListBucket",
+                   "s3:ListAllMyBuckets",
+                   "s3:CreateBucket",
+                   "s3:PutBucketVersioning",
+                   "s3:GetBucketLocation",
+                   "s3:GetObjectVersion",
+                   "acm:ImportCertificate",
+                   "acm:ListCertificates",
+                   "iot:*",
+                   "iam:ListRoles",
+                   "freertos:ListHardwarePlatforms",
+                   "freertos:DescribeHardwarePlatform"
+               ],
+               "Resource": "*"
+           },
+           {
+               "Effect": "Allow",
+               "Action": [
+                   "s3:GetObject",
+                   "s3:PutObject"
+               ],
+               "Resource": "arn:aws:s3:::<example-bucket>/*"
+           },
+           {   
+               "Effect": "Allow",
+               "Action": "iam:PassRole",
+               "Resource": "arn:aws:iam::<your-account-id>:role/<role-name>"
+           }
+       ]
    }​
    ```
 

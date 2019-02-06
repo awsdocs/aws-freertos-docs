@@ -1,6 +1,6 @@
 # Getting Started with the Texas Instruments CC3220SF\-LAUNCHXL<a name="getting_started_ti"></a>
 
-Before you begin, see [Prerequisites](freertos-prereqs.md)\.
+Before you begin, see [First Steps](freertos-prereqs.md)\.
 
 If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)\.
 
@@ -61,78 +61,11 @@ Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalo
 
 1. Choose the **Burn** \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/flame.png)\) button, and then choose **Program Image \(Create & Program\)** to install the service pack\. Remember to switch the SOP jumper back to position 0 and reset the board\.
 
-## Download and Configure Amazon FreeRTOS<a name="ti-download-and-configure"></a>
+### Configure Wi\-Fi Provisioning<a name="wifi-provision"></a>
 
-After your environment is set up, you can download Amazon FreeRTOS\.
-
-### Download Amazon FreeRTOS<a name="ti-download"></a><a name="ti-download-free-rtos"></a>
-
-1. Go to the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
-
-1. Under **Predefined configurations**, find **Connect to AWS IoT\- TI**, and then:
-
-   If you are using Code Composer Studio, choose **Download**\.
-
-   If you are using IAR Embedded Workbench, choose **Connect to AWS IoT\-TI**\. Under **Hardware platform**, choose **Edit**\. Under **Integrated Development Environment \(IDE\)**, choose **IAR Embedded Workbench**\. Make sure the compiler is set to IAR\. Leave the other configuration options at their default values, and then choose **Create and Download**\.
-
-1. Unzip the downloaded file to your hard drive\. When unzipped, you have a directory named `AmazonFreeRTOS`\.
-
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `AmazonFreeRTOS` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\AmazonFreeRTOS` works, but `C:\Users\Username\Documents\Development\Projects\AmazonFreeRTOS` causes build failures\.  
-In this tutorial, the path to the `AmazonFreeRTOS` directory is referred to as `BASE_FOLDER`\.
-
-### Configure Your Project<a name="ti-freertos-config-project"></a>
-
-To run the demo, you must configure your project to work with AWS IoT, which requires that you register your board as an AWS IoT thing\. [Registering Your MCU Board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing) is a step in the [Prerequisites](freertos-prereqs.md)\.
-
-**To configure your AWS IoT endpoint**
-
-1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Settings**\.
-
-   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
-
-1. In the navigation pane, choose **Manage**, and then choose **Things**\.
-
-   Your device should have an AWS IoT thing name\. Make a note of this name\.
-
-1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
-   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
-   + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
-
-**To configure your Wi\-Fi settings**
-
-1. Open the `aws_clientcredential.h` file\.
-
-1. Specify values for the following `#define` constants:
-   + `clientcredentialWIFI_SSID` *The SSID for your Wi\-Fi network*
-   + `clientcredentialWIFI_PASSWORD` *The password for your Wi\-Fi network*
-   + `clientcredentialWIFI_SECURITY` *The security type of your Wi\-Fi network*
-
-     Valid security types are:
-     + `eWiFiSecurityOpen` \(Open, no security\)
-     + `eWiFiSecurityWEP` \(WEP security\)
-     + `eWiFiSecurityWPA` \(WPA security\)
-     + `eWiFiSecurityWPA2` \(WPA2 security\)
-**Note**  
-You can alternatively use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments to configure your board's Wi\-Fi settings\.
-
-**To configure your AWS IoT credentials**
-**Note**  
-To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
-
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You must format the certificate and private key for your device\.
-
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
-
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.cert.pem` that you downloaded from the AWS IoT console\.
-
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
-
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
-**Note**  
-The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
+To configure the Wi\-Fi settings for your board, do one of the following:
++ Configure the Amazon FreeRTOS demo application described in [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.
++ Use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments\.
 
 ## Build and Run the Amazon FreeRTOS Demo Project<a name="ti-build-and-run-examples"></a>
 
@@ -171,6 +104,8 @@ Before you run the Amazon FreeRTOS samples, do the following:
 1. In TI Code Composer,from **Run**, choose **Debug**\.
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Run** menu, and choose **Resume**\.
+**Note**  
+The Amazon FreeRTOS demo has 8 debug messages configured\.
 
 In the MQTT client in the AWS IoT console, you should see the MQTT messages sent by your device\.
 
@@ -205,12 +140,16 @@ In the MQTT client in the AWS IoT console, you should see the MQTT messages sent
 1. From the **Project** menu, choose **Download and Debug**\. You can ignore "Warning: Failed to initialize EnergyTrace," if it's displayed\. For more information about EnergyTrace, see [MSP EnergyTrace Technology](http://www.ti.com/tool/energytrace?jktype=recommendedresults)\.
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Debug** menu, and choose **Go**\.
+**Note**  
+The Amazon FreeRTOS demo has 8 debug messages configured\.
 
 You should see MQTT messages sent by your device in the MQTT client of the AWS IoT console\.
 
 ## Troubleshooting<a name="getting_started_ti_troubleshooting"></a>
 
-If you don’t see messages in the MQTT client of the AWS IoT console, you might need to configure debug settings for the board\. 
+If you don’t see messages in the MQTT client of the AWS IoT console, you might need to configure debug settings for the board\.
+
+**To configure debug settings for TI boards**
 
 1. In Code Composer, on **Project Explorer**, choose **aws\_demos**\.
 
@@ -223,3 +162,5 @@ If you don’t see messages in the MQTT client of the AWS IoT console, you might
 1. Choose **Apply**, and then choose **Close**\.
 
 If these steps don’t work, look at the program's output in the serial terminal\. You should see some text that indicates the source of the problem\.
+
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

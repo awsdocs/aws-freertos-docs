@@ -1,4 +1,4 @@
-# OTA Demo Application<a name="ota-demo"></a>
+# Over\-the\-Air Updates Demo Application<a name="ota-demo"></a>
 
 Amazon FreeRTOS includes a demo application that demonstrates the use of the OTA library\. The OTA demo application is located in the `demos\common\ota` subdirectory\.
 

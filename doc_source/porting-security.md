@@ -23,7 +23,7 @@ If you are porting another TLS library to Amazon FreeRTOS, make sure that a comp
 
 Due to attacks on SHA1, we recommend that you use SHA256 or SHA384 for Amazon FreeRTOS connections\.
 
-## PKCS\#11<a name="porting-security-pkcs"></a>
+## PKCS \#11<a name="porting-security-pkcs"></a>
 
 Amazon FreeRTOS implements a PKCS\#11 standard for cryptographic operations and key storage\. The header file for PKCS\#11 is an industry standard\. To port PKCS\#11, you must implement functions to read and write credentials to and from non\-volatile memory \(NVM\)\. 
 
@@ -41,7 +41,6 @@ The following functions are the minimum required to support TLS client authentic
 + `C_FindObjectsInit`
 + `C_FindObjects`
 + `C_FindObjectsFinal`
-+ `C_GetAttributeValue`
 + `C_SignInit`
 + `C_Sign`
 + `C_CloseSession`
@@ -49,10 +48,16 @@ The following functions are the minimum required to support TLS client authentic
 
 For a general porting guide, see the open standard, [PKCS \#11 Cryptographic Token Interface Base Specification](http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html)\.
 
-Two additional non\-PKCS\#11 standard functions must be implemented for keys and certificates to survive power cycle:
+Four additional non\-PKCS \#11 standard functions must be implemented for ports using the common mbedTLS\-based PKCS \#11 layer\.
 
-`prvSaveFile`  
-Writes the client \(device\) private key and certificate to memory\. If your NVM is susceptible to damage from write cycles, you might want to use an additional variable to record whether the device private key and device certificate have been initialized\.
+`PKCS11_PAL_FindObject`  
+Translates a PKCS \#11 label into an object handle\.
 
-`prvReadFile`  
-Retrieves either the device private key or device certificate from NVM into RAM for use by the TLS library\.
+`PKCS11_PAL_GetObjectValue`  
+Gets the value of an object in storage, by handle\. This call dynamically allocates the buffer into which object value data is copied\. Call `PKCS11_PAL_GetObjectValueCleanup` after each use to free the dynamically allocated buffer\. 
+
+`PKCS11_PAL_GetObjectValueCleanup`  
+Cleans the dynamically allocated buffer after calling `PKCS11_PAL_GetObjectValue`\. 
+
+`PKCS11_PAL_SaveObject`  
+Writes a file to local storage\.

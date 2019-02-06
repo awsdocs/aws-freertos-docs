@@ -2,7 +2,7 @@
 
 The Microchip Curiosity PIC32MZEF supports a self\-signed SHA256 with ECDSA code\-signing certificate\.
 
-1. In your working directory, use the following text to create a file named `cert_config`\. Replace *test\_signer@amazon\.com* with your email address:
+1. In your working directory, use the following text to create a file named `cert_config.txt`\. Replace *test\_signer@amazon\.com* with your email address:
 
    ```
    [ req ]
@@ -26,7 +26,7 @@ The Microchip Curiosity PIC32MZEF supports a self\-signed SHA256 with ECDSA code
 1. Create an ECDSA code\-signing certificate:
 
    ```
-   openssl req -new -x509 -config cert_config -extensions my_exts -nodes -days 365 -key ecdsasigner.key -out ecdsasigner.crt
+   openssl req -new -x509 -config cert_config.txt -extensions my_exts -nodes -days 365 -key ecdsasigner.key -out ecdsasigner.crt
    ```
 
 1. Import the code\-signing certificate, private key, and certificate chain into AWS Certificate Manager:
