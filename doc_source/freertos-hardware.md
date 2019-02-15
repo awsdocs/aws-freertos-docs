@@ -14,4 +14,6 @@ The following hardware platforms are qualified for Amazon FreeRTOS:
 + Microsoft Windows 7 or later, with at least a dual core and a hard\-wired Ethernet connection
 + [Xilinx Avnet MicroZed Industrial IoT Kit](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)
 
-For information about qualifying a new board, see [Qualifying Your Device](freertos-qualification-program.md)\.
+Qualified devices are also listed on the [AWS Partner Device Catalog](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
+
+For information about qualifying a new device, see [Qualifying Your Device](freertos-qualification-program.md)\.

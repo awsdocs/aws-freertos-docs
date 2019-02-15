@@ -1,10 +1,12 @@
 # Getting Started with the Infineon XMC4800 IoT Connectivity Kit<a name="getting_started_infineon"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up Your Environment<a name="infineon-setup-env"></a>
 
@@ -73,23 +75,25 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
 ### Run the Amazon FreeRTOS Demo Project<a name="infineon-run-examples"></a>
 
-After you have configured your project, you are ready to run the demo project on your board\.
-
 1. Use a USB cable to connect your XMC4800 IoT Connectivity Kit to your computer\. The board has two microUSB connectors\. Use the one labeled “X101”, where Debug appears next to it on the board's silkscreen\.
 
 1. From the **Project** menu, choose **Rebuild Active Project** to rebuild `aws_demos` and ensure that your configuration changes are picked up\.
-
-1. Sign in to the AWS IoT console\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 1. From **Project Explorer**, right\-click `aws_demos`, choose **Debug As**, and then choose **DAVE C/C\+\+ Application**\.
 
 1. Double\-click **GDB SEGGER J\-Link Debugging** to create a debug confirmation\. Choose **Debug**\.
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
+
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 In the AWS IoT console, the MQTT client from steps 4\-5 should display the MQTT messages sent by your device\. If you use the serial connection, you see something like this on the UART output:
 

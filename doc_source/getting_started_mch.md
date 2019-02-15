@@ -1,13 +1,15 @@
 # Getting Started with the Microchip Curiosity PIC32MZEF<a name="getting_started_mch"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have the Microchip Curiosity PIC32MZEF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\. You need the following items:
 + [MikroElectronika USB UART Click Board](https://www.mikroe.com/usb-uart-click)
 + [RJ\-11 to ICSP Adapter](https://www.microchipdirect.com/product/search/all/ac164110)
 + [MPLAB ICD 4 In\-Circuit Debugger](http://www.microchip.com/Developmenttools/ProductDetails.aspx?PartNO=DV164045)
 + [PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
 + [MikroElectronika WiFi 7 Click Board](https://www.mikroe.com/wifi-7-click) 
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up the Microchip Curiosity PIC32MZEF Hardware<a name="setup-hw-mch"></a>
 
@@ -85,12 +87,6 @@ warning: Configuration "pic32mz_ef_curiosity" refers to file "AmazonFreeRTOS/lib
 
 1. Rebuild your project\.
 
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
 1. On the **Projects** tab, right\-click the `aws_demos` top\-level folder, and then choose **Debug**\.
 
 1. The first time you debug the samples, an **ICD 4 not Found** dialog box is displayed\. In the tree view, under the **ICD 4** node, choose the ICD4 serial number, and then choose **OK**\.
@@ -151,7 +147,15 @@ Running
 **Note**  
 We recommend that you use the MPLAB In\-Circuit Debugger instead of the USB port for debugging\. The ICD 4 makes it possible for you to step through code more quickly and add breakpoints without restarting the debugger\.
 
-You should see MQTT messages sent by your device in the MQTT client of the AWS IoT console\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 

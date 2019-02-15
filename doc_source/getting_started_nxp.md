@@ -1,8 +1,10 @@
 # Getting Started with the NXP LPC54018 IoT Module<a name="getting_started_nxp"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up Your Environment<a name="setup-env_nxp"></a>
 
@@ -71,15 +73,7 @@ If you are using a Segger J\-Link debugger, you need a converter cable to connec
 
 ### Run the Amazon FreeRTOS Demo Project<a name="nxp-run-example"></a>
 
-To run the Amazon FreeRTOS demos on the NXP LPC54018 IoT Module board, connect the USB port on the NXP IoT Module to your host computer, open a terminal program, and connect to the port identified as USB Serial Device\.
-
-1. Rebuild your project\.
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. Connect the USB port on the NXP IoT Module to your host computer, open a terminal program, and connect to the port identified as USB Serial Device\.
 
 1. In your IDE, from the **Project** menu, choose **Build**\.
 
@@ -105,7 +99,15 @@ When the debugger stops at the breakpoint in `main()`, press the debug restart b
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Debug** menu, choose **Go**\.
 
-You should see MQTT messages sent by your device in the MQTT client of the AWS IoT console\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_nxp_troubleshooting"></a>
 

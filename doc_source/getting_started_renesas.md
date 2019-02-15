@@ -1,8 +1,10 @@
 # Getting Started with the Renesas Starter Kit\+ for RX65N\-2MB<a name="getting_started_renesas"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up the Renesas Hardware<a name="renesas-setup-hardware"></a>
 
@@ -62,16 +64,6 @@ The compiler is available free for evaluation version only and valid for 60 days
 
 Now that you have configured the demo project, you are ready to build and run the project on your board\.
 
-Before you run the demo project, use the MQTT client in the AWS IoT console to subscribe to the demo's MQTT topic\.
-
-**To subscribe to the MQTT topic**
-
-1. Sign in to the AWS IoT console\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
 ### Build the Amazon FreeRTOS Demo in e2studio<a name="renesas-freertos-import-project"></a>
 
 **To import and build the demo in e2studio**
@@ -129,7 +121,15 @@ Before you run the demo project, use the MQTT client in the AWS IoT console to s
 
 1. After the code is downloaded to the board, choose **Resume** to run the code up to the first line of the main function\. Choose **Resume** again to run the rest of the code\.
 
-   In the AWS IoT console's MQTT client, you see MQTT messages sent by your device\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 For the latest projects released by Renesas, see the `renesas-rx` fork of the `amazon-freertos` repository on [GitHub](https://github.com/renesas-rx/amazon-freertos)\.
 

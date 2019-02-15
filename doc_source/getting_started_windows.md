@@ -1,6 +1,8 @@
 # Getting Started with the Windows Device Simulator<a name="getting_started_windows"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 Amazon FreeRTOS is released as a zip file that contains the Amazon FreeRTOS libraries and sample applications for the platform you specify\. To run the samples on a Windows machine, download the libraries and samples ported to run on Windows\. This set of files is referred to as the FreeRTOS simulator for Windows\.
 
@@ -46,15 +48,17 @@ Amazon FreeRTOS is released as a zip file that contains the Amazon FreeRTOS libr
 
 1. Rebuild your Visual Studio project to pick up changes made in the header files\.
 
+1. From the **Debug** menu in Visual Studio, choose **Start Debugging**\.
+
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
 1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
-1. From the **Debug** menu in Visual Studio, choose **Start Debugging**\.
-
-In the [AWS IoT console](https://console.aws.amazon.com/iotv2/), the MQTT client displays the messages received from the FreeRTOS Windows simulator\.
 
 ## Troubleshooting<a name="windows-troubleshooting"></a>
 

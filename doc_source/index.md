@@ -16,6 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What Is Amazon FreeRTOS?](what-is-amazon-freertos.md)
    + [FreeRTOS Kernel Fundamentals](dev-guide-freertos-kernel.md)
+   + [Amazon FreeRTOS Console](freertos-ocw.md)
 + [Getting Started with Amazon FreeRTOS](freertos-getting-started.md)
    + [Amazon FreeRTOS-Qualified Hardware Platforms](freertos-hardware.md)
    + [First Steps](freertos-prereqs.md)

@@ -3,23 +3,23 @@
 Your board must be registered with AWS IoT to communicate with the AWS Cloud\. To register your board with AWS IoT, you need the following:
 
 An AWS IoT policy  
-The AWS IoT policy grants your device permissions to access AWS IoT resources\.
+The AWS IoT policy grants your device permissions to access AWS IoT resources\. It is stored on the AWS Cloud\.
 
 An AWS IoT thing  
-An AWS IoT thing allows you to manage your devices in AWS IoT\.
+An AWS IoT thing allows you to manage your devices in AWS IoT\. It is stored on the AWS Cloud\.
 
 A private key and X\.509 certificate  
-The private key and certificate allow your device to authenticate with AWS IoT\.
+The private key and certificate allow your device to authenticate with AWS IoT\. 
 
-If you use the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), a policy, AWS IoT thing, and a key and certificate are created for you\. If you use the **Quick Connect** workflow, you can ignore the following procedures\.
+If you use the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), a policy, an AWS IoT thing, and a key and certificate are created for you\. If you use the **Quick Connect** workflow, you can ignore the following procedures\.
 
-To register your board manually, follow these procedures\.
+To register your board manually, follow the procedures below\.
 
 **To create an AWS IoT policy**
 
 1. To create an IAM policy, you need to know your AWS Region and AWS account number\. 
 
-   To find your AWS account number, in the upper\-right corner of the AWS Management Console, choose **My Account**\. Your account ID is displayed under **Account Settings**\.
+   To find your AWS account number, open the [Getting Started with the AWS Management Console](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html), locate and expand the menu beneath your account name in the upper\-right corner, and choose **My Account**\. Your account ID is displayed under **Account Settings**\.
 
    To find the AWS Region for your AWS account, use the AWS Command Line Interface\. To install the AWS CLI, follow the instructions in the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\. After you install the AWS CLI, open a command prompt window and enter the following command:
 
@@ -43,7 +43,7 @@ To register your board manually, follow these procedures\.
 
 1. Enter a name to identify your policy\.
 
-1. In the **Add statements** section, choose **Advanced mode**\. Copy and paste the following JSON into the policy editor window\. Replace *aws\-region* and *aws\-account* with your AWS Region and account ID \.
+1. In the **Add statements** section, choose **Advanced mode**\. Copy and paste the following JSON into the policy editor window\. Replace *aws\-region* and *aws\-account* with your AWS Region and account ID\.
 
    ```
    {
@@ -62,7 +62,7 @@ To register your board manually, follow these procedures\.
        {
             "Effect": "Allow",
             "Action": "iot:Subscribe",
-            "Resource": "arn:aws:iot:<aws-region>>:<aws-account-id>:*"
+            "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
        },
        {
             "Effect": "Allow",
@@ -99,7 +99,7 @@ Grants your device the permission to receive messages from the AWS IoT message b
 
 1. On the **Add a certificate for your thing** page, under **One\-click certificate creation**, choose **Create certificate**\.
 
-1. Download your private key and certificate by choosing the **Download** links for each\. Make a note of the certificate ID\. You need it later to attach a policy to your certificate\.
+1. Download your private key and certificate by choosing the **Download** links for each\.
 
 1. Choose **Activate** to activate your certificate\. Certificates must be activated prior to use\.
 

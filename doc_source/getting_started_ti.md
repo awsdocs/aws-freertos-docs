@@ -1,8 +1,10 @@
 # Getting Started with the Texas Instruments CC3220SF\-LAUNCHXL<a name="getting_started_ti"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up Your Environment<a name="ti-setup-env"></a>
 
@@ -81,33 +83,31 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. In **Project Explorer**, double\-click **aws\_demos** to make the project active\.
 
-1. From **Project**, choose **Build Project** to make sure the project compiles without errors or warnings\.
+1. From **Project**, choose **Build Project** to make sure the project compiles without errors or warnings\.<a name="ti-run-project-css"></a>
 
-**To subscribe to an MQTT topic**
-**Note**  
-Before you run the Amazon FreeRTOS samples, do the following:
+**To run the Amazon FreeRTOS demo in TI Code Composer**
 
 1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.<a name="ti-run-project-css"></a>
-
-**To run the Amazon FreeRTOS demo in TI Code Composer**
-
 1. In the project explorer, make sure the `CC3220SF.ccxml` is selected as the active target configuration\. To make it active, right\-click the file and choose **Set as active target configuration**\.
 
-1. In TI Code Composer,from **Run**, choose **Debug**\.
+1. In TI Code Composer, from **Run**, choose **Debug**\.
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Run** menu, and choose **Resume**\.
 **Note**  
 The Amazon FreeRTOS demo has 8 debug messages configured\.
 
-In the MQTT client in the AWS IoT console, you should see the MQTT messages sent by your device\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ### Build and Run Amazon FreeRTOS Demo Project in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
 
@@ -119,19 +119,11 @@ In the MQTT client in the AWS IoT console, you should see the MQTT messages sent
 
 1. Right\-click the project name \(`aws_demos`\), and then choose **Make**\.
 
-**To subscribe to an MQTT topic**
+**To run the Amazon FreeRTOS demo in IAR Embedded Workbench**
 
 1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
-**To run the Amazon FreeRTOS demo in IAR Embedded Workbench**
 
 1. Rebuild your project\.
 
@@ -143,7 +135,15 @@ In the MQTT client in the AWS IoT console, you should see the MQTT messages sent
 **Note**  
 The Amazon FreeRTOS demo has 8 debug messages configured\.
 
-You should see MQTT messages sent by your device in the MQTT client of the AWS IoT console\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_ti_troubleshooting"></a>
 

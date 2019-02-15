@@ -190,4 +190,4 @@ Amazon FreeRTOS Secure Sockets depends on a TCP/IP stack and on a TLS implementa
 + The [Amazon FreeRTOS Public Key Cryptography Standard \(PKCS\) \#11 Library](security-pkcs.md)
 + The [Amazon FreeRTOS Transport Layer Security \(TLS\)](security-tls.md)
 
-For more information about porting, see the [Amazon FreeRTOS Qualification Program Developer Guide](https://github.com/aws/amazon-freertos/blob/master/tests/Amazon%20FreeRTOS%20Qualification%20Program%20Developer%20Guide.pdf) and the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/userguide/porting-security.html)\.
+For more information about porting, see [Porting Your Device](porting-guide.md)\.

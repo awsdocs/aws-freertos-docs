@@ -16,9 +16,9 @@ If you are following the **Quick Connect** workflow on the [Amazon FreeRTOS cons
 
    Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-1. In your IDE, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following `#define` constants:
-   + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
-   + `clientcredentialIOT_THING_NAME` *The AWS IoT thing name of your board*
+1. In your IDE, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following constants:
+   + `static const char clientcredentialMQTT_BROKER_ENDPOINT[] = "Your AWS IoT endpoint";`
+   + `#define clientcredentialIOT_THING_NAME "The AWS IoT thing name of your board"`
 
 **To configure your Wi\-Fi**
 **Note**  
@@ -27,9 +27,9 @@ If your board does not support Wi\-Fi, you can skip these steps\.
 1. Open the `aws_clientcredential.h` file\.
 
 1. Specify values for the following `#define` constants:
-   + `clientcredentialWIFI_SSID` *The SSID for your Wi\-Fi network*
-   + `clientcredentialWIFI_PASSWORD` *The password for your Wi\-Fi network*
-   + `clientcredentialWIFI_SECURITY` *The security type of your Wi\-Fi network*
+   + `#define clientcredentialWIFI_SSID "The SSID for your Wi-Fi network"`
+   + `#define clientcredentialWIFI_PASSWORD "The password for your Wi-Fi network"`
+   + `#define clientcredentialWIFI_SECURITY` *The security type of your Wi\-Fi network*
 
      Valid security types are:
      + `eWiFiSecurityOpen` \(Open, no security\)

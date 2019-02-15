@@ -2,9 +2,6 @@
 
 You can download Amazon FreeRTOS from the Amazon FreeRTOS console or from GitHub\.
 
-**Important**  
-If you are using an Espressif or Nordic board, you must download Amazon FreeRTOS from GitHub\.
-
 If you are following the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), follow the download instructions in the workflow on the console, and ignore the following procedures\.<a name="download-free-rtos"></a>
 
 **To download Amazon FreeRTOS from the Amazon FreeRTOS console**

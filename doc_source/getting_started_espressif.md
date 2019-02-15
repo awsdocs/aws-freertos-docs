@@ -1,9 +1,9 @@
 # Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT<a name="getting_started_espressif"></a>
 
-If you don't have an Espressif ESP32\-DevKitC, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC)\. If you don't have an Espressif ESP32\-WROVER\-KIT, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. Both devices are supported on Amazon FreeRTOS\. To check which development module you have, see [ESP32 Modules and Boards](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html)\.
+If you don't have an Espressif ESP32\-DevKitC, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC) on the AWS Partner Device Catalog\. If you don't have an Espressif ESP32\-WROVER\-KIT, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT) on the AWS Partner Device Catalog\. Both devices are supported on Amazon FreeRTOS\. For more information about these boards, see [ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
 
 **Note**  
-Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following:  
+Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
 Lightweight IP\.
 Symmetric multiprocessing \(SMP\)\.
 
@@ -62,21 +62,21 @@ Do not proceed to the **Get Started** section of the Espressif guides\. Instead,
 
 ### Establishing a Serial Connection<a name="establish-serial-connection"></a>
 
-To establish a serial connection between your host machine and the ESP32\-DevKitC, you need to install CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\. 
+To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\. 
 
-To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you need to install some FTDI virtual COM port drivers\. You can download these drivers from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
+To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you must install some FTDI virtual COM port drivers\. You can download these drivers from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
 
-For more information about establishing a serial connection with Espressif boards, see [Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
+For more information, see [Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
 
 ### Setting Up the Toolchain<a name="setup-toolchain"></a>
 
-You need to set up the Espressif toolchain to communicate with your board\. To set up the toolchain, following the instructions for your host machine's operating system:
+You must set up the Espressif toolchain to communicate with your board\. To set up the toolchain, follow the instructions for your host machine's operating system:
 + [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/windows-setup.html)
-+ [Standard Setup of Toolchain for Mac OS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
++ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
 + [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html)
 
 **Note**  
-When following the toolchain setup instructions, do not proceed to the **Get ESP\-IDF** instructions under **Next Steps**\. Instead, continue following the instructions on this page\.
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.   If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the  `IDF_PATH` environment variable from your system before continuing\.
 
 ## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
 
@@ -84,28 +84,27 @@ After your environment is set up, you can download Amazon FreeRTOS from GitHub\.
 
 ### Downloading Amazon FreeRTOS<a name="download-espressif"></a>
 
-Clone the `amazon-freertos` repository from [GitHub](https://github.com/aws/amazon-freertos)\.
-
-In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
+Clone or download the `amazon-freertos` repository from [GitHub](https://github.com/aws/amazon-freertos)\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `amazon-freertos` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\amazon-freertos` works, but `C:\Users\Username\Documents\Development\Projects\amazon-freertos` causes build failures\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `amazon-freertos` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\amazon-freertos` works, but `C:\Users\Username\Documents\Development\Projects\amazon-freertos` causes build failures\.  
+In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
 
-### Configure Your Project<a name="config-project-espressif"></a>
+### Configure the Amazon FreeRTOS Demo Applications<a name="config-demos"></a>
 
 1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
-1. Install Python 2\.7\.10 or later\. 
+1. To verify that you have Python 2\.7\.10 or later installed, run python \-\-version\. The version installed is displayed\. If you do not have Python 2\.7\.10 or later installed, you can install it from the [Python website](https://www.python.org/downloads/)\.
 
-1. If you are running Windows, use the easy\_install awscli to install the AWS CLI in the mingw32 environment\. 
+1. You need the AWS CLI to run AWS IoT commands\. If you are running Windows, use the easy\_install awscli to install the AWS CLI in the mingw32 environment\.
 
-   If you are running macOS or Linux, make sure the AWS CLI is installed on your system\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\. 
+   If you are running macOS or Linux, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\. 
 
-1. Run aws configure and configure the AWS CLI with your AWS Access Key ID, Secret Access Key, and Default region name\. For more information, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+1. Run aws configure and configure the AWS CLI with your AWS access key ID, secret access key, and default region name\. For more information, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
-1. Use the following command to install the boto3 Python module:
-   + On Windows, in the mingw32 environment, use easy\_install boto3
-   + On macOS or Linux, use pip install boto3
+1. Use the following command to install the AWS SDK for Python \(boto3\):
+   + On Windows, in the mingw32 environment, run easy\_install boto3\.
+   + On macOS or Linux, run pip install tornado nose \-\-user and then run pip install boto3 \-\-user\.
 
 Amazon FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the the script, open `<BASE_FOLDER>/tools/aws_config_quick_start/configure.json` and set the following attributes:
 
@@ -133,11 +132,15 @@ Valid security types are:
 
 1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
-1. Go to the `<BASE_FOLDER>/tools/aws_config_quick_start` directory and run the following command:
+1. Go to the `<BASE_FOLDER>/tools/aws_config_quick_start` directory and run python SetupAWS\.py setup\.
 
-   python SetupAWS\.py setup
+The script does the following:
++ Creates an IoT thing, certificate, and policy
++ Attaches the IoT policy to the certificate and the certificate to the AWS IoT thing
++ Populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials
++ Formats your certificate and private key and writes them to the `aws_clientcredential.h` header file
 
-This script creates an IoT thing, certificate, and policy\. It attaches the IoT policy to the certificate and the certificate to the IoT thing\. It also populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials\. Finally, it formats your certificate and private key and writes them to the `aws_clientcredential.h` header file\. For more information about the script, see the README\.md in the `<BASE_FOLDER>/tools/aws_config_quick_start` directory\.
+For more information about `SetupAWS.py`, see the README\.md in the `<BASE_FOLDER>/tools/aws_config_quick_start` directory\.
 
 ## Build and Run the Amazon FreeRTOS Demo Project<a name="build-and-run-example-espressif"></a>
 
@@ -169,9 +172,9 @@ To build and flash firmware \(including boot loader and partition table\), and t
 make flash monitor
 ```
 
-To monitor the demo, you can subscribe to the MQTT topic where the demo application publishes messages, `freertos/demos/echo`\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
 
-**To subscribe to an MQTT topic**
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
 
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
@@ -179,18 +182,18 @@ To monitor the demo, you can subscribe to the MQTT topic where the demo applicat
 
 1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
-   `Hello World number` and `Hello World number ACK` messages appear at the bottom of the MQTT client page when the terminal or command prompt where you issued the `make flash monitor` command returns output similar to the following:
+`Hello World number` and `Hello World number ACK` messages appear at the bottom of the MQTT client page when the terminal or command prompt where you issued the `make flash monitor` command returns output\.
 
-   ```
-   12 1350 [MQTTEcho] Echo successfully published 'Hello World 0'
-   13 1357 [Echoing] Message returned with ACK: 'Hello World 0 ACK'
-   14 1852 [MQTTEcho] Echo successfully published 'Hello World 1'
-   15 1861 [Echoing] Message returned with ACK: 'Hello World 1 ACK'
-   16 2355 [MQTTEcho] Echo successfully published 'Hello World 2'
-   17 2361 [Echoing] Message returned with ACK: 'Hello World 2 ACK'
-   18 2857 [MQTTEcho] Echo successfully published 'Hello World 3'
-   19 2863 [Echoing] Message returned with ACK: 'Hello World 3 ACK'
-   ```
+```
+12 1350 [MQTTEcho] Echo successfully published 'Hello World 0'
+13 1357 [Echoing] Message returned with ACK: 'Hello World 0 ACK'
+14 1852 [MQTTEcho] Echo successfully published 'Hello World 1'
+15 1861 [Echoing] Message returned with ACK: 'Hello World 1 ACK'
+16 2355 [MQTTEcho] Echo successfully published 'Hello World 2'
+17 2361 [Echoing] Message returned with ACK: 'Hello World 2 ACK'
+18 2857 [MQTTEcho] Echo successfully published 'Hello World 3'
+19 2863 [Echoing] Message returned with ACK: 'Hello World 3 ACK'
+```
 
 When the demo finishes running, you should see output similar to the following in your terminal or command prompt:
 
@@ -214,22 +217,22 @@ Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.
 
 To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon FreeRTOS BLE Mobile SDK Demo Application on an iOS or Android mobile device\.
 
-**To set up the the Amazon FreeRTOS BLE Mobile SDK Demo Application**
+**To set up the the Amazon FreeRTOS BLE Mobile SDK demo application**
 
 1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
 
 1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
 
-For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
+For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
 
-For instructions about how to run the Wi\-Fi Provisioning demo on your board, see the [Wi\-Fi Provisioning demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-wifi)\.
+For instructions about how to run the Wi\-Fi provisioning demo on your board, see the [Wi\-Fi Provisioning Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-wifi)\.
 
 ## Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>
-+ If you are using a Mac and it does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [FTDI Drivers Installation Guide for Mac OS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
++ If you are running macOS and the operating system does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [FTDI Drivers Installation Guide for macOS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
 + The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [Automatically Decoding Addresses]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses) on the Espressif website\.
-+ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [Launch GDB for GDBStub]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub)\.
-+ For information about setting up an OpenOCD\-based environment if JTAG hardware\-based debugging is required, see [JTAG Debugging]( https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/jtag-debugging)\.
-+ If `pyserial` cannot be installed using `pip` on macOS, download it from [pyserial](https://pypi.org/simple/pyserial)\.
++ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [Launch GDB for GDBStub]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub) on the Espressif website\.
++ For information about setting up an OpenOCD\-based environment if JTAG hardware\-based debugging is required, see [JTAG Debugging]( https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/jtag-debugging) on the Espressif website\.
++ If `pyserial` cannot be installed using `pip` on macOS, download it from the [pyserial website](https://pypi.org/simple/pyserial)\.
 + If the board resets continuously, try erasing the flash by entering the following command on the terminal:
 
   ```
@@ -237,11 +240,12 @@ For instructions about how to run the Wi\-Fi Provisioning demo on your board, se
   ```
 + If you see errors when you run `idf_monitor.py`, use Python 2\.7\.
 + Required libraries from ESP\-IDF are included in Amazon FreeRTOS, so there is no need to download them externally\. If the `IDF_PATH` environment variable is set, we recommend that you clear it before you build Amazon FreeRTOS\. 
-+ On Window systems, it can take 3\-4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time:
++ On Windows, it can take 3\-4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time:
 
   ```
   make flash monitor -j4
   ```
++ If your device has trouble connecting to AWS IoT, open the `aws_clientcredential.h` file, and verify that the configuration variables are properly defined in the file\. `clientcredentialMQTT_BROKER_ENDPOINT[]` should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\.
 
 For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
 
@@ -274,7 +278,7 @@ For the FTDI C232HM\-DDHSL\-0 cable, these are the connections to the ESP32\-WRO
 |  Orange \(pin 2\)  |  IO13  |  TCK  | 
 |  Green \(pin 4\)  |  IO15  |  TDO  | 
 
-These tables were developed from the FTDI C232HM\-DDHSL\-0 [datasheet](http://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_C232HM_MPSSE_CABLE.PDF)\. For more information, see C232HM MPSSE Cable Connection and Mechanical Details in the datasheet\.
+These tables were developed from the [ FTDI C232HM\-DDHSL\-0 datasheet](http://www.ftdichip.com/Support/Documents/DataSheets/Cables/DS_C232HM_MPSSE_CABLE.PDF)\. For more information, see C232HM MPSSE Cable Connection and Mechanical Details in the datasheet\.
 
 To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO, TDI, TCK, and S\_TDI pins as shown here:
 
@@ -286,9 +290,21 @@ To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO, TDI, TCK,
 
 1. Connect the USB side of the FTDI C232HM\-DDHSL\-0 to your computer and the other side as described in [Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT](#debugging-espressif)\. The FTDI C232HM\-DDHSL\-0 device should appear in **Device Manager** under **Universal Serial Bus Controllers**\.
 
-1. From the list of USB controllers, right\-click the FTDI C232HM\-DDHSL\-0 device \(the manufacturer is FTDI\), and choose **Properties**\. In the properties window, choose the **Details** tab to see the properties of the device\. If the device is not listed, install the [Windows driver for FTDI C232HM\-DDHSL\-0](http://www.ftdichip.com/Drivers/D2XX.htm)\.
+1. Under the list of universal serial bus devices, right\-click the **C232HM\-DDHSL\-0** device, and choose **Properties**\.
+**Note**  
+The device might be listed as **USB Serial Port**\.
 
-1. Verify that the vendor ID and product ID displayed in **Device Manager** match the IDs in `demos\espressif\esp32_devkitc_esp_wrover_kit\esp32_devkitj_v1.cfg`\. The IDs are specified in a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
+   In the properties window, choose the **Details** tab to see the properties of the device\. If the device is not listed, install the [Windows driver for FTDI C232HM\-DDHSL\-0](http://www.ftdichip.com/Drivers/D2XX.htm)\.
+
+1. On the **Details** tab, choose **Property**, and then choose **Hardware IDs**\. You should see something like this in the **Value** field:
+
+   ```
+   FTDIBUS\COMPORT&VID_0403&PID_6014
+   ```
+
+   In this example, the vendor ID is 0403 and the product ID is 6014\.
+
+   Verify these IDs match the IDs in `demos\espressif\esp32_devkitc_esp_wrover_kit\make\esp32_devkitj_v1.cfg`\. The IDs are specified in a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
 
    ```
    ftdi_vid_pid 0x0403 0x6014
@@ -298,7 +314,9 @@ To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO, TDI, TCK,
 
 1. Unzip the file to `C:\` and add `C:\openocd-esp32\bin` to your system path\.
 
-1. OpenOCD requires libusb, which is not installed by default on Windows\. To install it:
+1. OpenOCD requires libusb, which is not installed by default on Windows\.
+
+   To install libusb
 
    1. Download [zadig\.exe](https://zadig.akeo.ie)\.
 
@@ -306,9 +324,9 @@ To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO, TDI, TCK,
 
    1. From the drop\-down menu, choose **C232HM\-DDHSL\-0**\.
 
-   1. In the target driver box, to the right of the green arrow, choose **WinUSB**\.
+   1. In the target driver field, to the right of the green arrow, choose **WinUSB**\.
 
-   1. From the drop\-down box under the target driver box, choose the arrow, and then choose **Install Driver**\. Choose **Replace Driver**\.
+   1. From the drop\-down box under the target driver field, choose the arrow, and then choose **Install Driver**\. Choose **Replace Driver**\.
 
 1. Open a command prompt, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run:
 
@@ -318,9 +336,9 @@ To enable JTAG on the ESP\-WROVER\-KIT, place jumpers on the TMS, TDO, TDI, TCK,
 
    Leave this command prompt open\.
 
-1. Open a new command prompt, navigate to your `msys32` directory, and run `mingw32.exe`\. In the mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run make flash monitor\.
+1. Open a new command prompt, navigate to your `msys32` directory, and run `mingw32.exe`\. In the mingw32 terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and run make flash monitor\.
 
-1. Open another mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run `xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf`\. The program should stop in the `main` function\.
+1. Open another mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and wait until the demo starts running on your board\. When it does, run `xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf`\. The program should stop in the `main` function\.
 
 **Note**  
 The ESP32 supports a maximum of two break points\.
@@ -345,7 +363,7 @@ The ESP32 supports a maximum of two break points\.
    sudo kextunload -b com.FTDI.driver.FTDIUSBSerialDriver
    ```
 
-1. If you are running a macOS version later than 10\.9, use the following command to unload Apple's FTDI driver:
+1. If you are running a macOS version later than 10\.9, use the following command to unload the Apple FTDI driver:
 
    ```
    sudo kextunload -b com.apple.driver.AppleUSBFTDI
@@ -357,7 +375,7 @@ The ESP32 supports a maximum of two break points\.
    system_profiler SPUSBDataType
    ```
 
-   The output from `system_profiler` should look like the following:
+   The output from `system_profiler` should look like this:
 
    ```
    DEVICE:
@@ -366,7 +384,7 @@ The ESP32 supports a maximum of two break points\.
    Vendor ID: vendor-ID (Future Technology Devices International Limited)
    ```
 
-1. Open `demos/espressif/esp32_devkitc_esp_wrover_kit/esp32_devkitj_v1.cfg`\. The vendor ID and product ID for your device are specified in a line that begins with `ftdi_vid_pid`\. Change the IDs to match the IDs from the `system_profiler` output in the previous step\.
+1. Open `demos/espressif/esp32_devkitc_esp_wrover_kit/make/esp32_devkitj_v1.cfg`\. The vendor ID and product ID for your device are specified in a line that begins with `ftdi_vid_pid`\. Change the IDs to match the IDs from the `system_profiler` output in the previous step\.
 
 1. Open a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
 
@@ -404,7 +422,7 @@ The ESP32 supports a maximum of two break points\.
    sudo apt-get install libusb-1.0
    ```
 
-1. Open a terminal and enter **ls \-l /dev/ttyUSB\***to list all USB devices connected to your computer\. This helps you check if the board’s USB ports are recognized by the operating system\. You should see output similar to the following:
+1. Open a terminal and enter **ls \-l /dev/ttyUSB\*** to list all USB devices connected to your computer\. This helps you check if the board’s USB ports are recognized by the operating system\. You should see output like this:
 
    ```
    $ls -l /dev/ttyUSB*
@@ -412,7 +430,7 @@ The ESP32 supports a maximum of two break points\.
    crw-rw----	1	root	dialout	188,	1	Jul	10	19:04	/dev/ttyUSB1
    ```
 
-1. Sign off and then sign in and cycle the power to the board to make the changes take effect\. In a terminal prompt, list the USB devices\. Make sure the group\-owner has changed from `dialout` to `plugdev`:
+1. Sign off and then sign in and cycle the power to the board to make the changes take effect\. In a terminal prompt, list the USB devices\. Make sure the group owner has changed from `dialout` to `plugdev`:
 
    ```
    $ls -l /dev/ttyUSB*

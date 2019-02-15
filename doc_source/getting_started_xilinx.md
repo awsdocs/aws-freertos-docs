@@ -1,8 +1,10 @@
 # Getting Started with the Xilinx Avnet MicroZed Industrial IoT Kit<a name="getting_started_xilinx"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up the MicroZed Hardware<a name="xilinx-setup-hardware"></a>
 
@@ -58,18 +60,6 @@ For more information about XSDK, see the [Getting Started with Xilinx SDK](https
 
 ## Build and Run Amazon FreeRTOS Demo Project<a name="xilinx-build-and-run-example"></a>
 
-Now that you have configured your project, you are ready to build and run the demo project on your board\.
-
-Before you run the demo project, use the MQTT client in the AWS IoT console to subscribe to the demo's MQTT topic\. 
-
-**To subscribe to the MQTT topic**
-
-1. Sign in to the AWS IoT console\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
 ### Open the Amazon FreeRTOS Demo in the XSDK IDE<a name="xilinx-freertos-import-project"></a>
 
 1. Launch the XSDK IDE with the workspace directory set to `<BASE_FOLDER>\demos\xilinx\microzed\xsdk`\. 
@@ -106,6 +96,16 @@ If you see a warning at the top of the **Import Projects** page \("Some projects
 **Note**  
 To build all projects without cleaning them, choose **Project**, and then choose **Build All**\.  
 To build individual projects, select the project you want to build, choose **Project**, and then choose**Build Project**\.
+
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ### JTAG Debugging<a name="xilinx-jtag"></a>
 

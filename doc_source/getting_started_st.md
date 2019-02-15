@@ -1,10 +1,12 @@
 # Getting Started with the STMicroelectronics STM32L4 Discovery Kit IoT Node<a name="getting_started_st"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not already have the STMicroelectronics STM32L4 Discovery Kit IoT Node, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsWUAX/STM32L4-Discovery-Kit-IoT-Node)\.
 
 Make sure you have installed the latest Wi\-Fi firmware\. To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, BLE, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. Under **Binary Resources**, choose **Inventek ISM 43362 Wi\-Fi module firmware update \(read the readme file for instructions\) **\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up Your Environment<a name="st-setup-env"></a>
 
@@ -40,12 +42,6 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. Rebuild your project\.
 
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter `freertos/demos/echo`, and then choose **Subscribe to topic**\.
-
 1. From **Project Explorer**, right\-click `aws_demos`, choose **Debug As**, and then choose **Ac6 STM32 C/C\+\+ Application**\.
 
    If a debug error occurs the first time a debug session is launched, follow these steps:
@@ -62,7 +58,15 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-You should see MQTT messages sent by your device in the MQTT client in the AWS IoT console\.
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ### Run the Bluetooth Low\-Energy Demo<a name="st-run-ble"></a>
 

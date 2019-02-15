@@ -1,8 +1,10 @@
 # Getting Started with the MediaTek MT7697Hx Development Kit<a name="getting_started_mediatek"></a>
 
-Before you begin, see [First Steps](freertos-prereqs.md)\.
-
 If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
+
+**Important**  
+Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
+Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
 
 ## Setting Up Your Environment<a name="mediatek-setup-env"></a>
 
@@ -60,6 +62,16 @@ After you install the driver, a COM port appears in the Windows Device Manager\.
 1. Use a terminal utility to open the serial console window\. Set the serial port to 115200 bps, none\-parity, 8\-bits, and 1 stop\-bit\.
 
 1. Choose the **RESET** button on your MediaTek MT7697Hx Development Kit\.
+
+You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="mediatek-troubleshooting"></a>
 
