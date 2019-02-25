@@ -2,9 +2,7 @@
 
 If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
 
-**Important**  
-Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
-Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
 ## Setting Up the Renesas Hardware<a name="renesas-setup-hardware"></a>
 
@@ -35,7 +33,7 @@ The Renesas e2studio IDE and CC\-RX compiler are only supported on Windows 7, 8,
 
 **To download and install e2studio**
 
-1. Go to the [Renesas e2studio installer](https://www.renesas.com/in/en/software/D4000820.html) download page, and download the offline installer\.
+1. Go to the [Renesas e2studio installer](https://www.renesas.com/us/en/software/D4000894.html) download page, and download the offline installer\.
 
 1. You are directed to a Renesas Login page\.
 
@@ -51,7 +49,7 @@ For more information, see the [e2studio](https://www.renesas.com/us/en/products/
 
 **To download and install the RX Family C/C\+\+ Compiler Package**
 
-1. Go to the [RX Family C/C\+\+ Compiler Package](https://www.renesas.com/us/en/software/D4000652.html) download page, and download the V2\.08 package\.
+1. Go to the [RX Family C/C\+\+ Compiler Package](https://www.renesas.com/us/en/software/D4000890.html) download page, and download the V3\.00\.00 package\.
 
 1. Open the executable and install the compiler\.
 
@@ -73,7 +71,7 @@ Now that you have configured the demo project, you are ready to build and run th
 1. On the **Select a directory as a workspace** window, browse to the folder that you want to work in, and choose **Launch**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/e2studio1.png)
 
-1. The first time you open e2studio, the **Toolchain Registry** window opens\. Choose **Renesas Toolchains**, and confirm that **CC\-RX v2\.07\.00** is selected\. Choose **Register**, and then choose **OK**\.
+1. The first time you open e2studio, the **Toolchain Registry** window opens\. Choose **Renesas Toolchains**, and confirm that **CC\-RX v3\.00\.00** is selected\. Choose **Register**, and then choose **OK**\.
 
 1. If you are opening e2studio for the first time, the **Code Generator Registration** window appears\. Choose **OK**\.
 
@@ -121,7 +119,7 @@ Now that you have configured the demo project, you are ready to build and run th
 
 1. After the code is downloaded to the board, choose **Resume** to run the code up to the first line of the main function\. Choose **Resume** again to run the rest of the code\.
 
-You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
 

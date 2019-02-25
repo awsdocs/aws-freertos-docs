@@ -71,12 +71,12 @@ For more information, see [Establish Serial Connection with ESP32](https://docs.
 ### Setting Up the Toolchain<a name="setup-toolchain"></a>
 
 You must set up the Espressif toolchain to communicate with your board\. To set up the toolchain, follow the instructions for your host machine's operating system:
-+ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/windows-setup.html)
-+ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
-+ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html)
 
 **Note**  
 When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.   If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the  `IDF_PATH` environment variable from your system before continuing\.
++ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/windows-setup.html)
++ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
++ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html)
 
 ## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
 
@@ -87,7 +87,7 @@ After your environment is set up, you can download Amazon FreeRTOS from GitHub\.
 Clone or download the `amazon-freertos` repository from [GitHub](https://github.com/aws/amazon-freertos)\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `amazon-freertos` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\amazon-freertos` works, but `C:\Users\Username\Documents\Development\Projects\amazon-freertos` causes build failures\.  
+The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  
 In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
 
 ### Configure the Amazon FreeRTOS Demo Applications<a name="config-demos"></a>
@@ -172,7 +172,7 @@ To build and flash firmware \(including boot loader and partition table\), and t
 make flash monitor
 ```
 
-You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
 

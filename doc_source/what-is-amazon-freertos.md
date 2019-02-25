@@ -25,7 +25,7 @@ Amazon FreeRTOS includes libraries that enable you to:
 + Securely connect devices to the AWS IoT cloud using MQTT and device shadows\.
 + Discover and connect to AWS IoT Greengrass cores\.
 + Manage Wi\-Fi connections\.
-+ Listen for and process over\-the\-air \(OTA\) updates\.
++ Listen for and process [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
 
 For more information, see [Amazon FreeRTOS Libraries](https://docs.aws.amazon.com/freertos/latest/userguide/dev-guide-freertos-libraries.html)\.
 

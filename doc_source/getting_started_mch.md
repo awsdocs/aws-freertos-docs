@@ -7,9 +7,7 @@ If you do not have the Microchip Curiosity PIC32MZEF bundle, visit the AWS Partn
 + [PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
 + [MikroElectronika WiFi 7 Click Board](https://www.mikroe.com/wifi-7-click) 
 
-**Important**  
-Before you begin, you need to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.  
-Throughout this tutorial, the directory path to the Amazon FreeRTOS download is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
 ## Setting Up the Microchip Curiosity PIC32MZEF Hardware<a name="setup-hw-mch"></a>
 
@@ -147,7 +145,7 @@ Running
 **Note**  
 We recommend that you use the MPLAB In\-Circuit Debugger instead of the USB port for debugging\. The ICD 4 makes it possible for you to step through code more quickly and add breakpoints without restarting the debugger\.
 
-You can monitor the messages that your device sends to the AWS Cloud with the AWS IoT console's MQTT client\.
+You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
 

@@ -2,11 +2,17 @@
 
 This Getting Started with Amazon FreeRTOS tutorial shows you how to download and configure Amazon FreeRTOS on a host machine, and then compile and run a simple demo application on a [qualified microcontroller board](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
 
+Throughout this tutorial, we assume that you are familiar with AWS IoT and the AWS IoT console\. If not, we recommend that you complete the [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) tutorial before you continue\.
+
+## First Steps<a name="w3aab7b7"></a>
+
 To get started, see [First Steps](freertos-prereqs.md)\.
 
-We assume that you are familiar with AWS IoT and the AWS IoT console\. If not, we recommend that you complete the [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) tutorial before you continue\.
+## Board\-specific Getting Started Guides<a name="getting-started-guides"></a>
 
-After you complete the [First Steps](freertos-prereqs.md#freertos-prereqs.title), you can set up the development environment for your board, and then compile and run the demo application on your board\. For board\-specific instructions, see the Getting Started guide for your board:
+After you complete the [First Steps](freertos-prereqs.md), you can set up your board's hardware and software development environment, and then compile and run demo applications on your board\. For board\-specific instructions, see the Getting Started guide for your board:
++ [Getting Started with the Cypress CYW943907AEVAL1F Development Kit](getting_started_cypress_43.md)
++ [Getting Started with the Cypress CYW954907AEVAL1F Development Kit](getting_started_cypress_54.md)
 + [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)
 + [Getting Started with the MediaTek MT7697Hx Development Kit](getting_started_mediatek.md)
 + [ Getting Started with the Microchip Curiosity PIC32MZEF](getting_started_mch.md)
@@ -22,4 +28,6 @@ You do not need to complete the first steps for the following self\-contained Ge
 [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](getting_started_espressif.md)
 [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md)
 
-For help troubleshooting issues you encounter while getting started, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\. For board\-specific troubleshooting tips, see the Getting Started guide for your board\.
+## Troubleshooting<a name="w3aab7c11"></a>
+
+For help troubleshooting any issues that you encounter while getting started, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\. For board\-specific troubleshooting tips, see the Getting Started guide for your board\.

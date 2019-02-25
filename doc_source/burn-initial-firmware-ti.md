@@ -12,7 +12,9 @@ These steps are written with the assumption that you have already built the `aws
 
 1. On the **Start new project** page, enter a name for your project\. For **Device Type**, choose **CC3220SF**\. For **Device Mode**, choose **Develop**\. Choose **Create Project**\.
 
-1. Disconnect your terminal emulator\. On the right side of the Uniflash application window, choose **Connect**\.
+1. Disconnect your terminal emulator\.
+
+1. On the right side of the Uniflash application window, choose **Connect**\.
 
 1. Under **Advanced**, **Files**, choose **User Files**\.
 

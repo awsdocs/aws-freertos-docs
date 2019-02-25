@@ -369,32 +369,6 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ]
 ```
 
-You can use the get\-ota\-update CLI command to get the status of an OTA update:
-
-```
-aws iot get-ota-update --ota-update-id <your-ota-update-id>
-```
-
-This command returns one of the following values:
-
-`CREATE_PENDING`  
-The creation of an OTA update is pending\.
-
-`CREATE_IN_PROGRESS`  
-An OTA update is being created\.
-
-`CREATE_COMPLETE`  
-An OTA update has been created\.
-
-`CREATE_FAILED`  
-The creation of an OTA update failed\.
-
-`DELETE_IN_PROGRESS`  
-An OTA update is being deleted\.
-
-`DELETE_FAILED`  
-The deletion of an OTA update failed\.
-
 ## Listing OTA Updates<a name="list-ota-updates"></a>
 
 You can use the list\-ota\-updates CLI command to get a list of all OTA updates by :
@@ -430,13 +404,13 @@ The output from the list\-ota\-updates command looks like this:
 
 ## Getting Information About an OTA Update<a name="get-ota-updates"></a>
 
-You can use the get\-ota\-update CLI command to get information about a specific OTA update:
+You can use the get\-ota\-update CLI command to get the creation or deletion status of an OTA update:
 
 ```
-aws iot get-ota-update --ota-update-id <my-ota-update-id>
+aws iot get-ota-update --ota-update-id <your-ota-update-id>
 ```
 
-The output from the get\-ota\-update command looks like this:
+Output from the get\-ota\-update command looks like this:
 
 ```
 {
@@ -467,12 +441,35 @@ The output from the get\-ota\-update command looks like this:
                 }
             }
         ],
-        "otaUpdateStatus": "CREATE_COMPLETE",
+        "otaUpdateStatus": "OTA-STATUS",
         "awsIotJobId": "f76da3c0_10eb_41df_9029_ba7abc20f609",
         "awsIotJobArn": "arn:aws:iot:us-west-2:123456789012:job/f76da3c0_10eb_41df_9029_ba7abc20f609"
     }
 }
 ```
+
+The values returned for `otaUpdateStatus` include the following:
+
+`CREATE_PENDING`  
+The creation of an OTA update is pending\.
+
+`CREATE_IN_PROGRESS`  
+An OTA update is being created\.
+
+`CREATE_COMPLETE`  
+An OTA update has been created\.
+
+`CREATE_FAILED`  
+The creation of an OTA update failed\.
+
+`DELETE_IN_PROGRESS`  
+An OTA update is being deleted\.
+
+`DELETE_FAILED`  
+The deletion of an OTA update failed\.
+
+**Note**  
+If you want to get the execution status of an OTA update after it has been created, you need to use the `describe-job-execution` command\. For more information, see [Describe Job Execution](https://docs.aws.amazon.com/iot/latest/developerguide/manage-job-cli.html#describe-job-execution)\.
 
 ## Deleting OTA\-Related Data<a name="delete-ota-data"></a>
 

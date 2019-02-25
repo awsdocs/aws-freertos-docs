@@ -6,7 +6,10 @@ Before you begin, verify that you have downloaded Amazon FreeRTOS to your microc
 
 **To run the demo**
 
-1. Follow the instructions in the "TLS Server Setup" section of the [Amazon FreeRTOS Qualification Program Developer Guide](https://github.com/aws/amazon-freertos/blob/master/tests/Amazon%20FreeRTOS%20Qualification%20Program%20Developer%20Guide.pdf) to set up a TLS Echo Server\.
+**Note**  
+The TCP server and client demos are currently not supported on the Cypress CYW943907AEVAL1F and CYW954907AEVAL1F Development Kits\.
+
+1. Follow the instructions in the "TLS Server Setup" section of the [Amazon FreeRTOS Qualification Developer Guide](https://github.com/aws/amazon-freertos/blob/master/tests/Amazon%20FreeRTOS%20Qualification%20Developer%20Guide.pdf) to set up a TLS Echo Server\.
 
    By the end of step 6, the TLS Echo Server should be running and listening on the port 9000\. You do not need to complete steps 7, 8, and 9\.
 

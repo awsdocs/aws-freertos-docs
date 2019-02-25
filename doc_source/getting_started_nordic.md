@@ -67,7 +67,7 @@ After you set up your hardware and environment, you can download Amazon FreeRTOS
 To download Amazon FreeRTOS for the Nordic nRF52840\-DK, go to the [Amazon FreeRTOS GitHub page](https://github.com/aws/amazon-freertos) and clone the repository\. The Amazon FreeRTOS BLE library is still in public beta, so you need to switch branches to access the code for the Nordic nRF52840\-DK board\. Check out the branch named `feature/ble-beta`\.
 
 **Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. The longest path in the Amazon FreeRTOS download is 122 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the `amazon-freertos` directory is fewer than 98 characters long\. For example, `C:\Users\Username\Dev\amazon-freertos` works, but `C:\Users\Username\Documents\Development\Projects\amazon-freertos` causes build failures\.  
+The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  
 In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
 
 ### Configure Your Project<a name="nordic-freertos-config-project"></a>
