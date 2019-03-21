@@ -34,7 +34,7 @@ The Amazon FreeRTOS MQTT library has the following features:
 
 ## Configuration<a name="freertos-mqtt-2-config"></a>
 
-Configuration settings for the Amazon FreeRTOS MQTT library are defined as C proprocessor constants\. Set configuration settings as \#define constants in a file named `AWS_IOT_CONFIG_FILE`, or by using a compiler option such as `-D` in `gcc`\. Because configuration settings are defined as compile\-time constants, a library must be rebuilt if a configuration setting is changed\. The MQTT library uses default values when configuration settings are not defined\.
+Configuration settings for the Amazon FreeRTOS MQTT library are defined as C preprocessor constants\. Set configuration settings as \#define constants in a file named `AWS_IOT_CONFIG_FILE`, or by using a compiler option such as `-D` in `gcc`\. Because configuration settings are defined as compile\-time constants, a library must be rebuilt if a configuration setting is changed\. The MQTT library uses default values when configuration settings are not defined\.
 
 For more information about configuring the Amazon FreeRTOS MQTT library, see [MQTT API Reference \(Beta\)](https://docs.aws.amazon.com/freertos/latest/lib-ref/html3/mqtt/index.html)\.
 

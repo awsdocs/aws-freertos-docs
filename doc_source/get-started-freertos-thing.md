@@ -19,7 +19,7 @@ To register your board manually, follow the procedures below\.
 
 1. To create an IAM policy, you need to know your AWS Region and AWS account number\. 
 
-   To find your AWS account number, open the [AWS Management Console](console.aws.amazon.com), locate and expand the menu beneath your account name in the upper\-right corner, and choose **My Account**\. Your account ID is displayed under **Account Settings**\.
+   To find your AWS account number, open the [AWS Management Console](https://console.aws.amazon.com), locate and expand the menu beneath your account name in the upper\-right corner, and choose **My Account**\. Your account ID is displayed under **Account Settings**\.
 
    To find the AWS region for your AWS account, use the AWS Command Line Interface\. To install the AWS CLI, follow the instructions in the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\. After you install the AWS CLI, open a command prompt window and enter the following command:
 

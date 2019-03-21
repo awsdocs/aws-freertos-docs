@@ -16,7 +16,9 @@ If you are following the **Quick Connect** workflow on the [Amazon FreeRTOS cons
 
    Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-1. In your IDE, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` and specify values for the following constants:
+1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h`\. 
+
+1. Specify values for the following constants:
    + `static const char clientcredentialMQTT_BROKER_ENDPOINT[] = "Your AWS IoT endpoint";`
    + `#define clientcredentialIOT_THING_NAME "The AWS IoT thing name of your board"`
 
@@ -24,7 +26,7 @@ If you are following the **Quick Connect** workflow on the [Amazon FreeRTOS cons
 **Note**  
 If your board does not support Wi\-Fi, you can skip these steps\.
 
-1. Open the `aws_clientcredential.h` file\.
+1. `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h`\.
 
 1. Specify values for the following `#define` constants:
    + `#define clientcredentialWIFI_SSID "The SSID for your Wi-Fi network"`
@@ -37,11 +39,11 @@ If your board does not support Wi\-Fi, you can skip these steps\.
      + `eWiFiSecurityWPA` \(WPA security\)
      + `eWiFiSecurityWPA2` \(WPA2 security\)
 
-**To configure your AWS IoT credentials**
+**To format your AWS IoT credentials**
 **Note**  
 To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
 
-Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\. You must format the certificate and private key for your device\.
+Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\.
 
 1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
 
@@ -53,4 +55,4 @@ Amazon FreeRTOS is a C language project, and the certificate and private key mus
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-After you configure Amazon FreeRTOS, you can continue to the Getting Started guide for your board to compile and run the Amazon FreeRTOS demo\.
+After you configure Amazon FreeRTOS, you can continue to the Getting Started guide for your board to compile and run the Amazon FreeRTOS demo\. The demo application that is used in this tutorial is the Hello World MQTT demo, which is located at `<BASE_FOLDER>/demos/common/mqtt/aws_hello_world.c`\.

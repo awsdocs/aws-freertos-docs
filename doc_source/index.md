@@ -83,7 +83,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md)
    + [Amazon FreeRTOS Transport Layer Security (TLS)](security-tls.md)
    + [Amazon FreeRTOS Wi-Fi Library](freertos-wifi.md)
-+ [Amazon FreeRTOS Demo Projects](freertos-next-steps.md)
++ [Amazon FreeRTOS Demos](freertos-next-steps.md)
    + [AWS IoT Greengrass Discovery Demo Application](gg-demo.md)
    + [AWS IoT Device Shadow Demo Application](shadow-demo.md)
    + [Bluetooth Low Energy Demo Applications](ble-demo.md)

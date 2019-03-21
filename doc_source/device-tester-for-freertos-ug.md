@@ -17,30 +17,35 @@ The following tabs describe the versions of AWS IoT Device Tester for Amazon Fre
 ------
 #### [ IDT for Amazon FreeRTOS v1\.4 ]
 
-**IDT for Amazon FreeRTOS v1\.4\.6 \- Current Version**
-+ IDT for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.190204214205.zip) \(MD5 bb4290f556b7c828ec9621c7229b1d6d\)
-+ IDT for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.190204214205.zip) \(MD5 d5f62d6c1a253ef1fb0c70f2a87836fc\)
-+ IDT for Amazon FreeRTOS \- [ Windows]( https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.190204214205.zip) \(MD5 9be81e92e7b1c5a85f8a4d433fc2bb43\)
+**IDT for Amazon FreeRTOS v1\.4\.7 \- Current Version**
++ IDT v1\.1 for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.1.190304225254.zip) \(MD5 fe843e96bca65b0dc4f7f1a54e8051ab\)
++ IDT v1\.1 for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.1.190304225254.zip) \(MD5 feb337b6667a4764de725b6c05549083\)
++ IDT v1\.1 for Amazon FreeRTOS \- [ Windows]( https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.1.190304225254.zip) \(MD5 979c39f5ce0550079a02fe48feed0c36\)
+
+**IDT for Amazon FreeRTOS v1\.4\.6**
++ IDT v1\.0 for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.190204214205.zip) \(MD5 bb4290f556b7c828ec9621c7229b1d6d\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.190204214205.zip) \(MD5 d5f62d6c1a253ef1fb0c70f2a87836fc\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Windows]( https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.190204214205.zip) \(MD5 9be81e92e7b1c5a85f8a4d433fc2bb43\)
 
 **IDT for Amazon FreeRTOS v1\.4\.5**
-+ IDT for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.190122221640.zip) \(MD5 ee7b167e4e1cc02c256b5c3edc0a8abe\)
-+ IDT for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.190122221640.zip) \(MD5 791580fa714ef1a01c3c6bc32c2ff448\)
-+ IDT for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.190122221640.zip) \(MD5 ba744c23f6276bba928775bc024ec108\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.190122221640.zip) \(MD5 ee7b167e4e1cc02c256b5c3edc0a8abe\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.190122221640.zip) \(MD5 791580fa714ef1a01c3c6bc32c2ff448\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.190122221640.zip) \(MD5 ba744c23f6276bba928775bc024ec108\)
 
 **IDT for Amazon FreeRTOS v1\.4\.4**
-+ IDT for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181213003249.zip) \(MD5 64613157503fc55ce581310f819d6b3c\)
-+ IDT for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181213003249.zip) \(MD5 b15840ab9dc14f076ce36cb9d111070f\)
-+ IDT for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181213003249.zip) \(MD5 b84178c6cf98b376f50c360eb7a5208f\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181213003249.zip) \(MD5 64613157503fc55ce581310f819d6b3c\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181213003249.zip) \(MD5 b15840ab9dc14f076ce36cb9d111070f\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181213003249.zip) \(MD5 b84178c6cf98b376f50c360eb7a5208f\)
 
 **IDT for Amazon FreeRTOS v1\.4\.3**
-+ IDT for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181211220033.zip) \(MD5 49946aec8634d20d38c449f39ac58fef\)
-+ IDT for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181211220033.zip) \(MD5 c8cc6c388a35482ea50f1693b40b5e72\)
-+ IDT for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181211220033.zip) MD5 a1ca9101729bc41ad29fc32458c8920d\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181211220033.zip) \(MD5 49946aec8634d20d38c449f39ac58fef\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181211220033.zip) \(MD5 c8cc6c388a35482ea50f1693b40b5e72\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181211220033.zip) MD5 a1ca9101729bc41ad29fc32458c8920d\)
 
 **IDT for Amazon FreeRTOS v1\.4\.2**
-+ IDT for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181119201633.zip) \(MD5 eb9cfd1ae803d309f8d8b6698e40ae96\)
-+ IDT for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181119201633.zip) \(MD5 10cb6c8aa2a54f7a0d26095f18753c2f\)
-+ IDT for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181119201633.zip) \(MD5 57ac5703924e3a2e2f039e97baaca44f\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.0.181119201633.zip) \(MD5 eb9cfd1ae803d309f8d8b6698e40ae96\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Mac](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.0.181119201633.zip) \(MD5 10cb6c8aa2a54f7a0d26095f18753c2f\)
++ IDT v1\.0 for Amazon FreeRTOS \- [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.0.181119201633.zip) \(MD5 57ac5703924e3a2e2f039e97baaca44f\)
 
 ------
 

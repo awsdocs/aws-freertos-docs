@@ -272,7 +272,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 		"fileVersion": "1",
 		"fileLocation": {
 			"s3Location": {
-				"bucket": "<your_bucket_name>>",
+				"bucket": "<your_bucket_name>",
 				"key": "<your_object_key>",
 				"version": "<your_S3_object_version>"
 			}
@@ -330,7 +330,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 [
 	{
 		"fileName": "<your_firmware_path_on_device>",
-		"fileVersion": "1"
+		"fileVersion": "1",
 		"codeSigning":{
 			"awsSignerJobId": "<your_signer_job_id>"
 		}    
@@ -347,7 +347,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 		"fileVersion": "1",
 		"fileLocation": {
 			"s3Location": {
-				"bucket": "<your_bucket_name>>",
+				"bucket": "<your_bucket_name>",
 				"key": "<your_object_key>",
 				"version": "<your_S3_object_version>"
 			}
@@ -355,7 +355,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 		"codeSigning":{
 			"customCodeSigning": {
 				"signature":{
-					"inlineDocument":"<your_signature>>"
+					"inlineDocument":"<your_signature>"
 				},
 				"certificateChain": {
 					"inlineDocument":"<your_certificate_chain>",

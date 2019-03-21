@@ -8,7 +8,8 @@ This tutorial walks you through setting up and running the MQTT Hello World demo
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
 **Important**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.  
+As noted in [Downloading Amazon FreeRTOS](freertos-download.md), Amazon FreeRTOS ports for Cypress are currently only available on [GitHub](https://github.com/aws/amazon-freertos)\.
 
 ## Setting Up Your Environment<a name="cypress-setup-env"></a>
 

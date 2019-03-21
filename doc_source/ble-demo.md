@@ -9,15 +9,15 @@
 
 Amazon FreeRTOS BLE includes three demo applications:
 
-### [MQTT over BLE](#ble-demo-mqtt) Demo<a name="w3aac11c11b5b5"></a>
+### [MQTT over BLE](#ble-demo-mqtt) Demo<a name="w3aac11c13b5b5"></a>
 
 This application demonstrates how to use the MQTT over BLE service\.
 
-### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w3aac11c11b5b7"></a>
+### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w3aac11c13b5b7"></a>
 
 This application demonstrates how to use the Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) Demo<a name="w3aac11c11b5b9"></a>
+### [Generic Attributes Server](#ble-demo-server) Demo<a name="w3aac11c13b5b9"></a>
 
 This application demonstrates how to use the Amazon FreeRTOS BLE middleware APIs to create a simple GATT server\.
 

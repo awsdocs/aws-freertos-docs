@@ -82,7 +82,7 @@ This section discusses problems that can occur with your toolchain\.
 
 #### Code Composer Studio on Ubuntu<a name="ccs-ubuntu"></a>
 
-For TI devices, we recommend that you download and install Code Composer Studio 7\.3\. The newer versions of Ubuntu \(17\.10 and 18\.04\) have a version of the glibc package that is not compatible with Code Composer Studio 7\.*x* versions\. We recommended that you install Code Composer Studio version 8\.2 or later\.
+The newer versions of Ubuntu \(17\.10 and 18\.04\) have a version of the glibc package that is not compatible with Code Composer Studio 7\.*x* versions\. We recommended that you install Code Composer Studio version 8\.2 or later\.
 
 Symptoms of incompatibility might include:
 + Amazon FreeRTOS failing to build or flash to your device\.

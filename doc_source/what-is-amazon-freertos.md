@@ -31,7 +31,9 @@ For more information, see [Amazon FreeRTOS Libraries](https://docs.aws.amazon.co
 
 ## Downloading Amazon FreeRTOS Source Code<a name="freertos-mds-projects-github"></a>
 
-You can download the RTOS kernel and software libraries from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) or from [GitHub](https://github.com/aws/amazon-freertos)\.
+You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console]()\. For a list of qualified platforms, see the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
+
+You can also download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\.
 
 ## Amazon FreeRTOS Console<a name="freertos-console"></a>
 
@@ -45,9 +47,9 @@ For more information about the Amazon FreeRTOS console, see [Amazon FreeRTOS Con
 
 ## Development Workflow<a name="development-workflow"></a>
 
-You start development by downloading Amazon FreeRTOS\. You unzip the package and import it into your IDE\. You can then develop an application on your selected hardware platform and manufacture and deploy these devices using the development process appropriate for your device\. Deployed devices can connect to the AWS IoT service or AWS IoT Greengrass as part of a complete IoT solution\. The following diagram shows the development workflow and the subsequent connectivity from Amazon FreeRTOS\-based devices\.
+You start development by downloading Amazon FreeRTOS\. You unzip the package and import it into your IDE\. You can then develop an application on your selected hardware platform and manufacture and deploy these devices using the development process appropriate for your device\. Deployed devices can connect to the AWS IoT service or AWS IoT Greengrass as part of a complete IoT solution\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/workflow.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/afr-getting-started-workflow.png)
 
 ## Additional Resources<a name="resources"></a>
 

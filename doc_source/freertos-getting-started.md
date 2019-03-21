@@ -10,7 +10,7 @@ To get started, see [First Steps](freertos-prereqs.md)\.
 
 ## Board\-specific Getting Started Guides<a name="getting-started-guides"></a>
 
-After you complete the [First Steps](freertos-prereqs.md), you can set up your board's hardware and software development environment, and then compile and run demo applications on your board\. For board\-specific instructions, see the Getting Started guide for your board:
+After you complete the [First Steps](freertos-prereqs.md), you can set up your platform's hardware and its software development environment, and then compile and run the demo on your board\. For board\-specific instructions, see the Getting Started guide for your board:
 + [Getting Started with the Cypress CYW943907AEVAL1F Development Kit](getting_started_cypress_43.md)
 + [Getting Started with the Cypress CYW954907AEVAL1F Development Kit](getting_started_cypress_54.md)
 + [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)

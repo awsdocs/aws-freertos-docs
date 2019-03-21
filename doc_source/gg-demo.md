@@ -8,26 +8,26 @@ After you set up AWS and AWS IoT Greengrass, you need to configure some addition
 
 1. Browse to the [IAM console](https://console.aws.amazon.com/iam/home)\.
 
-1. Choose **Roles** from the navigation pane, and find and choose **Greengrass\_ServiceRole**\.
+1. From the navigation pane, choose **Roles**, and then find and choose **Greengrass\_ServiceRole**\.
 
-1. Choose **Attach policies**, find and check **AmazonS3FullAccess** and **AWSIoTFullAccess**, and then choose **Attach policy**\.
+1. Choose **Attach policies**, select **AmazonS3FullAccess** and **AWSIoTFullAccess**, and then choose **Attach policy**\.
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the navigation pane, choose **Greengrass**, **Groups**, and then choose the Greengrass group that you previously created\.
+1. In the navigation pane, choose **Greengrass**, choose **Groups**, and then choose the Greengrass group that you previously created\.
 
 1. Choose **Settings**, and then choose **Add role**\.
 
 1. Choose **Greengrass\_ServiceRole**, and then choose **Save**\.
 
-You can use the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) to quickly connect your board to the AWS IoT and run the demo\. Note that configurations of Amazon FreeRTOS are currently not available on the Amazon FreeRTOS console for the following boards:
+You can use the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) to quickly connect your board to the AWS IoT and run the demo\. Amazon FreeRTOS configurations are currently not available for the following boards:
 + Cypress CYW943907AEVAL1F Development Kit
 + Cypress CYW954907AEVAL1F Development Kit
 + Espressif ESP\-WROVER\-KIT
 + Espressif ESP32\-DevKitC
 + Nordic nRF52840\-DK
 
-You can also connect your board to AWS IoT and configure your Amazon FreeRTOS demo manually by following the instructions below\.
+You can also connect your board to AWS IoT and configure your Amazon FreeRTOS demo manually\.
 
 1. [Registering Your MCU Board with AWS IoT](get-started-freertos-thing.md)
 
@@ -63,13 +63,13 @@ You can also connect your board to AWS IoT and configure your Amazon FreeRTOS de
 
    1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-   1. In the navigation pane, choose **Manage**, **Things**, and then choose the thing that you previously created\.
+   1. In the navigation pane, choose **Manage**, choose **Things**, and then choose the thing that you previously created\.
 
    1. Choose **Security**, and then choose the certificate attached to your device\.
 
-   1. Choose **Policies**, and then choose **Actions**, **Attach Policy**\.
+   1. Choose **Policies**, choose **Actions**, and then choose **Attach Policy**\.
 
-   1. Find and choose the Greengrass policy that you created previously, and then choose **Attach**\.
+   1. Find and choose the Greengrass policy that you created earlier, and then choose **Attach**\.
 
 1. [Downloading Amazon FreeRTOS](freertos-download.md)
 **Note**  

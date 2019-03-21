@@ -160,7 +160,7 @@ For more information about `SetupAWS.py`, see the README\.md in the `<BASE_FOLDE
 
 1. In the Espressif IoT Development Framework Configuration menu, navigate to **Serial flasher config**\.
 
-   Choose **Default serial port** to configure the serial port\. The serial port you configure here is used to write the demo application to your board\. On Windows, serial ports have names like `COM1`\. On macOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\.
+   Choose **Default serial port** to configure the serial port\. The serial port you configure here is used to write the demo application to your board\. On Windows, serial ports have names like `COM1`\. On macOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\. For more information, see [Finding Your Board's Serial Port](uart-term.md#serial-port-ts)\.
 
    Choose **Default baud rate** to change the default baud rate to use while communicating with your board\. Increasing the baud rate can reduce the time required to flash your board\. Depending on your hardware, you can increase the default baud rate up to 921600\.
 

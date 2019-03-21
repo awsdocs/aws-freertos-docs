@@ -11,3 +11,9 @@ Amazon FreeRTOS over\-the\-air updates make it possible for you to:
 + Verify the authenticity and integrity of new firmware after it's deployed to devices\.
 + Monitor the progress of a deployment\.
 + Debug a failed deployment\.
+
+## Tagging OTA Resources<a name="ota-tagging"></a>
+
+To help you manage your OTA resources, you can optionally assign your own metadata to updates and streams in the form of tags\. Tags enable you to categorize your AWS IoT resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type — you can quickly identify a specific resource based on the tags you've assigned to it\.
+
+For more information about tagging and AWS IoT, see [Tagging Your AWS IoT Resources](https://docs.aws.amazon.com/iot/latest/developerguide/tagging-iot.html)\.

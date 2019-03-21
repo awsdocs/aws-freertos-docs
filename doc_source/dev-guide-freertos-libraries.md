@@ -2,7 +2,7 @@
 
 Amazon FreeRTOS libraries provide additional functionality to the FreeRTOS kernel and its internal libraries\. You can use Amazon FreeRTOS libraries for networking and security in embedded applications\. Amazon FreeRTOS libraries also enable your applications to interact with AWS IoT services\.
 
-You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console]()\. For a list of qualified platforms, see the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\. Amazon FreeRTOS is also available on [GitHub](https://github.com/aws/amazon-freertos)\.
+The `lib` directory contains the source code of the Amazon FreeRTOS libraries\. There are helper functions that assist in implementing the library functionality\. We do not recommend that you change these helper functions\. If you need to change one of these libraries, make sure it conforms to the library interface defined in the `lib/include` directory\.
 
 ## Amazon FreeRTOS Porting Libraries<a name="dev-guide-freertos-porting-libraries"></a>
 

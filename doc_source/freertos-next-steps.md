@@ -1,27 +1,22 @@
-# Amazon FreeRTOS Demo Projects<a name="freertos-next-steps"></a>
+# Amazon FreeRTOS Demos<a name="freertos-next-steps"></a>
 
-This section contains resources that are useful after you have a basic understanding of Amazon FreeRTOS\. If you haven't already, we recommend that you first read the [Getting Started with Amazon FreeRTOS](freertos-getting-started.md)\.
+You can find the Amazon FreeRTOS demo applications in the `demos` folder, under the main Amazon FreeRTOS directory\. All of the examples that can be executed by Amazon FreeRTOS appear in the `common` folder, under `demos`\. There is also a folder for each Amazon FreeRTOS\-qualified platform under the `demos` folder\. If you use the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), only the target platform you choose has a subdirectory under `demos`\. Before trying out the demo applications on your own, we recommend that you go through [Getting Started with Amazon FreeRTOS](freertos-getting-started.md), which walks you through setting up and running the Hello World MQTT demo\. 
 
-## Navigating the Demo Applications<a name="freertos-mds-projects-struct"></a>
+## Running the Amazon FreeRTOS Demos<a name="running-demos"></a>
 
-### Directory and File Organization<a name="freertos-files-org"></a>
+The following topics walk you through setting up and running the Amazon FreeRTOS demos:
++ [Bluetooth Low Energy Demo Applications](ble-demo.md)
++ [Demo Bootloader for the Microchip Curiosity PIC32MZEF](microchip-bootloader.md)
++ [AWS IoT Greengrass Discovery Demo Application](gg-demo.md)
++ [Over\-the\-Air Updates Demo Application](ota-demo.md)
++ [Secure Sockets Echo Client Demo](secure-sockets-demo.md)
++ [AWS IoT Device Shadow Demo Application](shadow-demo.md)
 
-There are two subfolders in the main Amazon FreeRTOS directory:
-+ `demos`
+The function `DEMO_RUNNER_RunDemos()`, located in `AmazonFreeRTOS\demos\common\demo_runner\aws_demo_runner.c`, contains code that calls each example\. By default, `DEMO_RUNNER_RunDemos()` only calls the `vStartMQTTEchoDemo()` function, which starts the Hello World MQTT demo\. Depending on the configuration you selected when you downloaded Amazon FreeRTOS, and depending on where you downloaded Amazon FreeRTOS, the other example runner functions are either commented out or omitted entirely\.
 
-  Contains example code that can be run on an Amazon FreeRTOS device to demonstrate Amazon FreeRTOS functionality\. There is one subdirectory for each target platform selected\. These subdirectories contain code used by the demos, but not all demos can be run independently\. If you use the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), only the target platform you choose has a subdirectory under `demos`\.
+**Note**  
+Be aware that not all combinations of examples work together\. Depending on the combination, the software might fail to execute on the selected target due to memory constraints\. We recommend that you run one demo at a time\.
 
-  The function `DEMO_RUNNER_RunDemos()` located in `AmazonFreeRTOS\demos\common\demo_runner\aws_demo_runner.c` contains code that calls each example\. By default, only the `vStartMQTTEchoDemo()` function is called\. Depending on the configuration you selected when you downloaded the code, or whether you obtained the code from GitHub, the other example runner functions are either commented out or omitted entirely\. Although you can change the selection of demos here, be aware that not all combinations of examples work together\. Depending on the combination, the software might not be able to be executed on the selected target due to memory constraints\. All of the examples that can be executed by Amazon FreeRTOS appear in the common directory under `demos`\.
-+ `lib`
-
-  The `lib` directory contains the source code of the Amazon FreeRTOS libraries\.
-
-  There are helper functions that assist in implementing the library functionality\. We do not recommend that you change these helper functions\. If you need to change one of these libraries, make sure it conforms to the library interface defined in the `libs/include` directory\.
-
-### Configuration Files<a name="freertos-config"></a>
+## Configuring the demos<a name="configuring-demos"></a>
 
 The demos have been configured to get you started quickly\. You might want to change some of the configurations for your project to create a version that runs on your platform\. You can find configuration files at `demos/<vendor>/<platform>/common/config_files`\.
-
-**Topics**
-+ [Directory and File Organization](#freertos-files-org)
-+ [Configuration Files](#freertos-config)
