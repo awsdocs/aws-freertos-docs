@@ -19,18 +19,18 @@ To sign your firmware image using Code Signing for AWS IoT, you must install the
 After you install and configure the code signing tools, copy your unsigned firmware image to your Amazon S3 bucket and start a code signing job with the following CLI commands\. The `put-signing-profile` command creates a reusable code\-signing profile\. The `start-signing-job` command starts the signing job\.
 
 ```
-aws signer put-signing-profile --profile-name <your_profile_name>
-							--signing-material certificateArn=
-							arn:aws:acm::<your-region>:<your-aws-account-id>:certificate/<your-certificate-id>
-								--platform <your-hardware-platform> --signing-parameters
-							certname=<your_certificate_path_on_device>
+aws signer put-signing-profile \
+    --profile-name <your_profile_name> \
+    --signing-material certificateArn=arn:aws:acm::<your-region>:<your-aws-account-id>:certificate/<your-certificate-id> \
+    --platform <your-hardware-platform> \
+    --signing-parameters certname=<your_certificate_path_on_device>
 ```
 
 ```
-aws signer start-signing-job --source
-							's3={bucketName=<your_s3_bucket>,key=<your_s3_object_key>,version=<your_s3_object_version_id>}'
-								--destination 's3={bucketName=<your_destination_bucket>}' --profile-name
-							<your_profile_name>
+aws signer start-signing-job \
+    --source 's3={bucketName=<your_s3_bucket>,key=<your_s3_object_key>,version=<your_s3_object_version_id>}' \
+    --destination 's3={bucketName=<your_destination_bucket>}' \
+    --profile-name <your_profile_name>
 ```
 
 **Note**  
@@ -71,13 +71,13 @@ The OTA Update service sends updates over MQTT messages\. To do this, you must c
 
 ```
 [
-	{
-    	"fileId":<your_file_id>,
-		"s3Location":{
-		    "bucket":"<your_bucket_name>",
-	    	"key":"<your_s3_object_key<"
-		}
-	}	
+  {
+    "fileId":<your_file_id>,
+    "s3Location":{
+      "bucket":"<your_bucket_name>",
+      "key":"<your_s3_object_key<"
+    }
+  }	
 ]
 ```
 
@@ -96,7 +96,11 @@ The file name of your signed firmware image in the Amazon S3 bucket\. You can fi
 Use the `create-stream` CLI command to create a stream:
 
 ```
-aws iot create-stream --stream-id <your_stream_id> --description <your_description> --files file://<stream.json> --role-arn <your_role_arn>
+aws iot create-stream \
+    --stream-id <your_stream_id> \
+    --description <your_description> \
+    --files file://<stream.json> \
+    --role-arn <your_role_arn>
 ```
 
 The following list describes the arguments for the `create-stream` CLI command\.
@@ -123,7 +127,7 @@ The following is an example stream\.json file:
 [
 	{
 		"fileId":123,
-		"s3Location":{
+		"s3Location": {
 			"bucket":"codesign-ota-bucket",
 			"key":"48c67f3c-63bb-4f92-a98a-4ee0fbc2bef6"
 		}
@@ -138,13 +142,12 @@ To find the Amazon S3 object key of your signed firmware image, use the `aws sig
 
 ```
 ... text deleted for brevity ...
-	"signedObject": {
-		"s3": {
-			"bucketName": "ota-bucket",
-			"key": "7309da2c-9111-48ac-8ee4-5a4262af4429"
-		}
-	}
-
+  "signedObject": {
+    "s3": {
+      "bucketName": "ota-bucket",
+      "key": "7309da2c-9111-48ac-8ee4-5a4262af4429"
+    }
+  }
 ... text deleted for brevity ...
 ```
 
@@ -153,7 +156,13 @@ To find the Amazon S3 object key of your signed firmware image, use the `aws sig
 Use the `create-ota-update` CLI command to create an OTA update job:
 
 ```
-aws iot create-ota-update --ota-update-id "<my_ota_update>" --target-selection SNAPSHOT --description "<a cli ota update>" --files file://<ota.json> --targets arn:aws:iot:<your-aws-region>:<your-aws-account>:thing/<your-thing-name> --role-arn arn:aws:iam::<your-aws-account>:role/<your-ota-service-role
+aws iot create-ota-update \
+    --ota-update-id "<my_ota_update>" \
+    --target-selection SNAPSHOT \
+    --description "<a cli ota update>" \
+    --files file://<ota.json> \
+    --targets arn:aws:iot:<your-aws-region>:<your-aws-account>:thing/<your-thing-name> \
+    --role-arn arn:aws:iam::<your-aws-account>:role/<your-ota-service-role
 ```
 
 **Note**  
@@ -219,18 +228,18 @@ The following is an example of a JSON file passed into the create\-ota\-update c
 
 ```
 [
-	{
-    	"fileName": "firmware.bin",                              
-    	"fileLocation": {
-	        "stream": {
-    	        "streamId": "004",                                               
-            	"fileId":123
-        	}                                                
-    	},
-    	"codeSigning": {
-        	"awsSignerJobId": "48c67f3c-63bb-4f92-a98a-4ee0fbc2bef6"         
-    	}
-	}
+  {
+    "fileName": "firmware.bin",                              
+    "fileLocation": {
+      "stream": {
+        "streamId": "004",                                               
+        "fileId":123
+      }                                                
+    },
+    "codeSigning": {
+      "awsSignerJobId": "48c67f3c-63bb-4f92-a98a-4ee0fbc2bef6"         
+    }
+  }
 ]
 ```
 
@@ -238,28 +247,28 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 
 ```
 [
-	{
-	    "fileName": "firmware.bin",
-    	"fileLocation": {
-	        "stream": {
-    	        "streamId": "004",
-        	    "fileId": 123
-        	}
-    	},
-    	"codeSigning": {
-        	"customCodeSigning":{
-            	"signature":{
-                	"inlineDocument":"<your_signature>"
-            	},
-            	"certificateChain": {
-            		"certificateName": "<your_certificate_name>
-                	"inlineDocument":"<your_certificate_chain>"
-            	},
-            	"hashAlgorithm":"<your_hash_algorithm>",
-            	"signatureAlgorithm":"<your_signature_algorithm>"
-        	}
-    	}
-	}
+  {
+    "fileName": "firmware.bin",
+    "fileLocation": {
+      "stream": {
+        "streamId": "004",
+        "fileId": 123
+      }
+    },
+    "codeSigning": {
+      "customCodeSigning":{
+        "signature":{
+          "inlineDocument":"<your_signature>"
+        },
+        "certificateChain": {
+          "certificateName": "<your_certificate_name>",
+          "inlineDocument":"<your_certificate_chain>"
+        },
+        "hashAlgorithm":"<your_hash_algorithm>",
+        "signatureAlgorithm":"<your_signature_algorithm>"
+      }
+    }
+  }
 ]
 ```
 
@@ -267,32 +276,32 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 
 ```
 [
-	{
-		"fileName": "<your_firmware_path_on_device>",
-		"fileVersion": "1",
-		"fileLocation": {
-			"s3Location": {
-				"bucket": "<your_bucket_name>",
-				"key": "<your_object_key>",
-				"version": "<your_S3_object_version>"
-			}
-		},
-		"codeSigning":{
-			"startSigningJobParameter":{
-				"signingProfileName": "myTestProfile",
-				"signingProfileParameter": {
-					"certificateArn": "<your_certificate_arn>",
-					"platformId": "<your_platform_id>",
-					"certificatePathOnDevice": "<certificate_path>"
-				},
-				"destination": {
-					"s3Destination": {
-						"bucket": "<your_destination_bucket>"
-					}
-				}
-			}
-		}    
-	}
+  {
+    "fileName": "<your_firmware_path_on_device>",
+    "fileVersion": "1",
+    "fileLocation": {
+      "s3Location": {
+        "bucket": "<your_bucket_name>",
+        "key": "<your_object_key>",
+        "version": "<your_S3_object_version>"
+      }
+    },
+    "codeSigning":{
+      "startSigningJobParameter":{
+        "signingProfileName": "myTestProfile",
+        "signingProfileParameter": {
+          "certificateArn": "<your_certificate_arn>",
+          "platform": "<your_platform_id>",
+          "certificatePathOnDevice": "<certificate_path>"
+        },
+        "destination": {
+          "s3Destination": {
+            "bucket": "<your_destination_bucket>"
+          }
+        }
+      }
+    }
+  }
 ]
 ```
 
@@ -300,27 +309,27 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 
 ```
 [
-	{
-	"fileName": "<your_firmware_path_on_device>",
-		"fileVersion": "1",
-		"fileLocation": {
-			"s3Location": {
-				"bucket": "<your_bucket_name>",
-				"key": "<your_object_key>",
-				"version": "<your_S3_object_version>"
-			}
-		},
-		"codeSigning":{
-			"startSigningJobParameter":{
-				"signingProfileName": "<your_unique_profile_name>",
-				"destination": {
-					"s3Destination": {
-						"bucket": "<our_destination_bucket>"
-					}
-				}
-			}
-		}    
-	}
+  {
+    "fileName": "<your_firmware_path_on_device>",
+    "fileVersion": "1",
+    "fileLocation": {
+      "s3Location": {
+        "bucket": "<your_bucket_name>",
+        "key": "<your_object_key>",
+        "version": "<your_S3_object_version>"
+      }
+    },
+    "codeSigning":{
+      "startSigningJobParameter":{
+        "signingProfileName": "<your_unique_profile_name>",
+        "destination": {
+          "s3Destination": {
+            "bucket": "<our_destination_bucket>"
+          }
+        }
+      }
+    }    
+  }
 ]
 ```
 
@@ -328,13 +337,13 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 
 ```
 [
-	{
-		"fileName": "<your_firmware_path_on_device>",
-		"fileVersion": "1",
-		"codeSigning":{
-			"awsSignerJobId": "<your_signer_job_id>"
-		}    
-	}
+  {
+    "fileName": "<your_firmware_path_on_device>",
+    "fileVersion": "1",
+    "codeSigning":{
+      "awsSignerJobId": "<your_signer_job_id>"
+    }    
+  }
 ]
 ```
 
@@ -342,30 +351,30 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 
 ```
 [
-	{
-		"fileName": "<your_firmware_path_on_device>",
-		"fileVersion": "1",
-		"fileLocation": {
-			"s3Location": {
-				"bucket": "<your_bucket_name>",
-				"key": "<your_object_key>",
-				"version": "<your_S3_object_version>"
-			}
-		},
-		"codeSigning":{
-			"customCodeSigning": {
-				"signature":{
-					"inlineDocument":"<your_signature>"
-				},
-				"certificateChain": {
-					"inlineDocument":"<your_certificate_chain>",
-					"certificateName": "<your_certificate_path_on_device>"
-				},
-				"hashAlgorithm":"<your_hash_algorithm>",
-				"signatureAlgorithm":"<your_sig_algorithm>"
-			}
-		}    
-	}
+  {
+    "fileName": "<your_firmware_path_on_device>",
+    "fileVersion": "1",
+    "fileLocation": {
+        "s3Location": {
+          "bucket": "<your_bucket_name>",
+          "key": "<your_object_key>",
+          "version": "<your_S3_object_version>"
+        }
+    },
+    "codeSigning":{
+      "customCodeSigning": {
+        "signature":{
+          "inlineDocument":"<your_signature>"
+        },
+        "certificateChain": {
+          "inlineDocument":"<your_certificate_chain>",
+          "certificateName": "<your_certificate_path_on_device>"
+        },
+        "hashAlgorithm":"<your_hash_algorithm>",
+        "signatureAlgorithm":"<your_sig_algorithm>"
+      }
+    }
+  }
 ]
 ```
 
@@ -381,24 +390,23 @@ The output from the list\-ota\-updates command looks like this:
 
 ```
 {
-    "otaUpdates": [
-       
-        {
-            "otaUpdateId": "my_ota_update2",
-            "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update2",
-            "creationDate": 1522778769.042
-        },
-        {
-            "otaUpdateId": "my_ota_update1",
-            "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update1",
-            "creationDate": 1522775938.956
-        },
-        {
-            "otaUpdateId": "my_ota_update",
-            "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update",
-            "creationDate": 1522775151.031
-        }
-    ]
+  "otaUpdates": [
+    {
+      "otaUpdateId": "my_ota_update2",
+      "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update2",
+      "creationDate": 1522778769.042
+    },
+    {
+      "otaUpdateId": "my_ota_update1",
+      "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update1",
+      "creationDate": 1522775938.956
+    },
+    {
+      "otaUpdateId": "my_ota_update",
+      "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update",
+      "creationDate": 1522775151.031
+    }
+  ]
 }
 ```
 
@@ -414,37 +422,35 @@ Output from the get\-ota\-update command looks like this:
 
 ```
 {
-    "otaUpdateInfo": {
-        "otaUpdateId": "myotaupdate1",
-        "otaUpdateArn":
-        "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update",
-        "creationDate": 1522444438.424,
-        "lastModifiedDate": 1522444440.681,
-        "description": "a test OTA update",
-        "targets": [
-            "arn:aws:iot:us-west-2:123456789012:thing/myDevice"
-        ],
-        "targetSelection": "SNAPSHOT",
-        "otaUpdateFiles": [
-            {
-                "fileName": "app.bin",
-                "fileLocation": {
-                	"stream": {
-                    	"streamId": "003",
-                    	"fileId": 123
-                	}
-                }
-
-                "codeSigning": {
-                    "awsSignerJobId": "592932bb-24a1-4f91-8ddd-66145352ad19",
-                    "customCodeSigning": {}
-                }
-            }
-        ],
-        "otaUpdateStatus": "OTA-STATUS",
-        "awsIotJobId": "f76da3c0_10eb_41df_9029_ba7abc20f609",
-        "awsIotJobArn": "arn:aws:iot:us-west-2:123456789012:job/f76da3c0_10eb_41df_9029_ba7abc20f609"
-    }
+  "otaUpdateInfo": {
+    "otaUpdateId": "myotaupdate1",
+    "otaUpdateArn": "arn:aws:iot:us-west-2:123456789012:otaupdate/my_ota_update",
+    "creationDate": 1522444438.424,
+    "lastModifiedDate": 1522444440.681,
+    "description": "a test OTA update",
+    "targets": [
+      "arn:aws:iot:us-west-2:123456789012:thing/myDevice"
+    ],
+    "targetSelection": "SNAPSHOT",
+    "otaUpdateFiles": [
+      {
+        "fileName": "app.bin",
+        "fileLocation": {
+          "stream": {
+            "streamId": "003",
+            "fileId": 123
+          }
+        },
+        "codeSigning": {
+          "awsSignerJobId": "592932bb-24a1-4f91-8ddd-66145352ad19",
+          "customCodeSigning": {}
+        }
+      }
+    ],
+    "otaUpdateStatus": "OTA-STATUS",
+    "awsIotJobId": "f76da3c0_10eb_41df_9029_ba7abc20f609",
+    "awsIotJobArn": "arn:aws:iot:us-west-2:123456789012:job/f76da3c0_10eb_41df_9029_ba7abc20f609"
+  }
 }
 ```
 
@@ -525,9 +531,11 @@ Depending on the number of job executions created for the job and other factors,
 You can use the delete\-job\-execution to delete a job execution\. You might want to delete a job execution when a small number of devices are unable to process a job\. This deletes the job execution for a single device\. For example:
 
 ```
-aws iot delete-job-execution --job-id <your-job-id --thing-name
-					<your-thing-name> --execution-number
- <your-job-execution-number --no-force
+aws iot delete-job-execution \
+    --job-id <your-job-id \
+    --thing-name <your-thing-name> \
+    --execution-number <your-job-execution-number \
+    --no-force
 ```
 
 As with the delete\-job CLI command, you can pass the `--force` parameter to the delete\-job\-execution to force the deletion of an execution job execution\. For more information , see [DeleteJobExecution API](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteJobExecution.html)\.

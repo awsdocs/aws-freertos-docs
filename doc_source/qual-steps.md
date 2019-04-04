@@ -48,10 +48,10 @@ To configure your AWS credentials using environment variables, set the `AWS_ACCE
 
 ```
 {
-	"awsRegion": "us-west-2",
-	"auth": {
-		"method": "environment"
-	}
+  "awsRegion": "us-west-2",
+  "auth": {
+    "method": "environment"
+  }
 }
 ```
 
@@ -61,13 +61,13 @@ Create a credentials file that contains your credentials\. AWS IoT Device Tester
 
 ```
 {
-	"awsRegion": "us-west-2",
-	"auth": {
-		"method": "file",
-		"credentials": {
-			"profile": "default"
-		}
-	}
+  "awsRegion": "us-west-2",
+  "auth": {
+    "method": "file",
+    "credentials": {
+      "profile": "default"
+    }
+  }
 }
 ```
 
@@ -165,46 +165,46 @@ The following is an example `device.json` file used to create a device pool with
 
 ```
 [{
-	"id": "<pool-id>",
-	"sku": "<sku>",
-	"features": [
-		{
-			"name": "WIFI",
-			"value": "Yes | No"
-		},
-		{
-			"name": "OTA",
-			"value": "Yes | No"
-		},
-		{
-			"name": "TCP/IP",
-			"value": "On-chip | Offloaded | No"
-		},
-		{
-			"name": "TLS",
-			"value": "On-chip | Offloaded | No"
-		}
-	],
-	"devices": [{
-		"id": "<device-id1>",
-		"connectivity": {
-			"protocol": "uart",
-			"serialPort": "<computer_serial_port_1>"
-		},
-		"identifiers": [{
-			"name": "serialNo",
-			"value": "<serialNo-value>"
-		}]
-		"id": "<device-id2>",
-		"connectivity": {
-			"protocol": "uart",
-			"serialPort": "<computer_serial_port_2>"
-		},
-		"identifiers": [{
-			"name": "serialNo",
-			"value": "<serialNo-value>"
-		}]
-	}]
+  "id": "<pool-id>",
+  "sku": "<sku>",
+  "features": [
+    {
+      "name": "WIFI",
+      "value": "Yes | No"
+    },
+    {
+      "name": "OTA",
+      "value": "Yes | No"
+    },
+    {
+      "name": "TCP/IP",
+      "value": "On-chip | Offloaded | No"
+    },
+    {
+      "name": "TLS",
+      "value": "On-chip | Offloaded | No"
+    }
+  ],
+  "devices": [{
+    "id": "<device-id1>",
+    "connectivity": {
+      "protocol": "uart",
+      "serialPort": "<computer_serial_port_1>"
+    },
+    "identifiers": [{
+      "name": "serialNo",
+      "value": "<serialNo-value>"
+    }]
+    "id": "<device-id2>",
+    "connectivity": {
+      "protocol": "uart",
+      "serialPort": "<computer_serial_port_2>"
+    },
+    "identifiers": [{
+      "name": "serialNo",
+      "value": "<serialNo-value>"
+    }]
+  }]
 }]
 ```
 
@@ -304,41 +304,41 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 
 ```
 {  
-       "sourcePath":"<absolute-path-to/amazon-freertos>",
-       "buildTool":{  
-          "name":"<your-build-tool-name>",
-          "version":"<your-build-tool-version>",
-          "command":[  
-             "<absolute-path-to/build-parallel-script> {{testData.sourcePath}}"
-          ]
-       },
-       "flashTool":{  
-          "name":"<your-flash-tool-name>",
-          "version":"<your-flash-tool-version>",
-          "command":[  
-             "<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}}"
-          ]
-       },
-       "clientWifiConfig":{  
-          "wifiSSID":"<ssid>",
-          "wifiPassword":"<password>",
-          "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
-       },
-       "testWifiConfig":{  
-          "wifiSSID":"<ssid>",
-          "wifiPassword":"<password>",
-          "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
-       },
-       "otaConfiguration":{  
-          "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
-          "deviceFirmwareFileName":"<absolute-path-to/ota-image-on-device>",
-          "awsSignerPlatform":"AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
-          "awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
-          "awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
-          "awsSignerCertificateFileName":"<awsSignerCertificate-file-name>",
-          "compileCodesignerCertificate":true | false
-       }
-    }
+  "sourcePath":"<absolute-path-to/amazon-freertos>",
+  "buildTool":{  
+    "name":"<your-build-tool-name>",
+    "version":"<your-build-tool-version>",
+    "command":[  
+      "<absolute-path-to/build-parallel-script> {{testData.sourcePath}}"
+    ]
+  },
+  "flashTool":{  
+    "name":"<your-flash-tool-name>",
+    "version":"<your-flash-tool-version>",
+    "command":[  
+      "<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}}"
+    ]
+  },
+  "clientWifiConfig":{  
+    "wifiSSID":"<ssid>",
+    "wifiPassword":"<password>",
+    "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+  },
+  "testWifiConfig":{  
+    "wifiSSID":"<ssid>",
+    "wifiPassword":"<password>",
+    "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+  },
+  "otaConfiguration":{  
+    "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
+    "deviceFirmwareFileName":"<absolute-path-to/ota-image-on-device>",
+    "awsSignerPlatform":"AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
+    "awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
+    "awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
+    "awsSignerCertificateFileName":"<awsSignerCertificate-file-name>",
+    "compileCodesignerCertificate":true | false
+  }
+}
 ```
 
 The following lists the attributes used in `userdata.json`:

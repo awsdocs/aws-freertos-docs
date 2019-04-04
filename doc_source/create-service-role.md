@@ -45,17 +45,18 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 1. Copy and paste the following policy document into the text box:
 
    ```
-   {
-       "Version": "2012-10-17",
-       "Statement": [{
-               "Effect": "Allow",
-               "Action": [
-                   "iam:GetRole",
-                   "iam:PassRole"
-               ],
-               "Resource": 
-               "arn:aws:iam::<your_account_id>:role/<your_role_name>"
-       }]
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "iam:GetRole",
+            "iam:PassRole"
+          ],
+          "Resource": "arn:aws:iam::<your_account_id>:role/<your_role_name>"
+        }
+      ]
    }
    ```
 
@@ -77,15 +78,18 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 
    ```
    {
-       "Version": "2012-10-17",
-       "Statement": [{
-               "Effect": "Allow",
-               "Action": [
-                   "s3:GetObjectVersion",
-                   "s3:GetObject"
-               ],
-               "Resource": "arn:aws:s3:::<example-bucket>/*"
-       }]
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": [
+           "s3:GetObjectVersion",
+           "s3:GetObject",
+           "s3:PutObject"
+         ],
+         "Resource": "arn:aws:s3:::<example-bucket>/*"
+       }
+     ]
    }
    ```
 
