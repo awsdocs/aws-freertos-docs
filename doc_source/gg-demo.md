@@ -45,13 +45,11 @@ You can also connect your board to AWS IoT and configure your Amazon FreeRTOS de
 
       ```
       {
-            "Effect": "Allow",
-            "Action": [
-              "greengrass:*"
-            ],
-            "Resource": [
-              "*"
-            ]
+        "Effect": "Allow",
+        "Action": [
+          "greengrass:*"
+        ],
+        "Resource": "*"
       }
       ```
 

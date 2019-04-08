@@ -74,17 +74,19 @@ The following steps are written with the assumption that you have used the aws c
 
    ```
    {
-   	"Version": "2012-10-17",
-   	"Statement": [{
-   		"Effect": "Allow",
-   		"Action": "iot:*",
-   		"Resource": "*"
-   	},
-   	{
-   		"Effect": "Allow",
-   		"Action": "greengrass:*",
-   		"Resource": "*"
-   	}]
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Action": "iot:*",
+         "Resource": "*"
+       },
+       {
+        "Effect": "Allow",
+         "Action": "greengrass:*",
+         "Resource": "*"
+       }
+     ]
    }
    ```
 

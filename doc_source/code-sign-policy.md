@@ -21,9 +21,7 @@ In production environments, you should digitally sign your firmware update to en
          "Action": [
            "signer:*"
          ],
-         "Resource": [
-           "*"
-         ]
+         "Resource": "*"
        }
      ]
    }
