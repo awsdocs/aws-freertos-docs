@@ -141,14 +141,14 @@ The following is an example log generated when a stream is created:
 
 ```
 { 
-    "timestamp": "2018-07-23 23:00:26.391", 
-    "logLevel": "DEBUG", 
-    "accountId": "123456789012", 
-    "status": "Success", 
-    "actionType": "CreateStream", 
-    "otaUpdateId": "3d3dc5f7-3d6d-47ac-9252-45821ac7cfb0", 
-    "streamId": "6be2303d-3637-48f0-ace9-0b87b1b9a824", 
-    "details": "Create stream. The request status is SUCCESS." 
+	"timestamp": "2018-07-23 23:00:26.391", 
+	"logLevel": "DEBUG", 
+	"accountId": "123456789012", 
+	"status": "Success", 
+	"actionType": "CreateStream", 
+	"otaUpdateId": "3d3dc5f7-3d6d-47ac-9252-45821ac7cfb0", 
+	"streamId": "6be2303d-3637-48f0-ace9-0b87b1b9a824", 
+	"details": "Create stream. The request status is SUCCESS." 
 }
 ```
 
@@ -156,13 +156,13 @@ The following is an example log generated when an OTA update is deleted:
 
 ```
 { 
-    "timestamp": "2018-07-23 23:03:09.505", 
-    "logLevel": "DEBUG", 
-    "accountId": "123456789012", 
-    "status": "Success", 
-    "actionType": "DeleteOTAUpdate", 
-    "otaUpdateId": "9bdd78fb-f113-4001-9675-1b595982292f", 
-    "details": "Delete OTA Update. The request status is SUCCESS." 
+	"timestamp": "2018-07-23 23:03:09.505", 
+	"logLevel": "DEBUG", 
+	"accountId": "123456789012", 
+	"status": "Success", 
+	"actionType": "DeleteOTAUpdate", 
+	"otaUpdateId": "9bdd78fb-f113-4001-9675-1b595982292f", 
+	"details": "Delete OTA Update. The request status is SUCCESS." 
 }
 ```
 
@@ -170,16 +170,16 @@ The following is an example log generated when a device requests a stream from t
 
 ```
 { 
-    "timestamp": "2018-07-25 22:09:02.678", 
-    "logLevel": "DEBUG", 
-    "accountId": "123456789012", 
-    "status": "Success", 
-    "actionType": "GetStream", 
-    "protocol": "MQTT", 
-    "clientId": "b9d2e49c-94fe-4ed1-9b07-286afed7e4c8", 
-    "topicName": "$aws/things/b9d2e49c-94fe-4ed1-9b07-286afed7e4c8/streams/1e51e9a8-9a4c-4c50-b005-d38452a956af/get/json", 
-    "streamId": "1e51e9a8-9a4c-4c50-b005-d38452a956af", 
-    "details": "The request status is SUCCESS." 
+	"timestamp": "2018-07-25 22:09:02.678", 
+	"logLevel": "DEBUG", 
+	"accountId": "123456789012", 
+	"status": "Success", 
+	"actionType": "GetStream", 
+	"protocol": "MQTT", 
+	"clientId": "b9d2e49c-94fe-4ed1-9b07-286afed7e4c8", 
+	"topicName": "$aws/things/b9d2e49c-94fe-4ed1-9b07-286afed7e4c8/streams/1e51e9a8-9a4c-4c50-b005-d38452a956af/get/json", 
+	"streamId": "1e51e9a8-9a4c-4c50-b005-d38452a956af", 
+	"details": "The request status is SUCCESS." 
 }
 ```
 
@@ -187,16 +187,16 @@ The following is an example log generated when a device calls the `DescribeStrea
 
 ```
 { 
-    "timestamp": "2018-07-25 22:10:12.690", 
-    "logLevel": "DEBUG", 
-    "accountId": "123456789012", 
-    "status": "Success", 
-    "actionType": "DescribeStream", 
-    "protocol": "MQTT", 
-    "clientId": "581075e0-4639-48ee-8b94-2cf304168e43", 
-    "topicName": "$aws/things/581075e0-4639-48ee-8b94-2cf304168e43/streams/71c101a8-bcc5-4929-9fe2-af563af0c139/describe/json", 
-    "streamId": "71c101a8-bcc5-4929-9fe2-af563af0c139", 
-    "clientToken": "clientToken", 
-    "details": "The request status is SUCCESS." 
+	"timestamp": "2018-07-25 22:10:12.690", 
+	"logLevel": "DEBUG", 
+	"accountId": "123456789012", 
+	"status": "Success", 
+	"actionType": "DescribeStream", 
+	"protocol": "MQTT", 
+	"clientId": "581075e0-4639-48ee-8b94-2cf304168e43", 
+	"topicName": "$aws/things/581075e0-4639-48ee-8b94-2cf304168e43/streams/71c101a8-bcc5-4929-9fe2-af563af0c139/describe/json", 
+	"streamId": "71c101a8-bcc5-4929-9fe2-af563af0c139", 
+	"clientToken": "clientToken", 
+	"details": "The request status is SUCCESS." 
 }
 ```

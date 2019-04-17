@@ -6,4 +6,4 @@ To use over\-the\-air updates, you need to do the following:
 + [Create an OTA User Policy](create-ota-user-policy.md)\.
 + [Create a Code\-Signing Certificate](ota-code-sign-cert.md)\.
 + If you are using Code Signing for AWS IoT, [Grant Access to Code Signing for AWS IoT](code-sign-policy.md)\.
-+ [Download Amazon FreeRTOS with the OTA Library](ota-download-freertos.md)\. If you are not using Amazon FreeRTOS, you can provide your own OTA agent implementation\.
++ [Download Amazon FreeRTOS with the OTA Library](ota-download-freertos.md)\.

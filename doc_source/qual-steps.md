@@ -12,9 +12,7 @@ To add library porting layers for Amazon FreeRTOS device libraries \(TCP/IP, WiF
 
 ## Configure Your AWS Credentials<a name="cfg-aws-afr"></a>
 
-You must configure your AWS credentials in the `<devicetester_extract_location>/devicetester_afreertos_[win|mac|linux]/configs/config.json`\. You can specify your credentials in one of two ways:
-+ Environment variables
-+ Credentials file
+For Device Tester to communicate with the AWS cloud, valid AWS credentials must be specified in the `<devicetester_extract_location>/devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\. You can provide credentials to this file with environment variables or with a separate credentials file\.
 
 ### Configuring AWS Credentials with Environment Variables<a name="config-env-vars-afr"></a>
 
@@ -48,16 +46,16 @@ To configure your AWS credentials using environment variables, set the `AWS_ACCE
 
 ```
 {
-  "awsRegion": "us-west-2",
-  "auth": {
-    "method": "environment"
-  }
+	"awsRegion": "us-west-2",
+	"auth": {
+		"method": "environment"
+	}
 }
 ```
 
 ### Configuring AWS Credentials with a Credentials File<a name="config-cred-file"></a>
 
-Create a credentials file that contains your credentials\. AWS IoT Device Tester uses the same credentials file as the AWS CLI\. For more information, see \. You must also specify a named profile\. For more information, see [Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)\. The following is an example JSON snippet that shows how to specify AWS credentials using a credentials file in the config\.json file:
+Create a credentials file that contains your credentials\. AWS IoT Device Tester uses the same credentials file as the AWS CLI\. You must also specify a named profile\. For more information, see [Configuration and Credential Files](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)\. The following is an example JSON snippet that shows how to specify AWS credentials using a credentials file in the config\.json file:
 
 ```
 {
@@ -220,37 +218,37 @@ The `userdata.json` must have the following structure:
 {  
    "sourcePath":"<path-to-afr-source-code>",
    "buildTool":{  
-      "name":"<your-build-tool-name>",
-      "version":"<your-build-tool-version>",
-      "command":[  
-         "<your-build-script>"
-      ]
+    "name":"<your-build-tool-name>",
+    "version":"<your-build-tool-version>",
+    "command":[  
+     "<your-build-script>"
+    ]
    },
    "flashTool":{  
-      "name":"<your-flash-tool-name>",
-      "version":"<your-flash-tool-version>",
-      "command":[  
-         "<your-flash-script>"
-      ]
+    "name":"<your-flash-tool-name>",
+    "version":"<your-flash-tool-version>",
+    "command":[  
+     "<your-flash-script>"
+    ]
    },
    "clientWifiConfig":{  
-      "wifiSSID":"<your-wifi-ssid",
-      "wifiPassword":""<your-wifi-password>",
-      "wifiSecurityType":"<wifi-security-type>"
+    "wifiSSID":"<your-wifi-ssid",
+    "wifiPassword":""<your-wifi-password>",
+    "wifiSecurityType":"<wifi-security-type>"
    },
    "testWifiConfig":{  
-      "wifiSSID":"<your-wifi-ssid",
-      "wifiPassword":""<your-wifi-password>",
-      "wifiSecurityType":"<wifi-security-type>"
+    "wifiSSID":"<your-wifi-ssid",
+    "wifiPassword":""<your-wifi-password>",
+    "wifiSecurityType":"<wifi-security-type>"
    },
    "otaConfiguration":{  
-      "otaFirmwareFilePath":"<path-to-the-device-binary>",
-      "deviceFirmwareFileName":"<your-device-firmware-name>.bin",
-      "awsSignerPlatform":"AmazonFreeRTOS-Default",
-      "awsSignerCertificateArn":"arn:aws:acm:us-east-1:1000000001:certificate/e416379d-f3d6-46f3-868e-8721075ff076",
-      "awsUntrustedSignerCertificateArn":"arn:aws:acm:us-east-1:1000000001:certificate/0c81e2c6-f85e-46b1-9ed1-2c404309b210",
-      "awsSignerCertificateFileName":"ecdsa-sha256-signer.crt.pem",
-      "compileCodesignerCertificate":true
+    "otaFirmwareFilePath":"<path-to-the-device-binary>",
+    "deviceFirmwareFileName":"<your-device-firmware-name>.bin",
+    "awsSignerPlatform":"AmazonFreeRTOS-Default",
+    "awsSignerCertificateArn":"arn:aws:acm:us-east-1:1000000001:certificate/e416379d-f3d6-46f3-868e-8721075ff076",
+    "awsUntrustedSignerCertificateArn":"arn:aws:acm:us-east-1:1000000001:certificate/0c81e2c6-f85e-46b1-9ed1-2c404309b210",
+    "awsSignerCertificateFileName":"ecdsa-sha256-signer.crt.pem",
+    "compileCodesignerCertificate":true
    }
 }
 ```
@@ -304,32 +302,32 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 
 ```
 {  
-  "sourcePath":"<absolute-path-to/amazon-freertos>",
-  "buildTool":{  
+    "sourcePath":"<absolute-path-to/amazon-freertos>",
+    "buildTool":{  
     "name":"<your-build-tool-name>",
     "version":"<your-build-tool-version>",
     "command":[  
-      "<absolute-path-to/build-parallel-script> {{testData.sourcePath}}"
+       "<absolute-path-to/build-parallel-script> {{testData.sourcePath}}"
     ]
-  },
-  "flashTool":{  
+    },
+    "flashTool":{  
     "name":"<your-flash-tool-name>",
     "version":"<your-flash-tool-version>",
     "command":[  
-      "<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}}"
+       "<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}}"
     ]
-  },
-  "clientWifiConfig":{  
+    },
+    "clientWifiConfig":{  
     "wifiSSID":"<ssid>",
     "wifiPassword":"<password>",
     "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
-  },
-  "testWifiConfig":{  
+    },
+    "testWifiConfig":{  
     "wifiSSID":"<ssid>",
     "wifiPassword":"<password>",
     "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
-  },
-  "otaConfiguration":{  
+    },
+    "otaConfiguration":{  
     "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
     "deviceFirmwareFileName":"<absolute-path-to/ota-image-on-device>",
     "awsSignerPlatform":"AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
@@ -337,7 +335,7 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
     "awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
     "awsSignerCertificateFileName":"<awsSignerCertificate-file-name>",
     "compileCodesignerCertificate":true | false
-  }
+    }
 }
 ```
 

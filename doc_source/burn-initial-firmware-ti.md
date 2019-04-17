@@ -1,6 +1,6 @@
 # Install the Initial Version of Firmware on the Texas Instruments CC3200SF\-LAUNCHXL<a name="burn-initial-firmware-ti"></a>
 
-These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download and Build Amazon FreeRTOS for the Texas Instruments CC3200SF\-LAUNCHXL](ota-download-freertos.md#download-ota-ti)\.<a name="burn-demo-ti"></a>
+These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Texas Instruments CC3200SF\-LAUNCHXL](download-ota-ti.md)\.<a name="burn-demo-ti"></a>
 
 1. On your Texas Instruments CC3200SF\-LAUNCHXL, place the SOP jumper on the middle set of pins \(position = 1\) and reset the board\.
 

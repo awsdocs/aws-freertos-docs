@@ -1,26 +1,38 @@
-# Getting Started with the Microchip Curiosity PIC32MZEF<a name="getting_started_mch"></a>
+# Getting Started with the Microchip Curiosity PIC32MZ EF<a name="getting_started_mch"></a>
 
-If you do not have the Microchip Curiosity PIC32MZEF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\. You need the following items:
-+ [MikroElectronika USB UART Click Board](https://www.mikroe.com/usb-uart-click)
-+ [RJ\-11 to ICSP Adapter](https://www.microchipdirect.com/product/search/all/ac164110)
+If you do not have the Microchip Curiosity PIC32MZ EF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\. The bundle includes the following items:
++ [Curiosity PIC32MZ EF Development Board](https://www.microchip.com/Developmenttools/ProductDetails/DM320104)
++ [MikroElectronika USB UART click Board](https://www.mikroe.com/usb-uart-click)
++ [MikroElectronika WiFi 7 click Board](https://www.mikroe.com/wifi-7-click) 
 + [PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
-+ [MikroElectronika WiFi 7 Click Board](https://www.mikroe.com/wifi-7-click) 
+
+You also need the following items for debugging:
++ [MPLAB Snap In\-Circuit Debugger](https://www.microchip.com/Developmenttools/ProductDetails/PG164100) 
++ \(Optional\) [PICkit 3 Programming Cable Kit](https://new.microchipdirect.com/product/search/all/TPROG001) 
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up the Microchip Curiosity PIC32MZEF Hardware<a name="setup-hw-mch"></a>
+## Setting Up the Microchip Curiosity PIC32MZ EF Hardware<a name="setup-hw-mch"></a>
 
-1. Connect the [MikroElectronika USB UART Click Board](https://download.mikroe.com/documents/add-on-boards/click/usb-uart/usb-uart-click-manual-v100.pdf) to the microBUS 1 connector on the Microchip Curiosity PIC32MZEF\.
+1. Connect the MikroElectronika USB UART click Board to the microBUS 1 connector on the Microchip Curiosity PIC32MZ EF\.
 
-1. Connect the [PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3) to the J18 header on the Microchip Curiosity PIC32MZEF\.
+1. Connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\.
 
-1. Connect the [MikroElectronika USB UART Click Board](https://www.mikroe.com/usb-uart-click) to your computer using a USB A to USB mini\-B cable\.
+1. Connect the MikroElectronika USB UART click Board to your computer using a USB A to USB mini\-B cable\.
 
-1. Connect the [MikroElectronika WiFi 7 Click Board](https://www.mikroe.com/wifi-7-click) to the microBUS 2 connector on the Microchip Curiosity PIC32MZEF\.
+1. Connect the MikroElectronika WiFi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\.
 
-1. Connect the [RJ\-11 to ICSP Adapter](https://www.microchipdirect.com/product/search/all/ac164110) to the Microchip Curiosity PIC32MZEF\.
+1. If not done already, solder the angle connector to the ICSP header on the Microchip Curiosity PIC32MZ EF\.
 
-1. Insert the RJ\-11 to ICSP Adaptor J2 into the ICSP header on the Microchip Curiosity PIC32MZEF at the J16\.
+1. Connect one end of the ICSP cable from the PICkit 3 Programming Cable Kit to the Microchip Curiosity PIC32MZ EF\.
+
+   If you don't have the PICkit 3 Programming Cable Kit, you can use M\-F Dupont wire jumpers to wire the connection instead\. Note that the white circle signifies the position of Pin 1\.
+
+1. Connect the other end of the ICSP cable \(or jumpers\) to the MPLAB Snap Debugger\. Pin 1 of the 8\-pin SIL Programming Connector is marked by the black triangle on the bottom right of the board\.
+
+   Make sure that any cabling to Pin 1 on the Microchip Curiosity PIC32MZ EF, signified by the white circle, aligns with Pin 1 on the MPLAB Snap Debugger\.
+
+   For more information about the MPLAB Snap Debugger, see the [MPLAB Snap In\-Circuit Debugger Information Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLAB%20Snap%20In-Circuit%20Debugger%20IS%20DS50002787A.pdf)\.
 
 1. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
@@ -35,12 +47,12 @@ Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download t
    + [MPLAB X Integrated Development Environment for macOS](http://www.microchip.com/mplabx-ide-osx-installer)
    + [MPLAB X Integrated Development Environment for Linux](http://www.microchip.com/mplabx-ide-linux-installer)
 
-1. Install version 2\.10 of the MPLAB XC32 Compiler:
-   + [MPLAB XC32/32\+\+ Compiler for Windows](http://ww1.microchip.com/downloads/en/DeviceDoc/xc32-v2.10-full-install-windows-installer.exe)
-   + [MPLAB XC32/32\+\+ Compiler for macOS](http://ww1.microchip.com/downloads/en/DeviceDoc/xc32-v2.10-full-install-osx-installer.dmg)
-   + [MPLAB XC32/32\+\+ Compiler for Linux](http://ww1.microchip.com/downloads/en/DeviceDoc/xc32-v2.10-full-install-linux-installer.run)
+1. Install the latest version of the MPLAB XC32 Compiler:
+   + [MPLAB XC32/32\+\+ Compiler for Windows](http://www.microchip.com/mplabxc32windows)
+   + [MPLAB XC32/32\+\+ Compiler for macOS](http://www.microchip.com/mplabxc32osx)
+   + [MPLAB XC32/32\+\+ Compiler for Linux](http://www.microchip.com/mplabxc32linux)
 
-1. Install the latest version of the MPLAB Harmony Integrated Software Framework \(optional\):
+1. \(Optional\) Install the latest version of the MPLAB Harmony Integrated Software Framework:
    + [MPLAB Harmony Integrated Software Framework for Windows](http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en603881)
    + [MPLAB Harmony Integrated Software Framework for macOS](http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en603883)
    + [MPLAB Harmony Integrated Software Framework for Linux](http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en603882)
@@ -77,10 +89,6 @@ warning: Configuration "pic32mz_ef_curiosity" refers to file "AmazonFreeRTOS/lib
 1. On the **Projects** tab, right\-click the `aws_demos` top\-level folder, and then choose **Debug**\.
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
-
-**Note**  
-For improved performance, you can optionally purchase the [MPLAB ICD 4 In\-Circuit Debugger](http://www.microchip.com/Developmenttools/ProductDetails.aspx?PartNO=DV164045)\. The ICD 4 makes it possible for you to step through code more quickly, add an unlimited number of breakpoints, and add breakpoints without restarting the debugger\.  
-The first time you debug the samples with the ICD 4 debugger, an **ICD 4 not Found** dialog box is displayed\. In the tree view, under the **ICD 4** node, choose the ICD4 serial number, and then choose **OK**\.
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

@@ -15,7 +15,7 @@ After you complete the [First Steps](freertos-prereqs.md), you can set up your p
 + [Getting Started with the Cypress CYW954907AEVAL1F Development Kit](getting_started_cypress_54.md)
 + [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)
 + [Getting Started with the MediaTek MT7697Hx Development Kit](getting_started_mediatek.md)
-+ [ Getting Started with the Microchip Curiosity PIC32MZEF](getting_started_mch.md)
++ [ Getting Started with the Microchip Curiosity PIC32MZ EF](getting_started_mch.md)
 + [Getting Started with the NXP LPC54018 IoT Module](getting_started_nxp.md)
 + [Getting Started with the Renesas Starter Kit\+ for RX65N\-2MB](getting_started_renesas.md)
 + [Getting Started with the STMicroelectronics STM32L4 Discovery Kit IoT Node](getting_started_st.md)

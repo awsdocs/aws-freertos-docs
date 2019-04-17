@@ -143,15 +143,17 @@ The Amazon FreeRTOS demo applications have two common components:
 
 ### Network Manager<a name="ble-demo-network-manager"></a>
 
-Network Manager manages your microcontroller's network connection\. It is located in your Amazon FreeRTOS directory at `\demos\common\network_manager\aws_iot_network_manager.c`\. If the Network Manager is enabled for both Wi\-Fi and BLE, the demos start with BLE by default\. If the BLE connection is disrupted, and your board is Wi\-Fi\-enabled, the Network Manager switches to an available Wi\-Fi connection to prevent you from disconnecting from the network\.
+Network Manager manages your microcontroller's network connection\. It is located in your Amazon FreeRTOS directory at `/demos/common/network_manager/aws_iot_network_manager.c`\. If the Network Manager is enabled for both Wi\-Fi and BLE, the demos start with BLE by default\. If the BLE connection is disrupted, and your board is Wi\-Fi\-enabled, the Network Manager switches to an available Wi\-Fi connection to prevent you from disconnecting from the network\.
 
-To enable a network connection type with the Network Manager, add the network connection type to the `configENABLED_NETWORKS` parameter in `demos/vendor/board/common/config_files/aws_iot_network_config.h`\. For example, if you have both BLE and Wi\-Fi enabled, the line that starts with `#define configENABLED_NETWORKS` in `aws_iot_network_config.h` reads as follows:
+To enable a network connection type with the Network Manager, add the network connection type to the `configENABLED_NETWORKS` parameter in `demos/vendor/board/common/config_files/aws_iot_network_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
+
+For example, if you have both BLE and Wi\-Fi enabled, the line that starts with `#define configENABLED_NETWORKS` in `aws_iot_network_config.h` reads as follows:
 
 ```
 #define  configENABLED_NETWORKS  ( AWSIOT_NETWORK_TYPE_BLE | AWSIOT_NETWORK_TYPE_WIFI )
 ```
 
-To get a list of currently supported network connection types, see the lines that begin with `#define AWSIOT_NETWORK_TYPE` in `lib\include\aws_iot_network.h`\.
+To get a list of currently supported network connection types, see the lines that begin with `#define AWSIOT_NETWORK_TYPE` in `lib/include/aws_iot_network.h`\.
 
 ### Amazon FreeRTOS BLE Mobile SDK Demo Application<a name="ble-sdk-app"></a>
 
@@ -234,7 +236,7 @@ When you define configuration variables, use the format of the placeholder value
 1. Confirm that your microcontroller appears under **Devices** on the BLE Mobile SDK demo app\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list1.png)
 **Note**  
-All devices with Amazon FreeRTOS and the device information service \(`\lib\bluetooth_low_energy\services\device_information`\) that are in range appear in the list\.
+All devices with Amazon FreeRTOS and the device information service \(`/lib/bluetooth_low_energy/services/device_information`\) that are in range appear in the list\.
 
 1. Choose your microcontroller from the list of devices\. The application establishes a connection with the board, and a green line appears next to the connected device\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list2.png)
@@ -268,17 +270,17 @@ You can run the MQTT demo over a BLE or Wi\-Fi connection\. The configuration of
 
 If you use BLE to pair the microcontroller with your mobile device, the MQTT messages are routed through the BLE Mobile SDK demo application on your mobile device\.
 
-If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at [demos/common/mqtt/aws\_hello\_world\.c](https://github.com/aws/amazon-freertos/blob/master/demos/common/mqtt/aws_hello_world.c)\. That demo is used in most of the [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
+If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at `demos/common/mqtt/aws_hello_world.c`\. That demo is used in most of the [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
 
 **To enable the demo**
 
 If you have already enabled the BLE demo by following the instructions in the Getting Started guide for your device, you can skip these instructions\.
 
-1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1`\.
+1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
 **Note**  
 The Wi\-Fi Provisioning service is disabled by default\.
 
-1. Open `demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\.
+1. Open `demos/common/include/iot_demo_runner.h`, comment out `#define democonfigMQTTDemo_ENABLED`, and uncomment `#define democonfigBLE_MQTT_ECHO_DEMO_ENABLED`\.
 
 **To run the demo**
 
@@ -309,7 +311,7 @@ The Android version of the demo mobile application does not currently support Wi
 
 **To enable the demo**
 
-1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1`\.
+1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
 **Note**  
 The Wi\-Fi Provisioning service is disabled by default\.
 
@@ -347,11 +349,11 @@ Using the BLE Mobile SDKs, you can create your own GATT client for a mobile devi
 
 **To enable the demo**
 
-1. Enable the BLE GATT demo\. In `demos/vendor/board/common/config_files/aws_ble_config.h`, add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
+1. Enable the BLE GATT demo\. In `demos/vendor/board/common/config_files/aws_ble_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\), add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
 **Note**  
 The BLE GATT demo is disabled by default\.
 
-1. Open `demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\.
+1. Open `demos/common/include/iot_demo_runner.h`, comment out `#define democonfigMQTTDemo_ENABLED`, and uncomment `#define democonfigBLE_MQTT_ECHO_DEMO_ENABLED`\.
 
 **To run the demo**
 

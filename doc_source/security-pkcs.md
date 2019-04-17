@@ -82,7 +82,7 @@ The following steps are written with the assumption that you have used the aws c
          "Resource": "*"
        },
        {
-        "Effect": "Allow",
+         "Effect": "Allow",
          "Action": "greengrass:*",
          "Resource": "*"
        }

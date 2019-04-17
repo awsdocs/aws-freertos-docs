@@ -1,6 +1,6 @@
 # Install the Initial Version of Firmware on the Microchip Curiosity PIC32MZEF<a name="burn-initial-firmware-microchip"></a>
 
-These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download and Build Amazon FreeRTOS for the Microchip Curiosity PIC32MZEF](ota-download-freertos.md#download-ota-mchip)\.<a name="mch-burn-demo"></a>
+These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Microchip Curiosity PIC32MZEF](download-ota-mchip.md)\.<a name="mch-burn-demo"></a>
 
 **To burn the demo application onto your board**
 

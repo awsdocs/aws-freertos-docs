@@ -1,8 +1,6 @@
 # Over\-the\-Air Updates Demo Application<a name="ota-demo"></a>
 
-Amazon FreeRTOS includes a demo application that demonstrates the use of the OTA library\. The OTA demo application is located in the `demos\common\ota` subdirectory\.
-
-Before you create an OTA update, read [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
+Amazon FreeRTOS includes a demo application that demonstrates the functionality of the OTA library\. The OTA demo application is located in the `demos\common\ota` subdirectory\.
 
 The OTA demo application:
 
@@ -16,7 +14,14 @@ The OTA demo application:
 
 1. Calls `OTA_AgentInit` to create the OTA task and registers a callback to be used when the OTA task is complete\.
 
-You can use the AWS IoT console or the AWS CLI to create an OTA update job\. After you have created an OTA update job, connect a terminal emulator to see the progress of the OTA update\. Make a note of any errors generated during the process\.
+Before you can use OTA updates, read [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
+
+After you complete the required set up for OTA updates, download, build, flash, and run the Amazon FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following Amazon FreeRTOS\-qualified devices:
++ [Texas Instruments CC3200SF\-LAUNCHXL](download-ota-ti.md)
++ [Microchip Curiosity PIC32MZEF](download-ota-mchip.md)
++ [Espressif ESP32](download-ota-esp.md)
+
+After you build, flash, and run the OTA demo application on your device, you can use the AWS IoT console or the AWS CLI to create an OTA update job\. After you have created an OTA update job, connect a terminal emulator to see the progress of the OTA update\. Make a note of any errors generated during the process\.
 
 A successful OTA update job displays output like the following\. Some lines in this example have been removed from the listing for brevity\.
 

@@ -6,8 +6,6 @@ Amazon FreeRTOS is a real\-time operating system that augments the [FreeRTOS ker
 
 Amazon FreeRTOS is typically flashed to devices as a single compiled image with all of the components required for device applications\. This image combines functionality for the applications written by the embedded developer, the software libraries provided by Amazon, the FreeRTOS kernel, and drivers and board support packages \(BSPs\) for the hardware platform\. Independent of the individual microcontroller being used, embedded application developers can expect the same standardized interfaces to the FreeRTOS kernel and all Amazon FreeRTOS software libraries\.
 
-You can click on the icons in the diagram below to learn more about the specific components of the Amazon FreeRTOS architecture\.
-
 
 
 ## The FreeRTOS Kernel<a name="freertos-kernel"></a>

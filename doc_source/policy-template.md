@@ -5,8 +5,8 @@ The following is a policy template that grants the permissions required for AWS 
 ```
 {
   "Version": "2012-10-17",
-    "Statement": [
-      {
+  "Statement": [
+    {
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": [

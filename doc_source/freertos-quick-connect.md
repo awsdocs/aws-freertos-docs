@@ -1,0 +1,3 @@
+# Quick Connect Workflow<a name="freertos-quick-connect"></a>
+
+The Amazon FreeRTOS console also includes the Quick Connect workflow option for all boards with predefined configurations\. The Quick Connect workflow helps you configure and run Amazon FreeRTOS demo applications for AWS IoT and AWS IoT Greengrass\. To get started, choose the **Predefined configurations** tab, find your board, and then choose **Quick connect** and follow the Quick Connect workflow steps\. 
