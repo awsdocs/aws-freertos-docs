@@ -1,6 +1,8 @@
 # Getting Started with the Microchip Curiosity PIC32MZ EF<a name="getting_started_mch"></a>
 
-If you do not have the Microchip Curiosity PIC32MZ EF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\. The bundle includes the following items:
+This tutorial provides instructions for getting started with the Microchip Curiosity PIC32MZ EF\. If you do not have the Microchip Curiosity PIC32MZ EF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\.
+
+The bundle includes the following items:
 + [Curiosity PIC32MZ EF Development Board](https://www.microchip.com/Developmenttools/ProductDetails/DM320104)
 + [MikroElectronika USB UART click Board](https://www.mikroe.com/usb-uart-click)
 + [MikroElectronika WiFi 7 click Board](https://www.mikroe.com/wifi-7-click) 
@@ -12,7 +14,21 @@ You also need the following items for debugging:
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up the Microchip Curiosity PIC32MZ EF Hardware<a name="setup-hw-mch"></a>
+## Overview<a name="w3aab7c19c19c15"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+## Set Up the Microchip Curiosity PIC32MZ EF Hardware<a name="setup-hw-mch"></a>
 
 1. Connect the MikroElectronika USB UART click Board to the microBUS 1 connector on the Microchip Curiosity PIC32MZ EF\.
 
@@ -36,7 +52,7 @@ Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download t
 
 1. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
-## Setting Up Your Environment<a name="setup-env_mch"></a>
+## Set Up Your Development Environment<a name="setup-env_mch"></a>
 
 1. Install the latest [Java SE SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)\.
 

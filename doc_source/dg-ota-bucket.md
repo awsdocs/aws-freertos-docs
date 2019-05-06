@@ -10,7 +10,7 @@ OTA update files are stored in Amazon S3 buckets\. If you are using Code Signing
 
 1. Type a bucket name, and then choose **Next**\.
 
-1. Check **Versioning** to keep all versions in the same bucket, and then choose **Next**\.
+1. Select **Versioning** to keep all versions in the same bucket, and then choose **Next**\.
 
 1. Choose **Next** to accept the default permissions\.
 

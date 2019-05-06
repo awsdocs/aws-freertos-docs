@@ -1,17 +1,17 @@
 # Using Tags with IAM Policies<a name="console-tagging-iam"></a>
 
-You can apply tag\-based, resource\-level permissions in the IAM policies that you use for operations on the Amazon FreeRTOS console\. This gives you better control over which configurations a user can create, modify, or use\. For more information about using tagging and IAM policies for AWS IoT, see [Using Tags with IAM Policies](https://docs.aws.amazon.com/iot/latest/developerguide/tagging-iot-iam.html)\.
+You can use the Amazon FreeRTOS console to apply tag\-based, resource\-level permissions in the IAM policies that you use for operations\. This gives you better control over which configurations a user can create, modify, or use\. For more information about using tagging and IAM policies for AWS IoT, see [Using Tags with IAM Policies](https://docs.aws.amazon.com/iot/latest/developerguide/tagging-iot-iam.html) in the *AWS IoT Developer Guide*\.
 
 In the IAM policy definition, use the `Condition` element \(also called the `Condition` block\) with the following condition context keys and values to control user access \(permissions\) based on a resource's tags: 
 + Use `aws:ResourceTag/tag-key: tag-value` to allow or deny user actions on Amazon FreeRTOS configurations with specific tags\.
-+ Use `aws:RequestTag/tag-key: tag-value` to require that a specific tag be used \(or not used\) when creating or modifying a configuration on the Amazon FreeRTOS console\.
-+ Use `aws:TagKeys: [tag-key, ...]` to require that a specific set of tag keys be used \(or not used\) when creating or modifying a configuration on the Amazon FreeRTOS console\.
++ Use `aws:RequestTag/tag-key: tag-value` to require that a specific tag be used \(or not used\) when creating or modifying a configuration in the Amazon FreeRTOS console\.
++ Use `aws:TagKeys: [tag-key, ...]` to require that a specific set of tag keys be used \(or not used\) when creating or modifying a configuration in the Amazon FreeRTOS console\.
 
- [Controlling Access Using Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *AWS Identity and Access Management User Guide* has additional information on using tags\. The [IAM JSON Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) section of that guide has detailed syntax, descriptions, and examples of the elements, variables, and evaluation logic of JSON policies in IAM\.
+For more information, see [Controlling Access Using Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *AWS Identity and Access Management User Guide*\. For detailed syntax, descriptions, and examples of the elements, variables, and evaluation logic of JSON policies in IAM, see the [IAM JSON Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html)\.
 
 The following example policy applies two tag\-based restrictions\. An IAM user restricted by this policy:
-+ Cannot give a resource the tag "env=prod" \(in the example, see the line `"aws:RequestTag/env" : "prod"`
-+ Cannot modify or access a resource that has an existing tag "env=prod" \(in the example, see the line `"aws:ResourceTag/env" : "prod"`\)\.
++ Cannot give a resource the tag `env=prod` \(in the example, see the line `"aws:RequestTag/env" : "prod"`
++ Cannot modify or access a resource that has an existing tag `env=prod` \(in the example, see the line `"aws:ResourceTag/env" : "prod"`\)\.
 
 ```
 {

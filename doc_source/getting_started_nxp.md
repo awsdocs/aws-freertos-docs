@@ -1,10 +1,20 @@
 # Getting Started with the NXP LPC54018 IoT Module<a name="getting_started_nxp"></a>
 
-If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
+This tutorial provides instructions for getting started with the NXP LPC54018 IoT Module\. If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up Your Environment<a name="setup-env_nxp"></a>
+## Overview<a name="w3aab7c19c23b7"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+## Set Up Your Development Environment<a name="setup-env_nxp"></a>
 
 Amazon FreeRTOS supports two IDEs for the NXP LPC54018 IoT Module: IAR Embedded Workbench and MCUXpresso\.
 

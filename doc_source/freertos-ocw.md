@@ -16,11 +16,11 @@ You can also customize a predefined configuration if you want to change the Amaz
 
 1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
 
-1. Choose the ellipsis next to the predefined configuration that you want to customize, and then choose **Customize**\.
+1. Choose the ellipsis \(**…**\) next to the predefined configuration that you want to customize, and then choose **Customize**\.
 
 1. On the **Configure Amazon FreeRTOS Software** page, choose the Amazon FreeRTOS version, hardware platform, and libraries, and give the new configuration a name and a description\.
 
-1. At the bottom of the page, choose **Create and download** to create and download the custom configuration\.
+1. At the bottom of the page, choose **Create and download**\.
 
 ## Custom Amazon FreeRTOS Configurations<a name="freertos-custom-configurations"></a>
 
@@ -46,7 +46,7 @@ Do not use any personally identifiable information in your custom configuration 
 
 1. In **Description**, enter a description for your custom configuration\.
 
-1. At the bottom of the page, choose **Create and download** to create and download your custom configuration\.
+1. At the bottom of the page, choose **Create and download**\.
 
 **To edit a custom configuration**
 
@@ -56,11 +56,11 @@ Do not use any personally identifiable information in your custom configuration 
 
 1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
 
-1. Choose the ellipsis next to the configuration you want to edit, and then choose **Edit**\.
+1. Choose the ellipsis \(**…**\) next to the configuration you want to edit, and then choose **Edit**\.
 
 1. On the **Configure Amazon FreeRTOS Software** page, you can change your configuration's Amazon FreeRTOS version, hardware platform, libraries, and description\.
 
-1. At the bottom of the page, choose **Save and download** to save and download the configuration\.
+1. At the bottom of the page, choose **Save and download**\.
 
 **To delete a custom configuration**
 
@@ -70,4 +70,4 @@ Do not use any personally identifiable information in your custom configuration 
 
 1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
 
-1. Choose the ellipsis next to the configuration you want to delete, and then choose **Delete**\.
+1. Choose the ellipsis \(**…**\) next to the configuration you want to delete, and then choose **Delete**\.

@@ -20,9 +20,9 @@ Save the zip file that contains Amazon FreeRTOS and the OTA demo code to your co
 
 1. Extract the \.zip file\.
 
-1. Follow the instructions in [Getting Started with Amazon FreeRTOS](freertos-getting-started.md), to import the `aws_demos` project into Code Composer Studio, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
+1. Follow the instructions in [Getting Started with Amazon FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into Code Composer Studio, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
-1. Open the project in Code Composer Studio and open `demos/common/demo_runner/aws_demo_runner.c`\. Find the `DEMO_RUNNER_RunDemos` function and make sure all function calls are commented out except `vStartOTAUpdateDemoTask`\.
+1. Open the project in Code Composer Studio and open `demos/common/demo_runner/aws_demo_runner.c`\. Find the `DEMO_RUNNER_RunDemos` function and make sure all function calls except `vStartOTAUpdateDemoTask`are commented out\.
 
 1. Build the solution and make sure it builds without errors\.
 
@@ -32,7 +32,7 @@ Save the zip file that contains Amazon FreeRTOS and the OTA demo code to your co
    + Parity: None
    + Stop bits: 1
 
-1. Run the project on your board to make sure it can connect to Wi\-Fi and the AWS IoT MQTT message broker\.
+1. Run the project on your board to confirm it can connect to Wi\-Fi and the AWS IoT MQTT message broker\.
 
 When run, the terminal emulator should display text like the following:
 

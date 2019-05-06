@@ -6,6 +6,8 @@ If you are following the **Quick Connect** workflow on the [Amazon FreeRTOS cons
 
 **To configure your AWS IoT endpoint**
 
+You need to provide Amazon FreeRTOS with your AWS IoT endpoint so the application running on your board can send requests to the correct endpoint\.
+
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
 1. In the navigation pane, choose **Settings**\.
@@ -23,8 +25,8 @@ If you are following the **Quick Connect** workflow on the [Amazon FreeRTOS cons
    + `#define clientcredentialIOT_THING_NAME "The AWS IoT thing name of your board"`
 
 **To configure your Wi\-Fi**
-**Note**  
-If your board does not support Wi\-Fi, you can skip these steps\.
+
+If your board is connecting to the internet across a Wi\-Fi connection, you need to provide Amazon FreeRTOS with Wi\-Fi credentials to connect to the network\. If your board does not support Wi\-Fi, you can skip these steps\.
 
 1. `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h`\.
 
@@ -40,6 +42,8 @@ If your board does not support Wi\-Fi, you can skip these steps\.
      + `eWiFiSecurityWPA2` \(WPA2 security\)
 
 **To format your AWS IoT credentials**
+
+Amazon FreeRTOS needs the AWS IoT certificate and private keys associated with your registered thing and its permissions policies to successfully communicate with AWS IoT on behalf of your device\.
 **Note**  
 To configure your AWS IoT credentials, you need the private key and certificate that you downloaded from the AWS IoT console when you registered your device\. After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
 

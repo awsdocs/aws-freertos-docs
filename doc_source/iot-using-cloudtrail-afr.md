@@ -2,7 +2,7 @@
 
 Amazon FreeRTOS is integrated with CloudTrail, a service that captures all of the AWS IoT OTA API calls and delivers the log files to an Amazon S3 bucket that you specify\. CloudTrail captures API calls from your code to the AWS IoT OTA APIs\. Using the information collected by CloudTrail, you can determine the request that was made to AWS IoT OTA, the source IP address from which the request was made, who made the request, when it was made, and so on\. 
 
-To learn more about CloudTrail, including how to configure and enable it, see the [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
+For more information about CloudTrail, including how to configure and enable it, see the [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
 ## Amazon FreeRTOS Information in CloudTrail<a name="aws-iot-info-in-cloudtrail-afr"></a>
 
@@ -11,20 +11,20 @@ When CloudTrail logging is enabled in your AWS account, most API calls made to A
 **Note**  
 AWS IoT OTA data plane actions \(device side\) are not logged by CloudTrail\. Use CloudWatch to monitor these\.
 
-AWS IoT OTA control plane actions are logged by CloudTrail\. For example, calls to the CreateOTAUpdate, GetOTAUpdate, and CreateStream sections generate entries in the CloudTrail log files\. 
+AWS IoT OTA control plane actions are logged by CloudTrail\. For example, calls to the `CreateOTAUpdate`, `GetOTAUpdate`, and `CreateStream` sections generate entries in the CloudTrail log files\. 
 
 Every log entry contains information about who generated the request\. The user identity information in the log entry helps you determine the following: 
 + Whether the request was made with root or IAM user credentials\.
 + Whether the request was made with temporary security credentials for a role or federated user\.
 + Whether the request was made by another AWS service\.
 
-For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\. AWS OTA IoT actions are documented in the [AWS IoT OTA API Reference](https://docs.aws.amazon.com/iot/latest/apireference/)\.
+For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\. AWS IoT OTA actions are documented in the [AWS IoT OTA API Reference](https://docs.aws.amazon.com/iot/latest/apireference/)\.
 
 You can store your log files in your Amazon S3 bucket for as long as you want, but you can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. By default, your log files are encrypted with Amazon S3 server\-side encryption \(SSE\)\.
 
-If you want to be notified upon log file delivery, you can configure CloudTrail to publish Amazon SNS notifications when new log files are delivered\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)\.
+If you want to be notified when log files are delivered, you can configure CloudTrail to publish Amazon SNS notifications\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)\.
 
-You can also aggregate AWS IoT OTA log files from multiple AWS regions and multiple AWS accounts into a single Amazon S3 bucket\. 
+You can also aggregate AWS IoT OTA log files from multiple AWS Regions and multiple AWS accounts into a single Amazon S3 bucket\. 
 
 For more information, see [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)\.
 

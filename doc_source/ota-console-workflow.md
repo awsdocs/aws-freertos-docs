@@ -22,17 +22,17 @@ Only hardware platforms that have been qualified for Amazon FreeRTOS are display
 
    1. Under **Code signing certificate**, choose **Select** to select a previously imported certificate or **Import** to import a new certificate\.
 
-   1. Under **Pathname of code signing certificate on device**, enter the fully\-qualified path name to the code\-signing certificate on your device\. The certificate's location varies by platform, and should be the location where you put the code\-signing certificate when you followed the instructions at [Installing the Initial Firmware](dg-ota-initial-firmware.md)\.
+   1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code\-signing certificate on your device\. The certificate's location varies by platform\. It should be the location where you put the code\-signing certificate when you followed the instructions in [Installing the Initial Firmware](dg-ota-initial-firmware.md)\.
 **Note**  
-When running on the Microchip Curiosity PIC32MZEF, the code\-signing certificate is first searched for in the certificate store by name\. If not found, a built\-in certificate is used\.
+When you run on the Microchip Curiosity PIC32MZEF, it searches for the code\-signing certificate in the certificate store by name\. If not found, a built\-in certificate is used\.
 **Important**  
-On the Texas Instruments CC3220SF\-LAUNCHXL, do not include a leading slash character \(**/**\) in front of the file name if your code signing certificate exists in the root of the file system on this platform\. Otherwise, the OTA update fails during authentication with a `file not found` error\.
+On the Texas Instruments CC3220SF\-LAUNCHXL, do not include a leading forward slash \(**/**\) in front of the file name if your code signing certificate exists in the root of the file system\. Otherwise, the OTA update fails during authentication with a `file not found` error\.
 
 1. Under **Select your firmware image in S3 or upload it**, choose **Select**\. A list of your Amazon S3 buckets is displayed\. Choose the bucket that contains your firmware update, and then choose your firmware update in the bucket\.
 **Note**  
 The Microchip Curiosity PIC32MZEF demo projects produce two binary images with default names of `mplab.production.bin` and `mplab.production.ota.bin`\. Use the second file when you upload an image for OTA updating\.
 
-1. Under **Pathname of firmware image on device**, enter the fully\-qualified path name to the location where the firmware image will be copied onto your device\. This location also varies by platform\.
+1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location where the firmware image is copied onto your device\. This location varies by platform\.
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the firmware image path name must be `/sys/mcuflashimg.bin`\.
 
@@ -44,13 +44,13 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Under **Job type**, choose **Your job will complete after deploying to the selected devices/groups \(snapshot\)**\.
 
-1. Enter an ID and a description for your OTA update job and then choose **Create**\.<a name="previously-signed"></a>
+1. Enter an ID and description for your OTA update job, and then choose **Create**\.<a name="previously-signed"></a>
 
 **To use a previously signed firmware image**
 
 1. Under **Select and sign your firmware image**, choose **Select a previously signed firmware image**\.
 
-1. Under **Pathname of firmware image on device**, enter the fully\-qualified path name to the location where the firmware image will be copied onto your device\. This might be different on different platforms\.
+1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location where the firmware image is copied onto your device\. This location might be different on different platforms\.
 
 1. Under **Previous code signing job**, choose **Select**, and then choose the previous code\-signing job used to sign the firmware image you are using for the OTA update\.<a name="custom-signed"></a>
 
@@ -58,15 +58,15 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Under **Select and sign your firmware image**, choose **Use my custom signed firmware image**\.
 
-1. Under **Pathname of code signing certificate on device**, enter the fully\-qualified path name to the code\-signing certificate on your device\. This might be different for different platforms\.
+1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code\-signing certificate on your device\. This path name might be different for different platforms\.
 
-1. Under **Pathname of firmware image on device**, enter the fully\-qualified path name to the location where the firmware image will be copied onto your device\. This might be different on different platforms\.
+1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location where the firmware image is copied onto your device\. This path name might be different on different platforms\.
 
 1. Under **Signature**, paste your PEM format signature\.
 
-1. Under **Original hash algorithm**, choose the hash algorithm that was used when creating your file signature\.
+1. Under **Original hash algorithm**, choose the hash algorithm that was used when you created your file signature\.
 
-1. Under **Original encryption algorithm**, choose the algorithm that was used when creating your file signature\.
+1. Under **Original encryption algorithm**, choose the algorithm that was used when you created your file signature\.
 
 1. Under **Select your firmware image in Amazon S3**, choose the Amazon S3 bucket and the signed firmware image in the Amazon S3 bucket\.
 
@@ -85,7 +85,7 @@ Medical information\.
 
 1. Under **IAM role for OTA update job**, choose your OTA service role\.
 
-1. Enter an alphanumeric ID for your job and then choose **Create**\.
+1. Enter an alphanumeric ID for your job, and then choose **Create**\.
 
 The job appears in the AWS IoT console with a status of **IN PROGRESS**\.
 
@@ -96,4 +96,4 @@ Connect your serial UART terminal to your device\. You should see output that in
 
 After the device downloads the updated firmware, it restarts and then installs the firmware\. You can see what's happening in the UART terminal\.
 
-For a complete walkthrough of how to use the console to create an OTA update, see [Over\-the\-Air Updates Demo Application](ota-demo.md)\.
+For a tutorial that shows you how to use the console to create an OTA update, see [Over\-the\-Air Updates Demo Application](ota-demo.md)\.

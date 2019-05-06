@@ -1,11 +1,25 @@
 # Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT<a name="getting_started_espressif"></a>
 
-If you don't have an Espressif ESP32\-DevKitC, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC) on the AWS Partner Device Catalog\. If you don't have an Espressif ESP32\-WROVER\-KIT, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT) on the AWS Partner Device Catalog\. Both devices are supported on Amazon FreeRTOS\. For more information about these boards, see [ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
+This tutorial provides instructions for getting started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT\. If you don't have an Espressif ESP32\-DevKitC, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC) on the AWS Partner Device Catalog\. If you don't have an Espressif ESP32\-WROVER\-KIT, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT) on the AWS Partner Device Catalog\. Both devices are supported on Amazon FreeRTOS\. For more information about these boards, see [ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
 
 **Note**  
 Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
 Lightweight IP\.
 Symmetric multiprocessing \(SMP\)\.
+
+## Overview<a name="w3aab7c19c13b7"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Prerequisites<a name="setup-espressif-prereqs"></a>
 
@@ -49,7 +63,7 @@ For more information about IAM and user accounts, see [IAM User Guide](https://d
 
 For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
-## Setting Up the Espressif Hardware<a name="setup-hw-espressif"></a>
+## Set Up the Espressif Hardware<a name="setup-hw-espressif"></a>
 
 See the [ESP32\-DevKitC Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html) for information about setting up the ESP32\-DevKitC development board hardware\.
 
@@ -58,25 +72,27 @@ See the [ESP\-WROVER\-KIT Getting Started Guide](https://docs.espressif.com/proj
 **Note**  
 Do not proceed to the **Get Started** section of the Espressif guides\. Instead, follow the steps below\.
 
-## Setting Up Your Environment<a name="setup-env-esspressif"></a>
+## Set Up Your Development Environment<a name="setup-env-esspressif"></a>
 
-### Establishing a Serial Connection<a name="establish-serial-connection"></a>
-
-To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\. 
-
-To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you must install some FTDI virtual COM port drivers\. You can download these drivers from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
-
-For more information, see [Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
+To communicate with your board, you need to download and install a toolchain\.
 
 ### Setting Up the Toolchain<a name="setup-toolchain"></a>
 
-You must set up the Espressif toolchain to communicate with your board\. To set up the toolchain, follow the instructions for your host machine's operating system:
+To set up the toolchain, follow the instructions for your host machine's operating system:
 
 **Note**  
 When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.   If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the  `IDF_PATH` environment variable from your system before continuing\.
 + [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/windows-setup.html)
 + [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
 + [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html)
+
+## Establish a Serial Connection<a name="establish-serial-connection"></a>
+
+To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\. 
+
+To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you must install some FTDI virtual COM port drivers\. You can download these drivers from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
+
+For more information, see [Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
 
 ## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
 

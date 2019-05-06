@@ -106,4 +106,4 @@ This guide is written with the assumption that you have already performed the st
    [ ... ]
    ```
 
-1. The ESP32 board is now listening for OTA updates\. The ESP\-IDF monitor is launched by the `make flash monitor` command\. You can press Ctrl\+\] to quit\. You can also use your favorite TTY terminal program \(for example, PuTTY, Tera Term, or GNU Screen\) to listen to the board's serial output; examples might include \. Be aware that connecting to the board's serial port might cause it to reboot\.
+1. The ESP32 board is now listening for OTA updates\. The ESP\-IDF monitor is launched by the `make flash monitor` command\. You can press Ctrl\+\] to quit\. You can also use your favorite TTY terminal program \(for example, PuTTY, Tera Term, or GNU Screen\) to listen to the board's serial output\. Be aware that connecting to the board's serial port might cause it to reboot\.

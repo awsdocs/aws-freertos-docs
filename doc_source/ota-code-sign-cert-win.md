@@ -1,9 +1,9 @@
 # Creating a Code\-Signing Certificate for the Amazon FreeRTOS Windows Simulator<a name="ota-code-sign-cert-win"></a>
 
-The Amazon FreeRTOS Windows simulator requires a code\-signing certificate with an ECDSA P\-256 key and SHA\-256 hash to perform OTA updates\. If you don't have a code\-signing certificate, follow the steps below to create one\.
+The Amazon FreeRTOS Windows simulator requires a code\-signing certificate with an ECDSA P\-256 key and SHA\-256 hash to perform OTA updates\. If you don't have a code\-signing certificate, follow these steps to create one\.
 
 **Note**  
-To create a code signing certificate, you need to install [OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.  
+To create a code\-signing certificate, install [OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.  
 You need to use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
 
 1. In your working directory, use the following text to create a file named `cert_config.txt`\. Replace *test\_signer@amazon\.com* with your email address:

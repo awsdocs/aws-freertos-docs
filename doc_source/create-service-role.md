@@ -20,7 +20,7 @@ The OTA Update service assumes this role to create and manage OTA update jobs on
 
 1. Choose **Next: Review**\.
 
-1. Type a role name and description, and then choose **Create role**\.
+1. Enter a role name and description, and then choose **Create role**\.
 
 For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)\.<a name="add-ota-permissions"></a>
 
@@ -30,13 +30,13 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 
 1. Choose **Attach policies**\.
 
-1. In the **Search** box, enter **AmazonFreeRTOSOTAUpdate**, check **AmazonFreeRTOSOTAUpdate** from the list of filtered policies, and then choose **Attach policy** to attach the policy to your service role\.
+1. In the **Search** box, enter **AmazonFreeRTOSOTAUpdate**, select **AmazonFreeRTOSOTAUpdate** from the list of filtered policies, and then choose **Attach policy** to attach the policy to your service role\.
 
-1. Follow the same instructions from the previous step to attach the **AWSIoTThingsRegistration** policy to your service role\.<a name="add-iam-permissions"></a>
+1. Follow the same instructions in the previous step to attach the **AWSIoTThingsRegistration** policy to your service role\.<a name="add-iam-permissions"></a>
 
 **To add the required IAM permissions to your OTA service role**
 
-1. In the search box on the IAM console page, enter the name of your role and then choose it from the list\.
+1. In the search box on the IAM console page, enter the name of your role, and then choose it from the list\.
 
 1. Choose **Add inline policy**\.
 
@@ -68,7 +68,7 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 
 **To add the required Amazon S3 permissions to your OTA service role**
 
-1. In the search box on the IAM console page, enter the name of your role and then choose it from the list\.
+1. In the search box on the IAM console page, enter the name of your role, and then choose it from the list\.
 
 1. Choose **Add inline policy**\.
 

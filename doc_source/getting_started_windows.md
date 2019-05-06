@@ -1,10 +1,12 @@
 # Getting Started with the Windows Device Simulator<a name="getting_started_windows"></a>
 
+This tutorial provides instructions for getting started with the Amazon FreeRTOS Windows Device Simulator\.
+
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-Amazon FreeRTOS is released as a zip file that contains the Amazon FreeRTOS libraries and sample applications for the platform you specify\. To run the samples on a Windows machine, download the libraries and samples ported to run on Windows\. This set of files is referred to as the FreeRTOS simulator for Windows\.
+Amazon FreeRTOS is released as a zip file that contains the Amazon FreeRTOS libraries and sample applications for the platform you specify\. To run the samples on a Windows machine, download the libraries and samples ported to run on Windows\. This set of files is referred to as the Amazon FreeRTOS simulator for Windows\.
 
-## Setting Up Your Environment<a name="win-setup-env"></a>
+## Set Up Your Development Environment<a name="win-setup-env"></a>
 
 1. Install the latest version of [WinPCap](https://www.winpcap.org/)\.
 

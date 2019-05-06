@@ -1,10 +1,22 @@
 # Getting Started with the MediaTek MT7697Hx Development Kit<a name="getting_started_mediatek"></a>
 
-If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
+This tutorial provides instructions for getting started with the MediaTek MT7697Hx Development Kit\. If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up Your Environment<a name="mediatek-setup-env"></a>
+## Overview<a name="w3aab7c19c17b7"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+## Set Up Your Development Environment<a name="mediatek-setup-env"></a>
 
 Before you set up your environment, connect your computer to the USB port on the MediaTek MT7697Hx Development Kit\.
 
@@ -25,11 +37,14 @@ Keil MDK is supported on Windows 7, Windows 8, and Windows 10 64\-bit machines o
 
 1. Open the Keil MDK installer and follow the steps to completion\. Make sure that you install the MediaTek device pack \(MT76x7 Series\)\.
 
-### Set Up a Serial Connection<a name="mediatek-serial-connection"></a>
+## Establish a Serial Connection<a name="mediatek-serial-connection"></a>
 
 To establish a serial connection with the MediaTek MT7697Hx Development Kit, you must install the Arm Mbed Windows serial port driver\. You can download the driver from [Mbed](https://os.mbed.com/docs/latest/tutorials/windows-serial-driver.html)\. Follow the steps on the **Windows serial driver** page to download and install the driver for the MediaTek MT7697Hx Development Kit\. 
 
 After you install the driver, a COM port appears in the Windows Device Manager\. For debugging, you can open a session to the port with a terminal utility tool such as HyperTerminal or TeraTerm\.
+
+**Note**  
+If you are having trouble connecting to your board after you install the driver, you might need to reboot your machine\.
 
 ## Build and Run the Amazon FreeRTOS Demo Project with Keil MDK<a name="mediatek-build-and-run-keil"></a>
 
@@ -112,5 +127,22 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 1. In the **Call Stack \+ Locals** window, change the value for `wait_ice` to `0`\. 
 
 1. Set breakpoints in your project's source code, and run the code\. 
+
+### Troubleshooting the IDE Debugger Settings<a name="w3aab7c19c17c15b5"></a>
+
+If you are having trouble debugging an application, your debugger settings might be incorrect\.
+
+**To verify that your debugger settings are correct**
+
+1. Open Keil μVision\.
+
+1. Right\-click the `aws_demos` project, choose **Options**, and under the **Utilities** tab, choose **Settings**, next to **“\-\- Use Debug Driver \-\-”**\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-1.png)
+
+1. Verify that the settings under the **Debug** tab appear as follows:  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-2.png)
+
+1. Verify that the settings under the **Flash Download** tab appear as follows:  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-3.png)
 
 For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

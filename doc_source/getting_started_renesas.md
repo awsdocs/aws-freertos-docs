@@ -1,10 +1,22 @@
 # Getting Started with the Renesas Starter Kit\+ for RX65N\-2MB<a name="getting_started_renesas"></a>
 
-If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
+This tutorial provides instructions for getting started with the Renesas Starter Kit\+ for RX65N\-2MB\. If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up the Renesas Hardware<a name="renesas-setup-hardware"></a>
+## Overview<a name="w3aab7c19c25b7"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+## Set Up the Renesas Hardware<a name="renesas-setup-hardware"></a>
 
 **To set up the RSK\+ for RX65N\-2MB**
 
@@ -24,7 +36,7 @@ Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download t
 
    Note that administrator privileges are required to install the drivers\.
 
-## Setting Up Your Environment<a name="renesas-setup-env"></a>
+## Set Up Your Development Environment<a name="renesas-setup-env"></a>
 
 To set up Amazon FreeRTOS configurations for the RSK\+ for RX65N\-2MB, use the Renesas e2studio IDE and CC\-RX compiler\. 
 

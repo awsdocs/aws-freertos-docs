@@ -1,15 +1,23 @@
 # AWS IoT Device Shadow Demo Application<a name="shadow-demo"></a>
 
-The device shadow example demonstrates how to programmatically update and respond to changes in a device shadow\. The device in this scenario is a light bulb whose color can be set to red or green\. The device shadow example app is located in the `AmazonFreeRTOS/demos/common/shadow` directory\. This example creates three tasks:
+Amazon FreeRTOS includes a demo application that demonstrates how to programmatically update and respond to changes in an AWS IoT Device Shadow\. This demo application is defined in `AmazonFreeRTOS/demos/common/shadow/aws_shadow_lightbulb_on_off.c`\. The device in this scenario is a light bulb whose color can be set to red or green\.
+
+The demo application creates three tasks:
 + A main demo task that calls `prvShadowMainTask`\.
 + A device update task that calls `prvUpdateTask`\.
 + A number of shadow update tasks that call `prvShadowUpdateTasks`\.
 
-`prvShadowMainTask` initializes the device shadow client and initiates an MQTT connection to AWS IoT\. It then creates the device update task\. Finally, it creates shadow update tasks and then terminates\. The `democonfigSHADOW_DEMO_NUM_TASKS` constant defined in `AmazonFreeRTOS/demos/common/shadow/aws_shadow_lightbulb_on_off.c` controls the number of shadow update tasks created\.
+`prvShadowMainTask` initializes the Device Shadow client and initiates an MQTT connection to AWS IoT with the client credentials specified in `demos/common/include/aws_clientcredential.h`\. The information specified in `aws_clientcredential.h`, including your your device's AWS IoT thing name and the MQTT broker endpoint and port, must be correct for the application to successfully connect to the AWS cloud\.
 
-`prvShadowUpdateTasks` generates an initial thing shadow document and updates the device shadow with the document\. It then goes into an infinite loop that periodically updates the thing shadow's desired state, requesting the light bulb change its color \(from red to green to red\)\.
+After the MQTT connection is established, the application creates the device update task\. Finally, it creates shadow update tasks and then terminates\. The `democonfigSHADOW_DEMO_NUM_TASKS` constant defined in `AmazonFreeRTOS/demos/common/shadow/aws_shadow_lightbulb_on_off.c` controls the number of shadow update tasks created\.
 
-`prvUpdateTask` responds to changes in the device shadow's desired state\. When the desired state changes, this task updates the reported state of the device shadow to reflect the new desired state\.
+`prvShadowUpdateTasks` generates an initial thing shadow document and updates the shadow with the document\. It then goes into an infinite loop that periodically updates the thing shadow's desired state, requesting that the light bulb change its color \(from red to green to red\)\.
+
+`prvUpdateTask` responds to changes in the shadow's desired state\. When the desired state changes, this task updates the reported state of the shadow to reflect the new desired state\.
+
+Before you can run the Device Shadow demo, you must complete the getting started [First Steps](freertos-prereqs.md) to set up AWS IoT and Amazon FreeRTOS so your device can communicate with the AWS cloud\.
+
+After you set up AWS IoT and Amazon FreeRTOS, do the following:
 
 1. Add the following policy to your device certificate:
 
@@ -45,12 +53,14 @@ The device shadow example demonstrates how to programmatically update and respon
 
 1. Uncomment the declaration of and call to `vStartShadowDemoTasks` in `aws_demo_runner.c`\. This function creates a task that runs the `prvShadowMainTask` function\.
 
+1. Build, flash, and run Amazon FreeRTOS to your device\.
+
 You can use the AWS IoT console to view your device's shadow and confirm that its desired and reported states change periodically\.
 
 1. In the AWS IoT console, from the left navigation pane, choose **Manage**\. 
 
 1. Under **Manage**, choose **Things**, and then choose the thing whose shadow you want to view\.
 
-1. On the thing detail page, from the left navigation pane, choose **Shadow** to display the thing shadow\. 
+1. On the thing detail page, from the left navigation pane, choose **Shadow** to display the thing shadow\.
 
-For more information about how devices and shadows interact, see [Device Shadow Data Flow](http://docs.aws.amazon.com/iot/latest/developerguide/thing-shadow-data-flow.html)\.
+For more information about how devices and shadows interact, see [Device Shadow Service Data Flow](http://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-data-flow.html)\.

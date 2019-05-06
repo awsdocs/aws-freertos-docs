@@ -16,7 +16,7 @@ The OTA demo application:
 
 Before you can use OTA updates, read [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
 
-After you complete the required set up for OTA updates, download, build, flash, and run the Amazon FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following Amazon FreeRTOS\-qualified devices:
+After you complete the setup for OTA updates, download, build, flash, and run the Amazon FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following Amazon FreeRTOS\-qualified devices:
 + [Texas Instruments CC3200SF\-LAUNCHXL](download-ota-ti.md)
 + [Microchip Curiosity PIC32MZEF](download-ota-mchip.md)
 + [Espressif ESP32](download-ota-esp.md)

@@ -1,12 +1,24 @@
 # Getting Started with the Infineon XMC4800 IoT Connectivity Kit<a name="getting_started_infineon"></a>
 
-If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
+This tutorial provides instructions for getting started with the Infineon XMC4800 IoT Connectivity Kit\. If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up Your Environment<a name="infineon-setup-env"></a>
+## Overview<a name="w3aab7c19c15b9"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+## Set Up Your Development Environment<a name="infineon-setup-env"></a>
 
 Amazon FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, you need to download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
 
@@ -28,7 +40,7 @@ For more information, see the [DAVE Quick Start Guide](https://www.infineon.com/
 
 To communicate with the XMC4800 Relax EtherCAT board's on\-board debugging probe, you need the drivers included in the J\-Link Software and Documentation pack\. You can download the J\-Link Software and Documentation pack from Segger's [J\-Link software download](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack) page\.
 
-### Set Up a Serial Connection<a name="install-serial-connection"></a>
+## Establish a Serial Connection<a name="install-serial-connection"></a>
 
 Setting up a serial connection is optional, but recommended\. A serial connection allows your board to send logging and debugging information in a form that you can view on your development machine\.
 

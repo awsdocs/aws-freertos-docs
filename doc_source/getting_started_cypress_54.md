@@ -1,6 +1,6 @@
 # Getting Started with the Cypress CYW954907AEVAL1F Development Kit<a name="getting_started_cypress_54"></a>
 
-If you do not have the Cypress CYW954907AEVAL1F Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)\.
+This tutorial provides instructions for getting started with the Cypress CYW954907AEVAL1F Development Kit\. If you do not have the Cypress CYW954907AEVAL1F Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)\.
 
 **Note**  
 This tutorial walks you through setting up and running the MQTT Hello World demo\. The Amazon FreeRTOS port for this board currently does not support the TCP server and client demos\.
@@ -11,7 +11,19 @@ Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download t
 The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.  
 As noted in [Downloading Amazon FreeRTOS](freertos-download.md), Amazon FreeRTOS ports for Cypress are currently only available on [GitHub](https://github.com/aws/amazon-freertos)\.
 
-## Setting Up Your Environment<a name="cypress-setup-env"></a>
+## Overview<a name="w3aab7c19c11c11"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+## Setting Up Your Development Environment<a name="cypress-setup-env"></a>
 
 ### Download and Install the WICED Studio SDK<a name="install-wiced-studio"></a>
 
@@ -61,7 +73,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-6.2`
    chmod +x make
    ```
 
-### Establish a Serial Connection<a name="cypress-serial-connection"></a>
+## Establishing a Serial Connection<a name="cypress-serial-connection"></a>
 
 **To establish a serial connection between your host machine and your board**
 

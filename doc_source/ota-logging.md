@@ -36,7 +36,7 @@ The OTA Update service publishes logs to your account when one of the following 
 
 You can view your logs in the [CloudWatch console\.](https://console.aws.amazon.com/cloudwatch/home)
 
-**To view an OTA Update in CloudWatch Logs**
+**To view an OTA update in CloudWatch Logs**
 
 1. From the navigation pane, choose **Logs**\.
 
@@ -49,13 +49,13 @@ The AWS account ID in which the log was generated\.
 
 actionType  
 The action that generated the log\. This can be set to one of the following values:  
-+ CreateOTAUpdate: An OTA update was created\.
-+ DeleteOTAUpdate: An OTA update was deleted\.
-+ StartCodeSigning: A code\-signing job was started\.
-+ CreateAWSJob: An AWS IoT job was created\.
-+ CreateStream: A stream was created\.
-+ GetStream: A request for a stream was sent to the AWS IoT Streaming service\.
-+ DescribeStream: A request for information about a stream was sent to the AWS IoT Streaming service\.
++ `CreateOTAUpdate`: An OTA update was created\.
++ `DeleteOTAUpdate`: An OTA update was deleted\.
++ `StartCodeSigning`: A code\-signing job was started\.
++ `CreateAWSJob`: An AWS IoT job was created\.
++ `CreateStream`: A stream was created\.
++ `GetStream`: A request for a stream was sent to the AWS IoT Streaming service\.
++ `DescribeStream`: A request for information about a stream was sent to the AWS IoT Streaming service\.
 
 awsJobId  
 The AWS IoT job ID that generated the log\.
@@ -67,10 +67,10 @@ clientToken
 The client token associated with the request that generated the log\.
 
 details  
-Additional information about the operation that generated the log\.
+More information about the operation that generated the log\.
 
 logLevel  
-The logging level of the log\. For OTA update logs, this is always set to DEBUG\.
+The logging level of the log\. For OTA update logs, this is always set to `DEBUG`\.
 
 otaUpdateId  
 The ID of the OTA update that generated the log\.

@@ -47,7 +47,7 @@
 
 1. Copy your code\-signing certificate in \.pem format in the path `\demos\common\ota\bootloader\utility\codesigner_cert_utility\`\. Rename the certificate file `aws_ota_codesigner_certificate.pem`\.
 
-1. Open the project in MPLAB X IDE and open `demos/common/demo_runner/aws_demo_runner.c`\. Find the `DEMO_RUNNER_RunDemos` function and make sure all function calls are commented out except `vStartOTAUpdateDemoTask`\.
+1. Open the project in MPLAB X IDE and open `demos/common/demo_runner/aws_demo_runner.c`\. Find the `DEMO_RUNNER_RunDemos` function and make sure all function calls except `vStartOTAUpdateDemoTask` are commented out\.
 
 1. Build the solution and make sure it builds without errors\.
 
@@ -57,9 +57,9 @@
    + Parity: None
    + Stop bits: 1
 
-1. Unplug the debugger from your board and run the project on your board to make sure it can connect to Wi\-Fi and the AWS IoT MQTT message broker\.
+1. Unplug the debugger from your board and run the project on your board to confirm it can connect to Wi\-Fi and the AWS IoT MQTT message broker\.
 
-When you run the project, the MPLAB X IDE should open an output window\. Make sure the ICD4 tab is selected\. You should see the following output\.
+When you run the project, the MPLAB X IDE should open an output window\. Make sure the **ICD4** tab is selected\. You should see the following output\.
 
 ```
 Bootloader version 00.09.00
@@ -225,4 +225,4 @@ IP Address: 192.168.4.190
 66 16367 [OTA] [OTA] Queued: 1   Processed: 1   Dropped: 0
 ```
 
-This output shows the Microchip Curiosity PIC32MZEF is able to connect to AWS IoT and subscribe to the MQTT topics required for OTA updates\. The `Missing job parameter` messages are expected because there are no OTA update jobs pending\.
+This output shows the Microchip Curiosity PIC32MZEF can connect to AWS IoT and subscribe to the MQTT topics required for OTA updates\. The `Missing job parameter` messages are expected because there are no OTA update jobs pending\.

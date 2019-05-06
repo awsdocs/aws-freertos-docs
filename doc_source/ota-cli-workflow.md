@@ -1,6 +1,6 @@
 # Creating an OTA Update with the AWS CLI<a name="ota-cli-workflow"></a>
 
-To create an OTA update with the AWS CLI you:
+When you use the AWS CLI to create an OTA update, you:
 
 1. Digitally sign your firmware image\.
 
@@ -10,13 +10,13 @@ To create an OTA update with the AWS CLI you:
 
 ## Digitally Signing Your Firmware Update<a name="ota-sign-cli"></a>
 
-When you use the CLI to perform OTA updates, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For a list of the cryptographic signing and hashing algorithms supported by Code Signing for AWS IoT, see [SigningConfigurationOverrides](https://docs.aws.amazon.com/signer/latest/api/API_SigningConfigurationOverrides.html)\. If you want to use a cryptographic algorithm that is not supported by Code Signing for AWS IoT, you need to sign your firmware binary before uploading it to Amazon S3\.
+When you use the AWS CLI to perform OTA updates, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For a list of the cryptographic signing and hashing algorithms supported by Code Signing for AWS IoT, see [SigningConfigurationOverrides](https://docs.aws.amazon.com/signer/latest/api/API_SigningConfigurationOverrides.html)\. If you want to use a cryptographic algorithm that is not supported by Code Signing for AWS IoT, you must sign your firmware binary before you upload it to Amazon S3\.
 
 ### Signing Your Firmware Image with Code Signing for AWS IoT<a name="ota-sign-csfa"></a>
 
 To sign your firmware image using Code Signing for AWS IoT, you can use one of the [AWS SDKs or command line tools](https://aws.amazon.com/tools/)\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
 
-After you install and configure the code signing tools, copy your unsigned firmware image to your Amazon S3 bucket and start a code signing job with the following CLI commands\. The `put-signing-profile` command creates a reusable code\-signing profile\. The `start-signing-job` command starts the signing job\.
+After you install and configure the code\-signing tools, copy your unsigned firmware image to your Amazon S3 bucket and start a code\-signing job with the following CLI commands\. The put\-signing\-profile command creates a reusable code\-signing profile\. The start\-signing\-job command starts the signing job\.
 
 ```
 aws signer put-signing-profile \
@@ -36,13 +36,13 @@ aws signer start-signing-job \
 **Note**  
 *<your\-source\-bucket\-name>* and *<your\-destination\-bucket\-name>* can be the same Amazon S3 bucket\.
 
-The following text describes the parameters for the put\-signing\-profile and start\-signing\-job commands:
+These are the parameters for the put\-signing\-profile and start\-signing\-job commands:
 
 `source`  
 Specifies the location of the unsigned firmware in an S3 bucket\.  
 + `bucketName`: The name of your S3 bucket\.
 + `key`: The key \(file name\) of your firmware in your S3 bucket\.
-+ `version`: The S3 version of your firmware in your S3 bucket\. This is different from your firmware version\. You can find it by browsing to the Amazon S3 console, choosing your bucket, and on the top of the page, next to **Versions**, choosing **Show**\.
++ `version`: The S3 version of your firmware in your S3 bucket\. This is different from your firmware version\. You can find it by browsing to the Amazon S3 console, choosing your bucket, and at the top of the page, next to **Versions**, choosing **Show**\.
 
 `destination`  
 The destination for the signed firmware in an S3 bucket\. The format of this parameter is the same as the `source` parameter\.
@@ -56,11 +56,11 @@ This parameter is required when you are creating a code\-signing profile for sig
 
 `platform`  
 The `platformId` of the hardware platform to which you are distributing the OTA update\.  
-To return a list of the available platforms and their `platformId` values, use the `aws signer list-signing-platforms` command\.
+To return a list of the available platforms and their `platformId` values, use the aws signer list\-signing\-platforms command\.
 
-The signing job starts and writes the signed firmware image into the destination Amazon S3 bucket\. The file name for the signed firmware image is a GUID\. You need this file name when you create a stream\. You can find the generated file name by browsing to the Amazon S3 console and choosing your bucket\. If you don't see a file with a GUID file name, refresh your browser\.
+The signing job starts and writes the signed firmware image into the destination Amazon S3 bucket\. The file name for the signed firmware image is a GUID\. You need this file name when you create a stream\. You can find the file name by browsing to the Amazon S3 console and choosing your bucket\. If you don't see a file with a GUID file name, refresh your browser\.
 
-The command displays a job ARN and a job ID\. You need these values later on\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\. 
+The command displays a job ARN and job ID\. You need these values later on\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\. 
 
 ### Signing Your Firmware Image Manually<a name="ota-sign-manual"></a>
 
@@ -68,7 +68,7 @@ Digitally sign your firmware image and upload your signed firmware image into yo
 
 ## Creating a Stream of Your Firmware Update<a name="ota-stream"></a>
 
-The OTA Update service sends updates over MQTT messages\. To do this, you must create a stream that contains your signed firmware update\. Create a JSON file \(stream\.json\) that identifies your signed firmware image\. The JSON file should contain the following:
+The OTA Update service sends updates over MQTT messages\. To do this, you must create a stream that contains your signed firmware update\. Create a JSON file \(`stream.json`\) that identifies your signed firmware image\. The JSON file should contain the following:
 
 ```
 [
@@ -82,7 +82,7 @@ The OTA Update service sends updates over MQTT messages\. To do this, you must c
 ]
 ```
 
-The following list describes the attributes in the JSON file\.
+These are the attributes in the JSON file:
 
 `fileId`  
 An arbitrary integer between 0 \- 255 that identifies your firmware image\.
@@ -94,7 +94,7 @@ The Amazon S3 bucket where your unsigned firmware image is stored\.
 `key`  
 The file name of your signed firmware image in the Amazon S3 bucket\. You can find this value in the Amazon S3 console by looking at the contents of your bucket\. If you are using Code Signing for AWS IoT, the file name is a GUID generated by Code Signing for AWS IoT\.
 
-Use the `create-stream` CLI command to create a stream:
+Use the create\-stream CLI command to create a stream:
 
 ```
 aws iot create-stream \
@@ -104,7 +104,7 @@ aws iot create-stream \
     --role-arn <your_role_arn>
 ```
 
-The following list describes the arguments for the `create-stream` CLI command\.
+These are the arguments for the create\-stream CLI command:
 
 `stream-id`  
 An arbitrary string to identify the stream\.
@@ -122,7 +122,7 @@ The bucket name where the signed firmware image is stored and the key \(file nam
 The Amazon S3 bucket where the signed firmware image is stored\.  
 `key`  
 The key \(file name\) of the signed firmware image\. When you use Code Signing for AWS IoT, this key is a GUID\.
-The following is an example stream\.json file:  
+The following is an example `stream.json` file:  
 
 ```
 [
@@ -139,7 +139,7 @@ The following is an example stream\.json file:
 `role-arn`  
 An IAM role that grants access to the Amazon S3 bucket
 
-To find the Amazon S3 object key of your signed firmware image, use the `aws signer describe-signing-job --job-id <my-job-id>` command where `my-job-id` is the job ID displayed by the `create-signing-job` CLI command\. The output of the `describe-signing-job` command contains the key of the signed firmware image\. 
+To find the Amazon S3 object key of your signed firmware image, use the aws signer describe\-signing\-job \-\-job\-id *<my\-job\-id>* command where `my-job-id` is the job ID displayed by the create\-signing\-job CLI command\. The output of the describe\-signing\-job command contains the key of the signed firmware image\. 
 
 ```
 ... text deleted for brevity ...
@@ -154,7 +154,7 @@ To find the Amazon S3 object key of your signed firmware image, use the `aws sig
 
 ## Creating an OTA Update<a name="create-ota-update"></a>
 
-Use the `create-ota-update` CLI command to create an OTA update job:
+Use the create\-ota\-update CLI command to create an OTA update job:
 
 ```
 aws iot create-ota-update \
@@ -168,19 +168,19 @@ aws iot create-ota-update \
 
 **Note**  
 Do not use any personally identifiable information \(PII\) in your OTA update job ID\. Examples of personally identifiable information include:  
-Your name
-Your IP address
-Your email address
-Your location
-Bank details
-Medical information
+Your name\.
+Your IP address\.
+Your email address\.
+Your location\.
+Bank details\.
+Medical information\.
 
 `ota-update-id`  
 An arbitrary OTA update ID\.
 
 `target-selection`  
 Valid values are:  
-+ `SNAPSHOT`: The job terminates after deploying the update to the selected IoT thing or groups\.
++ `SNAPSHOT`: The job terminates after deploying the update to the selected AWS IoT thing or groups\.
 + `CONTINUOUS`: The job continues to deploy updates to devices added to the selected groups\.
 
 `description`  
@@ -188,19 +188,19 @@ A text description of the OTA update\.
 
 `files`  
 One or more references to JSON files that contain data about the OTA update\. The JSON file can contain the following attributes:  
-+ `fileName`: The fully\-qualified firmware image file name\. For Texas Instruments CC3200SF\-LAUNCHXL, this must be `"/sys/mcuflashimg.bin"`\. For Microchip, this must be `"mplab.production.bin"` 
++ `fileName`: The fully qualified firmware image file name\. For Texas Instruments CC3200SF\-LAUNCHXL, this must be `/sys/mcuflashimg.bin`\. For Microchip, this must be `mplab.production.bin`\. 
 + `fileLocation`: Contains information about the firmware update\.
   + `stream`: The stream that contains the firmware update\.
-    + `streamId`: The stream ID specified in the `create-stream` CLI command\.
-    + `fileId`: The file ID specified in the JSON file passed to `create-stream`\.
+    + `streamId`: The stream ID specified in the create\-stream CLI command\.
+    + `fileId`: The file ID specified in the JSON file passed to create\-stream\.
   + `s3Location`: The location in Amazon S3 of the firmware update\.
     + `bucket`: The Amazon S3 bucket that contains the firmware update\.
     + `key`: The firmware update key\.
     + `version`: The firmware update version\.
 + `codeSigning`: Contains information about the code\-signing job\.
-  + `awsSignerJobId`: The signer job ID generated by the `start-siging-job` command\.
+  + `awsSignerJobId`: The signer job ID generated by the start\-siging\-job command\.
   + `startSigningJobParamater`: The information required to start a code\-signing job\.
-    + `signingProfileParameter`: The information required for creating a signing job profile\.
+    + `signingProfileParameter`: The information required to create a signing job profile\.
       + `certificateArn`: The ACM ARN of the certificate used to create a code\-signing job\.
       + `platformId`: The ID of the hardware platform you are using\.
       + `certificatePathOnDevice`: The path to the certificate on your device\.
@@ -217,10 +217,10 @@ One or more references to JSON files that contain data about the OTA update\. Th
       + `inlineDocument`: The certificate chain\.
     + `hashAlgorithm`: The hash algorithm used to create the signature\.
     + `signatureAlgorithm`: The signature algorithm used for code signing\.
-  + `attributes`: Arbitrary key/value pairs\.
+  + `attributes`: Arbitrary key\-value pairs\.
 
 `targets`  
-One or more IoT thing ARNs that specify the devices to be updated by the OTA update\.
+One or more AWS IoT thing ARN that specifies the devices to be updated by the OTA update\.
 
 `role-arn`  
 The ARN of your service role\.
@@ -306,7 +306,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ]
 ```
 
-The following is an example of a JSON file passed into the create\-ota\-update CLI command that creates an OTA update that starts a code signing job with an existing profile and uses the specified stream:
+The following is an example of a JSON file passed into the create\-ota\-update CLI command that creates an OTA update that starts a code\-signing job with an existing profile and uses the specified stream:
 
 ```
 [
@@ -348,7 +348,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ]
 ```
 
-The following is an example of a JSON file passed into the create\-ota\-update CLI command that creates an OTA update\. The update creates a stream from the specified S3 object and uses custom code signing:
+The following is an example of a JSON file passed into the create\-ota\-update CLI command that creates an OTA update\. The update creates a stream from the specified S3 object and uses custom code\-signing:
 
 ```
 [
@@ -381,7 +381,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 
 ## Listing OTA Updates<a name="list-ota-updates"></a>
 
-You can use the list\-ota\-updates CLI command to get a list of all OTA updates by :
+You can use the list\-ota\-updates CLI command to get a list of all OTA updates:
 
 ```
 aws iot list-ota-updates
@@ -479,15 +479,15 @@ An OTA update is being deleted\.
 The deletion of an OTA update failed\.
 
 **Note**  
-If you want to get the execution status of an OTA update after it has been created, you need to use the `describe-job-execution` command\. For more information, see [Describe Job Execution](https://docs.aws.amazon.com/iot/latest/developerguide/manage-job-cli.html#describe-job-execution)\.
+If you want to get the execution status of an OTA update after it has been created, you need to use the describe\-job\-execution command\. For more information, see [Describe Job Execution](https://docs.aws.amazon.com/iot/latest/developerguide/manage-job-cli.html#describe-job-execution)\.
 
 ## Deleting OTA\-Related Data<a name="delete-ota-data"></a>
 
-Currently, you cannot use the AWS IoT console to delete streams or OTA updates\. You can use the AWS CLI to delete streams, OTA updates, and the IoT jobs created during an OTA update\.
+Currently, you cannot use the AWS IoT console to delete streams or OTA updates\. You can use the AWS CLI to delete streams, OTA updates, and the AWS IoT jobs created during an OTA update\.
 
 ### Deleting an OTA Stream<a name="delete-ota-stream"></a>
 
-When you create an OTA update either you or the AWS IoT console creates a stream to break the firmware up into chunks so it can be sent over MQTT\. You can delete this stream with the `delete-stream` CLI command\. For example:
+When you create an OTA update, either you or the AWS IoT console creates a stream to break the firmware up into chunks so it can be sent over MQTT\. You can delete this stream with the delete\-stream CLI command\. For example:
 
 ```
 aws iot delete-stream --stream-id <your_stream_id>
@@ -495,7 +495,7 @@ aws iot delete-stream --stream-id <your_stream_id>
 
 ### Deleting an OTA Update<a name="delete-ota-update"></a>
 
-When you create an OTA update, these things are created:
+When you create an OTA update, the following are created:
 + An entry in the OTA update job database\.
 + An AWS IoT job to perform the update\.
 + An AWS IoT job execution for each device being updated\.
@@ -530,7 +530,7 @@ The `no-force` parameter specifies that only jobs that are in a terminal state \
 **Note**  
 Deleting a job with a status of IN\_PROGRESS interrupts any job executions that are IN\_PROGRESS on your devices and can result in a device being left in a nondeterministic state\. Make sure that each device executing a job that has been deleted can recover to a known state\.
 
-Depending on the number of job executions created for the job and other factors, a few minutes to delete a job\. While the job is being deleted, the status of the job appears as DELETION\_IN\_PROGRESS\. Attempting to delete or cancel a job whose status is already DELETION\_IN\_PROGRESS results in an error\.
+Depending on the number of job executions created for the job and other factors, it can take a few minutes to delete a job\. While the job is being deleted, its status is DELETION\_IN\_PROGRESS\. Attempting to delete or cancel a job whose status is already DELETION\_IN\_PROGRESS results in an error\.
 
 You can use the delete\-job\-execution to delete a job execution\. You might want to delete a job execution when a small number of devices are unable to process a job\. This deletes the job execution for a single device\. For example:
 
@@ -539,9 +539,9 @@ aws iot delete-job-execution --job-id <your-job-id --thing-name
 					<your-thing-name> --execution-number <your-job-execution-number --no-force
 ```
 
-As with the delete\-job CLI command, you can pass the `--force` parameter to the delete\-job\-execution to force the deletion of an execution job execution\. For more information , see [DeleteJobExecution API](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteJobExecution.html)\.
+As with the delete\-job CLI command, you can pass the `--force` parameter to the delete\-job\-execution to force the deletion of a job execution\. For more information , see [DeleteJobExecution API](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteJobExecution.html)\.
 
 **Note**  
-Deleting a job execution with a status of IN\_PROGRESS interrupts any job executions that are IN\_PROGRESS on your devices and can result in a device being left in a nondeterministic state\. Make sure that each device executing a job that has been deleted is able to recover to a known state\.
+Deleting a job execution with a status of IN\_PROGRESS interrupts any job executions that are IN\_PROGRESS on your devices and can result in a device being left in a nondeterministic state\. Make sure that each device executing a job that has been deleted can recover to a known state\.
 
 For more information about using the OTA update demo application, see [Over\-the\-Air Updates Demo Application](ota-demo.md)\.

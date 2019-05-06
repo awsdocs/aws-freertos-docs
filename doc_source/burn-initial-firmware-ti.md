@@ -6,7 +6,7 @@ These steps are written with the assumption that you have already built the `aws
 
 1. Download and install the [TI Uniflash tool](http://www.ti.com/tool/UNIFLASH)\.
 
-1. Start Uniflash and from the list of configurations, choose **CC3220SF\-LAUNCHXL**, then choose **Start Image Creator**\.
+1. Start Uniflash\. From the list of configurations, choose **CC3220SF\-LAUNCHXL**, and then choose **Start Image Creator**\.
 
 1. Choose **New Project**\.
 
@@ -28,13 +28,13 @@ These steps are written with the assumption that you have already built the `aws
 
 1. From the **Action** drop\-down list, choose **Select MCU Image**, and then choose **Browse** to choose the firmware image to use write to your device \(**aws\_demos\.bin**\)\. This file is located in the `AmazonFreeRTOS/demos/ti/cc3200_launchpad/ccs/Debug` directory\. Choose **Open**\.
 
-   1. In the file dialog box, confirm the file name is set to **mcuflashimg\.bin**\.
+   1. In the file dialog box, confirm the file name is set to `mcuflashimg.bin`\.
 
    1. Select the **Vendor** check box\.
 
    1. Under **File Token**, type **1952007250**\.
 
-   1. Under **Private Key File Name**, choose **Browse** and then choose `tisigner.key` from the working directory where you created the code\-signing certificate and private key\.
+   1. Under **Private Key File Name**, choose **Browse**, and then choose `tisigner.key` from the working directory where you created the code\-signing certificate and private key\.
 
    1. Under **Certification File Name**, choose `tisigner.crt.der`\.
 

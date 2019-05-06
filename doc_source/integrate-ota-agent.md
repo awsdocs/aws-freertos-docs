@@ -13,7 +13,7 @@ The OTA agent uses the MQTT protocol for all of its communication with AWS IoT s
 
 The following is an excerpt of a simple OTA demo that shows how the agent connects to the MQTT broker and initializes the OTA agent\. In this example, we configure the demo to use the default OTA completion callback and simply print out some statistics once per second\. For brevity, we leave out some details from this demo\.
 
-For a working example that uses the AWS IoT MQTT broker, see the OTA demo code\.
+For a working example that uses the AWS IoT MQTT broker, see the OTA demo code in the `demos/common/ota` directory\.
 
 Because the OTA agent is its own task, the intentional one\-second delay in this example affects this application only\. It has no impact on the performance of the agent\.
 
@@ -101,13 +101,13 @@ typedef enum {
 
 The OTA agent can receive an update in the background during active processing of the main application\. The purpose of delivering these events is to allow the application to decide if action can be taken immediately or if it should be deferred until after completion of some other application\-specific processing\. This prevents an unanticipated interruption of your device during active processing \(for example, vacuuming\) that would be caused by a reset after a firmware update\. These are the job events received by the callback handler:
 
-eOTA\_JobEvent\_Activate event  
-When this event is received by the callback handler, you can either reset the device immediately or schedule a call to reset the device later\. This allows you to postpone the device reset and self\-test, if necessary\.
+`eOTA_JobEvent_Activate event`  
+When this event is received by the callback handler, you can either reset the device immediately or schedule a call to reset the device later\. This allows you to postpone the device reset and self\-test phase, if necessary\.
 
-eOTA\_JobEvent\_Fail event  
+`eOTA_JobEvent_Fail event`  
 When this event is received by the callback handler, the update has failed\. You do not need to do anything in this case\. You might want to output a log message or do something application\-specific\.
 
-eOTA\_JobEvent\_StartTest event  
-The self test phase is meant to allow newly updated firmware to execute and test itself before determining that it is properly functioning and commit it to be the latest permanent application image\. When a new update is received and authenticated and the device has been reset, the OTA agent will send the eOTA\_JobEvent\_StartTest event to the callback function when it is ready for testing\. The developer may choose to add any tests deemed required to determine if the device firmware is functioning properly after update\. When the device firmware is deemed reliable by the self tests, the code must commit the firmware as the new permanent image by calling the OTA\_SetImageState\( eOTA\_ImageState\_Accepted \) function\.
+`eOTA_JobEvent_StartTest event`  
+The self\-test phase is meant to allow newly updated firmware to execute and test itself before determining that it is properly functioning and commit it to be the latest permanent application image\. When a new update is received and authenticated and the device has been reset, the OTA agent sends the `eOTA_JobEvent_StartTest` event to the callback function when it is ready for testing\. The developer can add any required tests to determine if the device firmware is functioning properly after update\. When the device firmware is deemed reliable by the self tests, the code must commit the firmware as the new permanent image by calling the `OTA_SetImageState( eOTA_ImageState_Accepted )` function\.
 
-If your device has no special hardware or mechanisms that need to be tested, you can use the default callback handler\. Upon receipt of the eOTA\_JobEvent\_Activate event, the default handler resets the device immediately\.
+If your device has no special hardware or mechanisms that need to be tested, you can use the default callback handler\. Upon receipt of the `eOTA_JobEvent_Activate` event, the default handler resets the device immediately\.

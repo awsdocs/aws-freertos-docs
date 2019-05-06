@@ -30,7 +30,7 @@ The diagram below illustrates these dependencies\.
 The Amazon FreeRTOS MQTT library has the following features:
 + By default, the library has a fully asynchronous MQTT API\. You can opt to use the library synchronously with the `AwsIotMqtt_Wait` function\.
 + The library is thread\-aware and parallelizable for high throughput\.
-+ The library features scalable performance and footprint\. Use the configuration setting to tailored the library to a system's resources\.
++ The library features scalable performance and footprint\. Use the configuration setting to tailor the library to a system's resources\.
 
 ## Configuration<a name="freertos-mqtt-2-config"></a>
 

@@ -2,13 +2,15 @@
 
 ## Overview<a name="freertos-shadow-overview"></a>
 
-The Amazon FreeRTOS device shadow APIs define functions to create, update, and delete device shadows\. For more information about Amazon FreeRTOS device shadows, see [Device Shadows](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html)\. Device shadows are accessed using the MQTT protocol\. The FreeRTOS device shadow API works with the MQTT API and handles the details of working with the MQTT protocol\.
+The Amazon FreeRTOS Device Shadow APIs define functions to create, update, and delete AWS IoT Device Shadows\. For more information about AWS IoT Device Shadows, see [Device Shadow Service for AWS IoT](http://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\. The Device Shadow service is accessed using the MQTT protocol\. The Amazon FreeRTOS Device Shadow API works with the MQTT API to handle the details of working with the MQTT protocol\.
 
-The source files for the Amazon FreeRTOS AWS IoT device shadow library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/shadow](https://github.com/aws/amazon-freertos/blob/master/lib/shadow)\.
+The source files for the Amazon FreeRTOS AWS IoT Device Shadow library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/shadow](https://github.com/aws/amazon-freertos/blob/master/lib/shadow)\.
 
 ## Dependencies and Requirements<a name="freertos-shadow-dependencies"></a>
 
-To use AWS IoT Device Shadows with Amazon FreeRTOS, you need to create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. You must set values for the following constants in the `AmazonFreeRTOS/demos/common/include/aws_client_credentials.h` file:
+To use AWS IoT Device Shadows with Amazon FreeRTOS, you need to register your device as a thing in AWS IoT\. Your thing must have a certificate with a policy that permits accessing the device's shadow\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. For an example policy for Amazon FreeRTOS, see the [AWS IoT Device Shadow Demo Application](shadow-demo.md)\.
+
+An example client credentials header file is located at `AmazonFreeRTOS/demos/common/include/aws_client_credentials.h`\. Make sure that you set values for the following constants in that header file:
 
 `clientcredentialMQTT_BROKER_ENDPOINT`  
 Your AWS IoT endpoint\.
@@ -31,9 +33,17 @@ The certificate PEM associated with your IoT thing\.
 `keyCLIENT_PRIVATE_KEY_PEM`  
 The private key PEM associated with your IoT thing\.
 
-Make sure the Amazon FreeRTOS MQTT library is installed on your device\. For more information, see [Amazon FreeRTOS MQTT Library \(Legacy\)](freertos-lib-cloud-mqtt.md)\. Make sure that the MQTT buffers are large enough to contain the shadow JSON files\. The maximum size for a device shadow document is 8 KB\. All default settings for the device shadow API can be set in the `lib\include\private\aws_shadow_config_defaults.h` file\. You can modify any of these settings in the `demos/<platform>/common/config_files/aws_shadow_config.h` file\.
+This file is included in `aws_shadow_lightbulb_on_off.c` \(the [Device Shadow demo application](shadow-demo.md)\)\.
 
-You must have an IoT thing registered with AWS IoT, including a certificate with a policy that permits accessing the device shadow\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\.
+If you are developing your own application, you need to include the `aws_client_credentials.h` header file in the application, and then pass the credentials as `MQTTAgentConnectParams` to `SHADOW_ClientConnect` to connect to AWS IoT over MQTT\. Make sure that you specify your device's registered AWS IoT thing name for the `pucClientId` field of `MQTTAgentConnectParams`, or the Device Shadow client will not connect\.
+
+Before running the application, make sure the Amazon FreeRTOS MQTT library is installed on your device\. For more information, see [Amazon FreeRTOS MQTT Library \(Legacy\)](freertos-lib-cloud-mqtt.md)\. 
+
+Also make sure that the MQTT buffers are large enough to contain the shadow JSON files\. The maximum size for a device shadow document is 8 KB\. All default settings for the device shadow API can be set in the `lib\include\private\aws_shadow_config_defaults.h` file\. You can modify any of these settings in the `demos/<platform>/common/config_files/aws_shadow_config.h` file\.
+
+**Important**  
+The JSON format that you define for your Device Shadow tasks must include a `clientToken` field\. The `clientToken` can take any unique value\. For example, the `aws_shadow_lightbulb_on_off.c` demo application uses `token-%d`, where *%d* is the RTOS tick count at the time the JSON document is generated\.  
+If the JSON format does not include a `clientToken` field, calls to SHADOW\_Delete\(\), SHADOW\_Get\(\), and SHADOW\_Update\(\) will timeout\.
 
 ## Source and Header Files<a name="freertos-shadow-source"></a>
 

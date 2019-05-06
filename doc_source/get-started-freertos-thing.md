@@ -75,13 +75,13 @@ To register your board manually, follow the procedures below\.
 
    This policy grants the following permissions:  
 `iot:Connect`  
-Grants your device the permission to connect to the AWS IoT message broker\.  
+Grants your device the permission to connect to the AWS IoT message broker with any client ID\.  
 `iot:Publish`  
-Grants your device the permission to publish an MQTT message on the `freertos/demos/echo` MQTT topic\.  
+Grants your device the permission to publish an MQTT message on any MQTT topic\.  
 `iot:Subscribe`  
-Grants your device the permission to subscribe to the `freertos/demos/echo` MQTT topic filter\.  
+Grants your device the permission to subscribe to any MQTT topic filter\.  
 `iot:Receive`  
-Grants your device the permission to receive messages from the AWS IoT message broker\.
+Grants your device the permission to receive messages from the AWS IoT message broker on any MQTT topic\.
 
 1. Choose **Create**\.
 

@@ -5,19 +5,33 @@
 | --- |
 | Amazon FreeRTOS support for the Nordic nRF52840\-DK is in public beta release\. BLE demos are subject to change\. | 
 
-Before you begin, you need to [Set Up AWS IoT and Amazon Cognito for Amazon FreeRTOS BLE](ble-demo.md#set-up-ble-demo-aws)\.
+This tutorial provides instructions for getting started with the Nordic nRF52840\-DK\. If you do not have the Nordic nRF52840\-DK, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)\.
 
-If you do not have the Nordic nRF52840\-DK, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)\.
+Before you begin, you need to [Set Up AWS IoT and Amazon Cognito for Amazon FreeRTOS BLE](ble-demo.md#set-up-ble-demo-aws)\.
 
 To run the Amazon FreeRTOS BLE demo, you also need an iOS or Android mobile device with Bluetooth and Wi\-Fi capabilities\.
 
-## Setting Up the Nordic Hardware<a name="nordic-setup-env"></a>
+## Overview<a name="w3aab7c19c21c11"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+## Set Up the Nordic Hardware<a name="nordic-setup-env"></a>
 
 Connect your host computer to the USB port labaled J2, located directly above the coin cell battery holder on your Nordic nRF52840 board\.
 
 For more information about setting up the Nordic nRF52840\-DK, see the [nRF52840 Development Kit User Guide](http://infocenter.nordicsemi.com/pdf/nRF52840_DK_User_Guide_v1.2.pdf)\.
 
-## Setting Up Your Environment<a name="nordic-setup-env"></a>
+## Set Up Your Development Environment<a name="nordic-setup-env"></a>
 
 ### Download and Install Segger Embedded Studio<a name="install-embedded-studio"></a>
 
@@ -41,7 +55,7 @@ To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon F
 
 1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](ble-demo.md#ble-sdk-app) to set up the demo mobile application on your mobile device\.
 
-### Establish a Serial Connection<a name="nordic-serial-connection"></a>
+## Establish a Serial Connection<a name="nordic-serial-connection"></a>
 
 Segger Embedded Studio includes a terminal emulator that you can use to receive log messages across a serial connection to your board\.
 

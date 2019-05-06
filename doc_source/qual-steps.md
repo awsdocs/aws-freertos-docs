@@ -256,7 +256,7 @@ The `userdata.json` must have the following structure:
 The following lists the attributes used in the `userdata.json` file:
 
 `sourcePath`  
-The path to the root of the ported Amazon FreeRTOS source code\. AWS IoT Device Tester stores the value in the `{{testData.sourcePath}}` variable\.
+The path to the root of the ported Amazon FreeRTOS source code\.
 
 `buildTool`  
 The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\.  
@@ -342,7 +342,7 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 The following lists the attributes used in `userdata.json`:
 
 `sourcePath`  
-The path to the root of the ported Amazon FreeRTOS source code\. AWS IoT Device Tester stores the value in the `{{testData.sourcePath}}` variable\.
+The path to the root of the ported Amazon FreeRTOS source code\.
 
 `buildTool`  
 The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}`\.

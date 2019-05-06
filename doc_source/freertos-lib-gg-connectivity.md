@@ -8,7 +8,9 @@ The source files for the Amazon FreeRTOS AWS IoT Greengrass library are located 
 
 ## Dependencies and Requirements<a name="freertos-gg-dependencies"></a>
 
-To use the Greengrass Discovery library, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. You must set values for the following constants in the `AmazonFreeRTOS\demos\common\include\aws_client_credentials.h`` file:
+To use the Greengrass Discovery library, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. 
+
+You must set values for the following constants in the `AmazonFreeRTOS\demos\common\include\aws_clientcredential.h` file:
 
 `clientcredentialMQTT_BROKER_ENDPOINT`  
 Your AWS IoT endpoint\.
@@ -24,6 +26,8 @@ Your Wi\-Fi password\.
 
 `clientcredentialWIFI_SECURITY`  
 The type of security used by your Wi\-Fi network\.
+
+You must also set values for the following constants in the `AmazonFreeRTOS\demos\common\include\aws_clientcredential_keys.h` file:
 
 `keyCLIENT_CERTIFICATE_PEM`  
 The certificate PEM associated with your thing\.
@@ -64,7 +68,7 @@ The MCU device initiates the discovery process by requesting from AWS IoT a JSON
 
 ### How to Use the Greengrass API<a name="freertos-lib-gg-api"></a>
 
-All default configuration options for the Greengrass API are defined in `lib\include\private\aws_ggd_config_defaults.h`\. You can override any of these settings in `lib\include\`\.
+All default configuration options for the Greengrass API are defined in `lib\include\private\aws_ggd_config_defaults.h`\. You can override any of these settings in the header files in `lib\include\`\.
 
 If only one Greengrass core is present, call `GGD_GetGGCIPandCertificate` to request the JSON file with Greengrass core connectivity information\. When `GGD_GetGGCIPandCertificate` is returned, the `pcBuffer` parameter contains the text of the JSON file\. The `pxHostAddressData` parameter contains the IP address and port of the Greengrass core to which you can connect\.
 

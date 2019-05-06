@@ -71,7 +71,7 @@ These steps are written with the assumption that you have already built the `aws
    36 47964 [OTA] State: Ready  Received: 1   Queued: 1   Processed: 1   Dropped: 0
    ```
 
-The following procedure creates a unified hex file or factory image consisting of a reference bootloader and an application with a cryptographic signature\. The bootloader verifies the cryptographic signature of the application on boot and supports OTA updates\.
+The following procedure creates a unified hex file or factory image that consists of a reference bootloader and an application with a cryptographic signature\. The bootloader verifies the cryptographic signature of the application on boot and supports OTA updates\.
 
 **To build and flash a factory image**
 
@@ -79,9 +79,9 @@ The following procedure creates a unified hex file or factory image consisting o
 
 1. Update the OTA sequence number and application version for the factory image\.
 
-1. Build the aws\_demos project\.
+1. Build the `aws_demos` project\.
 
-1. Run the factory\_image\_generator\.py script to generate the factory image\.
+1. Run the `factory_image_generator.py` script to generate the factory image\.
 
    ```
    factory_image_generator.py -b mplab.production.bin -p MCHP-Curiosity-PIC32MZEF –k private_key.pem  -x aws_bootloader.X.production.hex
@@ -93,7 +93,7 @@ The following procedure creates a unified hex file or factory image consisting o
    + `private_key.pem`: The code\-signing private key\.
    + `aws_bootloader.X.production.hex`: The bootloader hex file\.
 
-   When you build the aws\_demos project, the application binary image and bootloader hex file are built as part of the process\. Each project under the `demos/microchip/` directory contains a `dist/pic32mz_ef_curiosity/production/` directory that contains these files\. The generated unified hex file is named `mplab.production.unified.factory.hex`\.
+   When you build the`aws_demos` project, the application binary image and bootloader hex file are built as part of the process\. Each project under the `demos/microchip/` directory contains a `dist/pic32mz_ef_curiosity/production/` directory that contains these files\. The generated unified hex file is named `mplab.production.unified.factory.hex`\.
 
 1. Use the MPLab IPE tool to program the generated hex file onto the device\.
 

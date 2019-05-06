@@ -8,7 +8,7 @@ Amazon FreeRTOS is typically flashed to devices as a single compiled image with 
 
 
 
-## The FreeRTOS Kernel<a name="freertos-kernel"></a>
+## FreeRTOS Kernel<a name="freertos-kernel"></a>
 
 The FreeRTOS kernel is a real\-time operating system kernel that supports numerous architectures and is ideal for building embedded microcontroller applications\. The kernel provides:
 + A multitasking scheduler\.
@@ -19,8 +19,8 @@ For more information about the FreeRTOS kernel, see [FreeRTOS Kernel Fundamental
 
 ## Amazon FreeRTOS Libraries<a name="freertos-libraries"></a>
 
-Amazon FreeRTOS includes libraries that enable you to:
-+ Securely connect devices to the AWS IoT cloud using MQTT and device shadows\.
+Amazon FreeRTOS includes libraries that make it possible to:
++ Securely connect devices to the AWS IoT Cloud using MQTT and device shadows\.
 + Discover and connect to AWS IoT Greengrass cores\.
 + Manage Wi\-Fi connections\.
 + Listen for and process [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
@@ -29,19 +29,19 @@ For more information, see [Amazon FreeRTOS Libraries](https://docs.aws.amazon.co
 
 ## Downloading Amazon FreeRTOS Source Code<a name="freertos-mds-projects-github"></a>
 
-You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console]()\. For a list of qualified platforms, see the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
+You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console]()\. For a list of qualified platforms, see [Amazon FreeRTOS\-Qualified Hardware Platforms](freertos-hardware.md) or the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
 
 You can also download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\.
 
 ## Amazon FreeRTOS Console<a name="freertos-console"></a>
 
 From the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), you can configure and download a package that contains everything you need to write an application for your microcontroller\-based devices:
-+ The FreeRTOS kernel
-+ Amazon FreeRTOS libraries
-+ Platform support libraries
-+ Hardware drivers
++ The FreeRTOS kernel\.
++ Amazon FreeRTOS libraries\.
++ Platform support libraries\.
++ Hardware drivers\.
 
-For more information about the Amazon FreeRTOS console, see [Amazon FreeRTOS Console](freertos-ocw.md)\.
+For more information, see [Amazon FreeRTOS Console](freertos-ocw.md)\.
 
 ## Development Workflow<a name="development-workflow"></a>
 
@@ -51,12 +51,8 @@ You start development by downloading Amazon FreeRTOS\. You unzip the package and
 
 ## Additional Resources<a name="resources"></a>
 
-If you have other questions about AWS or Amazon FreeRTOS, you might find the following resources helpful\.
-
-
-| Resource | Description | 
-| --- | --- | 
-| [Amazon FreeRTOS on GitHub](https://github.com/aws/amazon-freertos/issues) | If you have questions about Amazon FreeRTOS for the Amazon FreeRTOS engineering team, you can open an issue on the Amazon FreeRTOS GitHub page\. | 
-|  [AWS Discussion Forums](https://forums.aws.amazon.com/)  | To discuss technical questions about AWS and Amazon FreeRTOS with the AWS community, visit the Discussion Forums\. | 
-|  [AWS Support Center](https://aws.amazon.com/support) |  To get technical support for AWS, visit the Support Center\.  | 
-| [Contact Us](https://aws.amazon.com/contact-us/) |  To contact us about AWS billing, account services, events, abuse, and other issues with AWS, visit the Contact Us page\.  | 
+These resources might be helpful to you\.
++ For questions about Amazon FreeRTOS for the Amazon FreeRTOS engineering team, you can open an issue [on the Amazon FreeRTOS GitHub page](https://github.com/aws/amazon-freertos/issues)\.
++ For technical questions about AWS and Amazon FreeRTOS with the AWS community, visit the [AWS Discussion Forums](https://forums.aws.amazon.com/)\.
++ For technical support for AWS, visit the [AWS Support Center](https://aws.amazon.com/support)\.
++ For questions about AWS billing, account services, events, abuse, or other issues with AWS, visit the [Contact Us](https://aws.amazon.com/contact-us/) page\.

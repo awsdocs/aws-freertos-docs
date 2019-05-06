@@ -21,7 +21,7 @@ The certificates in the SimpleLink CC3220 SDK are in DER format\. To create a se
 Follow these steps to create a code\-signing certificate that is linked to the Texas Instruments playground certificate hierarchy and meets AWS Certificate Manager and Code Signing for AWS IoT criteria\.
 
 **Note**  
-To create a code signing certificate, you need to install [OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.
+To create a code signing certificate, install [OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.
 
 **To create a self‐signed code signing certificate**
 
@@ -78,7 +78,7 @@ To create a code signing certificate, you need to install [OpenSSL](https://www.
    openssl x509 -extfile cert_config.txt -extensions my_exts  -req -days 365 -in tisigner.csr -CA dummy-root-ca-cert.pem -CAkey dummy-root-ca-cert-key.pem -set_serial 01 -out tisigner.crt.pem -sha1
    ```
 
-1. Convert your code\-signing certificate \(tisigner\.crt\.pem\) to DER format: 
+1. Convert your code\-signing certificate \(`tisigner.crt.pem`\) to DER format: 
 
    ```
    openssl x509 -in tisigner.crt.pem -out tisigner.crt.der -outform DER

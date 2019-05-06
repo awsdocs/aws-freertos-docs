@@ -1,10 +1,22 @@
 # Getting Started with the Xilinx Avnet MicroZed Industrial IoT Kit<a name="getting_started_xilinx"></a>
 
-If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)\.
+This tutorial provides instructions for getting started with the Xilinx Avnet MicroZed Industrial IoT Kit\. If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)\.
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Setting Up the MicroZed Hardware<a name="xilinx-setup-hardware"></a>
+## Overview<a name="w3aab7c19c33b7"></a>
+
+This tutorial contains instructions for the following getting started steps:
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+## Set Up the MicroZed Hardware<a name="xilinx-setup-hardware"></a>
 
 The following diagram might be helpful when you set up the MicroZed hardware:
 
@@ -18,7 +30,7 @@ The following diagram might be helpful when you set up the MicroZed hardware:
 
 1. Connect a router or internet\-connected Ethernet port to the Ethernet and USB\-Host port on your MicroZed board\.
 
-## Setting Up Your Environment<a name="xilinx-setup-env"></a>
+## Set Up Your Development Environment<a name="xilinx-setup-env"></a>
 
 To set up Amazon FreeRTOS configurations for the MicroZed kit, you must use the Xilinx Software Development Kit \(XSDK\)\. XSDK is supported on Windows and Linux\.
 
@@ -93,7 +105,7 @@ If you see a warning at the top of the **Import Projects** page \("Some projects
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk-clean.png)
 **Note**  
 To build all projects without cleaning them, choose **Project**, and then choose **Build All**\.  
-To build individual projects, select the project you want to build, choose **Project**, and then choose**Build Project**\.
+To build individual projects, select the project you want to build, choose **Project**, and then choose **Build Project**\.
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -146,7 +158,7 @@ You can opt to boot your MicroZed board from a MicroSD card or from QSPI ﬂash 
 
 To run the Amazon FreeRTOS demo project, you can boot your MicroZed board from a MicroSD card or from QSPI flash\.
 
-As you set up your MicroZed board for running the Amazon FreeRTOS demo project, refer to the diagram in [Setting Up the MicroZed Hardware](#xilinx-setup-hardware)\. Make sure that you have connected your MicroZed board to your computer\.
+As you set up your MicroZed board for running the Amazon FreeRTOS demo project, refer to the diagram in [Set Up the MicroZed Hardware](#xilinx-setup-hardware)\. Make sure that you have connected your MicroZed board to your computer\.
 
 #### Boot the Amazon FreeRTOS Project from a MicroSD Card<a name="xilinx-build-boot-sd"></a>
 
