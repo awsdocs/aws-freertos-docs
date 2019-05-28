@@ -1,17 +1,26 @@
 # Logging AWS IoT OTA API Calls with AWS CloudTrail<a name="iot-using-cloudtrail-afr"></a>
 
-Amazon FreeRTOS is integrated with CloudTrail, a service that captures all of the AWS IoT OTA API calls and delivers the log files to an Amazon S3 bucket that you specify\. CloudTrail captures API calls from your code to the AWS IoT OTA APIs\. Using the information collected by CloudTrail, you can determine the request that was made to AWS IoT OTA, the source IP address from which the request was made, who made the request, when it was made, and so on\. 
+Amazon FreeRTOS is integrated with CloudTrail, a service that captures AWS IoT OTA API calls and delivers the log files to an Amazon S3 bucket that you specify\. CloudTrail captures API calls from your code to the AWS IoT OTA APIs\. Using the information collected by CloudTrail, you can determine the request that was made to AWS IoT OTA, the source IP address from which the request was made, who made the request, when it was made, and so on\. 
 
 For more information about CloudTrail, including how to configure and enable it, see the [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
 ## Amazon FreeRTOS Information in CloudTrail<a name="aws-iot-info-in-cloudtrail-afr"></a>
 
-When CloudTrail logging is enabled in your AWS account, most API calls made to AWS IoT OTA actions are tracked in CloudTrail log files where they are written with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
+When CloudTrail logging is enabled in your AWS account, API calls made to AWS IoT OTA actions are tracked in CloudTrail log files where they are written with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
+
+The following AWS IoT OTA control plane actions are logged by CloudTrail:
++ [CreateStream](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateStream.html)
++ [DescribeStream](https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeStream.html)
++ [ListStreams](https://docs.aws.amazon.com/iot/latest/apireference/API_ListStreams.html)
++ [UpdateStream](https://docs.aws.amazon.com/iot/latest/apireference/API_UpdateStream.html)
++ [DeleteStream](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteStream.html)
++ [CreateOTAUpdate](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateOTAUpdate.html)
++ [GetOTAUpdate](https://docs.aws.amazon.com/iot/latest/apireference/API_GetOTAUpdate.html)
++ [ListOTAUpdates](https://docs.aws.amazon.com/iot/latest/apireference/API_ListOTAUpdates.html)
++ [DeleteOTAUpdate](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteOTAUpdate.html)
 
 **Note**  
 AWS IoT OTA data plane actions \(device side\) are not logged by CloudTrail\. Use CloudWatch to monitor these\.
-
-AWS IoT OTA control plane actions are logged by CloudTrail\. For example, calls to the `CreateOTAUpdate`, `GetOTAUpdate`, and `CreateStream` sections generate entries in the CloudTrail log files\. 
 
 Every log entry contains information about who generated the request\. The user identity information in the log entry helps you determine the following: 
 + Whether the request was made with root or IAM user credentials\.

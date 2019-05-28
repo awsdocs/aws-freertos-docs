@@ -10,16 +10,11 @@ Symmetric multiprocessing \(SMP\)\.
 ## Overview<a name="w3aab7c19c13b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
-
-1. Connecting your board to a host machine\.
-
-1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
-
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
-
-1. Loading the application binary image to your board, and then running the application\.
-
-1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
++ Connecting your board to a host machine\.
++ Installing software on the host machine that you use to develop and debug embedded applications for your microcontroller board\.
++ Cross\-compiling an Amazon FreeRTOS demo application to a binary image\.
++ Loading the application binary image to your board, and then running the application\.
++ Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Prerequisites<a name="setup-espressif-prereqs"></a>
 
@@ -104,7 +99,7 @@ Clone or download the `amazon-freertos` repository from [GitHub](https://github.
 
 **Note**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  
-In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
+In this tutorial, the path to the `amazon-freertos` directory is referred to as *<amazon\-freertos>*\.
 
 ### Configure the Amazon FreeRTOS Demo Applications<a name="config-demos"></a>
 
@@ -263,7 +258,7 @@ For instructions about how to run the Wi\-Fi provisioning demo on your board, se
   ```
 + If your device has trouble connecting to AWS IoT, open the `aws_clientcredential.h` file, and verify that the configuration variables are properly defined in the file\. `clientcredentialMQTT_BROKER_ENDPOINT[]` should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
 
 ### Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
 

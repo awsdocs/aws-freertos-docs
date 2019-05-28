@@ -14,19 +14,14 @@ You also need the following items for debugging:
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Overview<a name="w3aab7c19c19c15"></a>
+## Overview<a name="w3aab7c19c23c15"></a>
 
 This tutorial contains instructions for the following getting started steps:
-
-1. Connecting your board to a host machine\.
-
-1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
-
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
-
-1. Loading the application binary image to your board, and then running the application\.
-
-1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
++ Connecting your board to a host machine\.
++ Installing software on the host machine that you use to develop and debug embedded applications for your microcontroller board\.
++ Cross\-compiling an Amazon FreeRTOS demo application to a binary image\.
++ Loading the application binary image to your board, and then running the application\.
++ Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Set Up the Microchip Curiosity PIC32MZ EF Hardware<a name="setup-hw-mch"></a>
 
@@ -53,6 +48,9 @@ This tutorial contains instructions for the following getting started steps:
 1. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
 ## Set Up Your Development Environment<a name="setup-env_mch"></a>
+
+**Note**  
+The Amazon FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the project, you need to use versions of the MPLAB tools that are compatible with Harmony v2, like v2\.10 of the MPLAB XC32 Compiler and versions 2\.X\.X of the MPLAB Harmony Configurator \(MHC\)\.
 
 1. Install the latest [Java SE SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)\.
 
@@ -118,4 +116,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

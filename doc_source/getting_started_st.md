@@ -6,7 +6,7 @@ Make sure you have installed the latest Wi\-Fi firmware\. To download the latest
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Overview<a name="w3aab7c19c27b9"></a>
+## Overview<a name="w3aab7c19c31b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -109,4 +109,4 @@ If you see the following in the UART output from the demo application, you need 
 
 To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, BLE, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. In **Binary Resources**, choose the download link for **Inventek ISM 43362 Wi\-Fi module firmware update**\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

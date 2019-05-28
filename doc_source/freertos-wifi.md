@@ -217,3 +217,5 @@ while (1){
 ## Porting<a name="freertos-wifi-porting"></a>
 
 The `aws_wifi.c` implementation needs to implement the functions defined in `aws_wifi.h`\. At the very least, the implementation needs to return `eWiFiNotSupported` for any non\-essential or unsupported functions\.
+
+For more information about porting the Wi\-Fi library, see [Porting the Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html) in the Amazon FreeRTOS Porting Guide\.

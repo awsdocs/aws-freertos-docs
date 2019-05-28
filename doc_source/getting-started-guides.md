@@ -4,6 +4,8 @@ After you complete the [First Steps](freertos-prereqs.md), see your board's guid
 + [Getting Started with the Cypress CYW943907AEVAL1F Development Kit](getting_started_cypress_43.md)
 + [Getting Started with the Cypress CYW954907AEVAL1F Development Kit](getting_started_cypress_54.md)
 + [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)
++ [Getting Started with the Marvell MW320 AWS IoT Starter Kit](getting_started_marvell320.md)
++ [Getting Started with the Marvell MW322 AWS IoT Starter Kit](getting_started_marvell322.md)
 + [Getting Started with the MediaTek MT7697Hx Development Kit](getting_started_mediatek.md)
 + [ Getting Started with the Microchip Curiosity PIC32MZ EF](getting_started_mch.md)
 + [Getting Started with the NXP LPC54018 IoT Module](getting_started_nxp.md)

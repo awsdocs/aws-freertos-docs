@@ -62,4 +62,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="windows-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

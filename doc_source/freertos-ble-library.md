@@ -445,3 +445,5 @@ To use the Amazon FreeRTOS BLE middleware, you must implement some APIs\.
 + `pxConnectionCb`
 + `pxUnregisterServerCb`
 + `pxRegisterServerCb`
+
+For more information about porting the Amazon FreeRTOS BLE library to your platform, see [Porting the BLE Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ble.html) in the Amazon FreeRTOS Porting Guide\.

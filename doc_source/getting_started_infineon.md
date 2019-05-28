@@ -151,4 +151,4 @@ In the AWS IoT console, the MQTT client from steps 4\-5 should display the MQTT 
 
 ## Troubleshooting<a name="infineon-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

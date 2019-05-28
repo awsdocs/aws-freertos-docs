@@ -93,3 +93,7 @@ The following steps are written with the assumption that you have used the aws c
 1. Run `aws iot attach-principal-policy --policy-name FullControl --principal "arn:aws:iot:us-east-1:785484208847:cert/86e41339a6d1bbc67abf31faf455092cdebf8f21ffbc67c4d238d1326c7de729"` to attach the principal \(certificate\) and policy to the thing\. 
 
 Now, follow the steps in the [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) section of this guide\. Don’t forget to copy the certificate and private key you created into your `aws_clientcredential_keys.h` file\. Copy your thing name into `aws_clientcredential.h`\.
+
+## Porting<a name="freertos-pkcs-porting"></a>
+
+For information about porting the PKCS \#11 library to your platform, see [Porting the PKCS \#11 Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html) in the Amazon FreeRTOS Porting Guide\.

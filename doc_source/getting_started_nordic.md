@@ -11,19 +11,17 @@ Before you begin, you need to [Set Up AWS IoT and Amazon Cognito for Amazon Free
 
 To run the Amazon FreeRTOS BLE demo, you also need an iOS or Android mobile device with Bluetooth and Wi\-Fi capabilities\.
 
-## Overview<a name="w3aab7c19c21c11"></a>
+**Note**  
+If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
+
+## Overview<a name="w3aab7c19c25c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
-
-1. Connecting your board to a host machine\.
-
-1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
-
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
-
-1. Loading the application binary image to your board, and then running the application\.
-
-1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
++ Connecting your board to a host machine\.
++ Installing software on the host machine that you use to develop and debug embedded applications for your microcontroller board\.
++ Cross\-compiling an Amazon FreeRTOS demo application to a binary image\.
++ Loading the application binary image to your board, and then running the application\.
++ Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Set Up the Nordic Hardware<a name="nordic-setup-env"></a>
 
@@ -82,7 +80,7 @@ To download Amazon FreeRTOS for the Nordic nRF52840\-DK, go to the [Amazon FreeR
 
 **Note**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  
-In this tutorial, the path to the `amazon-freertos` directory is referred to as `BASE_FOLDER`\.
+In this tutorial, the path to the `amazon-freertos` directory is referred to as *<amazon\-freertos>*\.
 
 ### Configure Your Project<a name="nordic-freertos-config-project"></a>
 
@@ -98,15 +96,15 @@ To run the demo, you need to configure your project to work with AWS IoT\. To co
 
 1. In the navigation pane, choose **Manage**, and then choose **Things**\. Make a note of the AWS IoT thing name for your device\. 
 
-1. With your AWS IoT endpoint and your AWS IoT thing name on hand, open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h` in your IDE, and specify values for the following `#define` constants:
+1. With your AWS IoT endpoint and your AWS IoT thing name on hand, open `<BASE_FOLDER>/demos/common/include/aws_clientcredential.h` in your IDE, and specify values for the following `#define` constants:
    + `clientcredentialMQTT_BROKER_ENDPOINT` *Your AWS IoT endpoint*
    + `clientcredentialIOT_THING_NAME` *Your board's AWS IoT thing name*
 
 **To enable the demo**
 
-1. Check that the BLE GATT Demo is enabled\. Go to `<BASE_FOLDER>\demos\nordic\nrf52840-dk\common\config_files\aws_ble_config.h`, and make sure that `bleconfigENABLE_GATT_DEMO` is set to `1`\.
+1. Check that the BLE GATT Demo is enabled\. Go to `<BASE_FOLDER>/demos/nordic/nrf52840-dk/common/config_files/iot_ble_config.h`, and add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
 
-1. Open `<BASE_FOLDER>\demos\common\demo_runner\aws_demo_runner.c`, and in the demo declarations, uncomment `extern void vStartMQTTBLEEchoDemo( void );`\. In the `DEMO_RUNNER_RunDemos` definition, uncomment `vStartMQTTBLEEchoDemo();`\.
+1. Open `<BASE_FOLDER>/demos/common/include/iot_demo_runner.h`, comment out `#define democonfigMQTTDemo_ENABLED`, and uncomment `#define democonfigBLE_MQTT_ECHO_DEMO_ENABLED`\.
 
 ## Build and Run the Amazon FreeRTOS Demo Project<a name="nordic-build-and-run-example"></a>
 
@@ -114,7 +112,7 @@ After you download Amazon FreeRTOS and configure your demo project, you are read
 
 **To build and run the Amazon FreeRTOS BLE demo from Segger Embedded Studio**
 
-1. Open Segger Embedded Studio\. From the top menu, choose **File**, choose **Open Solution**, and then navigate to the project file `<BASE_FOLDER>\demos\nordic\nrf52840-dk\ses\aws_demos_ble.emProject`
+1. Open Segger Embedded Studio\. From the top menu, choose **File**, choose **Open Solution**, and then navigate to the project file `<BASE_FOLDER>/demos/nordic/nrf52840-dk/ses/aws_demos_ble.emProject`
 
 1. If you are using the Segger Embedded Studio terminal emulator, choose **Tools** from the top menu, and then choose **Terminal Emulator**, **Terminal Emulator** to display information from your serial connection\.
 
@@ -130,4 +128,4 @@ If this is your first time using Segger Embedded Studio, you might see you a war
 
 ## Troubleshooting<a name="nordic-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

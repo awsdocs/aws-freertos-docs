@@ -1,3 +1,3 @@
 # Test for Requalification<a name="requal-test"></a>
 
-As new versions of AWS IoT Device Tester qualification tests are released, or as you update your board\-specific packages or device drivers, you can use AWS IoT Device Tester to test your microcontroller boards\. For subsequent qualifications, make sure that you have the latest versions of Amazon FreeRTOS and AWS IoT Device Tester and run the qualification tests again\.
+As new versions of IDT for Amazon FreeRTOS qualification tests are released, or as you update your board\-specific packages or device drivers, you can use IDT for Amazon FreeRTOS to test your microcontroller boards\. For subsequent qualifications, make sure that you have the latest versions of Amazon FreeRTOS and IDT for Amazon FreeRTOS and run the qualification tests again\.

@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Texas Instrumen
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Overview<a name="w3aab7c19c29b7"></a>
+## Overview<a name="w3aab7c19c33b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -171,4 +171,4 @@ If you don’t see messages in the MQTT client of the AWS IoT console, you might
 
 If these steps don’t work, look at the program's output in the serial terminal\. You should see some text that indicates the source of the problem\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

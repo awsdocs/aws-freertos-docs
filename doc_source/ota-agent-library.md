@@ -81,4 +81,4 @@ A typical OTA\-capable device application drives the OTA agent using the followi
 
 ## Porting<a name="freertos-ota-porting"></a>
 
-For information about porting OTA functionality to your platform, see [OTA Portable Abstraction Layer](https://docs.aws.amazon.com/freertos/latest/userguide/porting-ota-pal.html)\.
+For information about porting OTA functionality to your platform, see [Porting the OTA Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ota.html) in the Amazon FreeRTOS Porting Guide\.

@@ -1,6 +1,6 @@
 # Permissions Policy Template<a name="policy-template"></a>
 
-The following is a policy template that grants the permissions required for AWS IoT Device Tester:
+The following is a policy template that grants the permissions required for IDT for Amazon FreeRTOS to run tests\.
 
 ```
 {

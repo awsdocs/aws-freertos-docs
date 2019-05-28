@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the MediaTek MT7697
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Overview<a name="w3aab7c19c17b7"></a>
+## Overview<a name="w3aab7c19c21b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -128,7 +128,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. Set breakpoints in your project's source code, and run the code\. 
 
-### Troubleshooting the IDE Debugger Settings<a name="w3aab7c19c17c15b5"></a>
+### Troubleshooting the IDE Debugger Settings<a name="w3aab7c19c21c15b5"></a>
 
 If you are having trouble debugging an application, your debugger settings might be incorrect\.
 
@@ -145,4 +145,4 @@ If you are having trouble debugging an application, your debugger settings might
 1. Verify that the settings under the **Flash Download** tab appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-3.png)
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

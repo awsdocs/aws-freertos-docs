@@ -62,7 +62,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-6.2`
 1. Open a terminal and run the following commands:
 
    ```
-   cd <BASE_FOLDER>/lib/third_party/mcu_vendor/cypress/WICED_SDK
+   cd <amazon-freertos>/lib/third_party/mcu_vendor/cypress/WICED_SDK
    ```
 
    ```
@@ -145,4 +145,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
   sudo apt-get install libusb-dev
   ```
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

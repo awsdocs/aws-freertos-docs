@@ -159,6 +159,9 @@ To get a list of currently supported network connection types, see the lines tha
 
 The Amazon FreeRTOS BLE Mobile SDK demo application is located in the [Android SDK for Amazon FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-android-sdk/tree/beta/app) under `amazon-freertos-ble-android-sdk/app` and the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-ios-sdk/tree/beta/Example/AmazonFreeRTOSDemo) under `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo`\. In this example, we use screenshots of the iOS version of the demo mobile application\.
 
+**Note**  
+If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
+
 **To configure the iOS SDK demo application**
 
 When you define configuration variables, use the format of the placeholder values provided in the configuration files\.
@@ -276,7 +279,7 @@ If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project loc
 
 If you have already enabled the BLE demo by following the instructions in the Getting Started guide for your device, you can skip these instructions\.
 
-1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
+1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/iot_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
 **Note**  
 The Wi\-Fi Provisioning service is disabled by default\.
 
@@ -311,7 +314,7 @@ The Android version of the demo mobile application does not currently support Wi
 
 **To enable the demo**
 
-1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/aws_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
+1. Enable the Wi\-Fi Provisioning service\. Open `demos/vendor/board/common/config_files/iot_ble_config.h`, and set `#define bleconfigENABLE_WIFI_PROVISIONING` to `1` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
 **Note**  
 The Wi\-Fi Provisioning service is disabled by default\.
 
@@ -349,7 +352,7 @@ Using the BLE Mobile SDKs, you can create your own GATT client for a mobile devi
 
 **To enable the demo**
 
-1. Enable the BLE GATT demo\. In `demos/vendor/board/common/config_files/aws_ble_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\), add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
+1. Enable the BLE GATT demo\. In `demos/vendor/board/common/config_files/iot_ble_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\), add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
 **Note**  
 The BLE GATT demo is disabled by default\.
 

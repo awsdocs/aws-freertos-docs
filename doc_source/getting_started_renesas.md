@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Renesas Starter
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
 
-## Overview<a name="w3aab7c19c25b7"></a>
+## Overview<a name="w3aab7c19c29b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -145,4 +145,4 @@ For the latest projects released by Renesas, see the `renesas-rx` fork of the `a
 
 ## Troubleshooting<a name="renesas-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
