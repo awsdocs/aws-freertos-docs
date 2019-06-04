@@ -1,7 +1,9 @@
 ## Amazon FreeRTOS Documentation
 
 [Amazon FreeRTOS User Guide](./doc_source/userguide/index.md)
+
 [Amazon FreeRTOS Porting Guide](./doc_source/portingguide/index.md)
+
 [Amazon FreeRTOS Qualification Guide](./doc_source/qualificationguide/index.md)
 
 #### Note
