@@ -1,6 +1,8 @@
 ## Amazon FreeRTOS Documentation
 
-[Amazon FreeRTOS User Guide](./doc_source/index.md)
+[Amazon FreeRTOS User Guide](./doc_source/userguide/index.md)
+[Amazon FreeRTOS Porting Guide](./doc_source/portingguide/index.md)
+[Amazon FreeRTOS Qualification Guide](./doc_source/qualificationguide/index.md)
 
 #### Note
 The markdown format of the Amazon FreeRTOS User Guide is available in English only.
