@@ -8,8 +8,8 @@ This guide is written with the assumption that you have already performed the st
 
 1. Copy your SHA-256/ECDSA PEM-formatted code-signing certificate that you generated in the [Over\-the\-Air Update Prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/ota-prereqs.html) to `demos/include/aws_ota_codesigner_certificate.h`. It should be formatted in the following way:
    ```
-   static const char signingcredentialSIGNING_CERTIFICATE_PEM[] = "-----BEGIN CERTIFICATE-----\n
-   ...base64 data...\n
+   static const char signingcredentialSIGNING_CERTIFICATE_PEM[] = "-----BEGIN CERTIFICATE-----\n"
+   ...base64 data...\n"
    -----END CERTIFICATE-----\n";
    ```
 
