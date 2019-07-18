@@ -24,7 +24,7 @@ To port the Secure Sockets library, you need the following:
 
 ## Porting<a name="porting-steps-ss"></a>
 
-If your platform offloads TCP/IP functionality to a separate network chip, you need to implement all the functions for which stubs exist in `<amazon-freertos>/lib/secure_sockets/portable/<vendor>/<board>/aws_secure_sockets.c`\. `<amazon-freertos>/lib/include/aws_secure_sockets.h` contains the information required to create the implementations\.
+If your platform offloads TCP/IP functionality to a separate network chip, you need to implement all the functions for which stubs exist in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/secure_sockets/aws_secure_sockets.c`\.
 
 ## Testing<a name="porting-testing-ss"></a>
 
@@ -39,15 +39,39 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the Secure Sockets library in the IDE project**
 
-1. In your IDE, create a virtual folder named `secure_sockets` under `aws_tests/lib/aws`\.
+1. If you are using the FreeRTOS\+TCP TCP/IP stack, add `<amazon-freertos>/libraries/abstractions/secure_sockets/freertos_plus_tcp/aws_secure_sockets.c` to the `aws_tests` IDE project\.
 
-1. If you are using the FreeRTOS\+TCP TCP/IP stack, add `<amazon-freertos>/lib/secure_sockets/portable/freertos_plus_tcp/aws_secure_sockets.c` to the `aws_tests/lib/aws/secure_sockets` virtual folder\.
+   If you are using the lwIP TCP/IP stack, add `<amazon-freertos>/libraries/abstractions/secure_sockets/lwip/aws_secure_sockets.c` to the `aws_tests` IDE project\.
 
-   If you are using the lwIP TCP/IP stack, add `<amazon-freertos>/lib/secure_sockets/portable/lwip/aws_secure_sockets.c` to the `aws_tests/lib/aws/secure_sockets` virtual folder\.
+   If you are using your own TCP/IP port, add `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/secure_sockets/aws_secure_sockets.c` to the `aws_tests` IDE project\.
 
-   If you are using your own TCP/IP port, add `<amazon-freertos>/lib/secure_sockets/portable/<vendor>/<board>/aws_secure_sockets.c` to the `aws_tests/lib/aws/secure_sockets` virtual folder\.
+1. Add `secure_sockets/test/aws_test_tcp.c` to the `aws_tests` IDE project\.
 
-1. Add `<amazon-freertos>/tests/common/secure_sockets/portable/<vendor>/<board>/aws_test_tcp.c` to the `aws_tests/application_code/common_tests/secure_sockets` virtual folder\.
+### Configuring the `CMakeLists.txt` File<a name="testing-cmake-ss"></a>
+
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
+
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+
+See below for an example portable layer target definition for the Secure Sockets library\.
+
+```
+# Secure sockets
+afr_mcu_port(secure_sockets)
+# Link to AFR::secure_sockets_freertos_tcp if you want use default implementation based on
+# FreeRTOS-Plus-TCP.
+target_link_libraries(
+    AFR::pkcs11::mcu_port
+    INTERFACE AFR::secure_sockets_freertos_tcp
+)
+# Or provide your own implementation.
+target_sources(
+    AFR::secure_sockets::mcu_port
+    INTERFACE "$path/aws_secure_sockets.c"
+)
+```
 
 ### Setting Up Your Local Testing Environment<a name="testing-local-ss"></a>
 
@@ -55,7 +79,7 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the Secure Sockets tests**
 
-1. Open `<amazon-freertos>/lib/utils/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    Make sure that the line that calls `SOCKETS_Init()` is uncommented\.
 
@@ -63,14 +87,14 @@ After you set up the library in the IDE project, you need to configure some othe
 
    If you have not ported the TLS library to your platform, you can only test your Secure Sockets port using an unsecure echo server \(`<amazon-freertos>/tools/echo_server/echo_server.go`\)\. For instructions on setting up and running an unsecure echo server, see [Setting Up the Echo Server \(Without TLS\)](notls-echo-server.md)\.
 
-1. In `<amazon-freertos>/tests/common/include/aws_test_tcp.h`, set the IP address to the correct values for your server\. For example, if your server's IP address is `192.168.2.6`, set the following values in `<amazon-freertos>/tests/common/include/aws_test_tcp.h`:    
+1. In `aws_test_tcp.h`, set the IP address to the correct values for your server\. For example, if your server's IP address is `192.168.2.6`, set the following values in `aws_test_tcp.h`:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html)
 
-1. Open `<amazon-freertos>/tests/common/include/aws_test_tcp.h`, and set the `tcptestSECURE_SERVER` macro to `0` to run the Secure Sockets tests without TLS\.
+1. Open `aws_test_tcp.h`, and set the `tcptestSECURE_SERVER` macro to `0` to run the Secure Sockets tests without TLS\.
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/aws_test_runner.config.h`, and set the `testrunnerFULL_TCP_ENABLED` macro to `1` to enable the sockets tests\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner.config.h`, and set the `testrunnerFULL_TCP_ENABLED` macro to `1` to enable the sockets tests\.
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/application_code/main.c`, and and delete the `#if 0` and `#endif` compiler directives in the `vApplicationIPNetworkEventHook ( void )` definition to enable the testing task\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and and delete the `#if 0` and `#endif` compiler directives in the `vApplicationIPNetworkEventHook ( void )` definition to enable the testing task\.
 **Note**  
 This change is required to port the remaining libraries\.
 
@@ -84,10 +108,10 @@ To port the TLS library, see [Porting the TLS Library](afr-porting-tls.md)\.
 
    For information, see [Setting Up the TLS Echo Server](tls-echo-server.md)\.
 
-1. Set the IP address and port in `<amazon-freertos>/tests/common/include/aws_test_tcp.h` to correct values for your server\. For example, if your server's IP address is `192.168.2.6`, and the server is listening on `9000`, set the following values in `<amazon-freertos>/tests/common/include/aws_test_tcp.h`:    
+1. Set the IP address and port in `<amazon-freertos>/tests/include/aws_test_tcp.h` to correct values for your server\. For example, if your server's IP address is `192.168.2.6`, and the server is listening on `9000`, set the following values in `<amazon-freertos>/tests/include/aws_test_tcp.h`:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html)
 
-1. Open `<amazon-freertos>/tests/common/include/aws_test_tcp.h`, and set the `tcptestSECURE_SERVER` macro to `1` to enable TLS tests\.
+1. Open `<amazon-freertos>/tests/include/aws_test_tcp.h`, and set the `tcptestSECURE_SERVER` macro to `1` to enable TLS tests\.
 
 1. Download a trusted root certificate\. For information about accepted root certificates and download links, see [Server Authentication](https://docs.aws.amazon.com/iot/latest/developerguide/managing-device-certs.html#server-authentication) in the AWS IoT Developer Guide\. We recommend that you use Amazon Trust Services certificates\.
 
@@ -97,13 +121,13 @@ To port the TLS library, see [Porting the TLS Library](afr-porting-tls.md)\.
 
 1. Choose **Display formatted PEM string to be copied into aws\_clientcredential\_keys\.h**, and then copy the certificate string\.
 
-1. Open `<amazon-freertos>/tests/common/include/aws_test_tcp.h`, and paste the formatted certificate string into the definition for `tcptestECHO_HOST_ROOT_CA`\.
+1. Open `aws_test_tcp.h`, and paste the formatted certificate string into the definition for `tcptestECHO_HOST_ROOT_CA`\.
 
 1. Use the second set of OpenSSL commands in `<amazon-freertos>/tools/echo_server/readme-gencert.txt` to generate a client certificate and private key that is signed by the certificate authority\. The certificate and key allow the custom echo server to trust the client certificate that your device presents during TLS authentication\.
 
 1. Format the certificate and key with the `<amazon-freertos>/tools/certificate_configuration/PEMfileToCString.html` formatting tool\.
 
-1. Before you build and run the test project on your device, open `<amazon-freertos>/demos/common/include/aws_clientcredential_keys.h`, and copy the client certificate and private key, in PEM format, into the definitions for `keyCLIENT_CERTIFICATE_PEM` and `keyCLIENT_PRIVATE_KEY_PEM`\.
+1. Before you build and run the test project on your device, open `aws_clientcredential_keys.h`, and copy the client certificate and private key, in PEM format, into the definitions for `keyCLIENT_CERTIFICATE_PEM` and `keyCLIENT_PRIVATE_KEY_PEM`\.
 
 ### Running the Tests<a name="testing-run-ss"></a>
 

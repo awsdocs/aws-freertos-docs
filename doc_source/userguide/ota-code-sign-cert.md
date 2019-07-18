@@ -8,5 +8,6 @@ Different platforms require different types of code\-signing certificates\. The 
 + [Creating a Code\-Signing Certificate for the Texas Instruments CC3200SF\-LAUNCHXL](ota-code-sign-cert-ti.md)
 + [Creating a Code\-Signing Certificate for the Microchip Curiosity PIC32MZEF](ota-code-sign-cert-mchip.md)
 + [Creating a Code\-Signing Certificate for the Espressif ESP32](ota-code-sign-cert-esp.md)
++ [Creating a Code\-Signing Certificate for the Nordic nrf52840\-dk](ota-code-sign-cert-nordic.md)
 + [Creating a Code\-Signing Certificate for the Amazon FreeRTOS Windows Simulator](ota-code-sign-cert-win.md)
 + [Creating a Code\-Signing Certificate for Custom Hardware](ota-code-sign-cert-other.md)

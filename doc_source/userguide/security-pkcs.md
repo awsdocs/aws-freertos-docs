@@ -4,8 +4,6 @@
 
 Public Key Cryptography Standard \#11 \(PKCS\#11\) is a cryptographic API that abstracts key storage, get/set properties for cryptographic objects, and session semantics\. See `pkcs11.h` \(obtained from OASIS, the standard body\) in the Amazon FreeRTOS source code repository\. In the Amazon FreeRTOS reference implementation, PKCS\#11 API calls are made by the TLS helper interface in order to perform TLS client authentication during `SOCKETS_Connect`\. PKCS\#11 API calls are also made by our one\-time developer provisioning workflow to import a TLS client certificate and private key for authentication to the AWS IoT MQTT broker\. Those two use cases, provisioning and TLS client authentication, require implementation of only a small subset of the PKCS\#11 interface standard\.
 
-The source files for the Amazon FreeRTOS PKCS\#11 library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/secure_sockets/portable](https://github.com/aws/amazon-freertos/blob/master/lib/secure_sockets/portable)\.
-
 ## Features<a name="freertos-pcks-features"></a>
 
 The following subset of PKCS\#11 is used\. This list is in roughly the order in which the routines are called in support of provisioning, TLS client authentication, and cleanup\. For detailed descriptions of the functions, see the PKCS\#11 documentation provided by the standard committee\.

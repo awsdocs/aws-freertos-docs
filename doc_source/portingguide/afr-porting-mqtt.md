@@ -16,16 +16,15 @@ If you are using an IDE to build test projects, you need to set up your library 
 ## Setting Up the IDE Test Project<a name="testing-ide-mqtt"></a>
 
 **To set up the MQTT library in the IDE project**
++ Add all of the test source files in `<amazon-freertos>/libraries/c_sdk/standard/mqtt` and its subdirectories to the `aws_tests` IDE project\.
 
-1. In your IDE, under `aws_tests/lib/aws`, create virtual folders named `mqtt` and `bufferpool`\.
+## Configuring the `CMakeLists.txt` File<a name="testing-cmake-mqtt"></a>
 
-1. Add all of the source files in `<amazon-freertos>/lib/mqtt` to the `aws_tests/lib/aws/mqtt` virtual folder\.
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-1. Add all of the source files in `<amazon-freertos>/lib/bufferpool` to the `aws_tests/lib/aws/bufferpool` virtual folder\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
 
-1. Under `aws_tests/application_code/common_tests`, create a virtual folder named `mqtt`\.
-
-1. Add all of the source files in `<amazon-freertos>/tests/common/mqtt` to the virtual folder `aws_tests/application_code/common_tests/mqtt`\.
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 ## Setting Up Your Local Testing Environment<a name="testing-local-mqtt"></a>
 
@@ -33,9 +32,9 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the Wi\-Fi tests**
 
-1. Open `<amazon-freertos>/lib/utils/aws_system_init.c.`, and uncomment all of the initialization functions called from `SYSTEM_Init()`\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and uncomment all of the initialization functions called from `SYSTEM_Init()`\.
 
-1. To enable the MQTT tests, open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_MQTT_ENABLED ` macro to `1`\.
+1. To enable the MQTT tests, open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_MQTTv4_ENABLED ` macro to `1`\.
 
 ## Running the Tests<a name="testing-run-mqtt"></a>
 
@@ -43,10 +42,7 @@ After you set up the library in the IDE project, you need to configure some othe
 
 1. Build the test project, and then flash it to your device for execution\.
 
-1. Check the test results in the UART console\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-mqtt-tests1.png)
-
-   If all tests pass, then testing is complete\.
+1. Check the test results in the UART console\. If all tests pass, then testing is complete\.
 
 ## Validation<a name="w3aac11c29c19"></a>
 
@@ -54,6 +50,6 @@ To officially qualify a device for Amazon FreeRTOS, you need to validate the dev
 
 After you finish setting up the Amazon FreeRTOS MQTT library for your device, you can start porting the OTA agent library\. See [Porting the OTA Library](afr-porting-ota.md) for instructions\.
 
-If your device does not support OTA functionality, you can start porting the Bluetooth Low Energy library\. See [Porting the BLE Library](afr-porting-ble.md) for instructions\.
+If your device does not support OTA functionality, you can start porting the Bluetooth Low Energy library\. See [Porting the Bluetooth Low Energy Library](afr-porting-ble.md) for instructions\.
 
-If your device does not support OTA and BLE functionality, then you are finished porting and can start the Amazon FreeRTOS qualification process\. See the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/) for more information\.
+If your device does not support OTA and Bluetooth Low Energy functionality, then you are finished porting and can start the Amazon FreeRTOS qualification process\. See the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/) for more information\.

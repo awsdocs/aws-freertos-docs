@@ -9,20 +9,25 @@ If you do not have the Marvell MW320 AWS IoT Starter Kit, visit the AWS Partner 
 **Note**  
 In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications for the Marvell MW320\. Other operating systems might work, but are not officially supported\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c17c13"></a>
+## Overview<a name="w3aab7c23c17c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
-+ Connecting your board to a host machine\.
-+ Installing software on the host machine that you use to develop and debug embedded applications for your microcontroller board\.
-+ Cross\-compiling an Amazon FreeRTOS demo application to a binary image\.
-+ Loading the application binary image to your board, and then running the application\.
-+ Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Set Up Your Development Environment<a name="marvell-setup-env"></a>
 
-Amazon FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `<BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/` directory\.
+Amazon FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `vendors/marvell/WMSDK/mw320/sdk` directory\.
 
 The AWS IoT Starter Kit also includes pre\-flashed wireless microcontroller demo project firmware\. 
 
@@ -34,7 +39,7 @@ In addition to the software that is bundled with the M320 AWS IoT Starter Kit an
 
 ### Install Required Third\-Party Libraries with installpkgs\.sh<a name="marvell-sdk"></a>
 
-The `<BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/installpkgs.sh` script attempts to autodetect the machine type and install some required libraries, which include:
+The `vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh` script attempts to autodetect the machine type and install some required libraries, which include:
 + C libraries
 + A USB library
 + An FTDI library
@@ -45,16 +50,16 @@ The `<BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/installpkg
 **Note**  
 The `installpkgs.sh` script includes instructions for installing packages using `apt-get` for 32\-bit and 64\-bit Ubuntu environments and `yum` for 32\-bit and 64\-bit Fedora environments\. If you have problems running the script on your distribution, open the script file, find the list of required packages, and install them manually\.
 
-With root privileges, issue the following command from the root directory of your Amazon FreeRTOS download \(`<BASE_FOLDER>`\):
+With root privileges, issue the following command from the root directory of your Amazon FreeRTOS download:
 
 ```
-./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh
+./vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh
 ```
 
 You can configure the permissions on your Linux host machine to allow `flashprog` and `ramload` operations without `sudo`\. To do this, issue the following command:
 
 ```
-./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/bin/perm_fix.sh
+./vendors/marvell/WMSDK/mw320/sdk/tools/bin/perm_fix.sh
 ```
 
 **Note**  
@@ -64,7 +69,7 @@ If you are using the Eclipse IDE, you must configure these permissions\.
 
 The Amazon FreeRTOS port for the this board is configured to use the GNU toolchain by default\. For the Makefiles to invoke the correct compiler toolchain, the GNU compiler toolchain binaries must be included in the user’s PATH variable\. The GNU toolchain binaries must also be prefixed with `arm-none-eabi-`\.
 
-The GCC toolchain can be used with the GNU Debugger \(GBD\) for debugging with the OpenOCD software that interfaces with JTAG\.
+The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with the OpenOCD software that interfaces with JTAG\.
 
 **To set up the GCC toolchain on a Linux machine**
 
@@ -121,17 +126,13 @@ If you cannot use a package manager to install OpenOCD version 0\.9, follow thes
    make install
    ```
 
-### Install CMake<a name="w3aab7c19c17c15c17"></a>
+### Install CMake<a name="w3aab7c23c17c15c17"></a>
 
 The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device\. Amazon FreeRTOS supports versions 3\.13 and later\.
 
-You can install CMake with standard Linux package managers\. For example:
+You can download the latest version of CMake from [CMake\.org](https://cmake.org/download/)\. Both source and binary distributions are available\.
 
-```
-apt-get install cmake
-```
-
-You can also download the latest version of CMake from [CMake\.org](https://cmake.org/download/)\. Both source and binary distributions are available\.
+For more details about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
 ## Establish a Serial Connection<a name="marvell-serial-connect"></a>
 
@@ -200,14 +201,20 @@ You can use CMake and the utility scripts included with the M320 port of Amazon 
 Issue the following command from the root of the Amazon FreeRTOS download to generate the demo build files with CMake:
 
 ```
-cmake -DVENDOR=marvell -DBOARD=mw300_rd -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=0
+cmake -DVENDOR=marvell -DBOARD=mw320 -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=0
+```
+
+or
+
+```
+cmake -DVENDOR=marvell -DBOARD=mw322 -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=0
 ```
 
 You should see output similar to the following:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-build-output-1.png)
 
-### Build the Demo with make<a name="w3aab7c19c17c19b7"></a>
+### Build the Demo with make<a name="w3aab7c23c17c19b7"></a>
 
 Issue the following commands to build the demo:
 
@@ -226,7 +233,13 @@ You should see output similar to the following:
 You can use a similar set of commands to build a test project:
 
 ```
-cmake -DVENDOR=marvell -DBOARD=mw300_rd -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=1
+cmake -DVENDOR=marvell -DBOARD=mw320 -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=1
+```
+
+or
+
+```
+cmake -DVENDOR=marvell -DBOARD=mw322 -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=1
 ```
 
 ```
@@ -240,7 +253,7 @@ make all -j4
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Flash the Application<a name="w3aab7c19c17c19b9"></a>
+### Flash the Application<a name="w3aab7c23c17c19b9"></a>
 
 The `flashprog.py` script is used to program your board's flash memory\. The script is written in Python 2\.7\.
 
@@ -248,19 +261,19 @@ Before you can flash the demo application image to the board, prepare the board'
 
 **To load the layout file and Boot2 bootloader**
 
-1. Change directories to the root of the Amazon FreeRTOS download \(*<BASE\_FOLDER>*\)\.
+1. Change directories to the root of the Amazon FreeRTOS download\.
 
 1. Run the `flashprog.py` Python script with the `-l` and `--boot2` options:
 
    ```
-   ./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
-   -l lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt \\
-   --boot2 lib/third_party/mcu_vendor/marvell/WMSDK/mw320/boot2/bin/boot2.bin
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
+   -l vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt \\
+   --boot2 vendors/marvell/WMSDK/mw320/boot2/bin/boot2.bin
    ```
 
-   The `flashprog` script writes a layout to the flash, according to the default layout configuration defined in `<BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt`\. The layout holds partitioned information about the flash\.
+   The `flashprog` script writes a layout to the flash, according to the default layout configuration defined in `vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt`\. The layout holds partitioned information about the flash\.
 
-   The script also writes a bootloader to the flash\. The bootloader is located at `<BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320/boot2/bin/boot2.bin`\. The bootloader loads the microcontroller’s firmware image after it is flashed to the board\.
+   The script also writes a bootloader to the flash\. The bootloader is located at `vendors/marvell/WMSDK/mw320/sdk/boot2/bin/boot2.bin`\. The bootloader loads the microcontroller’s firmware image after it is flashed to the board\.
 
    You should see output similar to the following:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-flashprog.png)
@@ -269,13 +282,13 @@ After you flash the layout file and bootloader to the board, flash some firmware
 
 **To flash the Wi\-Fi firmware**
 
-1. Change directories to the root of the Amazon FreeRTOS download \(*<BASE\_FOLDER>*\)\.
+1. Change directories to the root of the Amazon FreeRTOS download\.
 
 1. Run the `flashprog.py` Python script with the `--wififw` option:
 
    ```
-   ./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
-                               --wififw lib/third_party/mcu_vendor/marvell/WMSDK/mw320/wififirmware/mw30x/mw30x_uapsta_W14.88.36.p135.bin
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
+                               --wififw vendors/marvell/WMSDK/mw320/wifi-firmware/mw30x/mw30x_uapsta_W14.88.36.p135.bin
    ```
 
    The `flashprog` script flashes the firmware to the board\.
@@ -287,12 +300,12 @@ With the layout, bootloader, and Wi\-Fi firmware flashed to the board, you can f
 
 **To flash and run the demo**
 
-1. Change directories to the root of the Amazon FreeRTOS download \(*<BASE\_FOLDER>*\)\.
+1. Change directories to the root of the Amazon FreeRTOS download\.
 
 1. Run the `flashprog.py` Python script with the `--mcufw` and `-r` options:
 
    ```
-   ./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\ 
+   .vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\ 
    --mcufw build/cmake/vendors/marvell/mw300_rd/aws_demos.bin \\ 
    -r
    ```
@@ -311,6 +324,8 @@ When you build, flash, and run the demo, you should see output similar to the fo
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-demo-output.png)
 
+#### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c17c19b9c23"></a>
+
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
@@ -319,18 +334,18 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="marvell-troubleshooting"></a>
 
-### Connecting to the GNU Debugger<a name="w3aab7c19c17c21b3"></a>
+### Connecting to the GNU Debugger<a name="w3aab7c23c17c21b3"></a>
 
 **To connect to the GNU Debugger \(GDB\)**
 
 1. Change directories:
 
    ```
-   cd <BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320
+   cd <amazon-freertos>/vendors/marvell/WMSDK/mw320
    ```
 
 1. Connect to GDB with the arm\-none\-eabi\-gdb command:
@@ -342,7 +357,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    If you are debugging an Amazon FreeRTOS test application, target `aws_tests.axf` instead\.
 
-### Loading the Application to SRAM<a name="w3aab7c19c17c21b5"></a>
+### Loading the Application to SRAM<a name="w3aab7c23c17c21b5"></a>
 
 You can load the demo to your device's static random\-access memory \(SRAM\) and then execute the application on your device with the `ramload.py` script\. Using `ramload.py` to load and execute the application is a faster operation than loading to flash memory with the `flashprog.py` script, making it a more efficient approach to iterative development\.
 
@@ -351,12 +366,12 @@ The `ramload.py` script is written in Python 2\.7\.
 
 **To load to SRAM**
 
-1. Change directories to the root of the Amazon FreeRTOS download \(*<BASE\_FOLDER>*\)\.
+1. Change directories to the root of the Amazon FreeRTOS download\.
 
 1. Run the `ramload.py` Python script on the `aws_demos.axf` file:
 
    ```
-   ./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/OpenOCD/ramload.py \\
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/ramload.py \\
    build/cmake/vendors/marvell/mw300_rd/aws_demos.axf
    ```
 
@@ -366,7 +381,7 @@ The `ramload.py` script is written in Python 2\.7\.
 **Note**  
 Images loaded to SRAM are erased on reboot\.
 
-### Enabling Other Logs<a name="w3aab7c19c17c21b7"></a>
+### Enabling Other Logs<a name="w3aab7c23c17c21b7"></a>
 
 You might need to enable other logging messages to troubleshoot problems that you encounter while getting started with this board\.
 
@@ -378,20 +393,20 @@ You might need to enable other logging messages to troubleshoot problems that yo
 
 **To enable Wi\-Fi logs**
 
-1. Open the `<BASE_FOLDER>/lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/src/incl/autoconf.h`\.
+1. Open `vendors/marvell/WMSDK/mw320/sdk/src/incl/autoconf.h`\.
 
 1. Enable the macro `CONFIG_WLCMGR_DEBUG`\.
 
-### Using an IDE Development and Debugging<a name="w3aab7c19c17c21b9"></a>
+### Using an IDE Development and Debugging<a name="w3aab7c23c17c21b9"></a>
 
-#### Set Up an IDE<a name="w3aab7c19c17c21b9b3"></a>
+#### Set Up an IDE<a name="w3aab7c23c17c21b9b3"></a>
 
 You can use an IDE for developing and debugging applications, and for visualizing your projects\.
 
 If you are using the Eclipse IDE, for example, use the `perm_fix.sh` script to configure some permissions:
 
 ```
-./lib/third_party/mcu_vendor/marvell/WMSDK/mw320/sdk/tools/bin/perm_fix.sh
+./vendors/marvell/WMSDK/mw320/tools/bin/perm_fix.sh
 ```
 
 **To set up Eclipse**
@@ -404,7 +419,7 @@ If you are using the Eclipse IDE, for example, use the `perm_fix.sh` script to c
 
 1. Extract the downloaded archive folder, and then run the platform\-specific Eclipse executable to start the IDE\.
 
-#### Build the Demo with an IDE<a name="w3aab7c19c17c21b9b5"></a>
+#### Build the Demo with an IDE<a name="w3aab7c23c17c21b9b5"></a>
 
 You can open and build the demo project's build files in your IDE instead of building the demo directly from the command line with `make`\. Opening the files in an IDE can help you visualize the project before you build it\.
 
@@ -415,18 +430,14 @@ You must generate the build files with the cmake command every time you switch b
 
 1. Open Eclipse\.
 
-1. Choose your workspace to create a project\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-eclipse1.png)
+1. Choose your workspace to create a project\.
 
-1. On the **Select a wizard** page, expand **C/C\+\+**, and choose **Makefile Project with Existing Code**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-eclipse2.png)
+1. On the **Select a wizard** page, expand **C/C\+\+**, and choose **Makefile Project with Existing Code**\.
 
-1. On the **Import existing code** page, browse to the location of the `aws_demos` source code, choose `aws_demos`, and then choose **Finish**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-eclipse3.png)
+1. On the **Import existing code** page, browse to the location of the `aws_demos` source code, choose `aws_demos`, and then choose **Finish**\.
 
-1. From the **Project Explorer**, right\-click `aws_demos`, and then build the project\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-eclipse4.png)
+1. From the **Project Explorer**, right\-click `aws_demos`, and then build the project\.
 
-   A successful build generates the `<BASE_FOLDER>/build/cmake/vendors/marvell/mw300_rd/aws_demos.bin` executable\.
+   A successful build generates the `aws_demos.bin` executable\.
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

@@ -1,6 +1,9 @@
 # Creating a CMakeLists\.txt File for Your Platform<a name="afq-cmake"></a>
 
-To qualify a device for Amazon FreeRTOS, you submit a `CMakeLists.txt` file for the device\. This file is used to list your device on the Amazon FreeRTOS console, and it makes it possible for developers to build Amazon FreeRTOS code for the device without an IDE\.
+A `CMakeLists.txt` file is used to list your device on the Amazon FreeRTOS console, and it makes it possible for developers to build Amazon FreeRTOS code for the device without an IDE\.
+
+**Note**  
+A CMake list file is not required to qualify a board through the AWS Device Qualification Program\. The file is only required for listing devices on the Amazon FreeRTOS Console\.
 
 For more information about the CMake build system, see [CMake\.org](https://cmake.org/overview/)\.
 

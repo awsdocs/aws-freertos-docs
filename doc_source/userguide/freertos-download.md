@@ -31,6 +31,6 @@ If you are getting started with the Cypress CYW954907AEVAL1F or CYW943907AEVAL1F
 
 **Note**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  
-In the Getting Started documentation, the path to the Amazon FreeRTOS download directory is referred to as `<BASE_FOLDER>`\.
+In the Getting Started documentation, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
 After you download Amazon FreeRTOS, you can continue to [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.

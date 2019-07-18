@@ -3,7 +3,7 @@
 Use following checklist to help you keep track of qualification items\.
 
 □ Port Amazon FreeRTOS\.  
-Make sure that you have ported and tested the following all of the libraries, according to the instructions in the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.    
+Make sure that you have ported and tested the following libraries, according to the instructions in the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.    
 □ Implement `configPRINT_STRING()` macro\.  
 For instructions, see [Implementing the configPRINT\_STRING\(\) macro](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-config.html) in the *Amazon FreeRTOS Porting Guide*\.  
 □ Configure FreeRTOS kernel for the target board\.  
@@ -24,9 +24,10 @@ For instructions, see [Setting Up the MQTT Library for Testing](https://docs.aws
 □ Port OTA library\.  
 This port is currently not required for qualification\.
 For instructions, see [Porting the OTA Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ota.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port BLE library\.  
+If you are porting the OTA library for qualification, you must meet the bootloader requirements in [Porting the Bootloader Demo](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-bootloader.html) in the *Amazon FreeRTOS Porting Guide*\.  
+□ Port Bluetooth Low Energy library\.  
 This port is currently not required for qualification\.
-For instructions, see [Porting the BLE Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ble.html) in the *Amazon FreeRTOS Porting Guide*\.
+For instructions, see [Porting the Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ble.html) in the *Amazon FreeRTOS Porting Guide*\.
 
 □ Validate your Amazon FreeRTOS ports with AWS IoT Device Tester\.  
 For more information, see [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the *Amazon FreeRTOS User Guide*\.
@@ -38,7 +39,8 @@ For instructions, see [Setting Up a Hello World Demo](afq-hw-demo.md)\.
 For instructions, see [Creating a Getting Started with Amazon FreeRTOS Guide for Your Device](afq-gsg.md)\.
 
 □ Create a CMake list file, and build the test and demo applications with the file\.  
-For instructions, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.
+For instructions, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.  
+A CMake list file is not required to qualify a board through the AWS Device Qualification Program\. The file is only required for listing devices on the Amazon FreeRTOS Console\.
 
 □ Provide hardware information for your device\.  
 For instructions, see [Hardware Information for Amazon FreeRTOS Qualification](afq-hardware.md)\.
@@ -48,3 +50,6 @@ For instructions, see [Providing an Open Source License for Your Code](afq-licen
 
 □ Run the Amazon FreeRTOS qualification check script\.  
 For instructions, see [Amazon FreeRTOS Qualification Check Script](afq-script.md)\.
+
+□ Submit your Device Tester test result file in the Device Listing Portal\.  
+All qualification submissions must be made through the [Device Listing Portal](https://partnercentral.awspartner.com/DeviceListPage) on APN Partner Central\.

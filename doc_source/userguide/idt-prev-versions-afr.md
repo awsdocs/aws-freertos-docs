@@ -2,6 +2,15 @@
 
 This section contains download links for earlier versions of IDT for Amazon FreeRTOS\.
 
+**IDT for Amazon FreeRTOS v1\.4\.8 and v1\.4\.9**
++ IDT for Amazon FreeRTOS: [Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.2.0.zip)
++ IDT for Amazon FreeRTOS: [macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.2.0.zip)
++ IDT for Amazon FreeRTOS: [Windows]( https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.2.0.zip)
+
+**Release Notes**
++ Added support for Amazon FreeRTOS v1\.4\.8 and v1\.4\.9\.
++ Added support for testing Amazon FreeRTOS devices with the CMAKE build system\.
+
 **IDT v1\.1 for Amazon FreeRTOS v1\.4\.7**
 + IDT for Amazon FreeRTOS: [Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.1.190304225254.zip)
 + IDT for Amazon FreeRTOS: [macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.1.190304225254.zip)

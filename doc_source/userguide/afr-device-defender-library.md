@@ -2,190 +2,93 @@
 
 ## Overview<a name="freertos-defender-overview"></a>
 
-AWS IoT Device Defender is an AWS IoT service that allows you to audit the configuration of your devices, monitor connected devices to detect abnormal behavior, and to mitigate security risks\. It gives you the ability to enforce consistent IoT configurations across your AWS IoT device fleet and respond quickly when devices are compromised\.
+[AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html) is an AWS IoT service that enables you to monitor connected devices to detect abnormal behavior and to mitigate security risks\. With AWS IoT Device Defender, you can enforce consistent IoT configurations across your AWS IoT device fleet and respond quickly when devices are compromised\.
 
-Amazon FreeRTOS provides a library that allows your Amazon FreeRTOS\-based devices to work with AWS IoT Device Defender\. You can download the Amazon FreeRTOS Device Defender library using the [Amazon FreeRTOS Console](http://console.aws.amazon.com/freertos) by adding the Device Defender library to your software configuration\. You can also clone the Amazon FreeRTOS GitHub repository and find the library in the `lib` directory\.
+Amazon FreeRTOS provides a library that allows your Amazon FreeRTOS\-based devices to work with AWS IoT Device Defender\. You can download Amazon FreeRTOS with the Device Defender library from the [Amazon FreeRTOS Console](http://console.aws.amazon.com/freertos) by adding the Device Defender library to your software configuration\. You can also clone the Amazon FreeRTOS GitHub repository, which includes all Amazon FreeRTOS libraries\.
 
-The source files for the Amazon FreeRTOS AWS IoT Device Defender library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/defender](https://github.com/aws/amazon-freertos/blob/master/lib/defender)\.
+**Note**  
+The Amazon FreeRTOS AWS IoT Device Defender library only supports a subset of the [device\-side AWS IoT Device Defender metrics](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html#DetectMetricsMessages) related to connection metrics\. For more information, see [Usage Restrictions](#freertos-defender-restrictions)\.
 
-## Source and Header Files<a name="freertos-defender-source"></a>
+## Dependencies and Requirements<a name="freertos-defender-dependencies"></a>
+
+The Device Defender library has the following dependencies:
++ [Amazon FreeRTOS Linear Containers Library](lib-linear.md)\.
++ [Amazon FreeRTOS Logging Library](lib-logging.md) \(if the configuration parameter `AWS_IOT_LOG_LEVEL_DEFENDER` is not set to `IOT_LOG_NONE`\)\.
++ [Amazon FreeRTOS Static Memory Library](lib-static.md) \(if static memory only\)\.
++ A platform layer that provides an interface to the operating system for thread management, timers, clock functions, etc\.
++ [Amazon FreeRTOS Task Pool Library](task-pool.md)\.
++ [Amazon FreeRTOS MQTT Library, Version 2\.0\.0](freertos-mqtt-2.md)\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/defender-dependencies.png)
+
+## Troubleshooting<a name="freertos-defender-troubleshooting"></a>
+
+### Amazon FreeRTOS Device Defender Error Codes<a name="afr-device-defender-error-codes"></a>
+
+The Device Defender library returns error codes as positive values\. For more information about each error code, see `AwsIotDefenderError_t` in the [Device Defender C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html)\.
+
+### Amazon FreeRTOS Device Defender Events<a name="afr-device-defender-events"></a>
+
+The Device Defender library includes the `AwsIotDefenderCallback_t` callback function, which returns positive, enumerated values known as "events" that indicate success or failure\. For more information about event types, see `AwsIotDefenderEventType_t` in the [Device Defender C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html)\.
+
+### Debugging Amazon FreeRTOS Device Defender<a name="afr-device-defender-debugging"></a>
+
+To enable the debugging for the Device Defender library, set the log level for Device Defender to debug mode in the [global configuration file](dev-guide-freertos-libraries.md#lib-config):
 
 ```
-Amazon FreeRTOS
-|
-+ - lib    
-    |
-    + - defender
-    |    + ─ aws_defender.c
-    |    + ─ aws_defender_states.dot
-    |    + ─ aws_defender_states.png
-    |    + ─ draw_states.py
-    |    + ─ portable
-    |    |   + ─ freertos
-    |    |   |   + ─ aws_defender_cpu.c
-    |    |   |   + ─ aws_defender_tcp_conn.c
-    |    |   |   + ─ aws_defender_uptime.c
-    |    |   + ─ stub
-    |    |   |   + ─ aws_defender_cpu.c
-    |    |   |   + ─ aws_defender_tcp_conn.c
-    |    |   |   + ─ aws_defender_uptime.c
-    |    |   |   + ─ makefile
-    |    |   + ─ template
-    |    |   |   + ─ aws_defender_cpu.c
-    |    |   |   + ─ aws_defender_tcp_conn.c
-    |    |   |   + ─ aws_defender_uptime.c
-    |    |   |   + ─ makefile
-    |    |   + ─ unit_test
-    |    |   |   + ─ aws_defender_cpu.c
-    |    |   |   + ─ aws_defender_tcp_conn.c
-    |    |   |   + ─ aws_defender_uptime.c
-    |    |   + ─ unix
-    |    |        + ─ aws_defender_cpu.c
-    |    |        + ─ aws_defender_tcp_conn.c
-    |    |        + ─ aws_defender_uptime.c
-    |    |        + ─ makefile
-    |    + ─ report
-    |        + ─ aws_defender_report.c
-    |        + ─ aws_defender_report_cpu.c
-    |        + ─ aws_defender_report_header.c
-    |        + ─ aws_defender_report_tcp_conn.c
-    |        + ─ aws_defender_report_uptime.c
-    + - include
-        + - aws_defender.h
-        + - private
-            + - aws_defender_cpu.h
-            + - aws_defender_internals.h
-            + - aws_defender_report_cpu.h
-            + - aws_defender_report.h
-            + - aws_defender_report_header.h
-            + - aws_defender_report_tcp_conn.h
-            + - aws_defender_report_types.h
-            + - aws_defender_report_uptime.h
-            + - aws_defender_report_utils.h
-            + - aws_defender_tcp_conn.h
-            + - aws_defender_uptime.h
+#define  AWS_IOT_LOG_LEVEL_DEFENDER  IOT_LOG_DEBUG
 ```
+
+For more information, see the [Global Configuration File Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/global_library_config.html#IOT_CONFIG_FILE)\.
 
 ## Developer Support<a name="freertos-defender-support"></a>
 
-### Amazon FreeRTOS Device Defender API Error Codes<a name="afr-device-defender-error-codes"></a>
+The Device Defender library includes the `AwsIotDefender_strerror` helper function, which returns a string that describes the error that you provide to the function:
 
-`eDefenderErrSuccess`  
-The operation was successful\.
+```
+const char * AwsIotDefender_strerror( AwsIotDefenderError_t error );
+```
 
-`eDefenderErrFailedToCreateTask`  
-The operation could not be started\.
+## Usage Restrictions<a name="freertos-defender-restrictions"></a>
 
-`eDefenderErrAlreadyStarted`  
-The operation is already in progress\.
+Although the AWS IoT Device Defender service supports both JSON and CBOR formats for data serialization, the Amazon FreeRTOS Device Defender library currently only supports CBOR, which is controlled by the configuration option `AWS_IOT_DEFENDER_FORMAT`\.
 
-`eDefenderErrNotStarted`  
-The Device Defender agent has not been started\.
+Additionally, the Amazon FreeRTOS AWS IoT Device Defender library only supports a subset of [device\-side AWS IoT Device Defender metrics](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html#DetectMetricsMessages):
 
-`eDefenderErrOther`  
-An unspecified error occurred\.
+
+| Long Name | Short Name | Parent Element | Description | 
+| --- | --- | --- | --- | 
+| remote\_addr | rad | connections | Lists the remote address of a TCP connection\. | 
+| total | t | established\_connections | Lists the number of established TCP connections\. | 
+
+For example:
+
+```
+"tcp_connections": {
+            "established_connections": {
+                "connections": [
+                    {
+                        "remote_addr": "192.168.0.1:8000"
+                    },
+                    {
+                        "remote_addr": "192.168.0.2:8000"
+                    }
+                ],
+                "total": 2
+            }
+        }
+```
+
+This JSON document is for example purposes only, as Amazon FreeRTOS Device Defender library does not support JSON\-formatted metrics\.
+
+## Initialization<a name="afr-device-defender-init"></a>
+
+The macro `AWS_IOT_SECURE_SOCKETS_METRICS_ENABLED` must be defined to enable the secure sockets metrics\. Leaving this macro undefined could result in unpredictable behavior\.
 
 ## Amazon FreeRTOS Device Defender API<a name="afr-device-defender-api"></a>
 
-This section contains information about the Device Defender API\.
-
-### DEFENDER\_MetricsInit<a name="dd_metrics_init"></a>
-
-Specifies the Device Defender metrics your device will send to AWS IoT Device Defender\.
-
-```
-DefenderErr_t DEFENDER_MetricsInit(DefenderMetric_t * pxMetricsList);
-```Arguments
-
-`metrics_list`  
-A list of Device Defender metrics\. Valid values are:  
-+ `DEFENDER_tcp_connections` \- tracks the number of TCP connections\.Return Value
-
-  
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
-
-### DEFENDER\_ReportPeriodSet<a name="dd_reportperiodset"></a>
-
-Sets the report period interval in seconds\. Device Defender provides metric reports on an interval\. If the device is awake, and the interval has elapsed, the device reports the metrics\.
-
-```
-DefenderErr_t DEFENDER_ReportPeriodSet(int32_t LPeriodSec);
-```Arguments
-
-`period_sec`  
-The number of seconds after which a report is sent to AWS IoT Device Defender\.Return Value
-
-  
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
-
-### DEFENDER\_Start<a name="dd_start"></a>
-
-Starts the Device Defender agent\.
-
-```
- DefenderErr_t DEFENDER_Start(void);
-```Return Value
-
-  
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
-
-### DEFENDER\_Stop<a name="dd_start"></a>
-
-Stops the Device Defender agent\.
-
-```
-DefenderErr_t DEFENDER_Stop(void);
-```Return Value
-
-  
-Returns one of the `DefenderErr_t` enums\. For more information, see [Amazon FreeRTOS Device Defender API Error Codes](#afr-device-defender-error-codes)\.
-
-### DEFENDER\_ReportStatusGet<a name="dd_reportstatusget"></a>
-
-Gets the status of the last Device Defender report\. Valid status code values are:
-
-`eDefenderRepSuccess`  
-The last report was successfully sent and acknowledged\.
-
-`eDefenderRepInit`  
-Device Defender has been started, but no report has been sent\.
-
-`eDefenderRepRejected`  
-The last report was rejected\.
-
-`eDefenderRepNoAck`  
-The last report was not acknowledged\.
-
-`eDefenderRepNotSent`  
-The last report was not sent, likely due to a connectivity issue\.
-
-```
-DefenderReportStatus_t DEFENDER_ReportStatusGet(void);
-```
+For a full API reference, see the [Device Defender C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html)\.
 
 ## Example Usage<a name="freertos-defender-example"></a>
 
-### Using Device Defender in Your Embedded Application<a name="calling_dd"></a>
-
-The following code shows how to configure and start the Device Defender agent from your embedded application:
-
-```
-void MyDefenderInit(void)
-{
-	// Specify metrics to send to Device Defender
-    defender_metric_t metrics_list[] = {
-        DEFENDER_tcp_connections
-    };
-    ( void ) DEFENDER_MetricsInit( metrics_list );
- 
- 	// Set the reporting interval
- 	// You can use a shorter period to trigger the violation faster, however 
- 	// the Device Defender service is not guaranteed to accept reports faster 
- 	// than every 300 seconds (5 minutes) per device.
-    int report_period_sec = 300;
-    ( void ) DEFENDER_ReportPeriodSet( report_period_sec );
- 
- 	// Start the Device Defender agent
-    DEFENDER_Start();
-}
-```
+For a full example of the Device Defender library in use, see [AWS IoT Device Defender Demo](dd-demo.md)\.

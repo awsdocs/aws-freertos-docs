@@ -6,9 +6,9 @@ Throughout this tutorial, we assume that you are familiar with AWS IoT and the A
 
 ## Amazon FreeRTOS Demo Application<a name="w3aab7b7"></a>
 
-The demo application in this tutorial is the Hello World MQTT demo defined in the `/demos/common/mqtt/aws_hello_world.c` file\. It uses the [Amazon FreeRTOS MQTT library](freertos-lib-cloud-mqtt.md) to connect to the AWS Cloud and then periodically publish messages to an MQTT topic hosted by the [AWS IoT MQTT broker](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html)\.
+The demo application in this tutorial is the Hello World MQTT demo defined in the `/demos/mqtt/iot_demo_mqtt.c` file\. It uses the [Amazon FreeRTOS MQTT library](freertos-lib-cloud-mqtt.md) to connect to the AWS Cloud and then periodically publish messages to an MQTT topic hosted by the [AWS IoT MQTT broker](https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html)\.
 
-Only a single Amazon FreeRTOS demo application can run at a time\. When you build an Amazon FreeRTOS demo project, the first demo enabled in the `demos/common/demo_runner/aws_demo_runner.c` file is the application that runs\. For this tutorial, you do not need to enable or disable any demos\. The Hello World MQTT demo is enabled by default\.
+Only a single Amazon FreeRTOS demo application can run at a time\. When you build an Amazon FreeRTOS demo project, the first demo enabled in the `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h` header file is the application that runs\. For this tutorial, you do not need to enable or disable any demos\. The Hello World MQTT demo is enabled by default\.
 
 For more information about the demo applications included with Amazon FreeRTOS, see [Amazon FreeRTOS Demos](freertos-next-steps.md)\.
 
@@ -23,3 +23,9 @@ After you complete the [First Steps](freertos-prereqs.md), you can set up your p
 ## Troubleshooting<a name="w3aab7c13"></a>
 
 For help troubleshooting any issues that you encounter while getting started, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\. For board\-specific troubleshooting tips, see the Getting Started guide for your board in [Board\-specific Getting Started Guides](getting-started-guides.md)\.
+
+## Developing Amazon FreeRTOS Applications<a name="w3aab7c15"></a>
+
+You can use an IDE to edit, debug, compile, flash, and run code on Amazon FreeRTOS\-qualified devices\. Each board\-specific Getting Started guide includes instructions for setting up the IDE for a particular platform\.
+
+You can also use third\-party code editors and debuggers to develop applications, and CMake to build and run the source code\. For more information about using CMake as a build tool for Amazon FreeRTOS development, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\. 

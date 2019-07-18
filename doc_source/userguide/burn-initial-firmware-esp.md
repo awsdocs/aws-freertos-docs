@@ -4,7 +4,7 @@ This guide is written with the assumption that you have already performed the st
 
 **To flash an initial factory image to the board**
 
-1. In `demos/common/demo_runner/aws_demo_runner.c`, in the `DEMO_RUNNER_RunDemos` function, comment out all functions calls except `vStartOTAUpdateDemoTask`\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
 1. With the OTA Update demo selected, follow the same steps outlined in [Getting Started with ESP32](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) to build and flash the image\. If you have previously built and flashed the project, you might need to run `make clean` first\. After you run `make flash monitor`, you should see something like the following\. The ordering of some messages might vary, because the demo application runs multiple tasks at once:
 

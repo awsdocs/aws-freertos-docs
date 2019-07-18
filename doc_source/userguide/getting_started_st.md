@@ -2,11 +2,11 @@
 
 This tutorial provides instructions for getting started with the STMicroelectronics STM32L4 Discovery Kit IoT Node\. If you do not already have the STMicroelectronics STM32L4 Discovery Kit IoT Node, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsWUAX/STM32L4-Discovery-Kit-IoT-Node)\.
 
-Make sure you have installed the latest Wi\-Fi firmware\. To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, BLE, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. Under **Binary Resources**, choose **Inventek ISM 43362 Wi\-Fi module firmware update \(read the readme file for instructions\) **\.
+Make sure you have installed the latest Wi\-Fi firmware\. To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, Bluetooth Low Energy, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. Under **Binary Resources**, choose **Inventek ISM 43362 Wi\-Fi module firmware update \(read the readme file for instructions\) **\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c31b9"></a>
+## Overview<a name="w3aab7c23c31b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -36,19 +36,17 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. From the **File** menu, choose **Import**\. Expand **General**, choose **Existing Projects into Workspace**, and then choose **Next**\.
 
-1. In **Select Root Directory**, enter `<BASE_FOLDER>\demos\st\stm32l475_discovery\ac6`\.
+1. In **Select Root Directory**, enter `projects/st/stm32l475_discovery/ac6/aws_demos`\.
 
 1. The project `aws_demos` should be selected by default\.
 
 1. Choose **Finish** to import the project into STM32 System Workbench\.
 
-1. From the **Project** menu, choose **Build All**\. Confirm the project compiles without any errors or warnings\.
+1. From the **Project** menu, choose **Build All**\. Confirm the project compiles without any errors\.
 
 ### Run the Amazon FreeRTOS Demo Project<a name="st-run-example"></a>
 
 1. Use a USB cable to connect your STMicroelectronics STM32L4 Discovery Kit IoT Node to your computer\. 
-
-1. Rebuild your project\.
 
 1. From **Project Explorer**, right\-click `aws_demos`, choose **Debug As**, and then choose **Ac6 STM32 C/C\+\+ Application**\.
 
@@ -66,6 +64,28 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
+### Using CMake with Amazon FreeRTOS<a name="w3aab7c23c31c13b7"></a>
+
+If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+
+First create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+
+Use the following command to generate build files:
+
+```
+cmake -DVENDOR=st -DBOARD=stm32l475_discovery -DCOMPILER=arm-gcc -S <amazon-freertos> -B BUILD_FOLDER
+```
+
+If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_TOOLCHAIN_PATH` CMake variable\. For example:
+
+```
+-D AFR_TOOLCHAIN_PATH=/home/user/opt/gcc-arm-none-eabi/bin
+```
+
+For more information about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c31c13b9"></a>
+
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
@@ -74,29 +94,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
-### Run the Bluetooth Low\-Energy Demo<a name="st-run-ble"></a>
-
-
-|  | 
-| --- |
-| Amazon FreeRTOS support for Bluetooth Low Energy is in public beta release\. BLE demos are subject to change\. | 
-
-**Note**  
-To run the BLE demo, you need the SPBTLE\-1S BLE module for the STM32L475 Discovery Kit\.
-
-Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\. The Amazon FreeRTOS BLE library is still in public beta, so you need to switch branches to access the code for your board\. Check out the branch named `feature/ble-beta`\.
-
-To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon FreeRTOS BLE Mobile SDK Demo Application on an iOS or Android mobile device\.
-
-**To set up the the Amazon FreeRTOS BLE Mobile SDK Demo Application**
-
-1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
-
-1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
-
- For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE demo application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="st-troubleshooting"></a>
 
@@ -107,6 +105,6 @@ If you see the following in the UART output from the demo application, you need 
 [Tmr Svc] [WARN] WiFi firmware needs to be updated.
 ```
 
-To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, BLE, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. In **Binary Resources**, choose the download link for **Inventek ISM 43362 Wi\-Fi module firmware update**\.
+To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, Bluetooth Low Energy, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. In **Binary Resources**, choose the download link for **Inventek ISM 43362 Wi\-Fi module firmware update**\.
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

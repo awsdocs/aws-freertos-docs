@@ -16,11 +16,11 @@ To implement the `configPRINT_STRING()` macro, you need the following:
 
 1. Connect your device to a terminal emulator to output test results\.
 
-1. Open the file `<amazon-freertos>/tests/<vendor>/<board>/common/application_code/main.c`, and locate the call to `configPRINT_STRING("Test Message")` in the `prvMiscInitialization()` function\.
+1. Open the file `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and locate the call to `configPRINT_STRING("Test Message")` in the `prvMiscInitialization()` function\.
 
 1. Immediately before the call to `configPRINT_STRING("Test Message")`, add code that uses the vendor\-supplied UART driver to initialize the UART baud rate level to 115200\.
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/FreeRTOSConfig.h`, and locate the empty definition of `configPRINT_STRING()`\. The macro takes a NULL\-terminated ASCII C string as its only parameter\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`, and locate the empty definition of `configPRINT_STRING()`\. The macro takes a NULL\-terminated ASCII C string as its only parameter\.
 
 1. Update the empty definition of `configPRINT_STRING()` so that it calls the vendor\-supplied UART output function\.
 

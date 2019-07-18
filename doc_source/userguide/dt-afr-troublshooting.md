@@ -45,10 +45,10 @@ You might encounter errors that point to failures during test start\. Because th
 + Make sure that the pool name you've included in your execution command actually exists\. This is referenced directly from your `device.json` file\.
 + Make sure that the device or devices in your pool have correct configuration parameters\.
 
-### Network Test Erros<a name="network-test-errors"></a>
+### Network Test Errors<a name="network-test-errors"></a>
 
 For network\-based tests, IDT starts an echo server that binds to a non\-reserved port on the host machine\. If you are running into errors due to timeouts or unavailable connections, make sure that your network is configured to allow traffic to at least one port in the following ranges:
-+ Unsecure ports: 1025\-33280
++ Insecure ports: 1025\-33280
 + Secure ports: 33281\-65535
 
 ### Debugging Device Interface and Port Errors<a name="device-interface"></a>
@@ -121,21 +121,12 @@ IDT for Amazon FreeRTOS logs are placed in a single location\. From the root IDT
 + `awsiotdevicetester_report.xml`
 + `/logs/<test_group_id>.log`
 
-The most important logs to look at are:
-+ `results.xml`, which contains error messages about which tests failed\.
-+ `<test_group_id>.log`, which you can use to dig further into the problem\.
+`<test_group_id>.log` and `results.xml` are the most important logs to examine\. The latter contains information about which tests failed with a specific error message\. You can then use the former to dig further into the problem to get better context\.
 
-### Debugging Amazon FreeRTOS<a name="debug-afr"></a>
+#### Console Errors<a name="err-console"></a>
 
-When a source code error occurs, IDT for Amazon FreeRTOS writes debug output to the `<test-group-id>.log` file in the `/results/<uuid>/logs` directory\. Search the file for any instances of errors\. The error indicates a location in the Amazon FreeRTOS source code\. You can use the line number and file path information in that log to find the line of source code that caused the error\.
+When AWS IoT Device Tester is run, failures are reported to console with brief messages\. Look in `<test_group_id>.log` to learn more about the error\.
 
-### Log Errors<a name="err-log"></a>
+#### Log Errors<a name="err-log"></a>
 
-The `<test_group_id>.log` file is located in the `/results/<uuid>` directory\. Each test execution has a unique test ID that is used to create the *<uuid>* directory\. Individual test group logs are under the `<uuid>` directory\. Use the AWS IoT console to look up the test group that failed and then open the log file for that group in the `/results/<uuid>` directory\. The information in this file includes:
-+ Full build and flash command output\.
-+ Test execution output\.
-+ More verbose IDT for Amazon FreeRTOS console output\.
-
-### Console Errors<a name="err-console"></a>
-
-When IDT for Amazon FreeRTOS is run, failures are reported to console with brief messages\. Look in `<test_group_id>.log` to learn more about the error\.
+The `<test_group_id>.log` file is located in the `/results/<uuid>` directory\. Each test execution has a unique test ID that is used to create the `<uuid>` directory\. Individual test group logs are under the `<uuid>` directory\. Use the AWS IoT console to look up the test group that failed and then open the log file for that group in the `/results/<uuid>` directory\. The information in this file includes the full build and flash command output, test execution output, and more verbose AWS IoT Device Tester console output\.

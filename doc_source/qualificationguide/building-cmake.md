@@ -1,26 +1,10 @@
 # Building Amazon FreeRTOS with CMake<a name="building-cmake"></a>
 
-CMake targets your host operating system as the target system by default\. To use CMake for cross compiling, provide a toolchain file that specifies the compiler that you want to use\. You can find some examples in `<amazon-freertos>/cmake/toolchains`\.
+CMake targets your host operating system as the target system by default\. To use CMake for cross compiling, provide a toolchain file that specifies the compiler that you want to use\. You can find some examples in `<amazon-freertos>/tools/cmake/toolchains`\.
 
 If you're using a compiler different from the one provided with Amazon FreeRTOS, write this toolchain file before you build Amazon FreeRTOS with CMake\. You must also set the `CMAKE_TOOLCHAIN_FILE` variable before CMake reads your top\-level `CMakeLists.txt` file\. The `CMAKE_TOOLCHAIN_FILE` variable specifies which compiler to use and sets some CMake variables, like the system name and the default search path\. For more information about cross compiling with CMake, see [Cross Compiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) on the official CMake wiki\.
 
-The `CMakeLists.txt` and toolchain files must be in the correct locations\. Before you build Amazon FreeRTOS with CMake, make sure that you have correctly set up the Amazon FreeRTOS directory structure\. For example:
-
-```
-<amazon-freertos>
-+ - cmake
-|   + - vendors
-|   |   + - <vendor>
-|   |       + - <board>
-|   |           + - CMakeLists.txt
-|   + - toolchains
-|       + - <toolchain_name>.cmake
-+ - demos
-+ - lib
-+ - tests
-+ - tools
-+ - CMakeLists.txt
-```
+The `CMakeLists.txt` and toolchain files must be in the correct locations\. Before you build Amazon FreeRTOS with CMake, make sure that you have set up the Amazon FreeRTOS directory structure on your local machine to match the Amazon FreeRTOS directory structure on [GitHub](https://github.com/aws/amazon-freertos)\.
 
 **To build a CMake\-based project**
 
@@ -108,7 +92,7 @@ You can use the CMake GUI to generate Amazon FreeRTOS build files\.
 
 1. Choose **Specify toolchain file for cross\-compiling**, and then choose **Next**\.
 
-1. Choose the toolchain file \(for example, `amazon-freertos/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
+1. Choose the toolchain file \(for example, `amazon-freertos/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
 
    The default configuration for Amazon FreeRTOS is the template board, which does not provide any portable layer targets\. As a result, a window appears with the message Error in configuration process\.
 

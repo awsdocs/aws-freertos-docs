@@ -2,9 +2,9 @@
 
 This tutorial provides instructions for getting started with the MediaTek MT7697Hx Development Kit\. If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c21b7"></a>
+## Overview<a name="w3aab7c23c21b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -52,11 +52,11 @@ If you are having trouble connecting to your board after you install the driver,
 
 1. From the **Start** menu, open Keil μVision 5\.
 
-1. Open the `<BASE_FOLDER>/demos/mediatek/mt7697hx-dev-kit/uvision/aws_demo.uvprojx` project file\.
+1. Open the `projects/mediatek/mt7697hx-dev-kit/uvision/aws_demos/aws_demos.uvprojx` project file\.
 
 1. From the menu, choose **Project**, and then choose **Build target**\.
 
-   After the code is built, you see the demo executable file at `<BASE_FOLDER>/demos/mediatek/mt7697hx-dev-kit/uvision/out/Objects/aws_demo.axf`\.
+   After the code is built, you see the demo executable file at `projects/mediatek/mt7697hx-dev-kit/uvision/aws_demos/out/Objects/aws_demo.axf`\.
 
 **To run the Amazon FreeRTOS demo project**
 
@@ -76,6 +76,8 @@ If you are having trouble connecting to your board after you install the driver,
 
 1. Choose the **RESET** button on your MediaTek MT7697Hx Development Kit\.
 
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c21c13b7"></a>
+
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
@@ -84,7 +86,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="mediatek-troubleshooting"></a>
 
@@ -108,7 +110,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. Choose the **Debug** tab, and then choose **CMSIS\-DAP Debugger**\.
 
-1. Open `<BASE_FOLDER>/demos/mediatek/mt7697hx-dev-kit/common/application_code/main.c`, and set the macro `MTK_DEBUGGER` to `1`\. 
+1. Open `vendors/mediatek/boards/mt7697hx-dev-kit/aws_demos/application_code/main.c`, and set the macro `MTK_DEBUGGER` to `1`\. 
 
 1. Rebuild the demo project in μVision\. 
 
@@ -128,7 +130,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. Set breakpoints in your project's source code, and run the code\. 
 
-### Troubleshooting the IDE Debugger Settings<a name="w3aab7c19c21c15b5"></a>
+### Troubleshooting the IDE Debugger Settings<a name="w3aab7c23c21c15b5"></a>
 
 If you are having trouble debugging an application, your debugger settings might be incorrect\.
 
@@ -136,8 +138,7 @@ If you are having trouble debugging an application, your debugger settings might
 
 1. Open Keil μVision\.
 
-1. Right\-click the `aws_demos` project, choose **Options**, and under the **Utilities** tab, choose **Settings**, next to **“\-\- Use Debug Driver \-\-”**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-1.png)
+1. Right\-click the `aws_demos` project, choose **Options**, and under the **Utilities** tab, choose **Settings**, next to **“\-\- Use Debug Driver \-\-”**\.
 
 1. Verify that the settings under the **Debug** tab appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-2.png)
@@ -145,4 +146,4 @@ If you are having trouble debugging an application, your debugger settings might
 1. Verify that the settings under the **Flash Download** tab appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-3.png)
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

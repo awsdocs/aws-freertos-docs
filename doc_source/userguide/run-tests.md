@@ -7,7 +7,7 @@ devicetester\_*\[linux \| mac \| win\]* run\-suite \-\-suite\-id *<suite\-id>* \
 The `userdata.json` file should be located in the `<devicetester_extract_location> /devicetester_afreertos_[win|mac|linux]/configs/` directory\.
 
 **Note**  
-If you are running IDT for Amazon FreeRTOS on Windows, specify the path to the `userdata.json` by using forward slashes \(/\)\.
+If you are running IDT for Amazon FreeRTOS on Windows, use forward slashes \(/\) to specify the path to the `userdata.json` file\.
 
 Use the following command to run a specific test group:
 

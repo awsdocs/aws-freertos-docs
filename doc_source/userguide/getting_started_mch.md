@@ -10,18 +10,23 @@ The bundle includes the following items:
 
 You also need the following items for debugging:
 + [MPLAB Snap In\-Circuit Debugger](https://www.microchip.com/Developmenttools/ProductDetails/PG164100) 
-+ \(Optional\) [PICkit 3 Programming Cable Kit](https://new.microchipdirect.com/product/search/all/TPROG001) 
++ \(Optional\) [PICkit 3 Programming Cable Kit](https://www.microchip.com/TPROG001) 
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c23c15"></a>
+## Overview<a name="w3aab7c23c23c15"></a>
 
 This tutorial contains instructions for the following getting started steps:
-+ Connecting your board to a host machine\.
-+ Installing software on the host machine that you use to develop and debug embedded applications for your microcontroller board\.
-+ Cross\-compiling an Amazon FreeRTOS demo application to a binary image\.
-+ Loading the application binary image to your board, and then running the application\.
-+ Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Set Up the Microchip Curiosity PIC32MZ EF Hardware<a name="setup-hw-mch"></a>
 
@@ -52,24 +57,17 @@ This tutorial contains instructions for the following getting started steps:
 **Note**  
 The Amazon FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the project, you need to use versions of the MPLAB tools that are compatible with Harmony v2, like v2\.10 of the MPLAB XC32 Compiler and versions 2\.X\.X of the MPLAB Harmony Configurator \(MHC\)\.
 
-1. Install the latest [Java SE SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)\.
-
 1. Install [Python version 3\.x](https://www.python.org/downloads/) or later\.
 
-1. Install the latest version of the MPLAB X IDE:
+1. Install the MPLAB X IDE:
    + [MPLAB X Integrated Development Environment for Windows](http://www.microchip.com/mplabx-ide-windows-installer)
    + [MPLAB X Integrated Development Environment for macOS](http://www.microchip.com/mplabx-ide-osx-installer)
    + [MPLAB X Integrated Development Environment for Linux](http://www.microchip.com/mplabx-ide-linux-installer)
 
-1. Install the latest version of the MPLAB XC32 Compiler:
+1. Install the MPLAB XC32 Compiler:
    + [MPLAB XC32/32\+\+ Compiler for Windows](http://www.microchip.com/mplabxc32windows)
    + [MPLAB XC32/32\+\+ Compiler for macOS](http://www.microchip.com/mplabxc32osx)
    + [MPLAB XC32/32\+\+ Compiler for Linux](http://www.microchip.com/mplabxc32linux)
-
-1. \(Optional\) Install the latest version of the MPLAB Harmony Integrated Software Framework:
-   + [MPLAB Harmony Integrated Software Framework for Windows](http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en603881)
-   + [MPLAB Harmony Integrated Software Framework for macOS](http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en603883)
-   + [MPLAB Harmony Integrated Software Framework for Linux](http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en603882)
 
 1. Start up a UART terminal emulator and open a connection with the following settings:
    + Baud rate: 115200
@@ -82,19 +80,16 @@ The Amazon FreeRTOS project for this device is based on MPLAB Harmony v2\. To bu
 
 ### Open the Amazon FreeRTOS Demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
 
-1. In the MPLAB IDE, from the **File** menu, choose **Open Project**\.
+1. Open MPLAB IDE\. If you have more than one version of the compiler installed, you need to select the compiler that you want to use from within the IDE\. 
 
-1. Browse to and open `<BASE_FOLDER>\demos\microchip\curiosity_pic32mzef\mplab`\.
+1. From the **File** menu, choose **Open Project**\.
+
+1. Browse to and open `projects/microchip/curiosity_pic32mzef/mplab/aws_demos`\.
 
 1. Choose **Open project**\.
 
 **Note**  
-When you open the project for the first time, you can ignore warning messages like the following:  
-
-```
-warning: Configuration "pic32mz_ef_curiosity" builds with "XC32", but indicates no toolchain directory.
-warning: Configuration "pic32mz_ef_curiosity" refers to file "AmazonFreeRTOS/lib/third_party/mcu_vendor/microchip/harmony/framework/bootloader/src/bootloader.h" which does not exist in the disk. The make process might not build correctly.
-```
+When you open the project for the first time, you might get an error message about the compiler\. In the IDE, navigate to **Tools**, **Options**, **Embedded**, and then select the compiler that you are using for your project\.
 
 ### Run the Amazon FreeRTOS Demo Project<a name="mch-run-example"></a>
 
@@ -104,6 +99,28 @@ warning: Configuration "pic32mz_ef_curiosity" refers to file "AmazonFreeRTOS/lib
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
+### Build the Amazon FreeRTOS demo with CMake<a name="microchip-cmake"></a>
+
+If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+
+**To build the Amazon FreeRTOS demo with CMake**
+
+1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+
+1. Use the following command to generate build files from source code:
+
+   ```
+   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <amazon-freertos> -B BUILD_FOLDER -DAFR_ENABLE_TESTS=1
+   ```
+**Note**  
+You must specify the correct paths to the Hexmate and toolchain binaries\.
+
+1. Change directories to the build directory \(*BUILD\_FOLDER*\), and run `make` from that directory\.
+
+For more information, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c23c21b9"></a>
+
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
@@ -112,8 +129,8 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

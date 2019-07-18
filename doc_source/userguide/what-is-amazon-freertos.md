@@ -29,7 +29,7 @@ For more information, see [Amazon FreeRTOS Libraries](https://docs.aws.amazon.co
 
 ## Downloading Amazon FreeRTOS Source Code<a name="freertos-mds-projects-github"></a>
 
-You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console]()\. For a list of qualified platforms, see [Amazon FreeRTOS\-Qualified Hardware Platforms](freertos-hardware.md) or the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
+You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [Amazon FreeRTOS\-Qualified Hardware Platforms](freertos-hardware.md) or the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
 
 You can also download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\.
 

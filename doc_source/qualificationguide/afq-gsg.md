@@ -2,6 +2,8 @@
 
 To qualify for Amazon FreeRTOS, you need to create a Getting Started with Amazon FreeRTOS guide for your device\. This guide walks users through setting up the hardware and development environment for developing applications for Amazon FreeRTOS devices, and building, running, and flashing the Amazon FreeRTOS Hello World demo on a device\.
 
+This guide must be available to customers on a public website\. The URL to the guide is a requirement for listing a qualified board in the AWS Partner Device Catalog\.
+
 Your guide must include the following instructions:
 + Setting up the device hardware\.
 + Setting up the development environment\.

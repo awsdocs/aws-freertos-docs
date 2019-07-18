@@ -43,7 +43,7 @@ The FreeRTOS kernel includes five heap implementations:
 Is the simplest implementation\. Does not permit memory to be freed\.
 
 `heap_2`  
-Permits memory to be freed, but not does coalescence adjacent free blocks\.
+Permits memory to be freed, but not does coalesce adjacent free blocks\.
 
 `heap_3`  
 Wraps the standard `malloc()` and `free()` for thread safety\.
@@ -82,7 +82,7 @@ RTOS task notifications can be used as a faster and lightweight alternative to b
 
 ### Stream Buffers<a name="rtos-stream-buffer"></a>
 
-Stream buffers allow a stream of bytes to be passed from an interrupt service routine to a task, or from one task to another\. A byte stream can be of arbitrary length and does not necessarily have a beginning or an end\. Any number of bytes can be written at one time, and any number of bytes can be read at one time\. You enable stream buffer functionality by including the `<BASE_DIR>/libs/FreeRTOS/stream_buffer.c` source file in your project\.
+Stream buffers allow a stream of bytes to be passed from an interrupt service routine to a task, or from one task to another\. A byte stream can be of arbitrary length and does not necessarily have a beginning or an end\. Any number of bytes can be written at one time, and any number of bytes can be read at one time\. You enable stream buffer functionality by including the `stream_buffer.c` source file in your project\.
 
 Stream buffers assume there is only one task or interrupt that writes to the buffer \(the writer\), and only one task or interrupt that reads from the buffer \(the reader\)\. It is safe for the writer and reader to be different tasks or interrupt service routines, but it is not safe to have multiple writers or readers\.
 
@@ -110,7 +110,7 @@ The amount of data that must be in the stream buffer before a task is unblocked 
 
 ### Message Buffers<a name="rtos-message-buffer"></a>
 
-Message buffers allow variable\-length discrete messages to be passed from an interrupt service routine to a task, or from one task to another\. For example, messages of length 10, 20, and 123 bytes can all be written to, and read from, the same message buffer\. A 10\-byte message can only be read as a 10\-byte message, not as individual bytes\. Message buffers are built on top of stream buffer implementation\. you can enable message buffer functionality by including the `<BASE_DIR>/libs/FreeRTOS/stream_buffer.c` source file in your project\.
+Message buffers allow variable\-length discrete messages to be passed from an interrupt service routine to a task, or from one task to another\. For example, messages of length 10, 20, and 123 bytes can all be written to, and read from, the same message buffer\. A 10\-byte message can only be read as a 10\-byte message, not as individual bytes\. Message buffers are built on top of stream buffer implementation\. you can enable message buffer functionality by including the `stream_buffer.c` source file in your project\.
 
 Message buffers assume there is only one task or interrupt that writes to the buffer \(the writer\), and only one task or interrupt that reads from the buffer \(the reader\)\. It is safe for the writer and reader to be different tasks or interrupt service routines, but it is not safe to have multiple writers or readers\.
 
@@ -152,6 +152,6 @@ To address this limitation, FreeRTOS includes a tickless timer mode for low\-pow
 
 You can configure the FreeRTOS kernel for a specific board and application with the `FreeRTOSConfig.h` header file\. Every application built on the kernel must have a `FreeRTOSConfig.h` header file in its preprocessor include path\. `FreeRTOSConfig.h` is application\-specific and should be placed under an application directory, and not in one of the FreeRTOS kernel source code directories\.
 
-The `FreeRTOSConfig.h` files for the Amazon FreeRTOS demo and test applications are located at `demos/vendor/board/common/config_files/FreeRTOSConfig.h` and `tests/vendor/board/common/config_files/FreeRTOSConfig.h`\.
+The `FreeRTOSConfig.h` files for the Amazon FreeRTOS demo and test applications are located at `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/FreeRTOSConfig.h` and `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`\.
 
 For a list of the available configuration parameters to specify in `FreeRTOSConfig.h`, see [FreeRTOS\.org](https://www.freertos.org/a00110.html)\.

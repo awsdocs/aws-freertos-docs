@@ -5,7 +5,7 @@ FreeRTOS\+TCP is a native TCP/IP stack for the FreeRTOS kernel\. For more inform
 ## Prerequisites<a name="porting-prereqs-freertos-tcp"></a>
 
 To port the FreeRTOS\+TCP library, you need the following:
-+ An IDE project that includes the vendor\-supplied Ethernet drivers\.
++ An IDE project or `CMakeLists.txt` list file that includes the vendor\-supplied Ethernet drivers\.
 
   For information about setting up a test project, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
@@ -14,21 +14,19 @@ To port the FreeRTOS\+TCP library, you need the following:
 
 ## Porting<a name="porting-steps-freertos-tcp"></a>
 
-Before you start porting the FreeRTOS\-TCP library, check the `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source/portable/NetworkInterface` directory to see if a port to your device already exists\.
+Before you start porting the FreeRTOS\-TCP library, check the `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/NetworkInterface` directory to see if a port to your device already exists\.
 
 If a port does not exist, do the following:
-
-1. Rename the `<board_family>` directory under `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source/portable/NetworkInterface` to your device's MCU family name\.
 
 1. Follow the [Porting FreeRTOS\+TCP to a Different Microcontroller](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Porting.html) instructions on FreeRTOS\.org to port FreeRTOS\+TCP to your device\.
 
 1. If necessary, follow the [Porting FreeRTOS\+TCP to a New Embedded C Compiler](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html) instructions on FreeRTOS\.org to port FreeRTOS\+TCP to a new compiler\.
 
-1. Implement a new port that uses the vendor\-supplied Ethernet drivers in a file called `NetworkInterface.c`, and save the file to `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/<board_family>`, the directory that you renamed in the first step\.
+1. Implement a new port that uses the vendor\-supplied Ethernet drivers in a file called `NetworkInterface.c`, and save the file to `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/NetworkInterface/<board_family>`\.
 **Note**  
-The files in the `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source/portable/BufferManagement` directory are used by multiple ports\. Do not edit the files in this directory\.
+The files in the `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/BufferManagement` directory are used by multiple ports\. Do not edit the files in this directory\.
 
-After you create a port, or if a port already exists, open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/FreeRTOSIPConfig.h`, and edit the configuration options so they are correct for your platform\. For more information about the configuration options, see [FreeRTOS\+TCP Configuration](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/TCP_IP_Configuration.html) on FreeRTOS\.org\.
+After you create a port, or if a port already exists, open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSIPConfig.h`, and edit the configuration options so they are correct for your platform\. For more information about the configuration options, see [FreeRTOS\+TCP Configuration](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/TCP_IP_Configuration.html) on FreeRTOS\.org\.
 
 ## Testing<a name="porting-testing-freertos-tcp"></a>
 
@@ -43,25 +41,19 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the FreeRTOS\+TCP library in the IDE project**
 
-1. In your IDE, under `aws_tests/lib`, create a virtual folder named `FreeRTOS-Plus-TCP`\.
-
-1. Under `aws_tests/lib/FreeRTOS-Plus-TCP`, create virtual folders named `sources`, `include`, and `portable`\.
-
-1. Add the source files in `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source` to the virtual folder `aws_tests/lib/FreeRTOS-Plus-TCP/source`\.
-
-1. Add the header files in `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/include` to the virtual folder `aws_tests/lib/FreeRTOS-Plus-TCP/include`\.
-
-1. Under `aws_tests/lib/FreeRTOS-Plus-TCP/portable`, create a virtual folder named `NetworkInterface`\.
-
-1. Add the port source files in `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source/portable/NetworkInterface/<board_family>` to the virtual folder `aws_tests/lib/FreeRTOS-Plus-TCP/portable/NetworkInterface`\.
-
-1. Under `aws_tests/lib/FreeRTOS-Plus-TCP/portable`, create a virtual folder named `BufferManagement`\.
-
-1. Add `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/source/portable/BufferManagement/BufferAllocation_2.c` to the virtual folder `aws_tests/lib/FreeRTOS-Plus-TCP/portable/BufferManagement`\.
+1. Add all of the source and header files in `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp` and its subdirectories to the `aws_tests` IDE project\.
 **Note**  
-FreeRTOS includes five example heap management implementations under `<amazon-freertos>/lib/FreeRTOS/portable/MemMang`\. FreeRTOS\+TCP and `BufferAllocation_2.c` require the `heap_4.c` or `heap_5.c` implementations\. You must use `heap_4.c` or `heap_5.c` to ensure that the Amazon FreeRTOS demo applications run properly\. Do not use a custom heap implementation\.
+FreeRTOS includes five example heap management implementations under `<amazon-freertos>/freertos_kernel/portable/MemMang`\. FreeRTOS\+TCP and `BufferAllocation_2.c` require the `heap_4.c` or `heap_5.c` implementations\. You must use `heap_4.c` or `heap_5.c` to ensure that the Amazon FreeRTOS demo applications run properly\. Do not use a custom heap implementation\.
 
-1. Add `<amazon-freertos>/lib/FreeRTOS-Plus-TCP/include` to your compiler's include path\.
+1. Add `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/include` to your compiler's include path\.
+
+### Configuring the `CMakeLists.txt` File<a name="testing-cmake-freertos-tcp"></a>
+
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
+
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 ### Setting Up Your Local Testing Environment<a name="testing-local-freertos-tcp"></a>
 
@@ -69,18 +61,18 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the TCP tests**
 
-1. Open `<amazon-freertos>/lib/utils/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    If you have not ported the Secure Sockets library, also comment out the line that calls `SOCKETS_Init()`\. When you reach the [Porting the Secure Sockets Library](afr-porting-ss.md) section, you will be instructed to uncomment this initialization function call\.
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/application_code/main.c`, and uncomment the call to `FreeRTOS_IPInit()`\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and uncomment the call to `FreeRTOS_IPInit()`\.
 
 1. Fill the following arrays with valid values for your network:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-freertos-tcp.html)
 
-1. Open `<amazon-freertos>/tests/vendor/board/common/config_files/FreeRTOSIPConfig.h`, and set the `ipconfigUSE_NETWORK_EVENT_HOOK` macro to `1`\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSIPConfig.h`, and set the `ipconfigUSE_NETWORK_EVENT_HOOK` macro to `1`\.
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/application_code/main.c`, and add the following code to the beginning of the function definition for `vApplicationIPNetworkEventHook()`:
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and add the following code to the beginning of the function definition for `vApplicationIPNetworkEventHook()`:
 
    ```
    if (eNetworkEvent == eNetworkUp)

@@ -1,12 +1,10 @@
-# Amazon FreeRTOS MQTT Library \(Legacy\)<a name="freertos-lib-cloud-mqtt"></a>
+# Amazon FreeRTOS MQTT Library, Version 1\.0\.0<a name="freertos-lib-cloud-mqtt"></a>
 
 ## Overview<a name="freertos-mqtt-overview"></a>
 
 Amazon FreeRTOS includes an open source MQTT client library that you can use to create applications that publish and subscribe to MQTT topics, as MQTT clients on a network\.
 
-The source files for the Amazon FreeRTOS MQTT library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/mqtt](https://github.com/aws/amazon-freertos/blob/master/lib/mqtt)\.
-
-A new Amazon FreeRTOS MQTT Library is in public beta\. For more information, see [Amazon FreeRTOS MQTT Library \(Beta\)](freertos-mqtt-2.md)\.
+Version 2\.0\.0 of the MQTT Library is available for Amazon FreeRTOS versions 201960\.00 and later\. This newer library is compatible with all transport types, meaning you can use it with Bluetooth Low Energy and TCP/IP\. For more information, see [Amazon FreeRTOS MQTT Library, Version 2\.0\.0](freertos-mqtt-2.md)\.
 
 ### The FreeRTOS MQTT Agent<a name="freertos-mqtt-agent"></a>
 
@@ -31,29 +29,6 @@ Subscription management enables you to register a callback per subscription filt
 ### MQTT Task Wakeup<a name="freertos-lib-cloud-mqtt-wakeup"></a>
 
 MQTT task wakeup wakes up whenever the user calls an API to perform any operation or whenever a publish message is received from the broker\. This asynchronous wakeup upon receipt of a publish message is possible on platforms that are capable of informing the host MCU about the data received on a connected socket\. Platforms that do not have this capability require the MQTT task to continuously poll for the received data on the connected socket\. To ensure the delay between receiving a publish message and invoking the callback is minimal, the `mqttconfigMQTT_TASK_MAX_BLOCK_TICKS` macro controls the maximum time an MQTT task can remain blocked\. This value must be short for the platforms that lack the capability to inform the host MCU about received data on a connected socket\.
-
-## Source and Header Files<a name="freertos-mqtt-source"></a>
-
-```
-Amazon FreeRTOS
-  |
-  + - lib
-      |
-      + - mqtt
-      |   + - aws_mqtt_lib.c                     [Required to use the MQTT library and the MQTT agent]
-      |   + - aws_mqtt_agent.c                   [Required to use the MQTT agent]
-      |
-      + - include
-          |
-          + - private                            [For internal library use only!]
-          |   + - aws_doubly_linked_list.h
-          |   +-  aws_mqtt_agent_config_defaults.h
-          |   + - aws_mqtt_buffer.h
-          |   + - aws_mqtt_config_defaults.h
-          |
-          + - aws_mqtt_agent.h                   [Include to use the MQTT agent API]
-          + - aws_mqtt_lib.h                     [Include to use the MQTT library API]
-```
 
 ## Major Configurations<a name="freertos-lib-cloud-mqtt-config"></a>
 
@@ -93,29 +68,29 @@ You should set these constants to the minimum values possible\.
 
 ### Requirements and Usage Restrictions<a name="freertos-mqtt-requirements-restrictions"></a>
 
-#### <a name="w3aab9c21c15b7b3"></a>
+#### <a name="w3aab9c27c13b7b3"></a>
 
-The MQTT agent task is created using the xTaskCreateStatic\(\) API function \- so the task's stack and control block are statically allocated at compile time\. That ensures the MQTT agent can be used in applications that do not allow dynamic memory allocation, but does mean there is a dependency on configSUPPORT\_STATIC\_ALLOCATION being set to 1 in FreeRTOSConfig\.h\. 
+The MQTT agent task is created using the xTaskCreateStatic\(\) API function \- so the task's stack and control block are statically allocated at compile time\. That ensures the MQTT agent can be used in applications that do not allow dynamic memory allocation, but does mean there is a dependency on configSUPPORT\_STATIC\_ALLOCATION being set to 1 in [`FreeRTOSConfig.h`](dev-guide-freertos-kernel.md#freertos-config)\. 
 
-#### <a name="w3aab9c21c15b7b5"></a>
+#### <a name="w3aab9c27c13b7b5"></a>
 
 he MQTT agent uses the FreeRTOS direct to task notification feature\. Calling an MQTT agent API function may change the calling task's notification value and state\. 
 
-#### <a name="w3aab9c21c15b7b7"></a>
+#### <a name="w3aab9c27c13b7b7"></a>
 
 MQTT packets are stored in buffers provided by the Buffer Pool module\. It is highly recommended to ensure the number of buffers in the pool is at least double the number of MQTT transactions that will be in progress at any one time\.
 
 ## Developer Support<a name="freertos-mqtt-support"></a>
 
-### `mqttconfigASSERT`<a name="w3aab9c21c17b3"></a>
+### `mqttconfigASSERT`<a name="w3aab9c27c15b3"></a>
 
 mqttconfigASSERT\(\) is equivalent to, and used in exactly the same way as, the FreeRTOS configASSERT\(\) macro\. If you want assert statements in the MQTT agent then define mqttconfigASSERT\(\)\. If you do not want assert statements in the MQTT agent then leave mqttconfigASSERT\(\) undefined\. If you define mqttconfigASSERT\(\) to call the FreeRTOS configASSERT\(\), as shown below, then the MQTT agent will only include assert statements if the FreeRTOS configASSERT\(\) is defined\. 
 
 `#define mqttconfigASSERT( x ) configASSERT( x )`
 
-### `mqttconfigENABLE_DEBUG_LOGS`<a name="w3aab9c21c17b5"></a>
+### `mqttconfigENABLE_DEBUG_LOGS`<a name="w3aab9c27c15b5"></a>
 
-#### <a name="w3aab9c21c17b5b3"></a>
+#### <a name="w3aab9c27c15b5b3"></a>
 
 Set `mqttconfigENABLE_DEBUG_LOGS` to **1** to print debug logs via calls to vLoggingPrintf\(\)\.
 
@@ -135,8 +110,8 @@ BaseType_t SYSTEM_Init() { BaseType_t xResult = pdPASS; /* The bufferpool librar
 
 ## API Reference<a name="freertos-mqtt-api"></a>
 
-For a full API reference, see [MQTT Library API Reference \(Legacy\)](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [MQTT Agent API Reference \(Legacy\)](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html) \.
+For a full API reference, see [MQTT \(v1\.0\.0\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html) \.
 
 ## Porting<a name="freertos-mqtt-porting"></a>
 
-The Secure Sockets abstraction layer that the MQTT agent calls must be ported to specific architectures\. For more information, see the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/userguide/porting-connectivity.html#porting-sockets)\.
+The Secure Sockets abstraction layer that the MQTT agent calls must be ported to specific architectures\. For more information, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the Amazon FreeRTOS Porting Guide\.

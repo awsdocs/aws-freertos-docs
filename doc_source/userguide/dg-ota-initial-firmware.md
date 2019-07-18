@@ -6,5 +6,6 @@ To update firmware, you must install an initial version of the firmware that use
 + [Install the Initial Version of Firmware on the Texas Instruments CC3200SF\-LAUNCHXL](burn-initial-firmware-ti.md)
 + [Install the Initial Version of Firmware on the Microchip Curiosity PIC32MZEF](burn-initial-firmware-microchip.md)
 + [Install the Initial Version of Firmware on the Espressif ESP32](burn-initial-firmware-esp.md)
++ [Install the Initial Version of Firmware on the Nordic nRF52840 DK](burn-initial-firmware-nordic.md)
 + [Initial Firmware on the Windows Simulator](burn-initial-firmware-windows.md)
 + [Install the Initial Version of Firmware on a Custom Board](burn-initial-firmware-other.md)

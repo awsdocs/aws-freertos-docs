@@ -4,11 +4,7 @@ You can use IDT for Amazon FreeRTOS to test as you port the Amazon FreeRTOS inte
 
 ## Add Library Porting Layers<a name="add-port-layer"></a>
 
-To add library porting layers for Amazon FreeRTOS device libraries \(TCP/IP, Wi\-Fi, and so on\) compatible with your MCU architecture, you must:
-
-1. Implement the `configPRINT_STRING()` method before running IDT for Amazon FreeRTOS tests\. IDT for Amazon FreeRTOS calls the `configPRINT_STRING()` macro to output test results as human\-readable ASCII strings\. 
-
-1. Port the drivers to implement the Amazon FreeRTOS library's interfaces\. For more information, see the [Amazon FreeRTOS Qualification Developer Guide](https://github.com/aws/amazon-freertos/blob/master/tests/afreertos-qg.pdf)\.
+ To port Amazon FreeRTOS for your device, follow the instructions in the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.
 
 ## Configure Your AWS Credentials<a name="cfg-aws-afr"></a>
 
@@ -47,6 +43,10 @@ The following is an example `device.json` file used to create a device pool with
     {
       "name": "TLS",
       "value": "On-chip | Offloaded | No"
+    },
+    {
+    	"name": "BLE",
+    	"value": "Yes | No"
     }
   ],
   "devices": [{
@@ -88,6 +88,7 @@ Supported values are:
 + `WIFI`: Indicates if your board has Wi\-Fi capabilities\.
 + `TLS`: Indicates if your board supports TLS and if it is supported on\-chip \(MCU\) or offloaded to another module\.
 + `OTA`: Indicates if your board supports over\-the\-air \(OTA\) update functionality\.
++ `BLE`: Indicates if your board supports Bluetooth Low Energy \(BLE\)\.
 
 `devices.id`  
 A user\-defined unique identifier for the device being tested\.
@@ -168,13 +169,13 @@ The full path to your build script \(\.bat or \.sh\) that contains the commands 
 Full path to your ﬂash script \(\.sh or \.bat\) that contains the ﬂash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for Amazon FreeRTOS variable `{{testdata.sourcePath}}`\.
 
 `clientWifiConfig`  
-Client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. This attribute configures the Wi\-Fi settings for the first access point\. The client Wi\-Fi settings are configured in `$AFR_HOME/tests/common/include/aws_clientcredential.h.`\. The following macros are set using the values found in `aws_clientcredential.h`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
+Client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. This attribute configures the Wi\-Fi settings for the first access point\. The client Wi\-Fi settings are configured in `<amazon-freertos>/test/include/aws_clientcredential.h.`\. The following macros are set using the values found in `aws_clientcredential.h`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
 + wifi\_ssid: The Wi\-Fi SSID\.
 + wifi\_password: The Wi\-Fi password\.
 + wifiSecurityType: The type of Wi\-Fi security used\.
 
 `testWifiConfig`  
-Test Wi\-Fi configuration\. The Wi\-Fi library tests require a board to connect to two access points\. This attribute configures the second access point\. The test Wi\-Fi settings are configured in `$AFR_HOME/tests/common/include/aws_test_wifi.h`\. The following macros are set using the values found in `aws_test_wifi.c`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
+Test Wi\-Fi configuration\. The Wi\-Fi library tests require a board to connect to two access points\. This attribute configures the second access point\. The test Wi\-Fi settings are configured in `<amazon-freertos>/.../wifi/test/aws_test_wifi.h`\. The following macros are set using the values found in `aws_test_wifi.c`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
 If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` and `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 + testwifiWIFI\_SSID: The Wi\-Fi SSID\.
 + testwifiWIFI\_PASSWORD: The Wi\-Fi password\.
@@ -202,9 +203,9 @@ Set to `true` if the code\-signer signature verification certificate is not prov
 `cmakeConfiguration`  
 CMake configuration \[Optional\]    
 `boardName`  
-The name of the board under test\. The board name should be the same as the folder name under *path/to/afr/source/code*/cmake/vendors/*<vendor>*/*<board>*\.  
+The name of the board under test\. The board name should be the same as the folder name under *path/to/afr/source/code*/vendors/*<vendor>*/boards/*<board>*\.  
 `vendorName`  
-The vendor name for the board under test\. The vendor should be the same as the folder name under *path/to/afr/source/code*/cmake/vendors/*<vendor>*\.  
+The vendor name for the board under test\. The vendor should be the same as the folder name under *path/to/afr/source/code*/vendors/*<vendor>*\.  
 `compilerName`  
 The compiler name\.  
 `afrToolchainPath`  

@@ -118,6 +118,16 @@ The following is a policy template that grants the permissions required for IDT 
         "iot:DeleteThing"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "VisualEditor5",
+      "Effect": "Allow",
+      "Action": [
+          "execute-api:Invoke"
+      ],
+      "Resource": [
+          "arn:aws:execute-api:*:098862408343:*"
+      ]
     }
   ]
 }

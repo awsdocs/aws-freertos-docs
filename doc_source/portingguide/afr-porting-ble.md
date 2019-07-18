@@ -1,14 +1,14 @@
-# Porting the BLE Library<a name="afr-porting-ble"></a>
+# Porting the Bluetooth Low Energy Library<a name="afr-porting-ble"></a>
 
-You can use the Amazon FreeRTOS Bluetooth Low Energy \(BLE\) library to provision Wi\-Fi and send MQTT messages over BLE\. The BLE library also includes higher\-level APIs that you can use to communicate directly with the BLE stack\. For more information, see [Amazon FreeRTOS Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) in the Amazon FreeRTOS User Guide\.
+You can use the Amazon FreeRTOS Bluetooth Low Energy library to provision Wi\-Fi and send MQTT messages over Bluetooth Low Energy\. The Bluetooth Low Energy library also includes higher\-level APIs that you can use to communicate directly with the Bluetooth Low Energy stack\. For more information, see [Amazon FreeRTOS Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) in the Amazon FreeRTOS User Guide\.
 
 **Note**  
-A port of the Amazon FreeRTOS BLE library is currently not required for qualification\.
+A port of the Amazon FreeRTOS Bluetooth Low Energy library is currently not required for qualification\.
 
 ## Prerequisites<a name="porting-prereqs-ble"></a>
 
-To port the BLE library, you need the following:
-+ An IDE project that includes the vendor\-supplied BLE drivers\.
+To port the Bluetooth Low Energy library, you need the following:
++ An IDE project or `CMakeLists.txt` list file that includes the vendor\-supplied Bluetooth Low Energy drivers\.
 
   For information about setting up a test project, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
@@ -18,7 +18,7 @@ To port the BLE library, you need the following:
 
 ## Porting<a name="porting-steps-ble"></a>
 
-Three files in the `<amazon-freertos>/lib/include/bluetooth_low_energy` folder define the Amazon FreeRTOS BLE APIs:
+Three files in the `<amazon-freertos>/libraries/abstractions/ble_hal/include` folder define the Amazon FreeRTOS Bluetooth Low Energy APIs:
 + `bt_hal_manager.h`
 + `bt_hal_manager_adapter_ble.h`
 + `bt_hal_gatt_server.h`
@@ -92,13 +92,13 @@ Each file includes comments that describe the APIs\. You must implement the foll
 
 ## Testing<a name="porting-testing-ble"></a>
 
-This diagram shows the BLE testing framework\.
+This diagram shows the Bluetooth Low Energy testing framework\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/ble-port-test.png)
 
-To test your BLE ports, your computer communicates with an external, Bluetooth\-enabled device \(a Raspberry Pi 3 Model B\+\) over SSH, and with your device over BLE\.
+To test your Bluetooth Low Energy ports, your computer communicates with an external, Bluetooth\-enabled device \(a Raspberry Pi 3 Model B\+\) over SSH, and with your device over Bluetooth Low Energy\.
 
-The BLE porting and qualification tests target the low\-level wrapper layer that lies just above the manufacturer's hardware stack in the Amazon FreeRTOS BLE architecture:
+The Bluetooth Low Energy porting and qualification tests target the low\-level wrapper layer that lies just above the manufacturer's hardware stack in the Amazon FreeRTOS Bluetooth Low Energy architecture:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/ble-architecture-porting.png)
 
@@ -111,19 +111,23 @@ If you are using an IDE for porting and testing, you need to add some source fil
 **Important**  
 In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Do not create duplicate copies of source files\.
 
-**To set up the BLE library in the IDE project**
+**To set up the Bluetooth Low Energy library in the IDE project**
 
-1. In your IDE, under `aws_tests/lib/aws`, create a virtual folder named `bluetooth_low_energy`\.
+1. Add all of the files in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/ble` to your `aws_tests` IDE project\.
 
-1. Add all of the files in `<amazon-freertos>/lib/bluetooth_low_energy/portable/<vendor>/<board>` to the virtual folder `aws_tests/lib/aws/bluetooth_low_energy`\.
+1. Add all of the files in `<amazon-freertos>/libraries/abstractions/ble_hal/include` to your `aws_tests` IDE project\.
 
-1. Add all of the files in the `<amazon-freertos>/lib/include/bluetooth_low_energy` directory to the `aws_tests/lib/aws/include` virtual folder\.
+1. Add all of the files in `<amazon-freertos>/libraries/c_sdk/standard/ble` to your `aws_tests` IDE project\.
 
-1. Under `aws_tests/application_code/common_tests`, create a virtual folder named `ble`\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and enable the required Bluetooth Low Energy drivers\.
 
-1. Add the source file `<amazon-freertos>/tests/common/aws_test_ble.c` to the virtual folder `aws_tests/application_code/common_tests/ble`\.
+### Configuring the `CMakeLists.txt` File<a name="testing-cmake-ble"></a>
 
-1. Open `aws_tests/application_code/common_tests/main.c`, and enable the required BLE drivers\.
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
+
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 ### Setting Up Your Local Testing Environment<a name="testing-local-ble"></a>
 
@@ -137,7 +141,7 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 1. Enable SSH on the Raspberry Pi\. For instructions, see the [Raspberry Pi documentation](https://www.raspberrypi.org/documentation/remote-access/ssh/)\.
 
-1. On your computer, open the `<amazon-freertos>/tests/common/framework/bleTestsScripts/runPI.sh` script, and change the IP addresses in the first two lines to the IP address of your Raspberry Pi:
+1. On your computer, open the `<amazon-freertos>/tests/bleTestsScripts/runPI.sh` script, and change the IP addresses in the first two lines to the IP address of your Raspberry Pi:
 
    ```
    #!/bin/sh
@@ -153,18 +157,16 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 ### Running the Tests<a name="testing-run-ble"></a>
 
-**To execute the BLE tests**
+**To execute the Bluetooth Low Energy tests**
 
 1. Execute the `runPI.sh` script\.
 
 1. Build the test project, and then flash it to your device for execution\.
 
-1. Check the test results in the UART console\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-ble-tests1.png)  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-ble-tests2.png)
+1. Check the test results in the UART console\.
 
 ## Validation<a name="w3aac11c33c13"></a>
 
 To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you have ported the BLE library, you can start the Amazon FreeRTOS qualification process\. For more information, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
+After you have ported the Bluetooth Low Energy library, you can start the Amazon FreeRTOS qualification process\. For more information, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.

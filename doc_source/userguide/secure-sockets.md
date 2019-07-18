@@ -6,8 +6,6 @@ You can use the Amazon FreeRTOS Secure Sockets library to create embedded applic
 
 The Amazon FreeRTOS Secure Sockets library is based on the Berkeley sockets interface, with an additional secure communication option by TLS protocol\. For information about the differences between the Amazon FreeRTOS Secure Sockets library and the Berkeley sockets interface, see `SOCKETS_SetSockOpt` in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
-The source files for the Amazon FreeRTOS Secure Sockets library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/secure_sockets/portable](https://github.com/aws/amazon-freertos/blob/master/lib/secure_sockets/portable)\.
-
 **Note**  
 Currently, only client APIs are supported for Amazon FreeRTOS Secure Sockets\.
 
@@ -29,40 +27,14 @@ Amazon FreeRTOS Secure Sockets library features include:
 + Thread\-safe APIs for sending and receiving data
 + Easy\-to\-enable TLS
 
-## Footprint<a name="freertos-secure-sockets-footprint"></a>
-
-
-**Code Size \(example generated with GCC for ARM Cortex\-M\)**  
-
-| File name | Size \(optimized for speed\) | Size \(optimized for speed and size\) | 
-| --- | --- | --- | 
-| Secure Sockets Library | Varies by port | Varies by port | 
-|  For example, for the TI CC3220SF: `lib/﻿secure_sockets﻿/﻿portable﻿/﻿ti﻿/﻿cc3220_launchpad﻿/aws_secure_sockets.c`  | 5\.0 K | 4\.3 K | 
-
-## Source and Header Files<a name="freertos-secure-sockets-source"></a>
-
-```
-Amazon FreeRTOS
-|
-+ - lib
-   + - include
-   |   + - aws_secure_sockets.h
-   |   + - private
-   |       + - aws_secure_sockets_config_defaults.h
-   + - secure_sockets
-       + - portable
-           + - ...
-               + - aws_secure_sockets.c
-```
-
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w3aab9c27c13b5"></a>
+### Error codes<a name="w3aab9c33c11b5"></a>
 
 The error codes that the Amazon FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-If the Amazon FreeRTOS Secure Sockets API returns an error code, the [Amazon FreeRTOS MQTT Library \(Legacy\)](freertos-lib-cloud-mqtt.md), which depends on the Amazon FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
+If the Amazon FreeRTOS Secure Sockets API returns an error code, the [Amazon FreeRTOS MQTT Library, Version 1\.0\.0](freertos-lib-cloud-mqtt.md), which depends on the Amazon FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
 
 ## Developer Support<a name="freertos-secure-sockets-support"></a>
 
@@ -181,7 +153,7 @@ void vConnectToServerWithSecureSocket( void )
 }
 ```
 
-For a full example, see the [Secure Sockets Echo Client Demo](https://docs.aws.amazon.com/freertos/latest/userguide/secure-sockets-demo.html)\.
+For a full example, see the [Secure Sockets Echo Client Demo](secure-sockets-demo.md)\.
 
 ## Porting<a name="freertos-secure-sockets-porting"></a>
 

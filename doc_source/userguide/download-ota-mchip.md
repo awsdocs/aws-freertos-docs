@@ -22,7 +22,7 @@
 
 1. Follow the instructions in [Getting Started with Amazon FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into the MPLAB X IDE, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
-1. Open `aws_demos/lib/aws/ota/aws_ota_codesigner_certificate.h`\.
+1. Open `demos/include/aws_ota_codesigner_certificate.h`\.
 
 1. Paste the contents of your code\-signing certificate into the `static const char signingcredentialSIGNING_CERTIFICATE_PEM` variable\. Following the same format as `aws_clientcredential_keys.h`, each line must end with the new line character \('\\n'\) and be enclosed in quotation marks\.
 
@@ -45,9 +45,9 @@
 
 1. Install `pyOpenSSL` by running `pip install pyopenssl`\.
 
-1. Copy your code\-signing certificate in \.pem format in the path `\demos\common\ota\bootloader\utility\codesigner_cert_utility\`\. Rename the certificate file `aws_ota_codesigner_certificate.pem`\.
+1. Copy your code\-signing certificate in \.pem format in the path `demos/ota/bootloader/utility/codesigner_cert_utility/`\. Rename the certificate file `aws_ota_codesigner_certificate.pem`\.
 
-1. Open the project in MPLAB X IDE and open `demos/common/demo_runner/aws_demo_runner.c`\. Find the `DEMO_RUNNER_RunDemos` function and make sure all function calls except `vStartOTAUpdateDemoTask` are commented out\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 

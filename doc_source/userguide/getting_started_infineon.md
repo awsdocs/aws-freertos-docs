@@ -4,9 +4,9 @@ This tutorial provides instructions for getting started with the Infineon XMC480
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c15b9"></a>
+## Overview<a name="w3aab7c23c15b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -65,13 +65,11 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
 1. Start DAVE\.
 
-1. In DAVE, choose **File**, **Import**\. In the **Import** window, expand the **Infineon** folder, choose **DAVE Project**, and then choose **Next**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/startdave1.png)
+1. In DAVE, choose **File**, **Import**\. In the **Import** window, expand the **Infineon** folder, choose **DAVE Project**, and then choose **Next**\.
 
 1. In the **Import DAVE Projects** window, choose **Select Root Directory**, choose **Browse**, and then choose the XMC4800 demo project\.
 
-   In the directory where you unzipped your Amazon FreeRTOS download, the demo project is located in `<BASE_FOLDER>/demos/infineon/xmc4800_iotkit/dave`\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/startdave2.png)
+   In the directory where you unzipped your Amazon FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_iotkit/dave4/aws_demos/dave4`\. 
 
    Make sure that **Copy Projects Into Workspace** is unchecked\.
 
@@ -95,16 +93,6 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
 In the AWS IoT console, the MQTT client from steps 4\-5 should display the MQTT messages sent by your device\. If you use the serial connection, you see something like this on the UART output:
 
 ```
@@ -120,7 +108,7 @@ In the AWS IoT console, the MQTT client from steps 4\-5 should display the MQTT 
 9 8059 [MQTTEcho] MQTT echo attempting to connect to [MQTT Broker].
 ...10 23010 [MQTTEcho] MQTT echo connected.
 11 23010 [MQTTEcho] MQTT echo test echoing task created.
-.12 26011 [MQTTEcho] MQTT Echo demo subscribed to freertos/demos/echo
+.12 26011 [MQTTEcho] MQTT Echo demo subscribed to iotdemo/#
 13 29012 [MQTTEcho] Echo successfully published 'Hello World 0'
 .14 32096 [Echoing] Message returned with ACK: 'Hello World 0 ACK'
 .15 37013 [MQTTEcho] Echo successfully published 'Hello World 1'
@@ -149,6 +137,85 @@ In the AWS IoT console, the MQTT client from steps 4\-5 should display the MQTT 
 38 122068 [MQTTEcho] ----Demo finished----
 ```
 
+### Build the Amazon FreeRTOS demo with CMake<a name="infineon-cmake"></a>
+
+If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+
+**Note**  
+This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+
+**To build the Amazon FreeRTOS demo with CMake**
+
+1. Set up the GNU Arm Embedded Toolchain\.
+
+   1. Download a Windows version of the toolchain from the [Arm Embedded Toolchain download page](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)\.
+**Note**  
+We recommend that you download a version other than "8\-2018\-q4\-major", due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274) with the “objcopy” utility in that version\.
+
+   1. Open the downloaded toolchain installer, and follow the installation wizard's instructions to install the toolchain\.
+**Important**  
+On the final page of the installation wizard, select **Add path to environment variable** to add the toolchain path to the system path environment variable\.
+
+1. Install CMake and MingW\.
+
+   For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
+
+1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+
+1. Change directories to your Amazon FreeRTOS download directory \(`<amazon-freertos>`\), and use the following command to generate the build files:
+
+   ```
+   cmake -DVENDOR=infineon -DBOARD=xmc4800_iotkit -DCOMPILER=arm-gcc -S . -B BUILD_FOLDER -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
+   ```
+
+1. Change directories to the build directory \(*BUILD\_FOLDER*\), and use the following command to build the binary:
+
+   ```
+   cmake --build . --parallel 8
+   ```
+
+   This command builds the output binary `aws_demos.hex` to the build directory\.
+
+1. Flash and run the image with [JLINK](#install-jlink)\.
+
+   1. From the build directory \(*BUILD\_FOLDER*\), use the following commands to create a flash script:
+
+      ```
+      echo loadfile aws_demos.hex > flash.jlink
+      ```
+
+      ```
+      echo r >> flash.jlink
+      ```
+
+      ```
+      echo g >> flash.jlink
+      ```
+
+      ```
+      echo q >> flash.jlink
+      ```
+
+   1. Flash the image using the JLNIK executable\.
+
+      ```
+      JLINK_PATH\JLink.exe  -device XMC4800-2048 -if SWD -speed auto -CommanderScript flash.jlink
+      ```
+
+      The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c15c15b9"></a>
+
+You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test** to open the MQTT client\.
+
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+
 ## Troubleshooting<a name="infineon-troubleshooting"></a>
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

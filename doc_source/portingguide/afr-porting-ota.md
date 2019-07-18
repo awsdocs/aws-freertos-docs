@@ -32,7 +32,7 @@ To port the OTA agent library, you need the following:
 
 ## Porting<a name="porting-steps-ota"></a>
 
-`<amazon-freertos>/lib/ota/portable/<vendor>/<board>/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
+`<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
 
 
 | Function | Description | 
@@ -68,19 +68,32 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the OTA library in the IDE project**
 
-1. In your IDE, create a virtual folder named `ota` under `aws_tests/lib/aws`\.
+1. Add the source file `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` to the `aws_tests` IDE project\.
 
-1. Add the source file `<amazon-freertos>/lib/ota/portable/<vendor>/<board>/aws_ota_pal.c` to the virtual folder `aws_tests/lib/aws/ota`\.
+1. Add the following test source files to the `aws_tests` IDE project:
+   + `<amazon-freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
+   + `<amazon-freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
+   + `<amazon-freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
+   + `/demos/ota/aws_iot_ota_update_demo.c`
 
-1. Create a virtual folder named `ota` under `aws_tests/application_code/common_tests`\.
+### Configuring the `CMakeLists.txt` File<a name="testing-cmake-ota"></a>
 
-1. Add the following test source files to the virtual folder `aws_tests/application_code/common_tests/ota`:
-   + `<amazon-freertos>/tests/common/ota/aws_test_cbor.c`
-   + `<amazon-freertos>/tests/common/ota/aws_test_ota_agent.c`
-   + `<amazon-freertos>/tests/common/aws_test_pal.c`
-   + `<amazon-freertos>/demos/common/ota/aws_ota_update_demo.c`
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tests](#testing-agent-pal) and [OTA End\-to\-End Tests](#testing-e2e)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+
+See below for an example portable layer target definition for the OTA library\.
+
+```
+# OTA
+afr_mcu_port(ota)
+target_sources(
+    AFR::ota::mcu_port
+    INTERFACE "path/aws_ota_pal.c"
+)
+```
 
 ### OTA Agent and OTA PAL Tests<a name="testing-agent-pal"></a>
 
@@ -88,9 +101,9 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
 
 **To configure the source and header files for the OTA agent and OTA PAL tests**
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
 
-1. Choose a signing certificate for your device from `<amazon-freertos>/tests/ota/test_files`\. The certificate are used in OTA tests for verification\. 
+1. Choose a signing certificate for your device from `ota/test`\. The certificate are used in OTA tests for verification\. 
 
    Three types of signing certificates are available in the test code:
    + RSA/SHA1
@@ -111,22 +124,10 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
    `...`  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-ota-tests2.png)
 
-### OTA End\-to\-End Tests<a name="testing-e2e"></a>
-
-**To set up and run the end\-to\-end OTA tests**
-
-1. To enable the end\-to\-end OTA tests, open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/aws_test_runner_config.h`, and set the `testrunner_OTA_END_TO_END_ENABLED` macro to `1`\.
-
-1. Follow the setup instructions in the README file \(`<amazon-freertos>/tools/ota_e2e_test/README.md`\)\.
-
-1. Make sure that running the agent and PAL tests did not modify the `aws_demo_runner.c`, `aws_clientcredential.h`, `aws_clientcredential_keys.h`, `aws_application_version.h`, or `aws_ota_codesigner_certificate.h` header files\.
-
-1. To run the OTA end\-to\-end test script, follow the example in the README file \(`<amazon-freertos>/tools/ota_e2e_test/README.md`\)\.
-
 ## Validation<a name="w3aac11c31c25"></a>
 
 To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you have ported the Amazon FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the BLE Library](afr-porting-ble.md)\.
+After you have ported the Amazon FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)\.
 
-If your device does not support BLE functionality, then you are finished and can start the Amazon FreeRTOS qualification process\. For more information, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
+If your device does not support Bluetooth Low Energy functionality, then you are finished and can start the Amazon FreeRTOS qualification process\. For more information, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.

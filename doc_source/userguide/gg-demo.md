@@ -73,9 +73,9 @@ You can also connect your board to AWS IoT and configure your Amazon FreeRTOS de
 **Note**  
 If you are downloading Amazon FreeRTOS from the Amazon FreeRTOS console, choose **Connect to AWS IoT Greengrass\- *Platform*** instead of **Connect to AWS IoT\- *Platform***\.
 
-1. [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)
+1. [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.
 
-   If you downloaded Amazon FreeRTOS from GitHub, you need to open `<BASE_FOLDER>/demos/common/demo_runner/aws_demo_runner.c`, comment out `extern void vStartMQTTEchoDemo( void );` and `vStartMQTTEchoDemo();`, and uncomment `extern void vStartGreenGrassDiscoveryTask( void );` and `vStartGreenGrassDiscoveryTask();`\.
+   Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
 
 After you set up AWS IoT and AWS IoT Greengrass, and after you download and configure Amazon FreeRTOS, you can build, flash, and run the Greengrass demo on your device\. To set up your board's hardware and software development environment, follow the instructions in the [Board\-specific Getting Started Guides](getting-started-guides.md)\.
 

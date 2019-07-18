@@ -18,7 +18,7 @@ You need to provide Amazon FreeRTOS with your AWS IoT endpoint so the applicatio
 
    Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-1. Open `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h`\. 
+1. Open `/demos/include/aws_clientcredential.h`\. 
 
 1. Specify values for the following constants:
    + `static const char clientcredentialMQTT_BROKER_ENDPOINT[] = "Your AWS IoT endpoint";`
@@ -28,7 +28,7 @@ You need to provide Amazon FreeRTOS with your AWS IoT endpoint so the applicatio
 
 If your board is connecting to the internet across a Wi\-Fi connection, you need to provide Amazon FreeRTOS with Wi\-Fi credentials to connect to the network\. If your board does not support Wi\-Fi, you can skip these steps\.
 
-1. `<BASE_FOLDER>\demos\common\include\aws_clientcredential.h`\.
+1. `demos/include/aws_clientcredential.h`\.
 
 1. Specify values for the following `#define` constants:
    + `#define clientcredentialWIFI_SSID "The SSID for your Wi-Fi network"`
@@ -49,14 +49,14 @@ To configure your AWS IoT credentials, you need the private key and certificate 
 
 Amazon FreeRTOS is a C language project, and the certificate and private key must be specially formatted to be added to the project\.
 
-1. In a browser window, open `<BASE_FOLDER>\tools\certificate_configuration\CertificateConfigurator.html`\.
+1. In a browser window, open `tools/certificate_configuration/CertificateConfigurator.html`\.
 
 1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
 
 1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
 
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<BASE_FOLDER>\demos\common\include`\. This overwrites the existing file in the directory\.
+1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `demos/include`\. This overwrites the existing file in the directory\.
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-After you configure Amazon FreeRTOS, you can continue to the Getting Started guide for your board to compile and run the Amazon FreeRTOS demo\. The demo application that is used in the Getting Started tutorial is the Hello World MQTT demo, which is located at `<BASE_FOLDER>/demos/common/mqtt/aws_hello_world.c`\.
+After you configure Amazon FreeRTOS, you can continue to the Getting Started guide for your board to compile and run the Amazon FreeRTOS demo\. The demo application that is used in the Getting Started tutorial is the Hello World MQTT demo, which is located at `demos/mqtt/aws_hello_world.c`\.

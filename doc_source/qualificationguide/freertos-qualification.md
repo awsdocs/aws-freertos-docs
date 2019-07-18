@@ -4,7 +4,7 @@
 
 1. Port the Amazon FreeRTOS libraries to your device\.
 **Note**  
-Currently, ports of the Amazon FreeRTOS OTA and BLE libraries are not required for qualification\.  
+Currently, ports of the Amazon FreeRTOS OTA and Bluetooth Low Energy libraries are not required for qualification\.  
 If your device does not support Wi\-Fi, you can use an ethernet connection to connect to the AWS Cloud instead\. A port of the Amazon FreeRTOS Wi\-Fi library is not necessarily required\.
 
    For instructions on porting Amazon FreeRTOS to your device, see the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.
@@ -49,10 +49,6 @@ If your device does not support Wi\-Fi, you can use an ethernet connection to co
 
    For information about AWS IoT Device Tester for Amazon FreeRTOS, see [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide\.
 
-1. Work with your AWS representative to submit your ported Amazon FreeRTOS code\.
-**Note**  
-You must pass the Device Tester validation tests before you can submit the code\.
-
 1. Create the following for qualification submission:
    + A "Hello World" demo application that publishes messages from your device to the AWS Cloud over MQTT\.
 
@@ -61,6 +57,8 @@ You must pass the Device Tester validation tests before you can submit the code\
 
      For information, see [Creating a Getting Started with Amazon FreeRTOS Guide for Your Device](afq-gsg.md)\.
    + A `CMakeLists.txt` file for building Amazon FreeRTOS applications for your device\.
+**Note**  
+A CMake list file is not required to qualify a board through the AWS Device Qualification Program\. The file is only required for listing devices on the Amazon FreeRTOS Console\. The file is also required to build project files for your platform using CMake\. 
 
      For information, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.
    + A list of detailed information for your hardware platform\.
@@ -82,6 +80,6 @@ You must pass the Device Tester validation tests before you can submit the code\
 
    For more information about running the qualification check script, see [Amazon FreeRTOS Qualification Check Script](afq-script.md)\.
 
-1. Submit your qualification items using the [Device Listing Portal](https://partnercentral.awspartner.com/DeviceListPage)\.
+1. Submit your qualified board for listing in the AWS Partner Device Catalog through the [Device Listing Portal](https://partnercentral.awspartner.com/DeviceListPage) on APN Partner Central\. All submissions require an AWS IoT Device Tester test result file that indicates that you passed all mandatory test cases\. You must be a registered APN Partner to submit your board for listing\.
 
 You can use the [Amazon FreeRTOS Qualification Checklist](afq-checklist.md) to keep track of the list of required steps for qualification\.

@@ -36,7 +36,7 @@ If your target hardware offloads TLS functionality to a separate network chip, y
 | TLS\_Send | Write the requested number of bytes to the TLS connection\. | 
 | TLS\_Cleanup | Free resources consumed by the TLS context\. | 
 
-`<amazon-freertos>/lib/include/aws_tls.h` contains the information required to implement these functions\. Save the file in which you implement the functions as `<amazon-freertos>/lib/tls/portable/<vendor>/<board>/aws_tls.c`\.
+`aws_tls.h` contains the information required to implement these functions\. Save the file in which you implement the functions as `aws_tls.c`\.
 
 ## Testing<a name="porting-testing-tls"></a>
 
@@ -51,15 +51,17 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the TLS library in the IDE project**
 
-1. In your IDE, under `aws_tests/lib/aws`, create a virtual folder named `tls`\.
+1. Add `aws_tls.c` to the `aws_tests` IDE project\.
 
-1. If your target hardware does not offload TLS to a separate processor, and you are using mbedTLS, add `<amazon-freertos>/lib/tls/aws_tls.c` to the `aws_tests/lib/aws/tls` virtual folder\.
+1. Add the source file `aws_test_tls.c` to the virtual folder `aws_tests/application_code/common_tests/tls`\. This file includes the TLS tests\.
 
-   If your target hardware offloads TLS to a separate processor, add `<amazon-freertos>/lib/tls/portable/<vendor>/<board>/aws_tls.c` to the `aws_tests/lib/aws/tls` virtual folder\.
+### Configuring the `CMakeLists.txt` File<a name="testing-cmake-tls"></a>
 
-1. Under `aws_tests/application_code/common_tests`, create a virtual folder named `tls`\.
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-1. Add the source file `<amazon-freertos>/tests/common/tls/aws_test_tls.c` to the virtual folder `aws_tests/application_code/common_tests/tls`\. This file includes the TLS tests\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 ### Setting Up Your Local Testing Environment<a name="testing-local-tls"></a>
 
@@ -74,7 +76,7 @@ To run these tests, your board must use the MQTT protocol to communicate with th
 
 Follow the instructions in [Connecting Your Device to AWS IoT](testing-connect-iot.md) to connect your device to AWS IoT\.
 
-Each TLS test requires a different certificate/key combination, formatted and defined in either `<amazon-freertos>/demos/common/include/aws_clientcredential_keys.h` or `<amazon-freertos>/tests/common/aws_test_tls.h`\.
+Each TLS test requires a different certificate/key combination, formatted and defined in either `<amazon-freertos>/tests/include/aws_clientcredential_keys.h` or `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/aws_test_tls.h`\.
 
 Follow the instructions in [Setting Up Certificates and Keys for the TLS Tests](tls-certkey-setup.md) to obtain the certificates and keys that you need for testing\.
 
@@ -82,9 +84,9 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the TLS tests**
 
-1. To enable the TLS tests, open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_TLS_ENABLED` macro to `1`\.
+1. To enable the TLS tests, open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_TLS_ENABLED` macro to `1`\.
 
-1. Open `<amazon-freertos>/lib/utils/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    Make sure that the line that calls `SOCKETS_Init()` is uncommented\.
 

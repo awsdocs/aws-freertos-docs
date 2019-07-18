@@ -4,8 +4,6 @@
 
 The Amazon FreeRTOS Wi\-Fi library abstracts port\-specific Wi\-Fi implementations into a common API that simplifies application development and porting for all Amazon FreeRTOS\-qualified boards with Wi\-Fi capabilities\. Using this common API, applications can communicate with their lower\-level wireless stack through a common interface\.
 
-The source files for the Amazon FreeRTOS Wi\-Fi library are located in [https://github.com/aws/amazon-freertos/blob/master/lib/wifi/portable](https://github.com/aws/amazon-freertos/blob/master/lib/wifi/portable)\.
-
 ## Dependencies and Requirements<a name="freertos-wifi-dependencies"></a>
 
 The Amazon FreeRTOS Wi\-Fi library requires the [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) core\.
@@ -53,30 +51,6 @@ Different Wi\-Fi devices have different power requirements, depending on the app
 
 The Wi\-Fi library enables you to save network profiles in the non\-volatile memory of your devices\. This allows you to save network settings so they can be retrieved when a device reconnects to a Wi\-Fi network, removing the need to provision devices again after they have been connected to a network\. `WIFI_NetworkAdd` adds a network profile\. `WIFI_NetworkGet` retrieves a network profile\. `WIFI_NetworkDel` deletes a network profile\. The number of profiles you can save depends on the platform\.
 
-## Footprint<a name="freertos-wifi-footprint"></a>
-
-
-**Code Size \(example generated with GCC for ARM Cortex\-M\)**  
-
-| File name | Size \(with \-O1 Optimization\) | Size \(with Os Optimization\) | 
-| --- | --- | --- | 
-| Wi\-Fi library, with all options enabled | Varies by port | Varies by port | 
-|  For example, for the TI CC3220SF: `lib/wifi﻿/﻿portable﻿/ti/cc3220_launchpad/aws_wifi.c`  | 3\.7 K | 3\.0 K | 
-
-## Source and Header Files<a name="freertos-wifi-source"></a>
-
-```
-Amazon FreeRTOS
-|
-+ - lib
-      + - include
-      |   + - aws_wifi.h              [Include to use the AFR WIFI API]
-      + - wifi
-          + - portable
-              + ...                  [Port-specific folder structure]
-                  + - aws_wifi.c      [Required to use the AFR WIFI API]
-```
-
 ## Configuration<a name="freertos-wifi-config"></a>
 
 To use the Wi\-Fi library, you need to define several identifiers in a configuration file\. For information about these identifiers, see the [API Reference](#freertos-wifi-api)\.
@@ -86,7 +60,7 @@ The library does not include the required configuration file\. You must create o
 
 ## Initialization<a name="freertos-wifi-init"></a>
 
-Before you use the Wi\-Fi library, you need to initialize some board\-specific components, in addition to the FreeRTOS components\. Using the [https://github.com/aws/amazon-freertos/blob/master/demos/vendor/board/common/application_code/main.c](https://github.com/aws/amazon-freertos/blob/master/demos/vendor/board/common/application_code/main.c) file as a template for initialization, do the following:
+Before you use the Wi\-Fi library, you need to initialize some board\-specific components, in addition to the FreeRTOS components\. Using the `vendors/<vendor>/boards/<board>/aws_demos/application_code/main.c` file as a template for initialization, do the following:
 
 1. Remove the sample Wi\-Fi connection logic in `main.c` if your application handles Wi\-Fi connections\. Replace the following `DEMO_RUNNER_RunDemos()` function call:
 
@@ -124,7 +98,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 
 ## Example Usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a Known AP<a name="w3aab9c31c19b3"></a>
+### Connecting to a Known AP<a name="w3aab9c37c17b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -168,7 +142,7 @@ else
 }
 ```
 
-### Scanning for nearby APs<a name="w3aab9c31c19b5"></a>
+### Scanning for nearby APs<a name="w3aab9c37c17b5"></a>
 
 ```
 WIFINetworkParams_t xNetworkParams;

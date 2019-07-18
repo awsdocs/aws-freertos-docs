@@ -28,8 +28,8 @@ If your device does not support Wi\-Fi, you can use an ethernet connection to co
 **Note**  
 A port of the Amazon FreeRTOS OTA update library is currently not required for qualification\.
 
-1. [Porting the BLE Library](afr-porting-ble.md)
+1. [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)
 **Note**  
-A port of the Amazon FreeRTOS BLE library is currently not required for qualification\.
+A port of the Amazon FreeRTOS Bluetooth Low Energy library is currently not required for qualification\.
 
 After you port Amazon FreeRTOS to your board, you can officially validate the ports for Amazon FreeRTOS qualification with AWS IoT Device Tester for Amazon FreeRTOS\. For more information about AWS IoT Device Tester for Amazon FreeRTOS, see [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide\. For information about qualifying your device for Amazon FreeRTOS, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\. 

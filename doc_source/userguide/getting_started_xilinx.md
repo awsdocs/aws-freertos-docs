@@ -2,9 +2,9 @@
 
 This tutorial provides instructions for getting started with the Xilinx Avnet MicroZed Industrial IoT Kit\. If you do not have the Xilinx Avnet MicroZed Industrial IoT Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c37b7"></a>
+## Overview<a name="w3aab7c23c37b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -58,11 +58,9 @@ To install Xilinx software, you need a free Xilinx account\.
 
 1. Open the `Xilinx_SDK_version_os` file\.
 
-1. In **Select Edition to Install**, choose **Xilinx Software Development Kit \(XSDK\)** and then choose **Next**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk1.png)
+1. In **Select Edition to Install**, choose **Xilinx Software Development Kit \(XSDK\)** and then choose **Next**\.
 
-1. On the following page of the installation wizard, under **Installation Options**, select **Install Cable Drivers** and then choose **Next**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk2.png)
+1. On the following page of the installation wizard, under **Installation Options**, select **Install Cable Drivers** and then choose **Next**\.
 
 If your computer does not detect the MicroZed's USB\-UART connection, install the CP210x USB\-to\-UART Bridge VCP drivers manually\. For instructions, see the [Silicon Labs CP210x USB\-to\-UART Installation Guide](https://www.xilinx.com/support/documentation/boards_and_kits/install/ug1033-cp210x-usb-uart-install.pdf)\.
 
@@ -72,19 +70,17 @@ For more information about XSDK, see the [Getting Started with Xilinx SDK](https
 
 ### Open the Amazon FreeRTOS Demo in the XSDK IDE<a name="xilinx-freertos-import-project"></a>
 
-1. Launch the XSDK IDE with the workspace directory set to `<BASE_FOLDER>\demos\xilinx\microzed\xsdk`\. 
+1. Launch the XSDK IDE with the workspace directory set to `projects/xilinx/microzed/xsdk/aws_demos`\. 
 
 1. Close the welcome page\. From the menu, choose **Project**, and then clear **Build Automatically**\.
 
 1. From the menu, choose **File**, and then choose **Import**\.
 
-1. On the **Select** page, expand **General**, choose **Existing Projects into Workspace**, and then choose **Next**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk3.png)
+1. On the **Select** page, expand **General**, choose **Existing Projects into Workspace**, and then choose **Next**\.
 
 1. On the **Import Projects** page, choose **Select root directory**, and then enter the root directory of your demo project\. To browse for the directory, choose **Browse**\. 
 
-   After you specify a root directory, the projects in that directory appear on the **Import Projects** page\. All available projects are selected by default\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk4.png)
+   After you specify a root directory, the projects in that directory appear on the **Import Projects** page\. All available projects are selected by default\.
 **Note**  
 If you see a warning at the top of the **Import Projects** page \("Some projects cannot be imported because they already exist in the workspace\."\) you can ignore it\.
 
@@ -94,18 +90,18 @@ If you see a warning at the top of the **Import Projects** page \("Some projects
 
 1. In the navigation pane, expand **Run/Debug**, choose **String Substitution**, and then choose **New**\. 
 
-1. In **New String Substitution Variable**, for **Name**, enter **AFR\_ROOT**\. For **Value**, enter the root path of the `aws_demos`\. Choose **OK**, and then choose **OK** to save the variable and close **Preferences**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk-string-sub.png)
+1. In **New String Substitution Variable**, for **Name**, enter **AFR\_ROOT**\. For **Value**, enter the root path of the `aws_demos`\. Choose **OK**, and then choose **OK** to save the variable and close **Preferences**\.
 
 ### Build the Amazon FreeRTOS Demo Project<a name="xilinx-freertos-build-project"></a>
 
 1. In the XSDK IDE, from the menu, choose **Project**, and then choose **Clean**\. 
 
-1. In **Clean**, leave the options at their default values, and then choose **OK**\. XSDK cleans and builds all of the projects, and then generates `.elf` files\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk-clean.png)
+1. In **Clean**, leave the options at their default values, and then choose **OK**\. XSDK cleans and builds all of the projects, and then generates `.elf` files\.
 **Note**  
 To build all projects without cleaning them, choose **Project**, and then choose **Build All**\.  
 To build individual projects, select the project you want to build, choose **Project**, and then choose **Build Project**\.
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c37c13b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -115,11 +111,11 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ### JTAG Debugging<a name="xilinx-jtag"></a>
 
-1. Set your MicroZed board's boot mode jumpers to the JTAG boot mode:  
+1. Set your MicroZed board's boot mode jumpers to the JTAG boot mode\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xilinx-jtag.png)
 
 1. Insert your MicroSD card into the MicroSD card slot located directly under the USB\-UART port\.
@@ -143,16 +139,15 @@ You can opt to boot your MicroZed board from a MicroSD card or from QSPI ﬂash 
 
 1. In **Create Boot Image**, choose **Create new BIF file**\.
 
-1. Next to **Output BIF file path**, choose **Browse**, and then choose `aws_demos.bif` located at `<BASE_FOLDER>\demos\xilinx\microzed\xsdk\aws_demos\bootimage\aws_demos.bif`\.
+1. Next to **Output BIF file path**, choose **Browse**, and then choose `aws_demos.bif` located at `<amazon-freertos>/vendors/xilinx/microzed/aws_demos/aws_demos.bif`\.
 
 1. Choose **Add**\. 
 
-1. On **Add new boot image partition**, next to **File path**, choose **Browse**, and then choose `fsbl.elf`, located at `<BASE_FOLDER>\lib\third_party\mcu_vendor\xilinx\fsbl\Debug\fsbl.elf`\.
+1. On **Add new boot image partition**, next to **File path**, choose **Browse**, and then choose `fsbl.elf`, located at `vendors/xilinx/fsbl/Debug/fsbl.elf`\.
 
-1. For the **Partition type**, choose **bootloader**, and then choose **OK**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk5.png)
+1. For the **Partition type**, choose **bootloader**, and then choose **OK**\.
 
-1. On **Create Boot Image**, choose **Create Image**\. On **Override Files**, choose **OK** to overwrite the existing `aws_demos.bif` and generate the `BOOT.bin` file at `demos\xilinx\microzed\xsdk\aws_demos\bootimage\BOOT.bin`\.
+1. On **Create Boot Image**, choose **Create Image**\. On **Override Files**, choose **OK** to overwrite the existing `aws_demos.bif` and generate the `BOOT.bin` file at `projects/xilinx/microzed/xsdk/aws_demos/BOOT.bin`\.
 
 ### Run the Amazon FreeRTOS Demo Project<a name="xilinx-run"></a>
 
@@ -168,14 +163,14 @@ Format the MicroSD card that is provided with the Xilinx MicroZed Industrial IoT
 
 1. Insert the card into the MicroSD card slot directly under the USB\-UART port\.
 
-1. Set the MicroZed boot mode jumpers to SD boot mode:  
+1. Set the MicroZed boot mode jumpers to SD boot mode\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xilinx-sd.png)
 
 1. Press the RST button to reset the device and start booting the application\. You can also unplug the USB\-UART cable from the USB\-UART port, and then reinsert the cable\.
 
 #### Boot the Amazon FreeRTOS Demo Project from QSPI flash<a name="xilinx-build-boot-qspi"></a>
 
-1. Set your MicroZed board's boot mode jumpers to the JTAG boot mode:  
+1. Set your MicroZed board's boot mode jumpers to the JTAG boot mode\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xilinx-jtag.png)
 
 1. Verify that your computer is connected to the USB\-UART and JTAG Access ports\. The green Power Good LED light should be illuminated\.
@@ -184,9 +179,7 @@ Format the MicroSD card that is provided with the Xilinx MicroZed Industrial IoT
 
 1. In **Program Flash Memory**, the hardware platform should be filled in automatically\. For **Connection**, choose your MicroZed hardware server to connect your board with your host computer\.
 **Note**  
-If you are using the Xilinx Smart Lync JTAG cable, you must create a hardware server in XSDK IDE\. Choose **New**, and then define your server\.  
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk6.png)
+If you are using the Xilinx Smart Lync JTAG cable, you must create a hardware server in XSDK IDE\. Choose **New**, and then define your server\.
 
 1. In **Image File**, enter the directory path to your `BOOT.bin` image file\. Choose **Browse** to browse for the file instead\.
 
@@ -194,13 +187,11 @@ If you are using the Xilinx Smart Lync JTAG cable, you must create a hardware se
 
 1. In **FSBL File**, enter the directory path to your `fsbl.elf` file\. Choose **Browse** to browse for the file instead\.
 
-1. Choose **Program** to program your board\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xsdk7.png)
+1. Choose **Program** to program your board\.
 
 1. After the QSPI programming is complete, remove the USB\-UART cable to power off the board\.
 
-1. Set your MicroZed board's boot mode jumpers to the QSPI boot mode:  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/xilinx-qspi.png)
+1. Set your MicroZed board's boot mode jumpers to the QSPI boot mode\.
 
 1. Insert your card into the MicroSD card slot located directly under the USB\-UART port\.
 **Note**  
@@ -214,4 +205,4 @@ If you encounter build errors that are related to incorrect paths, try to clean 
 
 If you are using Windows, make sure that you use forward slashes when you set the string substitution variables in the Windows XSDK IDE\.
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

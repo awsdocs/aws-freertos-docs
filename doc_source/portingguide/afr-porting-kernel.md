@@ -11,7 +11,7 @@ Porting the FreeRTOS kernel to a new architecture is out of the scope of this do
 
 To set up the FreeRTOS kernel for porting, you need the following:
 + An official FreeRTOS kernel port for the target platform\.
-+ An IDE project that includes the correct FreeRTOS kernel port files for the target platform and compiler\.
++ An IDE project or `CMakeLists.txt` list file that includes the correct FreeRTOS kernel port files for the target platform and compiler\.
 
   For information about setting up a test project, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + An implementation of the `configPRINT_STRING()` macro for your device\.
@@ -20,7 +20,7 @@ To set up the FreeRTOS kernel for porting, you need the following:
 
 ## Configuring the FreeRTOS Kernel<a name="porting-steps-kernel"></a>
 
-The header file `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/FreeRTOSConfig.h` specifies application\-specific configuration settings for the FreeRTOS kernel\. For a description of each configuration option, see [Customisation](https://freertos.org/a00110.html) on FreeRTOS\.org\.
+The header file `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h` specifies application\-specific configuration settings for the FreeRTOS kernel\. For a description of each configuration option, see [Customisation](https://freertos.org/a00110.html) on FreeRTOS\.org\.
 
 To configure the FreeRTOS kernel to work with your device, open `FreeRTOSConfig.h`, and verify that the configuration options in the following table are correctly specified for your platform\.
 
@@ -36,13 +36,13 @@ If you are porting ARM Cortex\-M3, M4, or M7 devices, you must also specify [`co
 
 ## Testing<a name="porting-testing-kernel"></a>
 
-1. Open `<amazon-freertos>/lib/utils/aws_system_init.c`, and comment out the lines that call `BUFFERPOOL_Init()`, `MQTT_AGENT_Init()`, and `SOCKETS_Init()` from within function `SYSTEM_Init()`\. These initialization functions belong to libraries that you haven't ported yet\. The porting sections for those libraries include instructions to uncomment these functions\.
+1. Open `/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and comment out the lines that call `BUFFERPOOL_Init()`, `MQTT_AGENT_Init()`, and `SOCKETS_Init()` from within function `SYSTEM_Init()`\. These initialization functions belong to libraries that you haven't ported yet\. The porting sections for those libraries include instructions to uncomment these functions\.
 
 1. Build the test project, and then flash it to your device for execution\.
 
 1. If "\." appears in the UART console every 5 seconds, then the FreeRTOS kernel is configured correctly, and testing is complete\.
 
-   Open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/FreeRTOSConfig.h`, and set `configUSE_IDLE_HOOK` to 0 to stop the kernel from executing `vApplicationIdleHook()` and outputting "`.`"\.
+   Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`, and set `configUSE_IDLE_HOOK` to 0 to stop the kernel from executing `vApplicationIdleHook()` and outputting "`.`"\.
 
 1. If "`.`" appears at any frequency other than 5 seconds, open `FreeRTOSConfig.h` and verify that `configCPU_CLOCK_HZ` is set to the correct value for your board\.
 

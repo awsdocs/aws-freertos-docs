@@ -5,13 +5,13 @@ This tutorial provides instructions for getting started with the Cypress CYW9439
 **Note**  
 This tutorial walks you through setting up and running the MQTT Hello World demo\. The Amazon FreeRTOS port for this board currently does not support the TCP server and client demos\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
 **Important**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.  
 As noted in [Downloading Amazon FreeRTOS](freertos-download.md), Amazon FreeRTOS ports for Cypress are currently only available on [GitHub](https://github.com/aws/amazon-freertos)\.
 
-## Overview<a name="w3aab7c19b9c11"></a>
+## Overview<a name="w3aab7c23b9c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -62,7 +62,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-6.2`
 1. Open a terminal and run the following commands:
 
    ```
-   cd <amazon-freertos>/lib/third_party/mcu_vendor/cypress/WICED_SDK
+   cd <amazon-freertos>/vendors/cypress/WICED_SDK
    ```
 
    ```
@@ -90,7 +90,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-6.2`
 
 For more information about installing a terminal and setting up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="cypress-build-and-run-example"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="gsg-cypress-build-and-run-example"></a>
 
 After you set up a serial connection to your board, you can build the Amazon FreeRTOS demo project, flash the demo to your board, and then run the demo\.
 
@@ -100,15 +100,15 @@ After you set up a serial connection to your board, you can build the Amazon Fre
 
 1. From the **File** menu, choose **Import**\. Expand the **General** folder, choose **Existing Projects into Workspace**, and then choose **Next**\.
 
-1. In **Select root directory**, enter `<BASE_FOLDER>\demos\cypress\CYW943907AEVAL1F\wicedstudio`, and then choose **Open**\.
+1. In **Select root directory**, enter `projects/cypress/CYW943907AEVAL1F/wicedstudio`, and then choose **Open**\.
 
 1. Under **Projects**, the **aws\_demo** project should be selected\. Choose **Finish** to import the project\. The target project **aws\_demo** should appear in the **Make Target** window\.
 
-1. Expand the **WICED Platform** menu, and choose **WICED Filters off**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/wiced-filters.png)
+1. Expand the **WICED Platform** menu, and choose **WICED Filters off**\.
 
-1. In the **Make Target** window, expand **aws\_demo**, right\-click the `demo.aws_demo` file, and then choose **Build Target** to build and download the demo to your board\. The demo should run automatically after it is built and downloaded to your board\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/wiced-build-43.png)
+1. In the **Make Target** window, expand **aws\_demo**, right\-click the `demo.aws_demo` file, and then choose **Build Target** to build and download the demo to your board\. The demo should run automatically after it is built and downloaded to your board\.
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23b9c17b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -118,7 +118,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="cypress-troubleshooting"></a>
 + If you are using Windows, you might receive the following error when you build and run the demo project:
@@ -132,7 +132,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
   1. Browse to `WICED-Studio-SDK-PATH\WICED-Studio-6.2\43xxx_Wi-Fi\tools\OpenOCD\Win32` and double\-click on `openocd-all-brcm-libftdi.exe`\.
 
-  1. Browse to `WICED-Studio-SDK-PATH\WICED-Studio-6.2\43xxx_Wi-Fi\toots\drivers\CYW9WCD1EVAL1` and double\-click on `InstallDriver.exe`\.
+  1. Browse to `WICED-Studio-SDK-PATH\WICED-Studio-6.2\43xxx_Wi-Fi\tools\drivers\CYW9WCD1EVAL1` and double\-click on `InstallDriver.exe`\.
 + If you are using Linux or macOS, you might receive the following error when you build and run the demo project:
 
   ```
@@ -145,4 +145,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
   sudo apt-get install libusb-dev
   ```
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

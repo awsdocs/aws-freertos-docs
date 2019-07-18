@@ -2,17 +2,32 @@
 
 This tutorial provides instructions for getting started with the NXP LPC54018 IoT Module\. If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `BASE_FOLDER`\.
+Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c19c27b7"></a>
+## Overview<a name="w3aab7c23c27b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
+
+1. Connecting your board to a host machine\.
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
 1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
+
+## Set Up the NXP Hardware<a name="nxp-setup-hardware"></a>
+
+**To set up the NXP LPC54018**
++ Connect your computer to the USB port on the NXP LPC54018\.
+
+**To set up the JTAG Debugger**
+
+You need a JTAG debugger to launch and debug your code running on the NXP LPC54018 board\. Amazon FreeRTOS was tested using a Segger J\-Link probe\. For more information about supported debuggers, see the [NXP LPC54018 User Guide](https://www.nxp.com/docs/en/user-guide/UM11078.pdf)\.
+
+1. If you are using a Segger J\-Link debugger, use a converter cable to connect the 20\-pin connector from the debugger to the 10\-pin connector on the NXP IoT module\. 
+
+1. Connect the NXP LPC54018 and the Segger J\-Link Debugger to the USB ports on your computer using mini\-USB to USB cables\.
 
 ## Set Up Your Development Environment<a name="setup-env_nxp"></a>
 
@@ -33,8 +48,12 @@ IAR Embedded Workbench for ARM requires Microsoft Windows\.
 **To install MCUXpresso from NXP**
 
 1. Download and run the MCUXpresso installer from [NXP](https://www.nxp.com/support/developer-resources/software-development-tools/mcuxpresso-software-and-tools/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE)\.
+**Note**  
+Versions 10\.3\.x and later are supported\.
 
 1. Browse to [MCUXpresso SDK](https://www.nxp.com/support/developer-resources/software-development-tools/mcuxpresso-software-and-tools/mcuxpresso-software-development-kit-sdk:MCUXpresso-SDK) and choose **Build your SDK\.**
+**Note**  
+Versions 2\.5 and later are supported\.
 
 1. Choose **Select Development Board**\.
 
@@ -52,13 +71,6 @@ IAR Embedded Workbench for ARM requires Microsoft Windows\.
 
 If you experience issues during installation, see [NXP Support](https://www.nxp.com/support/support:SUPPORTHOME?tid=sbmenu) or [NXP Developer Resources](https://www.nxp.com/support/developer-resources:DEVELOPER_HOME)\.
 
-### Connecting a JTAG Debugger<a name="get-started-jtag-debugger"></a>
-
-You need a JTAG debugger to launch and debug your code running on the NXP LPC54018 board\. Amazon FreeRTOS was tested using a Segger J\-Link probe\. For more information about supported debuggers, see the [NXP LPC54018 User Guide](https://www.nxp.com/docs/en/user-guide/UM11078.pdf)\.
-
-**Note**  
-If you are using a Segger J\-Link debugger, you need a converter cable to connect the 20\-pin connector from the debugger to the 10\-pin connector on the NXP IoT module\. 
-
 ## Build and Run the Amazon FreeRTOS Demo Project<a name="nxp-build-and-run"></a>
 
 ### Import the Amazon FreeRTOS Demo into Your IDE<a name="nxp-freertos-import-project"></a><a name="nxp-load-project"></a>
@@ -67,7 +79,7 @@ If you are using a Segger J\-Link debugger, you need a converter cable to connec
 
 1. Open IAR Embedded Workbench, and from the **File** menu, choose **Open Workspace**\.
 
-1. In the **search\-directory** text box, enter `<BASE_FOLDER>\demos\nxp\lpc54018_iot_module\iar`, and choose **aws\_demos\.eww**\.
+1. In the **search\-directory** text box, enter `projects/nxp/lpc54018iotmodule/iar/aws_demos`, and choose **aws\_demos\.eww**\.
 
 1. From the **Project** menu, choose **Rebuild All**\.
 
@@ -75,37 +87,37 @@ If you are using a Segger J\-Link debugger, you need a converter cable to connec
 
 1. Open MCUXpresso, and from the **File** menu, choose **Open Projects From File System**\.
 
-1. In the **Directory** text box, enter `<BASE_FOLDER>\demos\nxp\lpc54018_iot_module\mcuxpresso`, and choose **Finish**
+1. In the **Directory** text box, enter `projects/nxp/lpc54018iotmodule/mcuxpresso/aws_demos`, and choose **Finish**
 
 1. From the **Project** menu, choose **Build All**\.
 
 ### Run the Amazon FreeRTOS Demo Project<a name="nxp-run-example"></a>
 
-1. Connect the USB port on the NXP IoT Module to your host computer, open a terminal program, and connect to the port identified as USB Serial Device\.
+**To run the Amazon FreeRTOS demo project with the IAR Embedded Workbench IDE**
 
-1. In your IDE, from the **Project** menu, choose **Build**\.
+1. In your IDE, from the **Project** menu, choose **Make**\.
 
-1. Connect the NXP IoT Module and the Segger J\-Link Debugger to the USB ports on your computer using mini\-USB to USB cables\.
+1. From the **Project** menu, choose **Download and Debug**\.
 
-1. If you are using IAR Embedded Workbench:
+1. From the **Debug** menu, choose **Start Debugging**\.
 
-   1. From the **Project** menu, choose **Download and Debug**\.
-
-   1. From the **Debug** menu, choose **Start Debugging**\.
-
-   1. When the debugger stops at the breakpoint in `main`, from the **Debug** menu, choose **Go\.**
+1. When the debugger stops at the breakpoint in `main`, from the **Debug** menu, choose **Go\.**
 **Note**  
 If a **J\-Link Device Selection** dialog box opens, choose **OK** to continue\. In the **Target Device Settings** dialog box, choose **Unspecified**, choose **Cortex\-M4**, and then choose **OK**\. You only need to be do this once\.
 
-1. If you are using MCUXpresso:
+**To run the Amazon FreeRTOS demo project with the MCUxpresso IDE**
 
-   1. If this is your first time debugging, choose the `aws_demos` project and from the **Debug** toolbar, choose the blue debug button\.
+1. In your IDE, from the **Project** menu, choose **Build**\.
 
-   1. Any detected debug probes are displayed\. Choose the probe you want to use, and then choose **OK** to start debugging\.
+1. If this is your first time debugging, choose the `aws_demos` project and from the **Debug** toolbar, choose the blue debug button\.
+
+1. Any detected debug probes are displayed\. Choose the probe you want to use, and then choose **OK** to start debugging\.
 **Note**  
 When the debugger stops at the breakpoint in `main()`, press the debug restart button ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/reset.png) once to reset the debugging session\. \(This is required due to a bug with MCUXpresso debugger for NXP54018\-IoT\-Module\)\.
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Debug** menu, choose **Go**\.
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c27c13b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -115,8 +127,8 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_nxp_troubleshooting"></a>
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

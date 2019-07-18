@@ -1,6 +1,6 @@
 # Creating a List File for Your Platform from the CMakeLists\.txt Template<a name="cmake-template"></a>
 
-A `CMakeLists.txt` template file is provided with Amazon FreeRTOS, under `<amazon-freertos>/cmake/vendors/<vendor>/<board>/CMakeLists.txt`\.
+A `CMakeLists.txt` template file is provided with Amazon FreeRTOS, under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt`\.
 
 The `CMakeLists.txt` template file consists of four sections:
 + [Amazon FreeRTOS Console Metadata](#cmake-metadata)
@@ -8,15 +8,15 @@ The `CMakeLists.txt` template file consists of four sections:
 + [Amazon FreeRTOS Portable Layers](#cmake-portable)
 + [Amazon FreeRTOS Demos and Tests](#cmake-demos-tests)
 
-Follow the instructions to edit these four sections of the list file to match your platform\. You can refer to the `CMakeLists.txt` files for other qualified boards under `<amazon-freertos>/cmake/vendors` as examples\.
+Follow the instructions to edit these four sections of the list file to match your platform\. You can refer to the `CMakeLists.txt` files for other qualified vendor boards under `<amazon-freertos>/vendors` as examples\.
 
 Two primary functions are called throughout the file:
 
 `afr_set_board_metadata(<name> <value>)`  
-This function defines metadata for the Amazon FreeRTOS console\. The function is defined in `<amazon-freertos>/cmake/afr_metadata.cmake`\.
+This function defines metadata for the Amazon FreeRTOS console\. The function is defined in `<amazon-freertos>/tools/cmake/afr_metadata.cmake`\.
 
 `afr_mcu_port(<module_name> [<DEPENDS> [targets...]])`  
-This function defines the portable\-layer target associated with an Amazon FreeRTOS module \(that is, library\)\. It creates a CMake `GLOBAL INTERFACE IMPORTED` target with a name of the form `AFR:<module_name>::mcu_port`\. If `DEPENDS` is used, additional targets are linked with `target_link_libraries`\. The function is defined in `<amazon-freertos>/cmake/afr_module.cmake`\.
+This function defines the portable\-layer target associated with an Amazon FreeRTOS module \(that is, library\)\. It creates a CMake `GLOBAL INTERFACE IMPORTED` target with a name of the form `AFR:<module_name>::mcu_port`\. If `DEPENDS` is used, additional targets are linked with `target_link_libraries`\. The function is defined in `<amazon-freertos>/tools/cmake/afr_module.cmake`\.
 
 ## Amazon FreeRTOS Console Metadata<a name="cmake-metadata"></a>
 
@@ -59,9 +59,9 @@ afr_mcu_port(compiler DEPENDS <your_target>)
 ```
 When you call `afr_mcu_port` with `DEPENDS`, it calls `target_link_libraries(AFR::<module_name>::mcu_port INTERFACE <your_targets>)`, which populates the compiler settings for the required `AFR::compiler::mcu_port` target\.
 
-### Using Multiple Compilers<a name="w3aab7c11c15c17c11"></a>
+### Using Multiple Compilers<a name="w3aab7c11c17c17c11"></a>
 
-If your board supports multiple compilers, you can use the `AFR_TOOLCHAIN` variable to dynamically select the compiler settings\. This variable is set to the name of the compiler you are using, which should be same as the name of the toolchain file found under `<amazon-freertos>/cmake/toolchains`\.
+If your board supports multiple compilers, you can use the `AFR_TOOLCHAIN` variable to dynamically select the compiler settings\. This variable is set to the name of the compiler you are using, which should be same as the name of the toolchain file found under `<amazon-freertos>/tools/cmake/toolchains`\.
 
 For example:
 
@@ -75,7 +75,7 @@ else()
 endif()
 ```
 
-### Advanced Compiler Settings<a name="w3aab7c11c15c17c13"></a>
+### Advanced Compiler Settings<a name="w3aab7c11c17c17c13"></a>
 
 If you want to set more advanced compiler settings, such as setting compiler flags based on programming language, or changing settings for different release and debug configurations, you can use CMake generator expressions\.
 
@@ -167,14 +167,14 @@ An `INTERFACE` library target does not have build output\. If you use an `INTERF
    target_sources(
        freertos_port
        INTERFACE
-           "${AFR_MODULES_DIR}/FreeRTOS/portable/GCC/ARM_CM4F/port.c"
-           "${AFR_MODULES_DIR}/FreeRTOS/portable/GCC/ARM_CM4F/portmacro.h"
-           "${AFR_MODULES_DIR}/FreeRTOS/portable/MemMang/heap_4.c"
+           "${AFR_MODULES_DIR}/freertos_kernel/portable/GCC/ARM_CM4F/port.c"
+           "${AFR_MODULES_DIR}/freertos_kernel/portable/GCC/ARM_CM4F/portmacro.h"
+           "${AFR_MODULES_DIR}/freertos_kernel/portable/MemMang/heap_4.c"
    )
    target_include_directories(
        freertos_port
        INTERFACE
-           "${AFR_MODULES_DIR}/FreeRTOS/portable/GCC/ARM_CM4F"
+           "${AFR_MODULES_DIR}/freertos_kernel/portable/GCC/ARM_CM4F"
            "${include_path_to_FreeRTOSConfig_h}
    )
    ```
@@ -226,7 +226,7 @@ For example, to add the portable layer for the Wi\-Fi module:
 afr_mcu_port(wifi)
 target_sources(
     AFR::wifi::mcu_port
-    INTERFACE "${AFR_MODULES_DIR}/wifi/portable/<vendor>/<board>/aws_wifi.c"
+    INTERFACE "${AFR_MODULES_DIR}/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c"
 )
 ```
 
@@ -264,7 +264,7 @@ Because all non\-kernel Amazon FreeRTOS modules implicitly depend on the kernel,
 
 ```
 # By default, AFR::posix target does not expose standard POSIX headers in its public
-# interface, i.e., You need to use "FreeRTOS_POSIX/pthread.h"  instead of "pthread.h".
+# interface, i.e., You need to use "freertos_plus_posix/source/FreeRTOS_POSIX_pthread.c"  instead of "pthread.h".
 # Link to AFR::use_posix instead if you need to use those headers directly.
 target_link_libraries(
     AFR::kernel::mcu_port
@@ -292,7 +292,7 @@ add_executable(${exe_target} "${board_dir}/application_code/main.c")
 `target_link_libraries` is then called to link available CMake demo or test targets to your executable target\.
 
 **Note**  
-You still need to modify `<amazon-freertos>/demos/common/demo_runner/aws_demo_runner.c` and `<amazon-freertos>/tests/common/test_runner/aws_test_runner.c` to enable demos and tests\.
+You still need to modify `aws_demos/config_files/aws_demo_config.h` and `aws_tests/config_files/aws_test_runner_config.h` to enable demos and tests\.
 
 ### Running Post\-build Commands<a name="cmake-post-build"></a>
 

@@ -7,14 +7,19 @@ Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does 
 Lightweight IP\.
 Symmetric multiprocessing \(SMP\)\.
 
-## Overview<a name="w3aab7c19c13b7"></a>
+## Overview<a name="w3aab7c23c13b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
-+ Connecting your board to a host machine\.
-+ Installing software on the host machine that you use to develop and debug embedded applications for your microcontroller board\.
-+ Cross\-compiling an Amazon FreeRTOS demo application to a binary image\.
-+ Loading the application binary image to your board, and then running the application\.
-+ Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
+
+1. Connecting your board to a host machine\.
+
+1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
+
+1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+
+1. Loading the application binary image to your board, and then running the application\.
+
+1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
 ## Prerequisites<a name="setup-espressif-prereqs"></a>
 
@@ -77,9 +82,20 @@ To set up the toolchain, follow the instructions for your host machine's operati
 
 **Note**  
 When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.   If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the  `IDF_PATH` environment variable from your system before continuing\.
-+ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/windows-setup.html)
-+ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/macos-setup.html)
-+ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html)
++ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/v3.1.3/get-started-cmake/windows-setup.html)
++ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/v3.1.3/get-started-cmake/macos-setup.html)
++ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/v3.1.3/get-started-cmake/linux-setup.html)
+
+**Note**  
+Version 3\.1\.3 of the ESP\-IDF \(the version used by Amazon FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.1\.3 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.
+
+### Install CMake<a name="w3aab7c23c13c13b7"></a>
+
+The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device\. Amazon FreeRTOS supports versions 3\.13 and later\.
+
+You can download the latest version of CMake from [CMake\.org](https://cmake.org/download/)\. Both source and binary distributions are available\.
+
+For more details about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
 ## Establish a Serial Connection<a name="establish-serial-connection"></a>
 
@@ -91,15 +107,7 @@ For more information, see [Establish Serial Connection with ESP32](https://docs.
 
 ## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
 
-After your environment is set up, you can download Amazon FreeRTOS from GitHub\. Configurations of Amazon FreeRTOS for the Espressif boards are not available from the Amazon FreeRTOS console\.
-
-### Downloading Amazon FreeRTOS<a name="download-espressif"></a>
-
-Clone or download the `amazon-freertos` repository from [GitHub](https://github.com/aws/amazon-freertos)\.
-
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  
-In this tutorial, the path to the `amazon-freertos` directory is referred to as *<amazon\-freertos>*\.
+After your environment is set up, you can download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
 
 ### Configure the Amazon FreeRTOS Demo Applications<a name="config-demos"></a>
 
@@ -117,7 +125,7 @@ In this tutorial, the path to the `amazon-freertos` directory is referred to as 
    + On Windows, in the mingw32 environment, run easy\_install boto3\.
    + On macOS or Linux, run pip install tornado nose \-\-user and then run pip install boto3 \-\-user\.
 
-Amazon FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the the script, open `<BASE_FOLDER>/tools/aws_config_quick_start/configure.json` and set the following attributes:
+Amazon FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the the script, open `<amazon-freertos>/tools/aws_config_quick_start/configure.json` and set the following attributes:
 
 `afr_source_dir`  
 The complete path to the `amazon-freertos` directory on your computer\. Make sure that you use forward slashes to specify this path\.
@@ -143,7 +151,7 @@ Valid security types are:
 
 1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
-1. Go to the `<BASE_FOLDER>/tools/aws_config_quick_start` directory and run python SetupAWS\.py setup\.
+1. Go to the `<amazon-freertos>/tools/aws_config_quick_start` directory and run python SetupAWS\.py setup\.
 
 The script does the following:
 + Creates an IoT thing, certificate, and policy
@@ -151,37 +159,116 @@ The script does the following:
 + Populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials
 + Formats your certificate and private key and writes them to the `aws_clientcredential.h` header file
 
-For more information about `SetupAWS.py`, see the README\.md in the `<BASE_FOLDER>/tools/aws_config_quick_start` directory\.
+For more information about `SetupAWS.py`, see the README\.md in the `<amazon-freertos>/tools/aws_config_quick_start` directory\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="build-and-run-example-espressif"></a>
+## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="build-and-run-example-espressif"></a>
 
-**To configure your board's connection for flashing the demo**
+You can use CMake to generate the build files, Make to build the application binary, and Espressif's IDF utility to flash your board\.
 
-1. Connect your board to your host computer\.
+### Build Amazon FreeRTOS<a name="build-espressif"></a>
 
-1. If you are using macOS or Linux, open a terminal\. If you are using Windows, open mingw32\.exe \(downloaded from mysys toolchain\)\.
+\(If you are using Windows, please see the next section\.\)
 
-1. Navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and enter following command to make and open the Espressif IoT Development Framework Configuration menu:
+Use CMake to generate the build files, and then use Make to build the application\.
+
+**To generate the demo application's build files with CMake**
+
+1. Change directories to the root of your Amazon FreeRTOS download directory\.
+
+1. Use the following command to generate the build files:
 
    ```
-   make menuconfig
+   cmake -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 -S . -B your-build-directory
+   ```
+**Note**  
+If you want to build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag to this command\.  
+If you want to generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.
+
+**To build the application with Make**
+
+1. Change directories to the `build` directory\.
+
+1. Use the following command to build the application with Make:
+
+   ```
+   make all -j4
+   ```
+**Note**  
+You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
+
+### Build Amazon FreeRTOS On Windows<a name="build-espressif-windows"></a>
+
+On Windows, you must specify a build generator for CMake, otherwise CMake defaults to Visual Studio\. Espressif officially recommends the Ninja build system because it works on Windows, Linux and MacOS\. You must run CMake commands in a native Windows environment like cmd or powershell\. Running CMake commands in a virtual Linux environment, like MSYS2 or WSL, is not supported\.
+
+Use CMake to generate the build files, and then use Make to build the application\.
+
+**To generate the demo application's build files with CMake**
+
+1. Change directories to the root of your Amazon FreeRTOS download directory\.
+
+1. Use the following command to generate the build files:
+
+   ```
+   cmake -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 -GNinja -S . -B your-build-directory
+   ```
+**Note**  
+If you want to build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag to this command\.  
+If you want to generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.
+
+**To build the application**
+
+1. Change directories to the `build` directory\.
+
+1. Invoke Ninja to build the application:
+
+   ```
+   ninja
    ```
 
-   To confirm a selection in the menu, choose **Select**\. To save a configuration, choose **Save**\. To exit the menu, choose **Exit**\.
+   Or, use the generic CMake interface to build the application:
 
-1. In the Espressif IoT Development Framework Configuration menu, navigate to **Serial flasher config**\.
+   ```
+   cmake --build your-build-directory
+   ```
+**Note**  
+You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-   Choose **Default serial port** to configure the serial port\. The serial port you configure here is used to write the demo application to your board\. On Windows, serial ports have names like `COM1`\. On macOS, they start with `/dev/cu`\. On Linux, they start with `/dev/tty`\. For more information, see [Finding Your Board's Serial Port](uart-term.md#serial-port-ts)\.
+### Flash and Run Amazon FreeRTOS<a name="flash-espressif"></a>
 
-   Choose **Default baud rate** to change the default baud rate to use while communicating with your board\. Increasing the baud rate can reduce the time required to flash your board\. Depending on your hardware, you can increase the default baud rate up to 921600\.
+Use Espressif's IDF utility \(`<amazon-freertos>/vendors/espressif/esp-idf/tools/idf.py`\) to flash your board, run the application, and see logs\.
 
-1. After you set up your board's configuration, save and exit the menu\.
-
-To build and flash firmware \(including boot loader and partition table\), and to monitor serial console output, open a terminal \(macOS and Linux\) or mingw32\.exe \(Windows\)\. Change directories to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and run the following command:
+To erase the board's flash, use the following command:
 
 ```
-make flash monitor
+./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build
 ```
+
+To flash the application binary to your board, use `make`:
+
+```
+make flash
+```
+
+You can also use the IDF script to flash your board:
+
+```
+./vendors/espressif/esp-idf/tools/idf.py flash -B build
+```
+
+To monitor:
+
+```
+./vendors/espressif/esp-idf/tools/idf.py monitor -p /dev/ttyUSB1 -B build
+```
+
+**Note**  
+You can combine these commands\. For example:  
+
+```
+./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build
+```
+
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c13c19c11"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -191,50 +278,21 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **freertos/demos/echo**, and then choose **Subscribe to topic**\.
-
-`Hello World number` and `Hello World number ACK` messages appear at the bottom of the MQTT client page when the terminal or command prompt where you issued the `make flash monitor` command returns output\.
-
-```
-12 1350 [MQTTEcho] Echo successfully published 'Hello World 0'
-13 1357 [Echoing] Message returned with ACK: 'Hello World 0 ACK'
-14 1852 [MQTTEcho] Echo successfully published 'Hello World 1'
-15 1861 [Echoing] Message returned with ACK: 'Hello World 1 ACK'
-16 2355 [MQTTEcho] Echo successfully published 'Hello World 2'
-17 2361 [Echoing] Message returned with ACK: 'Hello World 2 ACK'
-18 2857 [MQTTEcho] Echo successfully published 'Hello World 3'
-19 2863 [Echoing] Message returned with ACK: 'Hello World 3 ACK'
-```
-
-When the demo finishes running, you should see output similar to the following in your terminal or command prompt:
-
-```
-32 6380 [MQTTEcho] Echo successfully published 'Hello World 10'
-33 6386 [Echoing] Message returned with ACK: 'Hello World 10 ACK'
-34 6882 [MQTTEcho] Echo successfully published 'Hello World 11'
-35 6889 [Echoing] Message returned with ACK: 'Hello World 11 ACK'
-36 7385 [MQTTEcho] MQTT echo demo finished.
-37 7385 [MQTTEcho] ----Demo finished----
-```
+1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ### Run the Bluetooth Low\-Energy Demos<a name="espressif-run-ble"></a>
 
+Amazon FreeRTOS supports [Bluetooth Low Energy](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\.
 
-|  | 
-| --- |
-| Amazon FreeRTOS support for Bluetooth Low Energy is in public beta release\. BLE demos are subject to change\. | 
+To run the Amazon FreeRTOS demo project across Bluetooth Low Energy, you need to run the Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application on an iOS or Android mobile device\.
 
-Amazon FreeRTOS supports [Bluetooth Low Energy \(BLE\)](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\. You can download Amazon FreeRTOS with BLE from [GitHub](https://github.com/aws/amazon-freertos/tree/feature/ble-beta)\. The Amazon FreeRTOS BLE library is still in public beta, so you need to switch branches to access the code for your board\. Check out the branch named `feature/ble-beta`\.
-
-To run the Amazon FreeRTOS demo project across BLE, you need to run the Amazon FreeRTOS BLE Mobile SDK Demo Application on an iOS or Android mobile device\.
-
-**To set up the the Amazon FreeRTOS BLE Mobile SDK demo application**
+**To set up the the Amazon FreeRTOS Bluetooth Low Energy Mobile SDK demo application**
 
 1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
 
-1. Follow the instructions in [Amazon FreeRTOS BLE Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
+1. Follow the instructions in [Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
 
-For instructions about how to run the MQTT over BLE demo on your board, see the [MQTT over BLE Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
+For instructions about how to run the MQTT over Bluetooth Low Energy demo on your board, see the [MQTT over Bluetooth Low Energy Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
 
 For instructions about how to run the Wi\-Fi provisioning demo on your board, see the [Wi\-Fi Provisioning Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-wifi)\.
 
@@ -258,7 +316,7 @@ For instructions about how to run the Wi\-Fi provisioning demo on your board, se
   ```
 + If your device has trouble connecting to AWS IoT, open the `aws_clientcredential.h` file, and verify that the configuration variables are properly defined in the file\. `clientcredentialMQTT_BROKER_ENDPOINT[]` should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\.
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
 
 ### Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
 
@@ -315,7 +373,7 @@ The device might be listed as **USB Serial Port**\.
 
    In this example, the vendor ID is 0403 and the product ID is 6014\.
 
-   Verify these IDs match the IDs in `demos\espressif\esp32_devkitc_esp_wrover_kit\make\esp32_devkitj_v1.cfg`\. The IDs are specified in a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
+   Verify these IDs match the IDs in `projects/espressif/esp32/make/aws_demos/esp32_devkitj_v1.cfg`\. The IDs are specified in a line that begins with `ftdi_vid_pid` followed by a vendor ID and a product ID:
 
    ```
    ftdi_vid_pid 0x0403 0x6014
@@ -339,7 +397,7 @@ The device might be listed as **USB Serial Port**\.
 
    1. From the drop\-down box under the target driver field, choose the arrow, and then choose **Install Driver**\. Choose **Replace Driver**\.
 
-1. Open a command prompt, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and run:
+1. Open a command prompt, navigate to `projects/espressif/esp32/make/aws_demos` and run:
 
    ```
    openocd.exe -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
@@ -347,9 +405,9 @@ The device might be listed as **USB Serial Port**\.
 
    Leave this command prompt open\.
 
-1. Open a new command prompt, navigate to your `msys32` directory, and run `mingw32.exe`\. In the mingw32 terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make` and run make flash monitor\.
+1. Open a new command prompt, navigate to your `msys32` directory, and run `mingw32.exe`\. In the mingw32 terminal, navigate to `projects/espressif/esp32/make/aws_demos` and run make flash monitor\.
 
-1. Open another mingw32 terminal, navigate to `<BASE_FOLDER>\demos\espressif\esp32_devkitc_esp_wrover_kit\make` and wait until the demo starts running on your board\. When it does, run `xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf`\. The program should stop in the `main` function\.
+1. Open another mingw32 terminal, navigate to `projects/espressif/esp32/make/aws_demos` and wait until the demo starts running on your board\. When it does, run `xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf`\. The program should stop in the `main` function\.
 
 **Note**  
 The ESP32 supports a maximum of two break points\.
@@ -395,9 +453,9 @@ The ESP32 supports a maximum of two break points\.
    Vendor ID: vendor-ID (Future Technology Devices International Limited)
    ```
 
-1. Open `demos/espressif/esp32_devkitc_esp_wrover_kit/make/esp32_devkitj_v1.cfg`\. The vendor ID and product ID for your device are specified in a line that begins with `ftdi_vid_pid`\. Change the IDs to match the IDs from the `system_profiler` output in the previous step\.
+1. Open `projects/espressif/esp32/make/aws_demos/esp32_devkitj_v1.cfg`\. The vendor ID and product ID for your device are specified in a line that begins with `ftdi_vid_pid`\. Change the IDs to match the IDs from the `system_profiler` output in the previous step\.
 
-1. Open a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
+1. Open a terminal window, navigate to `projects/espressif/esp32/make/aws_demos`, and use the following command to run OpenOCD:
 
    ```
    openocd -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
@@ -409,13 +467,13 @@ The ESP32 supports a maximum of two break points\.
    sudo kextload -b com.FTDI.driver.FTDIUSBSerialDriver
    ```
 
-1. Navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Navigate to `projects/espressif/esp32/make/aws_demos`, and run the following command:
 
    ```
    make flash monitor
    ```
 
-1. Open another new terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Open another new terminal, navigate to `projects/espressif/esp32/make/aws_demos`, and run the following command:
 
    ```
    xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf
@@ -451,19 +509,19 @@ The ESP32 supports a maximum of two break points\.
 
    The `/dev/ttyUSBn` interface with the lower number is used for JTAG communication\. The other interface is routed to the ESP32’s serial port \(UART\) and is used for uploading code to the ESP32’s flash memory\.
 
-1. In a terminal window, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and use the following command to run OpenOCD:
+1. In a terminal window, navigate to `projects/espressif/esp32/make/aws_demos`, and use the following command to run OpenOCD:
 
    ```
    openocd -f esp32_devkitj_v1.cfg -f esp-wroom-32.cfg
    ```
 
-1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Open another terminal, navigate to `projects/espressif/esp32/make/aws_demos`, and run the following command:
 
    ```
    make flash monitor
    ```
 
-1. Open another terminal, navigate to `<BASE_FOLDER>/demos/espressif/esp32_devkitc_esp_wrover_kit/make`, and run the following command:
+1. Open another terminal, navigate to `projects/espressif/esp32/make/aws_demos`, and run the following command:
 
    ```
    xtensa-esp32-elf-gdb -x gdbinit build/aws_demos.elf

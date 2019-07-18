@@ -12,7 +12,7 @@ Storing private keys in general\-purpose flash memory can be convenient in evalu
 ## Prerequisites<a name="porting-prereqs-pkcs"></a>
 
 To port the PKCS \#11 library, you need the following:
-+ An IDE project that includes vendor\-supplied drivers that are suitable for sensitive data\.
++ An IDE project or `CMakeLists.txt` list file that includes vendor\-supplied drivers that are suitable for sensitive data\.
 
   For information about setting up a test project, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
@@ -43,16 +43,18 @@ To port the PKCS \#11 library, you need the following:
    + A code\-verification public key \(or a certificate that contains the code\-verification public key\) for secure bootloader and over\-the\-air \(OTA\) updates\.
    + A Just\-In\-Time provisioning certificate\.
 
-    `<amazon-freertos>/lib/pkcs11/portable/<vendor>/<board>/aws_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
+    `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/aws_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html)
 
 1. Add support for a cryptographically random entropy source to your port\.
 
-   If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\), implement the [https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<amazon-freertos>/lib/pkcs11/portable/<vendor>/<board>/aws_pkcs11_pal.c`\.
+   If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\), implement the [https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/aws_pkcs11_pal.c`\.
 
    If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG, do the following:
 
-   1. In the mbedTLS [https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/config.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/config.h), uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
+   1. Make a copy of `<amazon-freertos>/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
+
+      Save the modified version of `config.h` to `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/config.h`\. Do not overwrite the original file\.
 
    1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
 
@@ -77,31 +79,39 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the PKCS \#11 library in the IDE project**
 
-1. In your IDE, create a virtual folder named `pkcs11` under `aws_tests/lib/aws`\.
+1. Add the source file `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/aws_pkcs11_pal.c` to the `aws_tests` IDE project\.
 
-1. Add the source file `<amazon-freertos>/lib/pkcs11/portable/<vendor>/<board>/aws_pkcs11_pal.c` to the virtual folder `aws_tests/lib/aws/pkcs11`\.
+1. Add all of the files in the `<amazon-freertos>/libraries/abstractions/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\.
 
-1. Create a virtual folder named `pkcs11` under `aws_tests/lib/third_party`\.
+1. Add the source file `<amazon-freertos>/libraries/freertos_plus/standard/crypto/src/aws_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
 
-1. Add the PKCS \#11 library headers files from `<amazon-freertos>/lib/third_party/pkcs11` to the virtual folder `aws_tests/lib/third_party/pkcs11`\.
+1. Add all of the source and header files from `<amazon-freertos>/libraries/3rdparty/mbedtls` and its subdirectories to the `aws_tests` IDE project\.
 
-1. Create a virtual folder named `pkcs11` under `aws_tests/application_code/common_tests`\.
+1. Add `<amazon-freertos>/libraries/3rdparty/mbedtls/include` and `<amazon-freertos>/libraries/abstractions/pkcs11` to the compiler’s include path\.
 
-1. Add the source file `<amazon-freertos>/tests/common/pkcs11/aws_test_pkcs11.c` to the virtual folder `aws_tests/application_code/common_tests/pkcs11`\. This file includes the PKCS \# 11 tests\.
+### Configuring the `CMakeLists.txt` File<a name="testing-cmake-pkcs"></a>
 
-1. Add the source file `<amazon-freertos>/lib/pkcs11/mbedtls/aws_pkcs11_mbedtls.c` to the `aws_tests/lib/pkcs11` virtual folder\. This file implements PKCS \#11 for mbedTLS\.
+If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-1. Create a virtual folder named `crypto` under `aws_tests/lib`\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
 
-1. Import the source file `<amazon-freertos>lib/crypto/aws_crypto.c` to the `aws_tests/lib/crypto` virtual folder\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
+The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
-1. Create a virtual folder named `mbedtls` under `aws_tests/lib/third_party`, and then under `aws_tests/lib/third_party`, create virtual folders named `source` and `include`\.
+See below for an example portable layer target definition for the PKCS \#11 library\.
 
-1. Add all of the source files from `<amazon-freertos>/lib/third_party/mbedtls/library` to the `aws_tests/lib/third_party/mbedtls/source` virtual folder\.
-
-1. Add all of the header files from `<amazon-freertos>/lib/third_party/mbedtls/include/mbedtls` to the `aws_tests/lib/third_party/mbedtls/include` virtual folder\.
-
-1. Add `<amazon-freertos>/lib/third_party/mbedtls/include` and `<amazon-freertos>/lib/third_party/pkcs11` to the compiler’s include path\.
+```
+# PKCS11
+afr_mcu_port(pkcs11)
+target_sources(
+    AFR::pkcs11::mcu_port
+    INTERFACE "path/aws_pkcs11_pal.c"
+)
+# Link to AFR::pkcs11_mbedtls if you want to use default implementation based on mbedtls.
+target_link_libraries(
+    AFR::pkcs11::mcu_port
+    INTERFACE AFR::pkcs11_mbedtls
+)
+```
 
 ### Setting Up Your Local Testing Environment<a name="testing-local-pkcs"></a>
 
@@ -109,11 +119,11 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the PKCS \#11 tests**
 
-1. Open `<amazon-freertos>/lib/utils/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    Only uncomment calls to `SOCKETS_Init()` if you have ported the Secure Sockets library\.
 
-1. Open `<amazon-freertos>/tests/<vendor>/<board>/common/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_PKCS11_ENABLED` macro to `1` to enable the PKCS \#11 test\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_PKCS11_ENABLED` macro to `1` to enable the PKCS \#11 test\.
 
 ### Running the Tests<a name="testing-run-pkcs"></a>
 

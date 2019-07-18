@@ -4,10 +4,10 @@
 
 1. Follow the instructions in [Getting Started with Espressif](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) to set up the required GCC\-based toolchain\.
 
-1. Open `demos/common/demo_runner/aws_demo_runner.c` in a text editor\. Find the `DEMO_RUNNER_RunDemos` function and make sure all function calls except `vStartOTAUpdateDemoTask` are commented out\.
+1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
-1. Build the demo project by running `make`in the `demos/espressif/esp32_devkitc_esp_wrover_kit/make/` directory\. You can flash the demo program and verify its output by running `make flash monitor`, as described in [Getting Started with Espressif](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html)\.
+1. Build the demo project by running `make`in the `vendors/espressif/boards/esp32/aws_demos/make` directory\. You can flash the demo program and verify its output by running `make flash monitor`, as described in [Getting Started with Espressif](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html)\.
 
 1. Before running the OTA Update demo:
-   + Make sure that `vStartOTAUpdateDemoTask` is the only function called in the `DEMO_RUNNER_RunDemos()` function in `demos/common/demo_runner/aws_demo_runner.c`\.
-   + Make sure that your SHA\-256/ECDSA code\-signing certificate is copied into the `demos/common/include/aws_ota_codesigner_certificate.h`\.
+   + Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+   + Make sure that your SHA\-256/ECDSA code\-signing certificate is copied into the `demos/include/aws_ota_codesigner_certificate.h`\.
