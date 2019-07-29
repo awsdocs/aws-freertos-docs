@@ -1,8 +1,17 @@
 # Getting Started with the Infineon OPTIGA™ Trust X and XMC4800 IoT Connectivity Kit<a name="getting_started_infineon_trust_x"></a>
 
-This tutorial provides instructions for getting started with the Infineon OPTIGA™ Trust X Secure Element and XMC4800 IoT Connectivity Kit\. If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
+This tutorial provides instructions for getting started with the Infineon OPTIGA™ Trust X Secure Element and XMC4800 IoT Connectivity Kit\. In comparison to the [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md) tutorial this guidance provides an easy provisioning of secure credentials using Infineon OPTIGA™ Trust X Secure Element. 
 
-In comparison to the [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md) tutorial this Infineon OPTIGA™ Trust X Secure Element provides an easy provisioning of secure credentials.
+The hardware required for this tutorial comprises two parts.
+
+1. Host MCU - Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
+
+1. Security Extension Pack:
+    + Secure Element - Infineon OPTIGA™ Trust X
+    + Personalization Board - Infineon OPTIGA™ Personalisation Board
+    + Adapter Board - Infineon MyIoT Adapter
+    
+    visit the AWS Partner Device Catalog to purchase them from our [partner](https://devices.amazonaws.com/detail/a3G0h000000TePnEAK/OPTIGA%E2%84%A2-Trust-X-Security-Solution)\.
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
 
