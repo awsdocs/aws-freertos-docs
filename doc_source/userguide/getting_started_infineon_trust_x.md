@@ -16,7 +16,7 @@ To get started with Amazon FreeRTOS, you need an AWS account, an IAM user with p
 
 1. Registering Your MCU Board with AWS IoT [using Amazon Root CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-root-ca)
    
-   + Alternativly you can do this [using a developer defined CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-and-self-signed-ca)
+   + Alternativly you can do the same [using a developer defined CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-and-self-signed-ca)
 
 1. [Downloading Amazon FreeRTOS](freertos-download.md)
 
