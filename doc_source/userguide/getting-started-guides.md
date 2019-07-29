@@ -18,5 +18,5 @@ After you complete the [First Steps](freertos-prereqs.md), see your board's guid
 **Note**  
 You do not need to complete the [First Steps](freertos-prereqs.md) for the following self\-contained Getting Started with Amazon FreeRTOS guides:  
 [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](getting_started_espressif.md)
-[Getting Started with the Secure Element OPTIGA™ Trust X and Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
+[Getting Started with the Infineon OPTIGA™ Trust X and XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
 [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md)
