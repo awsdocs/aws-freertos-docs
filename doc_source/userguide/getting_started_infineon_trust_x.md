@@ -1,21 +1,19 @@
 # Getting Started with the Infineon OPTIGA™ Trust X and XMC4800 IoT Connectivity Kit<a name="getting_started_infineon_trust_x"></a>
 
-This tutorial provides instructions for getting started with the Infineon OPTIGA™ Trust X Secure Element and XMC4800 IoT Connectivity Kit\. In comparison to the [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md) tutorial this guidance provides an easy provisioning of secure credentials using Infineon OPTIGA™ Trust X Secure Element. 
+This tutorial provides instructions for getting started with the Infineon OPTIGA™ Trust X Secure Element and XMC4800 IoT Connectivity Kit\. In comparison to the [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md) tutorial this guidance provides an easy provisioning of secure credentials using Infineon OPTIGA™ Trust X Secure Element\. 
 
-The hardware required for this tutorial comprises two parts.
+The hardware required for this tutorial comprises two parts\.
 
 1. Host MCU - Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
 
 1. Security Extension Pack:
-    + Secure Element - Infineon OPTIGA™ Trust X
-    + Personalization Board - Infineon OPTIGA™ Personalisation Board
-    + Adapter Board - Infineon MyIoT Adapter
+    + Secure Element \- Infineon OPTIGA™ Trust X\.
+    + Personalization Board \- Infineon OPTIGA™ Personalisation Board\.
+    + Adapter Board \- Infineon MyIoT Adapter\.
     
     visit the AWS Partner Device Catalog to purchase them from our [partner](https://devices.amazonaws.com/detail/a3G0h000000TePnEAK/OPTIGA%E2%84%A2-Trust-X-Security-Solution)\.
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
-
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. 
 
 In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
@@ -23,13 +21,13 @@ In this tutorial, the path to the Amazon FreeRTOS download directory is referred
 
 To get started with Amazon FreeRTOS, you need an AWS account, an IAM user with permission to access AWS IoT and Amazon FreeRTOS cloud services, and you need one of the supported hardware platforms\. You also need to download Amazon FreeRTOS and configure your board's Amazon FreeRTOS demo project to work with AWS IoT\. The following sections walk you through these requirements\.
 
-1. Registering Your MCU Board with AWS IoT [using Amazon Root CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-root-ca)
+1. Registering Your MCU Board with AWS IoT [using Amazon Root CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-root-ca)\.
    
-   + Alternativly you can do the same [using a developer defined CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-and-self-signed-ca)
+   + Alternativly you can do the same [using a developer defined CA](https://github.com/infineon/personalize-optiga-trust/tree/master/using-amazon-and-self-signed-ca).\
 
-1. [Downloading Amazon FreeRTOS](freertos-download.md)
+1. [Downloading Amazon FreeRTOS](freertos-download.md).\
 
-1. [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)
+1. [Configuring the Amazon FreeRTOS Demos](freertos-configure.md).\
 
 ## Overview<a name="infineon-trust-x-overview"></a>
 
