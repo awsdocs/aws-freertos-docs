@@ -59,7 +59,11 @@ You can use the `CMAKE_TOOLCHAIN_FILE` option if you want to use a toolchain fil
 cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -S . -B build
 ```
 
-If the toolchain file does not use absolute paths for your compiler, and you didn't add your compiler to the `PATH` environment variable, CMake might not be able to find it\. To make sure that CMake finds your toolchain file, you can use the `AFR_TOOLCHAIN_PATH` option\. This option searches the specified toolchain directory path and the toolchain's subfolder under `bin`\.
+If the toolchain file does not use absolute paths for your compiler, and you didn't add your compiler to the `PATH` environment variable, CMake might not be able to find it\. To make sure that CMake finds your toolchain file, you can use the `AFR_TOOLCHAIN_PATH` option\. This option searches the specified toolchain directory path and the toolchain's subfolder under `bin`\. For example:
+
+```
+cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -DAFR_TOOLCHAIN_PATH='/path/to/toolchain/' -S . -B build
+```
 
 To enable debugging, set the `CMAKE_BUILD_TYPE` to `debug`\. With this option enabled, CMake adds debug flags to the compile options, and builds Amazon FreeRTOS with debug symbols\.
 
@@ -108,7 +112,7 @@ If you are seeing the following error:
 
 ## Building Amazon FreeRTOS from Generated Build Files<a name="cmake-build"></a>
 
-### Building with Native Build System<a name="w3aab7c21c19c11b3"></a>
+### Building with Native Build System<a name="gsg-cmake-native"></a>
 
 You can build Amazon FreeRTOS with a native build system by calling the build system command from the output binaries directory\.
 
@@ -119,7 +123,7 @@ cd <build_dir>
 make -j4
 ```
 
-### Building with CMake<a name="w3aab7c21c19c11b5"></a>
+### Building with CMake<a name="gsg-cmake-build"></a>
 
 You can also use the CMake command\-line tool to build Amazon FreeRTOS\. CMake provides an abstraction layer for calling native build systems\. For example:
 

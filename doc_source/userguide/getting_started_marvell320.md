@@ -25,7 +25,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up Your Development Environment<a name="marvell-setup-env"></a>
+## Set Up Your Development Environment<a name="marvell320-setup-env"></a>
 
 Amazon FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `vendors/marvell/WMSDK/mw320/sdk` directory\.
 
@@ -37,7 +37,7 @@ In addition to the software that is bundled with the M320 AWS IoT Starter Kit an
 + The CMake build system\. Versions 3\.13 and later are supported\.
 + \(Optional\) A supported IDE, for application development and debugging\.
 
-### Install Required Third\-Party Libraries with installpkgs\.sh<a name="marvell-sdk"></a>
+### Install Required Third\-Party Libraries with installpkgs\.sh<a name="marvell320-sdk"></a>
 
 The `vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh` script attempts to autodetect the machine type and install some required libraries, which include:
 + C libraries
@@ -65,7 +65,7 @@ You can configure the permissions on your Linux host machine to allow `flashprog
 **Note**  
 If you are using the Eclipse IDE, you must configure these permissions\.
 
-### Set Up the Toolchain<a name="marvell-toolchain"></a>
+### Set Up the Toolchain<a name="marvell320-toolchain"></a>
 
 The Amazon FreeRTOS port for the this board is configured to use the GNU toolchain by default\. For the Makefiles to invoke the correct compiler toolchain, the GNU compiler toolchain binaries must be included in the user’s PATH variable\. The GNU toolchain binaries must also be prefixed with `arm-none-eabi-`\.
 
@@ -96,7 +96,7 @@ The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with t
 **Note**  
 Some distributions of Ubuntu include a Debian version of the GCC cross compiler\. If your distribution includes a native cross compiler, remove it, and follow the steps to set up the GCC compiler toolchain\.
 
-### Set Up OpenOCD<a name="marvell-openocd"></a>
+### Set Up OpenOCD<a name="marvell320-openocd"></a>
 
 OpenOCD version 0\.9 is required\. If an earlier version is installed on your host machine, remove it using your distribution's uninstall process\.
 
@@ -134,7 +134,7 @@ You can download the latest version of CMake from [CMake\.org](https://cmake.org
 
 For more details about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
-## Establish a Serial Connection<a name="marvell-serial-connect"></a>
+## Establish a Serial Connection<a name="marvell320-serial-connect"></a>
 
 **To establish a serial connection between your host machine and your board**
 
@@ -192,11 +192,11 @@ Marvell development boards have an FTDI chip that exposes two USB interfaces to 
 
    For more information about installing a terminal emulator to set up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
-## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="marvell-build-and-run-example"></a>
+## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="marvell320-build-and-run-example"></a>
 
 You can use CMake and the utility scripts included with the M320 port of Amazon FreeRTOS to build, flash, and run the Amazon FreeRTOS demo project from the command line\. Or you can use an IDE to build your project\.
 
-### Generate the Demo Build Files with CMake<a name="marvell-cmake-gen"></a>
+### Generate the Demo Build Files with CMake<a name="marvell320-cmake-gen"></a>
 
 Issue the following command from the root of the Amazon FreeRTOS download to generate the demo build files with CMake:
 
@@ -336,7 +336,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
-## Troubleshooting<a name="marvell-troubleshooting"></a>
+## Troubleshooting<a name="marvell320-troubleshooting"></a>
 
 ### Connecting to the GNU Debugger<a name="w3aab7c23c17c21b3"></a>
 

@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Renesas Starter
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c23c29b7"></a>
+## Overview<a name="gsg-renesas-overview"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -130,7 +130,7 @@ Now that you have configured the demo project, you are ready to build and run th
 
 1. After the code is downloaded to the board, choose **Resume** to run the code up to the first line of the main function\. Choose **Resume** again to run the rest of the code\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c29c13b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="gsg-renesas-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

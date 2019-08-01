@@ -23,21 +23,21 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Setting Up Your Development Environment<a name="cypress-setup-env"></a>
+## Setting Up Your Development Environment<a name="cypress43-setup-env"></a>
 
-### Download and Install the WICED Studio SDK<a name="install-wiced-studio"></a>
+### Download and Install the WICED Studio SDK<a name="cypress43-install-wiced-studio"></a>
 
 In this Getting Started guide, you use the Cypress WICED Studio SDK to program your board with the Amazon FreeRTOS demo\. Visit the [WICED Software](https://www.cypress.com/products/wiced-software) website to download the WICED Studio SDK from Cypress\. You must register for a free Cypress account to download the software\. The WICED Studio SDK is compatible with Windows, macOS, and Linux operating systems\.
 
 **Note**  
 Some operating systems require additional installation steps\. Make sure that you read and follow all installation instructions for the operating system and version of WICED Studio that you are installing\.
 
-### Set Environment Variables<a name="cypress-environment"></a>
+### Set Environment Variables<a name="cypress43-environment"></a>
 
 Before you use WICED Studio to program your board, you must create an environment variable for the WICED Studio SDK installation directory\. If WICED Studio is running while you create your variables, you need to restart the application after you set your variables\.
 
 **Note**  
-The WICED Studio installer creates two separate folders named `WICED-Studio-6.2` on your machine\. When you define the `WICED_STUDIO_SDK_PATH` environment variable, be sure to specify the full installation path of the WICED Studio SDK, and not the installation path of the WICED Studio UI\. In Windows and macOS, the `WICED-Studio-6.2` folder for the SDK is created in the `Documents` folder by default\.
+The WICED Studio installer creates two separate folders named `WICED-Studio-m.n` on your machine where `m` and `n` are the major and minor version numbers respectively\. This document assumes a folder name of `WICED-Studio-6.2` but be sure to use the correct name for the version that you install\. When you define the `WICED_STUDIO_SDK_PATH` environment variable, be sure to specify the full installation path of the WICED Studio SDK, and not the installation path of the WICED Studio IDE\. In Windows and macOS, the `WICED-Studio-m.n` folder for the SDK is created in the `Documents` folder by default\.
 
 **To create the environment variable on Windows**
 
@@ -73,7 +73,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-6.2`
    chmod +x make
    ```
 
-## Establishing a Serial Connection<a name="cypress-serial-connection"></a>
+## Establishing a Serial Connection<a name="cypress43-serial-connection"></a>
 
 **To establish a serial connection between your host machine and your board**
 
@@ -90,7 +90,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-6.2`
 
 For more information about installing a terminal and setting up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="gsg-cypress-build-and-run-example"></a>
+## Build and Run the Amazon FreeRTOS Demo Project<a name="gsg-cypress43-build-and-run-example"></a>
 
 After you set up a serial connection to your board, you can build the Amazon FreeRTOS demo project, flash the demo to your board, and then run the demo\.
 
@@ -98,17 +98,17 @@ After you set up a serial connection to your board, you can build the Amazon Fre
 
 1. Launch WICED Studio\.
 
-1. From the **File** menu, choose **Import**\. Expand the **General** folder, choose **Existing Projects into Workspace**, and then choose **Next**\.
+1. From the **File** menu, choose **Import**\. Expand the `General` folder, choose **Existing Projects into Workspace**, and then choose **Next**\.
 
-1. In **Select root directory**, enter `projects/cypress/CYW943907AEVAL1F/wicedstudio`, and then choose **Open**\.
+1. In **Select root directory**, select **Browse\.\.\.**, navigate to the path `amazon-freertos/projects/cypress/CYW943907AEVAL1F/wicedstudio`, and then select **OK**\.
 
-1. Under **Projects**, the **aws\_demo** project should be selected\. Choose **Finish** to import the project\. The target project **aws\_demo** should appear in the **Make Target** window\.
+1. Under **Projects**, check the box for just the **aws\_demo** project\. Choose **Finish** to import the project\. The target project **aws\_demo** should appear in the **Make Target** window\.
 
-1. Expand the **WICED Platform** menu, and choose **WICED Filters off**\.
+1. Expand the **WICED Platform** menu and choose **WICED Filters off**\.
 
 1. In the **Make Target** window, expand **aws\_demo**, right\-click the `demo.aws_demo` file, and then choose **Build Target** to build and download the demo to your board\. The demo should run automatically after it is built and downloaded to your board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23b9c17b7"></a>
+### Monitoring MQTT Messages on the Cloud<a name="cypress43-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -120,7 +120,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
-## Troubleshooting<a name="cypress-troubleshooting"></a>
+## Troubleshooting<a name="cypress43-troubleshooting"></a>
 + If you are using Windows, you might receive the following error when you build and run the demo project:
 
   ```

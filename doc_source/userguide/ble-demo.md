@@ -349,7 +349,7 @@ Using the Bluetooth Low Energy Mobile SDKs, you can create your own GATT client 
 **Note**  
 The Bluetooth Low Energy GATT demo is disabled by default\.
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_BLE_GATT_SERVER_DEMO_ENABLED`\.
+1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_BLE_GATT_SERVER_DEMO_ENABLED`\.
 
 **To run the demo**
 

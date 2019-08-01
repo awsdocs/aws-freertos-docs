@@ -89,7 +89,7 @@ When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and re
 **Note**  
 Version 3\.1\.3 of the ESP\-IDF \(the version used by Amazon FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.1\.3 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.
 
-### Install CMake<a name="w3aab7c23c13c13b7"></a>
+### Install CMake<a name="gsg-espressif-cmake"></a>
 
 The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device\. Amazon FreeRTOS supports versions 3\.13 and later\.
 
@@ -268,7 +268,7 @@ You can combine these commands\. For example:
 ./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build
 ```
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c13c19c11"></a>
+### Monitoring MQTT Messages on the Cloud<a name="gsg-espressif-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

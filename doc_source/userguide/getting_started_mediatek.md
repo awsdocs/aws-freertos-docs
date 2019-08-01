@@ -76,7 +76,7 @@ If you are having trouble connecting to your board after you install the driver,
 
 1. Choose the **RESET** button on your MediaTek MT7697Hx Development Kit\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c21c13b7"></a>
+### Monitoring MQTT Messages on the Cloud<a name="gsg-mediatek-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -130,7 +130,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. Set breakpoints in your project's source code, and run the code\. 
 
-### Troubleshooting the IDE Debugger Settings<a name="w3aab7c23c21c15b5"></a>
+### Troubleshooting the IDE Debugger Settings<a name="gsg-mediatek-ts-ide"></a>
 
 If you are having trouble debugging an application, your debugger settings might be incorrect\.
 

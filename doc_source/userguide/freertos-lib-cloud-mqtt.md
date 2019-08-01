@@ -110,7 +110,7 @@ BaseType_t SYSTEM_Init() { BaseType_t xResult = pdPASS; /* The bufferpool librar
 
 ## API Reference<a name="freertos-mqtt-api"></a>
 
-For a full API reference, see [MQTT \(v1\.0\.0\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html) \.
+For a full API reference, see [ MQTT \(v1\.0\.0\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [ MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html)\.
 
 ## Porting<a name="freertos-mqtt-porting"></a>
 

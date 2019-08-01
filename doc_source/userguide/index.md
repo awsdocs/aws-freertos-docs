@@ -118,7 +118,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Earlier IDT Versions for Amazon FreeRTOS](idt-prev-versions-afr.md)
    + [Prerequisites](dev-tester-prereqs.md)
    + [Preparing to Test Your Microcontroller Board for the First Time](qual-steps.md)
-   + [Running Bluetooth Low Energy Tests](dt-bt.md)
+   + [Running Bluetooth Low Energy Tests](afr-bridgekeeper-dt-bt.md)
    + [Running the Amazon FreeRTOS Qualification Suite](run-tests.md)
       + [Test for Re-qualification](requal-test.md)
    + [Understanding Results and Logs](results-logs.md)

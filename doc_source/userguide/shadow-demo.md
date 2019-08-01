@@ -51,7 +51,7 @@ After you set up AWS IoT and Amazon FreeRTOS, do the following:
    }
    ```
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
+1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
 
 1. Build, flash, and run Amazon FreeRTOS to your device\.
 

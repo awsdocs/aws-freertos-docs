@@ -1,4 +1,4 @@
-# Running Bluetooth Low Energy Tests<a name="dt-bt"></a>
+# Running Bluetooth Low Energy Tests<a name="afr-bridgekeeper-dt-bt"></a>
 
 This section describes how to set up and run the Bluetooth tests using AWS IoT Device Tester for Amazon FreeRTOS\. Bluetooth tests are not required for core qualification\. If you do not want to test your device with Amazon FreeRTOS Bluetooth support you may skip this setup, be sure to leave the BLE feature in device\.json set to `No`\.
 

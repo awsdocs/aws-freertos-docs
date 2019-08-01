@@ -118,14 +118,19 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "name":"<your-build-tool-name>",
           "version":"<your-build-tool-version>",
           "command":[  
-             "<absolute-path-to/build-parallel-script> {{testData.sourcePath}}"
-          ]
+             "<absolute-path-to/build-parallel-script> {{testData.sourcePath}} {{enableTests}}"
+          ],
+    	  "buildImageInfo" : {
+               "testsImageName": "<tests-image-file-name>",
+               "demosImageName": "<demos-image-file-name>"
+           }
+
        },
        "flashTool":{  
           "name":"<your-flash-tool-name>",
           "version":"<your-flash-tool-version>",
           "command":[  
-             "<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}}"
+             "<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}} {{buildImageName}}"
           ]
        },
        "clientWifiConfig":{  
@@ -145,7 +150,8 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
           "awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
           "awsSignerCertificateFileName":"<awsSignerCertificate-file-name>",
-          "compileCodesignerCertificate":true | false
+          "compileCodesignerCertificate":true | false,
+          "otaDemoConfigFilePath": "<full path to aws_demo_config.h>"
        },
 	   "cmakeConfiguration": {
 		    "boardName": "<board-name>",
@@ -163,7 +169,10 @@ The following lists the attributes used in `userdata.json`:
 The path to the root of the ported Amazon FreeRTOS source code\.
 
 `buildTool`  
-The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}`\.
+The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}`\.  
++ `buildImageInfo`
+  + `testsImageName`: The name of the file produced by the build command when building tests from the `<afr-source>`/tests folder\.
+  + `demosImageName`: The name of the file produced by the build command when building tests from the `<afr-source>`/demos folder\.
 
 `flashTool`  
 Full path to your ﬂash script \(\.sh or \.bat\) that contains the ﬂash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for Amazon FreeRTOS variable `{{testdata.sourcePath}}`\.
@@ -198,7 +207,9 @@ The Amazon Resource Name \(ARN\) for the trusted certificate uploaded to AWS Cer
 `awsUntrustedSignerCertificateArn`  
 The ARN for the code\-signing certificate uploaded to ACM\.  
 `compileCodesignerCertificate`  
-Set to `true` if the code\-signer signature verification certificate is not provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate from ACM and compiles it into `aws_codesigner_certifiate.h`\.
+Set to `true` if the code\-signer signature verification certificate is not provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate from ACM and compiles it into `aws_codesigner_certifiate.h`\.  
+`otaDemoConfigFilePath`  
+The full path to `aws_demo_config.h`, found within `<afr-source>/vendors/vendor/boards/board/aws_demos/config_files/`\. These files are included in the porting code template provided by Amazon FreeRTOS\.
 
 `cmakeConfiguration`  
 CMake configuration \[Optional\]    
@@ -232,3 +243,9 @@ Expands to the serial port\.
 
 `{{device.identifiers[?(@.name == 'serialNo')].value}}`  
 Expands to the serial number of your device\.
+
+`{{enableTests}}`  
+Integer value indicating whether the build is for tests \(value 1\) or demos \(value 0\)\.
+
+`{{buildImageName}}`  
+The name of the file produced by the build command\.
