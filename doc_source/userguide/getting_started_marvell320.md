@@ -88,7 +88,7 @@ The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with t
    For example, open the `.profile` file in your `$HOME` directory, and append the following line to the end of the file:
 
    ```
-   PATH=$PATH:<path>/gcc-arm-none-eabit-4_9_2015_q3/bin
+   PATH="$PATH:<path>/gcc-arm-none-eabit-4_9_2015_q3/bin"
    ```
 
    Where *<path>* is the full directory path to the `gcc-arm-none-eabit-4_9_2015_q3` folder\.
@@ -186,9 +186,7 @@ Marvell development boards have an FTDI chip that exposes two USB interfaces to 
       | G – Software Flow Control : No
       ```
 
-      The minicom window now shows messages from the serial console\. You can save these settings in minicom for future use\.
-
-   1. Select Enter on the serial console window\. A hash or pound sign \(\#\) should appear on the screen\.
+      Go to **Exit** to start showing messages from the serial console\.
 
    For more information about installing a terminal emulator to set up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
@@ -266,9 +264,7 @@ Before you can flash the demo application image to the board, prepare the board'
 1. Run the `flashprog.py` Python script with the `-l` and `--boot2` options:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
-   -l vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt \\
-   --boot2 vendors/marvell/WMSDK/mw320/boot2/bin/boot2.bin
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py -l ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt --boot2 ./vendors/marvell/WMSDK/mw320/boot2/bin/boot2.bin
    ```
 
    The `flashprog` script writes a layout to the flash, according to the default layout configuration defined in `vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt`\. The layout holds partitioned information about the flash\.
@@ -287,8 +283,7 @@ After you flash the layout file and bootloader to the board, flash some firmware
 1. Run the `flashprog.py` Python script with the `--wififw` option:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
-                               --wififw vendors/marvell/WMSDK/mw320/wifi-firmware/mw30x/mw30x_uapsta_W14.88.36.p135.bin
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py --wififw ./vendors/marvell/WMSDK/mw320/wifi-firmware/mw30x/mw30x_uapsta_W14.88.36.p135.bin
    ```
 
    The `flashprog` script flashes the firmware to the board\.
@@ -305,9 +300,7 @@ With the layout, bootloader, and Wi\-Fi firmware flashed to the board, you can f
 1. Run the `flashprog.py` Python script with the `--mcufw` and `-r` options:
 
    ```
-   .vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\ 
-   --mcufw build/cmake/vendors/marvell/mw300_rd/aws_demos.bin \\ 
-   -r
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py --mcufw ./build/vendors/marvell/boards/mw300_rd/aws_demos.bin -r
    ```
 
    The `flashprog` script flashes the demo to the board\. Running the script with the `-r` option resets the board\.
@@ -351,8 +344,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 1. Connect to GDB with the arm\-none\-eabi\-gdb command:
 
    ```
-   arm-none-eabi-gdb \\ 
-   -x sdk/tools/OpenOCD/gdbinit build/cmake/vendors/marvell/mw300_rd/aws_demos.axf
+   arm-none-eabi-gdb -x ./sdk/tools/OpenOCD/gdbinit ../../../../build/vendors/marvell/boards/mw300_rd/aws_demos.axf
    ```
 
    If you are debugging an Amazon FreeRTOS test application, target `aws_tests.axf` instead\.
@@ -371,8 +363,7 @@ The `ramload.py` script is written in Python 2\.7\.
 1. Run the `ramload.py` Python script on the `aws_demos.axf` file:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/ramload.py \\
-   build/cmake/vendors/marvell/mw300_rd/aws_demos.axf
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/ramload.py ./build/vendors/marvell/boards/mw300_rd/aws_demos.axf
    ```
 
    You should see logs for the demo application\. The output should be similar to the following:  

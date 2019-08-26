@@ -19,7 +19,7 @@ Task pool can only guarantee that a timed job will be executed after a timeout e
 
 ## Dependencies and Requirements<a name="freertos-task-pool-dependencies"></a>
 
-The Task Pool library has the following dependences:
+The Task Pool library has the following dependencies:
 + The linear containers \(list/queue\) library for maintaining the data structures for scheduled and in\-progress task pool operations\.
 + The logging library \(if `IOT_LOG_LEVEL_TASKPOOL` configuration setting is not `IOT_LOG_NONE`\)\.
 + A platform layer that provides an interface to the operating system for thread management, timers, clock functions, etc\.

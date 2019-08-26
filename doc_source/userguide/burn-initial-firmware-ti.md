@@ -60,7 +60,7 @@ These steps are written with the assumption that you have already built the `aws
 
 1. After the programming process is complete, place the SOP jumper onto the first set of pins \(position = 0\), reset the board, and reconnect your terminal emulator to make sure the output is the same as when you debugged the demo with Code Composer Studio\. Make a note of the application version number in the terminal output\. You use this version number later to verify that your firmware has been updated by an OTA update\.
 
-   The terminal should display output like the following:
+   The terminal should display output like the following\.
 
    ```
    0 0 [Tmr Svc] Simple Link task created

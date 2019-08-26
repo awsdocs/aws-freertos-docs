@@ -32,7 +32,7 @@ Custom configurations allow you to specify your hardware platform, integrated de
 
 1. Select the version of Amazon FreeRTOS that you want to use\. The latest version is used by default\.
 
-1. On the **New Software Configuration** page, choose **Select a hardware platform**, and choose one of the prequalified platforms\.
+1. On the **New Software Configuration** page, choose **Select a hardware platform**, and choose one of the pre\-qualified platforms\.
 
 1. Choose the IDE and compiler you want use\.
 

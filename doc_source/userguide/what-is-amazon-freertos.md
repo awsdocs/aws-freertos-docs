@@ -1,6 +1,21 @@
 # What Is Amazon FreeRTOS?<a name="what-is-amazon-freertos"></a>
 
-Amazon FreeRTOS is a real\-time operating system that augments the [FreeRTOS kernel](https://freertos.org/index.html) with libraries for connectivity, security, and over\-the\-air \(OTA\) updates\. Amazon FreeRTOS also includes some demo applications that demonstrate Amazon FreeRTOS features on [qualified boards](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
+Amazon FreeRTOS is a real\-time operating system that augments the [ FreeRTOS kernel](https://freertos.org/index.html) with libraries for connectivity, security, and over\-the\-air \(OTA\) updates\. Amazon FreeRTOS also includes demo applications that show Amazon FreeRTOS features on [qualified boards](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
+
+Amazon FreeRTOS is an open\-source project\. You can download the source code, contribute changes or enhancements, or report issues on the GitHub site at [ https://github\.com/aws/amazon\-freertos](https://github.com/aws/amazon-freertos)\. We release Amazon FreeRTOS code under the MIT open source license, so you can use it in commercial and personal projects\.
+
+We also welcome contributions to the Amazon FreeRTOS documentation \(*Amazon FreeRTOS User Guide*, *Amazon FreeRTOS Porting Guide*, and *Amazon FreeRTOS Qualification Guide*\)\. The markdown source for the documentation is available at [https://github\.com/awsdocs/aws\-freertos\-docs](https://github.com/awsdocs/aws-freertos-docs)\. It is released under the Creative Commons \(CC BY\-ND\) license\.
+
+The three types of Amazon FreeRTOS releases are major, minor, and long\-term support \(LTS\)\. A major denotation indicates the addition of new features or significant updates to multiple libraries\. All releases use date\-based versioning with the format YYYYMM\.NN, where:
++ Y represents the year\.
++ M represents the month\.
++ N represents the release order within the designated month \(00 being the first release\)\.
+
+For example, a second release in June 2019 would be 201906\.01\. 
+
+Previously, Amazon FreeRTOS used semantic versioning for major releases\. Although it has moved to date\-based versioning \(Amazon FreeRTOS 1\.4\.8 updated to Amazon FreeRTOS 201906\.00\), the FreeRTOS kernel and each individual Amazon FreeRTOS library still retain semantic versioning\. In semantic versioning, the version number itself \(X\.Y\.Z\) indicates whether the release is a major, minor, or point release\. This can create situations where semantic versioning indicates a major release based on changes that don’t affect an individual application\. You can use the semantic version of a library to assess the scope and impact of a new release on your application\.
+
+LTS releases are maintained differently than other release types\. Major and minor releases are frequently updated with new features in addition to defect resolutions\. LTS releases are only updated with changes to address critical defects and security vulnerabilities\. No new features are introduced in a given LTS release after launch\. They are maintained for at least three calendar years after release, and provide device manufacturers the option to use a stable baseline as opposed to a more dynamic baseline represented by major and minor releases\.
 
 ## Amazon FreeRTOS Architecture<a name="freertos-architecture"></a>
 

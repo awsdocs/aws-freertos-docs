@@ -6,7 +6,7 @@ This guide is written with the assumption that you have already performed the st
 
 1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
-1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [Over\-the\-Air Update Prerequisites](ota-prereqs.md) to `demos/include/aws_ota_codesigner_certificate.h`\. It should be formatted in following way:
+1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [Over\-the\-Air Update Prerequisites](ota-prereqs.md) to `demos/include/aws_ota_codesigner_certificate.h`\. It should be formatted in following way\.
 
    ```
    static const char signingcredentialSIGNING_CERTIFICATE_PEM[] = "-----BEGIN CERTIFICATE-----\n"
@@ -14,7 +14,7 @@ This guide is written with the assumption that you have already performed the st
       -----END CERTIFICATE-----\n";
    ```
 
-1. With the OTA Update demo selected, follow the same steps outlined in [Getting Started with ESP32](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) to build and flash the image\. If you have previously built and flashed the project, you might need to run `make clean` first\. After you run `make flash monitor`, you should see something like the following\. The ordering of some messages might vary, because the demo application runs multiple tasks at once:
+1. With the OTA Update demo selected, follow the same steps outlined in [Getting Started with ESP32](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) to build and flash the image\. If you have previously built and flashed the project, you might need to run `make clean` first\. After you run `make flash monitor`, you should see something like the following\. The ordering of some messages might vary, because the demo application runs multiple tasks at once\.
 
    ```
    I (28) boot: ESP-IDF v3.1-dev-322-gf307f41-dirty 2nd stage bootloader
@@ -114,4 +114,4 @@ This guide is written with the assumption that you have already performed the st
    [ ... ]
    ```
 
-1. The ESP32 board is now listening for OTA updates\. The ESP\-IDF monitor is launched by the `make flash monitor` command\. You can press Ctrl\+\] to quit\. You can also use your favorite TTY terminal program \(for example, PuTTY, Tera Term, or GNU Screen\) to listen to the board's serial output\. Be aware that connecting to the board's serial port might cause it to reboot\.
+1. The ESP32 board is now listening for OTA updates\. The ESP\-IDF monitor is launched by the `make flash monitor` command\. You can press **Ctrl\+\]** to quit\. You can also use your favorite TTY terminal program \(for example, PuTTY, Tera Term, or GNU Screen\) to listen to the board's serial output\. Be aware that connecting to the board's serial port might cause it to reboot\.

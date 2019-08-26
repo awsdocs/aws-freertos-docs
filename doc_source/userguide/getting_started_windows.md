@@ -102,7 +102,7 @@ After you have identified the number for your hard\-wired Ethernet interface, cl
 
 Open `FreeRTOSConfig.h` and set `configNETWORK_INTERFACE_TO_USE` to the number that corresponds to your hard\-wired network interface\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c35c11c11"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c37c11c11"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

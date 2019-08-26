@@ -8,35 +8,35 @@ Public Key Cryptography Standard \#11 \(PKCS\#11\) is a cryptographic API that a
 
 The following subset of PKCS\#11 is used\. This list is in roughly the order in which the routines are called in support of provisioning, TLS client authentication, and cleanup\. For detailed descriptions of the functions, see the PKCS\#11 documentation provided by the standard committee\.
 
-### Provisioning API<a name="pkcs-required-provision"></a>
-+ `C_GetFunctionList`
+### General Setup and Tear Down API<a name="pkcs-required-setup-teardown"></a>
 + `C_Initialize`
++ `C_Finalize`
++ `C_GetFunctionList`
++ `C_GetSlotList`
++ `C_GetTokenInfo`
++ `C_OpenSession`
++ `C_CloseSession`
++ `C_Login`
+
+### Provisioning API<a name="pkcs-required-provisioning"></a>
 + `C_CreateObject CKO_PRIVATE_KEY` \(for device private key\)
 + `C_CreateObject CKO_CERTIFICATE` \(for device certificate and code verification certificate\)
 + `C_GenerateKeyPair`
++ `C_DestroyObject`
 
 ### Client Authentication<a name="pkcs-required-client-auth"></a>
-+ `C_Initialize`
-+ `C_GetSlotList`
-+ `C_OpenSession`
-+ `C_FindObjectsInit`
-+ `C_FindObjects`
-+ `C_FindObjectsFinal`
 + `C_GetAttributeValue`
 + `C_FindObjectsInit`
 + `C_FindObjects`
 + `C_FindObjectsFinal`
-+ `C_GetAttributeValue`
 + `C_GenerateRandom`
 + `C_SignInit`
 + `C_Sign`
++ `C_VerifyInit`
++ `C_Verify`
 + `C_DigestInit`
 + `C_DigestUpdate`
 + `C_DigestFinal`
-
-### Cleanup<a name="pkcs-required-cleanup"></a>
-+ `C_CloseSession`
-+ `C_Finalize`
 
 ## Asymmetric Cryptosystem Support<a name="pkcs-asym-crypto"></a>
 

@@ -94,7 +94,7 @@ This test verifies that you can use a malformed certificate to authenticate with
    openssl x509 -outform der -in <ID>-certificate.pem.crt -out <ID>-certificate.der.crt
    ```
 
-1. Open the DER certificate, and search for the following hexidecimal sequence:
+1. Open the DER certificate, and search for the following hexadecimal sequence:
 
    ```
    41 6d 61 7a 6f 6e 20 57 65 62 20 53 65 72 76 69 63 65 73

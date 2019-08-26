@@ -10,7 +10,7 @@ This guide is written with the assumption that you have already performed the st
 
 1. With the OTA Update demo selected, follow the same steps outlined in [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md) to build and flash the image\.
 
-   You should see output similar to the following:
+   You should see output similar to the following\.
 
    ```
    9 1285 [OTA Task] [prvSubscribeToJobNotificationTopics] OK: $aws/things/your-thing-name/jobs/notify-next

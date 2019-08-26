@@ -8,7 +8,7 @@ You can download the version of Amazon FreeRTOS that you want to test from [GitH
 
 ## Download IDT for Amazon FreeRTOS<a name="download-dev-tester-afr"></a>
 
-Every version of Amazon FreeRTOS has a corresponding version of IDT for Amazon FreeRTOS for performing qualification tests\. Download the appropriate version of IDT for Amazon FreeRTOS from [Download IDT v1\.3\.1 for Amazon FreeRTOS 201906\.00 Major](dev-test-versions-afr.md)\.
+Every version of Amazon FreeRTOS has a corresponding version of IDT for Amazon FreeRTOS for performing qualification tests\. Download the appropriate version of IDT for Amazon FreeRTOS from [Download IDT v1\.4\.0 for Amazon FreeRTOS 201908\.00](dev-test-versions-afr.md)\.
 
 Extract IDT for Amazon FreeRTOS into a location on the file system where you have read and write permissions\. Due to a path length limitation, on Microsoft Windows, extract IDT for Amazon FreeRTOS into a root directory like `C:\` or `D:\`\.
 
@@ -18,7 +18,7 @@ Follow these steps to create and configure an AWS account, an IAM user, and an I
 
 1. [Create an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
-1. [Create an IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_managed-policies.html) that grants IDT for Amazon FreeRTOS the permissions it needs to run the tests\. Use the policy templates described in [Permissions Policy Template](policy-template.md)\.
+1. [Create an IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_managed-policies.html) that grants IDT for Amazon FreeRTOS the permissions it needs to run the tests and collect IDT usage data\. Use the policy templates described in [Permissions Policy Template](policy-template.md)\.
 
 1. [Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in your AWS account and attach the policy you just created\.
 

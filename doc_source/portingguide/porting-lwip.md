@@ -1,11 +1,11 @@
 # Porting lwIP<a name="porting-lwip"></a>
 
-lwIP is an alternative, open source TCP/IP stack\. For more information, see [lwIP \- A Lightweight TCP/IP Stack \- Summary](https://savannah.nongnu.org/projects/lwip/)\. FreeRTOS currently supports version 2\.0\.3\.
+lwIP is an alternative, open source TCP/IP stack\. For more information, see [lwIP \- A Lightweight TCP/IP Stack \- Summary](https://savannah.nongnu.org/projects/lwip/)\. FreeRTOS currently supports version 2\.1\.2\.
 
 ## Prerequisites<a name="porting-prereqs-lwip"></a>
 
 To port the lwIP stack, you need the following:
-+ An IDE project or `CMakeLists.txt` list file that includes vendor\-supplied Ethernet drivers\.
++ An IDE project or `CMakeLists.txt` list file that includes vendor\-supplied network drivers\.
 + A validated configuration of the FreeRTOS kernel\.
 
   For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md)\.

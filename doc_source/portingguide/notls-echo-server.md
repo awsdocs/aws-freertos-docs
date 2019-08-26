@@ -1,6 +1,6 @@
 # Setting Up the Echo Server \(Without TLS\)<a name="notls-echo-server"></a>
 
-An unsecure echo server is defined in `<amazon-freertos>/tools/echo_server/echo_server.go`\. Follow these instructions to set up and run the echo server\.
+An unsecured echo server is defined in `<amazon-freertos>/tools/echo_server/echo_server.go`\. Follow these instructions to set up and run the echo server\.
 
 ## Prerequisites<a name="notls-echo-server-prerequisites"></a>
 

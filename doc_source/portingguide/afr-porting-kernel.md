@@ -36,7 +36,7 @@ If you are porting ARM Cortex\-M3, M4, or M7 devices, you must also specify [`co
 
 ## Testing<a name="porting-testing-kernel"></a>
 
-1. Open `/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and comment out the lines that call `BUFFERPOOL_Init()`, `MQTT_AGENT_Init()`, and `SOCKETS_Init()` from within function `SYSTEM_Init()`\. These initialization functions belong to libraries that you haven't ported yet\. The porting sections for those libraries include instructions to uncomment these functions\.
+1. Open `/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and comment out the lines that call `BUFFERPOOL_Init()`, `MQTT_AGENT_Init()`, and `SOCKETS_Init()` from within function `SYSTEM_Init()`\. These initialization functions belong to libraries that you haven't ported yet\. The porting sections for those libraries include instructions to uncomment these functions\.
 
 1. Build the test project, and then flash it to your device for execution\.
 

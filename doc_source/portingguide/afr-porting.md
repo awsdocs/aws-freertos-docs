@@ -22,7 +22,11 @@ If your device does not support Wi\-Fi, you can use an ethernet connection to co
 
 1. [Porting the TLS Library](afr-porting-tls.md)
 
-1. [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md)
+1. [Configuring the MQTT Library for Testing](afr-porting-mqtt.md)
+
+1. [Configuring the HTTPS Client Library for Testing](afr-porting-https.md)
+**Note**  
+A port of the Amazon FreeRTOS HTTPS library is currently not required for qualification\.
 
 1. [Porting the OTA Library](afr-porting-ota.md)
 **Note**  

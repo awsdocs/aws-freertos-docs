@@ -237,7 +237,7 @@ You must generate the build files with the cmake command every time you switch b
 
 Use Espressif's IDF utility \(`<amazon-freertos>/vendors/espressif/esp-idf/tools/idf.py`\) to flash your board, run the application, and see logs\.
 
-To erase the board's flash, use the following command:
+To erase the board's flash, go to the `<amazon-freertos>` directory and use the following command:
 
 ```
 ./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build

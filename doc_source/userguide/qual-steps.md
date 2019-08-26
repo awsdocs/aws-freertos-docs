@@ -84,9 +84,9 @@ If you want to list your board in AWS Partner Device Catalog, the SKU you specif
 `features`  
 An array that contains the device's supported features\. The Device Tester uses this information to select the qualification tests to run\.  
 Supported values are:  
-+ `TCP/IP`: Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\.
++ `TCP/IP`: Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\. TCP/IP is required for qualification\.
 + `WIFI`: Indicates if your board has Wi\-Fi capabilities\.
-+ `TLS`: Indicates if your board supports TLS and if it is supported on\-chip \(MCU\) or offloaded to another module\.
++ `TLS`: Indicates if your board supports TLS and if it is supported on\-chip \(MCU\) or offloaded to another module\. TLS is required for qualification\.
 + `OTA`: Indicates if your board supports over\-the\-air \(OTA\) update functionality\.
 + `BLE`: Indicates if your board supports Bluetooth Low Energy \(BLE\)\.
 
@@ -112,7 +112,6 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 
 ```
 {  
-
        "sourcePath":"<absolute-path-to/amazon-freertos>",
        "buildTool":{  
           "name":"<your-build-tool-name>",
@@ -160,7 +159,42 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 		    "afrToolchainPath": "</path/to/afr/toolchain>",
 		    "cmakeToolchainPath": "</path/to/cmake/toolchain>"
 		}
-    }
+	},
+	"flashTool":{  
+		"name":"<your-flash-tool-name>",
+		"version":"<your-flash-tool-version>",
+		"command":[  
+			"<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}} {{buildImageName}}"
+		]
+	},
+	"clientWifiConfig":{  
+		"wifiSSID":"<ssid>",
+		"wifiPassword":"<password>",
+		"wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+	},
+	"testWifiConfig":{  
+		"wifiSSID":"<ssid>",
+		"wifiPassword":"<password>",
+		"wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+	},
+	"otaConfiguration":{  
+		"otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
+		"deviceFirmwareFileName":"<absolute-path-to/ota-image-on-device>",
+		"awsSignerPlatform":"AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
+		"awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
+		"awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
+		"awsSignerCertificateFileName":"<awsSignerCertificate-file-name>",
+		"compileCodesignerCertificate":true | false,
+		"otaDemoConfigFilePath": <full-path-to-aws_demo_config.h>
+	},
+	"cmakeConfiguration": {
+		"boardName": "<board-name>",
+		"vendorName": "<vendor-name>",
+		"compilerName": "<compiler-name>",
+		"afrToolchainPath": "</path/to/afr/toolchain>",
+		"cmakeToolchainPath": "</path/to/cmake/toolchain>"
+	}
+}
 ```
 
 The following lists the attributes used in `userdata.json`:
@@ -174,6 +208,12 @@ The full path to your build script \(\.bat or \.sh\) that contains the commands 
   + `testsImageName`: The name of the file produced by the build command when building tests from the `<afr-source>`/tests folder\.
   + `demosImageName`: The name of the file produced by the build command when building tests from the `<afr-source>`/demos folder\.
 
+`buildTool.buildImageInfo.testsImageName`  
+The name of the file output by the build command when building tests from the *<afr\-source\-code>*/tests folder\.
+
+`buildTool.buildImageInfo.demosImageName`  
+The name of the file output by the build command when building demos from the *<afr\-source\-code>*/demos folder\.
+
 `flashTool`  
 Full path to your ﬂash script \(\.sh or \.bat\) that contains the ﬂash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for Amazon FreeRTOS variable `{{testdata.sourcePath}}`\.
 
@@ -184,7 +224,7 @@ Client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to c
 + wifiSecurityType: The type of Wi\-Fi security used\.
 
 `testWifiConfig`  
-Test Wi\-Fi configuration\. The Wi\-Fi library tests require a board to connect to two access points\. This attribute configures the second access point\. The test Wi\-Fi settings are configured in `<amazon-freertos>/.../wifi/test/aws_test_wifi.h`\. The following macros are set using the values found in `aws_test_wifi.c`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
+Test Wi\-Fi configuration\. The Wi\-Fi library tests require a board to connect to two access points\. This attribute configures the second access point\. The test Wi\-Fi settings are configured in `<amazon-freertos>/.../wifi/test/aws_test_wifi.h`\.  The following macros are set using the values found in `aws_test_wifi.c`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
 If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` and `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 + testwifiWIFI\_SSID: The Wi\-Fi SSID\.
 + testwifiWIFI\_PASSWORD: The Wi\-Fi password\.
@@ -195,7 +235,7 @@ If your board does not support Wi\-Fi, you must still include the `clientWifiCon
   + `eWiFiSecurityWPA2`
 
 `otaConfiguration`  
-The OTA configuration\.    
+The OTA configuration\. \[Optional\]    
 `otaFirmwareFilePath`  
 The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/<relative-path/to/ota/image/from/source/root>`\.  
 `deviceFirmwareFileName`  
@@ -209,7 +249,7 @@ The ARN for the code\-signing certificate uploaded to ACM\.
 `compileCodesignerCertificate`  
 Set to `true` if the code\-signer signature verification certificate is not provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate from ACM and compiles it into `aws_codesigner_certifiate.h`\.  
 `otaDemoConfigFilePath`  
-The full path to `aws_demo_config.h`, found within `<afr-source>/vendors/vendor/boards/board/aws_demos/config_files/`\. These files are included in the porting code template provided by Amazon FreeRTOS\.
+The full path to `aws_demo_config.h`, found within `<afr-source>/vendors/vendor/boards/board/ aws_demos/config_files/`\. These files are included in the porting code template provided by Amazon FreeRTOS\.
 
 `cmakeConfiguration`  
 CMake configuration \[Optional\]    
@@ -236,7 +276,7 @@ The commands to build your code and flash the device might require connectivity 
 IDT for Amazon FreeRTOS defines the following path variables that can be used in command lines and configuration files:
 
 `{{testData.sourcePath}}`  
-Expands to the source code path\.
+Expands to the source code path\. If you use this variable, it must be used in both the flash and build commands\.
 
 `{{device.connectivity.serialPort}}`  
 Expands to the serial port\.
@@ -248,4 +288,4 @@ Expands to the serial number of your device\.
 Integer value indicating whether the build is for tests \(value 1\) or demos \(value 0\)\.
 
 `{{buildImageName}}`  
-The name of the file produced by the build command\.
+The file name of the image built by the build command\.

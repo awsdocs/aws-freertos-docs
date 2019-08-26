@@ -25,7 +25,7 @@ Your Wi\-Fi password\.
 `clientcredentialWIFI_SECURITY`  
 The type of security used by your Wi\-Fi network\.
 
-You must also set values for the following constants in the `<amazon-freertos>/demo/include/aws_clientcredential_keys.h` file:
+You must also set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential_keys.h` file:
 
 `keyCLIENT_CERTIFICATE_PEM`  
 The certificate PEM associated with your thing\.

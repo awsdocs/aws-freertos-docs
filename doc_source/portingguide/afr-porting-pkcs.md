@@ -43,12 +43,12 @@ To port the PKCS \#11 library, you need the following:
    + A code\-verification public key \(or a certificate that contains the code\-verification public key\) for secure bootloader and over\-the\-air \(OTA\) updates\.
    + A Just\-In\-Time provisioning certificate\.
 
-    `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/aws_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
+    `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html)
 
 1. Add support for a cryptographically random entropy source to your port\.
 
-   If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\), implement the [https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/aws_pkcs11_pal.c`\.
+   If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\), implement the [https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c`\.
 
    If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG, do the following:
 
@@ -79,9 +79,11 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the PKCS \#11 library in the IDE project**
 
-1. Add the source file `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/aws_pkcs11_pal.c` to the `aws_tests` IDE project\.
+1. Add the source file `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c` to the `aws_tests` IDE project\.
 
 1. Add all of the files in the `<amazon-freertos>/libraries/abstractions/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\.
+
+1. Add all of the files in the `<amazon-freertos>/libraries/freertos_plus/standard/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\. These files implement wrappers for commonly grouped PKCS \#11 function sets\.
 
 1. Add the source file `<amazon-freertos>/libraries/freertos_plus/standard/crypto/src/aws_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
 
@@ -97,19 +99,15 @@ To define a library's portable layer target in `CMakeLists.txt`, follow the inst
 
 The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
-See below for an example portable layer target definition for the PKCS \#11 library\.
+See below for an example portable layer target definition for the PKCS \#11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific PKCS \#11 PAL file\.
 
 ```
 # PKCS11
-afr_mcu_port(pkcs11)
+afr_mcu_port(pkcs11_implementation DEPENDS AFR::pkcs11_mbedtls)
 target_sources(
-    AFR::pkcs11::mcu_port
-    INTERFACE "path/aws_pkcs11_pal.c"
-)
-# Link to AFR::pkcs11_mbedtls if you want to use default implementation based on mbedtls.
-target_link_libraries(
-    AFR::pkcs11::mcu_port
-    INTERFACE AFR::pkcs11_mbedtls
+    AFR::pkcs11_implementation::mcu_port
+    INTERFACE
+    "${afr_ports_dir}/pkcs11/iot_pkcs11_pal.c"
 )
 ```
 
@@ -119,7 +117,7 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the PKCS \#11 tests**
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    Only uncomment calls to `SOCKETS_Init()` if you have ported the Secure Sockets library\.
 
@@ -141,6 +139,6 @@ After you set up the library in the IDE project, you need to configure some othe
 
 ## Validation<a name="w3aac11c25c17"></a>
 
-To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you finish porting the Amazon FreeRTOS PKCS \#11 library to your device, you can start porting the TLS library\. See [Porting the TLS Library](afr-porting-tls.md) for instructions\.

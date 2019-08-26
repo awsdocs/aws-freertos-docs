@@ -118,7 +118,13 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
    To set the kit to PROGRAM mode, press and hold the **PROG** button\. With the **PROG** button still pressed, press and release the **RESET** button, and then release the **PROG** button\.
 
-1. From the μVision menu, choose **Debug**, and then choose **Start/Stop Debug Session**\. The **Call Stack \+ Locals** window opens when you start the debug session\. μVision flashes the demo to the board, runs the demo, and stops at the beginning of the `main()` function\. 
+1. From the menu, choose **Flash**, and then choose **Download**\. 
+
+   μVision notifies you when the download is complete\.
+
+1. Press the **RESET** button on your MediaTek MT7697Hx Development Kit\.
+
+1. From the μVision menu, choose **Debug**, and then choose **Start/Stop Debug Session**\. The **Call Stack \+ Locals** window opens when you start the debug session\.  
 
 1. From the menu, choose **Debug**, and then choose **Stop** to stop the session\. The program counter stops at the following line: 
 

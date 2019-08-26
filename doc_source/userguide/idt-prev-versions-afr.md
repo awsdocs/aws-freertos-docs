@@ -2,6 +2,16 @@
 
 This section contains download links for earlier versions of IDT for Amazon FreeRTOS\.
 
+**IDT v1\.3\.1 for Amazon FreeRTOS 201906\.00 Major**
++ IDT for Amazon FreeRTOS: [Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.3.1.zip)
++ IDT for Amazon FreeRTOS: [macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.3.1.zip)
++ IDT for Amazon FreeRTOS: [Windows]( https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.3.1.zip)
+
+**Release Notes**
++ Added support for testing Bluetooth Low Energy \(BLE\)\.
++ Improved user experience for IDT CLI commands\.
++ Updated IAM policy used to run IDT\. Update to the latest policy, available here: [Permissions Policy Template](policy-template.md)\.
+
 **IDT for Amazon FreeRTOS v1\.4\.8 and v1\.4\.9**
 + IDT for Amazon FreeRTOS: [Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.2.0.zip)
 + IDT for Amazon FreeRTOS: [macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.2.0.zip)

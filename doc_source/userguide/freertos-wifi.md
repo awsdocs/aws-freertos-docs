@@ -98,7 +98,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 
 ## Example Usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a Known AP<a name="w3aab9c37c17b3"></a>
+### Connecting to a Known AP<a name="w3aab9c39c17b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -142,23 +142,23 @@ else
 }
 ```
 
-### Scanning for nearby APs<a name="w3aab9c37c17b5"></a>
+### Scanning for nearby APs<a name="w3aab9c39c17b5"></a>
 
 ```
 WIFINetworkParams_t xNetworkParams;
 WIFIReturnCode_t xWifiStatus;
 
-configPRINT(("Turning on wifi...\n"));
+configPRINT( ("Turning on wifi...\n") );
 xWifiStatus = WIFI_On();
 
-configPRINT(("Checking status...\n"));
+configPRINT( ("Checking status...\n") );
 if( xWifiStatus == eWiFiSuccess )
 {
-    configPRINT( ( "WiFi module initialized.\n") );
+    configPRINT( ("WiFi module initialized.\n") );
 }
 else
 {
-    configPRINTF( ( "WiFi module failed to initialize.\n" ) );
+    configPRINTF( ("WiFi module failed to initialize.\n" ) );
     // Handle module init failure
 }
 
@@ -166,23 +166,26 @@ WIFI_SetMode(eWiFiModeStation);
 
 /* Some boards might require additional initialization steps to use the Wi-Fi library. */
 
-while (1){
-    configPRINT(("Starting scan\n"));
+while (1)
+{
+    configPRINT( ("Starting scan\n") );
     const uint8_t ucNumNetworks = 12; //Get 12 scan results
     WIFIScanResult_t xScanResults[ ucNumNetworks ];
     xWifiStatus = WIFI_Scan( xScanResults, ucNumNetworks ); // Initiate scan
 
-    configPRINT(("Scan started\n"));
+    configPRINT( ("Scan started\n") );
 
     // For each scan result, print out the SSID and RSSI
-    if ( xWifiStatus == eWiFiSuccess ){
-            configPRINT(("Scan success\n"));
-            for (uint8_t i=0;i<ucNumNetworks;i++) {
-                configPRINTF(("%s : %d \n", xScanResults[i].cSSID, xScanResults[i].cRSSI));
-            }
-        } else {
-            configPRINTF(("Scan failed, status code: %d\n", (int)xWifiStatus));
+    if ( xWifiStatus == eWiFiSuccess )
+    {
+        configPRINT( ("Scan success\n") );
+        for ( uint8_t i=0; i<ucNumNetworks; i++ ) 
+        {
+            configPRINTF( ("%s : %d \n", xScanResults[i].cSSID, xScanResults[i].cRSSI) );
         }
+    } else {
+        configPRINTF( ("Scan failed, status code: %d\n", (int)xWifiStatus) );
+    }
     
     vTaskDelay(200);
 }

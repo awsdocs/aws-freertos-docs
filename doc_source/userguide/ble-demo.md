@@ -115,7 +115,7 @@ Keep your AWS IoT and Amazon Cognito information on hand\. You need the endpoint
 
 ### Set Up Your Amazon FreeRTOS Environment for Bluetooth Low Energy<a name="ble-demo-set-up"></a>
 
-To set up your enviroment, you need to download Amazon FreeRTOS with the [Amazon FreeRTOS Bluetooth Low Energy Library](freertos-ble-library.md) on your microcontroller, and download and configure the Mobile SDK for Amazon FreeRTOS Bluetooth Devices on your mobile device\.
+To set up your environment, you need to download Amazon FreeRTOS with the [Amazon FreeRTOS Bluetooth Low Energy Library](freertos-ble-library.md) on your microcontroller, and download and configure the Mobile SDK for Amazon FreeRTOS Bluetooth Devices on your mobile device\.
 
 **To set up your microcontroller's environment with Amazon FreeRTOS Bluetooth Low Energy**
 

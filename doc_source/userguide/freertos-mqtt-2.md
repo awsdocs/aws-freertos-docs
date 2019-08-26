@@ -37,27 +37,32 @@ For example usage of the Amazon FreeRTOS MQTT library, see MQTT demo application
 
 The MQTT demo demonstrates the subscribe\-publish workflow of MQTT\. After subscribing to multiple topic filters, the application publishes bursts of data to various topic names\. As each message arrives, the demo publishes an acknowledgement message back to the MQTT server\.
 
-To run the MQTT demo, you need to configure the following parameters in the [global configuration file](dev-guide-freertos-libraries.md#lib-config):Global Demo Configuration Parameters
+To use the MQTT demo, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [ AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\.Global Demo Configuration Parameters
 
-These configuration parameters apply to all demos\.
+You must set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential.h` file:
 
-`AWS_IOT_DEMO_SECURED_CONNECTION`  
-Determines if the demo uses a TLS\-secured connection with the remote host by default\.
+`clientcredentialMQTT_BROKER_ENDPOINT`  
+Your AWS IoT endpoint\.
 
-`AWS_IOT_DEMO_SERVER`  
-The default remote host to use\.
+`clientcredentialIOT_THING_NAME`  
+The name of your IoT thing\.
 
-`AWS_IOT_DEMO_PORT`  
-The default remote port to use\.
+`clientcredentialWIFI_SSID`  
+The SSID for your Wi\-Fi network\.
 
-`AWS_IOT_DEMO_ROOT_CA`  
-The path to the default trusted server root certificate to use\.
+`clientcredentialWIFI_PASSWORD`  
+Your Wi\-Fi password\.
 
-`AWS_IOT_DEMO_CLIENT_CERT`  
-The path to the default client certificate to use\.
+`clientcredentialWIFI_SECURITY`  
+The type of security used by your Wi\-Fi network\.
 
-`AWS_IOT_DEMO_PRIVATE_KEY`  
-The path to the default client certificate private key to use\.MQTT Demo Configuration Parameters
+You must also set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential_keys.h` file: 
+
+`keyCLIENT_CERTIFICATE_PEM`  
+The certificate PEM associated with your thing\.
+
+`keyCLIENT_PRIVATE_KEY_PEM`  
+The private key PEM associated with your thing\.MQTT Demo Configuration Parameters
 
 These configuration parameters apply to the MQTT demo\.
 

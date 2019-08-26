@@ -10,7 +10,7 @@ These steps are written with the assumption that you have already built the `aws
 
 1. After the programming process is complete, disconnect the ICD 4 debugger and reset the board\. Reconnect your terminal emulator to make sure the output is the same as when you debugged the demo with MPLAB X IDE\.
 
-   The terminal should display output similar to the following:
+   The terminal should display output similar to the following\.
 
    ```
    Bootloader version 00.09.00

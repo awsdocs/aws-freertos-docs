@@ -79,13 +79,13 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the Secure Sockets tests**
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    Make sure that the line that calls `SOCKETS_Init()` is uncommented\.
 
 1. Start an echo server\.
 
-   If you have not ported the TLS library to your platform, you can only test your Secure Sockets port using an unsecure echo server \(`<amazon-freertos>/tools/echo_server/echo_server.go`\)\. For instructions on setting up and running an unsecure echo server, see [Setting Up the Echo Server \(Without TLS\)](notls-echo-server.md)\.
+   If you have not ported the TLS library to your platform, you can only test your Secure Sockets port using an unsecured echo server \(`<amazon-freertos>/tools/echo_server/echo_server.go`\)\. For instructions on setting up and running an unsecured echo server, see [Setting Up the Echo Server \(Without TLS\)](notls-echo-server.md)\.
 
 1. In `aws_test_tcp.h`, set the IP address to the correct values for your server\. For example, if your server's IP address is `192.168.2.6`, set the following values in `aws_test_tcp.h`:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html)
@@ -145,6 +145,6 @@ To port the TLS library, see [Porting the TLS Library](afr-porting-tls.md)\.
 
 ## Validation<a name="w3aac11c23c19"></a>
 
-To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you finish porting the Amazon FreeRTOS Secure Sockets library to your device, you can start porting the PKCS \#11 library\. See [Porting the PKCS \#11 Library](afr-porting-pkcs.md) for instructions\.
