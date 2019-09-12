@@ -108,7 +108,7 @@ If you are seeing the following error:
 
    Choose **AFR\_BOARD**, choose your board, and then choose **Configure** again\.
 
-1. Choose **Generate**\. After CMake generates the native build system files, the files should appear in the output binaries directory that you specified in the first step\.
+1. Choose **Generate**\. CMake generates the build system files \(for example, makefiles or ninja files\), and these files appear in the build directory you specified in the first step\. Follow the instructions in the next section to generate the binary image\.
 
 ## Building Amazon FreeRTOS from Generated Build Files<a name="cmake-build"></a>
 

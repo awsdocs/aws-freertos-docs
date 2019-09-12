@@ -131,3 +131,6 @@ Amazon's trademarks and trade dress may not be used in
       + [How AWS Services Work with IAM](security_iam_service-with-iam.md)
       + [Identity-Based Policy Examples](security_iam_id-based-policy-examples.md)
       + [Troubleshooting Identity and Access](security_iam_troubleshoot.md)
+   + [Compliance Validation](freertos-compliance.md)
+   + [Resilience in AWS](disaster-recovery-resiliency.md)
+   + [Infrastructure Security in Amazon FreeRTOS](infrastructure-security.md)

@@ -2,8 +2,6 @@
 
 Before you start porting, follow the instructions in [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 
-The following diagram visualizes the porting process\.
-
 To port Amazon FreeRTOS to your device, follow the instructions in the topics below\.
 
 1. [Implementing the `configPRINT_STRING()` macro](afr-porting-config.md)
@@ -36,4 +34,9 @@ A port of the Amazon FreeRTOS OTA update library is currently not required for q
 **Note**  
 A port of the Amazon FreeRTOS Bluetooth Low Energy library is currently not required for qualification\.
 
-After you port Amazon FreeRTOS to your board, you can officially validate the ports for Amazon FreeRTOS qualification with AWS IoT Device Tester for Amazon FreeRTOS\. For more information about AWS IoT Device Tester for Amazon FreeRTOS, see [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide\. For information about qualifying your device for Amazon FreeRTOS, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\. 
+After you port Amazon FreeRTOS to your board, you can officially validate the ports for Amazon FreeRTOS qualification with AWS IoT Device Tester for Amazon FreeRTOS\. For more information about AWS IoT Device Tester for Amazon FreeRTOS, see [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide\. 
+
+**Note**  
+Before you validate your port of Amazon FreeRTOS using the AWS IoT Device Tester for Amazon FreeRTOS you must remove any logging messages that you might have inserted in your code for testing purposes, otherwise the validation may fail\.
+
+For information about qualifying your device for Amazon FreeRTOS, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\. 

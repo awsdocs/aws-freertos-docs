@@ -10,6 +10,6 @@ Use the following links to download the latest version of IDT for Amazon FreeRTO
 **Release Notes**
 + Added support for new PKCS11 library and test case updates\.
 + Introduced actionable error codes\. For more information, see [IDT Error Codes](dt-afr-troublshooting.md#idt-error-codes)
-+ Updated IAM policy used to run IDT\. Update to the latest policy, available here: [Permissions Policy Template](policy-template.md)\.
++ Updated IAM policy used to run IDT\. Update to the latest policy, available here: [Permissions Policy Template](dev-tester-prereqs.md#policy-template)\.
 
 If you need to test an earlier version of Amazon FreeRTOS, see [Earlier IDT Versions for Amazon FreeRTOS](idt-prev-versions-afr.md)\.

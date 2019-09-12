@@ -83,6 +83,7 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
            {
                "Effect": "Allow",
                "Action": [
+                   "s3:ListBucketVersions",
                    "s3:GetObjectVersion",
                    "s3:GetObject",
                    "s3:PutObject"

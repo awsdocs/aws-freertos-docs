@@ -235,7 +235,7 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
 
 1. To run the OTA end\-to\-end test script, follow the example in the README file \(`<amazon-freertos>/tools/ota_e2e_test/README.md`\)\. 
 
-## Validation<a name="w3aac11c33c25"></a>
+## Validation<a name="w3aac11c37c25"></a>
 
 To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 

@@ -68,29 +68,29 @@ You should set these constants to the minimum values possible\.
 
 ### Requirements and Usage Restrictions<a name="freertos-mqtt-requirements-restrictions"></a>
 
-#### <a name="w3aab9c27c13b7b3"></a>
+#### <a name="w12aab9c27c13b7b3"></a>
 
 The MQTT agent task is created using the xTaskCreateStatic\(\) API function \- so the task's stack and control block are statically allocated at compile time\. That ensures the MQTT agent can be used in applications that do not allow dynamic memory allocation, but does mean there is a dependency on configSUPPORT\_STATIC\_ALLOCATION being set to 1 in [`FreeRTOSConfig.h`](dev-guide-freertos-kernel.md#freertos-config)\. 
 
-#### <a name="w3aab9c27c13b7b5"></a>
+#### <a name="w12aab9c27c13b7b5"></a>
 
 he MQTT agent uses the FreeRTOS direct to task notification feature\. Calling an MQTT agent API function may change the calling task's notification value and state\. 
 
-#### <a name="w3aab9c27c13b7b7"></a>
+#### <a name="w12aab9c27c13b7b7"></a>
 
 MQTT packets are stored in buffers provided by the Buffer Pool module\. It is highly recommended to ensure the number of buffers in the pool is at least double the number of MQTT transactions that will be in progress at any one time\.
 
 ## Developer Support<a name="freertos-mqtt-support"></a>
 
-### `mqttconfigASSERT`<a name="w3aab9c27c15b3"></a>
+### `mqttconfigASSERT`<a name="w12aab9c27c15b3"></a>
 
 mqttconfigASSERT\(\) is equivalent to, and used in exactly the same way as, the FreeRTOS configASSERT\(\) macro\. If you want assert statements in the MQTT agent then define mqttconfigASSERT\(\)\. If you do not want assert statements in the MQTT agent then leave mqttconfigASSERT\(\) undefined\. If you define mqttconfigASSERT\(\) to call the FreeRTOS configASSERT\(\), as shown below, then the MQTT agent will only include assert statements if the FreeRTOS configASSERT\(\) is defined\. 
 
 `#define mqttconfigASSERT( x ) configASSERT( x )`
 
-### `mqttconfigENABLE_DEBUG_LOGS`<a name="w3aab9c27c15b5"></a>
+### `mqttconfigENABLE_DEBUG_LOGS`<a name="w12aab9c27c15b5"></a>
 
-#### <a name="w3aab9c27c15b5b3"></a>
+#### <a name="w12aab9c27c15b5b3"></a>
 
 Set `mqttconfigENABLE_DEBUG_LOGS` to **1** to print debug logs via calls to vLoggingPrintf\(\)\.
 

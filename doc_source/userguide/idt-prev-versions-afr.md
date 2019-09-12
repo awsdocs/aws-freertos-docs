@@ -10,7 +10,7 @@ This section contains download links for earlier versions of IDT for Amazon Free
 **Release Notes**
 + Added support for testing Bluetooth Low Energy \(BLE\)\.
 + Improved user experience for IDT CLI commands\.
-+ Updated IAM policy used to run IDT\. Update to the latest policy, available here: [Permissions Policy Template](policy-template.md)\.
++ Updated IAM policy used to run IDT\. Update to the latest policy, available here: [Permissions Policy Template](dev-tester-prereqs.md#policy-template)\.
 
 **IDT for Amazon FreeRTOS v1\.4\.8 and v1\.4\.9**
 + IDT for Amazon FreeRTOS: [Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.2.0.zip)

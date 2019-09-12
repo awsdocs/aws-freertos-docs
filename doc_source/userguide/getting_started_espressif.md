@@ -7,7 +7,7 @@ Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does 
 Lightweight IP\.
 Symmetric multiprocessing \(SMP\)\.
 
-## Overview<a name="w3aab7c23c13b7"></a>
+## Overview<a name="w12aab7c23c13b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -82,9 +82,9 @@ To set up the toolchain, follow the instructions for your host machine's operati
 
 **Note**  
 When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.   If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the  `IDF_PATH` environment variable from your system before continuing\.
-+ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/v3.1.3/get-started-cmake/windows-setup.html)
-+ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/v3.1.3/get-started-cmake/macos-setup.html)
-+ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/v3.1.3/get-started-cmake/linux-setup.html)
++ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/v3.1/get-started-cmake/windows-setup.html)
++ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/v3.1/get-started-cmake/macos-setup.html)
++ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/v3.1/get-started-cmake/linux-setup.html)
 
 **Note**  
 Version 3\.1\.3 of the ESP\-IDF \(the version used by Amazon FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.1\.3 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.

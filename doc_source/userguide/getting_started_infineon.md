@@ -6,7 +6,7 @@ If you want to open a serial connection with the board to view logging and debug
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c23c15b9"></a>
+## Overview<a name="w12aab7c23c15b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -204,7 +204,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c15c15b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c23c15c15b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

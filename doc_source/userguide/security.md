@@ -10,3 +10,6 @@ This documentation will help you understand how to apply the shared responsibili
 
 **Topics**
 + [Identity and Access Management for AWS Resources](security-iam.md)
++ [Compliance Validation](freertos-compliance.md)
++ [Resilience in AWS](disaster-recovery-resiliency.md)
++ [Infrastructure Security in Amazon FreeRTOS](infrastructure-security.md)
