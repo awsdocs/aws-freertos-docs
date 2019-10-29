@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Texas Instrumen
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c23c35b7"></a>
+## Overview<a name="w12aab7c25c39b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -18,7 +18,7 @@ This tutorial contains instructions for the following getting started steps:
 
 Follow the steps below to set up your development environment to get started with Amazon FreeRTOS\.
 
-Note that Amazon FreeRTOS supports two IDEs for the TI CC3220SF\-LAUNCHXL Development Kit: Code Composer Studio and IAR Embedded Workbench\. You can use either IDE to get started\.
+Note that Amazon FreeRTOS supports two IDEs for the TI CC3220SF\-LAUNCHXL Development Kit: Code Composer Studio and IAR Embedded Workbench version 8\.32\. You can use either IDE to get started\.
 
 ### Install Code Composer Studio<a name="install-ccs"></a>
 
@@ -36,9 +36,7 @@ If you experience issues when you are installing Code Composer Studio, see [TI D
 
 ### Install IAR Embedded Workbench<a name="install-iar"></a>
 
-1. Browse to [IAR Embedded Workbench for ARM](https://www.iar.com/iar-embedded-workbench/#!?architecture=Arm)\.
-
-1. Download and run the Windows installer\. In **Debug probe drivers**, make sure that **TI XDS** is selected\.
+1. Download and run the [ Windows installer for version 8\.32](http://netstorage.iar.com/SuppDB/Protected/PRODUPD/013570/EWARM-CD-8322-19423.exe) of the IAR Embedded Workbench for ARM\. In **Debug probe drivers**, make sure that **TI XDS** is selected\.
 
 1. Complete the installation and launch the program\. On the **License Wizard** page, choose **Register with IAR Systems to get an evaluation license**, or use your own IAR license\.
 
@@ -126,7 +124,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Debug** menu, and choose **Go**\.
 
-### Using CMake with Amazon FreeRTOS<a name="w12aab7c23c35c11b7"></a>
+### Using CMake with Amazon FreeRTOS<a name="w12aab7c25c39c11b7"></a>
 
 If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -134,7 +132,9 @@ If you prefer not to use an IDE for Amazon FreeRTOS development, you can alterna
 
 1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
 
-1. If you are using the TI ARM compiler with your TI board, use the following command to generate build files from source code:
+1. Make sure your search path \(**$PATH** environment variable\) contains the folder where the TI CGT compiler binary is located \(for example `C:\ti\ccs910\ccs\tools\compiler\ti-cgt-arm_18.12.2.LTS\bin`\)\.
+
+   If you are using the TI ARM compiler with your TI board, use the following command to generate build files from source code:
 
    ```
    cmake -DVENDOR=ti -DBOARD=cc3220_launchpad -DCOMPILER=arm-ti -S <amazon-freertos> -B BUILD_FOLDER
@@ -148,7 +148,7 @@ If you prefer not to use an IDE for Amazon FreeRTOS development, you can alterna
 
 For more information, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c23c35c11b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c39c11b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

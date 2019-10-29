@@ -4,11 +4,11 @@ This section describes the prerequisites for testing microcontrollers with AWS I
 
 ## Download Amazon FreeRTOS<a name="download-afr"></a>
 
-You can download the version of Amazon FreeRTOS that you want to test from [GitHub](https://github.com/aws/amazon-freertos)\. Windows has a path length limitation of 260 characters\. The path structure of Amazon FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone Amazon FreeRTOS to `C:\AFreeRTOS` rather than `C:\Users\username\programs\projects\AmazonFreeRTOS\`\.
+You can download the version of Amazon FreeRTOS that you want to test from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. Windows has a path length limitation of 260 characters\. The path structure of Amazon FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone Amazon FreeRTOS to `C:\AFreeRTOS` rather than `C:\Users\username\programs\projects\AmazonFreeRTOS\`\.
 
 ## Download IDT for Amazon FreeRTOS<a name="download-dev-tester-afr"></a>
 
-Every version of Amazon FreeRTOS has a corresponding version of IDT for Amazon FreeRTOS for performing qualification tests\. Download the appropriate version of IDT for Amazon FreeRTOS from [Download IDT v1\.4\.0 for Amazon FreeRTOS 201908\.00](dev-test-versions-afr.md)\.
+Every version of Amazon FreeRTOS has a corresponding version of IDT for Amazon FreeRTOS for performing qualification tests\. Download the appropriate version of IDT for Amazon FreeRTOS from [Download IDT v1\.5\.0 for Amazon FreeRTOS 201910\.00](dev-test-versions-afr.md)\.
 
 Extract IDT for Amazon FreeRTOS into a location on the file system where you have read and write permissions\. Due to a path length limitation, on Microsoft Windows, extract IDT for Amazon FreeRTOS into a root directory like `C:\` or `D:\`\.
 
@@ -25,6 +25,9 @@ Follow these steps to create and configure an AWS account, an IAM user, and an I
 ### Permissions Policy Template<a name="policy-template"></a>
 
 The following is a policy template that grants the permissions required for IDT for Amazon FreeRTOS to run tests\.
+
+**Important**  
+The following policy template grants permission to create roles, create policies, and attach policies to roles\. IDT for Amazon FreeRTOS uses these permissions for tests that need to create roles\. Although the policy template does not provide administrator privileges to the user, the permissions can be potentially used to gain administrator access to your AWS account\.
 
 ```
 {

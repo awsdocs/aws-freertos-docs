@@ -88,7 +88,10 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
                    "s3:GetObject",
                    "s3:PutObject"
                ],
-               "Resource": "arn:aws:s3:::<example-bucket>/*"
+               "Resource": [
+                   "arn:aws:s3:::<example-bucket>/*",
+                   "arn:aws:s3:::<example-bucket>"
+               ]
            }
        ]
    }

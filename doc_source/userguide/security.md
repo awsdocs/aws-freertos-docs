@@ -8,6 +8,8 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 
 This documentation will help you understand how to apply the shared responsibility model when using AWS\. The following topics show you how to configure AWS to meet your security and compliance objectives\. You'll also learn how to use AWS services that can help you to monitor and secure your AWS resources\. 
 
+For more in\-depth information about AWS IoT security see [Security and Identity for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html)\.
+
 **Topics**
 + [Identity and Access Management for AWS Resources](security-iam.md)
 + [Compliance Validation](freertos-compliance.md)

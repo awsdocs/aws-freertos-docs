@@ -11,7 +11,7 @@ Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download t
 The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.  
 As noted in [Downloading Amazon FreeRTOS](freertos-download.md), Amazon FreeRTOS ports for Cypress are currently only available on [GitHub](https://github.com/aws/amazon-freertos)\.
 
-## Overview<a name="w12aab7c23b9c11"></a>
+## Overview<a name="w12aab7c25b9c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -100,7 +100,7 @@ After you set up a serial connection to your board, you can build the Amazon Fre
 
 1. From the **File** menu, choose **Import**\. Expand the `General` folder, choose **Existing Projects into Workspace**, and then choose **Next**\.
 
-1. In **Select root directory**, select **Browse\.\.\.**, navigate to the path `amazon-freertos/projects/cypress/CYW943907AEVAL1F/wicedstudio`, and then select **OK**\.
+1. In **Select root directory**, select **Browse\.\.\.**, navigate to the path `<amazon-freertos>/projects/cypress/CYW943907AEVAL1F/wicedstudio`, and then select **OK**\.
 
 1. Under **Projects**, check the box for just the **aws\_demo** project\. Choose **Finish** to import the project\. The target project **aws\_demo** should appear in the **Make Target** window\.
 

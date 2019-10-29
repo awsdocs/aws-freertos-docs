@@ -12,7 +12,7 @@ Amazon FreeRTOS is released as a zip file that contains the Amazon FreeRTOS libr
 
 1. Install [Microsoft Visual Studio](https://www.visualstudio.com/downloads)\.
 
-   All editions of Visual Studio are supported \(Community, Professional, or Enterprise\)\.
+   Visual Studio versions 2017 and 2019 are known to work\. All editions of these Visual Studio versions are supported \(Community, Professional, or Enterprise\)\.
 
    In addition to the IDE, install the **Desktop development with C\+\+** component\.
 
@@ -64,7 +64,7 @@ pc\.windows
 Description  
 \(Optional\)
 
-1. Choose **Configure**\. If CMake prompts you to create the build directory, choose **Yes**, and then select a generator under **Specify the generator for this project**\. We recommend using Visual Studio as the generator, but Ninja is also supported\. Leave the other generator options unchanged and choose **Finish**\.
+1. Choose **Configure**\. If CMake prompts you to create the build directory, choose **Yes**, and then select a generator under **Specify the generator for this project**\. We recommend using Visual Studio as the generator, but Ninja is also supported\. \(Note that when using Visual Studio 2019, the platform should be set to Win32 instead of its default setting\.\) Leave the other generator options unchanged and choose **Finish**\.
 
 1. Generate and Open the CMake Project\.
 
@@ -102,7 +102,7 @@ After you have identified the number for your hard\-wired Ethernet interface, cl
 
 Open `FreeRTOSConfig.h` and set `configNETWORK_INTERFACE_TO_USE` to the number that corresponds to your hard\-wired network interface\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c23c37c11c11"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c41c11c11"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

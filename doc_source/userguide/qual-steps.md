@@ -42,8 +42,16 @@ The following is an example `device.json` file used to create a device pool with
     },
     {
       "name": "TLS",
-      "value": "On-chip | Offloaded | No"
+      "value": "Yes | No"
     },
+    {
+      "name": "PKCS11",
+      "value": "RSA | ECC | Both | No"
+	},
+    {
+      "name": "KeyProvisioning",
+      "value": "Import | Onboard | No"
+	},
     {
     	"name": "BLE",
     	"value": "Yes | No"
@@ -55,6 +63,9 @@ The following is an example `device.json` file used to create a device pool with
       "protocol": "uart",
       "serialPort": "<computer_serial_port_1>"
     },
+    "secureElementConfig": {
+      "publicKeyAsciiHexFilePath": "<absolute-path-to-public-key>"
+	},
     "identifiers": [{
       "name": "serialNo",
       "value": "<serialNo-value>"
@@ -83,12 +94,23 @@ If you want to list your board in AWS Partner Device Catalog, the SKU you specif
 
 `features`  
 An array that contains the device's supported features\. The Device Tester uses this information to select the qualification tests to run\.  
-Supported values are:  
-+ `TCP/IP`: Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\. TCP/IP is required for qualification\.
-+ `WIFI`: Indicates if your board has Wi\-Fi capabilities\.
-+ `TLS`: Indicates if your board supports TLS and if it is supported on\-chip \(MCU\) or offloaded to another module\. TLS is required for qualification\.
-+ `OTA`: Indicates if your board supports over\-the\-air \(OTA\) update functionality\.
-+ `BLE`: Indicates if your board supports Bluetooth Low Energy \(BLE\)\.
+Supported values are:    
+`TCP/IP`  
+Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\. TCP/IP is required for qualification\.  
+`WIFI`  
+Indicates if your board has Wi\-Fi capabilities\.  
+`TLS`  
+Indicates if your board supports TLS\. TLS is required for qualification\.  
+`PKCS11`  
+: Indicates the public key cryptography alogirithm the board supports\. Supported values are `ECC`, `RSA`, `Both` and `No`\. PKCS11 is required for qualification\.  
+`KeyProvisioning`  
+Indicates the method of writing a trusted X\.509 client certificate onto your board\. Valid values are `Import`, `Onboard` and `No`\. Key provisioning is required for qualification\.  
+Use `Import` if your board supports private key import\. Use `Onboard` if your board supports on\-board private key generation\. If your board does not support key provisioning, use `No`\.  
+If you use `Onboard`, add a `secureElementConfig` element in each of the `device` sections and put the absolute path to the public key file in the `publicKeyAsciiHexFilePath` field\.  
+`OTA`  
+Indicates if your board supports over\-the\-air \(OTA\) update functionality\.  
+`BLE`  
+Indicates if your board supports Bluetooth Low Energy \(BLE\)\.
 
 `devices.id`  
 A user\-defined unique identifier for the device being tested\.
@@ -98,6 +120,9 @@ The communication protocol used to communicate with this device\. Supported valu
 
 `devices.connectivity.serialPort`  
 The serial port of the host computer used to connect to the devices being tested\.
+
+`devices.secureElementConfig.PublicKeyAsciiHexFilePath`  
+The absolute path to the file that contains the hex bytes public key extracted from onboard private key\.
 
 `identifiers`  
 Optional\. An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.
@@ -113,6 +138,8 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 ```
 {  
        "sourcePath":"<absolute-path-to/amazon-freertos>",
+       "vendorPath":"{{testData.sourcePath}}/vendors/<vendor-name>/boards/<board-name>",
+       	
        "buildTool":{  
           "name":"<your-build-tool-name>",
           "version":"<your-build-tool-version>",
@@ -141,6 +168,12 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "wifiSSID":"<ssid>",
           "wifiPassword":"<password>",
           "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+       },
+       "echoServerConfiguration":{  
+          "securePortForSecureSocket":33333,
+          "insecurePortForSecureSocket":33334,
+          "insecurePortForWifi":33335 
+
        },
        "otaConfiguration":{  
           "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
@@ -202,6 +235,23 @@ The following lists the attributes used in `userdata.json`:
 `sourcePath`  
 The path to the root of the ported Amazon FreeRTOS source code\.
 
+`vendorPath`  
+The path to the vendor specific Amazon FreeRTOS code\. For serial testing, the `vendorPath` can be set as an absolute path\. For example:  
+
+```
+{
+	"vendorPath":"C:/<path-to-freertos>/vendors/espressif/boards/<esp32>"
+}
+```
+For parallel testing, the `vendorPath` can be set using the `{{testData.sourcePath}}` place holder\. For example:  
+
+```
+{
+	"vendorPath":"{{testData.sourcePath}}/vendors/espressif/boards/esp32"
+}
+```
+When running tests in parallel, the `{{testData.sourcePath}}` placeholder must be used in the `vendorPath`, `buildTool`, `flashTool` fields\. When running test with a single device, absolute paths must be used in the `vendorPath`, `buildTool`, `flashTool` fields\.
+
 `buildTool`  
 The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}`\.  
 + `buildImageInfo`
@@ -234,8 +284,20 @@ If your board does not support Wi\-Fi, you must still include the `clientWifiCon
   + `eWiFiSecurityWPA`
   + `eWiFiSecurityWPA2`
 
+`echoServerConfiguration`  
+The configurable echo server ports for WiFi and secure sockets tests\. This field is optional
+
+`securePortForSecureSocket`  
+The port which is used to setup an echo server with TLS for the secure sockets test\. The default value is 33333\. Ensure the port configured is not blocked by a firewall or your corporate network\.
+
+`insecurePortForSecureSocket`  
+The port which is used to setup echo server without TLS for the secure sockets test\. The default value used in the test is 33335\. Ensure the port configured is not blocked by a firewall or your corporate network\.
+
+`insecurePortForWiFi`  
+The port which is used to setup echo server without TLS for WiFi test\. The default value used in the test is 33335\. Ensure the port configured is not blocked by a firewall or your corporate network\.
+
 `otaConfiguration`  
-The OTA configuration\. \[Optional\]    
+The OTA configuration\. This field is optional    
 `otaFirmwareFilePath`  
 The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/<relative-path/to/ota/image/from/source/root>`\.  
 `deviceFirmwareFileName`  
@@ -252,7 +314,7 @@ Set to `true` if the code\-signer signature verification certificate is not prov
 The full path to `aws_demo_config.h`, found within `<afr-source>/vendors/vendor/boards/board/ aws_demos/config_files/`\. These files are included in the porting code template provided by Amazon FreeRTOS\.
 
 `cmakeConfiguration`  
-CMake configuration \[Optional\]    
+CMake configuration \- remove this section if you are not using CMake    
 `boardName`  
 The name of the board under test\. The board name should be the same as the folder name under *path/to/afr/source/code*/vendors/*<vendor>*/boards/*<board>*\.  
 `vendorName`  
@@ -261,8 +323,8 @@ The vendor name for the board under test\. The vendor should be the same as the 
 The compiler name\.  
 `afrToolchainPath`  
 The fully\-qualified path to the compiler toolchain  
-`cmakeToolchainPath` \[Optional\]  
-The fully\-qualified path to the CMake toolchain\.
+`cmakeToolchainPath`   
+The fully\-qualified path to the CMake toolchain\. This field is optional
 
 **Note**  
 To execute CMake test cases, you must provide the board name, vendor name, and either the `afrToolchainPath` or `compilerName`\. You may also provide `cmakeToolchainPath` if you have a custom path to the CMake toolchain\.

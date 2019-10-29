@@ -4,7 +4,7 @@ CMake targets your host operating system as the target system by default\. To us
 
 If you're using a compiler different from the one provided with Amazon FreeRTOS, write this toolchain file before you build Amazon FreeRTOS with CMake\. You must also set the `CMAKE_TOOLCHAIN_FILE` variable before CMake reads your top\-level `CMakeLists.txt` file\. The `CMAKE_TOOLCHAIN_FILE` variable specifies which compiler to use and sets some CMake variables, like the system name and the default search path\. For more information about cross compiling with CMake, see [Cross Compiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) on the official CMake wiki\.
 
-The `CMakeLists.txt` and toolchain files must be in the correct locations\. Before you build Amazon FreeRTOS with CMake, make sure that you have set up the Amazon FreeRTOS directory structure on your local machine to match the Amazon FreeRTOS directory structure on [GitHub](https://github.com/aws/amazon-freertos)\.
+The `CMakeLists.txt` and toolchain files must be in the correct locations\. Before you build Amazon FreeRTOS with CMake, make sure that you have set up the Amazon FreeRTOS directory structure on your local machine to match the Amazon FreeRTOS directory structure on [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
 **To build a CMake\-based project**
 

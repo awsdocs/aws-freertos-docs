@@ -46,7 +46,7 @@ For more information, see [Amazon FreeRTOS Libraries](https://docs.aws.amazon.co
 
 You can download versions of Amazon FreeRTOS that are configured for Amazon FreeRTOS\-qualified platforms from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [Amazon FreeRTOS\-Qualified Hardware Platforms](freertos-hardware.md) or the [Amazon FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
 
-You can also download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\.
+You can also clone or download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
 
 ## Amazon FreeRTOS Console<a name="freertos-console"></a>
 

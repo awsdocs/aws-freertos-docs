@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the MediaTek MT7697
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c23c21b7"></a>
+## Overview<a name="w12aab7c25c25b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -126,7 +126,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. From the μVision menu, choose **Debug**, and then choose **Start/Stop Debug Session**\. The **Call Stack \+ Locals** window opens when you start the debug session\.  
 
-1. From the menu, choose **Debug**, and then choose **Stop** to stop the session\. The program counter stops at the following line: 
+1. From the menu, choose **Debug**, and then choose **Stop** to pause the code execution\. The program counter stops at the following line: 
 
    ```
    { volatile int wait_ice = 1 ; while ( wait_ice ) ; }

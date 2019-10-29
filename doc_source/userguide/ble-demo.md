@@ -119,7 +119,7 @@ To set up your environment, you need to download Amazon FreeRTOS with the [Amazo
 
 **To set up your microcontroller's environment with Amazon FreeRTOS Bluetooth Low Energy**
 
-1. Download from Amazon FreeRTOS [GitHub](https://github.com/aws/amazon-freertos)\.
+1. Download or clone Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
 1. Set up Amazon FreeRTOS on your microcontroller\.
 
@@ -195,18 +195,11 @@ When you define configuration variables, use the format of the placeholder value
 
 1. Confirm that the [Android SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android) is installed\.
 
-1. Open `amazon-freertos-ble-android-sdk/app/src/main/java/com/amazon/aws/freertosandroid/AuthenticatorActivity.java`, and redefine the following variables:
+1. Open [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/java/software/amazon/freertos/demo/DemoConstants\.java](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/java/software/amazon/freertos/demo/DemoConstants.java)  and redefine the following variables:
    + `AWS_IOT_POLICY_NAME`: Your AWS IoT policy name\.
    + `AWS_IOT_REGION`: Your AWS Region\.
-   + `COGNITO_POOL_ID`: Your Amazon Cognito identity pool ID\.
-   + `COGNITO_REGION`: Your AWS Region\.
 
-1. Open `amazon-freertos-ble-android-sdk/app/src/main/java/com/amazon/aws/freertosandroid/MainActivity.java`, and redefine the following variables:
-   + `BLE_DEVICE_MAC_ADDR`: The MAC address of your device\.
-   + `BLE_DEVICE_NAME`: Your device name\.
-   + `MTU`: The desired MTU between your microcontroller and mobile device\.
-
-1. Open `amazon-freertos-ble-android-sdk/app/src/main/res/raw/awsconfiguration.json`\.
+1. Open  [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/res/raw/awsconfiguration\.json](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/res/raw/awsconfiguration.json )\.
 
    Under `CognitoIdentity`, redefine the following variables:
    + `PoolId`: Your Amazon Cognito identity pool ID\.
@@ -345,7 +338,7 @@ Using the Bluetooth Low Energy Mobile SDKs, you can create your own GATT client 
 
 **To enable the demo**
 
-1. Enable the Bluetooth Low Energy GATT demo\. In `vendors/<vendor>/boards/<board>/aws_demos/config_files/iot_ble_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\), add `#define bleconfigENABLE_GATT_DEMO ( 1 )` to the list of define statements\.
+1. Enable the Bluetooth Low Energy GATT demo\. In `vendors/<vendor>/boards/<board>/aws_demos/config_files/iot_ble_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\), add `#define IOT_BLE_ADD_CUSTOM_SERVICES ( 1 )` to the list of define statements\.
 **Note**  
 The Bluetooth Low Energy GATT demo is disabled by default\.
 

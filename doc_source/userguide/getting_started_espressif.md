@@ -1,13 +1,13 @@
 # Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT<a name="getting_started_espressif"></a>
 
-This tutorial provides instructions for getting started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT\. If you don't have an Espressif ESP32\-DevKitC, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC) on the AWS Partner Device Catalog\. If you don't have an Espressif ESP32\-WROVER\-KIT, you can purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT) on the AWS Partner Device Catalog\. Both devices are supported on Amazon FreeRTOS\. For more information about these boards, see [ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
+This tutorial provides instructions for getting started with the Espressif ESP32\-DevKitC equipped with ESP32\-WROOM\-32, ESP32\-SOLO\-1, or ESP\-WROVER modules and the ESP\-WROVER\-KIT\-VB\. To purchase one from our partner on the AWS Partner Device catalog, use the following links: [ESP\-DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC), [ESP32\-DevKitC\-S1](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-DevKitC-S1), ESP32\-DevKitC\-VB, or [ ESP32\-WROVER\_KIT\-VB](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. Both versions of development boards are supported on Amazon FreeRTOS\. For more information about these boards, see [ ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
 
 **Note**  
 Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
-Lightweight IP\.
+Lightweight IP \(LwIP\)\.
 Symmetric multiprocessing \(SMP\)\.
 
-## Overview<a name="w12aab7c23c13b7"></a>
+## Overview<a name="w12aab7c25c15b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -81,13 +81,13 @@ To communicate with your board, you need to download and install a toolchain\.
 To set up the toolchain, follow the instructions for your host machine's operating system:
 
 **Note**  
-When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.   If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the  `IDF_PATH` environment variable from your system before continuing\.
-+ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/v3.1/get-started-cmake/windows-setup.html)
-+ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/v3.1/get-started-cmake/macos-setup.html)
-+ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/v3.1/get-started-cmake/linux-setup.html)
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\. If you previously followed the "Get ESP\-IDF" instructions and installed ESP\-IDF, make sure that you clear the `IDF_PATH` environment variable from your system before continuing\.
++ [Standard Setup of Toolchain for Windows]( https://docs.espressif.com/projects/esp-idf/en/v3.1.5/get-started-cmake/windows-setup.html)
++ [Standard Setup of Toolchain for macOS]( https://docs.espressif.com/projects/esp-idf/en/v3.1.5/get-started-cmake/macos-setup.html)
++ [Standard Setup of Toolchain for Linux]( https://docs.espressif.com/projects/esp-idf/en/v3.1.5/get-started-cmake/linux-setup.html)
 
 **Note**  
-Version 3\.1\.3 of the ESP\-IDF \(the version used by Amazon FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.1\.3 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.
+Version 3\.1\.5 of the ESP\-IDF \(the version used by Amazon FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.1\.5 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.
 
 ### Install CMake<a name="gsg-espressif-cmake"></a>
 
@@ -107,7 +107,7 @@ For more information, see [Establish Serial Connection with ESP32](https://docs.
 
 ## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
 
-After your environment is set up, you can download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\.
+After your environment is set up, you can download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
 ### Configure the Amazon FreeRTOS Demo Applications<a name="config-demos"></a>
 
@@ -128,7 +128,7 @@ After your environment is set up, you can download Amazon FreeRTOS from [GitHub]
 Amazon FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the the script, open `<amazon-freertos>/tools/aws_config_quick_start/configure.json` and set the following attributes:
 
 `afr_source_dir`  
-The complete path to the `amazon-freertos` directory on your computer\. Make sure that you use forward slashes to specify this path\.
+The complete path to the *<amazon\-freertos>* directory on your computer\. Make sure that you use forward slashes to specify this path\.
 
 `thing_name`  
 The name that you want to assign to the AWS IoT thing that represents your board\.

@@ -4,7 +4,7 @@
 
 [AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html) is an AWS IoT service that enables you to monitor connected devices to detect abnormal behavior and to mitigate security risks\. With AWS IoT Device Defender, you can enforce consistent IoT configurations across your AWS IoT device fleet and respond quickly when devices are compromised\.
 
-Amazon FreeRTOS provides a library that allows your Amazon FreeRTOS\-based devices to work with AWS IoT Device Defender\. You can download Amazon FreeRTOS with the Device Defender library from the [Amazon FreeRTOS Console](http://console.aws.amazon.com/freertos) by adding the Device Defender library to your software configuration\. You can also clone the Amazon FreeRTOS GitHub repository, which includes all Amazon FreeRTOS libraries\.
+Amazon FreeRTOS provides a library that allows your Amazon FreeRTOS\-based devices to work with AWS IoT Device Defender\. You can download Amazon FreeRTOS with the Device Defender library from the [Amazon FreeRTOS Console](http://console.aws.amazon.com/freertos) by adding the Device Defender library to your software configuration\. You can also clone the Amazon FreeRTOS GitHub repository, which includes all Amazon FreeRTOS libraries\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
 **Note**  
 The Amazon FreeRTOS AWS IoT Device Defender library only supports a subset of the [device\-side AWS IoT Device Defender metrics](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html#DetectMetricsMessages) related to connection metrics\. For more information, see [Usage Restrictions](#freertos-defender-restrictions)\.

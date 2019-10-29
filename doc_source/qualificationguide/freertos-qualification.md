@@ -63,7 +63,7 @@ A CMake list file is not required to qualify a board through the AWS Device Qual
      For information, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.
    + A list of detailed information for your hardware platform\.
 
-     For information, see [Hardware Information for Amazon FreeRTOS Qualification](afq-hardware.md)\.
+     For information, see [Amazon FreeRTOS Qualification Checklist](afq-checklist.md)\.
    + An appropriate open source license file for your device's Amazon FreeRTOS port\.
 
      For information, see [Providing an Open Source License for Your Code](afq-license.md)\.

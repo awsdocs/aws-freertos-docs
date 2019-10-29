@@ -11,7 +11,7 @@ In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c23c19c13"></a>
+## Overview<a name="w12aab7c25c23c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -300,7 +300,7 @@ With the layout, bootloader, and Wi\-Fi firmware flashed to the board, you can f
 1. Run the `flashprog.py` Python script with the `--mcufw` and `-r` options:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py --mcufw ./build/vendors/marvell/boards/mw300_rd/aws_demos.bin -r
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py --mcufw ./build//marvell/mw320/aws_demos.bin -r
    ```
 
    The `flashprog` script flashes the demo to the board\. Running the script with the `-r` option resets the board\.

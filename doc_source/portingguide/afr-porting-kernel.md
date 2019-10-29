@@ -2,10 +2,11 @@
 
 This section provides instructions for integrating a port of the FreeRTOS kernel into an Amazon FreeRTOS port\-testing project\. For a list of available kernel ports, see [Official FreeRTOS Ports](https://freertos.org/RTOS_ports.html)\.
 
-Amazon FreeRTOS uses the FreeRTOS kernel for multitasking and inter\-task communications\. For more information, see the [FreeRTOS Kernel Fundamentals](https://docs.aws.amazon.com/freertos/latest/userguide/dev-guide-freertos-kernel.html) in the Amazon FreeRTOS User Guide and [FreeRTOS\.org](https://freertos.org/index.html)\.
+Amazon FreeRTOS uses the FreeRTOS kernel for multitasking and inter\-task communications\. For more information, see the [FreeRTOS Kernel Fundamentals](https://docs.aws.amazon.com/freertos/latest/userguide/dev-guide-freertos-kernel.html) in the Amazon FreeRTOS User Guide and [FreeRTOS\.org](https://freertos.org/index.html)\. 
 
 **Note**  
-Porting the FreeRTOS kernel to a new architecture is out of the scope of this documentation\. If you are interested in porting the FreeRTOS kernel to a new architecture, [contact the Amazon FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
+Porting the FreeRTOS kernel to a new architecture is out of the scope of this documentation\. If you are interested in porting the FreeRTOS kernel to a new architecture, [contact the Amazon FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.  
+For the Amazon FreeRTOS Qualification program, only existing ports are supported\. Modifications to these ports are not accepted within the Qualification program\. Only the official ports that can be downloaded from [Github](https://github.com/aws/amazon-freertos) or [Sourceforge](https://sourceforge.net/projects/freertos/) are accepted\.
 
 ## Prerequisites<a name="porting-prereqs-kernel"></a>
 

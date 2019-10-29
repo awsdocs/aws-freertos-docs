@@ -24,7 +24,7 @@ To port the Secure Sockets library, you need the following:
 
 ## Porting<a name="porting-steps-ss"></a>
 
-If your platform offloads TCP/IP functionality to a separate network chip, you need to implement all the functions for which stubs exist in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/secure_sockets/aws_secure_sockets.c`\.
+If your platform offloads TCP/IP functionality to a separate network chip, you need to implement all the functions for which stubs exist in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/secure_sockets/iot_secure_sockets.c`\.
 
 ## Testing<a name="porting-testing-ss"></a>
 
@@ -39,11 +39,11 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the Secure Sockets library in the IDE project**
 
-1. If you are using the FreeRTOS\+TCP TCP/IP stack, add `<amazon-freertos>/libraries/abstractions/secure_sockets/freertos_plus_tcp/aws_secure_sockets.c` to the `aws_tests` IDE project\.
+1. If you are using the FreeRTOS\+TCP TCP/IP stack, add `<amazon-freertos>/libraries/abstractions/secure_sockets/freertos_plus_tcp/iot_secure_sockets.c` to the `aws_tests` IDE project\.
 
-   If you are using the lwIP TCP/IP stack, add `<amazon-freertos>/libraries/abstractions/secure_sockets/lwip/aws_secure_sockets.c` to the `aws_tests` IDE project\.
+   If you are using the lwIP TCP/IP stack, add `<amazon-freertos>/libraries/abstractions/secure_sockets/lwip/iot_secure_sockets.c` to the `aws_tests` IDE project\.
 
-   If you are using your own TCP/IP port, add `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/secure_sockets/aws_secure_sockets.c` to the `aws_tests` IDE project\.
+   If you are using your own TCP/IP port, add `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/secure_sockets/iot_secure_sockets.c` to the `aws_tests` IDE project\.
 
 1. Add `secure_sockets/test/aws_test_tcp.c` to the `aws_tests` IDE project\.
 
@@ -69,7 +69,7 @@ target_link_libraries(
 # Or provide your own implementation.
 target_sources(
     AFR::secure_sockets::mcu_port
-    INTERFACE "$path/aws_secure_sockets.c"
+    INTERFACE "$path/iot_secure_sockets.c"
 )
 ```
 

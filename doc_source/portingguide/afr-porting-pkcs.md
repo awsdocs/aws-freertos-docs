@@ -46,21 +46,23 @@ To port the PKCS \#11 library, you need the following:
     `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html)
 
-1. Add support for a cryptographically random entropy source to your port\.
+1. Add support for a cryptographically random entropy source to your port:
+   + If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\):
 
-   If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\), implement the [https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c`\.
+     1. Implement the [ `mbedtls_hardware_poll()`](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c`\. 
+   + If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG:
 
-   If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG, do the following:
+     1. Make a copy of `<amazon-freertos>/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
 
-   1. Make a copy of `<amazon-freertos>/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
+        Save the modified version of `config.h` to `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/config.h`\. Do not overwrite the original file\.
 
-      Save the modified version of `config.h` to `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/config.h`\. Do not overwrite the original file\.
+     1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
 
-   1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
-
-      For information about implementing these functions, see the comments in the [mbedtls/include/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L102) and [mbedtls/include/mbedtls/config\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/config.h#L1121) mbedTLS header files\.
+        For information about implementing these functions, see the comments in the [ mbedtls/include/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L102) and [ mbedtls/include/mbedtls/config\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/config.h#L1121) mbedTLS header files\.
 **Important**  
 A seed file with an NIST\-approved entropy source must be supplied to the device at manufacturing time\.
+**Note**  
+If you are interested in the Amazon FreeRTOS Qualification Program, please read our requirements for [ RNG](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html)\.
 
    For more information about NIST\-approved DRBGs and entropy sources, see the following NIST publications:
    + [Recommendation for Random Number Generation Using Deterministic Random Bit Generators](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf)
