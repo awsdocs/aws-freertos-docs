@@ -14,7 +14,10 @@ You also need the following items for debugging:
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c25c27c15"></a>
+**Important**  
+The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.
+
+## Overview<a name="w12aab7c25c28c17"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -119,7 +122,7 @@ You must specify the correct paths to the Hexmate and toolchain binaries\.
 
 For more information, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c27c21b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c28c23b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

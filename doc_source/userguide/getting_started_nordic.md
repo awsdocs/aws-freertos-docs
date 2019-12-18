@@ -9,7 +9,7 @@ To run the Amazon FreeRTOS Bluetooth Low Energy demo, you also need an iOS or An
 **Note**  
 If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
 
-## Overview<a name="w12aab7c25c29c11"></a>
+## Overview<a name="w12aab7c25c30c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 

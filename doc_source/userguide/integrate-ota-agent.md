@@ -1,67 +1,99 @@
 # Integrating the OTA Agent into Your Application<a name="integrate-ota-agent"></a>
 
-The OTA agent is designed to simplify the amount of code you must write to add OTA update functionality to your product\. That integration burden consists primarily of initialization of the OTA agent and, optionally, creating a custom callback function for responding to the OTA completion event messages\.
+The over\-the\-air \(OTA\) agent is designed to simplify the amount of code you must write to add OTA update functionality to your product\. That integration burden consists primarily of initialization of the OTA agent and, optionally, creating a custom callback function for responding to the OTA completion event messages\.
 
 **Note**  
 Although the integration of the OTA update feature into your application is rather simple, the OTA update system requires an understanding of more than just device code integration\. To familiarize yourself with how to configure your AWS account with AWS IoT things, credentials, code\-signing certificates, provisioning devices, and OTA update jobs, see [Amazon FreeRTOS Prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-prereqs.html)\. 
 
-## MQTT Connection Management<a name="ota-agent-mqtt"></a>
+## Connection Management<a name="ota-agent-http-mqtt"></a>
 
-The OTA agent uses the MQTT protocol for all of its communication with AWS IoT services, but it does not manage the MQTT connection\. To assure that the OTA agent does not interfere with the connection management policy of your application, the MQTT connection, including disconnect and any reconnect functionality, must be handled by the main “user” application\. 
+The OTA agent uses the MQTT protocol for all control communication operations involving AWS IoT services, but it doesn't manage the MQTT connection\. To ensure that the OTA agent doesn't interfere with the connection management policy of your application, the MQTT connection \(including disconnect and any reconnect functionality\) must be handled by the main user application\. The file can be downloaded over the MQTT or HTTP protocol\. You can choose which protocol when you create the OTA job\. If you choose MQTT, the OTA agent uses the same connection for control operations and for downloading file\. If you choose  HTTP, the OTA agent handles the HTTP connections\. 
 
-## Simple OTA Demo<a name="simple-demo-agent"></a>
+## Simple OTA Demo Using MQTT<a name="simple-demo-agent"></a>
 
-The following is an excerpt of a simple OTA demo that shows how the agent connects to the MQTT broker and initializes the OTA agent\. In this example, we configure the demo to use the default OTA completion callback and simply print out some statistics once per second\. For brevity, we leave out some details from this demo\.
+The following is an excerpt of a simple OTA demo that shows you how the agent connects to the MQTT broker and initializes the OTA agent\. In this example, we configure the demo to use the default OTA completion callback and print out some statistics once per second\. For brevity, we leave out some details from this demo\.
 
-For a working example that uses the AWS IoT MQTT broker, see the OTA demo code in the `demos/common/ota` directory\.
+For a working example that uses the AWS IoT MQTT broker, see the OTA demo code in the `demos/ota` directory\.
 
 Because the OTA agent is its own task, the intentional one\-second delay in this example affects this application only\. It has no impact on the performance of the agent\.
 
 ```
-/* Create the MQTT Client. */
-if( MQTT_AGENT_Create( &( xMQTT_h ) ) == eMQTTAgentSuccess )
+void vRunOTAUpdateDemo( const IotNetworkInterface_t * pNetworkInterface,
+                        void * pNetworkCredentialInfo )
 {
-    for ( ; ; )
+    IotMqttConnectInfo_t xConnectInfo = IOT_MQTT_CONNECT_INFO_INITIALIZER;
+    OTA_State_t eState;
+    OTA_ConnectionContext_t xOTAConnectionCtx = { 0 };
+
+    configPRINTF( ( "OTA demo version %u.%u.%u\r\n",
+                    xAppFirmwareVersion.u.x.ucMajor,
+                    xAppFirmwareVersion.u.x.ucMinor,
+                    xAppFirmwareVersion.u.x.usBuild ) );
+    configPRINTF( ( "Creating MQTT Client...\r\n" ) );
+
+    /* Create the MQTT Client. */
+
+    for( ; ; )
     {
-        memset( &xConnParm, 0, sizeof( xConnParm ) );
+        xNetworkConnected = prxCreateNetworkConnection();
 
-        /* ... Set MQTT connection parameters here per your application needs ... */
-
-        configPRINTF( ( "Connecting to %s\r\n", clientcredentialMQTT_BROKER_ENDPOINT ) );
-        if( MQTT_AGENT_Connect( xMQTT_h, &( xConnParm ), myappMAX_AWS_CONNECT_WAIT_IN_TICKS ) == eMQTTAgentSuccess )
+        if( xNetworkConnected )
         {
-    		configPRINTF( ( "Connected to broker.\r\n" ) );
+            configPRINTF( ( "Connecting to broker...\r\n" ) );
+            memset( &xConnectInfo, 0, sizeof( xConnectInfo ) );
 
-	    	/* Initialize the OTA Agent with the default completion callback handler. */
-    		OTA_AgentInit( xMQTT_h, ( const uint8_t * ) ( clientcredentialIOT_THING_NAME ), NULL,		/* NULL uses the default
-    		callback handler. */ ( TickType_t ) ~0 );
-
-            while( ( eState = OTA_GetAgentState() ) != eOTA_AgentState_NotReady )
+            if( xConnection.ulNetworkType == AWSIOT_NETWORK_TYPE_BLE )
             {
-                /* Wait forever for OTA traffic but allow other tasks to run
-                   and output statistics only once per second. */
-
-                vTaskDelay( myappONE_SECOND_DELAY_IN_TICKS );
-                configPRINTF( ( "State: %s  Received: %u   Queued: %u   Processed: %u   Dropped: %u\r\n",
-                    pcStateStr[eState],
-                    OTA_GetPacketsReceived(),
-                    OTA_GetPacketsQueued(),
-                    OTA_GetPacketsProcessed(),
-                    OTA_GetPacketsDropped() ) );
+                xConnectInfo.awsIotMqttMode = false;
+                xConnectInfo.keepAliveSeconds = 0;
             }
-            /* ... Handle MQTT disconnect per your application needs ... */
+            else
+            {
+                xConnectInfo.awsIotMqttMode = true;
+                xConnectInfo.keepAliveSeconds = otaDemoKEEPALIVE_SECONDS;
+            }
+
+            xConnectInfo.cleanSession = true;
+            xConnectInfo.clientIdentifierLength = ( uint16_t ) strlen( clientcredentialIOT_THING_NAME );
+            xConnectInfo.pClientIdentifier = clientcredentialIOT_THING_NAME;
+
+            /* Connect to the broker. */
+            if( IotMqtt_Connect( &( xConnection.xNetworkInfo ),
+                                 &xConnectInfo,
+                                 otaDemoCONN_TIMEOUT_MS, &( xConnection.xMqttConnection ) ) == IOT_MQTT_SUCCESS )
+            {
+                configPRINTF( ( "Connected to broker.\r\n" ) );
+                xOTAConnectionCtx.pvControlClient = xConnection.xMqttConnection;
+                xOTAConnectionCtx.pxNetworkInterface = ( void * ) pNetworkInterface;
+                xOTAConnectionCtx.pvNetworkCredentials = pNetworkCredentialInfo;
+
+                OTA_AgentInit( ( void * ) ( &xOTAConnectionCtx ), ( const uint8_t * ) ( clientcredentialIOT_THING_NAME ), App_OTACompleteCallback, ( TickType_t ) ~0 );
+
+                while( ( eState = OTA_GetAgentState() ) != eOTA_AgentState_Stopped )
+                {
+                    /* Wait forever for OTA traffic but allow other tasks to run and output statistics only once per second. */
+                    vTaskDelay( myappONE_SECOND_DELAY_IN_TICKS );
+                    configPRINTF( ( "State: %s  Received: %u   Queued: %u   Processed: %u   Dropped: %u\r\n", pcStateStr[ eState ],
+                                    OTA_GetPacketsReceived(), OTA_GetPacketsQueued(), OTA_GetPacketsProcessed(), OTA_GetPacketsDropped() ) );
+                }
+
+                IotMqtt_Disconnect( xConnection.xMqttConnection, false );
+            }
+            else
+            {
+                configPRINTF( ( "ERROR:  MQTT_AGENT_Connect() Failed.\r\n" ) );
+            }
+
+            vMqttDemoDeleteNetworkConnection( &xConnection );
+
+            /* After failure to connect or a disconnect, wait an arbitrary one second before retry. */
+            vTaskDelay( myappONE_SECOND_DELAY_IN_TICKS );
         }
         else
         {
-            configPRINTF( ( "ERROR:  MQTT_AGENT_Connect() Failed.\r\n" ) );
+            configPRINTF( ( "Failed to create MQTT client.\r\n" ) );
         }
-        /* After failure to connect or a disconnect, wait an arbitrary one second before retry. */
-        vTaskDelay( myappONE_SECOND_DELAY_IN_TICKS );
     }
-}
-else
-{
-    configPRINTF( ( "Failed to create MQTT client.\r\n" ) );
 }
 ```
 

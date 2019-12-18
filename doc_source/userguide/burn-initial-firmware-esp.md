@@ -1,12 +1,12 @@
 # Install the Initial Version of Firmware on the Espressif ESP32<a name="burn-initial-firmware-esp"></a>
 
-This guide is written with the assumption that you have already performed the steps in [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) and [Over\-the\-Air Update Prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/ota-prereqs.html)\. Before you attempt an OTA update, you might want to run the MQTT demo project described in [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) to ensure that your board and toolchain are set up correctly\.
+This guide is written with the assumption that you have already performed the steps in [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) and [Over\-the\-Air Update Prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/ota-prereqs.html)\. Before you attempt an OTA update, you might want to run the MQTT demo project described in [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) to ensure that your board and tool chain are set up correctly\.
 
 **To flash an initial factory image to the board**
 
 1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
-1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [Over\-the\-Air Update Prerequisites](ota-prereqs.md) to `demos/include/aws_ota_codesigner_certificate.h`\. It should be formatted in following way\.
+1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [OTA Update Prerequisites](ota-prereqs.md) to `demos/include/aws_ota_codesigner_certificate.h`\. It should be formatted in following way\.
 
    ```
    static const char signingcredentialSIGNING_CERTIFICATE_PEM[] = "-----BEGIN CERTIFICATE-----\n"

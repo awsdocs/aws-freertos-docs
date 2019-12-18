@@ -26,7 +26,7 @@ To connect your devices to AWS IoT across MQTT, you need to set up AWS IoT and A
 
 **To set up AWS IoT**
 
-1. Set up an AWS account on [https://aws\.amazon\.com](https://aws.amazon.com)\.
+1. Set up an AWS account on [https://aws\.amazon\.com/](https://aws.amazon.com/)\.
 
 1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/), and from the navigation pane, choose **Manage**, and then choose **Things**\.
 
@@ -168,7 +168,7 @@ When you define configuration variables, use the format of the placeholder value
    $ pod install
    ```
 
-1. Open the `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo.xcodeproj` project with Xcode, and change the signing developer account to your account\.
+1. Open the `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo.xcworkspace` project with Xcode, and change the signing developer account to your account\.
 
 1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Amazon/AmazonConstants.swift`, and redefine the following variables:
    + `region`: Your AWS Region\.

@@ -1,6 +1,6 @@
 # Porting the TLS Library<a name="afr-porting-tls"></a>
 
-For TLS authentication, Amazon FreeRTOS uses either mbedTLS or an off\-chip TLS implementation, such as those found on some network co\-processors\. Amazon FreeRTOS includes a port of mbedTLS\. If you use mbedTLS for TLS, TLS porting is not required\. To allow different TLS implementations, third\-party TLS libraries are accessed through a TLS abstraction layer\.
+For  Transport Layer Security \(TLS\) authentication, Amazon FreeRTOS uses either mbedTLS or an off\-chip TLS implementation, such as those found on some network co\-processors\. Amazon FreeRTOS includes a port of mbedTLS\. If you use mbedTLS for TLS, TLS porting is not required\. To allow different TLS implementations, third\-party TLS libraries are accessed through a TLS abstraction layer\.
 
 **Note**  
 No matter which TLS implementation is used by your device's port of Amazon FreeRTOS, the port must pass the qualification tests for TLS\. Qualification is based on results from AWS IoT Device Tester\.
@@ -36,7 +36,7 @@ If your target hardware offloads TLS functionality to a separate network chip, y
 | TLS\_Send | Write the requested number of bytes to the TLS connection\. | 
 | TLS\_Cleanup | Free resources consumed by the TLS context\. | 
 
-`aws_tls.h` contains the information required to implement these functions\. Save the file in which you implement the functions as `aws_tls.c`\.
+`iot_tls.h` contains the information required to implement these functions\. Save the file in which you implement the functions as `iot_tls.c`\.
 
 ## Testing<a name="porting-testing-tls"></a>
 
@@ -51,9 +51,9 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the TLS library in the IDE project**
 
-1. Add `aws_tls.c` to the `aws_tests` IDE project\.
+1. Add `iot_tls.c` to the `aws_tests` IDE project\.
 
-1. Add the source file `aws_test_tls.c` to the virtual folder `aws_tests/application_code/common_tests/tls`\. This file includes the TLS tests\.
+1. Add the source file `iot_test_tls.c` to the virtual folder `aws_tests/application_code/common_tests/tls`\. This file includes the TLS tests\.
 
 ### Configuring the `CMakeLists.txt` File<a name="testing-cmake-tls"></a>
 
@@ -76,7 +76,7 @@ To run these tests, your board must use the MQTT protocol to communicate with th
 
 Follow the instructions in [Connecting Your Device to AWS IoT](testing-connect-iot.md) to connect your device to AWS IoT\.
 
-Each TLS test requires a different certificate/key combination, formatted and defined in either `<amazon-freertos>/tests/include/aws_clientcredential_keys.h` or `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/aws_test_tls.h`\.
+Each TLS test requires a different certificate/key combination, formatted and defined in either `<amazon-freertos>/tests/include/aws_clientcredential_keys.h` or `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
 
 Follow the instructions in [Setting Up Certificates and Keys for the TLS Tests](tls-certkey-setup.md) to obtain the certificates and keys that you need for testing\.
 
@@ -104,7 +104,7 @@ After you set up the library in the IDE project, you need to configure some othe
 **Important**  
 After you have ported the TLS library and tested your ports, you must run the Secure Socket tests that depend on TLS functionality\. For more information, see [Testing](afr-porting-ss.md#porting-testing-ss) in the Secure Sockets porting documentation\.
 
-## Validation<a name="w3aac11c31c21"></a>
+## Validation<a name="w3aac11c31c23"></a>
 
 To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 

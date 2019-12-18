@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the MediaTek MT7697
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c25c25b7"></a>
+## Overview<a name="w12aab7c25c26b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -96,7 +96,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 **To edit the MediaTek package for debugging Amazon FreeRTOS projects**
 
-1. Find and open the `Keil_v5\ARM\PACK\MediaTek\MTx\4.6.1\MediaTek.MTx.pdsc` file in your Keil MDK installation folder\.
+1. Find and open the `Keil_v5\ARM\PACK\.Web\MediaTek.MTx.pdsc` file in your Keil MDK installation folder\.
 
 1. Replace all instances of `flag = Read32(0x20000000);` with `flag = Read32(0x0010FBFC);`\.
 

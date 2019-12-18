@@ -4,13 +4,13 @@ You can use the Mobile SDKs for Amazon FreeRTOS Bluetooth Devices to create mobi
 
 ## Android SDK for Amazon FreeRTOS Bluetooth Devices<a name="freertos-ble-android"></a>
 
-Use the Android SDK for Amazon FreeRTOS Bluetooth Devices to build Android mobile applications that interact with your microcontroller over Bluetooth Low Energy\. The SDK is available on [GitHub](https://github.com/aws/amazon-freertos-ble-android-sdk/)\.
+Use the Android SDK for Amazon FreeRTOS Bluetooth Devices to build Android mobile applications that interact with your microcontroller over Bluetooth Low Energy\. The SDK is available on [GitHub](https://github.com/aws/amazon-freertos-ble-android-sdk/)\. 
 
-**To install the Android SDK**
+**To install the Android SDK for Amazon FreeRTOS Bluetooth Devices**
 
 1. Download the SDK from [GitHub](https://github.com/aws/amazon-freertos-ble-android-sdk/)\.
 
-1. Open Android Studio, and import the `amazon-freertos-ble-android-sdk/amazonfreertossdk/` directory into your app project\.
+1. Open Android Studio, and import the `amazon-freertos-ble-android-sdk/amazonfreertossdk/` directory into your app project\. The [ Android Studio User Guide](https://developer.android.com/studio/intro) has more information on using Android Studio\. 
 
 1. In your app's `gradle` file, add the following dependencies:
 
@@ -51,7 +51,7 @@ Use the iOS SDK for Amazon FreeRTOS Bluetooth Devices to build iOS mobile applic
 **Note**  
 You might need to use `sudo` to install CocoaPods\.
 
-1. Install the SDK with CocoaPods:
+1. Install the SDK with CocoaPods \(add this to your podfile\):
 
    ```
    $ pod 'AmazonFreeRTOS', :git => 'https://github.com/aws/amazon-freertos-ble-ios-sdk.git'

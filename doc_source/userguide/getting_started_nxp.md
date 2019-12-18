@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the NXP LPC54018 Io
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c25c33b7"></a>
+## Overview<a name="w12aab7c25c35b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -23,11 +23,11 @@ This tutorial contains instructions for the following getting started steps:
 
 **To set up the JTAG Debugger**
 
-You need a JTAG debugger to launch and debug your code running on the NXP LPC54018 board\. Amazon FreeRTOS was tested using a Segger J\-Link probe\. For more information about supported debuggers, see the [NXP LPC54018 User Guide](https://www.nxp.com/docs/en/user-guide/UM11078.pdf)\.
+You need a JTAG debugger to launch and debug your code running on the NXP LPC54018 board\. Amazon FreeRTOS was tested using an OM40006 IoT Module\. For more information about supported debuggers, see the *User Manual for NXP LPC54018 IoT Module* that is available from the [ OM40007 LPC54018 IoT Module](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007) product page\. 
 
-1. If you are using a Segger J\-Link debugger, use a converter cable to connect the 20\-pin connector from the debugger to the 10\-pin connector on the NXP IoT module\. 
+1. If you're using an OM40006 IoT Module debugger, use a converter cable to connect the 20\-pin connector from the debugger to the 10\-pin connector on the NXP IoT module\. 
 
-1. Connect the NXP LPC54018 and the Segger J\-Link Debugger to the USB ports on your computer using mini\-USB to USB cables\.
+1. Connect the NXP LPC54018 and the OM40006 IoT Module Debugger to the USB ports on your computer using mini\-USB to USB cables\.
 
 ## Set Up Your Development Environment<a name="setup-env_nxp"></a>
 
@@ -44,6 +44,8 @@ IAR Embedded Workbench for ARM requires Microsoft Windows\.
 1. Unzip and run the installer\. Follow the prompts\.
 
 1. In the **License Wizard**, choose **Register with IAR Systems to get an evaluation license**\.
+
+1. Put the bootloader on the device before attempting to run any demos\.
 
 **To install MCUXpresso from NXP**
 
@@ -117,7 +119,7 @@ When the debugger stops at the breakpoint in `main()`, press the debug restart b
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Debug** menu, choose **Go**\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c33c13b7"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c35c13b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

@@ -2,7 +2,7 @@
 
 This Getting Started with Amazon FreeRTOS tutorial shows you how to download and configure Amazon FreeRTOS on a host machine, and then compile and run a simple demo application on a [qualified microcontroller board](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
 
-Throughout this tutorial, we assume that you are familiar with AWS IoT and the AWS IoT console\. If not, we recommend that you complete the [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) tutorial before you continue\.
+Throughout this tutorial, we assume that you are familiar with AWS IoT and the AWS IoT console\. If not, we recommend that you complete the [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) tutorial before you continue\.
 
 ## Amazon FreeRTOS Demo Application<a name="w12aab7b7"></a>
 

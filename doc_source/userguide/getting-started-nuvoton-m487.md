@@ -36,7 +36,9 @@ The Keil MDK Nuvoton edition is designed for developing and debugging applicatio
 
 1. On the **File** menu, choose **Open**\. In the **Open file** dialog box, make sure the file type selector is set to **Project Files**\.
 
-1. To open the Wi\-Fi demo project, choose the target project `aws_demos_wifi.uvproj` in the folder  `<amazon-freertos>\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos`\. 
+1. Choose either the Wi\-Fi or Ethernet demo project to build\.
+   + To open the Wi\-Fi demo project, choose the target project `aws_demos.uvproj` in the `<amazon-freertos>\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos` directory\. 
+   + To open the Ethernet demo project, choose the target project `aws_demos_eth.uvproj` in the `<amazon-freertos>\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos_eth` directory\. 
 
 1. To make sure your settings are correct to flash the board, right\-click the `aws_demo` project in the IDE, and then choose **Options**\. \(See [Troubleshooting](#gsg-nuvoton-m487-troubleshoot) for more details\.\)
 
@@ -97,16 +99,26 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 1. Create a folder to contain the generated build file\. We will refer to this folder as the *<BUILD\_FOLDER>*\. 
 
-1. Navigate to the folder containing the source files for the Amazon FreeRTOS demo project\. Then generate the build files by running the following\. 
+1. Generate the build files for either the Wi\-Fi or Ethernet demo\.
+   + For Wi\-Fi:
+
+     Navigate to the directory that contains the source files for the Amazon FreeRTOS demo project\. Then, generate the build files by running the following command\. 
+
+     ```
+     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -S . -B BUILD_FOLDER -G Ninja 
+     ```
+   + For Ethernet:
+
+     Navigate to the directory that contains the source files for the Amazon FreeRTOS demo project\. Then, generate the build files by running the following command\. 
+
+     ```
+     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -DAFR_ENABLE_ETH=1 -S . -B BUILD_FOLDER -G Ninja 
+     ```
+
+1. Generate the binary to flash onto the M487 by running the following command\.
 
    ```
-   cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -S . -B build -G Ninja 
-   ```
-
-1. Generate the binary to flash onto the M487 by running the following\.
-
-   ```
-   cmake --build <BUILD_FOLDER> 
+   cmake --build BUILD_FOLDER 
    ```
 
    At this point, the binary file `aws_demos.bin` should be in the `<BUILD_FOLDER>/vendors/Nuvoton/boards/numaker_iot_m487_wifi` folder\. 

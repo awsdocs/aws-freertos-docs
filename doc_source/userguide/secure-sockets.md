@@ -16,7 +16,7 @@ The Amazon FreeRTOS Secure Sockets library depends on a TCP/IP stack and on a TL
 + A custom implementation of TCP/IP, and the Amazon FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
 + [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) and the Amazon FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
 
-The dependency diagram below shows the the reference implementation included with the Amazon FreeRTOS Secure Sockets library\. This reference implementation supports TLS and TCP/IP over Ethernet and Wi\-Fi with FreeRTOS\+TCP and mbedTLS as dependencies\. For more information about the Amazon FreeRTOS TLS layer, see [Amazon FreeRTOS Transport Layer Security \(TLS\)](security-tls.md)\.
+The dependency diagram below shows the the reference implementation included with the Amazon FreeRTOS Secure Sockets library\. This reference implementation supports TLS and TCP/IP over Ethernet and Wi\-Fi with FreeRTOS\+TCP and mbedTLS as dependencies\. For more information about the Amazon FreeRTOS TLS layer, see [Amazon FreeRTOS Transport Layer Security](security-tls.md)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/sockets-dependencies.png)
 
@@ -29,7 +29,7 @@ Amazon FreeRTOS Secure Sockets library features include:
 
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w12aab9c35c11b5"></a>
+### Error codes<a name="w12aab9c36c11b5"></a>
 
 The error codes that the Amazon FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
@@ -160,6 +160,6 @@ For a full example, see the [Secure Sockets Echo Client Demo](secure-sockets-dem
 Amazon FreeRTOS Secure Sockets depends on a TCP/IP stack and on a TLS implementation\. Depending on your stack, to port the Secure Sockets library, you might need to port some of the following:
 + The [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) TCP/IP stack
 + The [Amazon FreeRTOS Public Key Cryptography Standard \(PKCS\) \#11 Library](security-pkcs.md)
-+ The [Amazon FreeRTOS Transport Layer Security \(TLS\)](security-tls.md)
++ The [Amazon FreeRTOS Transport Layer Security](security-tls.md)
 
 For more information about porting, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the Amazon FreeRTOS Porting Guide\.

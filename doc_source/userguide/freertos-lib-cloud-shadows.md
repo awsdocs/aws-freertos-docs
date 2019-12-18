@@ -2,11 +2,11 @@
 
 ## Overview<a name="freertos-shadow-overview"></a>
 
-The Amazon FreeRTOS Device Shadow APIs define functions to create, update, and delete AWS IoT Device Shadows\. For more information about AWS IoT Device Shadows, see [Device Shadow Service for AWS IoT](http://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\. The Device Shadow service is accessed using the MQTT protocol\. The Amazon FreeRTOS Device Shadow API works with the MQTT API to handle the details of working with the MQTT protocol\.
+The Amazon FreeRTOS Device Shadow APIs define functions to create, update, and delete AWS IoT Device Shadows\. For more information about AWS IoT Device Shadows, see [Device Shadow Service for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\. The Device Shadow service is accessed using the MQTT protocol\. The Amazon FreeRTOS Device Shadow API works with the MQTT API to handle the details of working with the MQTT protocol\.
 
 ## Dependencies and Requirements<a name="freertos-shadow-dependencies"></a>
 
-To use AWS IoT Device Shadows with Amazon FreeRTOS, you need to register your device as an AWS IoT thing\. Your thing must have a certificate with a policy that permits accessing the device's shadow\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. For an example policy for Amazon FreeRTOS, see the [AWS IoT Device Shadow Demo Application](shadow-demo.md)\.
+To use AWS IoT Device Shadows with Amazon FreeRTOS, you need to register your device as an AWS IoT thing\. Your thing must have a certificate with a policy that permits accessing the device's shadow\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. For an example policy for Amazon FreeRTOS, see the [AWS IoT Device Shadow Demo Application](shadow-demo.md)\.
 
 An example client credentials header file is located at `<amazon-freertos>/demos/include/aws_clientcredential.h`\. Make sure that you set values for the following constants in that header file:
 

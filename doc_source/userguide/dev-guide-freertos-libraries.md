@@ -14,13 +14,14 @@ The following porting libraries are included in configurations of Amazon FreeRTO
 | Library | API Reference | Description | 
 | --- | --- | --- | 
 | Bluetooth Low Energy |  [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/bt__hal__gatt__client_8h.html)  | Using the Amazon FreeRTOS Bluetooth Low Energy library, your microcontroller can communicate with the AWS IoT MQTT broker through a gateway device\. For more information, see [Amazon FreeRTOS Bluetooth Low Energy Library](freertos-ble-library.md)\.  | 
-| Over\-the\-Air Updates |  [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)  |  The Amazon FreeRTOS AWS IoT Over\-the\-Air \(OTA\) Agent library connects your Amazon FreeRTOS device to the AWS IoT OTA agent\. For more information, see [Amazon FreeRTOS Over\-the\-Air \(OTA\) Agent Library](ota-agent-library.md)\.  | 
+| Over\-the\-Air Updates |  [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)  |  The Amazon FreeRTOS AWS IoT Over\-the\-Air \(OTA\) Agent library connects your Amazon FreeRTOS device to the AWS IoT OTA agent\. For more information, see [Amazon FreeRTOSOTA Agent Library](ota-agent-library.md)\.  | 
 | FreeRTOS\+POSIX | [FreeRTOS\+POSIX API Reference](https://freertos.org/Documentation/api-ref/POSIX/index.html) |  You can use the FreeRTOS\+POSIX library to port POSIX\-compliant applications to the Amazon FreeRTOS ecosystem\. For more information, see [FreeRTOS\+POSIX](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_POSIX/index.html)\. | 
 | Secure Sockets |  [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)  | For more information, see [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md)\. | 
 | FreeRTOS\+TCP | [FreeRTOS\+TCP API Reference](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/FreeRTOS_TCP_API_Functions.html) |  FreeRTOS\+TCP is a scalable, open source and thread safe TCP/IP stack for FreeRTOS\. For more information, see [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html)\.  | 
 | Wi\-Fi |  [Wi\-Fi API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/wifi/index.html)  |  The Amazon FreeRTOS Wi\-Fi library enables you to interface with your microcontroller's lower\-level wireless stack\. For more information, see [Amazon FreeRTOS Wi\-Fi Library](freertos-wifi.md)\. | 
 | PKCS \#11 |  |  The Amazon FreeRTOS PKCS \#11 library is a reference implementation of the Public Key Cryptography Standard \#11, to support provisioning and TLS client authentication\. For more information, see [Amazon FreeRTOS Public Key Cryptography Standard \(PKCS\) \#11 Library](security-pkcs.md)\.  | 
-| TLS |  |  For more information, see [Amazon FreeRTOS Transport Layer Security \(TLS\)](security-tls.md)\.  | 
+| TLS |  |  For more information, see [Amazon FreeRTOS Transport Layer Security](security-tls.md)\.  | 
+| Common I/O | Common I/O API Reference |  For more information, see [Amazon FreeRTOS Common I/O](common-io.md)\.  | 
 
 ## Amazon FreeRTOS Application Libraries<a name="dev-guide-freertos-application-libraries"></a>
 

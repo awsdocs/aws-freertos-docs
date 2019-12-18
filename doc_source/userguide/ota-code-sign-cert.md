@@ -5,7 +5,7 @@ To digitally sign firmware images, you need a code\-signing certificate and priv
 Different platforms require different types of code\-signing certificates\. The following sections describe how to create code\-signing certificates for different Amazon FreeRTOS\-qualified platforms\.
 
 **Topics**
-+ [Creating a Code\-Signing Certificate for the Texas Instruments CC3200SF\-LAUNCHXL](ota-code-sign-cert-ti.md)
++ [Creating a Code\-Signing Certificate for the Texas Instruments CC3220SF\-LAUNCHXL](ota-code-sign-cert-ti.md)
 + [Creating a Code\-Signing Certificate for the Microchip Curiosity PIC32MZEF](ota-code-sign-cert-mchip.md)
 + [Creating a Code\-Signing Certificate for the Espressif ESP32](ota-code-sign-cert-esp.md)
 + [Creating a Code\-Signing Certificate for the Nordic nrf52840\-dk](ota-code-sign-cert-nordic.md)

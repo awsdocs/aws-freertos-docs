@@ -27,7 +27,7 @@ Every log entry contains information about who generated the request\. The user 
 + Whether the request was made with temporary security credentials for a role or federated user\.
 + Whether the request was made by another AWS service\.
 
-For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\. AWS IoT OTA actions are documented in the [AWS IoT OTA API Reference](https://docs.aws.amazon.com/iot/latest/apireference/)\.
+For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\. AWS IoT OTA actions are documented in the [AWS IoT OTA API Reference](https://docs.aws.amazon.com/iot/latest/apireference)\.
 
 You can store your log files in your Amazon S3 bucket for as long as you want, but you can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. By default, your log files are encrypted with Amazon S3 server\-side encryption \(SSE\)\.
 

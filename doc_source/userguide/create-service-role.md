@@ -30,9 +30,7 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 
 1. Choose **Attach policies**\.
 
-1. In the **Search** box, enter **AmazonFreeRTOSOTAUpdate**, select **AmazonFreeRTOSOTAUpdate** from the list of filtered policies, and then choose **Attach policy** to attach the policy to your service role\.
-
-1. Follow the same instructions in the previous step to attach the **AWSIoTThingsRegistration** policy to your service role\.<a name="add-iam-permissions"></a>
+1. In the **Search** box, enter "AmazonFreeRTOSOTAUpdate", select **AmazonFreeRTOSOTAUpdate** from the list of filtered policies, and then choose **Attach policy** to attach the policy to your service role\.<a name="add-iam-permissions"></a>
 
 **To add the required IAM permissions to your OTA service role**
 
@@ -64,9 +62,12 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 
 1. Choose **Review policy**\.
 
-1. Enter a name for the policy, and then choose **Create policy**\.<a name="add-s3-permissions"></a>
+1. Enter a name for the policy, and then choose **Create policy**\.
 
-**To add the required Amazon S3 permissions to your OTA service role**
+**Note**  
+The following procedure isn't required if your Amazon S3 bucket name begins with "afr\-ota"\. If it does, the AWS managed policy `AmazonFreeRTOSOTAUpdate` already includes the required permissions\. <a name="add-s3-permissions"></a>
+
+****To add the required Amazon S3 permissions to your OTA service role****
 
 1. In the search box on the IAM console page, enter the name of your role, and then choose it from the list\.
 
@@ -74,7 +75,7 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 
 1. Choose the **JSON** tab\.
 
-1. Copy and paste the following policy document into the box:
+1. Copy and paste the following policy document into the box\.
 
    ```
    {
@@ -83,14 +84,12 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
            {
                "Effect": "Allow",
                "Action": [
-                   "s3:ListBucketVersions",
                    "s3:GetObjectVersion",
                    "s3:GetObject",
                    "s3:PutObject"
                ],
                "Resource": [
-                   "arn:aws:s3:::<example-bucket>/*",
-                   "arn:aws:s3:::<example-bucket>"
+                   "arn:aws:s3:::<example-bucket>/*"
                ]
            }
        ]

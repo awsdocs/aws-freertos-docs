@@ -1,4 +1,4 @@
-# Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Texas Instruments CC3200SF\-LAUNCHXL<a name="download-ota-ti"></a><a name="download-demo"></a>
+# Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL<a name="download-ota-ti"></a><a name="download-demo"></a>
 
 **To download Amazon FreeRTOS and the OTA demo code**
 

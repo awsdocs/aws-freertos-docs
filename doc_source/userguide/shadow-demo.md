@@ -63,4 +63,4 @@ You can use the AWS IoT console to view your device's shadow and confirm that it
 
 1. On the thing detail page, from the left navigation pane, choose **Shadow** to display the thing shadow\.
 
-For more information about how devices and shadows interact, see [Device Shadow Service Data Flow](http://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-data-flow.html)\.
+For more information about how devices and shadows interact, see [Device Shadow Service Data Flow](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-data-flow.html)\.

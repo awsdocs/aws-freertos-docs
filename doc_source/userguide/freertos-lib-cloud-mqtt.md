@@ -14,7 +14,7 @@ The MQTT agent runs in a separate FreeRTOS task and automatically sends regular 
 
 ## Dependencies and Requirements<a name="freertos-mqtt-dependencies"></a>
 
-The Amazon FreeRTOS MQTT library uses the [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md) and the Amazon FreeRTOS Buffer Pool library\. If the MQTT agent connects to a secure MQTT broker, the library also uses the [Amazon FreeRTOS Transport Layer Security \(TLS\)](security-tls.md)\.
+The Amazon FreeRTOS MQTT library uses the [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md) and the Amazon FreeRTOS Buffer Pool library\. If the MQTT agent connects to a secure MQTT broker, the library also uses the [Amazon FreeRTOS Transport Layer Security](security-tls.md)\.
 
 ## Features<a name="freertos-mqtt-features"></a>
 
@@ -43,7 +43,7 @@ These flags can be specified during the MQTT connection request:
 + `mqttagentREQUIRE_TLS`: Set this bit in `xFlags` to use TLS\.
 + `mqttagentUSE_AWS_IOT_ALPN_443`: Set this bit in `xFlags` to use AWS IoT support for MQTT over TLS port 443\.
 
-For more information about ALPN, see the [AWS IoT Protocols](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) in the AWS IoT Developer Guide and the [MQTT with TLS Client Authentication on Port 443: Why It Is Useful and How It Works](https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works) blog post on the Internet of Things on AWS blog\. 
+For more information about ALPN, see the [AWS IoT Protocols](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) in the AWS IoT Developer Guide and the [MQTT with TLS Client Authentication on Port 443: Why It Is Useful and How It Works](http://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works) blog post on the Internet of Things on AWS blog\. 
 
 ## Optimization<a name="freertos-mqtt-optimization"></a>
 

@@ -42,16 +42,8 @@ The following is an example `device.json` file used to create a device pool with
     },
     {
       "name": "TLS",
-      "value": "Yes | No"
+      "value": "On-chip | Offloaded | No"
     },
-    {
-      "name": "PKCS11",
-      "value": "RSA | ECC | Both | No"
-	},
-    {
-      "name": "KeyProvisioning",
-      "value": "Import | Onboard | No"
-	},
     {
     	"name": "BLE",
     	"value": "Yes | No"
@@ -64,16 +56,23 @@ The following is an example `device.json` file used to create a device pool with
       "serialPort": "<computer_serial_port_1>"
     },
     "secureElementConfig": {
-      "publicKeyAsciiHexFilePath": "<absolute-path-to-public-key>"
-	},
+    	"publicKeyAsciiHexFilePath":"<absolute-path-to-public-key>",
+	"secureElementSerialNumber": "<optional: serialnumber-of-secure-element>"
+    },
     "identifiers": [{
       "name": "serialNo",
       "value": "<serialNo-value>"
     }]
+},
+{
     "id": "<device-id2>",
     "connectivity": {
       "protocol": "uart",
       "serialPort": "<computer_serial_port_2>"
+    },
+    "secureElementConfig": {
+        "publicKeyAsciiHexFilePath": "<absolute-path-to-public-key>",
+        "secureElementSerialNumber": "<optional: serialnumber-of-secure-element>"
     },
     "identifiers": [{
       "name": "serialNo",
@@ -102,7 +101,7 @@ Indicates if your board has Wi\-Fi capabilities\.
 `TLS`  
 Indicates if your board supports TLS\. TLS is required for qualification\.  
 `PKCS11`  
-: Indicates the public key cryptography alogirithm the board supports\. Supported values are `ECC`, `RSA`, `Both` and `No`\. PKCS11 is required for qualification\.  
+Indicates the public key cryptography algorithm that the board supports\. PKCS11 is required for qualification\. Supported values are `ECC`, `RSA`, `Both` and `No`\.   
 `KeyProvisioning`  
 Indicates the method of writing a trusted X\.509 client certificate onto your board\. Valid values are `Import`, `Onboard` and `No`\. Key provisioning is required for qualification\.  
 Use `Import` if your board supports private key import\. Use `Onboard` if your board supports on\-board private key generation\. If your board does not support key provisioning, use `No`\.  
@@ -124,6 +123,9 @@ The serial port of the host computer used to connect to the devices being tested
 `devices.secureElementConfig.PublicKeyAsciiHexFilePath`  
 The absolute path to the file that contains the hex bytes public key extracted from onboard private key\.
 
+`devices.secureElementConfig.SecureElementSerialNumber`  
+Optional\. The serial number of the secure element\. Provide this field when the serial number is printed out along with the device public key when you run the Amazon FreeRTOS demo/test project\.
+
 `identifiers`  
 Optional\. An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.
 
@@ -138,8 +140,6 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 ```
 {  
        "sourcePath":"<absolute-path-to/amazon-freertos>",
-       "vendorPath":"{{testData.sourcePath}}/vendors/<vendor-name>/boards/<board-name>",
-       	
        "buildTool":{  
           "name":"<your-build-tool-name>",
           "version":"<your-build-tool-version>",
@@ -169,11 +169,10 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "wifiPassword":"<password>",
           "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
        },
-       "echoServerConfiguration":{  
-          "securePortForSecureSocket":33333,
-          "insecurePortForSecureSocket":33334,
-          "insecurePortForWifi":33335 
-
+       "echoServerConfiguration":{
+       	"securePortForSecureSocket":33333,
+       	"insecurePortForSecureSocket":33334,
+       	"insecurePortForWifi":33335
        },
        "otaConfiguration":{  
           "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
@@ -192,40 +191,6 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
 		    "afrToolchainPath": "</path/to/afr/toolchain>",
 		    "cmakeToolchainPath": "</path/to/cmake/toolchain>"
 		}
-	},
-	"flashTool":{  
-		"name":"<your-flash-tool-name>",
-		"version":"<your-flash-tool-version>",
-		"command":[  
-			"<absolute-path-to/flash-parallel-script> {{testData.sourcePath}} {{device.connectivity.serialPort}} {{buildImageName}}"
-		]
-	},
-	"clientWifiConfig":{  
-		"wifiSSID":"<ssid>",
-		"wifiPassword":"<password>",
-		"wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
-	},
-	"testWifiConfig":{  
-		"wifiSSID":"<ssid>",
-		"wifiPassword":"<password>",
-		"wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
-	},
-	"otaConfiguration":{  
-		"otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
-		"deviceFirmwareFileName":"<absolute-path-to/ota-image-on-device>",
-		"awsSignerPlatform":"AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
-		"awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
-		"awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
-		"awsSignerCertificateFileName":"<awsSignerCertificate-file-name>",
-		"compileCodesignerCertificate":true | false,
-		"otaDemoConfigFilePath": <full-path-to-aws_demo_config.h>
-	},
-	"cmakeConfiguration": {
-		"boardName": "<board-name>",
-		"vendorName": "<vendor-name>",
-		"compilerName": "<compiler-name>",
-		"afrToolchainPath": "</path/to/afr/toolchain>",
-		"cmakeToolchainPath": "</path/to/cmake/toolchain>"
 	}
 }
 ```
@@ -285,19 +250,16 @@ If your board does not support Wi\-Fi, you must still include the `clientWifiCon
   + `eWiFiSecurityWPA2`
 
 `echoServerConfiguration`  
-The configurable echo server ports for WiFi and secure sockets tests\. This field is optional
-
+The configurable echo server ports for WiFi and secure sockets tests\. This field is optional    
 `securePortForSecureSocket`  
-The port which is used to setup an echo server with TLS for the secure sockets test\. The default value is 33333\. Ensure the port configured is not blocked by a firewall or your corporate network\.
-
+The port which is used to setup an echo server with TLS for the secure sockets test\. The default value is 33333\. Ensure the port configured is not blocked by a firewall or your corporate network\.  
 `insecurePortForSecureSocket`  
-The port which is used to setup echo server without TLS for the secure sockets test\. The default value used in the test is 33335\. Ensure the port configured is not blocked by a firewall or your corporate network\.
-
+The port which is used to setup echo server without TLS for the secure sockets test\. The default value used in the test is 33334\. Ensure the port configured is not blocked by a firewall or your corporate network\.  
 `insecurePortForWiFi`  
 The port which is used to setup echo server without TLS for WiFi test\. The default value used in the test is 33335\. Ensure the port configured is not blocked by a firewall or your corporate network\.
 
 `otaConfiguration`  
-The OTA configuration\. This field is optional    
+The OTA configuration\. \[Optional\]    
 `otaFirmwareFilePath`  
 The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/<relative-path/to/ota/image/from/source/root>`\.  
 `deviceFirmwareFileName`  
@@ -314,7 +276,7 @@ Set to `true` if the code\-signer signature verification certificate is not prov
 The full path to `aws_demo_config.h`, found within `<afr-source>/vendors/vendor/boards/board/ aws_demos/config_files/`\. These files are included in the porting code template provided by Amazon FreeRTOS\.
 
 `cmakeConfiguration`  
-CMake configuration \- remove this section if you are not using CMake    
+CMake configuration \[Optional\]    
 `boardName`  
 The name of the board under test\. The board name should be the same as the folder name under *path/to/afr/source/code*/vendors/*<vendor>*/boards/*<board>*\.  
 `vendorName`  

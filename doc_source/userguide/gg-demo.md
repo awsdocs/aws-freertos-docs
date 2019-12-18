@@ -1,6 +1,6 @@
 # AWS IoT Greengrass Discovery Demo Application<a name="gg-demo"></a>
 
-Before you run the AWS IoT Greengrass Discovery demo for Amazon FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting Up Your AWS Account and Permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
+Before you run the AWS IoT Greengrass Discovery demo for Amazon FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting Up Your AWS Account and Permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
 
 After you set up AWS and AWS IoT Greengrass, you need to configure some additional permissions for AWS IoT Greengrass\.
 

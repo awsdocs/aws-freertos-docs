@@ -2,7 +2,7 @@
 
 For a list of Amazon FreeRTOS releases, see [https://github\.com/aws/amazon\-freertos/releases](https://github.com/aws/amazon-freertos/releases)\.
 
-## Migrating Applications<a name="w3aac13b5"></a>
+## Migrating Applications<a name="w3aac14b5"></a>
 
 Amazon FreeRTOS version 201906\.00 introduced some changes to the Amazon FreeRTOS directory structure that break project files built on previous versions of Amazon FreeRTOS\. In order for applications built on previous versions of Amazon FreeRTOS to work with Amazon FreeRTOS version 201906\.00 or newer, you must move the application code to new projects and include the 201906\.00 header files in the application\.
 
@@ -11,18 +11,18 @@ Version 201906\.00 introduced new APIs for the MQTT, Device Shadow, and Device D
 **Note**  
 If you are migrating from previous versions to version 201906\.00 or newer, you might need to reconfigure your `iot_config.h` and [https://www.freertos.org/a00110.html](https://www.freertos.org/a00110.html) files to accommodate the new library implementations\. For information about global configuration settings, see the [ Global Configuration File Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/global_library_config.html#IOT_CONFIG_FILE)\.
 
-## Migrating Ports<a name="w3aac13b7"></a>
+## Migrating Ports<a name="w3aac14b7"></a>
 
 If you have ported a version of Amazon FreeRTOS released prior to the 201906\.00 release, you need to migrate your ported code to be compatible with versions 201906\.00 and later\. For information about porting, see the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.
 
-### Amazon FreeRTOS Code Directory Structure<a name="w3aac13b7b5"></a>
+### Amazon FreeRTOS Code Directory Structure<a name="w3aac14b7b5"></a>
 
 In versions released prior to 201906\.00, the `<amazon-freertos>/lib/third_party/mcu_vendor/vendor` folder held the vendor\-ported code\. One or more project files under the same *vendor* folder compiled the code\. In versions 201906\.00 and later, vendor code is located under the `<amazon-freertos>/vendors/vendor` folder, and project files are located under the `<amazon-freertos>/projects/vendor` folder\.
 
 **Note**  
 The code for ports did not change with version 201906\.00\. Only the location of the code changed\. Move any existing ports to the new folder structure\.
 
-### CMake Build System<a name="w3aac13b7b7"></a>
+### CMake Build System<a name="w3aac14b7b7"></a>
 
 Version 201906\.00 introduced support for using CMake to generate project files\. For information about using CMake with Amazon FreeRTOS, see [Building Amazon FreeRTOS with CMake](building-cmake.md)\.
 

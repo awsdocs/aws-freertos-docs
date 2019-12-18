@@ -11,6 +11,6 @@ The OTA agent included with Amazon FreeRTOS checks the version of any update and
 1. Rebuild the project\.
 
 You must copy your firmware update into the Amazon S3 bucket that you created as described in [Create an Amazon S3 Bucket to Store Your Update](dg-ota-bucket.md)\. The name of the file you need to copy to Amazon S3 depends on the hardware platform you are using: 
-+ Texas Instruments CC3200SF\-LAUNCHXL: `vendors/ti/boards/cc3220_launchpad/aws_demos/ccs/debug/aws_demos.bin`
++ Texas Instruments CC3220SF\-LAUNCHXL: `vendors/ti/boards/cc3220_launchpad/aws_demos/ccs/debug/aws_demos.bin`
 + Microchip Curiosity PIC32MZEF: `vendors/microchip/boards/curiosity_pic32mzef/aws_demos/mplab/dist/pic32mz_ef_curiosity/production/mplab.production.ota.bin`
 + Espressif ESP32: `vendors/espressif/boards/esp32/aws_demos/make/build/aws_demos.bin`

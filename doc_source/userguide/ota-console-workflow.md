@@ -10,6 +10,8 @@
 
 1. If you are updating a single device, select the check box next to the IoT thing associated with your device\. If you are updating a group of devices, select the check box next to the thing group associated with your devices\. Choose **Next**\.
 
+1. Under **Select the protocol for firmware image transfer**, choose **HTTP**, **MQTT**, or choose both to allow each device to determine the protocol to use\.
+
 1. Under **Select and sign your firmware image**, choose **Sign a new firmware image for me**\.
 
 1. Under **Code signing profile**, choose **Create**\.
@@ -23,8 +25,6 @@ Only hardware platforms that have been qualified for Amazon FreeRTOS are display
    1. Under **Code signing certificate**, choose **Select** to select a previously imported certificate or **Import** to import a new certificate\.
 
    1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code\-signing certificate on your device\. The certificate's location varies by platform\. It should be the location where you put the code\-signing certificate when you followed the instructions in [Installing the Initial Firmware](dg-ota-initial-firmware.md)\.
-**Note**  
-When you run on the Microchip Curiosity PIC32MZEF, it searches for the code\-signing certificate in the certificate store by name\. If not found, a built\-in certificate is used\.
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, do not include a leading forward slash \(**/**\) in front of the file name if your code signing certificate exists in the root of the file system\. Otherwise, the OTA update fails during authentication with a `file not found` error\.
 
@@ -74,10 +74,10 @@ After you have specified the code\-signing information, specify the OTA update j
 
 **Note**  
 Do not use any personally identifiable information in the job ID for your OTA update\. Examples of personally identifiable information include:  
-Your name\.
-Your IP address\.
-Your email address\.
-Your location\.
+Names\.
+IP addresses\.
+Email addresses\.
+Locations\.
 Bank details\.
 Medical information\.
 

@@ -30,7 +30,7 @@ The FreeRTOS kernel is a real\-time operating system kernel that supports numero
 + Multiple memory allocation options \(including the ability to create statically allocated systems\)\.
 + Inter\-task coordination primitives, including task notifications, message queues, multiple types of semaphores, and stream and message buffers\.
 
-For more information about the FreeRTOS kernel, see [FreeRTOS Kernel Fundamentals](dev-guide-freertos-kernel.md)\.
+For the most up\-to\-date documentation about the FreeRTOS kernel, see [FreeRTOS\.org](https://freertos.org/RTOS.html)\. FreeRTOS\.org offers a number of detailed tutorials and guides about using the FreeRTOS kernel, including a [Quick Start Guide](https://freertos.org/FreeRTOS-quick-start-guide.html#page_top) and the more in\-depth [ Mastering the FreeRTOS Real Time Kernel](https://freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)\. For more information about the FreeRTOS kernel in this guide, see [FreeRTOS Kernel Fundamentals](dev-guide-freertos-kernel.md)\.
 
 ## Amazon FreeRTOS Libraries<a name="freertos-libraries"></a>
 

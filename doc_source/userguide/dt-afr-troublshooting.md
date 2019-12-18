@@ -17,7 +17,7 @@ We recommend the following workflow for troubleshooting:
    + Device configuration, such as JSON configuration files in the `/configs/` folder\.
    + Device interface\. Check the logs to determine which interface is failing\.
    + Device tooling\. Make sure that the toolchains for building and flashing the device are installed and configured correctly\.
-   + Make sure that you have a clean, cloned version of the Amazon FreeRTOS source code\. Amazon FreeRTOS releases are tagged according to Amazon FreeRTOS version\. To clone a specific version of the code, use git clone \-\-branch * <version\-number>* https://github\.com/aws/amazon\-freertos\.git \-\-recurse\-submodules\.
+   + Make sure that you have a clean, cloned version of the Amazon FreeRTOS source code\. Amazon FreeRTOS releases are tagged according to Amazon FreeRTOS version\. To clone a specific version of the code, use git clone \-\-branch * <version\-number>* https://github\.com/aws/amazon\-freertos\.git\.
 
 ## Troubleshooting Device Configuration<a name="troubleshoot-device-config"></a>
 
