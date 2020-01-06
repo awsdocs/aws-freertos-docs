@@ -5,7 +5,7 @@ FreeRTOS\+TCP is a native TCP/IP stack for the FreeRTOS kernel\. For more inform
 ## Prerequisites<a name="porting-prereqs-freertos-tcp"></a>
 
 To port the FreeRTOS\+TCP library, you need the following:
-+ An IDE project or `CMakeLists.txt` list file that includes the vendor\-supplied Ethernet drivers\.
++ An IDE project or `CMakeLists.txt` list file that includes the vendor\-supplied Ethernet or Wi\-Fi drivers\.
 
   For information about setting up a test project, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
@@ -22,7 +22,7 @@ If a port does not exist, do the following:
 
 1. If necessary, follow the [Porting FreeRTOS\+TCP to a New Embedded C Compiler](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html) instructions on FreeRTOS\.org to port FreeRTOS\+TCP to a new compiler\.
 
-1. Implement a new port that uses the vendor\-supplied Ethernet drivers in a file called `NetworkInterface.c`, and save the file to `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/NetworkInterface/<board_family>`\.
+1. Implement a new port that uses the vendor\-supplied Ethernet or Wi\-Fi drivers in a file called `NetworkInterface.c`, and save the file to `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/NetworkInterface/<board_family>`\.
 **Note**  
 The files in the `<amazon-freertos>/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/BufferManagement` directory are used by multiple ports\. Do not edit the files in this directory\.
 
@@ -61,7 +61,7 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the TCP tests**
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    If you have not ported the Secure Sockets library, also comment out the line that calls `SOCKETS_Init()`\. When you reach the [Porting the Secure Sockets Library](afr-porting-ss.md) section, you will be instructed to uncomment this initialization function call\.
 
@@ -87,8 +87,8 @@ After you set up the library in the IDE project, you need to configure some othe
 
 1. Build the test project, and then flash it to your device for execution\.
 
-1. Check the test results in the UART console\. If `Network connection successful` appears, the Ethernet driver successfully connected to the network, and the test is complete\.
+1. Check the test results in the UART console\. If `Network connection successful` appears, the Ethernet or Wi\-Fi driver successfully connected to the network, and the test is complete\.
 
-## Validation<a name="w3aac11c21c11c11"></a>
+## Validation<a name="w3aac11c25c11c11"></a>
 
-To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.

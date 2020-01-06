@@ -1,4 +1,4 @@
-# Logging AWS IoT OTA API Calls with AWS CloudTrail<a name="iot-using-cloudtrail-afr"></a>
+# Log AWS IoT OTA API Calls with AWS CloudTrail<a name="iot-using-cloudtrail-afr"></a>
 
 Amazon FreeRTOS is integrated with CloudTrail, a service that captures AWS IoT OTA API calls and delivers the log files to an Amazon S3 bucket that you specify\. CloudTrail captures API calls from your code to the AWS IoT OTA APIs\. Using the information collected by CloudTrail, you can determine the request that was made to AWS IoT OTA, the source IP address from which the request was made, who made the request, when it was made, and so on\. 
 
@@ -27,7 +27,7 @@ Every log entry contains information about who generated the request\. The user 
 + Whether the request was made with temporary security credentials for a role or federated user\.
 + Whether the request was made by another AWS service\.
 
-For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\. AWS IoT OTA actions are documented in the [AWS IoT OTA API Reference](https://docs.aws.amazon.com/iot/latest/apireference/)\.
+For more information, see the [CloudTrail userIdentity Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\. AWS IoT OTA actions are documented in the [AWS IoT OTA API Reference](https://docs.aws.amazon.com/iot/latest/apireference)\.
 
 You can store your log files in your Amazon S3 bucket for as long as you want, but you can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. By default, your log files are encrypted with Amazon S3 server\-side encryption \(SSE\)\.
 

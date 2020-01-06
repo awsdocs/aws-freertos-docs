@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the MediaTek MT7697
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c23c21b7"></a>
+## Overview<a name="w12aab7c25c26b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -76,7 +76,7 @@ If you are having trouble connecting to your board after you install the driver,
 
 1. Choose the **RESET** button on your MediaTek MT7697Hx Development Kit\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c21c13b7"></a>
+### Monitoring MQTT Messages on the Cloud<a name="gsg-mediatek-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -96,7 +96,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 **To edit the MediaTek package for debugging Amazon FreeRTOS projects**
 
-1. Find and open the `Keil_v5\ARM\PACK\MediaTek\MTx\4.6.1\MediaTek.MTx.pdsc` file in your Keil MDK installation folder\.
+1. Find and open the `Keil_v5\ARM\PACK\.Web\MediaTek.MTx.pdsc` file in your Keil MDK installation folder\.
 
 1. Replace all instances of `flag = Read32(0x20000000);` with `flag = Read32(0x0010FBFC);`\.
 
@@ -118,9 +118,15 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
    To set the kit to PROGRAM mode, press and hold the **PROG** button\. With the **PROG** button still pressed, press and release the **RESET** button, and then release the **PROG** button\.
 
-1. From the μVision menu, choose **Debug**, and then choose **Start/Stop Debug Session**\. The **Call Stack \+ Locals** window opens when you start the debug session\. μVision flashes the demo to the board, runs the demo, and stops at the beginning of the `main()` function\. 
+1. From the menu, choose **Flash**, and then choose **Download**\. 
 
-1. From the menu, choose **Debug**, and then choose **Stop** to stop the session\. The program counter stops at the following line: 
+   μVision notifies you when the download is complete\.
+
+1. Press the **RESET** button on your MediaTek MT7697Hx Development Kit\.
+
+1. From the μVision menu, choose **Debug**, and then choose **Start/Stop Debug Session**\. The **Call Stack \+ Locals** window opens when you start the debug session\.  
+
+1. From the menu, choose **Debug**, and then choose **Stop** to pause the code execution\. The program counter stops at the following line: 
 
    ```
    { volatile int wait_ice = 1 ; while ( wait_ice ) ; }
@@ -130,7 +136,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. Set breakpoints in your project's source code, and run the code\. 
 
-### Troubleshooting the IDE Debugger Settings<a name="w3aab7c23c21c15b5"></a>
+### Troubleshooting the IDE Debugger Settings<a name="gsg-mediatek-ts-ide"></a>
 
 If you are having trouble debugging an application, your debugger settings might be incorrect\.
 

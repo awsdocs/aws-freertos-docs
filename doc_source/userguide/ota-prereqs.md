@@ -1,6 +1,6 @@
-# Over\-the\-Air Update Prerequisites<a name="ota-prereqs"></a>
+# OTA Update Prerequisites<a name="ota-prereqs"></a>
 
-To use over\-the\-air updates, you need to do the following:
+To use over\-the\-air \(OTA\) updates, do the following:
 + [Create an Amazon S3 Bucket to Store Your Update](dg-ota-bucket.md)\.
 + [Create an OTA Update Service Role](create-service-role.md)\.
 + [Create an OTA User Policy](create-ota-user-policy.md)\.

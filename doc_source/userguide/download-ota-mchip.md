@@ -47,7 +47,7 @@
 
 1. Copy your code\-signing certificate in \.pem format in the path `demos/ota/bootloader/utility/codesigner_cert_utility/`\. Rename the certificate file `aws_ota_codesigner_certificate.pem`\.
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 

@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Xilinx Avnet Mi
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c23c37b7"></a>
+## Overview<a name="w12aab7c25c45b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -70,7 +70,7 @@ For more information about XSDK, see the [Getting Started with Xilinx SDK](https
 
 ### Open the Amazon FreeRTOS Demo in the XSDK IDE<a name="xilinx-freertos-import-project"></a>
 
-1. Launch the XSDK IDE with the workspace directory set to `projects/xilinx/microzed/xsdk/aws_demos`\. 
+1. Launch the XSDK IDE with the workspace directory set to `projects/xilinx/microzed/xsdk`\. 
 
 1. Close the welcome page\. From the menu, choose **Project**, and then clear **Build Automatically**\.
 
@@ -101,7 +101,7 @@ If you see a warning at the top of the **Import Projects** page \("Some projects
 To build all projects without cleaning them, choose **Project**, and then choose **Build All**\.  
 To build individual projects, select the project you want to build, choose **Project**, and then choose **Build Project**\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c37c13b7"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c45c13b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -129,7 +129,7 @@ Before you debug, be sure to back up any content that you have on the MicroSD ca
 
 1. When the debugger stops at the breakpoint in `main()`, from the menu, choose **Run**, and then choose **Resume**\.
 **Note**  
-The first time you run the application, a new certificate\-key pair is generated\. For subsequent runs, you can comment out `vDevModeKeyProvisioning()` in the `main.c` file before you rebuild the images and the `BOOT.bin` file\. This prevents the copying of the certificates and key to storage on every run\.
+The first time you run the application, a new certificate\-key pair is imported into non\-volatile memory\. For subsequent runs, you can comment out `vDevModeKeyProvisioning()` in the `main.c` file before you rebuild the images and the `BOOT.bin` file\. This prevents the copying of the certificates and key to storage on every run\.
 
 You can opt to boot your MicroZed board from a MicroSD card or from QSPI ﬂash to run the Amazon FreeRTOS demo project\. For instructions, see [Generate the Boot Image for the Amazon FreeRTOS Demo Project](#xilinx-build-boot-image) and [Run the Amazon FreeRTOS Demo Project](#xilinx-run)\.
 

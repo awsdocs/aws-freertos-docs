@@ -10,7 +10,7 @@ Make sure that your host machine meets the following prerequisites before you co
 **Note**  
 If you download the binary distribution of CMake, make sure that you add the CMake executable to the PATH environment variable before you use CMake from command line\.
 
-  You can also download and install CMake using a package manager, like [homebrew](https://brew.sh/) on macOS, and [scoop](https://scoop.sh/) or [chocolatey](https://chocolatey.org/) on Windows\.
+  You can also download and install CMake using a package manager, like [homebrew](https://brew.sh/) on macOS, and [ scoop](https://scoop.sh/) or [chocolatey](https://chocolatey.org/) on Windows\.
 **Note**  
 The CMake package versions in the package managers for many Linux distributions are out\-of\-date\. If your distribution's package manager does not include the the latest version of CMake, you can try `linuxbrew` or `nix`\.
 + You must have a compatible native build system\.

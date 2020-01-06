@@ -14,7 +14,7 @@ Amazon's trademarks and trade dress may not be used in
 
 -----
 ## Contents
-+ [Porting Amazon FreeRTOS to Your Device](porting-guide.md)
++ [Amazon FreeRTOS Porting](porting-guide.md)
 + [Downloading Amazon FreeRTOS for Porting](porting-download.md)
 + [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)
    + [Configuring the Amazon FreeRTOS Download](porting-set-up-directory.md)
@@ -42,8 +42,9 @@ Amazon's trademarks and trade dress may not be used in
       + [Setting Up Certificates and Keys for the TLS Tests](tls-certkey-setup.md)
       + [Creating a BYOC (ECDSA)](afr-byoc.md)
          + [ca.config](porting-ca-config.md)
-   + [Setting Up the MQTT Library for Testing](afr-porting-mqtt.md)
+   + [Configuring the MQTT Library for Testing](afr-porting-mqtt.md)
+   + [Configuring the HTTPS Client Library for Testing](afr-porting-https.md)
    + [Porting the OTA Library](afr-porting-ota.md)
-      + [Porting the Bootloader Demo](afr-porting-bootloader.md)
    + [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)
-+ [Migrating to Version 201906.00](porting-migration.md)
+   + [Porting the Common I/O Libraries](afr-porting-commonio.md)
++ [Migrating from Version 1.4.x to Version 201906.00 (and newer)](porting-migration.md)

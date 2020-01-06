@@ -2,7 +2,7 @@
 
 The following example uses a single RTOS task\. The source code for this example can be found at `demos/tcp/aws_tcp_echo_client_single_task.c`\.
 
-Before you begin, verify that you have downloaded Amazon FreeRTOS to your microcontroller and built and run the Amazon FreeRTOS demo projects\. You can download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. For more information about setting up an Amazon FreeRTOS\-qualfied board, see [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
+Before you begin, verify that you have downloaded Amazon FreeRTOS to your microcontroller and built and run the Amazon FreeRTOS demo projects\. You can clone or download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. For more information about setting up an Amazon FreeRTOS\-qualified board, see [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
 
 **To run the demo**
 
@@ -31,6 +31,6 @@ The TCP server and client demos are currently not supported on the Cypress CYW94
 
 1. Use the tool `tools/certificate_configuration/PEMfileToCString.html` to copy the server certificate \(`server.pem`\) to `cTlsECHO_SERVER_CERTIFICATE_PEM` in the file `aws_tcp_echo_client_single_task.c`\.
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_TCP_ECHO_CLIENT_DEMO_ENABLED`\.
+1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_TCP_ECHO_CLIENT_DEMO_ENABLED`\.
 
 The microcontroller and the TLS Echo Server should be on the same network\. When the demo starts \(`main.c`\), you should see a log message that reads Received correct string from echo server\.

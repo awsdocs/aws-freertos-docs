@@ -14,7 +14,7 @@ The MQTT agent runs in a separate FreeRTOS task and automatically sends regular 
 
 ## Dependencies and Requirements<a name="freertos-mqtt-dependencies"></a>
 
-The Amazon FreeRTOS MQTT library uses the [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md) and the Amazon FreeRTOS Buffer Pool library\. If the MQTT agent connects to a secure MQTT broker, the library also uses the [Amazon FreeRTOS Transport Layer Security \(TLS\)](security-tls.md)\.
+The Amazon FreeRTOS MQTT library uses the [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md) and the Amazon FreeRTOS Buffer Pool library\. If the MQTT agent connects to a secure MQTT broker, the library also uses the [Amazon FreeRTOS Transport Layer Security](security-tls.md)\.
 
 ## Features<a name="freertos-mqtt-features"></a>
 
@@ -43,7 +43,7 @@ These flags can be specified during the MQTT connection request:
 + `mqttagentREQUIRE_TLS`: Set this bit in `xFlags` to use TLS\.
 + `mqttagentUSE_AWS_IOT_ALPN_443`: Set this bit in `xFlags` to use AWS IoT support for MQTT over TLS port 443\.
 
-For more information about ALPN, see the [AWS IoT Protocols](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) in the AWS IoT Developer Guide and the [MQTT with TLS Client Authentication on Port 443: Why It Is Useful and How It Works](https://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works) blog post on the Internet of Things on AWS blog\. 
+For more information about ALPN, see the [AWS IoT Protocols](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) in the AWS IoT Developer Guide and the [MQTT with TLS Client Authentication on Port 443: Why It Is Useful and How It Works](http://aws.amazon.com/blogs/iot/mqtt-with-tls-client-authentication-on-port-443-why-it-is-useful-and-how-it-works) blog post on the Internet of Things on AWS blog\. 
 
 ## Optimization<a name="freertos-mqtt-optimization"></a>
 
@@ -68,29 +68,29 @@ You should set these constants to the minimum values possible\.
 
 ### Requirements and Usage Restrictions<a name="freertos-mqtt-requirements-restrictions"></a>
 
-#### <a name="w3aab9c27c13b7b3"></a>
+#### <a name="w12aab9c27c13b7b3"></a>
 
 The MQTT agent task is created using the xTaskCreateStatic\(\) API function \- so the task's stack and control block are statically allocated at compile time\. That ensures the MQTT agent can be used in applications that do not allow dynamic memory allocation, but does mean there is a dependency on configSUPPORT\_STATIC\_ALLOCATION being set to 1 in [`FreeRTOSConfig.h`](dev-guide-freertos-kernel.md#freertos-config)\. 
 
-#### <a name="w3aab9c27c13b7b5"></a>
+#### <a name="w12aab9c27c13b7b5"></a>
 
 he MQTT agent uses the FreeRTOS direct to task notification feature\. Calling an MQTT agent API function may change the calling task's notification value and state\. 
 
-#### <a name="w3aab9c27c13b7b7"></a>
+#### <a name="w12aab9c27c13b7b7"></a>
 
 MQTT packets are stored in buffers provided by the Buffer Pool module\. It is highly recommended to ensure the number of buffers in the pool is at least double the number of MQTT transactions that will be in progress at any one time\.
 
 ## Developer Support<a name="freertos-mqtt-support"></a>
 
-### `mqttconfigASSERT`<a name="w3aab9c27c15b3"></a>
+### `mqttconfigASSERT`<a name="w12aab9c27c15b3"></a>
 
 mqttconfigASSERT\(\) is equivalent to, and used in exactly the same way as, the FreeRTOS configASSERT\(\) macro\. If you want assert statements in the MQTT agent then define mqttconfigASSERT\(\)\. If you do not want assert statements in the MQTT agent then leave mqttconfigASSERT\(\) undefined\. If you define mqttconfigASSERT\(\) to call the FreeRTOS configASSERT\(\), as shown below, then the MQTT agent will only include assert statements if the FreeRTOS configASSERT\(\) is defined\. 
 
 `#define mqttconfigASSERT( x ) configASSERT( x )`
 
-### `mqttconfigENABLE_DEBUG_LOGS`<a name="w3aab9c27c15b5"></a>
+### `mqttconfigENABLE_DEBUG_LOGS`<a name="w12aab9c27c15b5"></a>
 
-#### <a name="w3aab9c27c15b5b3"></a>
+#### <a name="w12aab9c27c15b5b3"></a>
 
 Set `mqttconfigENABLE_DEBUG_LOGS` to **1** to print debug logs via calls to vLoggingPrintf\(\)\.
 
@@ -110,7 +110,7 @@ BaseType_t SYSTEM_Init() { BaseType_t xResult = pdPASS; /* The bufferpool librar
 
 ## API Reference<a name="freertos-mqtt-api"></a>
 
-For a full API reference, see [MQTT \(v1\.0\.0\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html) \.
+For a full API reference, see [ MQTT \(v1\.0\.0\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [ MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html)\.
 
 ## Porting<a name="freertos-mqtt-porting"></a>
 

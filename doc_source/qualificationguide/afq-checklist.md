@@ -1,55 +1,37 @@
 # Amazon FreeRTOS Qualification Checklist<a name="afq-checklist"></a>
 
-Use following checklist to help you keep track of qualification items\.
+Use following checklists to help you keep track of qualification items\.
 
-□ Port Amazon FreeRTOS\.  
-Make sure that you have ported and tested the following libraries, according to the instructions in the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.    
-□ Implement `configPRINT_STRING()` macro\.  
-For instructions, see [Implementing the configPRINT\_STRING\(\) macro](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-config.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Configure FreeRTOS kernel for the target board\.  
-For instructions, see [Configuring a FreeRTOS Kernel Port](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-kernel.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port Wi\-Fi library\.  
-This port is not required for qualification if your board does not support Wi\-Fi\.
-For instructions, see [Porting the Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port TCP/IP stack\.  
-For instructions, see [Porting a TCP/IP Stack](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tcp.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port Secure Sockets library\.  
-For instructions, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port PKCS \#11 library\.  
-For instructions, see [Porting the PKCS \#11 Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port TLS library\.  
-For instructions, see [Porting the TLS Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tls.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Test MQTT library\.  
-For instructions, see [Setting Up the MQTT Library for Testing](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-mqtt.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port OTA library\.  
-This port is currently not required for qualification\.
-For instructions, see [Porting the OTA Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ota.html) in the *Amazon FreeRTOS Porting Guide*\.  
-If you are porting the OTA library for qualification, you must meet the bootloader requirements in [Porting the Bootloader Demo](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-bootloader.html) in the *Amazon FreeRTOS Porting Guide*\.  
-□ Port Bluetooth Low Energy library\.  
-This port is currently not required for qualification\.
-For instructions, see [Porting the Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ble.html) in the *Amazon FreeRTOS Porting Guide*\.
+You must pass each of these items in order to be listed in the [AWS Partner Device Catalog](https://devices.amazonaws.com/)\.
++ Review the steps you must follow for Porting Amazon FreeRTOS to your device; these are summarized in the [Amazon FreeRTOS Porting Flowchart](https://docs.aws.amazon.com/freertos/latest/portingguide/porting-chart.html)\. See the [Amazon FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/index.html) for additional details\. 
+  + You must port an Amazon FreeRTOS qualified kernel architecture and cannot make modifications to it on your own\. See [Configuring a Amazon FreeRTOS Kernel Port](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-kernel.html) in the *Amazon FreeRTOS Porting Guide* for more information\.
++ Validate your Amazon FreeRTOS port with AWS IoT Device Tester\.
+  + A complete successful IDT log \(with all Test Groups passing on ONE log\) is required in your Device Qualification Portal \(DQP\) submission\.
+  + All qualification submissions must be made through the Device Listing Portal on APN Partner Central\.
++ Create a Hello World demo
+  + Please refer to [Setting Up a Hello World Demo](afq-hw-demo.md)\.
++ Create a Getting Started Guide \(GSG\) for your device 
+  + Please refer to [Creating a Getting Started with Amazon FreeRTOS Guide for Your Device](afq-gsg.md)\.
++ Create an appropriate [open source license](https://opensource.org/licenses) text file and place it with your code\. 
+  + Amazon FreeRTOS is distributed under the [MIT license](https://opensource.org/licenses/MIT)\. 
++ Provide an accessible location to download your code\.
+  + We recommend you use a github repo, but please do not use a personal GitHub repository\. Use an official company GitHub repo\. 
++ Mitigate the following threat in regards to the random number generator \(RNG\)
+  + In order to mitigate the risk of network spoofing and man\-in\-the\-middle attacks that can result in unauthorized data disclosure, a true hardware random number generator \(TRNG\) is required for Amazon FreeRTOS qualification\. The TRNG is recommended by the Amazon FreeRTOS libraries that implement protocols such as DHCP, DNS, TCP/IP, and TLS\. Consistent with the guidance published by NIST, the TRNG on your board is used by Amazon FreeRTOS as the entropy source for a standard implementation CTR\_DRBG \(as described in [ NIST SP 800\-90A](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf) \- Page50\)\. 
 
-□ Validate your Amazon FreeRTOS ports with AWS IoT Device Tester\.  
-For more information, see [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the *Amazon FreeRTOS User Guide*\.
+    Per the [NIST SP 800\-90B](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90B.pdf) description, a TRNG is a "physical noise source" \(section 2\.2\.1\) that produces "independent and identically distributed" \(IID\) samples \(section 5\), for example, a ring oscillator\. 
+  + To control BOM costs and for some customer use cases, certain boards will not have a dedicated TRNG\. If you are qualifying these boards, please add the following advisory notice in the header of the file [ `iot_pkcs11.h`](https://github.com/aws/amazon-freertos/blob/master/libraries/freertos_plus/standard/pkcs11/include/iot_pkcs11.h) that you have ported\. Please view our changelog for examples of boards that are similar in this regard\. 
 
-□ Set up Hello World demo\.  
-For instructions, see [Setting Up a Hello World Demo](afq-hw-demo.md)\.
+    **Notice**: *For best security practice, it is recommended to utilize a random number generation solution that is truly randomized and conforms to the guidelines provided in the [ Amazon FreeRTOS Qualification Checklist](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html)\. The random number generator method presented in this file by the silicon vendor is not truly random in nature\. Please contact the silicon vendor for details regarding the method implemented\.*
++ If you are qualifying for OTA, verify that you mitigate the risks defined in the OTA Threat Model described in [ Porting the OTA Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ota.html) in the *Amazon FreeRTOS Porting Guide*\.
 
-□ Create a Getting Started Guide for your device\.  
-For instructions, see [Creating a Getting Started with Amazon FreeRTOS Guide for Your Device](afq-gsg.md)\.
-
-□ Create a CMake list file, and build the test and demo applications with the file\.  
-For instructions, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.  
-A CMake list file is not required to qualify a board through the AWS Device Qualification Program\. The file is only required for listing devices on the Amazon FreeRTOS Console\.
-
-□ Provide hardware information for your device\.  
-For instructions, see [Hardware Information for Amazon FreeRTOS Qualification](afq-hardware.md)\.
-
-□ Create and place an appropriate open source license text file with your code\.  
-For instructions, see [Providing an Open Source License for Your Code](afq-license.md)\.
-
-□ Run the Amazon FreeRTOS qualification check script\.  
-For instructions, see [Amazon FreeRTOS Qualification Check Script](afq-script.md)\.
-
-□ Submit your Device Tester test result file in the Device Listing Portal\.  
-All qualification submissions must be made through the [Device Listing Portal](https://partnercentral.awspartner.com/DeviceListPage) on APN Partner Central\.
+To be listed in the Online Configuration Wizard, please contact your APN representative and provide the following items\.
++ Create a CMake list file, and build the test and demo applications with this file\. 
+  + For instructions, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.
+**Note**  
+A CMake list file is not required to qualify a board through the AWS Device Qualification Program\. The file is only required for listing devices on the Amazon FreeRTOS Console\. 
++ Provide the following hardware information for your device\.
+  + The compiler options for optimizations\.
+  + The Supported IDE, with latest supported version number\. 
+  + The CLI command to build target executables\. 
+  + The CLI command to flash the target\. 

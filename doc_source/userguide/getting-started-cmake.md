@@ -11,6 +11,7 @@ The following boards support CMake:
 + Marvell MW320 AWS IoT Starter Kit
 + Marvell MW322 AWS IoT Starter Kit
 + Microchip Curiosity PIC32MZEF Bundle
++ Nordic nRF52840 DK Development kit
 + STMicroelectronicsSTM32L4 Discovery Kit IoT Node
 + Texas Instruments CC3220SF\-LAUNCHXL
 + Microsoft Windows Simulator

@@ -11,7 +11,7 @@ In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c23c19c13"></a>
+## Overview<a name="w12aab7c25c24c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -25,7 +25,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up Your Development Environment<a name="marvell-setup-env"></a>
+## Set Up Your Development Environment<a name="marvell322-setup-env"></a>
 
 Amazon FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `vendors/marvell/WMSDK/mw320/sdk` directory\.
 
@@ -37,7 +37,7 @@ In addition to the software that is bundled with the M320 AWS IoT Starter Kit an
 + The CMake build system\. Versions 3\.13 and later are supported\.
 + \(Optional\) A supported IDE, for application development and debugging\.
 
-### Install Required Third\-Party Libraries with installpkgs\.sh<a name="marvell-sdk"></a>
+### Install Required Third\-Party Libraries with installpkgs\.sh<a name="marvell322-sdk"></a>
 
 The `vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh` script attempts to autodetect the machine type and install some required libraries, which include:
 + C libraries
@@ -65,7 +65,7 @@ You can configure the permissions on your Linux host machine to allow `flashprog
 **Note**  
 If you are using the Eclipse IDE, you must configure these permissions\.
 
-### Set Up the Toolchain<a name="marvell-toolchain"></a>
+### Set Up the Toolchain<a name="marvell322-toolchain"></a>
 
 The Amazon FreeRTOS port for the this board is configured to use the GNU toolchain by default\. For the Makefiles to invoke the correct compiler toolchain, the GNU compiler toolchain binaries must be included in the user’s PATH variable\. The GNU toolchain binaries must also be prefixed with `arm-none-eabi-`\.
 
@@ -88,7 +88,7 @@ The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with t
    For example, open the `.profile` file in your `$HOME` directory, and append the following line to the end of the file:
 
    ```
-   PATH=$PATH:<path>/gcc-arm-none-eabit-4_9_2015_q3/bin
+   PATH="$PATH:<path>/gcc-arm-none-eabit-4_9_2015_q3/bin"
    ```
 
    Where *<path>* is the full directory path to the `gcc-arm-none-eabit-4_9_2015_q3` folder\.
@@ -96,7 +96,7 @@ The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with t
 **Note**  
 Some distributions of Ubuntu include a Debian version of the GCC cross compiler\. If your distribution includes a native cross compiler, remove it, and follow the steps to set up the GCC compiler toolchain\.
 
-### Set Up OpenOCD<a name="marvell-openocd"></a>
+### Set Up OpenOCD<a name="marvell322-openocd"></a>
 
 OpenOCD version 0\.9 is required\. If an earlier version is installed on your host machine, remove it using your distribution's uninstall process\.
 
@@ -126,7 +126,7 @@ If you cannot use a package manager to install OpenOCD version 0\.9, follow thes
    make install
    ```
 
-### Install CMake<a name="w3aab7c23c19c15c17"></a>
+### Install CMake<a name="gsg-marvell322-cmake"></a>
 
 The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device\. Amazon FreeRTOS supports versions 3\.13 and later\.
 
@@ -134,7 +134,7 @@ You can download the latest version of CMake from [CMake\.org](https://cmake.org
 
 For more details about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
-## Establish a Serial Connection<a name="marvell-serial-connect"></a>
+## Establish a Serial Connection<a name="marvell322-serial-connect"></a>
 
 **To establish a serial connection between your host machine and your board**
 
@@ -186,17 +186,15 @@ Marvell development boards have an FTDI chip that exposes two USB interfaces to 
       | G – Software Flow Control : No
       ```
 
-      The minicom window now shows messages from the serial console\. You can save these settings in minicom for future use\.
-
-   1. Select Enter on the serial console window\. A hash or pound sign \(\#\) should appear on the screen\.
+      Go to **Exit** to start showing messages from the serial console\.
 
    For more information about installing a terminal emulator to set up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
-## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="marvell-build-and-run-example"></a>
+## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="marvell322-build-and-run-example"></a>
 
 You can use CMake and the utility scripts included with the M320 port of Amazon FreeRTOS to build, flash, and run the Amazon FreeRTOS demo project from the command line\. Or you can use an IDE to build your project\.
 
-### Generate the Demo Build Files with CMake<a name="marvell-cmake-gen"></a>
+### Generate the Demo Build Files with CMake<a name="marvell322-cmake-gen"></a>
 
 Issue the following command from the root of the Amazon FreeRTOS download to generate the demo build files with CMake:
 
@@ -214,7 +212,7 @@ You should see output similar to the following:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-build-output-1.png)
 
-### Build the Demo with make<a name="w3aab7c23c19c19b7"></a>
+### Build the Demo with make<a name="marvell322-build-demo-make"></a>
 
 Issue the following commands to build the demo:
 
@@ -253,7 +251,7 @@ make all -j4
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Flash the Application<a name="w3aab7c23c19c19b9"></a>
+### Flash the Application<a name="marvell322-flash-app"></a>
 
 The `flashprog.py` script is used to program your board's flash memory\. The script is written in Python 2\.7\.
 
@@ -266,9 +264,7 @@ Before you can flash the demo application image to the board, prepare the board'
 1. Run the `flashprog.py` Python script with the `-l` and `--boot2` options:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
-   -l vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt \\
-   --boot2 vendors/marvell/WMSDK/mw320/boot2/bin/boot2.bin
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py -l ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt --boot2 ./vendors/marvell/WMSDK/mw320/boot2/bin/boot2.bin
    ```
 
    The `flashprog` script writes a layout to the flash, according to the default layout configuration defined in `vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/mw300/layout.txt`\. The layout holds partitioned information about the flash\.
@@ -287,8 +283,7 @@ After you flash the layout file and bootloader to the board, flash some firmware
 1. Run the `flashprog.py` Python script with the `--wififw` option:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\
-                               --wififw vendors/marvell/WMSDK/mw320/wifi-firmware/mw30x/mw30x_uapsta_W14.88.36.p135.bin
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py --wififw ./vendors/marvell/WMSDK/mw320/wifi-firmware/mw30x/mw30x_uapsta_W14.88.36.p135.bin
    ```
 
    The `flashprog` script flashes the firmware to the board\.
@@ -305,9 +300,7 @@ With the layout, bootloader, and Wi\-Fi firmware flashed to the board, you can f
 1. Run the `flashprog.py` Python script with the `--mcufw` and `-r` options:
 
    ```
-   .vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py \\ 
-   --mcufw build/cmake/vendors/marvell/mw300_rd/aws_demos.bin \\ 
-   -r
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/flashprog.py --mcufw ./build//marvell/mw320/aws_demos.bin -r
    ```
 
    The `flashprog` script flashes the demo to the board\. Running the script with the `-r` option resets the board\.
@@ -324,7 +317,7 @@ When you build, flash, and run the demo, you should see output similar to the fo
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-demo-output.png)
 
-#### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c19c19b9c23"></a>
+#### Monitoring MQTT Messages on the Cloud<a name="marvell322-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -336,9 +329,9 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
-## Troubleshooting<a name="marvell-troubleshooting"></a>
+## Troubleshooting<a name="marvell322-troubleshooting"></a>
 
-### Connecting to the GNU Debugger<a name="w3aab7c23c19c21b3"></a>
+### Connecting to the GNU Debugger<a name="marvell322-gnu-debug"></a>
 
 **To connect to the GNU Debugger \(GDB\)**
 
@@ -351,13 +344,12 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 1. Connect to GDB with the arm\-none\-eabi\-gdb command:
 
    ```
-   arm-none-eabi-gdb \\ 
-   -x sdk/tools/OpenOCD/gdbinit build/cmake/vendors/marvell/mw300_rd/aws_demos.axf
+   arm-none-eabi-gdb -x ./sdk/tools/OpenOCD/gdbinit ../../../../build/vendors/marvell/boards/mw300_rd/aws_demos.axf
    ```
 
    If you are debugging an Amazon FreeRTOS test application, target `aws_tests.axf` instead\.
 
-### Loading the Application to SRAM<a name="w3aab7c23c19c21b5"></a>
+### Loading the Application to SRAM<a name="marvell322-load-sram"></a>
 
 You can load the demo to your device's static random\-access memory \(SRAM\) and then execute the application on your device with the `ramload.py` script\. Using `ramload.py` to load and execute the application is a faster operation than loading to flash memory with the `flashprog.py` script, making it a more efficient approach to iterative development\.
 
@@ -371,8 +363,7 @@ The `ramload.py` script is written in Python 2\.7\.
 1. Run the `ramload.py` Python script on the `aws_demos.axf` file:
 
    ```
-   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/ramload.py \\
-   build/cmake/vendors/marvell/mw300_rd/aws_demos.axf
+   ./vendors/marvell/WMSDK/mw320/sdk/tools/OpenOCD/ramload.py ./build/vendors/marvell/boards/mw300_rd/aws_demos.axf
    ```
 
    You should see logs for the demo application\. The output should be similar to the following:  
@@ -381,7 +372,7 @@ The `ramload.py` script is written in Python 2\.7\.
 **Note**  
 Images loaded to SRAM are erased on reboot\.
 
-### Enabling Other Logs<a name="w3aab7c23c19c21b7"></a>
+### Enabling Other Logs<a name="marvell322-other-logs"></a>
 
 You might need to enable other logging messages to troubleshoot problems that you encounter while getting started with this board\.
 
@@ -397,9 +388,9 @@ You might need to enable other logging messages to troubleshoot problems that yo
 
 1. Enable the macro `CONFIG_WLCMGR_DEBUG`\.
 
-### Using an IDE Development and Debugging<a name="w3aab7c23c19c21b9"></a>
+### Using an IDE Development and Debugging<a name="marvell322-use-ide"></a>
 
-#### Set Up an IDE<a name="w3aab7c23c19c21b9b3"></a>
+#### Set Up an IDE<a name="marvell322-setup-ide"></a>
 
 You can use an IDE for developing and debugging applications, and for visualizing your projects\.
 
@@ -419,7 +410,7 @@ If you are using the Eclipse IDE, for example, use the `perm_fix.sh` script to c
 
 1. Extract the downloaded archive folder, and then run the platform\-specific Eclipse executable to start the IDE\.
 
-#### Build the Demo with an IDE<a name="w3aab7c23c19c21b9b5"></a>
+#### Build the Demo with an IDE<a name="marvell322-build-demo-ide"></a>
 
 You can open and build the demo project's build files in your IDE instead of building the demo directly from the command line with `make`\. Opening the files in an IDE can help you visualize the project before you build it\.
 

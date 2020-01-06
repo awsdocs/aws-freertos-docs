@@ -6,7 +6,7 @@ If you want to open a serial connection with the board to view logging and debug
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w3aab7c23c15b9"></a>
+## Overview<a name="w12aab7c25c18b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -69,7 +69,7 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
 1. In the **Import DAVE Projects** window, choose **Select Root Directory**, choose **Browse**, and then choose the XMC4800 demo project\.
 
-   In the directory where you unzipped your Amazon FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_iotkit/dave4/aws_demos/dave4`\. 
+   In the directory where you unzipped your Amazon FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_iotkit/dave4/aws_demos`\. 
 
    Make sure that **Copy Projects Into Workspace** is unchecked\.
 
@@ -204,7 +204,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w3aab7c23c15c15b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c18c15b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -217,5 +217,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="infineon-troubleshooting"></a>
+
+If you haven't already, be sure to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
 
 For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

@@ -4,7 +4,7 @@ CMake targets your host operating system as the target system by default\. To us
 
 If you're using a compiler different from the one provided with Amazon FreeRTOS, write this toolchain file before you build Amazon FreeRTOS with CMake\. You must also set the `CMAKE_TOOLCHAIN_FILE` variable before CMake reads your top\-level `CMakeLists.txt` file\. The `CMAKE_TOOLCHAIN_FILE` variable specifies which compiler to use and sets some CMake variables, like the system name and the default search path\. For more information about cross compiling with CMake, see [Cross Compiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) on the official CMake wiki\.
 
-The `CMakeLists.txt` and toolchain files must be in the correct locations\. Before you build Amazon FreeRTOS with CMake, make sure that you have set up the Amazon FreeRTOS directory structure on your local machine to match the Amazon FreeRTOS directory structure on [GitHub](https://github.com/aws/amazon-freertos)\.
+The `CMakeLists.txt` and toolchain files must be in the correct locations\. Before you build Amazon FreeRTOS with CMake, make sure that you have set up the Amazon FreeRTOS directory structure on your local machine to match the Amazon FreeRTOS directory structure on [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
 **To build a CMake\-based project**
 
@@ -65,7 +65,11 @@ You can use the `CMAKE_TOOLCHAIN_FILE` option if you want to use a toolchain fil
 cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -S . -B build
 ```
 
-If the toolchain file does not use absolute paths for your compiler, and you didn't add your compiler to the `PATH` environment variable, CMake might not be able to find it\. To make sure that CMake finds your toolchain file, you can use the `AFR_TOOLCHAIN_PATH` option\. This option searches the specified toolchain directory path and the toolchain's subfolder under `bin`\.
+If the toolchain file does not use absolute paths for your compiler, and you didn't add your compiler to the `PATH` environment variable, CMake might not be able to find it\. To make sure that CMake finds your toolchain file, you can use the `AFR_TOOLCHAIN_PATH` option\. This option searches the specified toolchain directory path and the toolchain's subfolder under `bin`\. For example:
+
+```
+cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -DAFR_TOOLCHAIN_PATH='/path/to/toolchain/' -S . -B build
+```
 
 To enable debugging, set the `CMAKE_BUILD_TYPE` to `debug`\. With this option enabled, CMake adds debug flags to the compile options, and builds Amazon FreeRTOS with debug symbols\.
 
@@ -101,7 +105,7 @@ You can use the CMake GUI to generate Amazon FreeRTOS build files\.
 
    Choose **AFR\_BOARD**, choose your board, and then choose **Configure** again\.
 
-1. Choose **Generate**\. After CMake generates the native build system files, the files should appear in the output binaries directory that you specified in the first step\.
+1. Choose **Generate**\. CMake generates the build system files \(for example, makefiles or ninja files\), and these files appear in the build directory you specified in the first step\. Follow the instructions in the next section to generate the binary image\.
 
 ## Building Amazon FreeRTOS from Generated Build Files<a name="cmake-build"></a>
 

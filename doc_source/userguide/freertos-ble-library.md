@@ -8,7 +8,7 @@ Amazon FreeRTOS supports publishing and subscribing to MQTT topics over Bluetoot
 
 Using the Mobile SDKs for Amazon FreeRTOS Bluetooth Devices, you can write native mobile applications that communicate with the embedded applications on your microcontroller over Bluetooth Low Energy\. For more information about the mobile SDKs, see [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md)\. 
 
-The Amazon FreeRTOS Bluetooth Low Energy library includes services for configuring Wi\-Fi networks, transfering large amounts of data, and providing network abstractions over Bluetooth Low Energy\. The Amazon FreeRTOS Bluetooth Low Energy library also includes middleware and lower\-level APIs for more direct control over your Bluetooth Low Energy stack\.
+The Amazon FreeRTOS Bluetooth Low Energy library includes services for configuring Wi\-Fi networks, transferring large amounts of data, and providing network abstractions over Bluetooth Low Energy\. The Amazon FreeRTOS Bluetooth Low Energy library also includes middleware and lower\-level APIs for more direct control over your Bluetooth Low Energy stack\.
 
 ## Architecture<a name="freertos-ble-arch"></a>
 
@@ -236,7 +236,7 @@ For a full API reference, see [Bluetooth Low Energy API Reference](https://docs.
 
 ## Example Usage<a name="freertos-ble-examples"></a>
 
-The examples below demonstrate how to use the Bluetooth Low Energy library for avertising and creating new services\. For full Amazon FreeRTOS Bluetooth Low Energy demo applications, see [Bluetooth Low Energy Demo Applications](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html)\.
+The examples below demonstrate how to use the Bluetooth Low Energy library for advertising and creating new services\. For full Amazon FreeRTOS Bluetooth Low Energy demo applications, see [Bluetooth Low Energy Demo Applications](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html)\.
 
 ### Advertising<a name="freertos-ble-advertising"></a>
 

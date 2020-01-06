@@ -61,7 +61,11 @@ You can use the `CMAKE_TOOLCHAIN_FILE` option if you want to use a toolchain fil
 cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -S . -B build
 ```
 
-If the toolchain file does not use absolute paths for your compiler, and you didn't add your compiler to the `PATH` environment variable, CMake might not be able to find it\. To make sure that CMake finds your toolchain file, you can use the `AFR_TOOLCHAIN_PATH` option\. This option searches the specified toolchain directory path and the toolchain's subfolder under `bin`\.
+If the toolchain file does not use absolute paths for your compiler, and you didn't add your compiler to the `PATH` environment variable, CMake might not be able to find it\. To make sure that CMake finds your toolchain file, you can use the `AFR_TOOLCHAIN_PATH` option\. This option searches the specified toolchain directory path and the toolchain's subfolder under `bin`\. For example:
+
+```
+cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -DAFR_TOOLCHAIN_PATH='/path/to/toolchain/' -S . -B build
+```
 
 To enable debugging, set the `CMAKE_BUILD_TYPE` to `debug`\. With this option enabled, CMake adds debug flags to the compile options, and builds Amazon FreeRTOS with debug symbols\.
 
@@ -107,7 +111,7 @@ It means the compiler is not in your environment variable PATH\. You can set the
 
    Choose **AFR\_BOARD**, choose your board, and then choose **Configure** again\.
 
-1. Choose **Generate**\. After CMake generates the native build system files, the files should appear in the output binaries directory that you specified in the first step\.
+1. Choose **Generate**\. CMake generates the build system files \(for example, makefiles or ninja files\), and these files appear in the build directory you specified in the first step\. Follow the instructions in the next section to generate the binary image\.
 
 ## Building Amazon FreeRTOS from Generated Build Files<a name="cmake-build"></a>
 

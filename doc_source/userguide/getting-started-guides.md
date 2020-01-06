@@ -7,7 +7,8 @@ After you complete the [First Steps](freertos-prereqs.md), see your board's guid
 + [Getting Started with the Marvell MW320 AWS IoT Starter Kit](getting_started_marvell320.md)
 + [Getting Started with the Marvell MW322 AWS IoT Starter Kit](getting_started_marvell322.md)
 + [Getting Started with the MediaTek MT7697Hx Development Kit](getting_started_mediatek.md)
-+ [Getting Started with the Microchip Curiosity PIC32MZ EF](getting_started_mch.md)
++ [ Getting Started with the Microchip Curiosity PIC32MZ EF](getting_started_mch.md)
++ [Getting Started with the Nuvoton NuMaker\-IoT\-M487](getting-started-nuvoton-m487.md)
 + [Getting Started with the NXP LPC54018 IoT Module](getting_started_nxp.md)
 + [Getting Started with the Renesas Starter Kit\+ for RX65N\-2MB](getting_started_renesas.md)
 + [Getting Started with the STMicroelectronics STM32L4 Discovery Kit IoT Node](getting_started_st.md)
@@ -17,6 +18,7 @@ After you complete the [First Steps](freertos-prereqs.md), see your board's guid
 
 **Note**  
 You do not need to complete the [First Steps](freertos-prereqs.md) for the following self\-contained Getting Started with Amazon FreeRTOS guides:  
+[Getting Started with the Microchip ECC608a Secure Element with Windows Simulator](getting_started_ecc608a.md)
 [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](getting_started_espressif.md)
-[Getting Started with the Infineon OPTIGA™ Trust X and XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
+[Getting Started with the Infineon OPTIGA Trust X and XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
 [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md)

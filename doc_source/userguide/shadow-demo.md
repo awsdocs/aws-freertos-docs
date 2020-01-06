@@ -51,7 +51,7 @@ After you set up AWS IoT and Amazon FreeRTOS, do the following:
    }
    ```
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
+1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
 
 1. Build, flash, and run Amazon FreeRTOS to your device\.
 
@@ -63,4 +63,4 @@ You can use the AWS IoT console to view your device's shadow and confirm that it
 
 1. On the thing detail page, from the left navigation pane, choose **Shadow** to display the thing shadow\.
 
-For more information about how devices and shadows interact, see [Device Shadow Service Data Flow](http://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-data-flow.html)\.
+For more information about how devices and shadows interact, see [Device Shadow Service Data Flow](https://docs.aws.amazon.com/iot/latest/developerguide/device-shadow-data-flow.html)\.

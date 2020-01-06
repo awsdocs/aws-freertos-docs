@@ -1,10 +1,10 @@
-# Amazon FreeRTOS Over\-the\-Air \(OTA\) Agent Library<a name="ota-agent-library"></a>
+# Amazon FreeRTOSOTA Agent Library<a name="ota-agent-library"></a>
 
 ## Overview<a name="freertos-ota-overview"></a>
 
-The OTA agent enables you to manage the notification, download, and verification of firmware updates for Amazon FreeRTOS devices\. By using the OTA agent library, you can logically separate firmware updates and the application running on your devices\. The OTA agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA agent library allows you to define application\-specific logic for testing, committing, or rolling back a firmware update\.
+The over\-the\-air \(OTA\) agent enables you to manage the notification, download, and verification of firmware updates for Amazon FreeRTOS devices using HTTP or MQTT as the protocol\. By using the OTA agent library, you can logically separate firmware updates and the application running on your devices\. The OTA agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA agent library lets you define application\-specific logic for testing, committing, or rolling back a firmware update\.
 
-For more information about setting up Over\-the\-Air updates with Amazon FreeRTOS, see [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
+For more information about setting up OTA updates with Amazon FreeRTOS, see [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
 
 ## Features<a name="freertos-ota-features"></a>
 
@@ -33,11 +33,11 @@ Requests the next available OTA update from the OTA Update service\.
 
 ## API Reference<a name="freertos-ota-api"></a>
 
-For a full API reference, see [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\.
+For more information, see the [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\.
 
 ## Example Usage<a name="freertos-ota-example"></a>
 
-A typical OTA\-capable device application drives the OTA agent using the following sequence of API calls:
+A typical OTA\-capable device application using the MQTT protocol drives the OTA agent by using the following sequence of API calls\.
 
 1. Connect to the AWS IoT MQTT broker\. For more information, see [Amazon FreeRTOS MQTT Library, Version 1\.0\.0](freertos-lib-cloud-mqtt.md)\.
 

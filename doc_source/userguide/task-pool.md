@@ -6,11 +6,11 @@ Amazon FreeRTOS supports task management with the Amazon FreeRTOS Task Pool libr
 
 The Task Pool library is built on two main data structures: the Task Pool and Task Pool jobs\.
 
-### Task Pool \(`IotTaskPool_t`\)<a name="w3aab9c15c15b3b7"></a>
+### Task Pool \(`IotTaskPool_t`\)<a name="w12aab9c15c15b3b7"></a>
 
 The Task Pool contains a dispatch queue that manages the job queue for execution, and manages the worker threads that execute jobs\.
 
-### Task Pool Jobs \(`IotTaskPoolJob_t`\)<a name="w3aab9c15c15b3b9"></a>
+### Task Pool Jobs \(`IotTaskPoolJob_t`\)<a name="w12aab9c15c15b3b9"></a>
 
 Task Pool jobs can be executed as background jobs, or timed background jobs\. Background jobs are started in First\-In\-First\-Out order and have no time constraints\. Timed jobs are scheduled for background execution according to a timer\.
 
@@ -19,7 +19,7 @@ Task pool can only guarantee that a timed job will be executed after a timeout e
 
 ## Dependencies and Requirements<a name="freertos-task-pool-dependencies"></a>
 
-The Task Pool library has the following dependences:
+The Task Pool library has the following dependencies:
 + The linear containers \(list/queue\) library for maintaining the data structures for scheduled and in\-progress task pool operations\.
 + The logging library \(if `IOT_LOG_LEVEL_TASKPOOL` configuration setting is not `IOT_LOG_NONE`\)\.
 + A platform layer that provides an interface to the operating system for thread management, timers, clock functions, etc\.

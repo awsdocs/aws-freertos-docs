@@ -5,7 +5,7 @@ Amazon FreeRTOS includes tests for each ported library\. The `aws_test_runner.c`
 To build the Amazon FreeRTOS source code for testing, you can use either of the following:
 + A supported IDE\.
 
-  If you are using an IDE to build Amazon FreeRTOS soure code, you need to set up an IDE test project\. Follow the instructions in [Creating an IDE Project](porting-create-project.md) to create a test project in your IDE\. Each library\-specific porting section under [Porting the Amazon FreeRTOS Libraries](afr-porting.md) includes additional instructions for setting up a library's ported source files in the IDE test project\.
+  If you are using an IDE to build Amazon FreeRTOS source code, you need to set up an IDE test project\. Follow the instructions in [Creating an IDE Project](porting-create-project.md) to create a test project in your IDE\. Each library\-specific porting section under [Porting the Amazon FreeRTOS Libraries](afr-porting.md) includes additional instructions for setting up a library's ported source files in the IDE test project\.
 + The [CMake build system](https://cmake.org/)\.
 
   If you are using CMake, you need to create a `CMakeLists.txt` CMake list file\. Follow the instructions in [Creating a CMake List File](porting-cmake-setup.md) to create a `CMakeLists.txt` CMake list file\.

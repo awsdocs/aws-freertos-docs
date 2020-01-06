@@ -1,4 +1,4 @@
-# Creating a Code\-Signing Certificate for the Texas Instruments CC3200SF\-LAUNCHXL<a name="ota-code-sign-cert-ti"></a>
+# Creating a Code\-Signing Certificate for the Texas Instruments CC3220SF\-LAUNCHXL<a name="ota-code-sign-cert-ti"></a>
 
 The SimpleLink Wi\-Fi CC3220SF Wireless Microcontroller Launchpad Development Kit supports two certificate chains for firmware code signing:
 + Production \(certificate\-catalog\)
@@ -8,7 +8,7 @@ The SimpleLink Wi\-Fi CC3220SF Wireless Microcontroller Launchpad Development Ki
 
   The playground certificate chain allows you to try out OTA updates with a self‐signed code\-signing certificate\.
 
-You need to use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For information about installing the AWS CLI, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)\.
+Use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For more information see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 
 Download and install the latest version of [SimpleLink CC3220 SDK](http://www.ti.com/tool/download/SIMPLELINK-CC3220-SDK)\. By default, the files you need are located here:
 

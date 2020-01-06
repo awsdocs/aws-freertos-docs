@@ -14,7 +14,7 @@ Amazon's trademarks and trade dress may not be used in
 
 -----
 ## Contents
-+ [What Is Amazon FreeRTOS Qualification?](what-is-afr-qualification.md)
++ [Amazon FreeRTOS Qualification](afr-qualification.md)
 + [Qualifying Your Device](freertos-qualification.md)
    + [Setting Up a Hello World Demo](afq-hw-demo.md)
       + [Configuring the Amazon FreeRTOS Download for Demos](hw-directory.md)
@@ -25,7 +25,6 @@ Amazon's trademarks and trade dress may not be used in
       + [Prerequisites](building-cmake-prereqs.md)
       + [Creating a List File for Your Platform from the CMakeLists.txt Template](cmake-template.md)
       + [Building Amazon FreeRTOS with CMake](building-cmake.md)
-   + [Hardware Information for Amazon FreeRTOS Qualification](afq-hardware.md)
    + [Providing an Open Source License for Your Code](afq-license.md)
    + [Amazon FreeRTOS Qualification Check Script](afq-script.md)
 + [Amazon FreeRTOS Qualification Checklist](afq-checklist.md)

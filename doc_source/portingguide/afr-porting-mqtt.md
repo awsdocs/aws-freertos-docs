@@ -1,4 +1,4 @@
-# Setting Up the MQTT Library for Testing<a name="afr-porting-mqtt"></a>
+# Configuring the MQTT Library for Testing<a name="afr-porting-mqtt"></a>
 
 Devices on the edge can use the MQTT protocol to communicate with the AWS Cloud\. AWS IoT hosts an MQTT broker that sends and receives messages to and from connected devices at the edge\.
 
@@ -30,11 +30,8 @@ The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor
 
 After you set up the library in the IDE project, you need to configure some other files for testing\.
 
-**To configure the source and header files for the Wi\-Fi tests**
-
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/aws_system_init.c`, and uncomment all of the initialization functions called from `SYSTEM_Init()`\.
-
-1. To enable the MQTT tests, open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_MQTTv4_ENABLED ` macro to `1`\.
+**To configure the source and header files for the MQTT tests**
++ To enable the MQTT tests, open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_MQTTv4_ENABLED ` macro to `1`\.
 
 ## Running the Tests<a name="testing-run-mqtt"></a>
 
@@ -44,9 +41,9 @@ After you set up the library in the IDE project, you need to configure some othe
 
 1. Check the test results in the UART console\. If all tests pass, then testing is complete\.
 
-## Validation<a name="w3aac11c29c19"></a>
+## Validation<a name="w3aac11c34c19"></a>
 
-To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you finish setting up the Amazon FreeRTOS MQTT library for your device, you can start porting the OTA agent library\. See [Porting the OTA Library](afr-porting-ota.md) for instructions\.
 

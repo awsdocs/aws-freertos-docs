@@ -6,7 +6,7 @@ The AWS IoT Greengrass Discovery library is used by your microcontroller devices
 
 ## Dependencies and Requirements<a name="freertos-gg-dependencies"></a>
 
-To use the Greengrass Discovery library, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. 
+To use the Greengrass Discovery library, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. 
 
 You must set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential.h` file:
 
@@ -25,7 +25,7 @@ Your Wi\-Fi password\.
 `clientcredentialWIFI_SECURITY`  
 The type of security used by your Wi\-Fi network\.
 
-You must also set values for the following constants in the `<amazon-freertos>/demo/include/aws_clientcredential_keys.h` file:
+You must also set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential_keys.h` file:
 
 `keyCLIENT_CERTIFICATE_PEM`  
 The certificate PEM associated with your thing\.
@@ -33,7 +33,7 @@ The certificate PEM associated with your thing\.
 `keyCLIENT_PRIVATE_KEY_PEM`  
 The private key PEM associated with your thing\.
 
-You must have a Greengrass group and core device set up in the console\. For more information, see [Getting Started with AWS IoT Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/)\.
+You must have a Greengrass group and core device set up in the console\. For more information, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/)\.
 
 Although the MQTT library is not required for Greengrass connectivity, we strongly recommend you install it\. The library can be used to communicate with the Greengrass core after it has been discovered\.
 

@@ -9,7 +9,7 @@ To run the Amazon FreeRTOS Bluetooth Low Energy demo, you also need an iOS or An
 **Note**  
 If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
 
-## Overview<a name="w3aab7c23c25c11"></a>
+## Overview<a name="w12aab7c25c30c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -76,7 +76,7 @@ After you set up your hardware and environment, you can download Amazon FreeRTOS
 
 ### Download Amazon FreeRTOS<a name="nordic-download"></a>
 
-To download Amazon FreeRTOS for the Nordic nRF52840\-DK, go to the [Amazon FreeRTOS GitHub page](https://github.com/aws/amazon-freertos) and clone the repository\.
+To download Amazon FreeRTOS for the Nordic nRF52840\-DK, go to the [Amazon FreeRTOS GitHub page](https://github.com/aws/amazon-freertos) and clone the repository\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
 
 **Note**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. Lengthy Amazon FreeRTOS download directory paths can cause build failures\.  

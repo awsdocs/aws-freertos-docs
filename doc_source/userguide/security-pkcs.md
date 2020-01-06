@@ -8,35 +8,35 @@ Public Key Cryptography Standard \#11 \(PKCS\#11\) is a cryptographic API that a
 
 The following subset of PKCS\#11 is used\. This list is in roughly the order in which the routines are called in support of provisioning, TLS client authentication, and cleanup\. For detailed descriptions of the functions, see the PKCS\#11 documentation provided by the standard committee\.
 
-### Provisioning API<a name="pkcs-required-provision"></a>
-+ `C_GetFunctionList`
+### General Setup and Tear Down API<a name="pkcs-required-setup-teardown"></a>
 + `C_Initialize`
++ `C_Finalize`
++ `C_GetFunctionList`
++ `C_GetSlotList`
++ `C_GetTokenInfo`
++ `C_OpenSession`
++ `C_CloseSession`
++ `C_Login`
+
+### Provisioning API<a name="pkcs-required-provisioning"></a>
 + `C_CreateObject CKO_PRIVATE_KEY` \(for device private key\)
 + `C_CreateObject CKO_CERTIFICATE` \(for device certificate and code verification certificate\)
 + `C_GenerateKeyPair`
++ `C_DestroyObject`
 
 ### Client Authentication<a name="pkcs-required-client-auth"></a>
-+ `C_Initialize`
-+ `C_GetSlotList`
-+ `C_OpenSession`
-+ `C_FindObjectsInit`
-+ `C_FindObjects`
-+ `C_FindObjectsFinal`
 + `C_GetAttributeValue`
 + `C_FindObjectsInit`
 + `C_FindObjects`
 + `C_FindObjectsFinal`
-+ `C_GetAttributeValue`
 + `C_GenerateRandom`
 + `C_SignInit`
 + `C_Sign`
++ `C_VerifyInit`
++ `C_Verify`
 + `C_DigestInit`
 + `C_DigestUpdate`
 + `C_DigestFinal`
-
-### Cleanup<a name="pkcs-required-cleanup"></a>
-+ `C_CloseSession`
-+ `C_Finalize`
 
 ## Asymmetric Cryptosystem Support<a name="pkcs-asym-crypto"></a>
 
@@ -90,7 +90,7 @@ The following steps are written with the assumption that you have used the aws c
 
 1. Run `aws iot attach-principal-policy --policy-name FullControl --principal "arn:aws:iot:us-east-1:785484208847:cert/86e41339a6d1bbc67abf31faf455092cdebf8f21ffbc67c4d238d1326c7de729"` to attach the principal \(certificate\) and policy to the thing\. 
 
-Now, follow the steps in the [AWS IoT Getting Started](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) section of this guide\. Don’t forget to copy the certificate and private key you created into your `aws_clientcredential_keys.h` file\. Copy your thing name into `aws_clientcredential.h`\.
+Now, follow the steps in the [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) section of this guide\. Don’t forget to copy the certificate and private key you created into your `aws_clientcredential_keys.h` file\. Copy your thing name into `aws_clientcredential.h`\.
 
 ## Porting<a name="freertos-pkcs-porting"></a>
 

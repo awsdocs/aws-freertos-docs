@@ -1,6 +1,6 @@
 # Creating a List File for Your Platform from the CMakeLists\.txt Template<a name="cmake-template"></a>
 
-A `CMakeLists.txt` template file is provided with Amazon FreeRTOS, under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt`\.
+A `CMakeLists.txt` template file is provided with Amazon FreeRTOS, under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt`\. 
 
 The `CMakeLists.txt` template file consists of four sections:
 + [Amazon FreeRTOS Console Metadata](#cmake-metadata)

@@ -1,6 +1,6 @@
 # AWS IoT Greengrass Discovery Demo Application<a name="gg-demo"></a>
 
-Before you run the AWS IoT Greengrass Discovery demo for Amazon FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting Up Your AWS Account and Permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
+Before you run the AWS IoT Greengrass Discovery demo for Amazon FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting Up Your AWS Account and Permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
 
 After you set up AWS and AWS IoT Greengrass, you need to configure some additional permissions for AWS IoT Greengrass\.
 
@@ -75,7 +75,7 @@ If you are downloading Amazon FreeRTOS from the Amazon FreeRTOS console, choose 
 
 1. [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.
 
-   Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
+    Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
 
 After you set up AWS IoT and AWS IoT Greengrass, and after you download and configure Amazon FreeRTOS, you can build, flash, and run the Greengrass demo on your device\. To set up your board's hardware and software development environment, follow the instructions in the [Board\-specific Getting Started Guides](getting-started-guides.md)\.
 

@@ -16,4 +16,4 @@ The SDK is distributed as source code that is intended to be built into customer
 
 For instructions on porting the SDK source code to your environment, see the [AWS IoT Device SDK for Embedded C Porting Guide](https://github.com/aws/aws-iot-device-sdk-embedded-C/blob/master/PortingGuide.md)\.
 
-For an API reference, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\.
+For an API reference, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. 
