@@ -53,7 +53,7 @@ To register your board manually, follow the procedures below\.
            "Effect": "Allow",
            "Action": "iot:Connect",
            "Resource":"arn:aws:iot:<aws-region>:<aws-account-id>:*"
-   	}, 
+       }, 
        {
            "Effect": "Allow",
            "Action": "iot:Publish",

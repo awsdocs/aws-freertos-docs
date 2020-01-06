@@ -100,12 +100,12 @@ Both the MQTT agent and its dependent libraries must be initialized, as shown be
 
 ```
 BaseType_t SYSTEM_Init() { BaseType_t xResult = pdPASS; /* The bufferpool libraries provides the buffers use to store MQTT packets.*/
-						xResult = BUFFERPOOL_Init(); 
-						if( xResult == pdPASS ) { /* Create the MQTT agent task. */
-						xResult = MQTT_AGENT_Init(); } 
-						if( xResult == pdPASS ) { /* Initialize the secure sockets abstraction layer.*/
-						xResult = SOCKETS_Init(); }
-						return xResult; }
+                        xResult = BUFFERPOOL_Init(); 
+                        if( xResult == pdPASS ) { /* Create the MQTT agent task. */
+                        xResult = MQTT_AGENT_Init(); } 
+                        if( xResult == pdPASS ) { /* Initialize the secure sockets abstraction layer.*/
+                        xResult = SOCKETS_Init(); }
+                        return xResult; }
 ```
 
 ## API Reference<a name="freertos-mqtt-api"></a>

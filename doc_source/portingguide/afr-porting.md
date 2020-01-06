@@ -34,7 +34,7 @@ Currently, a port of the Amazon FreeRTOS OTA update library is not required for 
 **Note**  
 Currently, a port of the Amazon FreeRTOS Bluetooth Low Energy library is not required for qualification\.
 
-1. [Porting the Common I/O Libraries](afr-porting-commonio.md)
+1. [Porting the Common I/O Libraries](amazon-freertos-porting-commonio.md)
 **Note**  
 Currently, a port of the Amazon FreeRTOS common I/O library is not required for qualification\.
 

@@ -6,7 +6,7 @@ Make sure you have installed the latest Wi\-Fi firmware\. To download the latest
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c25c39b9"></a>
+## Overview<a name="w12aab7c25c37b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -64,16 +64,16 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-### Using CMake with Amazon FreeRTOS<a name="w12aab7c25c39c13b7"></a>
+### Using CMake with Amazon FreeRTOS<a name="w12aab7c25c37c13b7"></a>
 
 If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
-First create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+First create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
 
 Use the following command to generate build files:
 
 ```
-cmake -DVENDOR=st -DBOARD=stm32l475_discovery -DCOMPILER=arm-gcc -S <amazon-freertos> -B BUILD_FOLDER
+cmake -DVENDOR=st -DBOARD=stm32l475_discovery -DCOMPILER=arm-gcc -S <amazon-freertos> -B <BUILD_FOLDER>
 ```
 
 If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_TOOLCHAIN_PATH` CMake variable\. For example:
@@ -84,7 +84,7 @@ If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_
 
 For more information about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c39c13b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c37c13b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

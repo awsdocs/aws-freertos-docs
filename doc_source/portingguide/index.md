@@ -1,7 +1,7 @@
 # Amazon FreeRTOS Porting Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -46,5 +46,5 @@ Amazon's trademarks and trade dress may not be used in
    + [Configuring the HTTPS Client Library for Testing](afr-porting-https.md)
    + [Porting the OTA Library](afr-porting-ota.md)
    + [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)
-   + [Porting the Common I/O Libraries](afr-porting-commonio.md)
+   + [Porting the Common I/O Libraries](amazon-freertos-porting-commonio.md)
 + [Migrating from Version 1.4.x to Version 201906.00 (and newer)](porting-migration.md)

@@ -170,12 +170,48 @@ When you define configuration variables, use the format of the placeholder value
 
 1. Open the `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo.xcworkspace` project with Xcode, and change the signing developer account to your account\.
 
+1. Create an AWS IoT policy in your region \(if you haven't already\)\.
+**Note**  
+This policy is different from the IAM policy created for the cognito authenticated identity\.
+
+   1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/)\.
+
+   1. In the navigation pane, choose **Secure**, choose **Policies**, and then choose **Create**\. Enter a name to identify your policy\. In the **Add statements** section, choose **Advanced mode**\. Copy and paste the following JSON into the policy editor window\. Replace *<aws\-region>* and *<aws\-account>* with your AWS Region and account ID\.
+
+      ```
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Action": "iot:Connect",
+                  "Resource":"arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              }, 
+              {
+                  "Effect": "Allow",
+                  "Action": "iot:Publish",
+                  "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              },
+              {
+                   "Effect": "Allow",
+                   "Action": "iot:Subscribe",
+                   "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              },
+              {
+                   "Effect": "Allow",
+                   "Action": "iot:Receive",
+                   "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              }
+          ]
+      }
+      ```
+
+   1. Choose **Create**\.
+
 1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Amazon/AmazonConstants.swift`, and redefine the following variables:
    + `region`: Your AWS Region\.
    + `iotPolicyName`: Your AWS IoT policy name\.
    + `mqttCustomTopic`: The MQTT topic that you want to publish to\.
-**Note**  
-You need to have set up AWS and AWS IoT to have an AWS region and an AWS IoT policy\.
 
 1. Open `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/AmazonFreeRTOSDemo/Support/awsconfiguration.json`\.
 
@@ -195,6 +231,44 @@ When you define configuration variables, use the format of the placeholder value
 
 1. Confirm that the [Android SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android) is installed\.
 
+1. Create an AWS IoT policy in your region \(if you haven't already\)\.
+**Note**  
+This policy is different from the IAM policy created for the cognito authenticated identity\.
+
+   1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/)\.
+
+   1. In the navigation pane, choose **Secure**, choose **Policies**, and then choose **Create**\. Enter a name to identify your policy\. In the **Add statements** section, choose **Advanced mode**\. Copy and paste the following JSON into the policy editor window\. Replace *<aws\-region>* and *<aws\-account>* with your AWS Region and account ID\.
+
+      ```
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Action": "iot:Connect",
+                  "Resource":"arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              }, 
+              {
+                  "Effect": "Allow",
+                  "Action": "iot:Publish",
+                  "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              },
+              {
+                   "Effect": "Allow",
+                   "Action": "iot:Subscribe",
+                   "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              },
+              {
+                   "Effect": "Allow",
+                   "Action": "iot:Receive",
+                   "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+              }
+          ]
+      }
+      ```
+
+   1. Choose **Create**\.
+
 1. Open [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/java/software/amazon/freertos/demo/DemoConstants\.java](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/java/software/amazon/freertos/demo/DemoConstants.java)  and redefine the following variables:
    + `AWS_IOT_POLICY_NAME`: Your AWS IoT policy name\.
    + `AWS_IOT_REGION`: Your AWS Region\.
@@ -212,6 +286,8 @@ When you define configuration variables, use the format of the placeholder value
    + `Region`: Your AWS Region\.
 
 **To discover and establish secure connections with your microcontroller over Bluetooth Low Energy**
+
+1. In order to pair your microcontroller and mobile device securely \(step 6\), you need a serial terminal emulator with both input and output capabilities \(such as TeraTerm\)\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a Terminal Emulator](uart-term.md)\.
 
 1. Run the Bluetooth Low Energy demo project on your microcontroller\.
 
@@ -234,7 +310,7 @@ All devices with Amazon FreeRTOS and the device information service \(`<amazon-f
    You can disconnect from your microntroller by dragging the line to the left\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list3.png)
 
-1. You might be prompted to pair your microcontroller and mobile device\.  
+1. If prompted, pair your microcontroller and mobile device\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/pairing-board.png)  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/pairing-mobile.png)
 

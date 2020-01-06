@@ -6,7 +6,7 @@ This tutorial provides instructions for getting started with the Espressif ESP32
 Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
 Symmetric multiprocessing \(SMP\)\.
 
-## Overview<a name="w12aab7c25c16b7"></a>
+## Overview<a name="w12aab7c25c15b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -435,6 +435,26 @@ set(COMPONENT_SRCDIRS src)
 register_component()
 ```
 
+You can also specify dependencies using the standard CMake function `target_link_libraries`\. Note that the target name for your component is stored in the variable `COMPONENT_TARGET`, defined by the ESP\-IDF\.
+
+```
+# add this component, this will define a CMake library target.
+register_component()
+
+# standard CMake function can be used to specify dependencies. ${COMPONENT_TARGET} is defined
+# from esp-idf when you call register_component, by default it's idf_component_<folder_name>.
+target_link_libraries(${COMPONENT_TARGET} PRIVATE AFR::mqtt)
+```
+
+For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_REQUIRES`\. See [ When Writing a Component](https://docs.espressif.com/projects/esp-idf/en/stable/api-guides/build-system-cmake.html#when-writing-a-component) in the *ESP\-IDF Programming Guide*\.
+
+```
+# If the dependencies are from ESP-IDF, use these 2 variables. Note these need to be
+# set before calling register_component().
+set(COMPONENT_REQUIRES log)
+set(COMPONENT_PRIV_REQUIRES lwip)
+```
+
 Then, in the top level `CMakeLists.txt` file, you tell ESP\-IDF where to find these components\. Insert the following lines anywhere before `add_subdirectory(amazon-freertos)`:
 
 ```
@@ -451,7 +471,7 @@ This component is now automatically linked to your application code by default\.
 
 ### Override the Configurations for Amazon FreeRTOS<a name="getting_started_espressif_cmake_project_override"></a>
 
-There's currently no well\-defined approach to redefining the configs outside of the Amazon FreeRTOS source tree\. By default, CMake will look for the `amazon-freertos/vendors/espressif/boards/esp32/aws_demos/config_files/` and `amazon-freertos/demos/include/` directories\. However, you can use a workaround to tell the compiler to search other directories first\. For example, you can add another folder for Amazon FreeRTOS configurations:
+There's currently no well\-defined approach to redefining the configs outside of the Amazon FreeRTOS source tree\. By default, CMake will look for the `<amazon-freertos>/vendors/espressif/boards/esp32/aws_demos/config_files/` and `<amazon-freertos>/demos/include/` directories\. However, you can use a workaround to tell the compiler to search other directories first\. For example, you can add another folder for Amazon FreeRTOS configurations:
 
 ```
 - amazon-freertos
@@ -465,11 +485,21 @@ There's currently no well\-defined approach to redefining the configs outside of
 - CMakeLists.txt
 ```
 
-The files under `amazon-freertos-configs` are copied from the `amazon-freertos/vendors/espressif/boards/esp32/aws_demos/config_files/` and `amazon-freertos/demos/include/i` directories\. Then, in your top level `CMakeLists.txt` file, add this line before `add_subdirectory(amazon-freertos)` so that the compiler will search this directory first:
+The files under `amazon-freertos-configs` are copied from the `<amazon-freertos>/vendors/espressif/boards/esp32/aws_demos/config_files/` and `<amazon-freertos>/demos/include/i` directories\. Then, in your top level `CMakeLists.txt` file, add this line before `add_subdirectory(amazon-freertos)` so that the compiler will search this directory first:
 
 ```
 include_directories(BEFORE amazon-freertos-configs)
 ```
+
+### Providing Your Own sdkconfig for ESP\-IDF<a name="getting_started_espressif_providing_sdkconfig"></a>
+
+In case you want to provide your own `sdkconfig.default`, you can set the CMake variable `IDF_SDKCONFIG_DEFAULTS`, from the commandline:
+
+```
+cmake -S . -B build -DIDF_SDKCONFIG_DEFAULTS=<path_to_your_sdkconfig_defaults> -DCMAKE_TOOLCHAIN_FILE=amazon-freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
+```
+
+If you don’t specify a location for your own `sdkconfig.default` file, Amazon FreeRTOS will use the default file located at `<amazon-freertos>/vendors/espressif/boards/esp32/aws_demos/sdkconfig.defaults`\. 
 
 ### Summary<a name="getting_started_espressif_cmake_project_summary"></a>
 
@@ -665,7 +695,7 @@ The ESP32 supports a maximum of two break points\.
 
    ```
    DEVICE:
-   							
+                               
    Product ID: product-ID
    Vendor ID: vendor-ID (Future Technology Devices International Limited)
    ```
@@ -720,16 +750,16 @@ The ESP32 supports a maximum of two break points\.
 
    ```
    $ls -l /dev/ttyUSB*
-   crw-rw----	1	root	dialout	188,	0	Jul	10	19:04	/dev/ttyUSB0
-   crw-rw----	1	root	dialout	188,	1	Jul	10	19:04	/dev/ttyUSB1
+   crw-rw----    1    root    dialout    188,    0    Jul    10    19:04    /dev/ttyUSB0
+   crw-rw----    1    root    dialout    188,    1    Jul    10    19:04    /dev/ttyUSB1
    ```
 
 1. Sign off and then sign in and cycle the power to the board to make the changes take effect\. In a terminal prompt, list the USB devices\. Make sure the group owner has changed from `dialout` to `plugdev`:
 
    ```
    $ls -l /dev/ttyUSB*
-   crw-rw----	1	root	plugdev	188,	0	Jul	10	19:04	/dev/ttyUSB0
-   crw-rw----	1	root	plugdev	188,	1	Jul	10	19:04	/dev/ttyUSB1
+   crw-rw----    1    root    plugdev    188,    0    Jul    10    19:04    /dev/ttyUSB0
+   crw-rw----    1    root    plugdev    188,    1    Jul    10    19:04    /dev/ttyUSB1
    ```
 
    The `/dev/ttyUSBn` interface with the lower number is used for JTAG communication\. The other interface is routed to the ESP32’s serial port \(UART\) and is used for uploading code to the ESP32’s flash memory\.

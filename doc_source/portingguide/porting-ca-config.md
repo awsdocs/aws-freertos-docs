@@ -13,18 +13,18 @@ This file is a modified version of the [https://github.com/openssl/openssl/blob/
 
 # This definition stops the following lines choking if HOME isn't
 # defined.
-HOME			= .
-RANDFILE		= $ENV::HOME/.rnd
+HOME            = .
+RANDFILE        = $ENV::HOME/.rnd
 
 
 # Extra OBJECT IDENTIFIER info:
-#oid_file		= $ENV::HOME/.oid
-oid_section		= new_oids
+#oid_file        = $ENV::HOME/.oid
+oid_section        = new_oids
 
 # To use this configuration file with the "-extfile" option of the
 # "openssl x509" utility, name here the section containing the
 # X.509v3 extensions to use:
-# extensions		= 
+# extensions        = 
 # (Alternatively, use a configuration file that has only
 # X.509v3 extensions in its main [= default] section.)
 
@@ -43,34 +43,34 @@ tsa_policy3 = 1.2.3.4.5.7
 
 ####################################################################
 [ ca ]
-default_ca	= CA_default		# The default ca section
+default_ca    = CA_default        # The default ca section
 
 ####################################################################
 [ CA_default ]
 
-dir		= .                     # Where everything is kept
-certs		= $dir	 		# Where the issued certs are kept
-crl_dir		= $dir 			# Where the issued crl are kept
-database	= $dir/index.txt	# database index file.
-#unique_subject	= no			# Set to 'no' to allow creation of
-					# several ctificates with same subject.
-new_certs_dir	= $dir 			# default place for new certs.
+dir        = .                     # Where everything is kept
+certs        = $dir             # Where the issued certs are kept
+crl_dir        = $dir             # Where the issued crl are kept
+database    = $dir/index.txt    # database index file.
+#unique_subject    = no            # Set to 'no' to allow creation of
+                    # several ctificates with same subject.
+new_certs_dir    = $dir             # default place for new certs.
 
-certificate	= $dir/cacert.pem 	# The CA certificate
-serial		= $dir/serial 		# The current serial number
-crlnumber	= $dir/crlnumber	# the current crl number
-					# must be commented out to leave a V1 CRL
-crl		= $dir/crl.pem 		# The current CRL
-private_key	= $dir/private/cakey.pem# The private key
-RANDFILE	= $dir/private/.rand	# private random number file
+certificate    = $dir/cacert.pem     # The CA certificate
+serial        = $dir/serial         # The current serial number
+crlnumber    = $dir/crlnumber    # the current crl number
+                    # must be commented out to leave a V1 CRL
+crl        = $dir/crl.pem         # The current CRL
+private_key    = $dir/private/cakey.pem# The private key
+RANDFILE    = $dir/private/.rand    # private random number file
 
 
-x509_extensions	= usr_cert		# The extentions to add to the cert
+x509_extensions    = usr_cert        # The extentions to add to the cert
 
 # Comment out the following two lines for the "traditional"
 # (and highly broken) format.
-name_opt 	= ca_default		# Subject Name options
-cert_opt 	= ca_default		# Certificate field options
+name_opt     = ca_default        # Subject Name options
+cert_opt     = ca_default        # Certificate field options
 
 # Extension copying option: use with caution.
 # copy_extensions = copy
@@ -78,46 +78,46 @@ cert_opt 	= ca_default		# Certificate field options
 # Extensions to add to a CRL. Note: Netscape communicator chokes on V2 CRLs
 # so this is commented out by default to leave a V1 CRL.
 # crlnumber must also be commented out to leave a V1 CRL.
-# crl_extensions	= crl_ext
+# crl_extensions    = crl_ext
 
-default_days	= 365			# how long to certify for
-default_crl_days= 30			# how long before next CRL
-default_md	= default		# use public key default MD
-preserve	= no			# keep passed DN ordering
+default_days    = 365            # how long to certify for
+default_crl_days= 30            # how long before next CRL
+default_md    = default        # use public key default MD
+preserve    = no            # keep passed DN ordering
 
 # A few difference way of specifying how similar the request should look
 # For type CA, the listed attributes must be the same, and the optional
 # and supplied fields are just that :-)
-policy		= policy_match
+policy        = policy_match
 
 # For the CA policy
 [ policy_match ]
-countryName		= match
-stateOrProvinceName	= match
-organizationName	= match
-organizationalUnitName	= optional
-commonName		= supplied
-emailAddress		= optional
+countryName        = match
+stateOrProvinceName    = match
+organizationName    = match
+organizationalUnitName    = optional
+commonName        = supplied
+emailAddress        = optional
 
 # For the 'anything' policy
 # At this point in time, you must list all acceptable 'object'
 # types.
 [ policy_anything ]
-countryName		= optional
-stateOrProvinceName	= optional
-localityName		= optional
-organizationName	= optional
-organizationalUnitName	= optional
-commonName		= supplied
-emailAddress		= optional
+countryName        = optional
+stateOrProvinceName    = optional
+localityName        = optional
+organizationName    = optional
+organizationalUnitName    = optional
+commonName        = supplied
+emailAddress        = optional
 
 ####################################################################
 [ req ]
-default_bits		= 2048
-default_keyfile 	= privkey.pem
-distinguished_name	= req_distinguished_name
-attributes		= req_attributes
-x509_extensions	= v3_ca	# The extentions to add to the self signed cert
+default_bits        = 2048
+default_keyfile     = privkey.pem
+distinguished_name    = req_distinguished_name
+attributes        = req_attributes
+x509_extensions    = v3_ca    # The extentions to add to the self signed cert
 
 # Passwords for private keys if not present they will be prompted for
 # input_password = secret
@@ -125,7 +125,7 @@ x509_extensions	= v3_ca	# The extentions to add to the self signed cert
 
 # This sets a mask for permitted string types. There are several options. 
 # default: PrintableString, T61String, BMPString.
-# pkix	 : PrintableString, BMPString (PKIX recommendation before 2004)
+# pkix     : PrintableString, BMPString (PKIX recommendation before 2004)
 # utf8only: only UTF8Strings (PKIX recommendation after 2004).
 # nombstr : PrintableString, T61String (no BMPStrings or UTF8Strings).
 # MASK:XXXX a literal mask value.
@@ -135,40 +135,40 @@ string_mask = utf8only
 # req_extensions = v3_req # The extensions to add to a certificate request
 
 [ req_distinguished_name ]
-countryName			= Country Name (2 letter code)
-countryName_default		= AU
-countryName_min			= 2
-countryName_max			= 2
+countryName            = Country Name (2 letter code)
+countryName_default        = AU
+countryName_min            = 2
+countryName_max            = 2
 
-stateOrProvinceName		= State or Province Name (full name)
-stateOrProvinceName_default	= Some-State
+stateOrProvinceName        = State or Province Name (full name)
+stateOrProvinceName_default    = Some-State
 
-localityName			= Locality Name (eg, city)
+localityName            = Locality Name (eg, city)
 
-0.organizationName		= Organization Name (eg, company)
-0.organizationName_default	= Internet Widgits Pty Ltd
+0.organizationName        = Organization Name (eg, company)
+0.organizationName_default    = Internet Widgits Pty Ltd
 
 # we can do this but it is not needed normally :-)
-#1.organizationName		= Second Organization Name (eg, company)
-#1.organizationName_default	= World Wide Web Pty Ltd
+#1.organizationName        = Second Organization Name (eg, company)
+#1.organizationName_default    = World Wide Web Pty Ltd
 
-organizationalUnitName		= Organizational Unit Name (eg, section)
-#organizationalUnitName_default	=
+organizationalUnitName        = Organizational Unit Name (eg, section)
+#organizationalUnitName_default    =
 
-commonName			= Common Name (e.g. server FQDN or YOUR name)
-commonName_max			= 64
+commonName            = Common Name (e.g. server FQDN or YOUR name)
+commonName_max            = 64
 
-emailAddress			= Email Address
-emailAddress_max		= 64
+emailAddress            = Email Address
+emailAddress_max        = 64
 
-# SET-ex3			= SET extension number 3
+# SET-ex3            = SET extension number 3
 
 [ req_attributes ]
-challengePassword		= A challenge password
-challengePassword_min		= 4
-challengePassword_max		= 20
+challengePassword        = A challenge password
+challengePassword_min        = 4
+challengePassword_max        = 20
 
-unstructuredName		= An optional company name
+unstructuredName        = An optional company name
 
 [ usr_cert ]
 
@@ -183,7 +183,7 @@ basicConstraints=CA:TRUE
 # the certificate can be used for anything *except* object signing.
 
 # This is OK for an SSL server.
-# nsCertType			= server
+# nsCertType            = server
 
 # For an object signing certificate this would be used.
 # nsCertType = objsign
@@ -198,7 +198,7 @@ basicConstraints=CA:TRUE
 # keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 
 # This will be displayed in Netscape's comment listbox.
-nsComment			= "OpenSSL Generated Certificate"
+nsComment            = "OpenSSL Generated Certificate"
 
 # PKIX recommendations harmless if included in all certificates.
 subjectKeyIdentifier=hash
@@ -214,7 +214,7 @@ authorityKeyIdentifier=keyid,issuer
 # Copy subject details
 # issuerAltName=issuer:copy
 
-#nsCaRevocationUrl		= http://www.domain.dom/ca-crl.pem
+#nsCaRevocationUrl        = http://www.domain.dom/ca-crl.pem
 #nsBaseUrl
 #nsRevocationUrl
 #nsRenewalUrl
@@ -292,7 +292,7 @@ basicConstraints=CA:FALSE
 # the certificate can be used for anything *except* object signing.
 
 # This is OK for an SSL server.
-# nsCertType			= server
+# nsCertType            = server
 
 # For an object signing certificate this would be used.
 # nsCertType = objsign
@@ -307,7 +307,7 @@ basicConstraints=CA:FALSE
 # keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 
 # This will be displayed in Netscape's comment listbox.
-nsComment			= "OpenSSL Generated Certificate"
+nsComment            = "OpenSSL Generated Certificate"
 
 # PKIX recommendations harmless if included in all certificates.
 subjectKeyIdentifier=hash
@@ -323,7 +323,7 @@ authorityKeyIdentifier=keyid,issuer
 # Copy subject details
 # issuerAltName=issuer:copy
 
-#nsCaRevocationUrl		= http://www.domain.dom/ca-crl.pem
+#nsCaRevocationUrl        = http://www.domain.dom/ca-crl.pem
 #nsBaseUrl
 #nsRevocationUrl
 #nsRenewalUrl
@@ -336,32 +336,32 @@ proxyCertInfo=critical,language:id-ppl-anyLanguage,pathlen:3,policy:foo
 ####################################################################
 [ tsa ]
 
-default_tsa = tsa_config1	# the default TSA section
+default_tsa = tsa_config1    # the default TSA section
 
 [ tsa_config1 ]
 
 # These are used by the TSA reply generation only.
-dir		= ./demoCA		# TSA root directory
-serial		= $dir/tsaserial	# The current serial number (mandatory)
-crypto_device	= builtin		# OpenSSL engine to use for signing
-signer_cert	= $dir/tsacert.pem 	# The TSA signing certificate
-					# (optional)
-certs		= $dir/cacert.pem	# Certificate chain to include in reply
-					# (optional)
-signer_key	= $dir/private/tsakey.pem # The TSA private key (optional)
+dir        = ./demoCA        # TSA root directory
+serial        = $dir/tsaserial    # The current serial number (mandatory)
+crypto_device    = builtin        # OpenSSL engine to use for signing
+signer_cert    = $dir/tsacert.pem     # The TSA signing certificate
+                    # (optional)
+certs        = $dir/cacert.pem    # Certificate chain to include in reply
+                    # (optional)
+signer_key    = $dir/private/tsakey.pem # The TSA private key (optional)
 
 
 
-default_policy	= tsa_policy1		# Policy if request did not specify it
-					# (optional)
-other_policies	= tsa_policy2, tsa_policy3	# acceptable policies (optional)
-digests		= md5, sha1		# Acceptable message digests (mandatory)
-accuracy	= secs:1, millisecs:500, microsecs:100	# (optional)
-clock_precision_digits  = 0	# number of digits after dot. (optional)
-ordering		= yes	# Is ordering defined for timestamps?
-				# (optional, default: no)
-tsa_name		= yes	# Must the TSA name be included in the reply?
-				# (optional, default: no)
-ess_cert_id_chain	= no	# Must the ESS cert id chain be included?
-				# (optional, default: no)
+default_policy    = tsa_policy1        # Policy if request did not specify it
+                    # (optional)
+other_policies    = tsa_policy2, tsa_policy3    # acceptable policies (optional)
+digests        = md5, sha1        # Acceptable message digests (mandatory)
+accuracy    = secs:1, millisecs:500, microsecs:100    # (optional)
+clock_precision_digits  = 0    # number of digits after dot. (optional)
+ordering        = yes    # Is ordering defined for timestamps?
+                # (optional, default: no)
+tsa_name        = yes    # Must the TSA name be included in the reply?
+                # (optional, default: no)
+ess_cert_id_chain    = no    # Must the ESS cert id chain be included?
+                # (optional, default: no)
 ```

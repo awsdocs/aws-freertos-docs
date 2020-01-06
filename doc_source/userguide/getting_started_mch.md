@@ -17,7 +17,7 @@ Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download t
 **Important**  
 The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.
 
-## Overview<a name="w12aab7c25c28c17"></a>
+## Overview<a name="w12aab7c25c27c17"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -108,21 +108,21 @@ If you prefer not to use an IDE for Amazon FreeRTOS development, you can alterna
 
 **To build the Amazon FreeRTOS demo with CMake**
 
-1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
 
 1. Use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <amazon-freertos> -B BUILD_FOLDER -DAFR_ENABLE_TESTS=1
+   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <amazon-freertos> -B <BUILD_FOLDER> -DAFR_ENABLE_TESTS=1
    ```
 **Note**  
 You must specify the correct paths to the Hexmate and toolchain binaries\.
 
-1. Change directories to the build directory \(*BUILD\_FOLDER*\), and run `make` from that directory\.
+1. Change directories to the build directory \(*<BUILD\_FOLDER>*\), and run `make` from that directory\.
 
 For more information, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c28c23b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c27c23b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

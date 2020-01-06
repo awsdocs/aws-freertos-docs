@@ -16,7 +16,7 @@ An OTA update is a data structure maintained by the OTA Update Manager service\.
 + An IAM role that allows access to the AWS IoT Jobs service\.
 + An optional list of user\-defined name\-value pairs\.
 
-OTA updates were designed  to update device firmware, but you can use them to send any files that you want to one or more devices registered with AWS IoT\. When you send firmware updates over the air, we recommend that you digitally sign them so that the devices that receive them can verify they haven't been tampered with en route\.
+OTA updates were designed to update device firmware, but you can use them to send any files that you want to one or more devices registered with AWS IoT\. When you send firmware updates over the air, we recommend that you digitally sign them so that the devices that receive them can verify they haven't been tampered with en route\.
 
 You can send updated firmware images using the HTTP or MQTT protocol, depending on the settings that you choose\. You can sign your firmware updates with [Code Signing for Amazon FreeRTOS](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html) or you can use your own code\-signing tools\.
 

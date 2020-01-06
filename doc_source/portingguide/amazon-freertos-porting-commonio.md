@@ -1,8 +1,8 @@
-# Porting the Common I/O Libraries<a name="afr-porting-commonio"></a>
+# Porting the Common I/O Libraries<a name="amazon-freertos-porting-commonio"></a>
 
 In general, device drivers are independent of the underlying operating system and are specific to a given hardware configuration\. A hardware abstraction layer \(HAL\) is a wrapper that provides common interfaces between drivers and higher\-level application code\. The HAL abstracts away the details of how a specific driver works and provides a uniform API to control similar devices\. In this way, you can use the same APIs to control various devices across multiple microcontroller \(MCU\) based reference boards\.
 
-Amazon FreeRTOS common I/O acts as a hardware abstraction layer\. It provides a set of standard APIs for accessing common serial devices across supported reference boards\. These  APIs communicate and interact with some common peripherals and enable your application code to function across platforms\. Without common I/O, the code that is required to work with low\-level devices is silicon vendor specific\.
+Amazon FreeRTOS common I/O acts as a hardware abstraction layer\. It provides a set of standard APIs for accessing common serial devices across supported reference boards\. These APIs communicate and interact with some common peripherals and enable your application code to function across platforms\. Without common I/O, the code that is required to work with low\-level devices is silicon vendor specific\.
 
 **Supported Peripherals**
 + UART
@@ -40,7 +40,7 @@ First, either set up an IDE project or configure CMake\.
 
 **Set Up Your Local Testing Environment**
 
-No changes are required in the test file `amazon-freertos/libraries/abstractions/common_io/test/test_iot_peripheral.c`\. 
+No changes are required in the test file `<amazon-freertos>/libraries/abstractions/common_io/test/test_iot_peripheral.c`\. 
 
 Device\-specific code is in the following files 
 + `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/test_iot_config.h`
@@ -131,11 +131,11 @@ target_link_libraries(
 
 ## Porting the I2C Library<a name="porting-commonio-i2c"></a>
 
-I2C library interfaces with vendor\-supplied I2C drivers\. If the device doesn't have an I2C peripheral, you can skip porting I2C interfaces\. The I2C library can only use the I2C peripheral that is on the device as the master\. 
+I2C library interfaces with vendor\-supplied I2C drivers\. If the device doesn't have an I2C peripheral, you can skip porting I2C interfaces\. The I2C library can only use the I2C peripheral that is on the device as the primary\. 
 
 **Prerequisites**
 
-To port the I2C library, you need an I2C slave device\. It can be one of the following:
+To port the I2C library, you need an I2C secondary device\. It can be one of the following:
 + An onboard I2C sensor\.
 + An external device, such as a Raspberry PI\.
 
@@ -174,7 +174,7 @@ If you're using an onboard sensor as a slave device, you can skip this step\.
 
 If you use an external device, you need to wire the SDA \(data\) lines and SCL \(clock\) lines of the two devices\.
 
-You can find the I2C test file in the following directory:`<amazon-freertos>/libraries/abstractions/common_io/test/test_iot_i2c.c` 
+You can find the I2C test file in the following directory: `<amazon-freertos>/libraries/abstractions/common_io/test/test_iot_i2c.c` 
 
 **To test the set up configurations**
 
@@ -186,9 +186,9 @@ If the I2C doesn't explicitly support sending stop condition, set to **1**\. Oth
 `IOT_TEST_COMMON_IO_I2C_SUPPORTED_CANCEL`  
 If the I2C supports cancelling the asynchronous transaction with interrupt or DMA, set to **1**\. Otherwise, set to **0**\.  
 `I2C_TEST_SET`  
-Specify the number of  I2C instances to test\.
+Specify the number of I2C instances to test\.
 
-1. Define test data in the  `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/test_iot_config.h` file\.   
+1. Define test data in the `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/test_iot_config.h` file\.   
 `i2cTestInstanceIdx`  
 The I2C instance IDs\.  
 `i2cTestInstanceNum`  
@@ -200,7 +200,7 @@ Register address on the test device\.
 `i2cTestWriteVal`  
 A byte value to be written to the test device\.  
 `gIotI2cHandle`  
-Not used\.  Define it as an array of null to compile\.  
+Not used\. Define it as an array of null to compile\.  
 **Example**  
 
    ```
@@ -231,7 +231,7 @@ Not used\.  Define it as an array of null to compile\.
    IotI2CHandle_t gIotI2cHandle[ 4 ] = { NULL, NULL, NULL, NULL };
    ```
 
-1. Add I2C test setup code to the `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/common_io/test_iot_internal.c`  file\.
+1. Add I2C test setup code to the `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/common_io/test_iot_internal.c` file\.
 
    ```
    #include "test_iot_internal.h"
@@ -264,7 +264,7 @@ The UART library interfaces with vendor\-supplied UART drivers\. If the device d
 
 Use the vendor\-supplied UART driver library to implement all the functions in `<amazon-freertos>/libraries/abstractions/common_io/include/iot_uart.h`\. The header file provides information about the required API behavior\. An implementation source file should be created and named `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/common_io/iot_uart.c`\. 
 
-If the target device doesn't support any UART features,  make the corresponding functions return `IOT_UART_FUNCTION_NOT_SUPPORTED`\. For the list of functions that can return `IOT_UART_FUNCTION_NOT_SUPPORTED`, refer to the API as documented in `<amazon-freertos>/libraries/abstractions/common_io/include/iot_uart.h`\. 
+If the target device doesn't support any UART features, make the corresponding functions return `IOT_UART_FUNCTION_NOT_SUPPORTED`\. For the list of functions that can return `IOT_UART_FUNCTION_NOT_SUPPORTED`, refer to the API as documented in `<amazon-freertos>/libraries/abstractions/common_io/include/iot_uart.h`\. 
 
 *Anonymous Handle "struct IotUARTDescriptor"*
 
@@ -287,7 +287,7 @@ struct IotUARTDescriptor
 
 On the UART port to test, connect the TX and RX for loopback by using a jump wire\.
 
-You can find the UART test file in the following directory:`<amazon-freertos>/libraries/abstractions/common_io/test/test_iot_uart.c` 
+You can find the UART test file in the following directory: `<amazon-freertos>/libraries/abstractions/common_io/test/test_iot_uart.c` 
 
 **To test the setup configurations**
 
@@ -295,7 +295,7 @@ You can find the UART test file in the following directory:`<amazon-freertos>/li
 `IOT_TEST_COMMON_IO_UART_SUPPORTED`  
 If this device has UART peripheral, set to **1**\. Otherwise, set **0**\.  
 `UART_TEST_SET`  
-The number of UART instances to  test\.
+The number of UART instances to test\.
 
 1. Define test data in the `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/test_iot_config.h` file\.   
 `uartTestPort`  
@@ -350,7 +350,7 @@ The SPI library interfaces with vendor\-supplied SPI drivers\. If the device doe
 
 Use the vendor\-supplied SPI driver library to implement all the functions in `<amazon-freertos>/libraries/abstractions/common_io/include/iot_spi.h`\. The header file provides the required API behavior information\. The implementation source file should be created as `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/common_io/iot_spi.c`\. 
 
-It's possible that a target device doesn't support some SPI features\.  In that case, make the corresponding functions return `IOT_SPI_FUNCTION_NOT_SUPPORTED`\. For the list of functions that can return `IOT_SPI_FUNCTION_NOT_SUPPORTED`, refer to the API as documented in `<amazon-freertos>/libraries/abstractions/common_io/include/iot_spi.h`\. 
+It's possible that a target device doesn't support some SPI features\. In that case, make the corresponding functions return `IOT_SPI_FUNCTION_NOT_SUPPORTED`\. For the list of functions that can return `IOT_SPI_FUNCTION_NOT_SUPPORTED`, refer to the API as documented in `<amazon-freertos>/libraries/abstractions/common_io/include/iot_spi.h`\. 
 
 *Anonymous Handle "struct IotSPIDescriptor"*
 

@@ -3,7 +3,7 @@
 The following are three aspects of over\-the\-air \(OTA\) security:
 
 Connection security  
-The OTA Update Manager service relies on existing security mechanisms, such as  Transport Layer Security \(TLS\) mutual authentication, used by AWS IoT\. OTA update traffic passes through the AWS IoT device gateway and uses AWS IoT security mechanisms\. Each incoming and outgoing HTTP or MQTT message through the device gateway undergoes strict authentication and authorization\.
+The OTA Update Manager service relies on existing security mechanisms, such as Transport Layer Security \(TLS\) mutual authentication, used by AWS IoT\. OTA update traffic passes through the AWS IoT device gateway and uses AWS IoT security mechanisms\. Each incoming and outgoing HTTP or MQTT message through the device gateway undergoes strict authentication and authorization\.
 
 Authenticity and integrity of OTA updates  
 Firmware can be digitally signed before an OTA update to ensure that it is from a reliable source and has not been tampered with\.   

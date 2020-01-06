@@ -12,10 +12,10 @@ Use the AWS Command Line Interface to import your code\-signing certificate, pri
    [ req ]
    prompt             = no
    distinguished_name = my_dn
-   					
+                       
    [ my_dn ]
    commonName = test_signer@amazon.com
-   					
+                       
    [ my_exts ]
    keyUsage         = digitalSignature
    extendedKeyUsage = codeSigning

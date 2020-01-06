@@ -34,7 +34,13 @@ The following is an example `device.json` file used to create a device pool with
     },
     {
       "name": "OTA",
-      "value": "Yes | No"
+      "value": "Yes | No",
+          "configs": [
+              {
+                "name": "OTADataPlaneProtocol",
+                "value": "HTTP | MQTT | Both"
+              }
+          ]
     },
     {
       "name": "TCP/IP",
@@ -45,8 +51,8 @@ The following is an example `device.json` file used to create a device pool with
       "value": "On-chip | Offloaded | No"
     },
     {
-    	"name": "BLE",
-    	"value": "Yes | No"
+        "name": "BLE",
+        "value": "Yes | No"
     }
   ],
   "devices": [{
@@ -56,8 +62,8 @@ The following is an example `device.json` file used to create a device pool with
       "serialPort": "<computer_serial_port_1>"
     },
     "secureElementConfig": {
-    	"publicKeyAsciiHexFilePath":"<absolute-path-to-public-key>",
-	"secureElementSerialNumber": "<optional: serialnumber-of-secure-element>"
+        "publicKeyAsciiHexFilePath":"<absolute-path-to-public-key>",
+    "secureElementSerialNumber": "<optional: serialnumber-of-secure-element>"
     },
     "identifiers": [{
       "name": "serialNo",
@@ -107,7 +113,7 @@ Indicates the method of writing a trusted X\.509 client certificate onto your bo
 Use `Import` if your board supports private key import\. Use `Onboard` if your board supports on\-board private key generation\. If your board does not support key provisioning, use `No`\.  
 If you use `Onboard`, add a `secureElementConfig` element in each of the `device` sections and put the absolute path to the public key file in the `publicKeyAsciiHexFilePath` field\.  
 `OTA`  
-Indicates if your board supports over\-the\-air \(OTA\) update functionality\.  
+Indicates if your board supports over\-the\-air \(OTA\) update functionality\. The `OtaDataPlaneProtocol` attribute indicates which OTA dataplane protocol the device supports\. The attribute is ignored if the OTA feature is not supported by the device\. When `"Both"` is selected, the OTA test execution time is prolonged due to running both MQTT, HTTP, and mixed tests\.  
 `BLE`  
 Indicates if your board supports Bluetooth Low Energy \(BLE\)\.
 
@@ -146,7 +152,7 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "command":[  
              "<absolute-path-to/build-parallel-script> {{testData.sourcePath}} {{enableTests}}"
           ],
-    	  "buildImageInfo" : {
+          "buildImageInfo" : {
                "testsImageName": "<tests-image-file-name>",
                "demosImageName": "<demos-image-file-name>"
            }
@@ -170,13 +176,15 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "wifiSecurityType":"eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
        },
        "echoServerConfiguration":{
-       	"securePortForSecureSocket":33333,
-       	"insecurePortForSecureSocket":33334,
-       	"insecurePortForWifi":33335
+           "securePortForSecureSocket":33333,
+           "insecurePortForSecureSocket":33334,
+           "insecurePortForWifi":33335
        },
        "otaConfiguration":{  
           "otaFirmwareFilePath":"{{testData.sourcePath}}/<relative-path-to/ota-image-generated-in-build-process>",
           "deviceFirmwareFileName":"<absolute-path-to/ota-image-on-device>",
+          "awsSignerHashingAlgorithm":"SHA1 | SHA256",
+          "awsSignerSigningAlgorithm":"RSA | ECDSA",
           "awsSignerPlatform":"AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
           "awsSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
           "awsUntrustedSignerCertificateArn":"arn:aws:acm:<region>:<account-id>:certificate:<certificate-id>",
@@ -184,14 +192,14 @@ Build, flash, and test settings are made in the `userdata.json` file\. The follo
           "compileCodesignerCertificate":true | false,
           "otaDemoConfigFilePath": "<full path to aws_demo_config.h>"
        },
-	   "cmakeConfiguration": {
-		    "boardName": "<board-name>",
-		    "vendorName": "<vendor-name>",
-		    "compilerName": "<compiler-name>",
-		    "afrToolchainPath": "</path/to/afr/toolchain>",
-		    "cmakeToolchainPath": "</path/to/cmake/toolchain>"
-		}
-	}
+       "cmakeConfiguration": {
+            "boardName": "<board-name>",
+            "vendorName": "<vendor-name>",
+            "compilerName": "<compiler-name>",
+            "afrToolchainPath": "</path/to/afr/toolchain>",
+            "cmakeToolchainPath": "</path/to/cmake/toolchain>"
+        }
+    }
 }
 ```
 
@@ -205,14 +213,14 @@ The path to the vendor specific Amazon FreeRTOS code\. For serial testing, the `
 
 ```
 {
-	"vendorPath":"C:/<path-to-freertos>/vendors/espressif/boards/<esp32>"
+    "vendorPath":"C:/<path-to-freertos>/vendors/espressif/boards/<esp32>"
 }
 ```
 For parallel testing, the `vendorPath` can be set using the `{{testData.sourcePath}}` place holder\. For example:  
 
 ```
 {
-	"vendorPath":"{{testData.sourcePath}}/vendors/espressif/boards/esp32"
+    "vendorPath":"{{testData.sourcePath}}/vendors/espressif/boards/esp32"
 }
 ```
 When running tests in parallel, the `{{testData.sourcePath}}` placeholder must be used in the `vendorPath`, `buildTool`, `flashTool` fields\. When running test with a single device, absolute paths must be used in the `vendorPath`, `buildTool`, `flashTool` fields\.
@@ -264,8 +272,12 @@ The OTA configuration\. \[Optional\]
 The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/<relative-path/to/ota/image/from/source/root>`\.  
 `deviceFirmwareFileName`  
 The full ﬁle path on the MCU device where the OTA ﬁrmware is located\. Some devices do not use this ﬁeld, but you still must provide a value\.  
+`awsSignerHashingAlgorithm`  
+The hashing algorithm supported on the device\. Possible values are `SHA1` or `SHA256`\.   
+`awsSignerSigningAlgorithm`  
+The signing algorithm supported on the device\. Possible values are `RSA` or `ECDSA`\.  
 `awsSignerPlatform`  
-The signing algorithm used by AWS Code Signer while creating the OTA update job\. Currently, the possible values for this field are `AmazonFreeRTOS-TI-CC3220SF` and `AmazonFreeRTOS-Default`\.  
+The signing and hasing algorithm used by AWS Code Signer while creating the OTA update job\. Currently, the possible values for this field are `AmazonFreeRTOS-TI-CC3220SF` and `AmazonFreeRTOS-Default`\. Use `AmazonFreeRTOS-Default` if `SHA1` and `RSA`, select `AmazonFreeRTOS-TI-CC3220SF` if `SHA256` and `ECDSA`\. If `SHA256` \| `RSA` or `SHA1` \| `ECDSA` is needed for your configuration, please contact us for further support\.   
 `awsSignerCertificateArn`  
 The Amazon Resource Name \(ARN\) for the trusted certificate uploaded to AWS Certificate Manager \(ACM\)\. For more information about creating a trusted certificate, see [Creating a Code Signing Certificate](https://docs.aws.amazon.com/freertos/latest/userguide/ota-code-sign-cert.html)\.  
 `awsUntrustedSignerCertificateArn`  

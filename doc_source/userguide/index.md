@@ -1,7 +1,7 @@
 # Amazon FreeRTOS User Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -104,7 +104,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon FreeRTOS MQTT Library, Version 2.0.0](freertos-mqtt-2.md)
    + [Amazon FreeRTOS MQTT Library, Version 1.0.0](freertos-lib-cloud-mqtt.md)
    + [Amazon FreeRTOS HTTPS Client Library](freertos-https.md)
-   + [Amazon FreeRTOSOTA Agent Library](ota-agent-library.md)
+   + [Amazon FreeRTOS OTA Agent Library](ota-agent-library.md)
    + [Amazon FreeRTOS Public Key Cryptography Standard (PKCS) #11 Library](security-pkcs.md)
    + [Amazon FreeRTOS Secure Sockets Library](secure-sockets.md)
    + [Amazon FreeRTOS Transport Layer Security](security-tls.md)
@@ -123,7 +123,7 @@ Amazon's trademarks and trade dress may not be used in
    + [AWS IoT Device Shadow Demo Application](shadow-demo.md)
    + [Secure Sockets Echo Client Demo](secure-sockets-demo.md)
 + [Using AWS IoT Device Tester for Amazon FreeRTOS](device-tester-for-freertos-ug.md)
-   + [Download IDT v1.5.1 for Amazon FreeRTOS 201910.00](dev-test-versions-afr.md)
+   + [Download IDT v1.6.0 for Amazon FreeRTOS 201912.00](dev-test-versions-afr.md)
       + [Earlier IDT Versions for Amazon FreeRTOS](idt-prev-versions-afr.md)
    + [Prerequisites](dev-tester-prereqs.md)
    + [Preparing to Test Your Microcontroller Board for the First Time](qual-steps.md)

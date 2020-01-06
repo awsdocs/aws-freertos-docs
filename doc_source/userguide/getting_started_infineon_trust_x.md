@@ -178,15 +178,15 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
    For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
 
-1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\. 
+1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\. 
 
 1. Change directories to your Amazon FreeRTOS download directory \(`<amazon-freertos>`\), and use the following command to generate the build files:
 
    ```
-   cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B BUILD_FOLDER -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B <BUILD_FOLDER> -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
    ```
 
-1. Change directories to the build directory \(*BUILD\_FOLDER*\), and use the following command to build the binary:
+1. Change directories to the build directory \(*<BUILD\_FOLDER>*\), and use the following command to build the binary:
 
    ```
    cmake --build . --parallel 8
@@ -196,7 +196,7 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
 1. Flash and run the image with [JLINK](getting_started_infineon.md#install-jlink)\.
 
-   1. From the build directory \(*BUILD\_FOLDER*\), use the following commands to create a flash script:
+   1. From the build directory \(*<BUILD\_FOLDER>*\), use the following commands to create a flash script:
 
       ```
       echo loadfile aws_demos.hex > flash.jlink

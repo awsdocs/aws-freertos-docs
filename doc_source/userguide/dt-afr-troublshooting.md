@@ -68,6 +68,14 @@ The secure sockets test uses ports 33333 and 33334 by default\. The WiFi tests u
 + Linux: sudo netstat \-pan \| grep port
 + macOS: netstat \-nat \| grep port
 
+### OTA Update Failures Due to Same Version Payload<a name="ota-update-failure"></a>
+
+If OTA test cases are failing due to the same version being on the device after an OTA was performed, it may be due to your build system \(e\.g\. cmake\) not noticing IDT's changes to the Amazon FreeRTOS source code and not building an updated binary\. This causes OTA to be performed with the same binary that is currently on the device, and the test to fail\. To troubleshoot OTA update failures, start by making sure that you are using the latest supported version of your build system\. 
+
+### OTA TestFailure on PresignedUrlExpired Test Case<a name="ota-test-failure"></a>
+
+One prerequisite of this test is that the OTA update time should be more than 60 seconds, otherwise the test would fail\. If this occurs, the following error message is found in the log: "Test takes less than 60 seconds \(url expired time\) to finish\. Please reach out to us\." 
+
 ### Debugging Device Interface and Port Errors<a name="device-interface"></a>
 
 This section contains information about the device interfaces IDT uses to connect to your devices\.

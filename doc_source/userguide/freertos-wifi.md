@@ -66,24 +66,24 @@ Before you use the Wi\-Fi library, you need to initialize some board\-specific c
 
    ```
    if( SYSTEM_Init() == pdPASS )
-   	{
-   	...
-   		DEMO_RUNNER_RunDemos();
-   	...
-   		}
+       {
+       ...
+           DEMO_RUNNER_RunDemos();
+       ...
+           }
    ```
 
    With a call to your own application:
 
    ```
    if( SYSTEM_Init() == pdPASS )
-   	{
-   	...
-   		// This function should create any tasks
-   		// that your application requires to run.
-   		YOUR_APP_FUNCTION();
-   	...
-   		}
+       {
+       ...
+           // This function should create any tasks
+           // that your application requires to run.
+           YOUR_APP_FUNCTION();
+       ...
+           }
    ```
 
 1. Call `WIFI_On()` to initialize and power on your Wi\-Fi chip\.
@@ -98,7 +98,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 
 ## Example Usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a Known AP<a name="w12aab9c41c17b3"></a>
+### Connecting to a Known AP<a name="w12aab9c39c17b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -142,7 +142,7 @@ else
 }
 ```
 
-### Scanning for nearby APs<a name="w12aab9c41c17b5"></a>
+### Scanning for nearby APs<a name="w12aab9c39c17b5"></a>
 
 ```
 WIFINetworkParams_t xNetworkParams;

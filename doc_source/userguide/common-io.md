@@ -16,7 +16,7 @@ Amazon FreeRTOS common I/O acts as this hardware abstraction layer\. It provides
 + Asynchronous read/write – The function returns immediately and the data transfer happens asynchronously\. When the action completes, a registered user callback is invoked\.
 
 **Peripheral specific**
-+ I2C – Combine multiple operations into one transaction\. Used to do write then read actions  in one transaction\. 
++ I2C – Combine multiple operations into one transaction\. Used to do write then read actions in one transaction\. 
 + SPI – Transfer data between primary and secondary, which means the write and read happen simultaneously\.
 
 **Porting**

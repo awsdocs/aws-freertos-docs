@@ -24,9 +24,9 @@ The Keil MDK Nuvoton edition is designed for developing and debugging applicatio
 
 1. Install the Keil MDK on your host machine using your license\. The Keil MDK includes the Keil µVision IDE, a C/C\+\+ compilation toolchain, and the µVision debugger\.
 
-   If you experience issues during installation, contact [Nuvoton](http://www.nuvoton.com/hq/contact-us/) for assistance\.
+   If you experience issues during installation, contact [Nuvoton](https://www.nuvoton.com/contact-us) for assistance\.
 
-1. Install the **Nu\-Link\_Keil\_Driver\_V3\.00\.6909** \(or latest version\), which is on the [ Nuvoton Development Tool](https://www.nuvoton.com/hq/support/tool-and-software/software/development-tool/?__locale=en) page\.
+1. Install the **Nu\-Link\_Keil\_Driver\_V3\.00\.6951** \(or latest version\), which is on the [ Nuvoton Development Tool](https://www.nuvoton.com/tool-and-software/software-development-tool/driver/) page\.
 
 ## Build and Run the Amazon FreeRTOS Demo Project<a name="gsg-nuvoton-m487-build-run"></a>
 
@@ -105,20 +105,20 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
      Navigate to the directory that contains the source files for the Amazon FreeRTOS demo project\. Then, generate the build files by running the following command\. 
 
      ```
-     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -S . -B BUILD_FOLDER -G Ninja 
+     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -S . -B <BUILD_FOLDER> -G Ninja 
      ```
    + For Ethernet:
 
      Navigate to the directory that contains the source files for the Amazon FreeRTOS demo project\. Then, generate the build files by running the following command\. 
 
      ```
-     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -DAFR_ENABLE_ETH=1 -S . -B BUILD_FOLDER -G Ninja 
+     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -DAFR_ENABLE_ETH=1 -S . -B <BUILD_FOLDER> -G Ninja 
      ```
 
 1. Generate the binary to flash onto the M487 by running the following command\.
 
    ```
-   cmake --build BUILD_FOLDER 
+   cmake --build <BUILD_FOLDER> 
    ```
 
    At this point, the binary file `aws_demos.bin` should be in the `<BUILD_FOLDER>/vendors/Nuvoton/boards/numaker_iot_m487_wifi` folder\. 
@@ -132,7 +132,7 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
    If you subscribed to the MQTT topic with the AWS IoT MQTT client, you should see MQTT messages sent by your device in the AWS IoT console\. 
 
 ## Troubleshooting<a name="gsg-nuvoton-m487-troubleshoot"></a>
-+ If your windows can’t recognize the device `VCOM`, install the NuMaker windows serial port driver from [https://goo\.gl/4VGca6](https://goo.gl/4VGca6)\.
++ If your windows can’t recognize the device `VCOM`, install the NuMaker windows serial port driver from the link [Nu\-Link USB Driver v1\.6](https://www.nuvoton.com/export/resource-files/Nu-Link_USB_Driver_V1.6.zip)\.
 + If you connect your device to the Keil MDK \(IDE\) through Nu\-Link, make sure the MSG switch \(No\.4 of ISW1 on ICE\) is OFF, as shown\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/nuvoton-m487-gsg.png)
 

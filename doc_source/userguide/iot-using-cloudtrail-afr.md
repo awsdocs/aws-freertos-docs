@@ -45,56 +45,56 @@ The following example shows a CloudTrail log entry that demonstrates the log fro
 
 ```
 {
-	"eventVersion": "1.05",
-	"userIdentity": {
-		"type": "IAMUser",
-		"principalId": "EXAMPLE",
-		"arn": "arn:aws:iam::<your_aws_account>:user/<your_user_id>",
-		"accountId": "<your_aws_account>",
-		"accessKeyId": "<your_access_key_id>",
-		"userName": "<your_username>",
-		"sessionContext": {
-			"attributes": {
-				"mfaAuthenticated": "false",
-				"creationDate": "2018-08-23T17:27:08Z"
-			}
-		},
-		"invokedBy": "apigateway.amazonaws.com"
-	},
-	"eventTime": "2018-08-23T17:27:19Z",
-	"eventSource": "iot.amazonaws.com",
-	"eventName": "CreateOTAUpdate",
-	"awsRegion": "<your_aws_region>",
-	"sourceIPAddress": "apigateway.amazonaws.com",
-	"userAgent": "apigateway.amazonaws.com",
-	"requestParameters": {
-		"targets": [
-			"arn:aws:iot:<your_aws_region>:<your_aws_account>:thing/Thing_CMH"
-		],
-		"roleArn": "arn:aws:iam::<your_aws_account>:role/Role_FreeRTOSJob",
-		"files": [
-			{
-				"fileName": "/sys/mcuflashimg.bin",
-				"fileSource": {
-					"fileId": 0,
-					"streamId": "<your_stream_id>"
-				},
-				"codeSigning": {
-					"awsSignerJobId": "<your_signer_job_id>"
-				}
-			}
-		],
-		"targetSelection": "SNAPSHOT",
-		"otaUpdateId": "FreeRTOSJob_CMH-23-1535045232806-92"
-	},
-	"responseElements": {
-		"otaUpdateArn": "arn:aws:iot:<your_aws_region>:<your_aws_account>:otaupdate/FreeRTOSJob_CMH-23-1535045232806-92",
-		"otaUpdateStatus": "CREATE_PENDING",
-		"otaUpdateId": "FreeRTOSJob_CMH-23-1535045232806-92"
-	},
-	"requestID": "c9649630-a6f9-11e8-8f9c-e1cf2d0c9d8e",
-	"eventID": "ce9bf4d9-5770-4cee-acf4-0e5649b845c0",
-	"eventType": "AwsApiCall",
-	"recipientAccountId": "<recipient_aws_account>"
+    "eventVersion": "1.05",
+    "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "EXAMPLE",
+        "arn": "arn:aws:iam::<your_aws_account>:user/<your_user_id>",
+        "accountId": "<your_aws_account>",
+        "accessKeyId": "<your_access_key_id>",
+        "userName": "<your_username>",
+        "sessionContext": {
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "2018-08-23T17:27:08Z"
+            }
+        },
+        "invokedBy": "apigateway.amazonaws.com"
+    },
+    "eventTime": "2018-08-23T17:27:19Z",
+    "eventSource": "iot.amazonaws.com",
+    "eventName": "CreateOTAUpdate",
+    "awsRegion": "<your_aws_region>",
+    "sourceIPAddress": "apigateway.amazonaws.com",
+    "userAgent": "apigateway.amazonaws.com",
+    "requestParameters": {
+        "targets": [
+            "arn:aws:iot:<your_aws_region>:<your_aws_account>:thing/Thing_CMH"
+        ],
+        "roleArn": "arn:aws:iam::<your_aws_account>:role/Role_FreeRTOSJob",
+        "files": [
+            {
+                "fileName": "/sys/mcuflashimg.bin",
+                "fileSource": {
+                    "fileId": 0,
+                    "streamId": "<your_stream_id>"
+                },
+                "codeSigning": {
+                    "awsSignerJobId": "<your_signer_job_id>"
+                }
+            }
+        ],
+        "targetSelection": "SNAPSHOT",
+        "otaUpdateId": "FreeRTOSJob_CMH-23-1535045232806-92"
+    },
+    "responseElements": {
+        "otaUpdateArn": "arn:aws:iot:<your_aws_region>:<your_aws_account>:otaupdate/FreeRTOSJob_CMH-23-1535045232806-92",
+        "otaUpdateStatus": "CREATE_PENDING",
+        "otaUpdateId": "FreeRTOSJob_CMH-23-1535045232806-92"
+    },
+    "requestID": "c9649630-a6f9-11e8-8f9c-e1cf2d0c9d8e",
+    "eventID": "ce9bf4d9-5770-4cee-acf4-0e5649b845c0",
+    "eventType": "AwsApiCall",
+    "recipientAccountId": "<recipient_aws_account>"
 }
 ```

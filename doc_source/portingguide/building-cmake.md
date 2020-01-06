@@ -94,7 +94,7 @@ If you do not see the pop up window, you might be reusing an existing build dire
 
 1. Choose **Specify toolchain file for cross\-compiling**, and then choose **Next**\.
 
-1. Choose the toolchain file \(for example, `amazon-freertos/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
+1. Choose the toolchain file \(for example, `<amazon-freertos>/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
 
    The default configuration for Amazon FreeRTOS is the template board, which does not provide any portable layer targets\. As a result, a window appears with the message **Error in configuration process**\.
 **Note**  

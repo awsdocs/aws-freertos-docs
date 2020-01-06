@@ -87,21 +87,21 @@ The ssh\-copy\-id command assumes the public key is named `id_rsa.pub`\. On macO
 
          ```
          [
-         	{
-         		"id": "ble-test-raspberry-pi",
-         		"features": [
-         			{"name":"ble", "version":"4.2"}
-         		],
-         		"devices": [
-         			{
-         				"id": "ble-test-raspberry-pi-1",
-         				"connectivity": {
-         					"protocol": "ssh",
-         					"ip": "<rasp-pi-id-address>"
-         				}
-         			}
-         		]
-         	}
+             {
+                 "id": "ble-test-raspberry-pi",
+                 "features": [
+                     {"name":"ble", "version":"4.2"}
+                 ],
+                 "devices": [
+                     {
+                         "id": "ble-test-raspberry-pi-1",
+                         "connectivity": {
+                             "protocol": "ssh",
+                             "ip": "<rasp-pi-id-address>"
+                         }
+                     }
+                 ]
+             }
          ]
          ```
 
@@ -109,15 +109,15 @@ The ssh\-copy\-id command assumes the public key is named `id_rsa.pub`\. On macO
 
          ```
          "connectivity": {
-         	"protocol": "ssh",
-         	"ip": "<rasp-pi-id-address>",
-         	"auth": {
-         		"method": "pki",
-         		"credentials": {
-         			"user": "root",
-         			"privKeyPath": "<location-of-private-key>"
-         		}
-         	}
+             "protocol": "ssh",
+             "ip": "<rasp-pi-id-address>",
+             "auth": {
+                 "method": "pki",
+                 "credentials": {
+                     "user": "root",
+                     "privKeyPath": "<location-of-private-key>"
+                 }
+             }
          }
          ```
 
@@ -128,10 +128,10 @@ In your `device.json` file, set the `BLE` feature to `Yes`\. If you are starting
 ```
 ...
 "features": [
-	{
-		"name": "BLE",
-		"value": "Yes"
-	},
+    {
+        "name": "BLE",
+        "value": "Yes"
+    },
 ...
 ```
 

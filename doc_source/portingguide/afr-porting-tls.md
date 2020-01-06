@@ -1,6 +1,6 @@
 # Porting the TLS Library<a name="afr-porting-tls"></a>
 
-For  Transport Layer Security \(TLS\) authentication, Amazon FreeRTOS uses either mbedTLS or an off\-chip TLS implementation, such as those found on some network co\-processors\. Amazon FreeRTOS includes a port of mbedTLS\. If you use mbedTLS for TLS, TLS porting is not required\. To allow different TLS implementations, third\-party TLS libraries are accessed through a TLS abstraction layer\.
+For Transport Layer Security \(TLS\) authentication, Amazon FreeRTOS uses either mbedTLS or an off\-chip TLS implementation, such as those found on some network co\-processors\. Amazon FreeRTOS includes a port of mbedTLS\. If you use mbedTLS for TLS, TLS porting is not required\. To allow different TLS implementations, third\-party TLS libraries are accessed through a TLS abstraction layer\.
 
 **Note**  
 No matter which TLS implementation is used by your device's port of Amazon FreeRTOS, the port must pass the qualification tests for TLS\. Qualification is based on results from AWS IoT Device Tester\.
@@ -104,7 +104,7 @@ After you set up the library in the IDE project, you need to configure some othe
 **Important**  
 After you have ported the TLS library and tested your ports, you must run the Secure Socket tests that depend on TLS functionality\. For more information, see [Testing](afr-porting-ss.md#porting-testing-ss) in the Secure Sockets porting documentation\.
 
-## Validation<a name="w3aac11c31c23"></a>
+## Validation<a name="w3aac11c31c21"></a>
 
 To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 

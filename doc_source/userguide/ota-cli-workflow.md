@@ -130,13 +130,13 @@ The following is an example `stream.json` file\.
 
 ```
 [
-	{
-		"fileId":123,
-		"s3Location": {
-			"bucket":"codesign-ota-bucket",
-			"key":"48c67f3c-63bb-4f92-a98a-4ee0fbc2bef6"
-		}
-	}
+    {
+        "fileId":123,
+        "s3Location": {
+            "bucket":"codesign-ota-bucket",
+            "key":"48c67f3c-63bb-4f92-a98a-4ee0fbc2bef6"
+        }
+    }
 ]
 ```
 
@@ -192,7 +192,7 @@ Valid values are:
 A list of protocols that support transfer of the firmware image\. You can specify the following values:   
 + `MQTT`: The firmware image is transferred to the device using the MQTT protocol\.
 + `HTTP`: The firmware image is transferred to the device using the HTTP protocol\. The firmware image must be hosted on Amazon S3\.
-+ `MQTT` and `HTTP`: The firmware image can be transferred to the device using the MQTT or the HTTP protocol\. The device can determine which protocol to use\. 
++ `MQTT` and `HTTP`: The firmware image can be transferred to the device using the MQTT or the HTTP protocol\. The device can determine which protocol to use\.
 
 `description`  
 A text description of the OTA update\.
@@ -513,7 +513,7 @@ Currently, you cannot use the AWS IoT console to delete streams or OTA updates\.
 
 ### Deleting an OTA Stream<a name="delete-ota-stream"></a>
 
-When you create an OTA update that uses MQTT, either you or the AWS IoT console creates a stream to break the firmware up into chunks so it can be sent over MQTT\. You can delete this stream with the delete\-stream CLI command, as shown in the following example\.
+When you create an OTA update that uses MQTT, either you can use the command\-line or the AWS IoT console to create a stream to break the firmware up into chunks so it can be sent over MQTT\. You can delete this stream with the delete\-stream CLI command, as shown in the following example\.
 
 ```
 aws iot delete-stream --stream-id <your_stream_id>
@@ -562,7 +562,7 @@ You can use the delete\-job\-execution to delete a job execution\. You might wan
 
 ```
 aws iot delete-job-execution --job-id <your-job-id --thing-name
-					<your-thing-name> --execution-number <your-job-execution-number --no-force
+                    <your-thing-name> --execution-number <your-job-execution-number --no-force
 ```
 
 As with the delete\-job CLI command, you can pass the `--force` parameter to the delete\-job\-execution to force the deletion of a job execution\. For more information , see [DeleteJobExecution API](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteJobExecution.html)\.

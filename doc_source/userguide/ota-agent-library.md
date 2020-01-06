@@ -1,4 +1,4 @@
-# Amazon FreeRTOSOTA Agent Library<a name="ota-agent-library"></a>
+# Amazon FreeRTOS OTA Agent Library<a name="ota-agent-library"></a>
 
 ## Overview<a name="freertos-ota-overview"></a>
 

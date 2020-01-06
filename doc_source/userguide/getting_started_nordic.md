@@ -9,7 +9,7 @@ To run the Amazon FreeRTOS Bluetooth Low Energy demo, you also need an iOS or An
 **Note**  
 If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
 
-## Overview<a name="w12aab7c25c30c11"></a>
+## Overview<a name="w12aab7c25c29c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -68,7 +68,7 @@ Segger Embedded Studio includes a terminal emulator that you can use to receive 
 1. From the top menu, choose **Tools**, **Terminal Emulator**, **Connect *port* \(115200,N,8,1\)**\.
 
 **Note**  
-You can also establish a serial connection with a terminal tool of your choice, like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a Terminal Emulator](uart-term.md)\.
+The Segger embedded studio terminal emulator does not support an input capability\. For this, use a terminal emulator like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a Terminal Emulator](uart-term.md)\.
 
 ## Download and Configure Amazon FreeRTOS<a name="nordic-download-and-configure"></a>
 

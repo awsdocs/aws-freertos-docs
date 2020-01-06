@@ -6,7 +6,7 @@ If you want to open a serial connection with the board to view logging and debug
 
 Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
 
-## Overview<a name="w12aab7c25c18b9"></a>
+## Overview<a name="w12aab7c25c17b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -160,15 +160,15 @@ On the final page of the installation wizard, select **Add path to environment v
 
    For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
 
-1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
 
 1. Change directories to your Amazon FreeRTOS download directory \(`<amazon-freertos>`\), and use the following command to generate the build files:
 
    ```
-   cmake -DVENDOR=infineon -DBOARD=xmc4800_iotkit -DCOMPILER=arm-gcc -S . -B BUILD_FOLDER -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=infineon -DBOARD=xmc4800_iotkit -DCOMPILER=arm-gcc -S . -B <BUILD_FOLDER> -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
    ```
 
-1. Change directories to the build directory \(*BUILD\_FOLDER*\), and use the following command to build the binary:
+1. Change directories to the build directory \(*<BUILD\_FOLDER>*\), and use the following command to build the binary:
 
    ```
    cmake --build . --parallel 8
@@ -178,7 +178,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
 1. Flash and run the image with [JLINK](#install-jlink)\.
 
-   1. From the build directory \(*BUILD\_FOLDER*\), use the following commands to create a flash script:
+   1. From the build directory \(*<BUILD\_FOLDER>*\), use the following commands to create a flash script:
 
       ```
       echo loadfile aws_demos.hex > flash.jlink
@@ -204,7 +204,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c18c15b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c17c15b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

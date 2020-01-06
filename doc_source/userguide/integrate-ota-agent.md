@@ -7,7 +7,7 @@ Although the integration of the OTA update feature into your application is rath
 
 ## Connection Management<a name="ota-agent-http-mqtt"></a>
 
-The OTA agent uses the MQTT protocol for all control communication operations involving AWS IoT services, but it doesn't manage the MQTT connection\. To ensure that the OTA agent doesn't interfere with the connection management policy of your application, the MQTT connection \(including disconnect and any reconnect functionality\) must be handled by the main user application\. The file can be downloaded over the MQTT or HTTP protocol\. You can choose which protocol when you create the OTA job\. If you choose MQTT, the OTA agent uses the same connection for control operations and for downloading file\. If you choose  HTTP, the OTA agent handles the HTTP connections\. 
+The OTA agent uses the MQTT protocol for all control communication operations involving AWS IoT services, but it doesn't manage the MQTT connection\. To ensure that the OTA agent doesn't interfere with the connection management policy of your application, the MQTT connection \(including disconnect and any reconnect functionality\) must be handled by the main user application\. The file can be downloaded over the MQTT or HTTP protocol\. You can choose which protocol when you create the OTA job\. If you choose MQTT, the OTA agent uses the same connection for control operations and for downloading file\. If you choose HTTP, the OTA agent handles the HTTP connections\. 
 
 ## Simple OTA Demo Using MQTT<a name="simple-demo-agent"></a>
 
@@ -125,9 +125,9 @@ The previous example used the built\-in callback handler for OTA completion even
 *
 */
 typedef enum {
-	eOTA_JobEvent_Activate,  /*! OTA receive is authenticated and ready to activate. */
-	eOTA_JobEvent_Fail,      /*! OTA receive failed. Unable to use this update. */
-	eOTA_JobEvent_StartTest  /*! OTA job is now in self test, perform user tests. */
+    eOTA_JobEvent_Activate,  /*! OTA receive is authenticated and ready to activate. */
+    eOTA_JobEvent_Fail,      /*! OTA receive failed. Unable to use this update. */
+    eOTA_JobEvent_StartTest  /*! OTA job is now in self test, perform user tests. */
 } OTA_JobEvent_t;
 ```
 

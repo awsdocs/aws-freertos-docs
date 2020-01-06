@@ -255,16 +255,16 @@ The examples below demonstrate how to use the Bluetooth Low Energy library for a
    ```
    void IotBle_SetCustomAdvCb( IotBleAdvertisementParams_t * pAdvParams,  IotBleAdvertisementParams_t * pScanParams)
    {
-   	memset(pAdvParams, 0, sizeof(IotBleAdvertisementParams_t));
-   	memset(pScanParams, 0, sizeof(IotBleAdvertisementParams_t));
+       memset(pAdvParams, 0, sizeof(IotBleAdvertisementParams_t));
+       memset(pScanParams, 0, sizeof(IotBleAdvertisementParams_t));
    
-   	/* Set advertisement message */
-   	pAdvParams->pUUID1 = &_advUUID;
-   	pAdvParams->nameType = BTGattAdvNameNone;
+       /* Set advertisement message */
+       pAdvParams->pUUID1 = &_advUUID;
+       pAdvParams->nameType = BTGattAdvNameNone;
    
-   	/* This is the scan response, set it back to true. */
-   	pScanParams->setScanRsp = true;
-   	pScanParams->nameType = BTGattAdvNameComplete;
+       /* This is the scan response, set it back to true. */
+       pScanParams->setScanRsp = true;
+       pScanParams->nameType = BTGattAdvNameComplete;
    }
    ```
 
