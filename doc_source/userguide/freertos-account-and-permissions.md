@@ -2,7 +2,7 @@
 
 To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
-To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, attach the following IAM policies to your IAM user account:
+To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and FreeRTOS, attach the following IAM policies to your IAM user account:
 + `AmazonFreeRTOSFullAccess`
 + `AWSIoTFullAccess`
 
@@ -38,4 +38,4 @@ For more information about IAM and user accounts, see [IAM User Guide](https://d
 
 For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
-After you set up your AWS account and permissions, you can continue to [Registering Your MCU Board with AWS IoT](get-started-freertos-thing.md) or to the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\. 
+After you set up your AWS account and permissions, you can continue to [Registering Your MCU Board with AWS IoT](get-started-freertos-thing.md) or to the **Quick Connect** workflow in the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. 

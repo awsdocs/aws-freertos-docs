@@ -1,6 +1,6 @@
 # Install the Initial Version of Firmware on the Texas Instruments CC3220SF\-LAUNCHXL<a name="burn-initial-firmware-ti"></a>
 
-These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL](download-ota-ti.md)\.<a name="burn-demo-ti"></a>
+These steps are written with the assumption that you have already built the `aws_demos` project, as described in [Download, Build, Flash, and Run the FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL](download-ota-ti.md)\.<a name="burn-demo-ti"></a>
 
 1. On your Texas Instruments CC3220SF\-LAUNCHXL, place the SOP jumper on the middle set of pins \(position = 1\) and reset the board\.
 
@@ -26,7 +26,7 @@ These steps are written with the assumption that you have already built the `aws
 
 1. Browse to the working directory where you created the code\-signing certificate and private key, choose `tisigner.crt.der`, choose **Open**, and then choose **Write**\.
 
-1. From the **Action** drop\-down list, choose **Select MCU Image**, and then choose **Browse** to choose the firmware image to use write to your device \(**aws\_demos\.bin**\)\. This file is located in the `<amazon-freertos>/vendors/ti/boards/cc3220_launchpad/aws_demos/ccs/Debug` directory\. Choose **Open**\.
+1. From the **Action** drop\-down list, choose **Select MCU Image**, and then choose **Browse** to choose the firmware image to use write to your device \(**aws\_demos\.bin**\)\. This file is located in the `<freertos>/vendors/ti/boards/cc3220_launchpad/aws_demos/ccs/Debug` directory\. Choose **Open**\.
 
    1. In the file dialog box, confirm the file name is set to `mcuflashimg.bin`\.
 

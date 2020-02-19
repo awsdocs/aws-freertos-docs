@@ -1,29 +1,29 @@
-# Amazon FreeRTOS Bluetooth Low Energy Library<a name="freertos-ble-library"></a>
+# Bluetooth Low Energy Library<a name="freertos-ble-library"></a>
 
 ## Overview<a name="freertos-ble-overview"></a>
 
-Amazon FreeRTOS supports publishing and subscribing to MQTT topics over Bluetooth Low Energy through a proxy device, such as a mobile phone\. With the Amazon FreeRTOS Bluetooth Low Energy library, your microcontroller can securely communicate with the AWS IoT MQTT broker\. 
+FreeRTOS supports publishing and subscribing to MQTT topics over Bluetooth Low Energy through a proxy device, such as a mobile phone\. With the FreeRTOS Bluetooth Low Energy library, your microcontroller can securely communicate with the AWS IoT MQTT broker\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/blediagram.png)
 
-Using the Mobile SDKs for Amazon FreeRTOS Bluetooth Devices, you can write native mobile applications that communicate with the embedded applications on your microcontroller over Bluetooth Low Energy\. For more information about the mobile SDKs, see [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md)\. 
+Using the Mobile SDKs for FreeRTOS Bluetooth Devices, you can write native mobile applications that communicate with the embedded applications on your microcontroller over Bluetooth Low Energy\. For more information about the mobile SDKs, see [Mobile SDKs for FreeRTOS Bluetooth Devices](freertos-ble-mobile.md)\. 
 
-The Amazon FreeRTOS Bluetooth Low Energy library includes services for configuring Wi\-Fi networks, transferring large amounts of data, and providing network abstractions over Bluetooth Low Energy\. The Amazon FreeRTOS Bluetooth Low Energy library also includes middleware and lower\-level APIs for more direct control over your Bluetooth Low Energy stack\.
+The FreeRTOS Bluetooth Low Energy library includes services for configuring Wi\-Fi networks, transferring large amounts of data, and providing network abstractions over Bluetooth Low Energy\. The FreeRTOS Bluetooth Low Energy library also includes middleware and lower\-level APIs for more direct control over your Bluetooth Low Energy stack\.
 
 ## Architecture<a name="freertos-ble-arch"></a>
 
-Three layers make up the Amazon FreeRTOS Bluetooth Low Energy library: services, middleware, and low\-level wrappers\.
+Three layers make up the FreeRTOS Bluetooth Low Energy library: services, middleware, and low\-level wrappers\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-architecture.png)
 
 ### Services<a name="freertos-ble-services"></a>
 
-The Amazon FreeRTOS Bluetooth Low Energy services layer consists of four Generic Attributes \(GATT\) services that leverage the middleware APIs: Device Information, Wi\-Fi Provisioning, Network Abstraction, and Large Object Transfer\.
+The FreeRTOS Bluetooth Low Energy services layer consists of four Generic Attributes \(GATT\) services that leverage the middleware APIs: Device Information, Wi\-Fi Provisioning, Network Abstraction, and Large Object Transfer\.
 
 #### Device Information<a name="ble-device-information"></a>
 
 The Device Information service gathers information about your microcontroller, including:
-+ The version of Amazon FreeRTOS that your device is using\.
++ The version of FreeRTOS that your device is using\.
 + The AWS IoT endpoint of the account for which the device is registered\.
 + Bluetooth Low Energy Maximum Transmission Unit \(MTU\)\.
 
@@ -45,7 +45,7 @@ The Large Object Transfer service sends data to and receives data from a client\
 
 ### Middleware<a name="freertos-ble-middleware"></a>
 
-Amazon FreeRTOS Bluetooth Low Energy middleware is an abstraction from the lower\-level APIs\. The middleware APIs make up a more user\-friendly interface to the Bluetooth Low Energy stack\.
+FreeRTOS Bluetooth Low Energy middleware is an abstraction from the lower\-level APIs\. The middleware APIs make up a more user\-friendly interface to the Bluetooth Low Energy stack\.
 
 Using middleware APIs, you can register several callbacks, across multiple layers, to a single event\. Initializing the Bluetooth Low Energy middleware also initializes services and starts advertising\.
 
@@ -55,34 +55,34 @@ Suppose your Bluetooth Low Energy hardware disconnects, and the MQTT over Blueto
 
 ### Low\-level Wrappers<a name="freertos-ble-arch-lowlevel"></a>
 
-The low\-level Amazon FreeRTOS Bluetooth Low Energy wrappers are an abstraction from the manufacturer's Bluetooth Low Energy stack\. Low\-level wrappers offer a common set of APIs for direct control over the hardware\. The low\-level APIs optimize RAM usage, but are limited in functionality\.
+The low\-level FreeRTOS Bluetooth Low Energy wrappers are an abstraction from the manufacturer's Bluetooth Low Energy stack\. Low\-level wrappers offer a common set of APIs for direct control over the hardware\. The low\-level APIs optimize RAM usage, but are limited in functionality\.
 
 Use the Bluetooth Low Energy service APIs to interact with the Bluetooth Low Energy services\. The service APIs demand more resources than the low\-level APIs\.
 
 ## Dependencies and Requirements<a name="freertos-ble-dependencies"></a>
 
 The Bluetooth Low Energy library has the following direct dependencies:
-+ [Amazon FreeRTOS Linear Containers Library](lib-linear.md)
++ [Linear Containers Library](lib-linear.md)
 + A platform layer that interfaces with the operating system for thread management, timers, clock functions, and network access\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-dependencies.png)
 
-Only the Wi\-Fi Provisioning service has Amazon FreeRTOS library dependencies:
+Only the Wi\-Fi Provisioning service has FreeRTOS library dependencies:
 
 
 ****  
 
 | GATT Service | Dependency | 
 | --- | --- | 
-| Wi\-Fi Provisioning | [Amazon FreeRTOS Wi\-Fi Library](freertos-wifi.md) | 
+| Wi\-Fi Provisioning | [Wi\-Fi Library](freertos-wifi.md) | 
 
 To communicate with the AWS IoT MQTT broker, you must have an AWS account and you must register your devices as AWS IoT things\. For more information about setting up, see the [AWS IoT Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/)\.
 
-Amazon FreeRTOS Bluetooth Low Energy uses Amazon Cognito for user authentication on your mobile device\. To use MQTT proxy services, you must create an Amazon Cognito identity and user pools\. Each Amazon Cognito Identity must have the appropriate policy attached to it\. For more information, see the [Amazon Cognito Developer Guide](https://docs.aws.amazon.com/cognito/latest/developerguide/)\.
+FreeRTOS Bluetooth Low Energy uses Amazon Cognito for user authentication on your mobile device\. To use MQTT proxy services, you must create an Amazon Cognito identity and user pools\. Each Amazon Cognito Identity must have the appropriate policy attached to it\. For more information, see the [Amazon Cognito Developer Guide](https://docs.aws.amazon.com/cognito/latest/developerguide/)\.
 
 ## Library Configuration File<a name="freertos-ble-configuration"></a>
 
-Applications that use the Amazon FreeRTOS MQTT over Bluetooth Low Energy service must provide an `iot_ble_config.h` header file, in which configuration parameters are defined\. Undefined configuration parameters take the default values specified in `iot_ble_config_defaults.h`\.
+Applications that use the FreeRTOS MQTT over Bluetooth Low Energy service must provide an `iot_ble_config.h` header file, in which configuration parameters are defined\. Undefined configuration parameters take the default values specified in `iot_ble_config_defaults.h`\.
 
 Some important configuration parameters include:
 
@@ -92,7 +92,7 @@ Allows users to create their own services\.
 `IOT_BLE_SET_CUSTOM_ADVERTISEMENT_MSG`  
 Allows users to customize the advertisement and scan response messages\.
 
-For more information, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/bt__hal__gatt__client_8h.html)\.
+For more information, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/index.html)\. 
 
 ## Optimization<a name="freertos-ble-optimization"></a>
 
@@ -103,7 +103,7 @@ When optimizing your board's performance, consider the following:
 
 ## Usage Restrictions<a name="freertos-ble-restrictions"></a>
 
-By default, the Amazon FreeRTOS Bluetooth Low Energy library sets the `eBTpropertySecureConnectionOnly` property to TRUE, which places the device in a Secure Connections Only mode\. As specified by the [Bluetooth Core Specification](https://www.bluetooth.com/specifications/bluetooth-core-specification) v5\.0, Vol 3, Part C, 10\.2\.4, when a device is in a Secure Connections Only mode, the highest LE security mode 1 level, level 4, is required for access to any attribute that has permissions higher than the lowest LE security mode 1 level, level 1\. At the LE security mode 1 level 4, a device must have input and output capabilities for numeric comparison\.
+By default, the FreeRTOS Bluetooth Low Energy library sets the `eBTpropertySecureConnectionOnly` property to TRUE, which places the device in a Secure Connections Only mode\. As specified by the [Bluetooth Core Specification](https://www.bluetooth.com/specifications/bluetooth-core-specification) v5\.0, Vol 3, Part C, 10\.2\.4, when a device is in a Secure Connections Only mode, the highest LE security mode 1 level, level 4, is required for access to any attribute that has permissions higher than the lowest LE security mode 1 level, level 1\. At the LE security mode 1 level 4, a device must have input and output capabilities for numeric comparison\.
 
 Here are the supported modes, and their associated properties:
 
@@ -147,11 +147,11 @@ If your application interacts with the Bluetooth Low Energy stack through middle
 
 1. Initialize the middleware with `IotBLE_Init()`\.
 **Note**  
-This initialization step is not required if you are running the AWS demos\. Demo initialization is handled by the network manager, located at `<amazon-freertos>/demos/network_manager`\.
+This initialization step is not required if you are running the AWS demos\. Demo initialization is handled by the network manager, located at `<freertos>/demos/network_manager`\.
 
 ### Low\-level APIs<a name="freertos-ble-init-low"></a>
 
-If you don't want to use the Amazon FreeRTOS Bluetooth Low Energy GATT services, you can bypass the middleware and interact directly with the low\-level APIs to save resources\.
+If you don't want to use the FreeRTOS Bluetooth Low Energy GATT services, you can bypass the middleware and interact directly with the low\-level APIs to save resources\.
 
 **To initialize the low\-level APIs**
 
@@ -232,11 +232,11 @@ If you don't want to use the Amazon FreeRTOS Bluetooth Low Energy GATT services,
 
 ## API Reference<a name="freertos-ble-api"></a>
 
-For a full API reference, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/bt__hal__gatt__client_8h.html)\.
+For a full API reference, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/index.html)\. 
 
 ## Example Usage<a name="freertos-ble-examples"></a>
 
-The examples below demonstrate how to use the Bluetooth Low Energy library for advertising and creating new services\. For full Amazon FreeRTOS Bluetooth Low Energy demo applications, see [Bluetooth Low Energy Demo Applications](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html)\.
+The examples below demonstrate how to use the Bluetooth Low Energy library for advertising and creating new services\. For full FreeRTOS Bluetooth Low Energy demo applications, see [Bluetooth Low Energy Demo Applications](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html)\.
 
 ### Advertising<a name="freertos-ble-advertising"></a>
 
@@ -274,7 +274,7 @@ The examples below demonstrate how to use the Bluetooth Low Energy library for a
 
 ### Adding a New Service<a name="freertos-ble-add-service"></a>
 
-For full examples of services, see `<amazon-freertos>/.../ble/services`\.
+For full examples of services, see `<freertos>/.../ble/services`\.
 
 1. Create UUIDs for the service's characteristic and descriptors:
 
@@ -402,11 +402,11 @@ The peripheral must display the numeric passkey and take the result of the compa
 
 ### Porting API Implementations<a name="freertos-ble-porting-apis"></a>
 
-To port Amazon FreeRTOS to a new target, you must implement some APIs for the Wi\-Fi Provisioning service and Bluetooth Low Energy functionality\.
+To port FreeRTOS to a new target, you must implement some APIs for the Wi\-Fi Provisioning service and Bluetooth Low Energy functionality\.
 
 #### Bluetooth Low Energy APIs<a name="freertos-ble-porting-ble"></a>
 
-To use the Amazon FreeRTOS Bluetooth Low Energy middleware, you must implement some APIs\.
+To use the FreeRTOS Bluetooth Low Energy middleware, you must implement some APIs\.
 
 ##### APIs Common Between GAP for Bluetooth Classic and GAP for Bluetooth Low Energy<a name="gap-common-apis"></a>
 + `pxBtManagerInit`
@@ -473,4 +473,4 @@ To use the Amazon FreeRTOS Bluetooth Low Energy middleware, you must implement s
 + `pxUnregisterServerCb`
 + `pxRegisterServerCb`
 
-For more information about porting the Amazon FreeRTOS Bluetooth Low Energy library to your platform, see [Porting the Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ble.html) in the Amazon FreeRTOS Porting Guide\.
+For more information about porting the FreeRTOS Bluetooth Low Energy library to your platform, see [Porting the Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ble.html) in the FreeRTOS Porting Guide\.

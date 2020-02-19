@@ -2,23 +2,23 @@
 
 This tutorial provides instructions for getting started with the Texas Instruments CC3220SF\-LAUNCHXL\. If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w12aab7c25c39b7"></a>
+## Overview<a name="w13aab7c25c39b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
 ## Set Up Your Development Environment<a name="ti-setup-env"></a>
 
-Follow the steps below to set up your development environment to get started with Amazon FreeRTOS\.
+Follow the steps below to set up your development environment to get started with FreeRTOS\.
 
-Note that Amazon FreeRTOS supports two IDEs for the TI CC3220SF\-LAUNCHXL Development Kit: Code Composer Studio and IAR Embedded Workbench version 8\.32\. You can use either IDE to get started\.
+Note that FreeRTOS supports two IDEs for the TI CC3220SF\-LAUNCHXL Development Kit: Code Composer Studio and IAR Embedded Workbench version 8\.32\. You can use either IDE to get started\.
 
 ### Install Code Composer Studio<a name="install-ccs"></a>
 
@@ -69,14 +69,14 @@ Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalo
 ### Configure Wi\-Fi Provisioning<a name="wifi-provision"></a>
 
 To configure the Wi\-Fi settings for your board, do one of the following:
-+ Configure the Amazon FreeRTOS demo application described in [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.
++ Configure the FreeRTOS demo application described in [Configuring the FreeRTOS Demos](freertos-configure.md)\.
 + Use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="ti-build-and-run-examples"></a>
+## Build and Run the FreeRTOS Demo Project<a name="ti-build-and-run-examples"></a>
 
-### Build and Run the Amazon FreeRTOS Demo Project in TI Code Composer<a name="ti-build-and-run-ccs"></a><a name="ti-load-project"></a>
+### Build and Run the FreeRTOS Demo Project in TI Code Composer<a name="ti-build-and-run-ccs"></a><a name="ti-load-project"></a>
 
-**To import the Amazon FreeRTOS demo into TI Code Composer**
+**To import the FreeRTOS demo into TI Code Composer**
 
 1. Open TI Code Composer, and choose **OK** to accept the default workspace name\.
 
@@ -88,7 +88,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. From **Project**, choose **Build Project** to make sure the project compiles without errors or warnings\.<a name="ti-run-project-css"></a>
 
-**To run the Amazon FreeRTOS demo in TI Code Composer**
+**To run the FreeRTOS demo in TI Code Composer**
 
 1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
@@ -100,9 +100,9 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Run** menu, and choose **Resume**\.
 
-### Build and Run Amazon FreeRTOS Demo Project in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
+### Build and Run FreeRTOS Demo Project in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
 
-**To import the Amazon FreeRTOS demo into IAR Embedded Workbench**
+**To import the FreeRTOS demo into IAR Embedded Workbench**
 
 1. Open IAR Embedded Workbench, choose **File**, and then choose **Open Workspace**\.
 
@@ -110,7 +110,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. Right\-click the project name \(`aws_demos`\), and then choose **Make**\.
 
-**To run the Amazon FreeRTOS demo in IAR Embedded Workbench**
+**To run the FreeRTOS demo in IAR Embedded Workbench**
 
 1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
 
@@ -124,11 +124,11 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Debug** menu, and choose **Go**\.
 
-### Using CMake with Amazon FreeRTOS<a name="w12aab7c25c39c11b7"></a>
+### Using CMake with FreeRTOS<a name="w13aab7c25c39c11b7"></a>
 
-If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
-**To build the Amazon FreeRTOS demo with CMake**
+**To build the FreeRTOS demo with CMake**
 
 1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
 
@@ -137,18 +137,12 @@ If you prefer not to use an IDE for Amazon FreeRTOS development, you can alterna
    If you are using the TI ARM compiler with your TI board, use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=ti -DBOARD=cc3220_launchpad -DCOMPILER=arm-ti -S <amazon-freertos> -B <BUILD_FOLDER>
+   cmake -DVENDOR=ti -DBOARD=cc3220_launchpad -DCOMPILER=arm-ti -S <freertos> -B <BUILD_FOLDER>
    ```
 
-   If you are using the IAR compiler, use the following command:
+For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-   ```
-   cmake -DVENDOR=ti -DBOARD=cc3220_launchpad -DCOMPILER=arm-iar -S <amazon-freertos> -B <BUILD_FOLDER>
-   ```
-
-For more information, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
-
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c39c11b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w13aab7c25c39c11b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -178,4 +172,4 @@ If you don’t see messages in the MQTT client of the AWS IoT console, you might
 
 If these steps don’t work, look at the program's output in the serial terminal\. You should see some text that indicates the source of the problem\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

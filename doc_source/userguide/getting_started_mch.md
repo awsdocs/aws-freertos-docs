@@ -12,12 +12,14 @@ You also need the following items for debugging:
 + [MPLAB Snap In\-Circuit Debugger](https://www.microchip.com/Developmenttools/ProductDetails/PG164100) 
 + \(Optional\) [PICkit 3 Programming Cable Kit](https://www.microchip.com/TPROG001) 
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
 
 **Important**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.
+In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
+Space characters in the `freertos` path can cause build failures\. When you clone or copy the repository, make sure the path that you create doesn't contain space characters\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
 
-## Overview<a name="w12aab7c25c27c17"></a>
+## Overview<a name="getting_started_mch_overview"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -25,7 +27,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -58,7 +60,7 @@ This tutorial contains instructions for the following getting started steps:
 ## Set Up Your Development Environment<a name="setup-env_mch"></a>
 
 **Note**  
-The Amazon FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the project, you need to use versions of the MPLAB tools that are compatible with Harmony v2, like v2\.10 of the MPLAB XC32 Compiler and versions 2\.X\.X of the MPLAB Harmony Configurator \(MHC\)\.
+The FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the project, you need to use versions of the MPLAB tools that are compatible with Harmony v2, like v2\.10 of the MPLAB XC32 Compiler and versions 2\.X\.X of the MPLAB Harmony Configurator \(MHC\)\.
 
 1. Install [Python version 3\.x](https://www.python.org/downloads/) or later\.
 
@@ -79,9 +81,9 @@ The Amazon FreeRTOS project for this device is based on MPLAB Harmony v2\. To bu
    + Stop bits: 1
    + Flow control: None
 
-## Build and Run Amazon FreeRTOS Demo Project<a name="mch-build-and-run-example"></a>
+## Build and Run FreeRTOS Demo Project<a name="mch-build-and-run-example"></a>
 
-### Open the Amazon FreeRTOS Demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
+### Open the FreeRTOS Demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
 
 1. Open MPLAB IDE\. If you have more than one version of the compiler installed, you need to select the compiler that you want to use from within the IDE\. 
 
@@ -94,7 +96,7 @@ The Amazon FreeRTOS project for this device is based on MPLAB Harmony v2\. To bu
 **Note**  
 When you open the project for the first time, you might get an error message about the compiler\. In the IDE, navigate to **Tools**, **Options**, **Embedded**, and then select the compiler that you are using for your project\.
 
-### Run the Amazon FreeRTOS Demo Project<a name="mch-run-example"></a>
+### Run the FreeRTOS Demo Project<a name="mch-run-example"></a>
 
 1. Rebuild your project\.
 
@@ -102,27 +104,27 @@ When you open the project for the first time, you might get an error message abo
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-### Build the Amazon FreeRTOS demo with CMake<a name="microchip-cmake"></a>
+### Build the FreeRTOS demo with CMake<a name="microchip-cmake"></a>
 
-If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
-**To build the Amazon FreeRTOS demo with CMake**
+**To build the FreeRTOS demo with CMake**
 
-1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
+1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
 
 1. Use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <amazon-freertos> -B <BUILD_FOLDER> -DAFR_ENABLE_TESTS=1
+   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <freertos> -B <BUILD_FOLDER> -DAFR_ENABLE_TESTS=1
    ```
 **Note**  
 You must specify the correct paths to the Hexmate and toolchain binaries\.
 
-1. Change directories to the build directory \(*<BUILD\_FOLDER>*\), and run `make` from that directory\.
+1. Change directories to the build directory \(*BUILD\_FOLDER*\), and run `make` from that directory\.
 
-For more information, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c27c23b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="getting_started_mch_monitor_mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -136,4 +138,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

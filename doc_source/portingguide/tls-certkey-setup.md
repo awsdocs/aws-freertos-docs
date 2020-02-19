@@ -4,22 +4,22 @@
 
 This section provides instructions on setting up certificates and keys for testing your TLS port\.
 
-For RSA device authentication, you can use the the private key and the certificate that you downloaded from the AWS IoT console when you registered your device\.
+For RSA device authentication, you can use the private key and the certificate that you downloaded from the AWS IoT console when you registered your device\.
 
 **Note**  
 After you have registered your device as an AWS IoT thing, you can retrieve device certificates from the AWS IoT console, but you cannot retrieve private keys\.
 
-Amazon FreeRTOS is a C language project\. You must format certificates and keys before you add them to the `<amazon-freertos>/tests/include/aws_clientcredential_keys.h` header file\.
+FreeRTOS is a C language project\. You must format certificates and keys before you add them to the `freertos/tests/include/aws_clientcredential_keys.h` header file\.
 
-**To format the certificate and key for `<amazon-freertos>/tests/include/aws_clientcredential_keys.h`**
+**To format the certificate and key for `freertos/tests/include/aws_clientcredential_keys.h`**
 
-1. In a browser window, open `<amazon-freertos>/tools/certificate_configuration/CertificateConfigurator.html`\.
+1. In a browser window, open `freertos/tools/certificate_configuration/CertificateConfigurator.html`\.
 
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` file that you downloaded from the AWS IoT console\.
+1. Under **Certificate PEM file**, choose the `ID-certificate.pem.crt` file that you downloaded from the AWS IoT console\.
 
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` file that you downloaded from the AWS IoT console\.
+1. Under **Private Key PEM file**, choose the `ID-private.pem.key` file that you downloaded from the AWS IoT console\.
 
-1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `<amazon-freertos>/tests/include`\. This overwrites the existing file in the directory\.
+1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `freertos/tests/include`\. This overwrites the existing file in the directory\.
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
@@ -59,23 +59,23 @@ For Elliptic Curve Digital Signature Algorithm \(ECDSA\) authentication, you nee
 
 1. Find and select the thing that you created for your device, and then choose **Attach**\.
 
-You must format the certificate and private key for your device before you add them to the `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h` header file\.
+You must format the certificate and private key for your device before you add them to the `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h` header file\.
 
-**To format the certificate and key for `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
+**To format the certificate and key for `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
 
-1. In a browser window, open `<amazon-freertos>/tools/certificate_configuration/PEMfileToCString.html`\.
+1. In a browser window, open `freertos/tools/certificate_configuration/PEMfileToCString.html`\.
 
-1. Under **PEM Certificate or Key**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
+1. Under **PEM Certificate or Key**, choose the `ID-certificate.pem.crt` that you downloaded from the AWS IoT console\.
 
 1. Choose **Display formatted PEM string to be copied into aws\_clientcredential\_keys\.h**, and then copy the certificate string\.
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_CERTIFICATE_PEM_EC`\.
+1. Open `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_CERTIFICATE_PEM_EC`\.
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-1. Follow the same steps to get the formatted string for the private key file that you created using OpenSSL \(`<p256_privatekey>.pem`\)\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_PRIVATE_KEY_PEM_EC` in `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
+1. Follow the same steps to get the formatted string for the private key file that you created using OpenSSL \(`<p256_privatekey>.pem`\)\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_PRIVATE_KEY_PEM_EC` in `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
 
-In `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, define the `tlstestMQTT_BROKER_ENDPOINT_EC` with the same AWS IoT MQTT broker endpoint address that you used in [Connecting Your Device to AWS IoT](testing-connect-iot.md)\.
+In `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, define the `tlstestMQTT_BROKER_ENDPOINT_EC` with the same AWS IoT MQTT broker endpoint address that you used in [Connecting Your Device to AWS IoT](testing-connect-iot.md)\.
 
 ## `TLS_ConnectMalformedCert()`<a name="tls-certs-malformed"></a>
 
@@ -83,7 +83,7 @@ This test verifies that you can use a malformed certificate to authenticate with
 
 **To modify the issuer of a certificate**
 
-1. Take the valid client certificate that you have been using, `<ID>-certificate.pem.crt`\.
+1. Take the valid client certificate that you have been using, `ID-certificate.pem.crt`\.
 
    In the Windows Certificate Manager, the certificate properties appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/certificate1.png)
@@ -91,7 +91,7 @@ This test verifies that you can use a malformed certificate to authenticate with
 1. Using the following command, convert the certificate from PEM to DER:
 
    ```
-   openssl x509 -outform der -in <ID>-certificate.pem.crt -out <ID>-certificate.der.crt
+   openssl x509 -outform der -in ID-certificate.pem.crt -out ID-certificate.der.crt
    ```
 
 1. Open the DER certificate, and search for the following hexadecimal sequence:
@@ -100,9 +100,9 @@ This test verifies that you can use a malformed certificate to authenticate with
    41 6d 61 7a 6f 6e 20 57 65 62 20 53 65 72 76 69 63 65 73
    ```
 
-   This sequence, translated to plaintext, reads "Amazon Web Services\."
+   This sequence, translated to plain text, reads "Amazon Web Services\."
 
-1. Change the `53` to `43`, so that the sequence becomes "Amazon Web Cervices" in plaintext, and save the file\.
+1. Change the `53` to `43`, so that the sequence becomes "Amazon Web Cervices" in plain text, and save the file\.
 
    In the Windows Certificate Manager, the certificate properties now appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/certificate2.png)
@@ -110,20 +110,20 @@ This test verifies that you can use a malformed certificate to authenticate with
 1. Use the following command to convert the certificate back to PEM:
 
    ```
-   openssl x509 -inform der -in <ID>-certificate.der.crt -out <ID>-cert-modified.pem.crt
+   openssl x509 -inform der -in ID-certificate.der.crt -out ID-cert-modified.pem.crt
    ```
 
-You must format the malformed certificate for your device before you add it to the `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h` header file\.
+You must format the malformed certificate for your device before you add it to the `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h` header file\.
 
-**To format the certificate for `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
+**To format the certificate for `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
 
-1. In a browser window, open `<amazon-freertos>/tools/certificate_configuration/PEMfileToCString.html`\.
+1. In a browser window, open `freertos/tools/certificate_configuration/PEMfileToCString.html`\.
 
-1. Under **PEM Certificate or Key**, choose the `<ID>-certificate.pem.crt` that you created and then modified\.
+1. Under **PEM Certificate or Key**, choose the `ID-certificate.pem.crt` that you created and then modified\.
 
 1. Choose **Display formatted PEM string to be copied into aws\_clientcredential\_keys\.h**, and then copy the certificate string\.
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_CERTIFICATE_PEM_MALFORMED`\.
+1. Open `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_CERTIFICATE_PEM_MALFORMED`\.
 **Note**  
 The certificate is hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
@@ -147,34 +147,34 @@ You can use your own certificate for authentication\. To create and register a c
 
 1. Find and choose the thing that you created for your device, and then choose **Attach**\.
 
-**To format the certificate for `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
+**To format the certificate for `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
 
-1. In a browser window, open `<amazon-freertos>/tools/certificate_configuration/PEMfileToCString.html`\.
+1. In a browser window, open `freertos/tools/certificate_configuration/PEMfileToCString.html`\.
 
-1. Under **PEM Certificate or Key**, choose the `<ID>-certificate.pem.crt` that you created and then modified\.
+1. Under **PEM Certificate or Key**, choose the `ID-certificate.pem.crt` that you created and then modified\.
 
 1. Choose **Display formatted PEM string to be copied into aws\_clientcredential\_keys\.h**, and then copy the certificate string\.
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_BYOC_CERTIFICATE_PEM`\.
+1. Open `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_BYOC_CERTIFICATE_PEM`\.
 **Note**  
 The certificate is hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-1. Follow the same steps to get the formatted string for the private key file that you created\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_BYOC_PRIVATE_KEY_PEM` in `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
+1. Follow the same steps to get the formatted string for the private key file that you created\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_BYOC_PRIVATE_KEY_PEM` in `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
 
 ## `TLS_ConnectUntrustedCert()`<a name="tls-certs-untrusted"></a>
 
 You can use your own certificate for authentication, without registering your certificate with AWS IoT\. To create a certificate with a valid rootCA/CA chain, follow the instructions in [Creating a BYOC \(ECDSA\)](afr-byoc.md), but skip the final instructions for registering your device with AWS IoT\.
 
-**To format the certificate for `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
+**To format the certificate for `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`**
 
-1. In a browser window, open `<amazon-freertos>/tools/certificate_configuration/PEMfileToCString.html`\.
+1. In a browser window, open `freertos/tools/certificate_configuration/PEMfileToCString.html`\.
 
-1. Under **PEM Certificate or Key**, choose the `<ID>-certificate.pem.crt` that you created and then modified\.
+1. Under **PEM Certificate or Key**, choose the `ID-certificate.pem.crt` that you created and then modified\.
 
 1. Choose **Display formatted PEM string to be copied into aws\_clientcredential\_keys\.h**, and then copy the certificate string\.
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_UNTRUSTED_CERTIFICATE_PEM`\.
+1. Open `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, and paste the formatted certificate string into the definition for `tlstestCLIENT_UNTRUSTED_CERTIFICATE_PEM`\.
 **Note**  
 The certificate is hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-1. Follow the same steps to get the formatted string for the private key file that you created\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_UNTRUSTED_PRIVATE_KEY_PEM` in `<amazon-freertos>/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
+1. Follow the same steps to get the formatted string for the private key file that you created\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_UNTRUSTED_PRIVATE_KEY_PEM` in `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.

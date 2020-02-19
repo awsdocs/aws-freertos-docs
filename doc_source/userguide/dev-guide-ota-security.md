@@ -7,7 +7,7 @@ The OTA Update Manager service relies on existing security mechanisms, such as T
 
 Authenticity and integrity of OTA updates  
 Firmware can be digitally signed before an OTA update to ensure that it is from a reliable source and has not been tampered with\.   
-The Amazon FreeRTOS OTA Update Manager service uses Code Signing for AWS IoT to automatically sign your firmware\. For more information, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.   
+The FreeRTOS OTA Update Manager service uses Code Signing for AWS IoT to automatically sign your firmware\. For more information, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.   
 The OTA agent, which runs on your devices, performs integrity checks on the firmware when it arrives on the device\.
 
 Operator security  

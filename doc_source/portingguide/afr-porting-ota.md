@@ -1,6 +1,6 @@
 # Porting the OTA Library<a name="afr-porting-ota"></a>
 
-With Amazon FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
+With FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Deploy new firmware images to a single device, a group of devices, or your entire fleet\.
 + Deploy firmware to devices as they are added to groups, are reset, or are reprovisioned\.
 + Verify the authenticity and integrity of new firmware after it has been deployed to devices\.
@@ -8,17 +8,17 @@ With Amazon FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Debug a failed deployment\.
 + Digitally sign firmware using Code Signing for AWS IoT\.
 
-For more information, see [Amazon FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *Amazon FreeRTOS User Guide*\.
+For more information, see [FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide*\.
 
-You can use the OTA agent library to integrate OTA functionality into your Amazon FreeRTOS applications\. For more information, see [Amazon FreeRTOS OTA Agent Library](https://docs.aws.amazon.com/freertos/latest/userguide/ota-agent-library.html) in the *Amazon FreeRTOS User Guide*\.
+You can use the OTA agent library to integrate OTA functionality into your FreeRTOS applications\. For more information, see [FreeRTOS OTA Agent Library](https://docs.aws.amazon.com/freertos/latest/userguide/ota-agent-library.html) in the *FreeRTOS User Guide*\.
 
-Amazon FreeRTOS devices must enforce cryptographic code\-signing verification on the OTA firmware images that they receive\. We recommend the following algorithms:
+FreeRTOS devices must enforce cryptographic code\-signing verification on the OTA firmware images that they receive\. We recommend the following algorithms:
 + Elliptic\-Curve Digital Signature Algorithm \(ECDSA\)
 + NIST P256 curve
 + SHA\-256 hash
 
 **Note**  
-A port of the Amazon FreeRTOS OTA update library is currently not required for qualification\.
+A port of the FreeRTOS OTA update library is currently not required for qualification\.
 
 ## Prerequisites<a name="porting-prereqs-ota"></a>
 
@@ -32,7 +32,7 @@ To port the OTA agent library, you need the following:
 
 ## Porting<a name="porting-steps-ota"></a>
 
-`<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
+`<freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
 
 
 | Function | Description | 
@@ -53,13 +53,13 @@ Implement the functions in this table if your device has built\-in support for t
 | prvPAL\_CheckFileSignature | Verifies the signature of the specified file\. | 
 | prvPAL\_ReadAndAssumeCertificate | Reads the specified signer certificate from the file system and returns it to the caller\. | 
 
-Make sure that you have a bootloader that can support OTA updates\. For instructions on porting the bootloader demo application provided with Amazon FreeRTOS or creating your IoT device bootloader, see [IoT Device Bootloader](#afr-bootloader)\.
+Make sure that you have a bootloader that can support OTA updates\. For instructions on porting the bootloader demo application provided with FreeRTOS or creating your IoT device bootloader, see [IoT Device Bootloader](#afr-bootloader)\.
 
 ## IoT Device Bootloader<a name="afr-bootloader"></a>
 
 ### Porting the Bootloader Demo<a name="afr-porting-bootloader"></a>
 
-Amazon FreeRTOS includes a demo bootloader application for the Microchip Curiosity PIC32MZEF platform\. For more information, see [Demo Bootloader for the Microchip Curiosity PIC32MZEF](https://docs.aws.amazon.com/freertos/latest/userguide/microchip-bootloader.html) in the *Amazon FreeRTOS User Guide*\. You can port this demo to other platforms\.
+FreeRTOS includes a demo bootloader application for the Microchip Curiosity PIC32MZEF platform\. For more information, see [Demo Bootloader for the Microchip Curiosity PIC32MZEF](https://docs.aws.amazon.com/freertos/latest/userguide/microchip-bootloader.html) in the *FreeRTOS User Guide*\. You can port this demo to other platforms\.
 
 If you choose not to port the demo to your platform, you can use your own bootloader application\. [Threat Modeling for the IoT Device Bootloader](#afr-threat-model-for-bootloader) discusses threat modeling to help you write your own secure bootloader application\.
 
@@ -71,7 +71,7 @@ As a working definition, the embedded IoT devices referenced by this threat mode
 
 Threat modeling is an approach to security from the point of view of a hypothetical adversary\. By considering the adversary's goals and methods, a list of threats is created\. Threats are attacks against a resource or asset performed by an adversary\. The list is prioritized and used to identify or create mitigations\. When choosing mitigations, the cost of implementing and maintaining them should be balanced with the real security value they provide\. There are multiple [threat model methodologies](https://en.wikipedia.org/wiki/Threat_model)\. Each is capable of supporting the development of a secure and successful IoT product\.
 
-Amazon FreeRTOS offers OTA \("over\-the\-air"\) software updates to IoT devices\. The update facility combines cloud services with on\-device software libraries and a partner\-supplied bootloader\. This threat model focuses specifically on threats against the bootloader\.
+FreeRTOS offers OTA \("over\-the\-air"\) software updates to IoT devices\. The update facility combines cloud services with on\-device software libraries and a partner\-supplied bootloader\. This threat model focuses specifically on threats against the bootloader\.
 
 **Bootloader Use Cases**
 + Digitally sign and encrypt firmware before deployment\.
@@ -167,21 +167,21 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the OTA library in the IDE project**
 
-1. Add the source file `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` to the `aws_tests` IDE project\.
+1. Add the source file `<freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` to the `aws_tests` IDE project\.
 
 1. Add the following test source files to the `aws_tests` IDE project:
-   + `<amazon-freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
-   + `<amazon-freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
-   + `<amazon-freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
+   + `<freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
+   + `<freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
+   + `<freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
    + `/demos/ota/aws_iot_ota_update_demo.c`
 
 ### Configuring the `CMakeLists.txt` File<a name="testing-cmake-ota"></a>
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 The following is an example of a portable layer target definition for the OTA library\.
 
@@ -202,7 +202,7 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
 
 **To configure the source and header files for the OTA agent and OTA PAL tests**
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
+1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
 
 1. Choose a signing certificate for your device from `ota/test`\. The certificate are used in OTA tests for verification\. 
 
@@ -211,7 +211,7 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
    + RSA/SHA256
    + ECDSA/SHA256
 
-   RSA/SHA1 and RSA/SHA256 are available for existing platforms only\. ECDSA/SHA256 is recommended for OTA updates\. If you have a different scheme, [contact the Amazon FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
+   RSA/SHA1 and RSA/SHA256 are available for existing platforms only\. ECDSA/SHA256 is recommended for OTA updates\. If you have a different scheme, [contact the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
 #### Running the Tests<a name="testing-run-ota-agent"></a>
 
@@ -229,16 +229,16 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
 
 **To set up and run the end\-to\-end OTA tests**
 
-1. Follow the setup instructions in the README file \(`<amazon-freertos>/tools/ota_e2e_test/README.md`\)\. 
+1. Follow the setup instructions in the README file \(`<freertos>/tools/ota_e2e_test/README.md`\)\. 
 
 1. Make sure that running the agent and PAL tests do not modify the `aws_clientcredential.h`, `aws_clientcredential_keys.h`, `aws_application_version.h`, or `aws_ota_codesigner_certificate.h` header files\.
 
-1. To run the OTA end\-to\-end test script, follow the example in the README file \(`<amazon-freertos>/tools/ota_e2e_test/README.md`\)\. 
+1. To run the OTA end\-to\-end test script, follow the example in the README file \(`<freertos>/tools/ota_e2e_test/README.md`\)\. 
 
 ## Validation<a name="w3aac11c37c25"></a>
 
-To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you have ported the Amazon FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)\.
+After you have ported the FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)\.
 
-If your device does not support Bluetooth Low Energy functionality, then you are finished and can start the Amazon FreeRTOS qualification process\. For more information, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
+If your device does not support Bluetooth Low Energy functionality, then you are finished and can start the FreeRTOS qualification process\. For more information, see the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.

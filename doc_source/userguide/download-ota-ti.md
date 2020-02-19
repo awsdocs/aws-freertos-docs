@@ -1,10 +1,10 @@
-# Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL<a name="download-ota-ti"></a><a name="download-demo"></a>
+# Download, Build, Flash, and Run the FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL<a name="download-ota-ti"></a><a name="download-demo"></a>
 
-**To download Amazon FreeRTOS and the OTA demo code**
+**To download FreeRTOS and the OTA demo code**
 
 1. Browse to the AWS IoT console and from the navigation pane, choose **Software**\.
 
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
+1. Under **FreeRTOS Device Software**, choose **Configure download**\.
 
 1. From the list of software configurations, choose **Connect to AWS IoT \- TI**\. Choose the configuration name, not the **Download** link\.
 
@@ -14,15 +14,15 @@
 
 1. Under **Name required**, enter **Connect\-to\-IoT\-OTA\-TI**, and then choose **Create and download**\.
 
-Save the zip file that contains Amazon FreeRTOS and the OTA demo code to your computer\. <a name="build-demo"></a>
+Save the zip file that contains FreeRTOS and the OTA demo code to your computer\. <a name="build-demo"></a>
 
 **To build the demo application**
 
 1. Extract the \.zip file\.
 
-1. Follow the instructions in [Getting Started with Amazon FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into Code Composer Studio, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
+1. Follow the instructions in [Getting Started with FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into Code Composer Studio, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
-1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1.  Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 

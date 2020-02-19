@@ -1,6 +1,6 @@
 # Over\-the\-Air Updates Demo Application<a name="ota-demo"></a>
 
-Amazon FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the `<amazon-freertos>/demos/ota` subdirectory\.
+FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the `<freertos>/demos/ota` subdirectory\.
 
 The OTA demo application:
 
@@ -14,9 +14,9 @@ The OTA demo application:
 
 1. Calls `OTA_AgentInit` to create the OTA task and registers a callback to be used when the OTA task is complete\.
 
-Before you can use OTA updates, read [Amazon FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
+Before you can use OTA updates, read [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
 
-After you complete the setup for OTA updates, download, build, flash, and run the Amazon FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following Amazon FreeRTOS\-qualified devices:
+After you complete the setup for OTA updates, download, build, flash, and run the FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following FreeRTOS\-qualified devices:
 + [Texas Instruments CC3220SF\-LAUNCHXL](download-ota-ti.md)
 + [Microchip Curiosity PIC32MZEF](download-ota-mchip.md)
 + [Espressif ESP32](download-ota-esp.md)

@@ -1,6 +1,6 @@
 # Update the Version of Your Firmware<a name="dg-ota-update-firmware"></a>
 
-The OTA agent included with Amazon FreeRTOS checks the version of any update and installs it only if it is more recent than the existing firmware version\. The following steps show you how to increment the firmware version of the OTA demo application\.
+The OTA agent included with FreeRTOS checks the version of any update and installs it only if it is more recent than the existing firmware version\. The following steps show you how to increment the firmware version of the OTA demo application\.
 
 1. Open the `aws_demos` project in your IDE\.
 

@@ -15,7 +15,7 @@ You need the following hardware:
 
 To follow the steps here, you must open a serial connection with the board to view logging and debugging information\. \(One of the steps requires you to copy a public key from the serial debugging output from the board and paste it to a file\.\) To do this, you need a 3\.3V USB/Serial converter in addition to the XMC4800 IoT Connectivity Kit\. The [ JBtek EL\-PN\-47310126](https://www.amazon.com/gp/product/B00QT7LQ88) USB/Serial converter is known to work for this demo\. You also need three male\-to\-male [jumper wires](https://www.amazon.com/gp/product/B077N6HFCX/) \(for receive \(RX\), transmit \(TX\), and ground \(GND\)\) to connect the serial cable to the Infineon MyIoT Adapter board\.  
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. For instructions, see [Option \#2: Onboard Private Key Generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. For instructions, see [Option \#2: Onboard Private Key Generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
 ## Overview<a name="getting_started_infineon_trust_x_overview"></a>
 
@@ -23,7 +23,7 @@ This tutorial contains the following steps:
 
 1. Install software on the host machine to develop and debug embedded applications for your microcontroller board\.
 
-1. Cross\-compile an Amazon FreeRTOS demo application to a binary image\.
+1. Cross\-compile a FreeRTOS demo application to a binary image\.
 
 1. Load the application binary image to your board, and then run the application\.
 
@@ -31,7 +31,7 @@ This tutorial contains the following steps:
 
 ## Set Up Your Development Environment<a name="infineon_trust_x_setup_env"></a>
 
-Amazon FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
+FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
 
 ### Install DAVE<a name="infineon_trust_x_install_dave"></a>
 
@@ -80,9 +80,9 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="infineon_trust_x_build_and_run_example"></a>
+## Build and Run the FreeRTOS Demo Project<a name="infineon_trust_x_build_and_run_example"></a>
 
-### Import the Amazon FreeRTOS Demo into DAVE<a name="infineon_trust_x_freertos_import-project"></a><a name="infineon_trust_x_load_project"></a>
+### Import the FreeRTOS Demo into DAVE<a name="infineon_trust_x_freertos_import-project"></a><a name="infineon_trust_x_load_project"></a>
 
 1. Start DAVE\.
 
@@ -90,7 +90,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the **Import DAVE Projects** window, choose **Select Root Directory**, choose **Browse**, and then choose the XMC4800 demo project\.
 
-   In the directory where you unzipped your Amazon FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_plus_optiga_trust_x/dave4/aws_demos/dave4`\.
+   In the directory where you unzipped your FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_plus_optiga_trust_x/dave4/aws_demos/dave4`\.
 
    Make sure that **Copy Projects Into Workspace** is cleared\.
 
@@ -102,7 +102,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    Make sure that the project builds without errors\.
 
-### Run the Amazon FreeRTOS Demo Project<a name="infineon_trust_x_run_examples"></a>
+### Run the FreeRTOS Demo Project<a name="infineon_trust_x_run_examples"></a>
 
 1. From the **Project** menu, choose **Rebuild Active Project** to rebuild `aws_demos` and confirm that your configuration changes are picked up\.
 
@@ -156,13 +156,13 @@ At this point, continue with the public key extraction step in [Option \#2: Onbo
 38 122068 [MQTTEcho] ----Demo finished----
 ```
 
-#### Build the Amazon FreeRTOS Demo with CMake<a name="infineon_trust_x_cmake"></a>
+#### Build the FreeRTOS Demo with CMake<a name="infineon_trust_x_cmake"></a>
 
-This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-If you prefer not to use an IDE for Amazon FreeRTOS development, you can use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+If you prefer not to use an IDE for FreeRTOS development, you can use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
-**To build the Amazon FreeRTOS demo with CMake**
+**To build the FreeRTOS demo with CMake**
 
 1. Set up the GNU Arm Embedded Toolchain\.
 
@@ -180,7 +180,7 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
 1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\. 
 
-1. Change directories to your Amazon FreeRTOS download directory \(`<amazon-freertos>`\), and use the following command to generate the build files:
+1. Change directories to your FreeRTOS download directory \(`<freertos>`\), and use the following command to generate the build files:
 
    ```
    cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B <BUILD_FOLDER> -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0

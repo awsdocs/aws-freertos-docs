@@ -1,6 +1,6 @@
 # Running Bluetooth Low Energy Tests<a name="afr-bridgekeeper-dt-bt"></a>
 
-This section describes how to set up and run the Bluetooth tests using AWS IoT Device Tester for Amazon FreeRTOS\. Bluetooth tests are not required for core qualification\. If you do not want to test your device with Amazon FreeRTOS Bluetooth support you may skip this setup, be sure to leave the BLE feature in device\.json set to `No`\.
+This section describes how to set up and run the Bluetooth tests using AWS IoT Device Tester for FreeRTOS\. Bluetooth tests are not required for core qualification\. If you do not want to test your device with FreeRTOS Bluetooth support you may skip this setup, be sure to leave the BLE feature in device\.json set to `No`\.
 
 ## Prerequisites<a name="dt-bt-prereq"></a>
 + Follow the instructions in [Preparing to Test Your Microcontroller Board for the First Time](qual-steps.md)\.
@@ -49,15 +49,15 @@ To test the BLE capabilities of the device under test \(DUT\), you must have a R
 
    1. \(Optional\) The tests execute commands on the Raspberry Pi over SSH using the default credentials for the yocto image\. For additional security, we recommend that you set up public key authentication for SSH and disable password\-based SSH\.
 
-      1. Create an SSH key using the OpenSSL ssh\-keygen command\. If you already have an SSK key pair on your host computer, it is a best practice to create a new one to allow AWS IoT Device Tester for Amazon FreeRTOS to sign in to your Raspberry Pi\.
+      1. Create an SSH key using the OpenSSL ssh\-keygen command\. If you already have an SSK key pair on your host computer, it is a best practice to create a new one to allow AWS IoT Device Tester for FreeRTOS to sign in to your Raspberry Pi\.
 **Note**  
 Windows does not come with an installed SSH client\. For information about how to install an SSH client on Windows, see [Download SSH Software](hhttps://www.ssh.com/ssh/#sec-Download-client-software)\.
 
-      1. The ssh\-keygen command prompts you for a name and path to store the key pair\. By default, the key pair files are named `id_rsa` \(private key\) and `id_rsa.pub` \(public key\)\. On macOS and and Linux, the default location of these files is `~/.ssh/`\. On Windows, the default location is `C:\Users\<user-name>`\.
+      1. The ssh\-keygen command prompts you for a name and path to store the key pair\. By default, the key pair files are named `id_rsa` \(private key\) and `id_rsa.pub` \(public key\)\. On macOS and Linux, the default location of these files is `~/.ssh/`\. On Windows, the default location is `C:\Users\<user-name>`\.
 
       1. When you are prompted for a key phrase, just press ENTER to continue\.
 
-      1. To add your SSH key onto your Raspberry Pi so AWS IoT Device Tester for Amazon FreeRTOS can sign into the device, use the ssh\-copy\-id command from your host computer\. This command adds your public key into the `~/.ssh/authorized_keys` file on your Raspberry Pi\.
+      1. To add your SSH key onto your Raspberry Pi so AWS IoT Device Tester for FreeRTOS can sign into the device, use the ssh\-copy\-id command from your host computer\. This command adds your public key into the `~/.ssh/authorized_keys` file on your Raspberry Pi\.
 
          ssh\-copy\-id root@*<raspberry\-pi\-ip\-address>*
 
@@ -121,7 +121,7 @@ The ssh\-copy\-id command assumes the public key is named `id_rsa.pub`\. On macO
          }
          ```
 
-## Amazon FreeRTOS Device Setup<a name="afr-device-setup"></a>
+## FreeRTOS Device Setup<a name="afr-device-setup"></a>
 
 In your `device.json` file, set the `BLE` feature to `Yes`\. If you are starting with a `device.json` file from before Bluetooth tests were available, you need to add the feature for BLE to the `features` array:
 

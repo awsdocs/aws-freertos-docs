@@ -1,4 +1,4 @@
-# Amazon FreeRTOS AWS IoT Greengrass Discovery Library<a name="freertos-lib-gg-connectivity"></a>
+# AWS IoT Greengrass Discovery Library<a name="freertos-lib-gg-connectivity"></a>
 
 ## Overview<a name="freertos-gg-overview"></a>
 
@@ -8,7 +8,7 @@ The AWS IoT Greengrass Discovery library is used by your microcontroller devices
 
 To use the Greengrass Discovery library, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. 
 
-You must set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential.h` file:
+You must set values for the following constants in the `<freertos>/demos/include/aws_clientcredential.h` file:
 
 `clientcredentialMQTT_BROKER_ENDPOINT`  
 Your AWS IoT endpoint\.
@@ -25,7 +25,7 @@ Your Wi\-Fi password\.
 `clientcredentialWIFI_SECURITY`  
 The type of security used by your Wi\-Fi network\.
 
-You must also set values for the following constants in the `<amazon-freertos>/demos/include/aws_clientcredential_keys.h` file:
+You must also set values for the following constants in the `<freertos>/demos/include/aws_clientcredential_keys.h` file:
 
 `keyCLIENT_CERTIFICATE_PEM`  
 The certificate PEM associated with your thing\.

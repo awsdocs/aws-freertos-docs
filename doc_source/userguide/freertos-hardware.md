@@ -1,6 +1,6 @@
-# Amazon FreeRTOS\-Qualified Hardware Platforms<a name="freertos-hardware"></a>
+# FreeRTOS\-Qualified Hardware Platforms<a name="freertos-hardware"></a>
 
-The following hardware platforms are qualified for Amazon FreeRTOS:
+The following hardware platforms are qualified for FreeRTOS:
 + [ATECC608a Zero Touch Provisioning Kit for AWS IoT](https://devices.amazonaws.com/detail/a3G0L00000AANvOUAX/ATECC608a-Zero-Touch-Provisioning-Kit-for-AWS-IoT)
 + [Cypress CYW943907AEVAL1F Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAPg0UAH/CYW943907AEVAL1F)
 + [Cypress CYW954907AEVAL1F Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)
@@ -12,6 +12,7 @@ The following hardware platforms are qualified for Amazon FreeRTOS:
 + [MediaTek MT7697Hx Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)
 + [Microchip Curiosity PIC32MZEF Bundle](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)
 + [Nordic nRF52840\-DK](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)
++ [NuMaker\-IoT\-M487](https://devices.amazonaws.com/detail/a3G0h000000Tg9cEAC/NuMaker-IoT-M487)
 + [NXP LPC54018 IoT Module](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)
 + [OPTIGA Trust X Security Solution](https://devices.amazonaws.com/detail/a3G0h000007712QEAQ/OPTIGA%E2%84%A2-Trust-X-Security-Solution)
 + [Renesas RX65N RSK IoT Module](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)
@@ -22,4 +23,4 @@ The following hardware platforms are qualified for Amazon FreeRTOS:
 
 Qualified devices are also listed on the [AWS Partner Device Catalog](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
 
-For information about qualifying a new device, see the [Amazon FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
+For information about qualifying a new device, see the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.

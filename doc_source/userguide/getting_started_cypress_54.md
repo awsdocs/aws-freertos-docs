@@ -1,23 +1,25 @@
 # Getting Started with the Cypress CYW954907AEVAL1F Development Kit<a name="getting_started_cypress_54"></a>
 
-This tutorial provides instructions for getting started with the Cypress CYW954907AEVAL1F Development Kit\. If you do not have the Cypress CYW954907AEVAL1F Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)\.
+This tutorial provides instructions for getting started with the Cypress CYW954907AEVAL1F Development Kit\. If you don't have the Cypress CYW954907AEVAL1F Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)\.
 
 **Note**  
-This tutorial walks you through setting up and running the MQTT Hello World demo\. The Amazon FreeRTOS port for this board currently does not support the TCP server and client demos\.
+This tutorial walks you through setting up and running the MQTT Hello World demo\. The FreeRTOS port for this board currently doesn't support the TCP server and client demos\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 **Important**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. To accommodate the files in the Amazon FreeRTOS projects, make sure that the path to the Amazon FreeRTOS download directory is fewer than 43 characters long\.  
-As noted in [Downloading Amazon FreeRTOS](freertos-download.md), Amazon FreeRTOS ports for Cypress are currently only available on [GitHub](https://github.com/aws/amazon-freertos)\.
+In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
+Space characters in the `freertos` path can cause build failures\. When you clone or copy the repository, make sure the path that you create doesn't contain space characters\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
+As noted in [Downloading FreeRTOS](freertos-download.md), FreeRTOS ports for Cypress are currently only available on [ GitHub](https://github.com/aws/amazon-freertos)\.
 
-## Overview<a name="w12aab7c25c11c11"></a>
+## Overview<a name="overview-for-cypress-CYW954907AEVAL1F-tutorial"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -27,7 +29,7 @@ This tutorial contains instructions for the following getting started steps:
 
 ### Download and Install the WICED Studio SDK<a name="cypress54-install-wiced-studio"></a>
 
-In this Getting Started guide, you use the Cypress WICED Studio SDK to program your board with the Amazon FreeRTOS demo\. Visit the [WICED Software](https://www.cypress.com/products/wiced-software) website to download the WICED Studio SDK from Cypress\. You must register for a free Cypress account to download the software\. The WICED Studio SDK is compatible with Windows, macOS, and Linux operating systems\.
+In this Getting Started guide, you use the Cypress WICED Studio SDK to program your board with the FreeRTOS demo\. Visit the [WICED Software](https://www.cypress.com/products/wiced-software) website to download the WICED Studio SDK from Cypress\. You must register for a free Cypress account to download the software\. The WICED Studio SDK is compatible with Windows, macOS, and Linux operating systems\.
 
 **Note**  
 Some operating systems require additional installation steps\. Make sure that you read and follow all installation instructions for the operating system and version of WICED Studio that you are installing\.
@@ -62,7 +64,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-m.n`
 1. Open a terminal and run the following commands:
 
    ```
-   cd <amazon-freertos>/vendors/cypress/WICED_SDK
+   cd freertos/vendors/cypress/WICED_SDK
    ```
 
    ```
@@ -90,17 +92,17 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-m.n`
 
 For more information about installing a terminal and setting up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="cypress54-build-and-run-example"></a>
+## Build and Run the FreeRTOS Demo Project<a name="cypress54-build-and-run-example"></a>
 
-After you set up a serial connection to your board, you can build the Amazon FreeRTOS demo project, flash the demo to your board, and then run the demo\.
+After you set up a serial connection to your board, you can build the FreeRTOS demo project, flash the demo to your board, and then run the demo\.
 
-**To build and run the Amazon FreeRTOS demo project in WICED Studio**
+**To build and run the FreeRTOS demo project in WICED Studio**
 
 1. Launch WICED Studio\.
 
 1. From the **File** menu, choose **Import**\. Expand the `General` folder, choose **Existing Projects into Workspace**, and then choose **Next**\.
 
-1. In **Select root directory**, select **Browse\.\.\.**, navigate to the path `<amazon-freertos>/projects/cypress/CYW954907AEVAL1F/wicedstudio`, and then select **OK**\.
+1. In **Select root directory**, select **Browse\.\.\.**, navigate to the path `freertos/projects/cypress/CYW954907AEVAL1F/wicedstudio`, and then select **OK**\.
 
 1. Under **Projects**, check the box for just the **aws\_demo** project\. Choose **Finish** to import the project\. The target project **aws\_demo** should appear in the **Make Target** window\.
 
@@ -145,4 +147,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
   sudo apt-get install libusb-dev
   ```
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

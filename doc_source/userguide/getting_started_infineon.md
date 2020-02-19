@@ -4,15 +4,15 @@ This tutorial provides instructions for getting started with the Infineon XMC480
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w12aab7c25c17b9"></a>
+## Overview<a name="w13aab7c25c17b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -20,7 +20,7 @@ This tutorial contains instructions for the following getting started steps:
 
 ## Set Up Your Development Environment<a name="infineon-setup-env"></a>
 
-Amazon FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, you need to download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
+FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, you need to download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
 
 ### Install DAVE<a name="install-dave"></a>
 
@@ -59,9 +59,9 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
  With the cable connected, you can open a serial connection on a terminal emulator such as [GNU Screen](https://www.gnu.org/software/screen/)\. The baud rate is set to 115200 by default with 8 data bits, no parity, and 1 stop bit\. 
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="infineon-build-and-run-example"></a>
+## Build and Run the FreeRTOS Demo Project<a name="infineon-build-and-run-example"></a>
 
-### Import the Amazon FreeRTOS Demo into DAVE<a name="infineon-freertos-import-project"></a><a name="infineon-load-project"></a>
+### Import the FreeRTOS Demo into DAVE<a name="infineon-freertos-import-project"></a><a name="infineon-load-project"></a>
 
 1. Start DAVE\.
 
@@ -69,7 +69,7 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
 1. In the **Import DAVE Projects** window, choose **Select Root Directory**, choose **Browse**, and then choose the XMC4800 demo project\.
 
-   In the directory where you unzipped your Amazon FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_iotkit/dave4/aws_demos`\. 
+   In the directory where you unzipped your FreeRTOS download, the demo project is located in `projects/infineon/xmc4800_iotkit/dave4/aws_demos`\. 
 
    Make sure that **Copy Projects Into Workspace** is unchecked\.
 
@@ -81,7 +81,7 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
    Make sure that the project builds without errors\.
 
-### Run the Amazon FreeRTOS Demo Project<a name="infineon-run-examples"></a>
+### Run the FreeRTOS Demo Project<a name="infineon-run-examples"></a>
 
 1. Use a USB cable to connect your XMC4800 IoT Connectivity Kit to your computer\. The board has two microUSB connectors\. Use the one labeled “X101”, where Debug appears next to it on the board's silkscreen\.
 
@@ -137,14 +137,14 @@ In the AWS IoT console, the MQTT client from steps 4\-5 should display the MQTT 
 38 122068 [MQTTEcho] ----Demo finished----
 ```
 
-### Build the Amazon FreeRTOS demo with CMake<a name="infineon-cmake"></a>
+### Build the FreeRTOS demo with CMake<a name="infineon-cmake"></a>
 
-If you prefer not to use an IDE for Amazon FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
+If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
 **Note**  
-This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-**To build the Amazon FreeRTOS demo with CMake**
+**To build the FreeRTOS demo with CMake**
 
 1. Set up the GNU Arm Embedded Toolchain\.
 
@@ -162,7 +162,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
 1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
 
-1. Change directories to your Amazon FreeRTOS download directory \(`<amazon-freertos>`\), and use the following command to generate the build files:
+1. Change directories to your FreeRTOS download directory \(`<freertos>`\), and use the following command to generate the build files:
 
    ```
    cmake -DVENDOR=infineon -DBOARD=xmc4800_iotkit -DCOMPILER=arm-gcc -S . -B <BUILD_FOLDER> -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
@@ -204,7 +204,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c17c15b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w13aab7c25c17c15b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -218,6 +218,6 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="infineon-troubleshooting"></a>
 
-If you haven't already, be sure to configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
+If you haven't already, be sure to configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

@@ -1,6 +1,6 @@
-# Configuring the Amazon FreeRTOS Download for Demos<a name="hw-directory"></a>
+# Configuring the FreeRTOS Download for Demos<a name="hw-directory"></a>
 
-Under the download's root directory \(`<amazon-freertos>`\), the `vendors` folder is structured as follows:
+Under the download's root directory \(`<freertos>`\), the `vendors` folder is structured as follows:
 
 ```
 vendors
@@ -24,7 +24,7 @@ vendors/<vendor>/boards/<board>/aws_demos
 + - application_code    (Contains main.c, which contains main())
 |   + - <vendor>_code    (Contains vendor-supplied, board-specific files)
 |   + - main.c    (Contains main())
-+ - config_files    (Contains Amazon FreeRTOS config files)
++ - config_files    (Contains FreeRTOS config files)
 ```
 
 **To configure the demo project files**

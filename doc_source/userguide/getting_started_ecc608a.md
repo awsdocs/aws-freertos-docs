@@ -7,7 +7,7 @@ You need the following hardware:
 + [ SAMD21 XPlained Pro](https://www.microchipdirect.com/product/ATSAMD21-XPRO?dfw_tracker=64197-ATSAMD21-XPRO&gclid=EAIaIQobChMIn5jIuM3C5QIVk_5kCh1m1Ag4EAQYASABEgLKtfD_BwE)
 + [ mikroBUS Xplained Pro adapter](https://www.microchip.com/Developmenttools/ProductDetails/ATMBUSADAPTER-XPRO)
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\.  In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as *<amazon\-freertos>*\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\.  In this tutorial, the path to the FreeRTOS download directory is referred to as *freertos*\.
 
 ## Overview<a name="gsg-ecc608a-overview"></a>
 
@@ -17,7 +17,7 @@ This tutorial contains the following steps:
 
 1. Install software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross\-compile an Amazon FreeRTOS demo application to a binary image\.
+1. Cross\-compile an FreeRTOS demo application to a binary image\.
 
 1. Load the application binary image to your board, and then run the application\.
 
@@ -51,7 +51,7 @@ Your setup should look like the following\.
 
 1. If you haven't already, [create an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\. To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
-   To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, you attach the following IAM policies to your IAM user account in these steps:
+   To grant your IAM user account access to AWS IoT and FreeRTOS, you attach the following IAM policies to your IAM user account in these steps:
    + `AmazonFreeRTOSFullAccess`
    + `AWSIoTFullAccess`
 
@@ -85,11 +85,11 @@ Your setup should look like the following\.
 
    For more information about IAM, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html) in the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
-1. Download the Amazon FreeRTOS repo from  the [Amazon FreeRTOS GitHub repository](https://github.com/aws/amazon-freertos)\.
+1. Download the FreeRTOS repo from  the [FreeRTOS GitHub repository](https://github.com/aws/amazon-freertos)\.
 
-   To download Amazon FreeRTOS from GitHub:
+   To download FreeRTOS from GitHub:
 
-   1. Browse to the [Amazon FreeRTOS GitHub repository](https://github.com/aws/amazon-freertos)\.
+   1. Browse to the [FreeRTOS GitHub repository](https://github.com/aws/amazon-freertos)\.
 
    1. Choose **Clone or download**\.
 
@@ -98,11 +98,12 @@ Your setup should look like the following\.
       ```
       git clone https://github.com/aws/amazon-freertos.git --recurse-submodules
       ```
+**Important**  
+In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
+Space characters in the `freertos` path can cause build failures\. When you clone or copy the repository, make sure the path that you create doesn't contain space characters\.
+The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
 
-   1. From the *<amazon\-freertos>* directory, check out the branch that you want to use\.
-**Note**  
-The maximum length of a file path on Microsoft Windows is 260 characters\. Long Amazon FreeRTOS download directory paths can cause build failures\.  
-In the Getting Started documentation, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+   1. From the `freertos` directory, check out the branch to use\.
 
 1. Set up your development environment\.
 
@@ -116,16 +117,16 @@ In the Getting Started documentation, the path to the Amazon FreeRTOS download d
 
    1. Make sure that you have an active hard\-wired Ethernet connection\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="gsg-ecc608a-build-and-run"></a>
+## Build and Run the FreeRTOS Demo Project<a name="gsg-ecc608a-build-and-run"></a>
 
 **Important**  
-The Microchip ECC608a device has a one time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the Amazon FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, it will not be possible for all tests in the test project to succeed\.
+The Microchip ECC608a device has a one time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, it will not be possible for all tests in the test project to succeed\.
 
-**To build and Run the Amazon FreeRTOS Demo Project with the Visual Studio IDE**
+**To build and Run the FreeRTOS Demo Project with the Visual Studio IDE**
 
 1. Load the project into Visual Studio\.
 
-   From the **File** menu, choose **Open**\. Choose **File/Solution**, navigate to the `<amazon-freertos>projects\microchip\ecc608a_plus_winsim\visual_studio\aws_demos\aws_demos.sln` file, and then choose **Open**\.
+   From the **File** menu, choose **Open**\. Choose **File/Solution**, navigate to the `freertosprojects\microchip\ecc608a_plus_winsim\visual_studio\aws_demos\aws_demos.sln` file, and then choose **Open**\.
 
 1. Retarget the demo project\.
 
@@ -137,7 +138,7 @@ The Microchip ECC608a device has a one time initialization that is locked onto t
 
 1. Provision the Microchip ECC608a\.
 
-   Microchip has provided several scripting tools to help with the setup of the ATECC608a parts\. Navigate to `<amazon-freertos>\vendors\microchip\secure_elements\app\example_trust_chain_tool`, and open the README\.md file\.
+   Microchip has provided several scripting tools to help with the setup of the ATECC608a parts\. Navigate to `freertos\vendors\microchip\secure_elements\app\example_trust_chain_tool`, and open the README\.md file\.
 
    Follow the instructions in the `README.md` file to provision your device\. The steps include the following:
 
@@ -149,7 +150,7 @@ The Microchip ECC608a device has a one time initialization that is locked onto t
 
    1. Load the CA certificate and device certificate onto the device\.
 
-1. Build and run Amazon FreeRTOS samples\. 
+1. Build and run FreeRTOS samples\. 
 
    Re\-run the demo project again\. This time you should connect\!
 

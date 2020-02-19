@@ -2,166 +2,124 @@
 
 This section describes the prerequisites for testing microcontrollers with AWS IoT Device Tester\.
 
-## Download Amazon FreeRTOS<a name="download-afr"></a>
+## Download FreeRTOS<a name="download-afr"></a>
 
-You can download the version of Amazon FreeRTOS that you want to test from [GitHub](https://github.com/aws/amazon-freertos)\. Windows has a path length limitation of 260 characters\. The path structure of Amazon FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone Amazon FreeRTOS to `C:\AFreeRTOS` rather than `C:\Users\username\programs\projects\AmazonFreeRTOS\`\.
+You can download the version of FreeRTOS that you want to test from [GitHub](https://github.com/aws/amazon-freertos)\. Windows has a path length limitation of 260 characters\. The path structure of FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone FreeRTOS to `C:\FreeRTOS` rather than `C:\Users\username\programs\projects\myproj\FreeRTOS\`\.
 
-## Download IDT for Amazon FreeRTOS<a name="download-dev-tester-afr"></a>
+## Download IDT for FreeRTOS<a name="download-dev-tester-afr"></a>
 
-Every version of Amazon FreeRTOS has a corresponding version of IDT for Amazon FreeRTOS for performing qualification tests\. Download the appropriate version of IDT for Amazon FreeRTOS from [Download IDT v1\.6\.0 for Amazon FreeRTOS 201912\.00](dev-test-versions-afr.md)\.
+Every version of FreeRTOS has a corresponding version of IDT for FreeRTOS to perform qualification tests\. Download the appropriate version of IDT for FreeRTOS from [Supported Versions of AWS IoT Device Tester for FreeRTOS](dev-test-versions-afr.md)\.
 
-Extract IDT for Amazon FreeRTOS into a location on the file system where you have read and write permissions\. Due to a path length limitation, on Microsoft Windows, extract IDT for Amazon FreeRTOS into a root directory like `C:\` or `D:\`\.
+Extract IDT for FreeRTOS to a location on the file system where you have read and write permissions\. Because Microsoft Windows has a character limit for the path length, extract IDT for FreeRTOS into a root directory such as `C:\` or `D:\`\.
 
 ## Create and Configure an AWS Account<a name="config-aws-account"></a>
 
-Follow these steps to create and configure an AWS account, an IAM user, and an IAM policy that grants IDT for Amazon FreeRTOS permission to access resources on your behalf while running tests\.
+Follow these steps to create and configure an AWS account, an IAM user, and an IAM policy that grants IDT for FreeRTOS permission to access resources on your behalf while running tests\.
 
-1. [Create an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
+1. Create an [AWS account](http://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\. If you already have an AWS account, skip to the next step\. 
 
-1. [Create an IAM policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_managed-policies.html) that grants IDT for Amazon FreeRTOS the permissions it needs to run the tests and collect IDT usage data\. Use the policy templates described in [Permissions Policy Template](#policy-template)\.
+1. Create an IAM policy that grants IDT for FreeRTOS the IAM permissions to create service roles with specific permissions\. 
 
-1. [Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in your AWS account and attach the policy you just created\.
+   1. Sign in to the [IAM console](https://console.aws.amazon.com/iam)\.
 
-### Permissions Policy Template<a name="policy-template"></a>
+   1. In the navigation pane, choose **Policies**\.
 
-The following is a policy template that grants the permissions required for IDT for Amazon FreeRTOS to run tests\.
+   1. In the content pane, choose **Create policy**\.
 
+   1. Choose the **JSON** tab and copy the following permissions in to the **JSON** text box\.
 **Important**  
-The following policy template grants permission to create roles, create policies, and attach policies to roles\. IDT for Amazon FreeRTOS uses these permissions for tests that need to create roles\. Although the policy template does not provide administrator privileges to the user, the permissions can be potentially used to gain administrator access to your AWS account\.
+The following policy template grants IDT permission to create roles, create policies, and attach policies to roles\. IDT for FreeRTOS uses these permissions for tests that create roles\. Although the policy template doesn't provide administrator privileges to the user, the permissions could potentially be used to gain administrator access to your AWS account\.
 
-```
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "VisualEditor0",
-      "Effect": "Allow",
-      "Action": [
-        "iam:CreatePolicy",
-        "iam:DetachRolePolicy",
-        "iam:DeleteRolePolicy",
-        "s3:CreateBucket",
-        "iam:DeletePolicy",
-        "iam:CreateRole",
-        "iam:DeleteRole",
-        "iam:AttachRolePolicy",
-        "s3:DeleteBucket",
-        "s3:PutBucketVersioning"
-      ],
-      "Resource": [
-        "arn:aws:s3:::idt*",
-        "arn:aws:s3:::afr-ota*",
-        "arn:aws:iam::*:policy/idt*",
-        "arn:aws:iam::*:role/idt*"
-      ]
-    },
-    {
-      "Sid": "VisualEditor1",
-      "Effect": "Allow",
-      "Action": [
-        "iot:DeleteCertificate",
-        "iot:AttachPolicy",
-        "iot:DetachPolicy",
-        "s3:DeleteObjectVersion",
-        "iot:DeleteOTAUpdate",
-        "s3:PutObject",
-        "s3:GetObject",
-        "iam:PassRole",
-        "iot:DeleteStream",
-        "iot:DeletePolicy",
-        "iot:UpdateCertificate",
-        "iot:GetOTAUpdate",
-        "s3:DeleteObject",
-        "iot:DescribeJobExecution",
-        "s3:GetObjectVersion"
-      ],
-      "Resource": [
-        "arn:aws:iot:*:*:thinggroup/idt*",
-        "arn:aws:iot:*:*:policy/idt*",
-        "arn:aws:iot:*:*:otaupdate/idt*",
-        "arn:aws:iot:*:*:thing/idt*",
-        "arn:aws:iot:*:*:cert/*",
-        "arn:aws:iot:*:*:job/*",
-        "arn:aws:iot:*:*:stream/*",
-        "arn:aws:iam::*:role/idt*",
-        "arn:aws:s3:::afr-ota*/*",
-        "arn:aws:s3:::idt*/*",
-        "arn:aws:iam:::role/idt*"
-      ]
-    },
-    {
-      "Sid": "VisualEditor2",
-      "Effect": "Allow",
-      "Action": [
-        "iot:DetachThingPrincipal",
-        "iot:AttachThingPrincipal",
-        "s3:ListBucketVersions",
-        "iot:CreatePolicy",
-        "iam:ListRoles",
-        "freertos:ListHardwarePlatforms",
-        "signer:DescribeSigningJob",
-        "s3:ListBucket",
-        "signer:*",
-        "iot:DescribeEndpoint",
-        "iot:CreateStream",
-        "signer:StartSigningJob",
-        "s3:ListAllMyBuckets",
-        "signer:ListSigningJobs",
-        "acm:GetCertificate",
-        "acm:ListCertificates",
-        "acm:ImportCertificate",
-        "freertos:DescribeHardwarePlatform",
-        "iot:CreateKeysAndCertificate",
-        "iot:CreateCertificateFromCsr",
-        "s3:GetBucketLocation",
-        "iot:GetRegistrationCode",
-        "iot:RegisterCACertificate",
-        "iot:RegisterCertificate",
-        "iot:UpdateCACertificate",
-        "iot:DeleteCACertificate",
-        "iot:DeleteCertificate",
-        "iot:UpdateCertificate"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "VisualEditor3",
-      "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::afr*/*",
-        "arn:aws:s3:::idt*/*"
-      ]
-    },
-    {
-      "Sid": "VisualEditor4",
-      "Effect": "Allow",
-      "Action": [
-        "iot:CreateOTAUpdate",
-        "iot:CreateThing",
-        "iot:DeleteThing"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "VisualEditor5",
-      "Effect": "Allow",
-      "Action": [
-          "execute-api:Invoke"
-      ],
-      "Resource": [
-          "arn:aws:execute-api:*:098862408343:*"
-      ]
-    }
-  ]
-}
-```
+------
+#### [ Most Regions  ]
 
-## \(Optional\) Install the AWS Command Line Interface \(CLI\)<a name="install-cli"></a>
+      ```
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Action": [
+                      "iam:CreatePolicy",
+                      "iam:DetachRolePolicy",
+                      "iam:DeleteRolePolicy",
+                      "iam:DeletePolicy",
+                      "iam:CreateRole",
+                      "iam:DeleteRole",
+                      "iam:AttachRolePolicy"
+                  ],
+                  "Resource": [
+                      "arn:aws:iam::*:policy/idt*",
+                      "arn:aws:iam::*:role/idt*"
+                  ]
+              }
+          ]
+      }
+      ```
 
-You might prefer to use the CLI to perform some operations\. If you don't have the CLI installed, follow the instructions in [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
+------
+#### [ Beijing and Ningxia Regions  ]
 
-Configure the CLI for the AWS Region you want to use by running aws configure from a command line\. For information about the AWS Regions that support IDT for Amazon FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\.
+      The following policy template can be used in the Beijing and Ningxia Regions\.
+
+      ```
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Action": [
+                      "iam:CreatePolicy",
+                      "iam:DetachRolePolicy",
+                      "iam:DeleteRolePolicy",
+                      "iam:DeletePolicy",
+                      "iam:CreateRole",
+                      "iam:DeleteRole",
+                      "iam:AttachRolePolicy"
+                  ],
+                  "Resource": [
+                      "arn:aws-cn:iam::*:policy/idt*",
+                      "arn:aws-cn:iam::*:role/idt*"
+                  ]
+              }
+          ]
+      }
+      ```
+
+------
+
+   1. When you're finished, choose **Review policy**\.
+
+   1. On the **Review** page, enter `IDTFreeRTOSIAMPermissions` for the policy name\. Review the policy **Summary** to verify the permissions granted by your policy\.
+
+   1. Choose **Create policy**\.
+
+1. Create an IAM user with the necessary permissions to run AWS IoT Device Tester\. 
+
+   1. Follow steps 1 through 5 in [ Creating IAM Users \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console)\.
+
+   1. To attach the necessary permissions to your IAM user:
+
+      1. On the **Set permissions** page, choose **Attach existing policies to user directly**\.
+
+      1. Search for the **IDTFreeRTOSIAMPermissions** policy that you created in step 2\. Select the check box\.
+
+      1. Search for the **AWSIoTDeviceTesterForFreeRTOSFullAccess** policy\. Select the check box\.
+
+   1. Choose **Next: Tags**\.
+
+   1. Choose **Next: Review** to view a summary of your choices\. 
+
+   1. Choose **Create user**\.
+
+   1. To view the users' access keys \(access key IDs and secret access keys\), choose **Show** next to each password and access key and then choose **Download\.csv**\. Save the file to a safe location\.
+
+## AWS IoT Device Tester Usage Metrics<a name="usage-metrics"></a>
+
+When you run AWS IoT Device Tester, we collect usage data\. The `iot-device-tester:SendMetrics` permission allows AWS IoT Device Tester to send usage data\. This permission is present in the `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy\.
+
+## \(Optional\) Install the AWS Command Line Interface<a name="install-cli"></a>
+
+You might prefer to use the AWS CLI to perform some operations\. If you don't have the AWS CLI installed, follow the instructions in [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
+
+Configure the CLI for the AWS Region you want to use by running aws configure from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\.

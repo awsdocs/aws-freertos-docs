@@ -1,6 +1,6 @@
 # Setting Up the TLS Echo Server<a name="tls-echo-server"></a>
 
-A TLS echo server is defined in `<amazon-freertos>/tools/echo_server/tls_echo_server.go`\. Follow these instructions to set up and run the TLS echo server\.
+A TLS echo server is defined in `<freertos>/tools/echo_server/tls_echo_server.go`\. Follow these instructions to set up and run the TLS echo server\.
 
 ## Prerequisites<a name="tls-echo-server-prerequisites"></a>
 
@@ -14,11 +14,11 @@ To run the TLS echo server, you need to install the following:
 
 ## Setting Up the Server<a name="tls-echo-server-config"></a>
 
-1. Copy `<amazon-freertos>/tools/echo_server/tls_echo_server.go` to a directory of your choice \(for example, `<echo_dir>`\)\.
+1. Copy `<freertos>/tools/echo_server/tls_echo_server.go` to a directory of your choice \(for example, `<echo_dir>`\)\.
 
 1. Under `<echo_dir>`, create a subfolder named `certs`\.
 
-1. Generate a TLS server self\-signed certificate and private key\. For OpenSSL commands to generate a self\-signed server certificate and private key, see `<amazon-freertos>/tools/echo_server/readme-gencert.txt`\.
+1. Generate a TLS server self\-signed certificate and private key\. For OpenSSL commands to generate a self\-signed server certificate and private key, see `<freertos>/tools/echo_server/readme-gencert.txt`\.
 
 1. Copy the self\-signed certificate and private key `.pem` files to the `certs` directory\.
 

@@ -1,6 +1,6 @@
-# Amazon FreeRTOS Logging Library<a name="lib-logging"></a>
+# Logging Library<a name="lib-logging"></a>
 
-The Amazon FreeRTOS logging library enables Amazon FreeRTOS libraries to print messages to the log for debugging\.
+The FreeRTOS logging library enables FreeRTOS libraries to print messages to the log for debugging\.
 
 ## API Reference<a name="freertos-logging-api"></a>
 

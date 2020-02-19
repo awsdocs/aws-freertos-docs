@@ -62,20 +62,20 @@ This policy grants all AWS IoT resources access to all AWS IoT actions\. This po
 
 1. Choose the policy you just created, and then choose **Register thing**\.
 
-After you obtain your certificates and keys from the AWS IoT console, you need to configure the `<amazon-freertos>/tests/include/aws_clientcredential.h` header file so your device can connect to AWS IoT\.
+After you obtain your certificates and keys from the AWS IoT console, you need to configure the `freertos/tests/include/aws_clientcredential.h` header file so your device can connect to AWS IoT\.
 
-**To configure `<amazon-freertos>/tests/include/aws_clientcredential.h`**
+**To configure `freertos/tests/include/aws_clientcredential.h`**
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
 1. In the navigation pane, choose **Settings**\.
 
-   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\. Make a note of this endpoint\.
+   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `123456789012-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
 
 1. In the navigation pane, choose **Manage**, and then choose **Things**\.
 
    Your device should have an AWS IoT thing name\. Make a note of this name\.
 
-1. In your IDE, open `<amazon-freertos>/test/include/aws_clientcredential.h` and specify values for the following constants:
-   + `static const char clientcredentialMQTT_BROKER_ENDPOINT[] = "<Your AWS IoT endpoint>";`
-   + `#define clientcredentialIOT_THING_NAME "<The AWS IoT thing name of your board>"`
+1. On the computer where you build the FreeRTOS source code, open the `freertos/test/include/aws_clientcredential.h` file in your IDE and specify values for the following constants:
+   + `static const char clientcredentialMQTT_BROKER_ENDPOINT[] = "Your AWS IoT endpoint";`
+   + `#define clientcredentialIOT_THING_NAME "The AWS IoT thing name of your board"`

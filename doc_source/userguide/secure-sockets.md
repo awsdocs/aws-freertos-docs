@@ -1,44 +1,44 @@
-# Amazon FreeRTOS Secure Sockets Library<a name="secure-sockets"></a>
+# Secure Sockets Library<a name="secure-sockets"></a>
 
 ## Overview<a name="freertos-secure-sockets-overview"></a>
 
-You can use the Amazon FreeRTOS Secure Sockets library to create embedded applications that communicate securely\. The library is designed to make onboarding easy for software developers from various network programming backgrounds\.
+You can use the FreeRTOS Secure Sockets library to create embedded applications that communicate securely\. The library is designed to make onboarding easy for software developers from various network programming backgrounds\.
 
-The Amazon FreeRTOS Secure Sockets library is based on the Berkeley sockets interface, with an additional secure communication option by TLS protocol\. For information about the differences between the Amazon FreeRTOS Secure Sockets library and the Berkeley sockets interface, see `SOCKETS_SetSockOpt` in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
+The FreeRTOS Secure Sockets library is based on the Berkeley sockets interface, with an additional secure communication option by TLS protocol\. For information about the differences between the FreeRTOS Secure Sockets library and the Berkeley sockets interface, see `SOCKETS_SetSockOpt` in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-Currently, only client APIs are supported for Amazon FreeRTOS Secure Sockets\.
+Currently, only client APIs are supported for FreeRTOS Secure Sockets\.
 
 ## Dependencies and Requirements<a name="freertos-secure-sockets-dependencies"></a>
 
-The Amazon FreeRTOS Secure Sockets library depends on a TCP/IP stack and on a TLS implementation\. Ports for Amazon FreeRTOS meet these dependencies in one of three ways:
+The FreeRTOS Secure Sockets library depends on a TCP/IP stack and on a TLS implementation\. Ports for FreeRTOS meet these dependencies in one of three ways:
 + A custom implementation of both TCP/IP and TLS
-+ A custom implementation of TCP/IP, and the Amazon FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
-+ [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) and the Amazon FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
++ A custom implementation of TCP/IP, and the FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
++ [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) and the FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
 
-The dependency diagram below shows the the reference implementation included with the Amazon FreeRTOS Secure Sockets library\. This reference implementation supports TLS and TCP/IP over Ethernet and Wi\-Fi with FreeRTOS\+TCP and mbedTLS as dependencies\. For more information about the Amazon FreeRTOS TLS layer, see [Amazon FreeRTOS Transport Layer Security](security-tls.md)\.
+The dependency diagram below shows the the reference implementation included with the FreeRTOS Secure Sockets library\. This reference implementation supports TLS and TCP/IP over Ethernet and Wi\-Fi with FreeRTOS\+TCP and mbedTLS as dependencies\. For more information about the FreeRTOS TLS layer, see [Transport Layer Security](security-tls.md)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/sockets-dependencies.png)
 
 ## Features<a name="freertos-secure-sockets-features"></a>
 
-Amazon FreeRTOS Secure Sockets library features include:
+FreeRTOS Secure Sockets library features include:
 + A standard, Berkeley Sockets\-based interface
 + Thread\-safe APIs for sending and receiving data
 + Easy\-to\-enable TLS
 
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w12aab9c35c11b5"></a>
+### Error codes<a name="w13aab9c35c11b5"></a>
 
-The error codes that the Amazon FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
+The error codes that the FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-If the Amazon FreeRTOS Secure Sockets API returns an error code, the [Amazon FreeRTOS MQTT Library, Version 1\.0\.0](freertos-lib-cloud-mqtt.md), which depends on the Amazon FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
+If the FreeRTOS Secure Sockets API returns an error code, the [MQTT Library, Version 1\.0\.0](freertos-lib-cloud-mqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
 
 ## Developer Support<a name="freertos-secure-sockets-support"></a>
 
-The Amazon FreeRTOS Secure Sockets library includes two helper macros for handling IP addresses:
+The FreeRTOS Secure Sockets library includes two helper macros for handling IP addresses:
 
 `SOCKETS_inet_addr_quick`  
 This macro converts an IP address that is expressed as four separate numeric octets into an IP address that is expressed as a 32\-bit number in network\-byte order\.
@@ -48,13 +48,13 @@ This macro converts an IP address that is expressed as a 32\-bit number in netwo
 
 ## Usage Restrictions<a name="freertos-secure-sockets-restrictions"></a>
 
-Only TCP sockets are supported by the Amazon FreeRTOS Secure Sockets library\. UDP sockets are not supported\.
+Only TCP sockets are supported by the FreeRTOS Secure Sockets library\. UDP sockets are not supported\.
 
-Only client APIs are supported by the Amazon FreeRTOS Secure Sockets library\. Server APIs, including `Bind`, `Accept`, and `Listen`, are not supported\.
+Only client APIs are supported by the FreeRTOS Secure Sockets library\. Server APIs, including `Bind`, `Accept`, and `Listen`, are not supported\.
 
 ## Initialization<a name="freertos-secure-sockets-initialization"></a>
 
-To use the Amazon FreeRTOS Secure Sockets library, you need to initialize the library and its dependencies\. To initialize the Secure Sockets library, use the following code in your application:
+To use the FreeRTOS Secure Sockets library, you need to initialize the library and its dependencies\. To initialize the Secure Sockets library, use the following code in your application:
 
 ```
 BaseType_t xResult = pdPASS;
@@ -157,9 +157,9 @@ For a full example, see the [Secure Sockets Echo Client Demo](secure-sockets-dem
 
 ## Porting<a name="freertos-secure-sockets-porting"></a>
 
-Amazon FreeRTOS Secure Sockets depends on a TCP/IP stack and on a TLS implementation\. Depending on your stack, to port the Secure Sockets library, you might need to port some of the following:
+FreeRTOS Secure Sockets depends on a TCP/IP stack and on a TLS implementation\. Depending on your stack, to port the Secure Sockets library, you might need to port some of the following:
 + The [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) TCP/IP stack
-+ The [Amazon FreeRTOS Public Key Cryptography Standard \(PKCS\) \#11 Library](security-pkcs.md)
-+ The [Amazon FreeRTOS Transport Layer Security](security-tls.md)
++ The [Public Key Cryptography Standard \(PKCS\) \#11 Library](security-pkcs.md)
++ The [Transport Layer Security](security-tls.md)
 
-For more information about porting, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the Amazon FreeRTOS Porting Guide\.
+For more information about porting, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the FreeRTOS Porting Guide\.

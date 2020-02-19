@@ -1,16 +1,16 @@
-# Amazon FreeRTOS Task Pool Library<a name="task-pool"></a>
+# Task Pool Library<a name="task-pool"></a>
 
 ## Overview<a name="freertos-task-pool-overview"></a>
 
-Amazon FreeRTOS supports task management with the Amazon FreeRTOS Task Pool library\. The Task Pool library enables you to schedule background tasks, and allows safe, asynchronous task scheduling and cancellation\. Using the Task Pool APIs, you can configure your application's tasks to optimize the trade\-off between performance and memory footprint\.
+FreeRTOS supports task management with the FreeRTOS Task Pool library\. The Task Pool library enables you to schedule background tasks, and allows safe, asynchronous task scheduling and cancellation\. Using the Task Pool APIs, you can configure your application's tasks to optimize the trade\-off between performance and memory footprint\.
 
 The Task Pool library is built on two main data structures: the Task Pool and Task Pool jobs\.
 
-### Task Pool \(`IotTaskPool_t`\)<a name="w12aab9c15c15b3b7"></a>
+### Task Pool \(`IotTaskPool_t`\)<a name="w13aab9c15c15b3b7"></a>
 
 The Task Pool contains a dispatch queue that manages the job queue for execution, and manages the worker threads that execute jobs\.
 
-### Task Pool Jobs \(`IotTaskPoolJob_t`\)<a name="w12aab9c15c15b3b9"></a>
+### Task Pool Jobs \(`IotTaskPoolJob_t`\)<a name="w13aab9c15c15b3b9"></a>
 
 Task Pool jobs can be executed as background jobs, or timed background jobs\. Background jobs are started in First\-In\-First\-Out order and have no time constraints\. Timed jobs are scheduled for background execution according to a timer\.
 

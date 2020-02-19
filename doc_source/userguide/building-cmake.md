@@ -1,6 +1,6 @@
-# Building Amazon FreeRTOS with CMake<a name="building-cmake"></a>
+# Building FreeRTOS with CMake<a name="building-cmake"></a>
 
-CMake targets your host operating system as the target system by default\. To use it for cross compiling, CMake requires a toolchain file, which specifies the compiler that you want to use\. In Amazon FreeRTOS, we provide default toolchain files in `<amazon-freertos>/tools/cmake/toolchains`\. The way to provide this file to CMake depends on whether you’re using the CMake commandline interface or GUI\. For more details, follow the [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) instructions below\. For more information about cross\-compiling in CMake, see [CrossCompiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) in the official CMake wiki\.
+CMake targets your host operating system as the target system by default\. To use it for cross compiling, CMake requires a toolchain file, which specifies the compiler that you want to use\. In FreeRTOS, we provide default toolchain files in `<freertos>/tools/cmake/toolchains`\. The way to provide this file to CMake depends on whether you’re using the CMake commandline interface or GUI\. For more details, follow the [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) instructions below\. For more information about cross\-compiling in CMake, see [CrossCompiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) in the official CMake wiki\.
 
 **To build a CMake\-based project**
 
@@ -8,15 +8,15 @@ CMake targets your host operating system as the target system by default\. To us
 
    You can use either the [CMake command\-line tool](https://cmake.org/cmake/help/latest/manual/cmake.1.html) or the [CMake GUI](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html) to generate the build files for your native build system\.
 
-   For information about generating Amazon FreeRTOS build files, see [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) and [Generating Build Files \(CMake GUI\)](#cmake-gen-gui)\.
+   For information about generating FreeRTOS build files, see [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) and [Generating Build Files \(CMake GUI\)](#cmake-gen-gui)\.
 
 1. Invoke the native build system to make the project into an executable\.
 
-   For information about making Amazon FreeRTOS build files, see [Building Amazon FreeRTOS from Generated Build Files](#cmake-build)\.
+   For information about making FreeRTOS build files, see [Building FreeRTOS from Generated Build Files](#cmake-build)\.
 
 ## Generating Build Files \(CMake Command\-Line Tool\)<a name="cmake-gen-cli"></a>
 
-You can use the CMake command\-line tool \(cmake\) to generate build files for Amazon FreeRTOS\. To generate the build files, you need to specify a target board, a compiler and the location of the source code and build directory\. Specify the target board using the `-DVENDOR` option\. Specify the compiler with the `-DCOMPILER` option\. Use the `-S` option to specify the location of the source code\. Use the `-B`option to specify the location of generated build files\.
+You can use the CMake command\-line tool \(cmake\) to generate build files for FreeRTOS\. To generate the build files, you need to specify a target board, a compiler and the location of the source code and build directory\. Specify the target board using the `-DVENDOR` option\. Specify the compiler with the `-DCOMPILER` option\. Use the `-S` option to specify the location of the source code\. Use the `-B`option to specify the location of generated build files\.
 
 **Note**  
 The compiler must be in the system's `PATH` variable, or you must specify the location of the compiler\.
@@ -65,7 +65,7 @@ If the toolchain file does not use absolute paths for your compiler, and you did
 cmake -DBOARD=cc3220 -DCMAKE_TOOLCHAIN_FILE='/path/to/toolchain_file.cmake' -DAFR_TOOLCHAIN_PATH='/path/to/toolchain/' -S . -B build
 ```
 
-To enable debugging, set the `CMAKE_BUILD_TYPE` to `debug`\. With this option enabled, CMake adds debug flags to the compile options, and builds Amazon FreeRTOS with debug symbols\.
+To enable debugging, set the `CMAKE_BUILD_TYPE` to `debug`\. With this option enabled, CMake adds debug flags to the compile options, and builds FreeRTOS with debug symbols\.
 
 ```
 # Build with debug symbols
@@ -76,7 +76,7 @@ You can also set the `CMAKE_BUILD_TYPE` to `release` to add optimization flags t
 
 ## Generating Build Files \(CMake GUI\)<a name="cmake-gen-gui"></a>
 
-You can use the CMake GUI to generate Amazon FreeRTOS build files\.
+You can use the CMake GUI to generate FreeRTOS build files\.
 
 **To generate build files with the CMake GUI**
 
@@ -90,9 +90,9 @@ You can use the CMake GUI to generate Amazon FreeRTOS build files\.
 
 1. Choose **Specify toolchain file for cross\-compiling**, and then choose **Next**\.
 
-1. Choose the toolchain file \(for example, `<amazon-freertos>/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
+1. Choose the toolchain file \(for example, `<freertos>/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
 
-   The default configuration for Amazon FreeRTOS is the template board, which does not provide any portable layer targets\. As a result, a window appears with the message Error in configuration process\.
+   The default configuration for FreeRTOS is the template board, which does not provide any portable layer targets\. As a result, a window appears with the message Error in configuration process\.
 **Note**  
 If you are seeing the following error:  
 
@@ -110,11 +110,11 @@ If you are seeing the following error:
 
 1. Choose **Generate**\. CMake generates the build system files \(for example, makefiles or ninja files\), and these files appear in the build directory you specified in the first step\. Follow the instructions in the next section to generate the binary image\.
 
-## Building Amazon FreeRTOS from Generated Build Files<a name="cmake-build"></a>
+## Building FreeRTOS from Generated Build Files<a name="cmake-build"></a>
 
 ### Building with Native Build System<a name="gsg-cmake-native"></a>
 
-You can build Amazon FreeRTOS with a native build system by calling the build system command from the output binaries directory\.
+You can build FreeRTOS with a native build system by calling the build system command from the output binaries directory\.
 
 For example, if your build file output directory is `<build_dir>`, and you are using Make as your native build system, run the following commands:
 
@@ -125,7 +125,7 @@ make -j4
 
 ### Building with CMake<a name="gsg-cmake-build"></a>
 
-You can also use the CMake command\-line tool to build Amazon FreeRTOS\. CMake provides an abstraction layer for calling native build systems\. For example:
+You can also use the CMake command\-line tool to build FreeRTOS\. CMake provides an abstraction layer for calling native build systems\. For example:
 
 ```
 cmake --build <build_dir>

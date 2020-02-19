@@ -1,6 +1,6 @@
-# Creating a Code\-Signing Certificate for the Amazon FreeRTOS Windows Simulator<a name="ota-code-sign-cert-win"></a>
+# Creating a Code\-Signing Certificate for the FreeRTOS Windows Simulator<a name="ota-code-sign-cert-win"></a>
 
-The Amazon FreeRTOS Windows simulator requires a code\-signing certificate with an ECDSA P\-256 key and SHA\-256 hash to perform OTA updates\. If you don't have a code\-signing certificate, follow these steps to create one\.
+The FreeRTOS Windows simulator requires a code\-signing certificate with an ECDSA P\-256 key and SHA\-256 hash to perform OTA updates\. If you don't have a code\-signing certificate, follow these steps to create one\.
 
 **Note**  
 To create a code\-signing certificate, install [OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.  

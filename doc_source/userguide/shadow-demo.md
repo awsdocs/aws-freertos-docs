@@ -1,6 +1,6 @@
 # AWS IoT Device Shadow Demo Application<a name="shadow-demo"></a>
 
-Amazon FreeRTOS includes a demo application that demonstrates how to programmatically update and respond to changes in an AWS IoT Device Shadow\. This demo application is defined in `Amazon FreeRTOS/demos/shadow/aws_iot_demo_shadow.c`\. The device in this scenario is a light bulb whose color can be set to red or green\.
+FreeRTOS includes a demo application that demonstrates how to programmatically update and respond to changes in an AWS IoT Device Shadow\. This demo application is defined in `FreeRTOS/demos/shadow/aws_iot_demo_shadow.c`\. The device in this scenario is a light bulb whose color can be set to red or green\.
 
 The demo application creates three tasks:
 + A main demo task that calls `prvShadowMainTask`\.
@@ -15,9 +15,9 @@ After the MQTT connection is established, the application creates the device upd
 
 `prvUpdateTask` responds to changes in the shadow's desired state\. When the desired state changes, this task updates the reported state of the shadow to reflect the new desired state\.
 
-Before you can run the Device Shadow demo, you must complete the getting started [First Steps](freertos-prereqs.md) to set up AWS IoT and Amazon FreeRTOS so your device can communicate with the AWS cloud\.
+Before you can run the Device Shadow demo, you must complete the getting started [First Steps](freertos-prereqs.md) to set up AWS IoT and FreeRTOS so your device can communicate with the AWS cloud\.
 
-After you set up AWS IoT and Amazon FreeRTOS, do the following:
+After you set up AWS IoT and FreeRTOS, do the following:
 
 1. Add the following policy to your device certificate:
 
@@ -51,9 +51,9 @@ After you set up AWS IoT and Amazon FreeRTOS, do the following:
    }
    ```
 
-1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
+1.  Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
 
-1. Build, flash, and run Amazon FreeRTOS to your device\.
+1. Build, flash, and run FreeRTOS to your device\.
 
 You can use the AWS IoT console to view your device's shadow and confirm that its desired and reported states change periodically\.
 

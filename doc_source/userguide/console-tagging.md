@@ -1,6 +1,6 @@
 # Tagging Configurations<a name="console-tagging"></a>
 
-You can apply tags to Amazon FreeRTOS configurations when you create or edit a configuration in the console\. To apply tags to a configuration, navigate to the console\. Under **Tags**, enter the name and value for the tag\.
+You can apply tags to FreeRTOS configurations when you create or edit a configuration in the console\. To apply tags to a configuration, navigate to the console\. Under **Tags**, enter the name and value for the tag\.
 
 You can use tags to manage access permissions to configurations with IAM policies\. For information, see [Using Tags with IAM Policies](console-tagging-iam.md)\.
 

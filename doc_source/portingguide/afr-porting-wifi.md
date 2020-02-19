@@ -1,18 +1,18 @@
 # Porting the Wi\-Fi Library<a name="afr-porting-wifi"></a>
 
-The Amazon FreeRTOS Wi\-Fi library interfaces with vendor\-supplied Wi\-Fi drivers\. For more information about the Amazon FreeRTOS Wi\-Fi library, see [Amazon FreeRTOS Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-wifi.html) in the Amazon FreeRTOS User Guide\.
+The FreeRTOS Wi\-Fi library interfaces with vendor\-supplied Wi\-Fi drivers\. For more information about the FreeRTOS Wi\-Fi library, see [FreeRTOS Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-wifi.html) in the FreeRTOS User Guide\.
 
-If your device does not support Wi\-Fi networking, you can skip porting the Amazon FreeRTOS Wi\-Fi library and start [Porting a TCP/IP Stack](afr-porting-tcp.md)\.
+If your device does not support Wi\-Fi networking, you can skip porting the FreeRTOS Wi\-Fi library and start [Porting a TCP/IP Stack](afr-porting-tcp.md)\.
 
 **Note**  
-For qualification, your device must connect to the AWS Cloud\. If your device does not support Wi\-Fi, you can use an ethernet connection instead\. A port of the Amazon FreeRTOS Wi\-Fi library is not necessarily required\.
+For qualification, your device must connect to the AWS Cloud\. If your device does not support Wi\-Fi, you can use an ethernet connection instead\. A port of the FreeRTOS Wi\-Fi library is not necessarily required\.
 
 ## Prerequisites<a name="porting-prereqs-wifi"></a>
 
 To port the Wi\-Fi library, you need the following:
 + An IDE project or `CMakeLists.txt` list file that includes the vendor\-supplied Wi\-Fi drivers\.
 
-  For information about setting up a test project, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
+  For information about setting up a test project, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
 
   For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md)\.
@@ -20,7 +20,7 @@ To port the Wi\-Fi library, you need the following:
 
 ## Porting<a name="porting-steps-wifi"></a>
 
-`<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c` contains empty definitions of a set of Wi\-Fi management functions\. Use the vendor\-supplied Wi\-Fi driver library to implement at least the set of functions listed in the following table\.
+`<freertos>/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c` contains empty definitions of a set of Wi\-Fi management functions\. Use the vendor\-supplied Wi\-Fi driver library to implement at least the set of functions listed in the following table\.
 
 
 | Function | Description | 
@@ -33,7 +33,7 @@ To port the Wi\-Fi library, you need the following:
 | WIFI\_GetMAC | Retrieves the Wi\-Fi interface’s MAC address\. | 
 | WIFI\_GetHostIP | Retrieves the host IP address from a hostname using DNS\. | 
 
-`<amazon-freertos>/libraries/abstractions/wifi/include/aws_wifi.h` provides the information required to implement these functions\.
+`<freertos>/libraries/abstractions/wifi/include/aws_wifi.h` provides the information required to implement these functions\.
 
 ## Testing<a name="porting-testing-wifi"></a>
 
@@ -48,7 +48,7 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the Wi\-Fi library in the IDE project**
 
-1. Add the source file `<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c` to your `aws_tests` IDE project\.
+1. Add the source file `<freertos>/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c` to your `aws_tests` IDE project\.
 
 1. Add the source file `aws_test_wifi.c` to the `aws_tests` IDE project\.
 
@@ -56,9 +56,9 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [Amazon FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 See below for an example portable layer target definition for the Wi\-Fi library\.
 
@@ -67,7 +67,7 @@ See below for an example portable layer target definition for the Wi\-Fi library
 afr_mcu_port(wifi)
 target_sources(
     AFR::wifi::mcu_port
-    INTERFACE "<amazon-freertos>/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c"
+    INTERFACE "<freertos>/vendors/<vendor>/boards/<board>/ports/wifi/aws_wifi.c"
 )
 ```
 
@@ -77,19 +77,19 @@ After you set up the library in the IDE project, you need to configure some othe
 
 **To configure the source and header files for the Wi\-Fi tests**
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and delete the `#if 0` and `#endif` compiler directives in the function definitions of `vApplicationDaemonTaskStartupHook(void)` and `prvWifiConnect(void)`\.
+1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and delete the `#if 0` and `#endif` compiler directives in the function definitions of `vApplicationDaemonTaskStartupHook(void)` and `prvWifiConnect(void)`\.
 
-1. Open `<amazon-freertos>/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `<freertos>/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
 
    If you have not ported the Secure Sockets library, also comment out the line that calls `SOCKETS_Init()`\. When you reach the [Porting the Secure Sockets Library](afr-porting-ss.md) section, you will be instructed to uncomment this initialization function call\.
 
-1. Open `<amazon-freertos>/tests/include/aws_clientcredential.h`, and set the macros in the following table for the first AP\.    
+1. Open `<freertos>/tests/include/aws_clientcredential.h`, and set the macros in the following table for the first AP\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html)
 
-1. Open `<amazon-freertos>/libraries/abstractions/wifi/test/aws_test_wifi.h`, and set the macros in the following table for the second AP\.    
+1. Open `<freertos>/libraries/abstractions/wifi/test/aws_test_wifi.h`, and set the macros in the following table for the second AP\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html)
 
-1. To enable the Wi\-Fi tests, open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_WIFI_ENABLED` to `1`\. 
+1. To enable the Wi\-Fi tests, open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_WIFI_ENABLED` to `1`\. 
 **Important**  
 The following tests require a port of the Secure Sockets library and a running echo server:  
 `WiFiConnectionLoop`
@@ -111,6 +111,6 @@ You won't be able to pass these tests until you port the Secure Sockets library 
 
 ## Validation<a name="w3aac11c23c15"></a>
 
-To officially qualify a device for Amazon FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the Amazon FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you finish porting the Amazon FreeRTOS Wi\-Fi library to your device, you can start porting a TCP/IP stack\. See [Porting a TCP/IP Stack](afr-porting-tcp.md) for instructions\.
+After you finish porting the FreeRTOS Wi\-Fi library to your device, you can start porting a TCP/IP stack\. See [Porting a TCP/IP Stack](afr-porting-tcp.md) for instructions\.

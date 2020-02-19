@@ -9,9 +9,9 @@ If you do not have the Marvell MW322 AWS IoT Starter Kit, visit the AWS Partner 
 **Note**  
 In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications for the Marvell MW322\. Other operating systems might work, but are not officially supported\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w12aab7c25c23c13"></a>
+## Overview<a name="w13aab7c25c23c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -19,7 +19,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -27,11 +27,11 @@ This tutorial contains instructions for the following getting started steps:
 
 ## Set Up Your Development Environment<a name="marvell322-setup-env"></a>
 
-Amazon FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `vendors/marvell/WMSDK/mw320/sdk` directory\.
+FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `vendors/marvell/WMSDK/mw320/sdk` directory\.
 
 The AWS IoT Starter Kit also includes pre\-flashed wireless microcontroller demo project firmware\. 
 
-In addition to the software that is bundled with the M320 AWS IoT Starter Kit and its Amazon FreeRTOS port, you must have the following software components installed on your host machine:
+In addition to the software that is bundled with the M320 AWS IoT Starter Kit and its FreeRTOS port, you must have the following software components installed on your host machine:
 + The GCC toolchain, to cross compile your application\. Versions `4_9_2015q3` and later are supported\.
 + OpenOCD, to access various JTAG functions for programming the board's flash memory, and for downloading and running firmware images in memory\.
 + The CMake build system\. Versions 3\.13 and later are supported\.
@@ -50,7 +50,7 @@ The `vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh` script attempts t
 **Note**  
 The `installpkgs.sh` script includes instructions for installing packages using `apt-get` for 32\-bit and 64\-bit Ubuntu environments and `yum` for 32\-bit and 64\-bit Fedora environments\. If you have problems running the script on your distribution, open the script file, find the list of required packages, and install them manually\.
 
-With root privileges, issue the following command from the root directory of your Amazon FreeRTOS download:
+With root privileges, issue the following command from the root directory of your FreeRTOS download:
 
 ```
 ./vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh
@@ -67,7 +67,7 @@ If you are using the Eclipse IDE, you must configure these permissions\.
 
 ### Set Up the Toolchain<a name="marvell322-toolchain"></a>
 
-The Amazon FreeRTOS port for the this board is configured to use the GNU toolchain by default\. For the Makefiles to invoke the correct compiler toolchain, the GNU compiler toolchain binaries must be included in the user’s PATH variable\. The GNU toolchain binaries must also be prefixed with `arm-none-eabi-`\.
+The FreeRTOS port for the this board is configured to use the GNU toolchain by default\. For the Makefiles to invoke the correct compiler toolchain, the GNU compiler toolchain binaries must be included in the user’s PATH variable\. The GNU toolchain binaries must also be prefixed with `arm-none-eabi-`\.
 
 The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with the OpenOCD software that interfaces with JTAG\.
 
@@ -128,11 +128,11 @@ If you cannot use a package manager to install OpenOCD version 0\.9, follow thes
 
 ### Install CMake<a name="gsg-marvell322-cmake"></a>
 
-The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device\. Amazon FreeRTOS supports versions 3\.13 and later\.
+The CMake build system is required to build the FreeRTOS demo and test applications for this device\. FreeRTOS supports versions 3\.13 and later\.
 
 You can download the latest version of CMake from [CMake\.org](https://cmake.org/download/)\. Both source and binary distributions are available\.
 
-For more details about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+For more details about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
 ## Establish a Serial Connection<a name="marvell322-serial-connect"></a>
 
@@ -190,13 +190,13 @@ Marvell development boards have an FTDI chip that exposes two USB interfaces to 
 
    For more information about installing a terminal emulator to set up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
 
-## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="marvell322-build-and-run-example"></a>
+## Build, Flash, and Run the FreeRTOS Demo Project<a name="marvell322-build-and-run-example"></a>
 
-You can use CMake and the utility scripts included with the M320 port of Amazon FreeRTOS to build, flash, and run the Amazon FreeRTOS demo project from the command line\. Or you can use an IDE to build your project\.
+You can use CMake and the utility scripts included with the M320 port of FreeRTOS to build, flash, and run the FreeRTOS demo project from the command line\. Or you can use an IDE to build your project\.
 
 ### Generate the Demo Build Files with CMake<a name="marvell322-cmake-gen"></a>
 
-Issue the following command from the root of the Amazon FreeRTOS download to generate the demo build files with CMake:
+Issue the following command from the root of the FreeRTOS download to generate the demo build files with CMake:
 
 ```
 cmake -DVENDOR=marvell -DBOARD=mw320 -DCOMPILER=arm-gcc -S . -B build -DAFR_ENABLE_TESTS=0
@@ -259,7 +259,7 @@ Before you can flash the demo application image to the board, prepare the board'
 
 **To load the layout file and Boot2 bootloader**
 
-1. Change directories to the root of the Amazon FreeRTOS download\.
+1. Change directories to the root of the FreeRTOS download\.
 
 1. Run the `flashprog.py` Python script with the `-l` and `--boot2` options:
 
@@ -278,7 +278,7 @@ After you flash the layout file and bootloader to the board, flash some firmware
 
 **To flash the Wi\-Fi firmware**
 
-1. Change directories to the root of the Amazon FreeRTOS download\.
+1. Change directories to the root of the FreeRTOS download\.
 
 1. Run the `flashprog.py` Python script with the `--wififw` option:
 
@@ -295,7 +295,7 @@ With the layout, bootloader, and Wi\-Fi firmware flashed to the board, you can f
 
 **To flash and run the demo**
 
-1. Change directories to the root of the Amazon FreeRTOS download\.
+1. Change directories to the root of the FreeRTOS download\.
 
 1. Run the `flashprog.py` Python script with the `--mcufw` and `-r` options:
 
@@ -338,7 +338,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 1. Change directories:
 
    ```
-   cd <amazon-freertos>/vendors/marvell/WMSDK/mw320
+   cd <freertos>/vendors/marvell/WMSDK/mw320
    ```
 
 1. Connect to GDB with the arm\-none\-eabi\-gdb command:
@@ -347,7 +347,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
    arm-none-eabi-gdb -x ./sdk/tools/OpenOCD/gdbinit ../../../../build/vendors/marvell/boards/mw300_rd/aws_demos.axf
    ```
 
-   If you are debugging an Amazon FreeRTOS test application, target `aws_tests.axf` instead\.
+   If you are debugging a FreeRTOS test application, target `aws_tests.axf` instead\.
 
 ### Loading the Application to SRAM<a name="marvell322-load-sram"></a>
 
@@ -358,7 +358,7 @@ The `ramload.py` script is written in Python 2\.7\.
 
 **To load to SRAM**
 
-1. Change directories to the root of the Amazon FreeRTOS download\.
+1. Change directories to the root of the FreeRTOS download\.
 
 1. Run the `ramload.py` Python script on the `aws_demos.axf` file:
 
@@ -431,4 +431,4 @@ You must generate the build files with the cmake command every time you switch b
 
    A successful build generates the `aws_demos.bin` executable\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

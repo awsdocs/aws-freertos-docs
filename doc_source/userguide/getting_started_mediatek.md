@@ -2,15 +2,15 @@
 
 This tutorial provides instructions for getting started with the MediaTek MT7697Hx Development Kit\. If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w12aab7c25c25b7"></a>
+## Overview<a name="w13aab7c25c25b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -22,7 +22,7 @@ Before you set up your environment, connect your computer to the USB port on the
 
 ### Download and Install Keil MDK<a name="install-keil-mdk"></a>
 
-You can use the GUI\-based Keil Microcontroller Development Kit \(MDK\) to configure, build, and run Amazon FreeRTOS projects on your board\. Keil MDK includes the μVision IDE and the μVision Debugger\.
+You can use the GUI\-based Keil Microcontroller Development Kit \(MDK\) to configure, build, and run FreeRTOS projects on your board\. Keil MDK includes the μVision IDE and the μVision Debugger\.
 
 **Note**  
 Keil MDK is supported on Windows 7, Windows 8, and Windows 10 64\-bit machines only\.
@@ -46,9 +46,9 @@ After you install the driver, a COM port appears in the Windows Device Manager\.
 **Note**  
 If you are having trouble connecting to your board after you install the driver, you might need to reboot your machine\.
 
-## Build and Run the Amazon FreeRTOS Demo Project with Keil MDK<a name="mediatek-build-and-run-keil"></a>
+## Build and Run the FreeRTOS Demo Project with Keil MDK<a name="mediatek-build-and-run-keil"></a>
 
-**To build the Amazon FreeRTOS demo project in Keil μVision**
+**To build the FreeRTOS demo project in Keil μVision**
 
 1. From the **Start** menu, open Keil μVision 5\.
 
@@ -58,7 +58,7 @@ If you are having trouble connecting to your board after you install the driver,
 
    After the code is built, you see the demo executable file at `projects/mediatek/mt7697hx-dev-kit/uvision/aws_demos/out/Objects/aws_demo.axf`\.
 
-**To run the Amazon FreeRTOS demo project**
+**To run the FreeRTOS demo project**
 
 1. Set the MediaTek MT7697Hx Development Kit to PROGRAM mode\.
 
@@ -90,11 +90,11 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="mediatek-troubleshooting"></a>
 
-### Debugging Amazon FreeRTOS Projects in Keil μVision<a name="mediatek-debugging"></a>
+### Debugging FreeRTOS Projects in Keil μVision<a name="mediatek-debugging"></a>
 
-Currently, you must edit the MediaTek package that is included with Keil μVision before you can debug the Amazon FreeRTOS demo project for MediaTek with Keil μVision\.
+Currently, you must edit the MediaTek package that is included with Keil μVision before you can debug the FreeRTOS demo project for MediaTek with Keil μVision\.
 
-**To edit the MediaTek package for debugging Amazon FreeRTOS projects**
+**To edit the MediaTek package for debugging FreeRTOS projects**
 
 1. Find and open the `Keil_v5\ARM\PACK\.Web\MediaTek.MTx.pdsc` file in your Keil MDK installation folder\.
 
@@ -152,4 +152,4 @@ If you are having trouble debugging an application, your debugger settings might
 1. Verify that the settings under the **Flash Download** tab appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-3.png)
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

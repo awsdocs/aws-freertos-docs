@@ -1,14 +1,14 @@
 # Implementing the `configPRINT_STRING()` macro<a name="afr-porting-config"></a>
 
-You must implement the `configPRINT_STRING()` macro before you port the Amazon FreeRTOS libraries\. Amazon FreeRTOS uses `configPRINT_STRING()` to output test results as human\-readable ASCII strings\.
+You must implement the `configPRINT_STRING()` macro before you port the FreeRTOS libraries\. FreeRTOS uses `configPRINT_STRING()` to output test results as human\-readable ASCII strings\.
 
 ## Prerequisites<a name="porting-prereqs-config"></a>
 
 To implement the `configPRINT_STRING()` macro, you need the following:
 + A development board that supports UART or virtual COM port output\.
-+ An Amazon FreeRTOS project configured for your platform, and a porting\-test IDE project\.
++ A FreeRTOS project configured for your platform, and a porting\-test IDE project\.
 
-  For information, see [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
+  For information, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 
 ## Implementation<a name="porting-steps-config"></a>
 
@@ -16,11 +16,11 @@ To implement the `configPRINT_STRING()` macro, you need the following:
 
 1. Connect your device to a terminal emulator to output test results\.
 
-1. Open the file `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and locate the call to `configPRINT_STRING("Test Message")` in the `prvMiscInitialization()` function\.
+1. Open the file `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and locate the call to `configPRINT_STRING("Test Message")` in the `prvMiscInitialization()` function\.
 
 1. Immediately before the call to `configPRINT_STRING("Test Message")`, add code that uses the vendor\-supplied UART driver to initialize the UART baud rate level to 115200\.
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`, and locate the empty definition of `configPRINT_STRING()`\. The macro takes a NULL\-terminated ASCII C string as its only parameter\.
+1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`, and locate the empty definition of `configPRINT_STRING()`\. The macro takes a NULL\-terminated ASCII C string as its only parameter\.
 
 1. Update the empty definition of `configPRINT_STRING()` so that it calls the vendor\-supplied UART output function\.
 

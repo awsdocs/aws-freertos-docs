@@ -1,10 +1,10 @@
-# Configuring the Amazon FreeRTOS Download<a name="porting-set-up-directory"></a>
+# Configuring the FreeRTOS Download<a name="porting-set-up-directory"></a>
 
-Follow the instructions below to configure the Amazon FreeRTOS download for porting Amazon FreeRTOS code to your device\.
+Follow the instructions below to configure the FreeRTOS download for porting FreeRTOS code to your device\.
 
 ## Configuring Directories for Vendor\-supplied, Board\-specific Libraries<a name="w3aab9c13b5"></a>
 
-Under the download's root directory \(`<amazon-freertos>`\), the `vendors` folder is structured as follows:
+Under the download's root directory \(`<freertos>`\), the `vendors` folder is structured as follows:
 
 ```
 vendors
@@ -28,7 +28,7 @@ vendors/<vendor>/boards/<board>/aws_tests
 + - application_code    (Contains main.c, which contains main())
 |   + - <vendor>_code    (Contains vendor-supplied, board-specific files)
 |   + - main.c    (Contains main())
-+ - config_files    (Contains Amazon FreeRTOS config files)
++ - config_files    (Contains FreeRTOS config files)
 ```
 
 All test projects require vendor\-supplied driver libraries\. Some vendor\-supplied files, such as a header file that maps GPIO output to an LED light, are specific to a target development board\. These files belong in the `<vendor>_code` folder\.
@@ -42,11 +42,11 @@ Other vendor\-supplied files, such as a GPIO library, are common across a board'
 1. Rename the `<vendor>` folder to the name of the vendor, and rename the `<driver_library>` and `<driver_library_version>` folders to the name of the driver library and its version\.
 
 **Important**  
-Do not save vendor\-supplied libraries that are common across a target board's MCU family to any subdirectories of `<amazon-freertos>/test` or `<amazon-freertos>/demos`\.
+Do not save vendor\-supplied libraries that are common across a target board's MCU family to any subdirectories of `<freertos>/test` or `<freertos>/demos`\.
 
 ## Configuring Directories for Project Files<a name="w3aab9c13b7"></a>
 
-Under `<amazon-freertos>`, the `projects` folder is structured as follows:
+Under `<freertos>`, the `projects` folder is structured as follows:
 
 ```
 projects
@@ -64,10 +64,10 @@ projects
 
 ## Configuring `FreeRTOSConfig.h`<a name="w3aab9c13b9"></a>
 
-After you have configured the directory structure of your Amazon FreeRTOS download, configure your board name in the `FreeRTOSConfig.h` configuration header file\.
+After you have configured the directory structure of your FreeRTOS download, configure your board name in the `FreeRTOSConfig.h` configuration header file\.
 
 **To configure your board name in `FreeRTOSConfig.h`**
 
-1. Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`\.
+1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`\.
 
 1. In the line `#define configPLATFORM_NAME "<Unknown>"`, change *<Unknown>* to match the name of your board\.

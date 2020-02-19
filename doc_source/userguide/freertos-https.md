@@ -1,18 +1,18 @@
-# Amazon FreeRTOS HTTPS Client Library<a name="freertos-https"></a>
+# HTTPS Client Library<a name="freertos-https"></a>
 
 ## Overview<a name="freertos-https-overview"></a>
 
-You can use the Amazon FreeRTOS HTTPS Client library to create applications that interact with an HTTP server to send HTTP requests and receive HTTP responses over TLS\. The Amazon FreeRTOS HTTPS Client library implements the HTTP/1\.1 standard over TLS\.
+You can use the FreeRTOS HTTPS Client library to create applications that interact with an HTTP server to send HTTP requests and receive HTTP responses over TLS\. The FreeRTOS HTTPS Client library implements the HTTP/1\.1 standard over TLS\.
 
-The source files for the Amazon FreeRTOS HTTPS Client library are located in `<amazon-freertos>/libraries/csdk/standard/https`\.
+The source files for the FreeRTOS HTTPS Client library are located in `<freertos>/libraries/csdk/standard/https`\.
 
 ## Dependencies and Requirements<a name="freertos-https-dependencies"></a>
 
-The Amazon FreeRTOS HTTPS Client library has the following dependencies:
-+ [Amazon FreeRTOS Linear Containers Library](lib-linear.md)\.
-+ [Amazon FreeRTOS Logging Library](lib-logging.md) \(if the configuration parameter `AWS_IOT_HTTPS_LOG_LEVEL` is not set to `AWS_IOT_LOG_NONE`\)\.
-+ [Amazon FreeRTOS Static Memory Library](lib-static.md) \(if static memory only\)\.
-+ [Amazon FreeRTOS Task Pool Library](task-pool.md)\.
+The FreeRTOS HTTPS Client library has the following dependencies:
++ [Linear Containers Library](lib-linear.md)\.
++ [Logging Library](lib-logging.md) \(if the configuration parameter `AWS_IOT_HTTPS_LOG_LEVEL` is not set to `AWS_IOT_LOG_NONE`\)\.
++ [Static Memory Library](lib-static.md) \(if static memory only\)\.
++ [Task Pool Library](task-pool.md)\.
 + The platform layer that provides an interface to the operating system for thread management, clock functions, networking, and other platform\-level functionality\.
 + C standard library headers\.
 
@@ -22,7 +22,7 @@ The diagram below illustrates these dependencies\.
 
 ## Features<a name="freertos-https-features"></a>
 
-The Amazon FreeRTOS HTTPS Client library has the following features:
+The FreeRTOS HTTPS Client library has the following features:
 + Both fully asynchronous and synchronous \(blocking\) API functions\.
 + Application managed memory for internal context and HTTP formatted headers\.
 + Thread\-aware and parallelized connections\.

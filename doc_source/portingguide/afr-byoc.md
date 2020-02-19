@@ -120,10 +120,10 @@ An ECDSA certificate is used here as an example\.
 1. Use the following AWS CLI command to activate both CA certificates:
 
    ```
-   aws iot update-ca-certificate --certificate-id <ID> --new-status ACTIVE
+   aws iot update-ca-certificate --certificate-id ID --new-status ACTIVE
    ```
 
-   Where *<ID>* is the certificate ID of one of the certificates\.
+   Where *ID* is the certificate ID of one of the certificates\.
 
 **To register the device certificate**
 
@@ -136,7 +136,7 @@ An ECDSA certificate is used here as an example\.
 1. Use the following AWS CLI command to activate the device certificate:
 
    ```
-   aws iot update-certificate --certificate-id <ID> --new-status ACTIVE
+   aws iot update-certificate --certificate-id ID --new-status ACTIVE
    ```
 
-   Where *<ID>* is the certificate ID of the certificate\.
+   Where *ID* is the certificate ID of the certificate\.

@@ -11,7 +11,7 @@ An AWS IoT thing allows you to manage your devices in AWS IoT\. It is stored on 
 A private key and X\.509 certificate  
 The private key and certificate allow your device to authenticate with AWS IoT\. 
 
-If you use the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos), a policy, an AWS IoT thing, and a key and certificate are created for you\. If you use the **Quick Connect** workflow, you can ignore the following procedures\.
+If you use the **Quick Connect** workflow in the [FreeRTOS console](https://console.aws.amazon.com/freertos), a policy, an AWS IoT thing, and a key and certificate are created for you\. If you use the **Quick Connect** workflow, you can ignore the following procedures\.
 
 To register your board manually, follow the procedures below\.
 
@@ -107,4 +107,4 @@ Grants your device the permission to receive messages from the AWS IoT message b
 
 1. Choose the policy you just created and choose **Register thing**\.
 
-After your board is registered with AWS IoT, you can continue to [Downloading Amazon FreeRTOS](freertos-download.md)\.
+After your board is registered with AWS IoT, you can continue to [Downloading FreeRTOS](freertos-download.md)\.

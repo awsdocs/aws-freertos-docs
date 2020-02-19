@@ -1,12 +1,12 @@
 # Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT<a name="getting_started_espressif"></a>
 
-This tutorial provides instructions for getting started with the Espressif ESP32\-DevKitC equipped with ESP32\-WROOM\-32, ESP32\-SOLO\-1, or ESP\-WROVER modules and the ESP\-WROVER\-KIT\-VB\. To purchase one from our partner on the AWS Partner Device catalog, use the following links: [ESP32\-WROOM\-32 DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC), [ESP32\-SOLO\-1](https://devices.amazonaws.com/detail/a3G0h0000076lSMEAY), or [ ESP32\-WROVER\-KIT](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. These versions of development boards are supported on Amazon FreeRTOS\. For more information about these boards, see [ ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
+This tutorial provides instructions for getting started with the Espressif ESP32\-DevKitC equipped with ESP32\-WROOM\-32, ESP32\-SOLO\-1, or ESP\-WROVER modules and the ESP\-WROVER\-KIT\-VB\. To purchase one from our partner on the AWS Partner Device catalog, use the following links: [ESP32\-WROOM\-32 DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC), [ESP32\-SOLO\-1](https://devices.amazonaws.com/detail/a3G0h0000076lSMEAY), or [ ESP32\-WROVER\-KIT](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. These versions of development boards are supported on FreeRTOS\. For more information about these boards, see [ ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
 
 **Note**  
-Currently, the Amazon FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
+Currently, the FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
 Symmetric multiprocessing \(SMP\)\.
 
-## Overview<a name="w12aab7c25c15b7"></a>
+## Overview<a name="getting_started_espressif-overview"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -14,7 +14,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -22,11 +22,11 @@ This tutorial contains instructions for the following getting started steps:
 
 ## Prerequisites<a name="setup-espressif-prereqs"></a>
 
-Before you get started with Amazon FreeRTOS on your Espressif board, you need to set up your AWS account and permissions\.
+Before you get started with FreeRTOS on your Espressif board, you need to set up your AWS account and permissions\.
 
 To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
-To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and Amazon FreeRTOS, attach the following IAM policies to your IAM user account:
+To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\. To grant your IAM user account access to AWS IoT and FreeRTOS, attach the following IAM policies to your IAM user account:
 + `AmazonFreeRTOSFullAccess`
 + `AWSIoTFullAccess`
 
@@ -86,15 +86,15 @@ When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and re
 + [Standard Setup of Toolchain for Linux](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/linux-setup.html)
 
 **Note**  
-Version 3\.3 of the ESP\-IDF \(the version used by Amazon FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.3 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.
+Version 3\.3 of the ESP\-IDF \(the version used by FreeRTOS\) does not support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.3 of the ESP\-IDF \(see the links above\)\. To check the version of your compiler, run "xtensa\-esp32\-elf\-gcc \-\-version"\.
 
 ### Install CMake<a name="gsg-espressif-cmake"></a>
 
-The CMake build system is required to build the Amazon FreeRTOS demo and test applications for this device\. Amazon FreeRTOS supports versions 3\.13 and later\.
+The CMake build system is required to build the FreeRTOS demo and test applications for this device\. FreeRTOS supports versions 3\.13 and later\.
 
 You can download the latest version of CMake from [CMake\.org](https://cmake.org/download/)\. Both source and binary distributions are available\.
 
-For more details about using CMake with Amazon FreeRTOS, see [Using CMake with Amazon FreeRTOS](getting-started-cmake.md)\.
+For more details about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
 ## Establish a Serial Connection<a name="establish-serial-connection"></a>
 
@@ -104,11 +104,11 @@ To establish a serial connection between your host machine and the ESP32\-WROVER
 
 For more information, see [Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
 
-## Download and Configure Amazon FreeRTOS<a name="download-and-configure-espressif"></a>
+## Download and Configure FreeRTOS<a name="download-and-configure-espressif"></a>
 
-After your environment is set up, you can download Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+After your environment is set up, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
-### Configure the Amazon FreeRTOS Demo Applications<a name="config-demos"></a>
+### Configure the FreeRTOS Demo Applications<a name="config-demos"></a>
 
 1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
@@ -124,10 +124,10 @@ After your environment is set up, you can download Amazon FreeRTOS from [GitHub]
    + On Windows, in the mingw32 environment, run easy\_install boto3\.
    + On macOS or Linux, run pip install tornado nose \-\-user and then run pip install boto3 \-\-user\.
 
-Amazon FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the the script, open `<amazon-freertos>/tools/aws_config_quick_start/configure.json` and set the following attributes:
+FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the script, open `freertos/tools/aws_config_quick_start/configure.json` and set the following attributes:
 
 `afr_source_dir`  
-The complete path to the *<amazon\-freertos>* directory on your computer\. Make sure that you use forward slashes to specify this path\.
+The complete path to the *<freertos>* directory on your computer\. Make sure that you use forward slashes to specify this path\.
 
 `thing_name`  
 The name that you want to assign to the AWS IoT thing that represents your board\.
@@ -150,7 +150,7 @@ Valid security types are:
 
 1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
 
-1. Go to the `<amazon-freertos>/tools/aws_config_quick_start` directory and run python SetupAWS\.py setup\.
+1. Go to the `<freertos>/tools/aws_config_quick_start` directory and run python SetupAWS\.py setup\.
 
 The script does the following:
 + Creates an IoT thing, certificate, and policy
@@ -158,13 +158,13 @@ The script does the following:
 + Populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials
 + Formats your certificate and private key and writes them to the `aws_clientcredential.h` header file
 
-For more information about `SetupAWS.py`, see the README\.md in the `<amazon-freertos>/tools/aws_config_quick_start` directory\.
+For more information about `SetupAWS.py`, see the README\.md in the `<freertos>/tools/aws_config_quick_start` directory\.
 
-## Build, Flash, and Run the Amazon FreeRTOS Demo Project<a name="build-and-run-example-espressif"></a>
+## Build, Flash, and Run the FreeRTOS Demo Project<a name="build-and-run-example-espressif"></a>
 
 You can use CMake to generate the build files, Make to build the application binary, and Espressif's IDF utility to flash your board\.
 
-### Build Amazon FreeRTOS<a name="build-espressif"></a>
+### Build FreeRTOS<a name="build-espressif"></a>
 
 \(If you are using Windows, please see the next section\.\)
 
@@ -172,7 +172,7 @@ Use CMake to generate the build files, and then use Make to build the applicatio
 
 **To generate the demo application's build files with CMake**
 
-1. Change directories to the root of your Amazon FreeRTOS download directory\.
+1. Change directories to the root of your FreeRTOS download directory\.
 
 1. Use the following command to generate the build files:
 
@@ -196,7 +196,7 @@ If you want to add Lightweight IP \(LwIP\) support, add the `-DAFR_ESP_LWIP=1` f
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Build Amazon FreeRTOS On Windows<a name="build-espressif-windows"></a>
+### Build FreeRTOS On Windows<a name="build-espressif-windows"></a>
 
 On Windows, you must specify a build generator for CMake, otherwise CMake defaults to Visual Studio\. Espressif officially recommends the Ninja build system because it works on Windows, Linux and MacOS\. You must run CMake commands in a native Windows environment like cmd or powershell\. Running CMake commands in a virtual Linux environment, like MSYS2 or WSL, is not supported\.
 
@@ -204,7 +204,7 @@ Use CMake to generate the build files, and then use Make to build the applicatio
 
 **To generate the demo application's build files with CMake**
 
-1. Change directories to the root of your Amazon FreeRTOS download directory\.
+1. Change directories to the root of your FreeRTOS download directory\.
 
 1. Use the following command to generate the build files:
 
@@ -233,11 +233,11 @@ If you want to generate the test application build files, add the `-DAFR_ENABLE_
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Flash and Run Amazon FreeRTOS<a name="flash-espressif"></a>
+### Flash and Run FreeRTOS<a name="flash-espressif"></a>
 
-Use Espressif's IDF utility \(`<amazon-freertos>/vendors/espressif/esp-idf/tools/idf.py`\) to flash your board, run the application, and see logs\.
+Use Espressif's IDF utility \(`<freertos>/vendors/espressif/esp-idf/tools/idf.py`\) to flash your board, run the application, and see logs\.
 
-To erase the board's flash, go to the `<amazon-freertos>` directory and use the following command:
+To erase the board's flash, go to the `<freertos>` directory and use the following command:
 
 ```
 ./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build
@@ -282,26 +282,26 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ### Run the Bluetooth Low\-Energy Demos<a name="espressif-run-ble"></a>
 
-Amazon FreeRTOS supports [Bluetooth Low Energy](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\.
+FreeRTOS supports [Bluetooth Low Energy](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\.
 
-To run the Amazon FreeRTOS demo project across Bluetooth Low Energy, you need to run the Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application on an iOS or Android mobile device\.
+To run the FreeRTOS demo project across Bluetooth Low Energy, you need to run the FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application on an iOS or Android mobile device\.
 
-**To set up the the Amazon FreeRTOS Bluetooth Low Energy Mobile SDK demo application**
+**To set up the FreeRTOS Bluetooth Low Energy Mobile SDK demo application**
 
-1. Follow the instructions in [Mobile SDKs for Amazon FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
+1. Follow the instructions in [Mobile SDKs for FreeRTOS Bluetooth Devices](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-mobile.html) to download and install the SDK for your mobile platform on your host computer\.
 
-1. Follow the instructions in [Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
+1. Follow the instructions in [FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-sdk-app) to set up the demo mobile application on your mobile device\.
 
 For instructions about how to run the MQTT over Bluetooth Low Energy demo on your board, see the [MQTT over Bluetooth Low Energy Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-mqtt)\.
 
 For instructions about how to run the Wi\-Fi provisioning demo on your board, see the [Wi\-Fi Provisioning Demo Application](https://docs.aws.amazon.com/freertos/latest/userguide/ble-demo.html#ble-demo-wifi)\.
 
-## Using Amazon FreeRTOS in Your Own CMake Project for ESP32<a name="getting_started_espressif_cmake_project"></a>
+## Using FreeRTOS in Your Own CMake Project for ESP32<a name="getting_started_espressif_cmake_project"></a>
 
-If you want to consume Amazon FreeRTOS in your own CMake project, you can set it up as a subdirectory and build it together with your application\. First, get a copy of Amazon FreeRTOS either from [GitHub](https://github.com/aws/amazon-freertos), or from the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos)\. If you're using git, you can also set it up as a git submodule with the following command so it's easier to update in the future\. 
+If you want to consume FreeRTOS in your own CMake project, you can set it up as a subdirectory and build it together with your application\. First, get a copy of FreeRTOS either from [GitHub](https://github.com/aws/amazon-freertos), or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. If you're using git, you can also set it up as a git submodule with the following command so it's easier to update in the future\. 
 
 ```
-git submodule add -b release https://github.com/aws/amazon-freertos.git amazon-freertos
+git submodule add -b release https://github.com/aws/amazon-freertos.git freertos
 ```
 
 If a newer version is released, you can update your local copy with these commands\.
@@ -311,19 +311,19 @@ If a newer version is released, you can update your local copy with these comman
 git submodule update --remote -- amazon-freertos
 # Commit the submodule change because it is pointing to a different revision now.
 git add amazon-freertos
-git commit -m "Update Amazon FreeRTOS to a new release"
+git commit -m "Update FreeRTOS to a new release"
 ```
 
 Assuming your project has the following directory structure:
 
 ```
-- amazon-freertos (the copy that you obtained from GitHub or the AWS IoT console)
+- freertos (the copy that you obtained from GitHub or the AWS IoT console)
 - src
   - main.c (your application code)
 - CMakeLists.txt
 ```
 
-Here's an example of the top\-level `CMakeLists.txt` file that can be used to build your application together with Amazon FreeRTOS\.
+Here's an example of the top\-level `CMakeLists.txt` file that can be used to build your application together with FreeRTOS\.
 
 ```
 cmake_minimum_required(VERSION 3.13)
@@ -335,9 +335,9 @@ add_executable(my_app src/main.c)
 # Tell IDF build to link against this target.
 set(IDF_PROJECT_EXECUTABLE my_app)
 
-# Add amazon freertos as a subdirectory. AFR_BOARD tells which board to target.
+# Add FreeRTOS as a subdirectory. AFR_BOARD tells which board to target.
 set(AFR_BOARD espressif.esp32_devkitc CACHE INTERNAL "")
-add_subdirectory(amazon-freertos)
+add_subdirectory(freertos)
 
 # Link against the mqtt library so that we can use it. Dependencies are transitively
 # linked.
@@ -347,7 +347,7 @@ target_link_libraries(my_app PRIVATE AFR::mqtt)
 To build the project, run the following CMake commands\. Make sure the ESP32 compiler is in the PATH environment variable\.
 
 ```
-cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=amazon-freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
 cmake --build build
 ```
 
@@ -357,12 +357,12 @@ To flash the application to your board, run
 cmake --build build --target flash
 ```
 
-### Using Components from Amazon FreeRTOS<a name="getting_started_espressif_cmake_project_components"></a>
+### Using Components from FreeRTOS<a name="getting_started_espressif_cmake_project_components"></a>
 
 After running CMake, you can find all available components in the summary output\. It should look something like this:
 
 ```
-====================Configuration for Amazon FreeRTOS====================
+====================Configuration for FreeRTOS====================
   Version:                 201910.00
   Git version:             201910.00-388-gcb3612cb7
 
@@ -381,7 +381,7 @@ Host platform:
   Toolchain path:          /opt/xtensa-esp32-elf
   CMake generator:         Ninja
 
-Amazon FreeRTOS modules:
+FreeRTOS modules:
   Modules to build:        ble, ble_hal, ble_wifi_provisioning, common, crypto, defender,
                            dev_mode_key_provisioning, freertos_plus_tcp, greengrass,
                            https, kernel, mqtt, ota, pkcs11, pkcs11_implementation,
@@ -407,7 +407,7 @@ You can reference any components from the "Modules to build" list\. To link them
 You can add more components to the ESP\-IDF build environment\. For example, assuming you want to add a component called `foo`, and your project looks like this:
 
 ```
-- amazon-freertos
+- freertos
 - components
   - foo
     - include
@@ -446,7 +446,7 @@ register_component()
 target_link_libraries(${COMPONENT_TARGET} PRIVATE AFR::mqtt)
 ```
 
-For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_REQUIRES`\. See [ When Writing a Component](https://docs.espressif.com/projects/esp-idf/en/stable/api-guides/build-system-cmake.html#when-writing-a-component) in the *ESP\-IDF Programming Guide*\.
+For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_PRIV_REQUIRES`\. See [ When Writing a Component](https://docs.espressif.com/projects/esp-idf/en/stable/api-guides/build-system-cmake.html#when-writing-a-component) in the *ESP\-IDF Programming Guide*\.
 
 ```
 # If the dependencies are from ESP-IDF, use these 2 variables. Note these need to be
@@ -455,10 +455,10 @@ set(COMPONENT_REQUIRES log)
 set(COMPONENT_PRIV_REQUIRES lwip)
 ```
 
-Then, in the top level `CMakeLists.txt` file, you tell ESP\-IDF where to find these components\. Insert the following lines anywhere before `add_subdirectory(amazon-freertos)`:
+Then, in the top level `CMakeLists.txt` file, you tell ESP\-IDF where to find these components\. Insert the following lines anywhere before `add_subdirectory(freertos)`:
 
 ```
-# Add some extra components. IDF_EXTRA_COMPONENT_DIRS is an variable used by ESP-IDF
+# Add some extra components. IDF_EXTRA_COMPONENT_DIRS is a variable used by ESP-IDF
 # to collect extra components.
 get_filename_component(
     EXTRA_COMPONENT_DIRS
@@ -469,13 +469,13 @@ list(APPEND IDF_EXTRA_COMPONENT_DIRS ${EXTRA_COMPONENT_DIRS})
 
 This component is now automatically linked to your application code by default\. You should be able to include its header files and call the functions it defines\.
 
-### Override the Configurations for Amazon FreeRTOS<a name="getting_started_espressif_cmake_project_override"></a>
+### Override the Configurations for FreeRTOS<a name="getting_started_espressif_cmake_project_override"></a>
 
-There's currently no well\-defined approach to redefining the configs outside of the Amazon FreeRTOS source tree\. By default, CMake will look for the `<amazon-freertos>/vendors/espressif/boards/esp32/aws_demos/config_files/` and `<amazon-freertos>/demos/include/` directories\. However, you can use a workaround to tell the compiler to search other directories first\. For example, you can add another folder for Amazon FreeRTOS configurations:
+There's currently no well\-defined approach to redefining the configs outside of the FreeRTOS source tree\. By default, CMake will look for the `<freertos>/vendors/espressif/boards/esp32/aws_demos/config_files/` and `<freertos>/demos/include/` directories\. However, you can use a workaround to tell the compiler to search other directories first\. For example, you can add another folder for FreeRTOS configurations:
 
 ```
-- amazon-freertos
-- amazon-freertos-configs
+- freertos
+- freertos-configs
   - aws_clientcredential.h
   - aws_clientcredential_keys.h
   - iot_mqtt_agent_config.h
@@ -485,10 +485,10 @@ There's currently no well\-defined approach to redefining the configs outside of
 - CMakeLists.txt
 ```
 
-The files under `amazon-freertos-configs` are copied from the `<amazon-freertos>/vendors/espressif/boards/esp32/aws_demos/config_files/` and `<amazon-freertos>/demos/include/i` directories\. Then, in your top level `CMakeLists.txt` file, add this line before `add_subdirectory(amazon-freertos)` so that the compiler will search this directory first:
+The files under `freertos-configs` are copied from the `<freertos>/vendors/espressif/boards/esp32/aws_demos/config_files/` and `<freertos>/demos/include/i` directories\. Then, in your top level `CMakeLists.txt` file, add this line before `add_subdirectory(freertos)` so that the compiler will search this directory first:
 
 ```
-include_directories(BEFORE amazon-freertos-configs)
+include_directories(BEFORE freertos-configs)
 ```
 
 ### Providing Your Own sdkconfig for ESP\-IDF<a name="getting_started_espressif_providing_sdkconfig"></a>
@@ -496,10 +496,10 @@ include_directories(BEFORE amazon-freertos-configs)
 In case you want to provide your own `sdkconfig.default`, you can set the CMake variable `IDF_SDKCONFIG_DEFAULTS`, from the commandline:
 
 ```
-cmake -S . -B build -DIDF_SDKCONFIG_DEFAULTS=<path_to_your_sdkconfig_defaults> -DCMAKE_TOOLCHAIN_FILE=amazon-freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
+cmake -S . -B build -DIDF_SDKCONFIG_DEFAULTS=<path_to_your_sdkconfig_defaults> -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
 ```
 
-If you don’t specify a location for your own `sdkconfig.default` file, Amazon FreeRTOS will use the default file located at `<amazon-freertos>/vendors/espressif/boards/esp32/aws_demos/sdkconfig.defaults`\. 
+If you don’t specify a location for your own `sdkconfig.default` file, FreeRTOS will use the default file located at `<freertos>/vendors/espressif/boards/esp32/aws_demos/sdkconfig.defaults`\. 
 
 ### Summary<a name="getting_started_espressif_cmake_project_summary"></a>
 
@@ -515,7 +515,7 @@ add_executable(my_app src/main.c)
 # Tell IDF build to link against this target.
 set(IDF_PROJECT_EXECUTABLE my_app)
 
-# Add some extra components. IDF_EXTRA_COMPONENT_DIRS is an variable used by ESP-IDF
+# Add some extra components. IDF_EXTRA_COMPONENT_DIRS is a variable used by ESP-IDF
 # to collect extra components.
 get_filename_component(
     EXTRA_COMPONENT_DIRS
@@ -523,12 +523,12 @@ get_filename_component(
 )
 list(APPEND IDF_EXTRA_COMPONENT_DIRS ${EXTRA_COMPONENT_DIRS})
 
-# Override the configurations for Amazon FreeRTOS.
-include_directories(BEFORE amazon-freertos-configs)
+# Override the configurations for FreeRTOS.
+include_directories(BEFORE freertos-configs)
 
-# Add amazon freertos as a subdirectory. AFR_BOARD tells which board to target.
+# Add FreeRTOS as a subdirectory. AFR_BOARD tells which board to target.
 set(AFR_BOARD espressif.esp32_devkitc CACHE INTERNAL "")
-add_subdirectory(amazon-freertos)
+add_subdirectory(freertos)
 
 # Link against the mqtt library so that we can use it. Dependencies are transitively
 # linked.
@@ -536,9 +536,9 @@ target_link_libraries(my_app PRIVATE AFR::mqtt)
 ```
 
 ## Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>
-+ If you are running macOS and the operating system does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [FTDI Drivers Installation Guide for macOS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
-+ The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [Automatically Decoding Addresses]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses) on the Espressif website\.
-+ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [Launch GDB for GDBStub]( https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub) on the Espressif website\.
++ If you are running macOS and the operating system does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [ FTDI Drivers Installation Guide for macOS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
++ The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [ Automatically Decoding Addresses](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses) on the Espressif website\.
++ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [ Launch GDB for GDBStub](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub) on the Espressif website\.
 + For information about setting up an OpenOCD\-based environment if JTAG hardware\-based debugging is required, see the document *JTAG Debugging for ESP32* available on the [ Espressif website](https://www.espressif.com/en/support/download/documents?keys=jtag)\.
 + If `pyserial` cannot be installed using `pip` on macOS, download it from the [pyserial website](https://pypi.org/simple/pyserial)\.
 + If the board resets continuously, try erasing the flash by entering the following command on the terminal:
@@ -547,15 +547,16 @@ target_link_libraries(my_app PRIVATE AFR::mqtt)
   make erase_flash
   ```
 + If you see errors when you run `idf_monitor.py`, use Python 2\.7\.
-+ Required libraries from ESP\-IDF are included in Amazon FreeRTOS, so there is no need to download them externally\. If the `IDF_PATH` environment variable is set, we recommend that you clear it before you build Amazon FreeRTOS\. 
++ Required libraries from ESP\-IDF are included in FreeRTOS, so there is no need to download them externally\. If the `IDF_PATH` environment variable is set, we recommend that you clear it before you build FreeRTOS\. 
 + On Windows, it can take 3\-4 minutes for the project to build\. You can use the `-j4` switch on the make command to reduce the build time:
 
   ```
   make flash monitor -j4
   ```
-+ If your device has trouble connecting to AWS IoT, open the `aws_clientcredential.h` file, and verify that the configuration variables are properly defined in the file\. `clientcredentialMQTT_BROKER_ENDPOINT[]` should look like `<1234567890123>-ats.iot.<us-east-1>.amazonaws.com`\.
++ If your device has trouble connecting to AWS IoT, open the `aws_clientcredential.h` file, and verify that the configuration variables are properly defined in the file\. `clientcredentialMQTT_BROKER_ENDPOINT[]` should look like `1234567890123-ats.iot.us-east-1.amazonaws.com`\. 
++ If you're following the steps in [Using FreeRTOS in Your Own CMake Project for ESP32](#getting_started_espressif_cmake_project) and you see undefined reference errors from the linker, it's usually because of missing dependent libraries or demos\. To add them, update the `CMakeLists.txt` file \(under the root directory\) using the standard CMake function `target_link_libraries`\.
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
 
 ### Debugging Code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
 

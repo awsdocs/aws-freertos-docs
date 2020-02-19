@@ -1,6 +1,6 @@
 # AWS IoT Greengrass Discovery Demo Application<a name="gg-demo"></a>
 
-Before you run the AWS IoT Greengrass Discovery demo for Amazon FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting Up Your AWS Account and Permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
+Before you run the AWS IoT Greengrass Discovery demo for FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting Up Your AWS Account and Permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
 
 After you set up AWS and AWS IoT Greengrass, you need to configure some additional permissions for AWS IoT Greengrass\.
 
@@ -20,14 +20,14 @@ After you set up AWS and AWS IoT Greengrass, you need to configure some addition
 
 1. Choose **Greengrass\_ServiceRole**, and then choose **Save**\.
 
-You can use the **Quick Connect** workflow in the [Amazon FreeRTOS console](https://console.aws.amazon.com/freertos) to quickly connect your board to the AWS IoT and run the demo\. Amazon FreeRTOS configurations are currently not available for the following boards:
+You can use the **Quick Connect** workflow in the [FreeRTOS console](https://console.aws.amazon.com/freertos) to quickly connect your board to the AWS IoT and run the demo\. FreeRTOS configurations are currently not available for the following boards:
 + Cypress CYW943907AEVAL1F Development Kit
 + Cypress CYW954907AEVAL1F Development Kit
 + Espressif ESP\-WROVER\-KIT
 + Espressif ESP32\-DevKitC
 + Nordic nRF52840\-DK
 
-You can also connect your board to AWS IoT and configure your Amazon FreeRTOS demo manually\.
+You can also connect your board to AWS IoT and configure your FreeRTOS demo manually\.
 
 1. [Registering Your MCU Board with AWS IoT](get-started-freertos-thing.md)
 
@@ -69,15 +69,15 @@ You can also connect your board to AWS IoT and configure your Amazon FreeRTOS de
 
    1. Find and choose the Greengrass policy that you created earlier, and then choose **Attach**\.
 
-1. [Downloading Amazon FreeRTOS](freertos-download.md)
+1. [Downloading FreeRTOS](freertos-download.md)
 **Note**  
-If you are downloading Amazon FreeRTOS from the Amazon FreeRTOS console, choose **Connect to AWS IoT Greengrass\- *Platform*** instead of **Connect to AWS IoT\- *Platform***\.
+If you are downloading FreeRTOS from the FreeRTOS console, choose **Connect to AWS IoT Greengrass\- *Platform*** instead of **Connect to AWS IoT\- *Platform***\.
 
-1. [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.
+1. [Configuring the FreeRTOS Demos](freertos-configure.md)\.
 
-    Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
+    Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
 
-After you set up AWS IoT and AWS IoT Greengrass, and after you download and configure Amazon FreeRTOS, you can build, flash, and run the Greengrass demo on your device\. To set up your board's hardware and software development environment, follow the instructions in the [Board\-specific Getting Started Guides](getting-started-guides.md)\.
+After you set up AWS IoT and AWS IoT Greengrass, and after you download and configure FreeRTOS, you can build, flash, and run the Greengrass demo on your device\. To set up your board's hardware and software development environment, follow the instructions in the [Board\-specific Getting Started Guides](getting-started-guides.md)\.
 
 The Greengrass demo publishes a series of messages to the Greengrass core, and to the AWS IoT MQTT client\. To view the messages in the AWS IoT MQTT client, open the [AWS IoT console](https://console.aws.amazon.com/iotv2/), choose **Test**, and then add a subscription to `freertos/demos/ggd`\.
 
@@ -86,5 +86,5 @@ In the MQTT client, you should see the following strings:
 ```
 Message from Thing to Greengrass Core: Hello world msg #1!
 Message from Thing to Greengrass Core: Hello world msg #0!
-Message from Thing to Greengrass Core: Address of Greengrass Core found! <123456789012>.<us-west-2>.compute.amazonaws.com
+Message from Thing to Greengrass Core: Address of Greengrass Core found! 123456789012.us-west-2.compute.amazonaws.com
 ```

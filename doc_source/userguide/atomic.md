@@ -1,20 +1,20 @@
-# Amazon FreeRTOS Atomic Operations<a name="atomic"></a>
+# Atomic Operations<a name="atomic"></a>
 
 ## Overview<a name="freertos-atomic-overview"></a>
 
-Atomic operations ensure non\-blocking synchronization in concurrent programming\. You can use atomic operations to solve performance issues that are caused by asynchronous operations that act on shared memory\. Amazon FreeRTOS supports atomic operations, as implemented in the `iot_atomic.h` header file\.
+Atomic operations ensure non\-blocking synchronization in concurrent programming\. You can use atomic operations to solve performance issues that are caused by asynchronous operations that act on shared memory\. FreeRTOS supports atomic operations, as implemented in the `iot_atomic.h` header file\.
 
 The `iot_atomic.h` header file includes two implementations for atomic operations:
 + Disabling interrupt globally\.
 
-  This implementation is available to all Amazon FreeRTOS platforms\.
+  This implementation is available to all FreeRTOS platforms\.
 + ISA native atomic support\.
 
   This implementation is only available to platforms that compile with GCC, version 4\.7\.0 and higher, and have ISA atomic support\. For information about GCC built\-in functions, see [Built\-in Functions for Memory Model Aware Atomic Operations](https://gcc.gnu.org/onlinedocs/gcc/_005f_005fatomic-Builtins.html)\.
 
 ## Initialization<a name="freertos-atomic-initialization"></a>
 
-Before you use Amazon FreeRTOS Atomic Operations, you need to choose which implementation of atomic operations that you want to use\.
+Before you use FreeRTOS Atomic Operations, you need to choose which implementation of atomic operations that you want to use\.
 
 1. Open [`FreeRTOSConfig.h`](dev-guide-freertos-kernel.md#freertos-config) configuration file for edit\.
 

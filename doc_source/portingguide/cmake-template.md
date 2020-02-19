@@ -1,33 +1,33 @@
 # Creating a List File for Your Platform from the CMakeLists\.txt Template<a name="cmake-template"></a>
 
-A `CMakeLists.txt` template file is provided with Amazon FreeRTOS, under `<amazon-freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt`\.
+A `CMakeLists.txt` template file is provided with FreeRTOS, under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt`\.
 
 The `CMakeLists.txt` template file consists of four sections:
-+ [Amazon FreeRTOS Console Metadata](#cmake-metadata)
++ [FreeRTOS Console Metadata](#cmake-metadata)
 + [Compiler Settings](#cmake-compiler)
-+ [Amazon FreeRTOS Portable Layers](#cmake-portable)
-+ [Amazon FreeRTOS Demos and Tests](#cmake-demos-tests)
++ [FreeRTOS Portable Layers](#cmake-portable)
++ [FreeRTOS Demos and Tests](#cmake-demos-tests)
 
-Follow the instructions to edit these four sections of the list file to match your platform\. You can refer to the `CMakeLists.txt` files for other qualified vendor boards under `<amazon-freertos>/vendors` as examples\.
+Follow the instructions to edit these four sections of the list file to match your platform\. You can refer to the `CMakeLists.txt` files for other qualified vendor boards under `<freertos>/vendors` as examples\.
 
 Two primary functions are called throughout the file:
 
 `afr_set_board_metadata(<name> <value>)`  
-This function defines metadata for the Amazon FreeRTOS console\. The function is defined in `<amazon-freertos>/tools/cmake/afr_metadata.cmake`\.
+This function defines metadata for the FreeRTOS console\. The function is defined in `<freertos>/tools/cmake/afr_metadata.cmake`\.
 
 `afr_mcu_port(<module_name> [<DEPENDS> [targets...]])`  
-This function defines the portable\-layer target associated with an Amazon FreeRTOS module \(that is, library\)\. It creates a CMake `GLOBAL INTERFACE IMPORTED` target with a name of the form `AFR:<module_name>::mcu_port`\. If `DEPENDS` is used, additional targets are linked with `target_link_libraries`\. The function is defined in `<amazon-freertos>/tools/cmake/afr_module.cmake`\.
+This function defines the portable\-layer target associated with a FreeRTOS module \(that is, library\)\. It creates a CMake `GLOBAL INTERFACE IMPORTED` target with a name of the form `AFR:<module_name>::mcu_port`\. If `DEPENDS` is used, additional targets are linked with `target_link_libraries`\. The function is defined in `<freertos>/tools/cmake/afr_module.cmake`\.
 
-## Amazon FreeRTOS Console Metadata<a name="cmake-metadata"></a>
+## FreeRTOS Console Metadata<a name="cmake-metadata"></a>
 
-The first section of the template file defines the metadata that is used to display a board's information in the Amazon FreeRTOS console\. Use the function `afr_set_board_metadata(<name> <value>)` to define each field listed in the template\. This table provides descriptions of each field\.
+The first section of the template file defines the metadata that is used to display a board's information in the FreeRTOS console\. Use the function `afr_set_board_metadata(<name> <value>)` to define each field listed in the template\. This table provides descriptions of each field\.
 
 
 | Field Name | Value Description | 
 | --- | --- | 
 | ID | A unique ID for the board\. | 
-| DISPLAY\_NAME | The name of the board as you want it displayed on the Amazon FreeRTOS console\. | 
-| DESCRIPTION | A short description of the board for the Amazon FreeRTOS console\. | 
+| DISPLAY\_NAME | The name of the board as you want it displayed on the FreeRTOS console\. | 
+| DESCRIPTION | A short description of the board for the FreeRTOS console\. | 
 | VENDOR\_NAME | The name of the vendor of the board\. | 
 | FAMILY\_NAME | The name of the board's MCU family\. | 
 | DATA\_RAM\_MEMORY | The size of the board's RAM, followed by abbreviated units\. For example, use KB for kilobytes\. | 
@@ -61,7 +61,7 @@ When you call `afr_mcu_port` with `DEPENDS`, it calls `target_link_libraries(AFR
 
 ### Using Multiple Compilers<a name="w3aab9c15c15b9c17c11"></a>
 
-If your board supports multiple compilers, you can use the `AFR_TOOLCHAIN` variable to dynamically select the compiler settings\. This variable is set to the name of the compiler you are using, which should be same as the name of the toolchain file found under `<amazon-freertos>/tools/cmake/toolchains`\.
+If your board supports multiple compilers, you can use the `AFR_TOOLCHAIN` variable to dynamically select the compiler settings\. This variable is set to the name of the compiler you are using, which should be same as the name of the toolchain file found under `<freertos>/tools/cmake/toolchains`\.
 
 For example:
 
@@ -94,20 +94,20 @@ target_compile_options(
 
 CMake generator expressions are not evaluated at the configuration stage, when CMake reads list files\. They are evaluated at the generation stage, when CMake finishes reading list files and generates build files for the target build system\.
 
-## Amazon FreeRTOS Portable Layers<a name="cmake-portable"></a>
+## FreeRTOS Portable Layers<a name="cmake-portable"></a>
 
-The third section of the template file defines all of the portable layer targets for Amazon FreeRTOS \(that is, libraries\)\.
+The third section of the template file defines all of the portable layer targets for FreeRTOS \(that is, libraries\)\.
 
-You must use the `afr_mcu_port(<module_name>)` function to define a portable layer target for each Amazon FreeRTOS module that you plan to implement\.
+You must use the `afr_mcu_port(<module_name>)` function to define a portable layer target for each FreeRTOS module that you plan to implement\.
 
-You can use any CMake functions you want, as long as the `afr_mcu_port` call creates a target with a name that provides the information required to build the corresponding Amazon FreeRTOS module\.
+You can use any CMake functions you want, as long as the `afr_mcu_port` call creates a target with a name that provides the information required to build the corresponding FreeRTOS module\.
 
-The `afr_mcu_port` function creates a [GLOBAL INTERFACE IMPORTED library target](https://cmake.org/cmake/help/latest/command/add_library.html?#interface-libraries) with a name of the form `AFR::<module_name>::mcu_port`\. As a `GLOBAL` target, it can be referenced in CMake list files\. As an `INTERFACE` target, it is not built as a standalone target or library, but compiled into the corresponding Amazon FreeRTOS module\. As an `IMPORTED` target, its name includes a namespace \(`::`\) in the target name \(for example, `AFR::kernel::mcu_port`\)\.
+The `afr_mcu_port` function creates a [GLOBAL INTERFACE IMPORTED library target](https://cmake.org/cmake/help/latest/command/add_library.html?#interface-libraries) with a name of the form `AFR::<module_name>::mcu_port`\. As a `GLOBAL` target, it can be referenced in CMake list files\. As an `INTERFACE` target, it is not built as a standalone target or library, but compiled into the corresponding FreeRTOS module\. As an `IMPORTED` target, its name includes a namespace \(`::`\) in the target name \(for example, `AFR::kernel::mcu_port`\)\.
 
-Modules without corresponding portable layer targets are disabled by default\. If you run CMake to configure Amazon FreeRTOS, without defining any portable layer targets, you should see the following output:
+Modules without corresponding portable layer targets are disabled by default\. If you run CMake to configure FreeRTOS, without defining any portable layer targets, you should see the following output:
 
 ```
-Amazon FreeRTOS modules:
+FreeRTOS modules:
   Modules to build:
   Disabled by user:
   Disabled by dependency:  kernel, posix, pkcs11, secure_sockets, mqtt, ...
@@ -116,7 +116,7 @@ Amazon FreeRTOS modules:
   Available tests:
 ```
 
-As you update the `CMakeLists.txt` file with porting layer targets, the corresponding Amazon FreeRTOS modules are enabled\. You should also be able to build any Amazon FreeRTOS module whose dependency requirements are subsequently satisfied\. For example, if the MQTT library is enabled, the Device Shadow library is also enabled, because its only dependency is the MQTT library\.
+As you update the `CMakeLists.txt` file with porting layer targets, the corresponding FreeRTOS modules are enabled\. You should also be able to build any FreeRTOS module whose dependency requirements are subsequently satisfied\. For example, if the MQTT library is enabled, the Device Shadow library is also enabled, because its only dependency is the MQTT library\.
 
 **Note**  
 The FreeRTOS kernel dependency is a minimum requirement\. The CMake configuration fails if the FreeRTOS kernel dependency is not satisfied\.
@@ -201,7 +201,7 @@ You can also configure the FreeRTOS portable layer by specifying these source fi
    )
    ```
 
-1. To test your list file and configuration, you can write a simple application that uses the FreeRTOS kernel port\. For more information about developing and building Amazon FreeRTOS applications with CMake, see [Building Amazon FreeRTOS with CMake](building-cmake.md)\.
+1. To test your list file and configuration, you can write a simple application that uses the FreeRTOS kernel port\. For more information about developing and building FreeRTOS applications with CMake, see [Building FreeRTOS with CMake](building-cmake.md)\.
 
 1. After you create the demo, add `add_executable` and `target_link_libraries` calls to the list file, and compile the kernel as a static library to verify that the kernel portable layer is correctly configured\.
 
@@ -216,9 +216,9 @@ You can also configure the FreeRTOS portable layer by specifying these source fi
    )
    ```
 
-### Setting Up the Porting Targets for Amazon FreeRTOS Modules<a name="cmake-portable-modules"></a>
+### Setting Up the Porting Targets for FreeRTOS Modules<a name="cmake-portable-modules"></a>
 
-After you add the portable layer target for the kernel, you can add portable layer targets for other Amazon FreeRTOS modules\.
+After you add the portable layer target for the kernel, you can add portable layer targets for other FreeRTOS modules\.
 
 For example, to add the portable layer for the Wi\-Fi module:
 
@@ -232,7 +232,7 @@ target_sources(
 
 This example Wi\-Fi module portable layer has only one implementation file, which is based on the driver code\.
 
-If you want to add the portable layer for the Amazon FreeRTOS Secure Sockets module, the module depends on TLS\. This makes its portable layer target slightly more complicated than that of the Wi\-Fi module\. Amazon FreeRTOS provides a default TLS implementation based on mbedTLS that you can link to:
+If you want to add the portable layer for the FreeRTOS Secure Sockets module, the module depends on TLS\. This makes its portable layer target slightly more complicated than that of the Wi\-Fi module\. FreeRTOS provides a default TLS implementation based on mbedTLS that you can link to:
 
 ```
 afr_mcu_port(secure_sockets)
@@ -248,7 +248,7 @@ target_link_libraries(
 
 In this example code, the standard CMake function `target_link_libraries` states that the Secure Sockets portable layer depends on `AFR::tls`\.
 
-You can reference all Amazon FreeRTOS modules by using their target name `AFR::<module_name>`\. For example, you can use the same syntax to also state a dependency on FreeRTOS\-Plus\-TCP:
+You can reference all FreeRTOS modules by using their target name `AFR::<module_name>`\. For example, you can use the same syntax to also state a dependency on FreeRTOS\-Plus\-TCP:
 
 ```
 target_link_libraries(
@@ -259,8 +259,8 @@ target_link_libraries(
 ```
 
 **Note**  
-If your platform handles TLS by itself, you can use your driver code directly\. If you use your driver code directly for TLS, you don't need to call `target_link_libraries`, because all Amazon FreeRTOS modules implicitly depend on the kernel that includes your driver code\.  
-Because all non\-kernel Amazon FreeRTOS modules implicitly depend on the kernel, their porting layers don't require you to specify the kernel as a dependency\. The POSIX module, however, is defined as an optional kernel module\. If you want to use POSIX, you must explicitly include it in your kernel portable layer\. For example:  
+If your platform handles TLS by itself, you can use your driver code directly\. If you use your driver code directly for TLS, you don't need to call `target_link_libraries`, because all FreeRTOS modules implicitly depend on the kernel that includes your driver code\.  
+Because all non\-kernel FreeRTOS modules implicitly depend on the kernel, their porting layers don't require you to specify the kernel as a dependency\. The POSIX module, however, is defined as an optional kernel module\. If you want to use POSIX, you must explicitly include it in your kernel portable layer\. For example:  
 
 ```
 # By default, AFR::posix target does not expose standard POSIX headers in its public
@@ -272,9 +272,9 @@ target_link_libraries(
 )
 ```
 
-## Amazon FreeRTOS Demos and Tests<a name="cmake-demos-tests"></a>
+## FreeRTOS Demos and Tests<a name="cmake-demos-tests"></a>
 
-The final section of the template file defines the demo and test targets for Amazon FreeRTOS\. CMake targets are created automatically for each demo and test that satisfies the dependency requirements\.
+The final section of the template file defines the demo and test targets for FreeRTOS\. CMake targets are created automatically for each demo and test that satisfies the dependency requirements\.
 
 In this section, define an executable target with the `add_executable` function\. Use `aws_tests` as the target name if you're compiling tests, or `aws_demos` if you're compiling demos\. You might need to provide other project settings, such as linker scripts and post\-build commands\. For example:
 

@@ -1,4 +1,4 @@
-# Amazon FreeRTOS Porting Guide
+# FreeRTOS Porting Guide
 
 -----
 *****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
@@ -14,18 +14,18 @@ Amazon's trademarks and trade dress may not be used in
 
 -----
 ## Contents
-+ [Amazon FreeRTOS Porting](porting-guide.md)
-+ [Downloading Amazon FreeRTOS for Porting](porting-download.md)
-+ [Setting Up Your Amazon FreeRTOS Source Code for Porting](porting-set-up-project.md)
-   + [Configuring the Amazon FreeRTOS Download](porting-set-up-directory.md)
-   + [Setting Up Your Amazon FreeRTOS Source Code for Testing](testing-set-up.md)
++ [FreeRTOS Porting](porting-guide.md)
++ [Downloading FreeRTOS for Porting](porting-download.md)
++ [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)
+   + [Configuring the FreeRTOS Download](porting-set-up-directory.md)
+   + [Setting Up Your FreeRTOS Source Code for Testing](testing-set-up.md)
       + [Creating an IDE Project](porting-create-project.md)
       + [Creating a CMake List File](porting-cmake-setup.md)
          + [Prerequisites](building-cmake-prereqs.md)
          + [Creating a List File for Your Platform from the CMakeLists.txt Template](cmake-template.md)
-         + [Building Amazon FreeRTOS with CMake](building-cmake.md)
-+ [Porting the Amazon FreeRTOS Libraries](afr-porting.md)
-   + [Amazon FreeRTOS Porting Flowchart](porting-chart.md)
+         + [Building FreeRTOS with CMake](building-cmake.md)
++ [Porting the FreeRTOS Libraries](afr-porting.md)
+   + [FreeRTOS Porting Flowchart](porting-chart.md)
    + [Implementing the configPRINT_STRING() macro](afr-porting-config.md)
    + [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md)
    + [Porting the Wi-Fi Library](afr-porting-wifi.md)
@@ -46,5 +46,5 @@ Amazon's trademarks and trade dress may not be used in
    + [Configuring the HTTPS Client Library for Testing](afr-porting-https.md)
    + [Porting the OTA Library](afr-porting-ota.md)
    + [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)
-   + [Porting the Common I/O Libraries](amazon-freertos-porting-commonio.md)
+   + [Porting the Common I/O Libraries](freertos-porting-commonio.md)
 + [Migrating from Version 1.4.x to Version 201906.00 (and newer)](porting-migration.md)

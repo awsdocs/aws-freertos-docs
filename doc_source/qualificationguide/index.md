@@ -1,4 +1,4 @@
-# Amazon FreeRTOS Qualification Guide
+# FreeRTOS Qualification Guide
 
 -----
 *****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
@@ -14,17 +14,17 @@ Amazon's trademarks and trade dress may not be used in
 
 -----
 ## Contents
-+ [Amazon FreeRTOS Qualification](afr-qualification.md)
++ [AWS Qualification Program for FreeRTOS](afr-qualification.md)
 + [Qualifying Your Device](freertos-qualification.md)
    + [Setting Up a Hello World Demo](afq-hw-demo.md)
-      + [Configuring the Amazon FreeRTOS Download for Demos](hw-directory.md)
+      + [Configuring the FreeRTOS Download for Demos](hw-directory.md)
       + [Creating the Demo Project](demo-create-project.md)
-   + [Creating a Getting Started with Amazon FreeRTOS Guide for Your Device](afq-gsg.md)
+   + [Creating a Getting Started with FreeRTOS Guide for Your Device](afq-gsg.md)
       + [Getting Started Guide Template](getting_started_template.md)
    + [Creating a CMakeLists.txt File for Your Platform](afq-cmake.md)
       + [Prerequisites](building-cmake-prereqs.md)
       + [Creating a List File for Your Platform from the CMakeLists.txt Template](cmake-template.md)
-      + [Building Amazon FreeRTOS with CMake](building-cmake.md)
+      + [Building FreeRTOS with CMake](building-cmake.md)
    + [Providing an Open Source License for Your Code](afq-license.md)
-   + [Amazon FreeRTOS Qualification Check Script](afq-script.md)
-+ [Amazon FreeRTOS Qualification Checklist](afq-checklist.md)
+   + [FreeRTOS Qualification Check Script](afq-script.md)
++ [FreeRTOS Qualification Checklist](afq-checklist.md)

@@ -2,25 +2,25 @@
 
 ## Overview<a name="ble-demo-overview"></a>
 
-Amazon FreeRTOS Bluetooth Low Energy includes three demo applications:
+FreeRTOS Bluetooth Low Energy includes three demo applications:
 
-### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) Demo<a name="w12aac11c11b3b5"></a>
+### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) Demo<a name="w13aac11c11b3b5"></a>
 
 This application demonstrates how to use the MQTT over Bluetooth Low Energy service\.
 
-### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w12aac11c11b3b7"></a>
+### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w13aac11c11b3b7"></a>
 
 This application demonstrates how to use the Bluetooth Low Energy Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) Demo<a name="w12aac11c11b3b9"></a>
+### [Generic Attributes Server](#ble-demo-server) Demo<a name="w13aac11c11b3b9"></a>
 
-This application demonstrates how to use the Amazon FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
+This application demonstrates how to use the FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
 
 ## Prerequisites<a name="ble-demo-prereqs"></a>
 
-To follow along with these demos, you need a microcontroller with Bluetooth Low Energy capabilities\. You also need the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-ios) or the [Android SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android)\.
+To follow along with these demos, you need a microcontroller with Bluetooth Low Energy capabilities\. You also need the [iOS SDK for FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-ios) or the [Android SDK for FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android)\.
 
-### Set Up AWS IoT and Amazon Cognito for Amazon FreeRTOS Bluetooth Low Energy<a name="set-up-ble-demo-aws"></a>
+### Set Up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy<a name="set-up-ble-demo-aws"></a>
 
 To connect your devices to AWS IoT across MQTT, you need to set up AWS IoT and Amazon Cognito\.
 
@@ -113,31 +113,31 @@ For more information about setting up Amazon Cognito, see the [Getting Started w
 
 Keep your AWS IoT and Amazon Cognito information on hand\. You need the endpoint and IDs to authenticate your mobile application with the AWS Cloud\.
 
-### Set Up Your Amazon FreeRTOS Environment for Bluetooth Low Energy<a name="ble-demo-set-up"></a>
+### Set Up Your FreeRTOS Environment for Bluetooth Low Energy<a name="ble-demo-set-up"></a>
 
-To set up your environment, you need to download Amazon FreeRTOS with the [Amazon FreeRTOS Bluetooth Low Energy Library](freertos-ble-library.md) on your microcontroller, and download and configure the Mobile SDK for Amazon FreeRTOS Bluetooth Devices on your mobile device\.
+To set up your environment, you need to download FreeRTOS with the [Bluetooth Low Energy Library](freertos-ble-library.md) on your microcontroller, and download and configure the Mobile SDK for FreeRTOS Bluetooth Devices on your mobile device\.
 
-**To set up your microcontroller's environment with Amazon FreeRTOS Bluetooth Low Energy**
+**To set up your microcontroller's environment with FreeRTOS Bluetooth Low Energy**
 
-1. Download or clone Amazon FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+1. Download or clone FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
-1. Set up Amazon FreeRTOS on your microcontroller\.
+1. Set up FreeRTOS on your microcontroller\.
 
-   For information about getting started with Amazon FreeRTOS on an Amazon FreeRTOS\-qualified microcontroller, see the guide for your board in [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
+   For information about getting started with FreeRTOS on a FreeRTOS\-qualified microcontroller, see the guide for your board in [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
 **Note**  
-You can run the demos on any Bluetooth Low Energy\-enabled microcontroller with Amazon FreeRTOS and ported Amazon FreeRTOS Bluetooth Low Energy libraries\. Currently, the Amazon FreeRTOS [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo project is fully ported to the following Bluetooth Low Energy\-enabled devices:  
+You can run the demos on any Bluetooth Low Energy\-enabled microcontroller with FreeRTOS and ported FreeRTOS Bluetooth Low Energy libraries\. Currently, the FreeRTOS [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo project is fully ported to the following Bluetooth Low Energy\-enabled devices:  
 [Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html)
 [Nordic nRF52840\-DK](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_nordic.html)
 
 ## Common Components<a name="ble-demo-common"></a>
 
-The Amazon FreeRTOS demo applications have two common components:
+The FreeRTOS demo applications have two common components:
 + Network Manager
 + Bluetooth Low Energy Mobile SDK demo application
 
 ### Network Manager<a name="ble-demo-network-manager"></a>
 
-Network Manager manages your microcontroller's network connection\. It is located in your Amazon FreeRTOS directory at `demos/network_manager/aws_iot_network_manager.c`\. If the Network Manager is enabled for both Wi\-Fi and Bluetooth Low Energy, the demos start with Bluetooth Low Energy by default\. If the Bluetooth Low Energy connection is disrupted, and your board is Wi\-Fi\-enabled, the Network Manager switches to an available Wi\-Fi connection to prevent you from disconnecting from the network\.
+Network Manager manages your microcontroller's network connection\. It is located in your FreeRTOS directory at `demos/network_manager/aws_iot_network_manager.c`\. If the Network Manager is enabled for both Wi\-Fi and Bluetooth Low Energy, the demos start with Bluetooth Low Energy by default\. If the Bluetooth Low Energy connection is disrupted, and your board is Wi\-Fi\-enabled, the Network Manager switches to an available Wi\-Fi connection to prevent you from disconnecting from the network\.
 
 To enable a network connection type with the Network Manager, add the network connection type to the `configENABLED_NETWORKS` parameter in `vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_iot_network_config.h` \(where the *vendor* is the name of the vendor and the *board* is the name of the board that you are using to run the demos\)\.
 
@@ -149,9 +149,9 @@ For example, if you have both Bluetooth Low Energy and Wi\-Fi enabled, the line 
 
 To get a list of currently supported network connection types, see the lines that begin with `#define AWSIOT_NETWORK_TYPE` in `aws_iot_network.h`\.
 
-### Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application<a name="ble-sdk-app"></a>
+### FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application<a name="ble-sdk-app"></a>
 
-The Amazon FreeRTOS Bluetooth Low Energy Mobile SDK demo application is located in the [Android SDK for Amazon FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-android-sdk) under `amazon-freertos-ble-android-sdk/app` and the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-ios-sdk) under `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo`\. In this example, we use screenshots of the iOS version of the demo mobile application\.
+The FreeRTOS Bluetooth Low Energy Mobile SDK demo application is located in the [Android SDK for FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-android-sdk) under `amazon-freertos-ble-android-sdk/app` and the [iOS SDK for FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-ios-sdk) under `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo`\. In this example, we use screenshots of the iOS version of the demo mobile application\.
 
 **Note**  
 If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
@@ -160,7 +160,7 @@ If you are using an iOS device, you need Xcode to build the demo mobile applicat
 
 When you define configuration variables, use the format of the placeholder values provided in the configuration files\.
 
-1. Confirm that you the [iOS SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-ios) is installed\.
+1. Confirm that you the [iOS SDK for FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-ios) is installed\.
 
 1. Issue the following command from `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/`:
 
@@ -229,7 +229,7 @@ This policy is different from the IAM policy created for the cognito authenticat
 
 When you define configuration variables, use the format of the placeholder values provided in the configuration files\.
 
-1. Confirm that the [Android SDK for Amazon FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android) is installed\.
+1. Confirm that the [Android SDK for FreeRTOS Bluetooth Devices](freertos-ble-mobile.md#freertos-ble-android) is installed\.
 
 1. Create an AWS IoT policy in your region \(if you haven't already\)\.
 **Note**  
@@ -302,7 +302,7 @@ This policy is different from the IAM policy created for the cognito authenticat
 1. Confirm that your microcontroller appears under **Devices** on the Bluetooth Low Energy Mobile SDK demo app\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list1.png)
 **Note**  
-All devices with Amazon FreeRTOS and the device information service \(`<amazon-freertos>/.../device_information`\) that are in range appear in the list\.
+All devices with FreeRTOS and the device information service \(`<freertos>/.../device_information`\) that are in range appear in the list\.
 
 1. Choose your microcontroller from the list of devices\. The application establishes a connection with the board, and a green line appears next to the connected device\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list2.png)
@@ -336,12 +336,12 @@ You can run the MQTT demo over a Bluetooth Low Energy or Wi\-Fi connection\. The
 
 If you use Bluetooth Low Energy to pair the microcontroller with your mobile device, the MQTT messages are routed through the Bluetooth Low Energy Mobile SDK demo application on your mobile device\.
 
-If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at `demos/mqtt/aws_hello_world.c`\. That demo is used in most of the [Getting Started with Amazon FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
+If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at `demos/mqtt/aws_hello_world.c`\. That demo is used in most of the [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
 
 **To enable the demo over Bluetooth Low Energy or Wi\-Fi**
 
 Open `vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, and define `CONFIG_MQTT_DEMO_ENABLED`\.
-+ Open `<amazon-freertos>/aws_demos/config_files/aws_demo_config.h`, and configure your network type\.
++ Open `<freertos>/aws_demos/config_files/aws_demo_config.h`, and configure your network type\.
 
   Configurations include:  
 `#define democonfigNETWORK_TYPES ( AWSIOT_NETWORK_TYPE_BLE )`  
@@ -359,7 +359,7 @@ If the Network Manager is configured for Bluetooth Low Energy, do the following:
 
 1. Build and run the demo project on your microcontroller\.
 
-1. Make sure that you have paired your board and your mobile device using the [Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
+1. Make sure that you have paired your board and your mobile device using the [FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
 
 1. From the **Devices** list in the demo mobile app, choose your microcontroller, and then choose **MQTT Proxy** to open the MQTT proxy settings\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)
@@ -368,11 +368,10 @@ If the Network Manager is configured for Bluetooth Low Energy, do the following:
 
 ## Wi\-Fi Provisioning<a name="ble-demo-wifi"></a>
 
-Wi\-Fi Provisioning is an Amazon FreeRTOS Bluetooth Low Energy service that allows you to securely send Wi\-Fi network credentials from a mobile device to a microcontroller over Bluetooth Low Energy\. The source code for the Wi\-Fi Provisioning service can be found at `<amazon-freertos>/.../wifi_provisioning`\.
+Wi\-Fi Provisioning is a FreeRTOS Bluetooth Low Energy service that allows you to securely send Wi\-Fi network credentials from a mobile device to a microcontroller over Bluetooth Low Energy\. The source code for the Wi\-Fi Provisioning service can be found at `<freertos>/.../wifi_provisioning`\.
 
 **Note**  
-The Wi\-Fi Provisioning demo is currently supported on the Espressif ESP32\-DevKitC\.  
-The Android version of the demo mobile application does not currently support Wi\-Fi Provisioning\.
+The Wi\-Fi Provisioning demo is currently supported on the Espressif ESP32\-DevKitC\.
 
 **To enable the demo**
 
@@ -386,9 +385,9 @@ The Wi\-Fi Provisioning service is disabled by default\.
 
 1. Build and run the demo project on your microcontroller\.
 
-1. Make sure that you have paired your microntroller and your mobile device using the [Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
+1. Make sure that you have paired your microntroller and your mobile device using the [FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
 
-1. From the **Devices** list in the demo mobile app, choose your microcontoller, and then choose **Network Config** to open the network configuration settings\.  
+1. From the **Devices** list in the demo mobile app, choose your microcontroller, and then choose **Network Config** to open the network configuration settings\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)
 
 1. After you choose **Network Config** for your board, the microcontroller sends a list of the networks in the vicinity to the mobile device\. Available Wi\-Fi networks appear in a list under **Scanned Networks**\.  
@@ -408,7 +407,7 @@ To change the network priority order or delete networks, on the **Network Config
 
 ## Generic Attributes Server<a name="ble-demo-server"></a>
 
-In this example, a demo Generic Attributes \(GATT\) server application on your microcontroller sends a simple counter value to the [Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
+In this example, a demo Generic Attributes \(GATT\) server application on your microcontroller sends a simple counter value to the [FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
 
 Using the Bluetooth Low Energy Mobile SDKs, you can create your own GATT client for a mobile device that connects to the GATT server on your microcontroller and runs in parallel with the demo mobile application\.
 
@@ -418,13 +417,13 @@ Using the Bluetooth Low Energy Mobile SDKs, you can create your own GATT client 
 **Note**  
 The Bluetooth Low Energy GATT demo is disabled by default\.
 
-1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_BLE_GATT_SERVER_DEMO_ENABLED`\.
+1.  Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_BLE_GATT_SERVER_DEMO_ENABLED`\.
 
 **To run the demo**
 
 1. Build and run the demo project on your microcontroller\.
 
-1. Make sure that you have paired your board and your mobile device using the [Amazon FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
+1. Make sure that you have paired your board and your mobile device using the [FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](#ble-sdk-app)\.
 
 1. From the **Devices** list in the app, choose your board, and then choose **MQTT Proxy** to open the MQTT proxy options\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)

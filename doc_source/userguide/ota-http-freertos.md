@@ -1,11 +1,11 @@
 # Prerequisites for OTA Updates using HTTP<a name="ota-http-freertos"></a>
 
-This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. Amazon FreeRTOS OTA can use the HTTP or MQTT protocol to transfer firmware update images from Amazon S3 to devices\. If you can specify both protocols when you create an OTA update in Amazon FreeRTOS\. Each device will determine the protocol used to transfer the image\. 
+This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. FreeRTOS OTA can use the HTTP or MQTT protocol to transfer firmware update images from Amazon S3 to devices\. If you can specify both protocols when you create an OTA update in FreeRTOS\. Each device will determine the protocol used to transfer the image\. 
 
 **Note**  
-Device firmware must include the necessary Amazon FreeRTOS libraries \(for example, MQTT, HTTP, OTA agent\)\. Amazon FreeRTOS version 201912\.00 or later is required\.
+Device firmware must include the necessary FreeRTOS libraries \(for example, MQTT, HTTP, OTA agent\)\. FreeRTOS version 201912\.00 or later is required\.
 Although the HTTP protocol might be used to transfer the firmware image, the MQTT library is still required because other interactions with AWS IoT Core use the MQTT library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
-When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the Amazon FreeRTOS source code for the device\.
+When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
 
 ## Configurations<a name="ota-http-freertos-config"></a>
 
@@ -73,7 +73,7 @@ Due to a limited amount of RAM, you must turn off BLE when you enable HTTP as an
 
 ## Memory Usage<a name="ota-http-freertos-memory"></a>
 
-When MQTT is used for data transfer, no additional heap memory is required for the MQTT connection because it's shared between control and data operations\. However, enabling data over HTTP requires additional heap memory\. The following is the heap memory usage data for all supported platforms, calculated using the Amazon FreeRTOS `xPortGetFreeHeapSize` API\. You must make sure there is enough RAM to use the OTA library\.
+When MQTT is used for data transfer, no additional heap memory is required for the MQTT connection because it's shared between control and data operations\. However, enabling data over HTTP requires additional heap memory\. The following is the heap memory usage data for all supported platforms, calculated using the FreeRTOS `xPortGetFreeHeapSize` API\. You must make sure there is enough RAM to use the OTA library\.
 
 ****Texas Instruments CC3220SF\-LAUNCHXL****  
 Control operations \(MQTT\): 12 KB  

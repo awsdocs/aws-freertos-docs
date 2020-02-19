@@ -1,10 +1,10 @@
-# Download, Build, Flash, and Run the Amazon FreeRTOS OTA demo on the Microchip Curiosity PIC32MZEF<a name="download-ota-mchip"></a><a name="mch-dowload-demo"></a>
+# Download, Build, Flash, and Run the FreeRTOS OTA demo on the Microchip Curiosity PIC32MZEF<a name="download-ota-mchip"></a><a name="mch-dowload-demo"></a>
 
-**To download the Amazon FreeRTOS OTA demo code**
+**To download the FreeRTOS OTA demo code**
 
 1. Browse to the AWS IoT console and from the navigation pane, choose **Software**\.
 
-1. Under **Amazon FreeRTOS Device Software**, choose **Configure download**\.
+1. Under **FreeRTOS Device Software**, choose **Configure download**\.
 
 1. From the list of software configurations, choose **Connect to AWS IoT \- Microchip**\. Choose the configuration name, not the **Download** link\.
 
@@ -12,7 +12,7 @@
 
 1. Under **Demo projects**, choose **OTA Update**\.
 
-1. Under **Name required**, enter a name for your custom Amazon FreeRTOS software configuration\.
+1. Under **Name required**, enter a name for your custom FreeRTOS software configuration\.
 
 1. Choose **Create and download**\.<a name="mch-build-demo"></a>
 
@@ -20,7 +20,7 @@
 
 1. Extract the \.zip file you just downloaded\.
 
-1. Follow the instructions in [Getting Started with Amazon FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into the MPLAB X IDE, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
+1. Follow the instructions in [Getting Started with FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into the MPLAB X IDE, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
 1. Open `demos/include/aws_ota_codesigner_certificate.h`\.
 
@@ -47,7 +47,7 @@
 
 1. Copy your code\-signing certificate in \.pem format in the path `demos/ota/bootloader/utility/codesigner_cert_utility/`\. Rename the certificate file `aws_ota_codesigner_certificate.pem`\.
 
-1.  Open `<amazon-freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1.  Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 

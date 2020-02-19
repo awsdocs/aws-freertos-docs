@@ -2,9 +2,9 @@
 
 This tutorial provides instructions for getting started with the NXP LPC54018 IoT Module\. If you do not have an NXP LPC54018 IoT Module, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)\. Use a USB cable to connect your NXP LPC54018 IoT Module to your computer\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w12aab7c25c33b7"></a>
+## Overview<a name="w13aab7c25c33b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -12,7 +12,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -23,7 +23,7 @@ This tutorial contains instructions for the following getting started steps:
 
 **To set up the JTAG Debugger**
 
-You need a JTAG debugger to launch and debug your code running on the NXP LPC54018 board\. Amazon FreeRTOS was tested using an OM40006 IoT Module\. For more information about supported debuggers, see the *User Manual for NXP LPC54018 IoT Module* that is available from the [ OM40007 LPC54018 IoT Module](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007) product page\. 
+You need a JTAG debugger to launch and debug your code running on the NXP LPC54018 board\. FreeRTOS was tested using an OM40006 IoT Module\. For more information about supported debuggers, see the *User Manual for NXP LPC54018 IoT Module* that is available from the [ OM40007 LPC54018 IoT Module](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/lpc54018-iot-module-for-the-lpc540xx-family-of-mcus:OM40007) product page\. 
 
 1. If you're using an OM40006 IoT Module debugger, use a converter cable to connect the 20\-pin connector from the debugger to the 10\-pin connector on the NXP IoT module\. 
 
@@ -31,7 +31,7 @@ You need a JTAG debugger to launch and debug your code running on the NXP LPC540
 
 ## Set Up Your Development Environment<a name="setup-env_nxp"></a>
 
-Amazon FreeRTOS supports two IDEs for the NXP LPC54018 IoT Module: IAR Embedded Workbench and MCUXpresso\.
+FreeRTOS supports two IDEs for the NXP LPC54018 IoT Module: IAR Embedded Workbench and MCUXpresso\.
 
 Before you begin, install one of these IDEs\.
 
@@ -73,11 +73,11 @@ Versions 2\.5 and later are supported\.
 
 If you experience issues during installation, see [NXP Support](https://www.nxp.com/support/support:SUPPORTHOME?tid=sbmenu) or [NXP Developer Resources](https://www.nxp.com/support/developer-resources:DEVELOPER_HOME)\.
 
-## Build and Run the Amazon FreeRTOS Demo Project<a name="nxp-build-and-run"></a>
+## Build and Run the FreeRTOS Demo Project<a name="nxp-build-and-run"></a>
 
-### Import the Amazon FreeRTOS Demo into Your IDE<a name="nxp-freertos-import-project"></a><a name="nxp-load-project"></a>
+### Import the FreeRTOS Demo into Your IDE<a name="nxp-freertos-import-project"></a><a name="nxp-load-project"></a>
 
-**To import the Amazon FreeRTOS sample code into the IAR Embedded Workbench IDE**
+**To import the FreeRTOS sample code into the IAR Embedded Workbench IDE**
 
 1. Open IAR Embedded Workbench, and from the **File** menu, choose **Open Workspace**\.
 
@@ -85,7 +85,7 @@ If you experience issues during installation, see [NXP Support](https://www.nxp.
 
 1. From the **Project** menu, choose **Rebuild All**\.
 
-**To import the Amazon FreeRTOS sample code into the MCUXpresso IDE**
+**To import the FreeRTOS sample code into the MCUXpresso IDE**
 
 1. Open MCUXpresso, and from the **File** menu, choose **Open Projects From File System**\.
 
@@ -93,9 +93,9 @@ If you experience issues during installation, see [NXP Support](https://www.nxp.
 
 1. From the **Project** menu, choose **Build All**\.
 
-### Run the Amazon FreeRTOS Demo Project<a name="nxp-run-example"></a>
+### Run the FreeRTOS Demo Project<a name="nxp-run-example"></a>
 
-**To run the Amazon FreeRTOS demo project with the IAR Embedded Workbench IDE**
+**To run the FreeRTOS demo project with the IAR Embedded Workbench IDE**
 
 1. In your IDE, from the **Project** menu, choose **Make**\.
 
@@ -107,7 +107,7 @@ If you experience issues during installation, see [NXP Support](https://www.nxp.
 **Note**  
 If a **J\-Link Device Selection** dialog box opens, choose **OK** to continue\. In the **Target Device Settings** dialog box, choose **Unspecified**, choose **Cortex\-M4**, and then choose **OK**\. You only need to be do this once\.
 
-**To run the Amazon FreeRTOS demo project with the MCUxpresso IDE**
+**To run the FreeRTOS demo project with the MCUxpresso IDE**
 
 1. In your IDE, from the **Project** menu, choose **Build**\.
 
@@ -119,7 +119,7 @@ When the debugger stops at the breakpoint in `main()`, press the debug restart b
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Debug** menu, choose **Go**\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w12aab7c25c33c13b7"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w13aab7c25c33c13b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -133,4 +133,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="getting_started_nxp_troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

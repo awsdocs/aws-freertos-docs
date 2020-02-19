@@ -2,7 +2,7 @@
 
 This tutorial provides instructions for getting started with the Renesas Starter Kit\+ for RX65N\-2MB\. If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
 
-Before you begin, you must configure AWS IoT and your Amazon FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the Amazon FreeRTOS download directory is referred to as `<amazon-freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
 ## Overview<a name="gsg-renesas-overview"></a>
 
@@ -12,7 +12,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Installing software on the host machine for developing and debugging embedded applications for your microcontroller board\.
 
-1. Cross compiling an Amazon FreeRTOS demo application to a binary image\.
+1. Cross compiling a FreeRTOS demo application to a binary image\.
 
 1. Loading the application binary image to your board, and then running the application\.
 
@@ -42,7 +42,7 @@ This tutorial contains instructions for the following getting started steps:
 
 ## Set Up Your Development Environment<a name="renesas-setup-env"></a>
 
-To set up Amazon FreeRTOS configurations for the RSK\+ for RX65N\-2MB, use the Renesas e2studio IDE and CC\-RX compiler\. 
+To set up FreeRTOS configurations for the RSK\+ for RX65N\-2MB, use the Renesas e2studio IDE and CC\-RX compiler\. 
 
 **Note**  
 The Renesas e2studio IDE and CC\-RX compiler are only supported on Windows 7, 8, and 10 operating systems\.
@@ -74,11 +74,11 @@ For more information, see the [C/C\+\+ Compiler Package for RX Family](https://w
 **Note**  
 The compiler is available free for evaluation version only and valid for 60 days\. On the 61st day, you need to get a License Key\. For more information, see [Evaluation Software Tools](https://www.renesas.com/us/en/products/software-tools/evaluation-software-tools.html)\.
 
-## Build and Run Amazon FreeRTOS Samples<a name="renesas-build-and-run-example"></a>
+## Build and Run FreeRTOS Samples<a name="renesas-build-and-run-example"></a>
 
 Now that you have configured the demo project, you are ready to build and run the project on your board\.
 
-### Build the Amazon FreeRTOS Demo in e2studio<a name="renesas-freertos-import-project"></a>
+### Build the FreeRTOS Demo in e2studio<a name="renesas-freertos-import-project"></a>
 
 **To import and build the demo in e2studio**
 
@@ -108,7 +108,7 @@ Now that you have configured the demo project, you are ready to build and run th
 
    The build console issues a warning message that the License Manager is not installed\. You can ignore this message unless you have a license key for the CC\-RX compiler\. To install the License Manager, see the [License Manager](https://www.renesas.com/us/en/software/D4000398.html) download page\.
 
-### Run the Amazon FreeRTOS Project<a name="renesas-run"></a>
+### Run the FreeRTOS Project<a name="renesas-run"></a>
 
 **To run the project in e2studio**
 
@@ -146,4 +146,4 @@ For the latest projects released by Renesas, see the `renesas-rx` fork of the `a
 
 ## Troubleshooting<a name="renesas-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with Amazon FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.

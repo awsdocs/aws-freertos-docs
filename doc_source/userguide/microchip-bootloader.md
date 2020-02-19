@@ -1,6 +1,6 @@
 # Demo Bootloader for the Microchip Curiosity PIC32MZEF<a name="microchip-bootloader"></a>
 
- This demo bootloader implements firmware version checking, cryptographic signature verification, and application self\-testing\. These capabilities support over\-the\-air \(OTA\) firmware updates for Amazon FreeRTOS\.
+ This demo bootloader implements firmware version checking, cryptographic signature verification, and application self\-testing\. These capabilities support over\-the\-air \(OTA\) firmware updates for FreeRTOS\.
 
 The firmware verification includes verifying the authenticity and integrity of the new firmware received over the air\. The bootloader verifies the cryptographic signature of the application before booting\. The demo uses elliptic\-curve digital signature algorithm \(ECDSA\) over SHA\-256\. The utilities provided can be used to generate a signed application that can be flashed on the device\.
 
@@ -139,7 +139,7 @@ The cryptographic signature of the application binary prepended with the image d
 
 ## Bootloader Configuration<a name="bootloader-configuration"></a>
 
-The basic bootloader configuration options are provided in `<amazon-freertos>/vendors/microchip/boards/curiosity_pic32mzef/bootloader/config_files/aws_boot_config.h`\. Some options are provided for debugging purposes only\.
+The basic bootloader configuration options are provided in `<freertos>/vendors/microchip/boards/curiosity_pic32mzef/bootloader/config_files/aws_boot_config.h`\. Some options are provided for debugging purposes only\.
 
 Enable Default Start  
 Enables the execution of the application from the default address and must be enabled for debugging only\. The image is executed from the default address without any verification\. 
@@ -158,7 +158,7 @@ Enables verification of the start, end, and execution addresses in the descripto
 
 ## Building the Bootloader<a name="building-bootloader"></a>
 
-The demo bootloader is included as a loadable project in the `aws_demos` project located in `<amazon-freertos>/vendors/microchip/boards/curiosity_pic32mzef/aws_demos/mplab/` in the Amazon FreeRTOS source code repository\. When the `aws_demos` project is built, it builds the bootloader first, followed by the application\. The final output is a unified hex image including the bootloader and the application\. The `factory_image_generator.py` utility is provided to generate a unified hex image with cryptographic signature\. The bootloader utility scripts are located in `<amazon-freertos>/demos/ota/bootloader/utility/`\.
+The demo bootloader is included as a loadable project in the `aws_demos` project located in `<freertos>/vendors/microchip/boards/curiosity_pic32mzef/aws_demos/mplab/` in the FreeRTOS source code repository\. When the `aws_demos` project is built, it builds the bootloader first, followed by the application\. The final output is a unified hex image including the bootloader and the application\. The `factory_image_generator.py` utility is provided to generate a unified hex image with cryptographic signature\. The bootloader utility scripts are located in `<freertos>/demos/ota/bootloader/utility/`\.
 
 ### Bootloader Pre\-Build Step<a name="bootloader-pre-build"></a>
 

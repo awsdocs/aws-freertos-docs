@@ -156,6 +156,9 @@ To find the Amazon S3 object key of your signed firmware image, use the aws sign
 ... text deleted for brevity ...
 ```
 
+**Note**  
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream Limit Exceeded for your AWS Account](ota-troubleshooting-stream-limit.md)\.
+
 ## Creating an OTA Update<a name="create-ota-update"></a>
 
 Use the create\-ota\-update CLI command to create an OTA update job\.
@@ -284,7 +287,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ]
 ```
 
-The following is an example of a JSON file passed into the create\-ota\-update CLI command that allows Amazon FreeRTOS OTA to start a code\-signing job and create a code\-signing profile and stream\.
+The following is an example of a JSON file passed into the create\-ota\-update CLI command that allows FreeRTOS OTA to start a code\-signing job and create a code\-signing profile and stream\.
 
 ```
 [
@@ -345,7 +348,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ]
 ```
 
-The following is an example of a JSON file passed into the create\-ota\-update CLI command that allows Amazon FreeRTOS OTA to create a stream with an existing code\-signing job ID\.
+The following is an example of a JSON file passed into the create\-ota\-update CLI command that allows FreeRTOS OTA to create a stream with an existing code\-signing job ID\.
 
 ```
 [
@@ -389,6 +392,9 @@ The following is an example of a JSON file passed into the create\-ota\-update C
   }
 ]
 ```
+
+**Note**  
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream Limit Exceeded for your AWS Account](ota-troubleshooting-stream-limit.md)\.
 
 ## Listing OTA Updates<a name="list-ota-updates"></a>
 
@@ -545,7 +551,7 @@ Deletes the AWS IoT job associated with the OTA update\. If this flag is not set
 
 ### Deleting an IoT Job Created for an OTA Update<a name="delete-ota-job"></a>
 
-Amazon FreeRTOS creates an AWS IoT job when you create an OTA update\. A job execution is also created for each device that processes the job\. You can use the delete\-job CLI command to delete a job and its associated job executions\.
+FreeRTOS creates an AWS IoT job when you create an OTA update\. A job execution is also created for each device that processes the job\. You can use the delete\-job CLI command to delete a job and its associated job executions\.
 
 ```
 aws iot delete-job --job-id <your-job-id --no-force

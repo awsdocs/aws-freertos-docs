@@ -4,11 +4,11 @@ You must grant your IAM user permission to perform over\-the\-air updates\. Your
 + Access the S3 bucket where your firmware updates are stored\.
 + Access certificates stored in AWS Certificate Manager\.
 + Access the AWS IoT Streaming service\.
-+ Access Amazon FreeRTOS OTA updates\.
++ Access FreeRTOS OTA updates\.
 + Access AWS IoT jobs\.
 + Access IAM\.
 + Access Code Signing for AWS IoT\. See [Grant Access to Code Signing for AWS IoT](code-sign-policy.md)\.
-+ List Amazon FreeRTOS hardware platforms\.
++ List FreeRTOS hardware platforms\.
 
 To grant your IAM user the required permissions, create an OTA user policy and then attach it to your IAM user\. For more information, see [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)\.<a name="create-ota-user-policy-steps"></a>
 

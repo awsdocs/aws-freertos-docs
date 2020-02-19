@@ -6,14 +6,14 @@ This section discusses two options to get a trusted X\.509 client certificate on
 
 ## Option \#1: Private Key Import from AWS IoT<a name="dev-mode-key-provisioning-option1"></a>
 
-For lab testing purposes, if your device allows the import of private keys, follow the instructions in [Configuring the Amazon FreeRTOS Demos](freertos-configure.md)\.
+For lab testing purposes, if your device allows the import of private keys, follow the instructions in [Configuring the FreeRTOS Demos](freertos-configure.md)\.
 
 ## Option \#2: Onboard Private Key Generation<a name="dev-mode-key-provisioning-option2"></a>
 
 If your device has a secure element, or if you prefer to generate your own device key pair and certificate, follow the instructions here\.
 
 Initial Configuration  
-First, perform the steps in [Configuring the Amazon FreeRTOS Demos](freertos-configure.md),  but skip the last step \(that is, don't do *To format your AWS IoT credentials*\)\. The net result should be that the `demos/include/aws_clientcredential.h` file has been updated with your settings, but the `demos/include/aws_clientcredential_keys.h` file has not\.
+First, perform the steps in [Configuring the FreeRTOS Demos](freertos-configure.md), but skip the last step \(that is, don't do *To format your AWS IoT credentials*\)\. The net result should be that the `demos/include/aws_clientcredential.h` file has been updated with your settings, but the `demos/include/aws_clientcredential_keys.h` file has not\.
 
 Demo Project Configuration  
 Open the Hello World MQTT demo as described in the guide for your board in [Board\-specific Getting Started Guides](getting-started-guides.md) \. In the project, open the file `aws_dev_mode_key_provisioning.c` and change the definition of `keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR`, which is set to zero by default, to one:  
@@ -53,7 +53,7 @@ Don't forget to disable the temporary key generation setting you enabled above\.
 
 Public Key Infrastructure Setup  
 Follow the instructions in [ Registering Your CA Certificate](https://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html#register-CA-cert) to create a certificate hierarchy for your device lab certificate\. Stop before executing the sequence described in the section *Creating a Device Certificate Using Your CA Certificate*\.  
-In this case, the device will not be signing the certificate request \(that is, the Certificate Service Request or CSR\) because the X\.509 encoding logic required for creating and signing a CSR has been excluded from the Amazon FreeRTOS demo projects to reduce ROM size\. Instead, for lab testing purposes, create a private key on your workstation and use it to sign the CSR\.  
+In this case, the device will not be signing the certificate request \(that is, the Certificate Service Request or CSR\) because the X\.509 encoding logic required for creating and signing a CSR has been excluded from the FreeRTOS demo projects to reduce ROM size\. Instead, for lab testing purposes, create a private key on your workstation and use it to sign the CSR\.  
 
 ```
 openssl genrsa -out tempCsrSigner.key 2048

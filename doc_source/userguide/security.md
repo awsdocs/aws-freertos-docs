@@ -14,4 +14,4 @@ For more in\-depth information about AWS IoT security see [Security and Identity
 + [Identity and Access Management for AWS Resources](security-iam.md)
 + [Compliance Validation](freertos-compliance.md)
 + [Resilience in AWS](disaster-recovery-resiliency.md)
-+ [Infrastructure Security in Amazon FreeRTOS](infrastructure-security.md)
++ [Infrastructure Security in FreeRTOS](infrastructure-security.md)

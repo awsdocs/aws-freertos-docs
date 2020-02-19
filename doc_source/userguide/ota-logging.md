@@ -1,6 +1,6 @@
-# Set Up Cloudwatch Logs for OTA Updates<a name="ota-logging"></a>
+# Set Up CloudWatch Logs for OTA Updates<a name="ota-logging"></a>
 
-The OTA Update service supports logging with Amazon CloudWatch\. You can use the AWS IoT console to enable and configure Amazon CloudWatch logging for OTA updates\. For more information about CloudWatch Logs, see [Cloudwatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)\.
+The OTA Update service supports logging with Amazon CloudWatch\. You can use the AWS IoT console to enable and configure Amazon CloudWatch logging for OTA updates\. For more information, see [Cloudwatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)\.
 
 To enable logging, you must create an IAM role and configure OTA update logging\.
 
@@ -100,7 +100,7 @@ The following is an example log generated when a code\-signing job is started:
 { 
     "timestamp": "2018-07-23 22:59:44.955", 
     "logLevel": "DEBUG", 
-    "accountId": "875157236366", 
+    "accountId": "123456789012", 
     "status": "Success", 
     "actionType": "StartCodeSigning", 
     "otaUpdateId": "08957b03-eea3-448a-87fe-743e6891ca3a", 

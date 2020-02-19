@@ -1,12 +1,12 @@
-# Amazon FreeRTOS Wi\-Fi Library<a name="freertos-wifi"></a>
+# Wi\-Fi Library<a name="freertos-wifi"></a>
 
 ## Overview<a name="freertos-wifi-overview"></a>
 
-The Amazon FreeRTOS Wi\-Fi library abstracts port\-specific Wi\-Fi implementations into a common API that simplifies application development and porting for all Amazon FreeRTOS\-qualified boards with Wi\-Fi capabilities\. Using this common API, applications can communicate with their lower\-level wireless stack through a common interface\.
+The FreeRTOS Wi\-Fi library abstracts port\-specific Wi\-Fi implementations into a common API that simplifies application development and porting for all FreeRTOS\-qualified boards with Wi\-Fi capabilities\. Using this common API, applications can communicate with their lower\-level wireless stack through a common interface\.
 
 ## Dependencies and Requirements<a name="freertos-wifi-dependencies"></a>
 
-The Amazon FreeRTOS Wi\-Fi library requires the [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) core\.
+The FreeRTOS Wi\-Fi library requires the [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) core\.
 
 ## Features<a name="freertos-wifi-features"></a>
 
@@ -98,7 +98,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 
 ## Example Usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a Known AP<a name="w12aab9c39c17b3"></a>
+### Connecting to a Known AP<a name="w13aab9c39c17b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -142,7 +142,7 @@ else
 }
 ```
 
-### Scanning for nearby APs<a name="w12aab9c39c17b5"></a>
+### Scanning for nearby APs<a name="w13aab9c39c17b5"></a>
 
 ```
 WIFINetworkParams_t xNetworkParams;
@@ -195,4 +195,4 @@ while (1)
 
 The `aws_wifi.c` implementation needs to implement the functions defined in `aws_wifi.h`\. At the very least, the implementation needs to return `eWiFiNotSupported` for any non\-essential or unsupported functions\.
 
-For more information about porting the Wi\-Fi library, see [Porting the Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html) in the Amazon FreeRTOS Porting Guide\.
+For more information about porting the Wi\-Fi library, see [Porting the Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html) in the FreeRTOS Porting Guide\.

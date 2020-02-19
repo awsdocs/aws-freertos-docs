@@ -1,6 +1,6 @@
 # Board\-specific Getting Started Guides<a name="getting-started-guides"></a>
 
-After you complete the [First Steps](freertos-prereqs.md), see your board's guide for board\-specific instructions on getting started with Amazon FreeRTOS:
+After you complete the [First Steps](freertos-prereqs.md), see your board's guide for board\-specific instructions on getting started with FreeRTOS:
 + [Getting Started with the Cypress CYW943907AEVAL1F Development Kit](getting_started_cypress_43.md)
 + [Getting Started with the Cypress CYW954907AEVAL1F Development Kit](getting_started_cypress_54.md)
 + [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md)
@@ -17,7 +17,7 @@ After you complete the [First Steps](freertos-prereqs.md), see your board's guid
 + [Getting Started with the Xilinx Avnet MicroZed Industrial IoT Kit](getting_started_xilinx.md)
 
 **Note**  
-You do not need to complete the [First Steps](freertos-prereqs.md) for the following self\-contained Getting Started with Amazon FreeRTOS guides:  
+You do not need to complete the [First Steps](freertos-prereqs.md) for the following self\-contained Getting Started with FreeRTOS guides:  
 [Getting Started with the Microchip ECC608a Secure Element with Windows Simulator](getting_started_ecc608a.md)
 [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](getting_started_espressif.md)
 [Getting Started with the Infineon OPTIGA Trust X and XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
