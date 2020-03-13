@@ -75,7 +75,7 @@ When you create an AWS IoT OTA Update, you can also create a stream that contain
 ```
 [
   {
-    "fileId":<your_file_id>,
+    "fileId":"<your_file_id>",
     "s3Location":{
       "bucket":"<your_bucket_name>",
       "key":"<your_s3_object_key<"

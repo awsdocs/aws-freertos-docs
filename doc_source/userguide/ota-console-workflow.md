@@ -24,7 +24,7 @@ Only hardware platforms that have been qualified for FreeRTOS are displayed in t
 
    1. Under **Code signing certificate**, choose **Select** to select a previously imported certificate or **Import** to import a new certificate\.
 
-   1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code\-signing certificate on your device\. The certificate's location varies by platform\. It should be the location where you put the code\-signing certificate when you followed the instructions in [Installing the Initial Firmware](dg-ota-initial-firmware.md)\.
+   1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. The certificate's location varies by platform\. It should be the location where you put the code\-signing certificate when you followed the instructions in [Installing the Initial Firmware](dg-ota-initial-firmware.md)\.
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, do not include a leading forward slash \(**/**\) in front of the file name if your code signing certificate exists in the root of the file system\. Otherwise, the OTA update fails during authentication with a `file not found` error\.
 
@@ -32,7 +32,7 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, do not include a leading forward sl
 **Note**  
 The Microchip Curiosity PIC32MZEF demo projects produce two binary images with default names of `mplab.production.bin` and `mplab.production.ota.bin`\. Use the second file when you upload an image for OTA updating\.
 
-1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location where the firmware image is copied onto your device\. This location varies by platform\.
+1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location on your device where the OTA job will copy the firmware image\. This location varies by platform\.
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the firmware image path name must be `/sys/mcuflashimg.bin`\.
 
@@ -50,7 +50,7 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Under **Select and sign your firmware image**, choose **Select a previously signed firmware image**\.
 
-1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location where the firmware image is copied onto your device\. This location might be different on different platforms\.
+1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location on your device where the OTA job will copy the firmware image\. This location varies by platform\.
 
 1. Under **Previous code signing job**, choose **Select**, and then choose the previous code\-signing job used to sign the firmware image you are using for the OTA update\.<a name="custom-signed"></a>
 
@@ -58,9 +58,9 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Under **Select and sign your firmware image**, choose **Use my custom signed firmware image**\.
 
-1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code\-signing certificate on your device\. This path name might be different for different platforms\.
+1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. This path name might vary by platform\.
 
-1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location where the firmware image is copied onto your device\. This path name might be different on different platforms\.
+1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location on your device where the OTA job will copy the firmware image\. This location varies by platform\.
 
 1. Under **Signature**, paste your PEM format signature\.
 

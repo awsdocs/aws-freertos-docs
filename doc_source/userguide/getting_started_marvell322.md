@@ -11,7 +11,7 @@ In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w13aab7c25c23c13"></a>
+## Overview<a name="w14aab7c25c25c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
 

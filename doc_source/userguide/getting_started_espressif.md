@@ -446,7 +446,7 @@ register_component()
 target_link_libraries(${COMPONENT_TARGET} PRIVATE AFR::mqtt)
 ```
 
-For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_PRIV_REQUIRES`\. See [ When Writing a Component](https://docs.espressif.com/projects/esp-idf/en/stable/api-guides/build-system-cmake.html#when-writing-a-component) in the *ESP\-IDF Programming Guide*\.
+For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_PRIV_REQUIRES`\. See [ Build System \(CMake\)](https://docs.espressif.com/projects/esp-idf/en/v3.3/api-guides/build-system-cmake.html) in the *ESP\-IDF Programming Guide v3\.3*\.
 
 ```
 # If the dependencies are from ESP-IDF, use these 2 variables. Note these need to be

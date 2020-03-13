@@ -12,7 +12,7 @@ If you download the binary distribution of CMake, make sure that you add the CMa
 
   You can also download and install CMake using a package manager, like [homebrew](https://brew.sh/) on macOS, and [scoop](https://scoop.sh/) or [chocolatey](https://chocolatey.org/) on Windows\.
 **Note**  
-The CMake package versions provided in the package managers for many Linux distributions are out\-of\-date\. If your distribution's package manager does not provide the the latest version of CMake, you can try alternative package managers, like `linuxbrew` or `nix`\.
+The CMake package versions provided in the package managers for many Linux distributions are out\-of\-date\. If your distribution's package manager does not provide the latest version of CMake, you can try alternative package managers, like `linuxbrew` or `nix`\.
 + You must have a compatible native build system\.
 
   CMake can target many native build systems, including [GNU Make](https://www.gnu.org/software/make/) or [Ninja](https://github.com/ninja-build/ninja/releases)\. Both Make and Ninja can be installed with package managers on Linux, macOS and Windows\. If you are using Make on Windows, you can install a standalone version from [Equation](http://www.equation.com/servlet/equation.cmd?fa=make), or you can install [MinGW](https://sourceforge.net/projects/mingw-w64/files/), which bundles make\.

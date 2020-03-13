@@ -4,15 +4,15 @@
 
 FreeRTOS Bluetooth Low Energy includes three demo applications:
 
-### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) Demo<a name="w13aac11c11b3b5"></a>
+### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) Demo<a name="w14aac11c11b3b5"></a>
 
 This application demonstrates how to use the MQTT over Bluetooth Low Energy service\.
 
-### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w13aac11c11b3b7"></a>
+### [Wi\-Fi Provisioning](#ble-demo-wifi) Demo<a name="w14aac11c11b3b7"></a>
 
 This application demonstrates how to use the Bluetooth Low Energy Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) Demo<a name="w13aac11c11b3b9"></a>
+### [Generic Attributes Server](#ble-demo-server) Demo<a name="w14aac11c11b3b9"></a>
 
 This application demonstrates how to use the FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
 

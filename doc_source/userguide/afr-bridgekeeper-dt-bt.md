@@ -126,13 +126,15 @@ The ssh\-copy\-id command assumes the public key is named `id_rsa.pub`\. On macO
 In your `device.json` file, set the `BLE` feature to `Yes`\. If you are starting with a `device.json` file from before Bluetooth tests were available, you need to add the feature for BLE to the `features` array:
 
 ```
-...
-"features": [
-    {
-        "name": "BLE",
-        "value": "Yes"
-    },
-...
+{
+    ...
+    "features": [
+        {
+            "name": "BLE",
+            "value": "Yes"
+        },
+    ...
+}
 ```
 
 ## Running the BLE Tests<a name="running-ble-test"></a>

@@ -11,7 +11,7 @@ In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w13aab7c25c21c13"></a>
+## Overview<a name="w14aab7c25c23c13"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -126,7 +126,7 @@ If you cannot use a package manager to install OpenOCD version 0\.9, follow thes
    make install
    ```
 
-### Install CMake<a name="w13aab7c25c21c15c17"></a>
+### Install CMake<a name="w14aab7c25c23c15c17"></a>
 
 The CMake build system is required to build the FreeRTOS demo and test applications for this device\. FreeRTOS supports versions 3\.13 and later\.
 
@@ -212,7 +212,7 @@ You should see output similar to the following:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-build-output-1.png)
 
-### Build the Demo with make<a name="w13aab7c25c21c19b7"></a>
+### Build the Demo with make<a name="w14aab7c25c23c19b7"></a>
 
 Issue the following commands to build the demo:
 
@@ -251,7 +251,7 @@ make all -j4
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Flash the Application<a name="w13aab7c25c21c19b9"></a>
+### Flash the Application<a name="w14aab7c25c23c19b9"></a>
 
 The `flashprog.py` script is used to program your board's flash memory\. The script is written in Python 2\.7\.
 
@@ -317,7 +317,7 @@ When you build, flash, and run the demo, you should see output similar to the fo
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-demo-output.png)
 
-#### Monitoring MQTT Messages on the Cloud<a name="w13aab7c25c21c19b9c23"></a>
+#### Monitoring MQTT Messages on the Cloud<a name="w14aab7c25c23c19b9c23"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -331,7 +331,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="marvell320-troubleshooting"></a>
 
-### Connecting to the GNU Debugger<a name="w13aab7c25c21c21b3"></a>
+### Connecting to the GNU Debugger<a name="w14aab7c25c23c21b3"></a>
 
 **To connect to the GNU Debugger \(GDB\)**
 
@@ -349,7 +349,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    If you are debugging a FreeRTOS test application, target `aws_tests.axf` instead\.
 
-### Loading the Application to SRAM<a name="w13aab7c25c21c21b5"></a>
+### Loading the Application to SRAM<a name="w14aab7c25c23c21b5"></a>
 
 You can load the demo to your device's static random\-access memory \(SRAM\) and then execute the application on your device with the `ramload.py` script\. Using `ramload.py` to load and execute the application is a faster operation than loading to flash memory with the `flashprog.py` script, making it a more efficient approach to iterative development\.
 
@@ -372,7 +372,7 @@ The `ramload.py` script is written in Python 2\.7\.
 **Note**  
 Images loaded to SRAM are erased on reboot\.
 
-### Enabling Other Logs<a name="w13aab7c25c21c21b7"></a>
+### Enabling Other Logs<a name="w14aab7c25c23c21b7"></a>
 
 You might need to enable other logging messages to troubleshoot problems that you encounter while getting started with this board\.
 
@@ -388,9 +388,9 @@ You might need to enable other logging messages to troubleshoot problems that yo
 
 1. Enable the macro `CONFIG_WLCMGR_DEBUG`\.
 
-### Using an IDE Development and Debugging<a name="w13aab7c25c21c21b9"></a>
+### Using an IDE Development and Debugging<a name="w14aab7c25c23c21b9"></a>
 
-#### Set Up an IDE<a name="w13aab7c25c21c21b9b3"></a>
+#### Set Up an IDE<a name="w14aab7c25c23c21b9b3"></a>
 
 You can use an IDE for developing and debugging applications, and for visualizing your projects\.
 
@@ -410,7 +410,7 @@ If you are using the Eclipse IDE, for example, use the `perm_fix.sh` script to c
 
 1. Extract the downloaded archive folder, and then run the platform\-specific Eclipse executable to start the IDE\.
 
-#### Build the Demo with an IDE<a name="w13aab7c25c21c21b9b5"></a>
+#### Build the Demo with an IDE<a name="w14aab7c25c23c21b9b5"></a>
 
 You can open and build the demo project's build files in your IDE instead of building the demo directly from the command line with `make`\. Opening the files in an IDE can help you visualize the project before you build it\.
 

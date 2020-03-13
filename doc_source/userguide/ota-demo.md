@@ -1,20 +1,22 @@
 # Over\-the\-Air Updates Demo Application<a name="ota-demo"></a>
 
-FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the `<freertos>/demos/ota` subdirectory\.
+FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the `freertos/demos/ota/aws_iot_ota_update_demo.c` file\.
 
-The OTA demo application:
+The OTA demo application does the following:
 
-1. Initializes the FreeRTOS network stack and MQTT buffer pool\. \(See `main.c`\.\)
+1. Initializes the FreeRTOS network stack and MQTT buffer pool\.
 
-1. Creates a task to exercise the OTA library\. \(See `vOTAUpdateDemoTask` in `aws_ota_update_demo.c`\.\)
+1. Creates a task to exercise the OTA library \(`vRunOTAUpdateDemo()`\)\.
 
-1. Creates an MQTT client using `MQTT_AGENT_Create`\.
+1. Creates an MQTT client \(`prxCreateNetworkConnection()`\)\.
 
-1. Connects to the AWS IoT MQTT broker using `MQTT_AGENT_Connect`\.
+1. Connects to the AWS IoT MQTT broker \(`IotMqtt_Connect()`\)\.
 
-1. Calls `OTA_AgentInit` to create the OTA task and registers a callback to be used when the OTA task is complete\.
+1. Calls `OTA_AgentInit()` to create the OTA task and registers a callback to be used when the OTA task is complete\.
 
-Before you can use OTA updates, read [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md) and complete all prerequisites listed there\.
+1. Reuses the MQTT connection \(`xOTAConnectionCtx.pvControlClient = xConnection.xMqttConnection;`\)\.
+
+Before you can use OTA updates, complete all prerequisites in the [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)
 
 After you complete the setup for OTA updates, download, build, flash, and run the FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following FreeRTOS\-qualified devices:
 + [Texas Instruments CC3220SF\-LAUNCHXL](download-ota-ti.md)

@@ -18,7 +18,8 @@ After you complete the [First Steps](freertos-prereqs.md), see your board's guid
 
 **Note**  
 You do not need to complete the [First Steps](freertos-prereqs.md) for the following self\-contained Getting Started with FreeRTOS guides:  
-[Getting Started with the Microchip ECC608a Secure Element with Windows Simulator](getting_started_ecc608a.md)
+[Getting Started with the Microchip ATECC608A Secure Element with Windows Simulator](getting_started_atecc608a.md)
 [Getting Started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](getting_started_espressif.md)
+[Getting Started with the Espressif ESP32\-WROOM\-32SE \(Preview\) ](getting_started_esp32wroom-32se.md)
 [Getting Started with the Infineon OPTIGA Trust X and XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
 [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md)

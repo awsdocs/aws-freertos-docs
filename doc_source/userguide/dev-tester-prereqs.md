@@ -16,7 +16,7 @@ Extract IDT for FreeRTOS to a location on the file system where you have read an
 
 Follow these steps to create and configure an AWS account, an IAM user, and an IAM policy that grants IDT for FreeRTOS permission to access resources on your behalf while running tests\.
 
-1. Create an [AWS account](http://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\. If you already have an AWS account, skip to the next step\. 
+1. If you already have an AWS account, skip to the next step\. Create an [AWS account](http://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
 1. Create an IAM policy that grants IDT for FreeRTOS the IAM permissions to create service roles with specific permissions\. 
 

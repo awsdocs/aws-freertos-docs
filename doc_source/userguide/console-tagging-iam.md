@@ -51,9 +51,12 @@ The following example policy applies two tag\-based restrictions\. An IAM user r
 You can also specify multiple tag values for a given tag key by enclosing them in a list, like this: 
 
 ```
-            "StringEquals" : {
-              "aws:ResourceTag/env" : ["dev", "test"]
-            }
+{
+    ...
+    "StringEquals" : {
+        "aws:ResourceTag/env" : ["dev", "test"]
+    }
+}
 ```
 
 **Note**  

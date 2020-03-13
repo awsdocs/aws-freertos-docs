@@ -93,7 +93,7 @@ The following procedure creates a unified hex file or factory image that consist
    + `private_key.pem`: The code\-signing private key\.
    + `aws_bootloader.X.production.hex`: The bootloader hex file\.
 
-   When you build the`aws_demos` project, the application binary image and bootloader hex file are built as part of the process\. Each project under the `vendors/microchip/boards/curiosity_pic32mzef/aws_demos/` directory contains a `dist/pic32mz_ef_curiosity/production/` directory that contains these files\. The generated unified hex file is named `mplab.production.unified.factory.hex`\.
+   When you build the`aws_demos` project, the application binary image and bootloader hex file are built as part of the process\. Each project under the `vendors/microchip/boards/curiosity_pic32mzef/aws_demos/` directory contains a `dist/pic32mz_ef_curiosity/production/` directory that contains these files\. The generated unified hex file is named `mplab.production.factory.unified.hex`\.
 
 1. Use the MPLab IPE tool to program the generated hex file onto the device\.
 

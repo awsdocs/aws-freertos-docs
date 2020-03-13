@@ -98,7 +98,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 
 ## Example Usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a Known AP<a name="w13aab9c39c17b3"></a>
+### Connecting to a Known AP<a name="w14aab9c39c17b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -142,7 +142,7 @@ else
 }
 ```
 
-### Scanning for nearby APs<a name="w13aab9c39c17b5"></a>
+### Scanning for nearby APs<a name="w14aab9c39c17b5"></a>
 
 ```
 WIFINetworkParams_t xNetworkParams;

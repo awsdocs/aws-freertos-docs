@@ -64,19 +64,21 @@ Additionally, the FreeRTOS AWS IoT Device Defender library only supports a subse
 For example:
 
 ```
-"tcp_connections": {
-            "established_connections": {
-                "connections": [
-                    {
-                        "remote_addr": "192.168.0.1:8000"
-                    },
-                    {
-                        "remote_addr": "192.168.0.2:8000"
-                    }
-                ],
-                "total": 2
-            }
+{
+    "tcp_connections": {
+        "established_connections": {
+            "connections": [
+                {
+                    "remote_addr": "192.168.0.1:8000"
+                },
+                {
+                    "remote_addr": "192.168.0.2:8000"
+                }
+            ],
+            "total": 2
         }
+    }
+}
 ```
 
 This JSON document is for example purposes only, as FreeRTOS Device Defender library does not support JSON\-formatted metrics\.

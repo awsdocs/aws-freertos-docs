@@ -1,6 +1,6 @@
 # Building FreeRTOS with CMake<a name="building-cmake"></a>
 
-CMake targets your host operating system as the target system by default\. To use it for cross compiling, CMake requires a toolchain file, which specifies the compiler that you want to use\. In FreeRTOS, we provide default toolchain files in `<freertos>/tools/cmake/toolchains`\. The way to provide this file to CMake depends on whether you’re using the CMake commandline interface or GUI\. For more details, follow the [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) instructions below\. For more information about cross\-compiling in CMake, see [CrossCompiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) in the official CMake wiki\.
+CMake targets your host operating system as the target system by default\. To use it for cross compiling, CMake requires a toolchain file, which specifies the compiler that you want to use\. In FreeRTOS, we provide default toolchain files in `<freertos>/tools/cmake/toolchains`\. The way to provide this file to CMake depends on whether you’re using the CMake command line interface or GUI\. For more details, follow the [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) instructions below\. For more information about cross\-compiling in CMake, see [CrossCompiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) in the official CMake wiki\.
 
 **To build a CMake\-based project**
 
@@ -16,7 +16,13 @@ CMake targets your host operating system as the target system by default\. To us
 
 ## Generating Build Files \(CMake Command\-Line Tool\)<a name="cmake-gen-cli"></a>
 
-You can use the CMake command\-line tool \(cmake\) to generate build files for FreeRTOS\. To generate the build files, you need to specify a target board, a compiler and the location of the source code and build directory\. Specify the target board using the `-DVENDOR` option\. Specify the compiler with the `-DCOMPILER` option\. Use the `-S` option to specify the location of the source code\. Use the `-B`option to specify the location of generated build files\.
+You can use the CMake command\-line tool \(cmake\) to generate build files for FreeRTOS\. To generate the build files, you need to specify a target board, a compiler, and the location of the source code and build directory\. 
+
+You can use the following options for cmake:
++ `-DVENDOR` – Specifies the target board\.
++ `-DCOMPILER` – Specifies the compiler\.
++ `-S` – Specifies the location of the source code\.
++ `-B` – Specifies the location of generated build files\.
 
 **Note**  
 The compiler must be in the system's `PATH` variable, or you must specify the location of the compiler\.

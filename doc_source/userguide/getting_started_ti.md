@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Texas Instrumen
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
 
-## Overview<a name="w13aab7c25c39b7"></a>
+## Overview<a name="w14aab7c25c41b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -90,7 +90,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 **To run the FreeRTOS demo in TI Code Composer**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455j/swru455j.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -112,7 +112,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 **To run the FreeRTOS demo in IAR Embedded Workbench**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [CC3220 SimpleLink User's Guide](http://www.ti.com/lit/ug/swru463b/swru463b.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455j/swru455j.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -124,7 +124,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Debug** menu, and choose **Go**\.
 
-### Using CMake with FreeRTOS<a name="w13aab7c25c39c11b7"></a>
+### Using CMake with FreeRTOS<a name="w14aab7c25c41c11b7"></a>
 
 If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -142,7 +142,7 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w13aab7c25c39c11b9"></a>
+### Monitoring MQTT Messages on the Cloud<a name="w14aab7c25c41c11b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

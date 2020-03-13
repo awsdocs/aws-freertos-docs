@@ -184,9 +184,9 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
     "wifiSecurityType": "eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
   },
   "echoServerConfiguration": {
-    "securePortForSecureSocket": 33333 <Secure tcp port used by SecureSocket test. Default value is 33333. Ensure that the port configured isn't blocked by the firewall or your corporate network>,
-    "insecurePortForSecureSocket": 33334 <Insecure tcp port used by SecureSocket test. Default value is 33334/. Ensure that the port configured isn't blocked by the firewall or your corporate network>,
-    "insecurePortForWiFi": 33335 <Insecure tcp port used by Wi-Fi test. Default value is 33335. Ensure that the port configured isn't blocked by the firewall or your corporate network>
+    "securePortForSecureSocket": 33333, // Secure tcp port used by SecureSocket test. Default value is 33333. Ensure that the port configured isn't blocked by the firewall or your corporate network
+    "insecurePortForSecureSocket": 33334, // Insecure tcp port used by SecureSocket test. Default value is 33334. Ensure that the port configured isn't blocked by the firewall or your corporate network
+    "insecurePortForWiFi": 33335 // Insecure tcp port used by Wi-Fi test. Default value is 33335. Ensure that the port configured isn't blocked by the firewall or your corporate network
   },
   "otaConfiguration": {
     "otaFirmwareFilePath": "{{testData.sourcePath}}/relative-path-to/ota-image-generated-in-build-process",
@@ -198,17 +198,17 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
       "signerSigningAlgorithm": "RSA | ECDSA",
       "signerCertificate": "arn:partition:service:region:account-id:resource:qualifier | /absolute-path-to/signer-certificate-file",
       "signerCertificateFileName": "signerCertificate-file-name",
-      "compileSignerCertificate": true | false,
-      ***********Use signerPlatform if you choose aws for signingMethod***************
+      "compileSignerCertificate": boolean,
+      // ***********Use signerPlatform if you choose aws for signingMethod***************
       "signerPlatform": "AmazonFreeRTOS-Default | AmazonFreeRTOS-TI-CC3220SF",
-      "untrustedSignerCertificate": "arn:partition:service:region:account-id:resourcetype:resource:qualifier"
-      ***********Use signCommand if you choose custom for signingMethod***************
+      "untrustedSignerCertificate": "arn:partition:service:region:account-id:resourcetype:resource:qualifier",
+      // ***********Use signCommand if you choose custom for signingMethod***************
       "signCommand": [
         "/absolute-path-to/sign.sh {{inputImageFilePath}} {{outputSignatureFilePath}}"
       ]
     }
   },
-  ***********Remove the section below if you're not configuring CMake***************
+  // ***********Remove the section below if you're not configuring CMake***************
   "cmakeConfiguration": {
     "boardName": "board-name",
     "vendorName": "vendor-name",
