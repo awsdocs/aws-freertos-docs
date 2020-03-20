@@ -141,7 +141,7 @@ The following is an example `stream.json` file\.
 ```
 
 `role-arn`  
-An IAM role that grants access to the Amazon S3 bucket
+The [OTA service role](create-service-role.md) that also grants access to the Amazon S3 bucket where the firmware image is stored. 
 
 To find the Amazon S3 object key of your signed firmware image, use the aws signer describe\-signing\-job \-\-job\-id *<my\-job\-id>* command where `my-job-id` is the job ID displayed by the create\-signing\-job CLI command\. The output of the describe\-signing\-job command contains the key of the signed firmware image\. 
 
@@ -171,7 +171,7 @@ aws iot create-ota-update \
     --description "<a cli ota update>" \
     --files file://<ota.json> \
     --targets arn:aws:iot:<your-aws-region>:<your-aws-account>:thing/<your-thing-name> \
-    --role-arn arn:aws:iam::<your-aws-account>:role/<your-ota-service-role
+    --role-arn arn:aws:iam::<your-aws-account>:role/<your-ota-service-role>
 ```
 
 **Note**  
