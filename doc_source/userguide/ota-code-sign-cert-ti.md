@@ -89,7 +89,7 @@ You write the `tisigner.crt.der` certificate onto the TI development board later
 1. Import the code\-signing certificate, private key, and certificate chain into AWS Certificate Manager:
 
    ```
-   aws acm import-certificate --certificate file://tisigner.crt.pem --private-key file://tisigner.key --certificate-chain file://dummy-root-ca-cert.pem
+   aws acm import-certificate --certificate fileb://tisigner.crt.pem --private-key fileb://tisigner.key --certificate-chain fileb://dummy-root-ca-cert.pem
    ```
 
    This command displays an ARN for your certificate\. You need this ARN when you create an OTA update job\.
