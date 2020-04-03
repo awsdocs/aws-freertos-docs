@@ -36,7 +36,7 @@ Use the AWS Command Line Interface to import your code\-signing certificate, pri
 1. Import the code\-signing certificate, private key, and certificate chain into AWS Certificate Manager:
 
    ```
-   aws acm import-certificate --certificate file://ecdsasigner.crt --private-key file://ecdsasigner.key
+   aws acm import-certificate --certificate fileb://ecdsasigner.crt --private-key fileb://ecdsasigner.key
    ```
 
    This command displays an ARN for your certificate\. You need this ARN when you create an OTA update job\.
