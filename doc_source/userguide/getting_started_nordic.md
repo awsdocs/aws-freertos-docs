@@ -107,6 +107,16 @@ To run the demo, you need to configure your project to work with AWS IoT\. To co
 
 1. Open `vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/aws_demos_config.h`, and define `CONFIG_MQTT_DEMO_ENABLED`\.
 
+1. Since the Nordic chip comes with very little RAM \(250KB\), the BLE configuration might need to be changed to allow for larger GATT table entries compared to the size of each attribute\. In this way you can adjust the amount of memory the application gets\. To do this, override the definitions of the following attributes in the file `freertos/vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/sdk_config.h`: 
+   + NRF\_SDH\_BLE\_VS\_UUID\_COUNT
+
+     The number of vendor\-specific UUIDs\.
+   + NRF\_SDH\_BLE\_GATTS\_ATTR\_TAB\_SIZE
+
+     Attribute Table size in bytes\. The size must be a multiple of 4\.
+
+   \(For tests, the location of the file is `freertos/vendors/nordic/boards/nrf52840-dk/aws_tests/config_files/sdk_config.h`\.\) 
+
 ## Build and Run the FreeRTOS Demo Project<a name="nordic-build-and-run-example"></a>
 
 After you download FreeRTOS and configure your demo project, you are ready to build and run the demo project on your board\.

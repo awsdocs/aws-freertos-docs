@@ -4,7 +4,7 @@ This section describes how to view and interpret IDT result reports and logs\.
 
 ## Viewing Results<a name="view-results"></a>
 
-While running, IDT writes errors to the console, log files, and test reports\. After IDT completes the qualification test suite, it writes a test run summary to the console and generates two test reports\. These reports can be found in `<devicetester-extract-location>/results/<execution-id>/`\. Both reports capture the results from the qualification test suite execution\.
+While running, IDT writes errors to the console, log files, and test reports\. After IDT completes the qualification test suite, it writes a test run summary to the console and generates two test reports\. These reports can be found in `devicetester-extract-location/results/execution-id/`\. Both reports capture the results from the qualification test suite execution\.
 
 The `awsiotdevicetester_report.xml` is the qualification test report that you submit to AWS to list your device in the AWS Partner Device Catalog\. The report contains the following elements:
 + The IDT for FreeRTOS version\.
@@ -25,7 +25,7 @@ The report section in `awsiotdevicetester_report.xml` or `FRQ_Report.xml` lists 
 
 The first XML tag `<testsuites>` contains the overall summary of the test execution\. For example:
 
-`<testsuites name="AFQ results" time="5633" tests="184" failures="0" errors="0" disabled="0">`Attributes used in the `<testsuites>` tag
+`<testsuites name="FRQ results" time="5633" tests="184" failures="0" errors="0" disabled="0">`Attributes used in the `<testsuites>` tag
 
 `name`  
 The name of the test suite\.
@@ -69,10 +69,10 @@ For more information, see [Troubleshooting](dt-afr-troublshooting.md)\.
 
 ### Viewing Logs<a name="view-logs"></a>
 
-You can find logs that IDT for FreeRTOS generates from test execution in `<devicetester-extract-location>/results/<execution-id>/logs`\. Two sets of logs are generated:
+You can find logs that IDT for FreeRTOS generates from test execution in `devicetester-extract-location/results/execution-id/logs`\. Two sets of logs are generated:
 
 `test_manager.log`  
 Contains logs generated from IDT for FreeRTOS \(for example, logs related configuration and report generation\)\.
 
-`<test_group_id>__<test_case_id>.log` \(for example, `FullMQTT__Full_MQTT.log`\)  
+`test_group_id__test_case_id.log` \(for example, `FullMQTT__Full_MQTT.log`\)  
 The log file for a test case, including output from the device under test\. The log file is named according to the test group and test case that was run\.

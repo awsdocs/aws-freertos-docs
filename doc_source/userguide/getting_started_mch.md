@@ -129,7 +129,7 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 1. Use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <freertos> -B <BUILD_FOLDER> -DAFR_ENABLE_TESTS=1
+   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <freertos> -B <BUILD_FOLDER>
    ```
 **Note**  
 You must specify the correct paths to the Hexmate and toolchain binaries\.

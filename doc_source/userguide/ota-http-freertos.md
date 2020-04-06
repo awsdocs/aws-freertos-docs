@@ -3,13 +3,16 @@
 This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. FreeRTOS OTA can use the HTTP or MQTT protocol to transfer firmware update images from Amazon S3 to devices\. If you can specify both protocols when you create an OTA update in FreeRTOS\. Each device will determine the protocol used to transfer the image\. 
 
 **Note**  
-Device firmware must include the necessary FreeRTOS libraries \(for example, MQTT, HTTP, OTA agent\)\. FreeRTOS version 201912\.00 or later is required\.
 Although the HTTP protocol might be used to transfer the firmware image, the MQTT library is still required because other interactions with AWS IoT Core use the MQTT library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
 When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
 
+## Minimum requirements<a name="ota-http-freertos-min-requirements"></a>
++ Device firmware must include the necessary FreeRTOS libraries \(MQTT, HTTP, OTA agent, and their dependencies\)\.
++ FreeRTOS version 201912\.00 or later is required\.
+
 ## Configurations<a name="ota-http-freertos-config"></a>
 
-By default, see the following configuration of the OTA protocols in the `\vendors\boards\board\aws_demos\config_files\aws_ota_agent_config.h` file\.
+See the following configuration of the OTA protocols in the `\vendors\boards\board\aws_demos\config_files\aws_ota_agent_config.h` file\.
 
 ```
 /**
@@ -95,3 +98,37 @@ Data operations \(HTTP\): 63 KB
 
 ****Nordic nrf52840\-dk****  
 HTTP is not supported\.
+
+## Device policy<a name="ota-http-freertos-device-policy"></a>
+
+Each device that receives an OTA update using HTTP must be registered as a thing in AWS IoT and the thing must have an attached policy like the one listed here\. You can find more information about the items in the `"Action"` and `"Resource"` objects at [AWS IoT Core Policy Actions](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policy-actions.html) and [AWS IoT Core Action Resources](https://docs.aws.amazon.com/iot/latest/developerguide/iot-action-resources.html)\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iot:Connect",
+            "Resource": "arn:partition:iot:region:account:client/${iot:Connection.Thing.ThingName}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iot:Subscribe",
+            "Resource": [
+                "arn:partition:iot:region:account:topicfilter/$aws/things/${iot:Connection.Thing.ThingName}/jobs/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iot:Publish",
+                "iot:Receive"
+            ],
+            "Resource": [
+                "arn:partition:iot:region:account:topic/$aws/things/${iot:Connection.Thing.ThingName}/jobs/*"
+            ]
+        }
+    ]
+}
+```

@@ -1,27 +1,29 @@
 # Troubleshooting<a name="dt-afr-troublshooting"></a>
 
-Each test suite execution has a unique execution ID that is used to create a folder named `results/<execution-id>` in the `results` directory\. Individual test group logs are under the `results/<execution-id>/logs` directory\. Use the IDT for FreeRTOS console output to find the execution id, test case id, and test group id of the test case that failed and then open the log file for that test case named `results/<execution-id>/logs/<test_group_id>__<test_case_id>.log`\. The information in this file includes: 
+Each test suite execution has a unique execution ID that is used to create a folder named `results/execution-id` in the `results` directory\. Individual test group logs are under the `results/execution-id/logs` directory\. Use the IDT for FreeRTOS console output to find the execution id, test case id, and test group id of the test case that failed and then open the log file for that test case named `results/execution-id/logs/test_group_id__test_case_id.log`\. The information in this file includes: 
 + Full build and flash command output\.
 + Test execution output\.
 + More verbose IDT for FreeRTOS console output\.
 
 We recommend the following workflow for troubleshooting:
 
+1. If you see the error "*user/role* is not authorized to access this resource", make sure that you configure permissions as specified in [Create and Configure an AWS Account](dev-tester-prereqs.md#config-aws-account)\.
+
 1. Read the console output to find information, such as execution UUID and currently executing tasks\.
 
-1. Look in the `AFQ_Report.xml` file for error statements from each test\. This directory contains execution logs of each test group\.
+1. Look in the `FRQ_Report.xml` file for error statements from each test\. This directory contains execution logs of each test group\.
 
-1. Look in the logs files under `/results/<execution-id>/logs`\.
+1. Look in the logs files under `/results/execution-id/logs`\.
 
 1. Investigate one of the following problem areas:
    + Device configuration, such as JSON configuration files in the `/configs/` folder\.
    + Device interface\. Check the logs to determine which interface is failing\.
    + Device tooling\. Make sure that the toolchains for building and flashing the device are installed and configured correctly\.
-   + Make sure that you have a clean, cloned version of the FreeRTOS source code\. FreeRTOS releases are tagged according to FreeRTOS version\. To clone a specific version of the code, use git clone \-\-branch * <version\-number>* https://github\.com/aws/amazon\-freertos\.git\.
+   + Make sure that you have a clean, cloned version of the FreeRTOS source code\. FreeRTOS releases are tagged according to FreeRTOS version\. To clone a specific version of the code, use `git clone --branch version-number https://github.com/aws/amazon-freertos.git`\.
 
 ## Troubleshooting Device Configuration<a name="troubleshoot-device-config"></a>
 
-When you use IDT for FreeRTOS, you must get the correct configuration files in place before you execute the binary\. If you are getting parsing and configuration errors, your first step should be to locate and use a configuration template appropriate for your environment\. These templates are located in the `<IDT_ROOT>/configs` directory\.
+When you use IDT for FreeRTOS, you must get the correct configuration files in place before you execute the binary\. If you're getting parsing and configuration errors, your first step should be to locate and use a configuration template appropriate for your environment\. These templates are located in the `IDT_ROOT/configs` directory\.
 
 If you are still having issues, see the following debugging process\.
 
@@ -29,7 +31,7 @@ If you are still having issues, see the following debugging process\.
 
 Start by reading the console output to find information, such as the execution UUID, which is referenced as `execution-id` in this documentation\.
 
-Next, look in the `AFQ_Report.xml` file in the `/results/<execution-id>` directory\. This file contains all of the test cases that were run and error snippets for each failure\. To get all of the execution logs, look for the file `/results/<execution-id>/logs/<test_group_id>__<test_case_id>.log` for each test case\.
+Next, look in the `FRQ_Report.xml` file in the `/results/execution-id` directory\. This file contains all of the test cases that were run and error snippets for each failure\. To get all of the execution logs, look for the file `/results/execution-id/logs/test_group_id__test_case_id.log` for each test case\.
 
 ### IDT Error Codes<a name="idt-error-codes"></a>
 
@@ -51,22 +53,26 @@ Occasionally, a typo in a JSON configuration can lead to parsing errors\. Most o
 
 ### Debugging Required Parameter Missing Error<a name="param-missing"></a>
 
-Because new features are being added to IDT for FreeRTOS, changes to the configuration files might be introduced\. Using an old configuration file might break your configuration\. If this happens, the `<test_group_id>__<test_case_id>.log` file under the `results/<execution-id>/logs` directory explicitly lists all missing parameters\. IDT for FreeRTOS validates your JSON configuration file schemas to ensure that the latest supported version has been used\.
+Because new features are being added to IDT for FreeRTOS, changes to the configuration files might be introduced\. Using an old configuration file might break your configuration\. If this happens, the `test_group_id__test_case_id.log` file under the `results/execution-id/logs` directory explicitly lists all missing parameters\. IDT for FreeRTOS validates your JSON configuration file schemas to ensure that the latest supported version has been used\.
 
 ### Debugging Could Not Start Test Error<a name="could-not-start-test"></a>
 
-You might encounter errors that point to failures during test start\. Because there are several possible causes, check the following areas for correctness:
+You might see errors that point to failures during test start\. Because there are several possible causes, check the following areas for correctness:
 + Make sure that the pool name you've included in your execution command actually exists\. This is referenced directly from your `device.json` file\.
 + Make sure that the device or devices in your pool have correct configuration parameters\.
+
+### Not Authorized to Access Resource Error<a name="not-authorized-to-access"></a>
+
+You might see the error "*user/role* is not authorized to access this resource" in the terminal output or in the `test_manager.log` file under `/results/execution-id/logs`\. To resolve this issue, attach the `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy to your test user\. For more information, see [Create and Configure an AWS Account](dev-tester-prereqs.md#config-aws-account)\. 
 
 ### Network Test Errors<a name="network-test-errors"></a>
 
 For network\-based tests, IDT starts an echo server that binds to a non\-reserved port on the host machine\. If you are running into errors due to timeouts or unavailable connections in the WiFi or secure sockets tests, make sure that your network is configured to allow traffic to configured ports in the 1024 \- 49151 range\.
 
 The secure sockets test uses ports 33333 and 33334 by default\. The WiFi tests uses port 33335 by default\. If these three ports are in use or blocked by firewall or network, you can choose to use different ports in userdata\.json for testing\. For more information, see [Configure Build, Flash, and Test Settings](qual-steps.md#cfg-dt-ud)\. You can use the following commands to check whether a specific port is in use:
-+ Windows: netsh advfirewall firewall show rule name=all \| grep port
-+ Linux: sudo netstat \-pan \| grep port
-+ macOS: netstat \-nat \| grep port
++ Windows: `netsh advfirewall firewall show rule name=all | grep port`
++ Linux: `sudo netstat -pan | grep port`
++ macOS: `netstat -nat | grep port`
 
 ### OTA Update Failures Due to Same Version Payload<a name="ota-update-failure"></a>
 
@@ -88,12 +94,12 @@ IDT supports Linux, macOS, and Windows\. All three platforms have different nami
 + Windows: COM\*
 
 To check your device port:
-+ For Linux/macOS, open a terminal and run ls /dev/tty\*\.
-+ For macOS, open a terminal and run ls /dev/tty\.\* or ls /dev/cu\.\*\.
++ For Linux/macOS, open a terminal and run `ls /dev/tty*`\.
++ For macOS, open a terminal and run `ls /dev/tty.*` or `ls /dev/cu.*`\.
 + For Windows, open Device Manager and expand the serial devices group\.
 
 To verify which device is connected to a port:
-+ For Linux, make sure that the `udev` package is installed, and then run udevadm info –name=*<PORT>*\. This utility prints the device driver information that helps you verify you are using the correct port\. 
++ For Linux, make sure that the `udev` package is installed, and then run `udevadm info –name=PORT`\. This utility prints the device driver information that helps you verify you are using the correct port\. 
 + For macOS, open Launchpad and search for **System Information**\.
 + For Windows, open Device Manager and expand the serial devices group\.
 
@@ -118,7 +124,7 @@ IDT for FreeRTOS uses individual device build and flash tooling to specify port 
 + Stop bits: 1
 + Flow control: None
 
-These settings are handled by IDT for FreeRTOS\. You do not have to set them\. However, you can use the same method to manually read device output\. On Linux or macOS, you can do this with the screen command\. On Windows, you can use a program such as TeraTerm\.
+These settings are handled by IDT for FreeRTOS\. You do not have to set them\. However, you can use the same method to manually read device output\. On Linux or macOS, you can do this with the `screen` command\. On Windows, you can use a program such as TeraTerm\.
 
 `Screen: screen /dev/cu.usbserial 115200`
 
@@ -140,23 +146,31 @@ Symptoms of incompatibility might include:
 
 ### Logging<a name="dt-logging"></a>
 
-IDT for FreeRTOS logs are placed in a single location\. From the root IDT directory, these files are available under `results/<execution-id>/`:
-+ `AFQ_Report.xml`
+IDT for FreeRTOS logs are placed in a single location\. From the root IDT directory, these files are available under `results/execution-id/`:
++ `FRQ_Report.xml`
 + `awsiotdevicetester_report.xml`
-+ `logs/<test_group_id>__<test_case_id>.log`
++ `logs/test_group_id__test_case_id.log`
 
-`AFQ_Report.xml` and `logs/<test_group_id>__<test_case_id>.log` are the most important logs to examine\. `AFQ_Report.xml` contains information about which test cases failed with a specific error message\. You can then use `logs/<test_group_id>__<test_case_id>.log` to dig further into the problem to get better context\. 
+`FRQ_Report.xml` and `logs/test_group_id__test_case_id.log` are the most important logs to examine\. `FRQ_Report.xml` contains information about which test cases failed with a specific error message\. You can then use `logs/test_group_id__test_case_id.log` to dig further into the problem to get better context\. 
 
 #### Console Errors<a name="err-console"></a>
 
-When AWS IoT Device Tester is run, failures are reported to the console with brief messages\. Look in `results/<execution-id>/logs/<test_group_id>__<test_case_id>.log` to learn more about the error\.
+When AWS IoT Device Tester is run, failures are reported to the console with brief messages\. Look in `results/execution-id/logs/test_group_id__test_case_id.log` to learn more about the error\.
 
 #### Log Errors<a name="err-log"></a>
 
-Each test suite execution has a unique execution ID that is used to create a folder named `results/<execution-id>`\. Individual test case logs are under the `results/<execution-id>/logs` directory\. Use the output of the IDT for FreeRTOS console to find the execution id, test case id, and test group id of the test case that failed\. Then use this information to find and open the log file for that test case named `results/<execution-id>/logs/<test_group_id>__<test_case_id>.log` The information in this file includes the full build and flash command output, test execution output, and more verbose AWS IoT Device Tester console output\.
+Each test suite execution has a unique execution ID that is used to create a folder named `results/execution-id`\. Individual test case logs are under the `results/execution-id/logs` directory\. Use the output of the IDT for FreeRTOS console to find the execution id, test case id, and test group id of the test case that failed\. Then use this information to find and open the log file for that test case named `results/execution-id/logs/test_group_id__test_case_id.log` The information in this file includes the full build and flash command output, test execution output, and more verbose AWS IoT Device Tester console output\.
 
 ## Troubleshooting Timeout Errors<a name="troubleshoot-timeout"></a>
 
-If you encounter timeout errors while running a test suite, increase the timeout by specifying a timeout multiplier factor\. This factor is applied to the default timeout value\. Any value configured for this flag must be greater than or equal to 1\.0\. To use the timeout multiplier, use the flag `--timeout-multiplier` when running the test suite\. For example:
+If you see timeout errors while running a test suite, increase the timeout by specifying a timeout multiplier factor\. This factor is applied to the default timeout value\. Any value configured for this flag must be greater than or equal to 1\.0\. To use the timeout multiplier, use the flag `--timeout-multiplier` when running the test suite\.
 
-\./devicetester\_linux run\-suite \-\-suite\-id AFQ\_1 \-\-pool\-id DevicePool1 \-\-timeout\-multiplier 2\.5
+**Example**  
+
+```
+./devicetester_linux run-suite --suite-id FRQ_1.0.0 --pool-id DevicePool1 --timeout-multiplier 2.5
+```
+
+```
+./devicetester_linux run-suite --suite-id FRQ_1 --pool-id DevicePool1 --timeout-multiplier 2.5
+```

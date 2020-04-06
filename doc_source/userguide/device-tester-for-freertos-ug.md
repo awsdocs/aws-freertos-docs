@@ -22,6 +22,12 @@ When you run IDT for FreeRTOS on your host computer, it performs the following s
 
 1. Generates tests reports that indicate if your board passed the tests required for qualification\.
 
-The following diagram shows the test infrastructure setup:
+The following diagram shows the test infrastructure setup\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/devicetester_afr.png)
+![\[Flowchart that shows how AWS IoT Core interacts with your computer and the microcontroller.\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/devicetester_afr.png)
+
+To run IDT for FreeRTOS, you can use the test resources\. There are two types of resources:
++ A test suite is the set of test groups used to verify that a device works with particular versions of FreeRTOS\.
++ A test group is the set of individual tests related to a particular feature, such as BLE and MQTT messaging\.
+
+For more information, see [AWS IoT Device Tester for FreeRTOS Test Suite Versions](idt-test-suite-versions.md)\. 

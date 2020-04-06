@@ -36,7 +36,7 @@ The Microchip Curiosity PIC32MZEF demo projects produce two binary images with d
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the firmware image path name must be `/sys/mcuflashimg.bin`\.
 
-1. Under **IAM role for OTA update job**, choose a role created according to the [create service role instructions](create-service-role.md).
+1. Under **IAM role for OTA update job**, choose a role according to the instructions in [Create an OTA Update Service Role](create-service-role.md)\. 
 
 1. Choose **Next**\.
 

@@ -8,7 +8,7 @@ You can use IDT for FreeRTOS to test as you port the FreeRTOS interfaces\. After
 
 ## Configure Your AWS Credentials<a name="cfg-aws-afr"></a>
 
-You need to configure your AWS credentials for Device Tester to communicate with the AWS cloud\. For more information, see [ Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\. Valid AWS credentials must be specified in the `<devicetester_extract_location> /devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\.
+You need to configure your AWS credentials for Device Tester to communicate with the AWS cloud\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\. Valid AWS credentials must be specified in the `devicetester_extract_location/devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\.
 
 ## Create a Device Pool in IDT for FreeRTOS<a name="cfg-dt-dp"></a>
 
@@ -25,8 +25,8 @@ The following is an example `device.json` file used to create a device pool with
 
 ```
 [{
-  "id": "<pool-id>",
-  "sku": "<sku>",
+  "id": "pool-id",
+  "sku": "sku",
   "features": [
     {
       "name": "WIFI",
@@ -64,33 +64,33 @@ The following is an example `device.json` file used to create a device pool with
     }
   ],
   "devices": [{
-    "id": "<device-id1>",
+    "id": "device-id1",
     "connectivity": {
       "protocol": "uart",
-      "serialPort": "<computer_serial_port_1>"
+      "serialPort": "computer_serial_port_1"
     },
     "secureElementConfig": {
-        "publicKeyAsciiHexFilePath":"<absolute-path-to-public-key>",
-    "secureElementSerialNumber": "<optional: serialnumber-of-secure-element>"
+        "publicKeyAsciiHexFilePath":"absolute-path-to-public-key",
+    "secureElementSerialNumber": "optional: serialnumber-of-secure-element"
     },
     "identifiers": [{
       "name": "serialNo",
-      "value": "<serialNo-value>"
+      "value": "serialNo-value"
     }]
 },
 {
-    "id": "<device-id2>",
+    "id": "device-id2",
     "connectivity": {
       "protocol": "uart",
-      "serialPort": "<computer_serial_port_2>"
+      "serialPort": "computer_serial_port_2"
     },
     "secureElementConfig": {
-        "publicKeyAsciiHexFilePath": "<absolute-path-to-public-key>",
-        "secureElementSerialNumber": "<optional: serialnumber-of-secure-element>"
+        "publicKeyAsciiHexFilePath": "absolute-path-to-public-key",
+        "secureElementSerialNumber": "optional: serialnumber-of-secure-element"
     },
     "identifiers": [{
       "name": "serialNo",
-      "value": "<serialNo-value>"
+      "value": "serialNo-value"
     }]
   }]
 }]
@@ -118,8 +118,9 @@ Indicates if your board supports TLS\. TLS is required for qualification\.
 Indicates the public key cryptography algorithm that the board supports\. PKCS11 is required for qualification\. Supported values are `ECC`, `RSA`, `Both` and `No`\. `Both` indicates the board supports both the `ECC` and `RSA` algorithms\. Currently, no board supports RSA only, so the choice `RSA` is invalid\.  
 `KeyProvisioning`  
 Indicates the method of writing a trusted X\.509 client certificate onto your board\. Valid values are `Import`, `Onboard` and `No`\. Key provisioning is required for qualification\.  
-Use `Import` if your board supports private key import\. Use `Onboard` if your board supports on\-board private key generation\. If your board does not support key provisioning, use `No`\.  
-If you use `Onboard`, add a `secureElementConfig` element in each of the `device` sections and put the absolute path to the public key file in the `publicKeyAsciiHexFilePath` field\.  
++ Use `Import` if your board allows the import of private keys\. IDT will create a private key and build this to the FreeRTOS source code\.
++ Use `Onboard` if your board supports on\-board private key generation \(for example, if your device has a secure element, or if you prefer to generate your own device key pair and certificate\)\. Make sure you add a `secureElementConfig` element in each of the device sections and put the absolute path to the public key file in the `publicKeyAsciiHexFilePath` field\.
++ Use `No` if your board does not support key provisioning\.   
 `OTA`  
 Indicates if your board supports over\-the\-air \(OTA\) update functionality\. The `OtaDataPlaneProtocol` attribute indicates which OTA dataplane protocol the device supports\. The attribute is ignored if the OTA feature is not supported by the device\. When `"Both"` is selected, the OTA test execution time is prolonged due to running both MQTT, HTTP, and mixed tests\.  
 `BLE`  
@@ -138,10 +139,10 @@ The serial port of the host computer used to connect to the devices being tested
 The absolute path to the file that contains the hex bytes public key extracted from onboard private key\.
 
 `devices.secureElementConfig.SecureElementSerialNumber`  
-Optional\. The serial number of the secure element\. Provide this field when the serial number is printed out along with the device public key when you run the FreeRTOS demo/test project\.
+\(Optional\) The serial number of the secure element\. Provide this field when the serial number is printed out along with the device public key when you run the FreeRTOS demo/test project\.
 
 `identifiers`  
-Optional\. An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.
+\(Optional\) An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.
 
 ## Configure Build, Flash, and Test Settings<a name="cfg-dt-ud"></a>
 
@@ -229,7 +230,7 @@ The path to the vendor specific FreeRTOS code\. For serial testing, the `vendorP
 
 ```
 {
-    "vendorPath":"C:/<path-to-freertos>/vendors/espressif/boards/<esp32>"
+    "vendorPath":"C:/path-to-freertos/vendors/espressif/boards/esp32"
 }
 ```
 For parallel testing, the `vendorPath` can be set using the `{{testData.sourcePath}}` place holder\. For example:  
@@ -246,6 +247,7 @@ The full path to your build script \(\.bat or \.sh\) that contains the commands 
 + `buildImageInfo`
   + `testsImageName`: The name of the file produced by the build command when building tests from the `freertos-source/tests` folder\.
   + `demosImageName`: The name of the file produced by the build command when building tests from the `freertos-source/demos` folder\.
+ 
 
 `buildTool.buildImageInfo.testsImageName`  
 The name of the file output by the build command when building tests from the `freertos-source-code/tests` folder\.
@@ -257,21 +259,38 @@ The name of the file output by the build command when building demos from the `f
 Full path to your ﬂash script \(\.sh or \.bat\) that contains the ﬂash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for FreeRTOS variable `{{testdata.sourcePath}}`\.
 
 `clientWifiConfig`  
-Client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. This attribute configures the Wi\-Fi settings for the first access point\. The client Wi\-Fi settings are configured in `freertos-source-code/test/include/aws_clientcredential.h`\. The following macros are set using the values found in `aws_clientcredential.h`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
-+ wifi\_ssid: The Wi\-Fi SSID\.
-+ wifi\_password: The Wi\-Fi password\.
-+ wifiSecurityType: The type of Wi\-Fi security used\.
+The client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. \(The two access points can be the same\.\) This attribute configures the Wi\-Fi settings for the first access point\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
++ `wifi_ssid`
 
-`testWifiConfig`  
-Test Wi\-Fi configuration\. The Wi\-Fi library tests require a board to connect to two access points\. This attribute configures the second access point\. The test Wi\-Fi settings are configured in `freertos-source-code/.../wifi/test/aws_test_wifi.h`\. The following macros are set using the values found in `aws_test_wifi.c`\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
-If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` and `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
-+ testwifiWIFI\_SSID: The Wi\-Fi SSID\.
-+ testwifiWIFI\_PASSWORD: The Wi\-Fi password\.
-+ testwifiWIFI\_SECURITY: The type of Wi\-Fi security used\. One of the following values:
+  The Wi\-Fi SSID\.
++ `wifi_password`
+
+  The Wi\-Fi password\.
++ `wifiSecurityType`
+
+  The type of Wi\-Fi security used\. One of the values:
   + `eWiFiSecurityOpen`
   + `eWiFiSecurityWEP`
   + `eWiFiSecurityWPA`
   + `eWiFiSecurityWPA2`
+If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
+
+`testWifiConfig`  
+The test Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. \(The two access points can be the same\.\) This attribute configures the Wi\-Fi setting for the second access point\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\.  
++ `wifiSSID`
+
+  The Wi\-Fi SSID\.
++ `wifiPassword`
+
+  The Wi\-Fi password\.
++ `wifiSecurityType`
+
+  The type of Wi\-Fi security used\. One of the values:
+  + `eWiFiSecurityOpen`
+  + `eWiFiSecurityWEP`
+  + `eWiFiSecurityWPA`
+  + `eWiFiSecurityWPA2`
+If your board does not support Wi\-Fi, you must still include the `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 
 `echoServerConfiguration`  
 The configurable echo server ports for WiFi and secure sockets tests\. This field is optional    
@@ -320,7 +339,7 @@ Configure `signCommand` if you chose `Custom` for `signingMethod`\.
 The command used to perform custom code signing\. You can find the template in the `/configs/script_templates` directory\.   
 Two placeholders `{{inputImageFilePath}}` and `{{outputSignatureFilePath}}` are required in the command\. `{{inputImageFilePath}}` is the file path of the image built by IDT to be signed\. `{{outputSignatureFilePath}}` is the file path of the signature which will be generated by the script\.  
 `otaDemoConfigFilePath`  
-The full path to `aws_demo_config.h`, found within `<afr-source>/vendors/vendor/boards/board/ aws_demos/config_files/`\. These files are included in the porting code template provided by FreeRTOS\.
+The full path to `aws_demo_config.h`, found within `afr-source/vendors/vendor/boards/board/ aws_demos/config_files/`\. These files are included in the porting code template provided by FreeRTOS\.
 
 `cmakeConfiguration`  
 CMake configuration \[Optional\]    

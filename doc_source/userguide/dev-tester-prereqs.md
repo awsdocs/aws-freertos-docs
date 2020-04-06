@@ -12,6 +12,9 @@ Every version of FreeRTOS has a corresponding version of IDT for FreeRTOS to per
 
 Extract IDT for FreeRTOS to a location on the file system where you have read and write permissions\. Because Microsoft Windows has a character limit for the path length, extract IDT for FreeRTOS into a root directory such as `C:\` or `D:\`\.
 
+**Note**  
+We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This may result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive\.
+
 ## Create and Configure an AWS Account<a name="config-aws-account"></a>
 
 Follow these steps to create and configure an AWS account, an IAM user, and an IAM policy that grants IDT for FreeRTOS permission to access resources on your behalf while running tests\.
@@ -31,7 +34,7 @@ Follow these steps to create and configure an AWS account, an IAM user, and an I
 The following policy template grants IDT permission to create roles, create policies, and attach policies to roles\. IDT for FreeRTOS uses these permissions for tests that create roles\. Although the policy template doesn't provide administrator privileges to the user, the permissions could potentially be used to gain administrator access to your AWS account\.
 
 ------
-#### [ Most Regions  ]
+#### [ Most Regions ]
 
       ```
       {
@@ -58,7 +61,7 @@ The following policy template grants IDT permission to create roles, create poli
       ```
 
 ------
-#### [ Beijing and Ningxia Regions  ]
+#### [ Beijing and Ningxia Regions ]
 
       The following policy template can be used in the Beijing and Ningxia Regions\.
 
@@ -96,7 +99,7 @@ The following policy template grants IDT permission to create roles, create poli
 
 1. Create an IAM user with the necessary permissions to run AWS IoT Device Tester\. 
 
-   1. Follow steps 1 through 5 in [ Creating IAM Users \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console)\.
+   1. Follow steps 1 through 5 in [Creating IAM Users \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console)\.
 
    1. To attach the necessary permissions to your IAM user:
 
@@ -108,18 +111,33 @@ The following policy template grants IDT permission to create roles, create poli
 
    1. Choose **Next: Tags**\.
 
-   1. Choose **Next: Review** to view a summary of your choices\. 
+   1. Choose **Next: Review** to view a summary of your choices\.
 
    1. Choose **Create user**\.
 
    1. To view the users' access keys \(access key IDs and secret access keys\), choose **Show** next to each password and access key and then choose **Download\.csv**\. Save the file to a safe location\.
 
-## AWS IoT Device Tester Usage Metrics<a name="usage-metrics"></a>
+## AWS IoT Device Tester Managed Policy<a name="managed-policy"></a>
 
-When you run AWS IoT Device Tester, we collect usage data\. The `iot-device-tester:SendMetrics` permission allows AWS IoT Device Tester to send usage data\. This permission is present in the `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy\.
+The `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy contains the following permissions to enable device tester to execute and to collect metrics:
++ `iot-device-tester:SupportedVersion`
+
+  Grants permission to get the list of FreeRTOS versions and test suite versions supported by IDT, so that they are available from the AWS CLI\.
++ `iot-device-tester:LatestIdt`
+
+  Grants permission to get the latest AWS IoT Device Tester version that is available for download\.
++ `iot-device-tester:CheckVersion`
+
+  Grants permission to check that a combination of product, test suite, and AWS IoT Device Tester versions are compatible\.
++ `iot-device-tester:DownloadTestSuite`
+
+  Grants permission to AWS IoT Device Tester to download test suites\.
++ `iot-device-tester:SendMetrics`
+
+  Grants permission to publish AWS IoT Device Tester usage metrics data\.
 
 ## \(Optional\) Install the AWS Command Line Interface<a name="install-cli"></a>
 
 You might prefer to use the AWS CLI to perform some operations\. If you don't have the AWS CLI installed, follow the instructions in [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
-Configure the CLI for the AWS Region you want to use by running aws configure from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\.
+Configure the CLI for the AWS Region you want to use by running `aws configure` from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\.
