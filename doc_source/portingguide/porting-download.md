@@ -8,4 +8,4 @@ We recommend that you clone the repository\. Cloning makes it easier for you to 
 After you download or clone FreeRTOS, you can start porting FreeRTOS code to your platform\. For instructions, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md), and then see [Porting the FreeRTOS Libraries](afr-porting.md)\.
 
 **Note**  
-Throughout FreeRTOS documentation, the FreeRTOS download is referred to as `<freertos>`\.
+Throughout FreeRTOS documentation, the FreeRTOS download is referred to as `freertos`\.

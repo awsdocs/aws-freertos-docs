@@ -1,4 +1,4 @@
-# Creating a Code\-Signing Certificate for the Microchip Curiosity PIC32MZEF<a name="ota-code-sign-cert-mchip"></a>
+# Creating a code\-signing certificate for the Microchip Curiosity PIC32MZEF<a name="ota-code-sign-cert-mchip"></a>
 
 The Microchip Curiosity PIC32MZEF supports a self\-signed SHA256 with ECDSA code\-signing certificate\.
 

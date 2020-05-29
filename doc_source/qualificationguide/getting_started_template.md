@@ -1,4 +1,4 @@
-# Getting Started Guide Template<a name="getting_started_template"></a>
+# Getting started guide template<a name="getting_started_template"></a>
 
 Write an overview that provides a brief description of the board\. This section should answer the following questions:
 + Which hardware is required to run the FreeRTOS Hello World demo?
@@ -14,7 +14,7 @@ Write an overview that provides a brief description of the board\. This section 
 
   Provide links to purchasing pages, user guides, and download pages\.
 
-## Setting Up Your Hardware<a name="template-setup-hardware"></a>
+## Setting up your hardware<a name="template-setup-hardware"></a>
 
 In this section, provide instructions for setting up the platform's hardware\. Make sure that you provide links to any user guides or other documentation for setting up hardware\.
 
@@ -26,7 +26,7 @@ These instructions include the following:
 + Connecting the board to a computer\.
 + Any other steps required to set up the hardware\.
 
-## Setting Up the Development Environment<a name="template-setup-dev"></a>
+## Setting up the development environment<a name="template-setup-dev"></a>
 
 In this section, provide instructions for setting up the platform's supported development environment\. Make sure that you provide links to any download pages, user guides, or other documentation for each item\.
 
@@ -36,16 +36,16 @@ These instructions include the following:
 + Downloading and installing a supported IDE\.
 + Any other software that is required to develop and debug applications for the device\.
 
-## Build and Run the FreeRTOS Demo Project<a name="template-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="template-build-and-run-example"></a>
 
-### Build the FreeRTOS Demo<a name="template-freertos-import-project"></a>
+### Build the FreeRTOS demo<a name="template-freertos-import-project"></a>
 
 In this section, provide instructions for building the FreeRTOS demo code in a supported IDE, or with supported command line tools\.
 
 **Note**  
 You must provide instructions for building the demo application on your board with CMake\.
 
-### Run the FreeRTOS Demo Project<a name="template-run-examples"></a>
+### Run the FreeRTOS demo project<a name="template-run-examples"></a>
 
 In this section, provide instructions for flashing and running the FreeRTOS demo code on your board\.
 

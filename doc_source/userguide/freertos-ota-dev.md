@@ -4,7 +4,7 @@ Over\-the\-air \(OTA\) updates allow you to deploy firmware updates to one or mo
 
 You can use [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html) to sign your files, or you can sign your files with your own code\-signing tools\.
 
-When you create an OTA update, the [OTA Update Manager Service](ota-manager.md) creates an [AWS IoT job](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) to notify your devices that an update is available\. The OTA demo application runs on your device and creates a FreeRTOS task that subscribes to notification topics for AWS IoT jobs and listens for update messages\. When an update is available, the OTA agent publishes requests to AWS IoT  and receives updates  using the HTTP or MQTT protocol, depending on the settings you chose\. The OTA agent  checks the digital signature of the downloaded files and, if the files are valid, installs the firmware update\. If you don't use the FreeRTOS OTA Update demo application, you must integrate the [OTA Agent Library](ota-agent-library.md) into your own application to get the firmware update capability\. 
+When you create an OTA update, the [OTA Update Manager service](ota-manager.md) creates an [AWS IoT job](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) to notify your devices that an update is available\. The OTA demo application runs on your device and creates a FreeRTOS task that subscribes to notification topics for AWS IoT jobs and listens for update messages\. When an update is available, the OTA Agent publishes requests to AWS IoT  and receives updates  using the HTTP or MQTT protocol, depending on the settings you chose\. The OTA Agent  checks the digital signature of the downloaded files and, if the files are valid, installs the firmware update\. If you don't use the FreeRTOS OTA Update demo application, you must integrate the [OTA Agent library](ota-agent-library.md) into your own application to get the firmware update capability\. 
 
 FreeRTOS over\-the\-air updates make it possible for you to:
 + Digitally sign firmware before deployment\.
@@ -14,7 +14,7 @@ FreeRTOS over\-the\-air updates make it possible for you to:
 + Monitor the progress of a deployment\.
 + Debug a failed deployment\.
 
-## Tagging OTA Resources<a name="ota-tagging"></a>
+## Tagging OTA resources<a name="ota-tagging"></a>
 
 To help you manage your OTA resources, you can optionally assign your own metadata to updates and streams in the form of tags\. Tags make it possible for you to categorize your AWS IoT resources in different ways \(for example, by purpose, owner, or environment\)\. This is useful when you have many resources of the same type\. You can quickly identify a resource based on the tags you've assigned to it\.
 

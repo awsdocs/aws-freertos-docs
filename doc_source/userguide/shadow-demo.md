@@ -1,4 +1,4 @@
-# AWS IoT Device Shadow Demo Application<a name="shadow-demo"></a>
+# AWS IoT Device Shadow demo application<a name="shadow-demo"></a>
 
 FreeRTOS includes a demo application that demonstrates how to programmatically update and respond to changes in an AWS IoT Device Shadow\. This demo application is defined in `FreeRTOS/demos/shadow/aws_iot_demo_shadow.c`\. The device in this scenario is a light bulb whose color can be set to red or green\.
 
@@ -7,7 +7,7 @@ The demo application creates three tasks:
 + A device update task that calls `prvUpdateTask`\.
 + A number of shadow update tasks that call `prvShadowUpdateTasks`\.
 
-`prvShadowMainTask` initializes the Device Shadow client and initiates an MQTT connection to AWS IoT with the client credentials specified in `demos/include/aws_clientcredential.h`\. The information specified in `aws_clientcredential.h`, including your your device's AWS IoT thing name and the MQTT broker endpoint and port, must be correct for the application to successfully connect to the AWS cloud\.
+`prvShadowMainTask` initializes the Device Shadow client and initiates an MQTT connection to AWS IoT with the client credentials specified in `demos/include/aws_clientcredential.h`\. The information specified in `aws_clientcredential.h`, including your your device's AWS IoT thing name and the MQTT broker endpoint and port, must be correct for the application to successfully connect to the AWS Cloud\.
 
 After the MQTT connection is established, the application creates the device update task\. Finally, it creates shadow update tasks and then terminates\. The `democonfigSHADOW_DEMO_NUM_TASKS` constant defined in `aws_iot_demo_shadow.c` controls the number of shadow update tasks created\.
 
@@ -15,7 +15,7 @@ After the MQTT connection is established, the application creates the device upd
 
 `prvUpdateTask` responds to changes in the shadow's desired state\. When the desired state changes, this task updates the reported state of the shadow to reflect the new desired state\.
 
-Before you can run the Device Shadow demo, you must complete the getting started [First Steps](freertos-prereqs.md) to set up AWS IoT and FreeRTOS so your device can communicate with the AWS cloud\.
+Before you can run the Device Shadow demo, you must complete the getting started [First steps](freertos-prereqs.md) to set up AWS IoT and FreeRTOS so your device can communicate with the AWS Cloud\.
 
 After you set up AWS IoT and FreeRTOS, do the following:
 
@@ -28,7 +28,7 @@ After you set up AWS IoT and FreeRTOS, do the following:
        {
          "Effect": "Allow",
          "Action": "iot:Connect",
-         "Resource": "arn:aws:iot:us-west-2:123456789012:client/<yourClientId>"
+         "Resource": "arn:aws:iot:us-west-2:123456789012:client/yourClientId"
        },
        {
          "Effect": "Allow",
@@ -51,7 +51,7 @@ After you set up AWS IoT and FreeRTOS, do the following:
    }
    ```
 
-1.  Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
+1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_SHADOW_DEMO_ENABLED`\.
 
 1. Build, flash, and run FreeRTOS to your device\.
 

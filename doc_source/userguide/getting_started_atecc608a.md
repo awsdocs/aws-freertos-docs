@@ -1,4 +1,4 @@
-# Getting Started with the Microchip ATECC608A Secure Element with Windows Simulator<a name="getting_started_atecc608a"></a>
+# Getting started with the Microchip ATECC608A Secure Element with Windows simulator<a name="getting_started_atecc608a"></a>
 
 This tutorial provides instructions for getting started with the Microchip ATECC608A Secure Element with Windows Simulator\.
 
@@ -21,7 +21,7 @@ This tutorial contains the following steps:
 
 1. Load the application binary image to your board, and then run the application\.
 
-## Set Up the Microchip ATECC608A Hardware<a name="gsg-atcc608a-setup"></a>
+## Set up the Microchip ATECC608A hardware<a name="gsg-atcc608a-setup"></a>
 
 Before you can interact with your Microchip ATECC608A device, you must first program the SAMD21\.
 
@@ -47,7 +47,7 @@ Your setup should look like the following\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/samd21.png)
 
-## Set Up Your Development Environment<a name="gsg-atecc608a-setup-dev-env"></a>
+## Set up your development environment<a name="gsg-atecc608a-setup-dev-env"></a>
 
 1. If you haven't already, [create an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\. To add an IAM user to your AWS account, see [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
@@ -117,12 +117,12 @@ The maximum length of a file path on Microsoft Windows is 260 characters\. Long 
 
    1. Make sure that you have an active hard\-wired Ethernet connection\.
 
-## Build and Run the FreeRTOS Demo Project<a name="gsg-atecc608a-build-and-run"></a>
+## Build and run the FreeRTOS demo project<a name="gsg-atecc608a-build-and-run"></a>
 
 **Important**  
 The Microchip ATECC608A device has a one time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, it will not be possible for all tests in the test project to succeed\.
 
-**To build and Run the FreeRTOS Demo Project with the Visual Studio IDE**
+**To build and run the FreeRTOS demo project with the Visual Studio IDE**
 
 1. Load the project into Visual Studio\.
 
@@ -134,7 +134,7 @@ The Microchip ATECC608A device has a one time initialization that is locked onto
 
 1. Build and run the project\.
 
-   From the **Build** menu, choose **Build Solution**, and make sure the solution builds without errors\. Choose **Debug, Start Debugging** to run the project\. On the first run, you need to configure your device interface and recompile\. For more information, see [Configure Your Network Interface](getting_started_windows.md#win-network-interface)\.
+   From the **Build** menu, choose **Build Solution**, and make sure the solution builds without errors\. Choose **Debug, Start Debugging** to run the project\. On the first run, you need to configure your device interface and recompile\. For more information, see [Configure your network interface](getting_started_windows.md#win-network-interface)\.
 
 1. Provision the Microchip ATECC608A\.
 
@@ -156,4 +156,4 @@ The Microchip ATECC608A device has a one time initialization that is locked onto
 
 ## Troubleshooting<a name="ecc680a-troubleshooting"></a>
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

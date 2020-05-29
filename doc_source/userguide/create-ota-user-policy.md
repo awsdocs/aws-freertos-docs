@@ -1,4 +1,4 @@
-# Create an OTA User Policy<a name="create-ota-user-policy"></a>
+# Create an OTA user policy<a name="create-ota-user-policy"></a>
 
 You must grant your IAM user permission to perform over\-the\-air updates\. Your IAM user must have permissions to:
 + Access the S3 bucket where your firmware updates are stored\.
@@ -7,7 +7,7 @@ You must grant your IAM user permission to perform over\-the\-air updates\. Your
 + Access FreeRTOS OTA updates\.
 + Access AWS IoT jobs\.
 + Access IAM\.
-+ Access Code Signing for AWS IoT\. See [Grant Access to Code Signing for AWS IoT](code-sign-policy.md)\.
++ Access Code Signing for AWS IoT\. See [Grant access to code signing for AWS IoT](code-sign-policy.md)\.
 + List FreeRTOS hardware platforms\.
 
 To grant your IAM user the required permissions, create an OTA user policy and then attach it to your IAM user\. For more information, see [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)\.<a name="create-ota-user-policy-steps"></a>
@@ -56,18 +56,18 @@ To grant your IAM user the required permissions, create an OTA user policy and t
                    "s3:GetObject",
                    "s3:PutObject"
                ],
-               "Resource": "arn:aws:s3:::<example-bucket>/*"
+               "Resource": "arn:aws:s3:::example-bucket/*"
            },
            {   
                "Effect": "Allow",
                "Action": "iam:PassRole",
-               "Resource": "arn:aws:iam::<your-account-id>:role/<role-name>"
+               "Resource": "arn:aws:iam::your-account-id:role/role-name"
            }
        ]
    }​
    ```
 
-   Replace *<example\-bucket>* with the name of the Amazon S3 bucket where your OTA update firmware image is stored\. Replace *<your\-account\-id>* with your AWS account ID\. You can find your AWS account ID in the upper right of the console\. When you enter your account ID, remove any dashes \(\-\)\. Replace *<role\-name>* with the name of the IAM service role you just created\. 
+   Replace *example\-bucket* with the name of the Amazon S3 bucket where your OTA update firmware image is stored\. Replace *your\-account\-id* with your AWS account ID\. You can find your AWS account ID in the upper right of the console\. When you enter your account ID, remove any dashes \(\-\)\. Replace *role\-name* with the name of the IAM service role you just created\. 
 
 1. Choose **Review policy**\.
 

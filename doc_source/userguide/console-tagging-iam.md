@@ -1,4 +1,4 @@
-# Using Tags with IAM Policies<a name="console-tagging-iam"></a>
+# Using tags with IAM policies<a name="console-tagging-iam"></a>
 
 You can use the FreeRTOS console to apply tag\-based, resource\-level permissions in the IAM policies that you use for operations\. This gives you better control over which configurations a user can create, modify, or use\. For more information about using tagging and IAM policies for AWS IoT, see [Using Tags with IAM Policies](https://docs.aws.amazon.com/iot/latest/developerguide/tagging-iot-iam.html) in the *AWS IoT Developer Guide*\.
 

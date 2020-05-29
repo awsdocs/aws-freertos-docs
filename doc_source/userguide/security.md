@@ -11,7 +11,7 @@ This documentation will help you understand how to apply the shared responsibili
 For more in\-depth information about AWS IoT security see [Security and Identity for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-security-identity.html)\.
 
 **Topics**
-+ [Identity and Access Management for AWS Resources](security-iam.md)
-+ [Compliance Validation](freertos-compliance.md)
++ [Identity and Access Management for AWS resources](security-iam.md)
++ [Compliance validation](freertos-compliance.md)
 + [Resilience in AWS](disaster-recovery-resiliency.md)
-+ [Infrastructure Security in FreeRTOS](infrastructure-security.md)
++ [Infrastructure security in FreeRTOS](infrastructure-security.md)

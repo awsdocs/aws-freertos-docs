@@ -1,4 +1,4 @@
-# Atomic Operations<a name="atomic"></a>
+# Atomic operations<a name="atomic"></a>
 
 ## Overview<a name="freertos-atomic-overview"></a>
 
@@ -22,6 +22,6 @@ Before you use FreeRTOS Atomic Operations, you need to choose which implementati
 
    For the disabling global interrupt implementation, undefine or clear `configUSE_ATOMIC_INSTRUCTION`\.
 
-## API Reference<a name="freertos-atomic-api"></a>
+## API reference<a name="freertos-atomic-api"></a>
 
-For a full API reference, see [Atomic Operations C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/platform/iot__atomic__generic_8h.html)\.
+For a full API reference, see [ Atomic Operations C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/platform/iot__atomic__generic_8h.html)\.

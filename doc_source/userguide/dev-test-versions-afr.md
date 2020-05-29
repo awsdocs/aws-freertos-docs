@@ -1,10 +1,10 @@
-# Supported Versions of AWS IoT Device Tester for FreeRTOS<a name="dev-test-versions-afr"></a>
+# Supported versions of AWS IoT Device Tester for FreeRTOS<a name="dev-test-versions-afr"></a>
 
 This topic lists supported versions of IDT for FreeRTOS\. As a best practice, we recommend that you use the latest version of IDT for FreeRTOS that supports your target version of FreeRTOS\. Each version of IDT for FreeRTOS has one or more corresponding versions of FreeRTOS\. New releases of FreeRTOS might require you to download a new version of IDT for FreeRTOS\. 
 
 By downloading the software, you agree to the IDT for FreeRTOS License Agreement\. 
 
-## Latest Version of AWS IoT Device Tester for FreeRTOS<a name="idt-latest-version-afr"></a>
+## Latest version of AWS IoT Device Tester for FreeRTOS<a name="idt-latest-version-afr"></a>
 
 Use the following links to download the latest version of IDT for FreeRTOS\.
 
@@ -15,7 +15,7 @@ Use the following links to download the latest version of IDT for FreeRTOS\.
 **Note**  
 We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This may result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive\.
 
-**Release Notes**
+**Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
 + Adds automatic update of test suites within IDT\. IDT can now download the latest test suites that are available for your FreeRTOS version\. With this feature, you can:
   + Download the latest test suites using the `upgrade-test-suite` command\. 
@@ -35,7 +35,7 @@ We don't recommend that multiple users run IDT from a shared location, such as a
 **Test suite versions**
 + FRQ\_1\.0\.0
 
-## Earlier IDT Versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
+## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
 
 The following earlier versions of IDT for FreeRTOS are also supported\.
 
@@ -44,7 +44,7 @@ The following earlier versions of IDT for FreeRTOS are also supported\.
 + IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_1.7.0.zip)
 + IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_1.7.0.zip)
 
-**Release Notes**
+**Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [ CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
 + Supports the custom code signing method for over\-the\-air \(OTA\) end\-to\-end test cases so that you can use your own code signing commands and scripts to sign OTA payloads\.
 + Adds a precheck for serial ports before the start of tests\. Tests will fail quickly with improved error messaging if the serial port is misconfigured in the `device.json` file\.
@@ -56,7 +56,7 @@ The following earlier versions of IDT for FreeRTOS are also supported\.
 + IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.6.1.zip)
 + IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.6.1.zip)
 
-**Release Notes**
+**Release notes**
 + Supports FreeRTOS 201912\.00\.
 + Supports optional tests for OTA over HTTPS to qualify your FreeRTOS development boards\.
 + Supports AWS IoT ATS endpoint in testing\.
@@ -67,7 +67,7 @@ The following earlier versions of IDT for FreeRTOS are also supported\.
 + IDT for Amazon FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.5.2.zip)
 + IDT for Amazon FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.5.2.zip)
 
-**Release Notes**
+**Release notes**
 + Supports qualification of FreeRTOS devices with secure element \(onboard key\)\.
 + Supports configurable echo server ports for Secure Sockets and Wi\-Fi test groups\.
 + Supports timeout multiplier flag to increase timeouts which comes in handy when you troubleshoot for timeout related errors\.
@@ -79,9 +79,9 @@ The following earlier versions of IDT for FreeRTOS are also supported\.
 + IDT for Amazon FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.4.1.zip)
 + IDT for Amazon FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.4.1.zip)
 
-**Release Notes**
+**Release notes**
 + Added support for new PKCS11 library and test case updates\.
-+ Introduced actionable error codes\. For more information, see [IDT Error Codes](dt-afr-troublshooting.md#idt-error-codes)
++ Introduced actionable error codes\. For more information, see [IDT error codes](dt-afr-troublshooting.md#idt-error-codes)
 + Updated IAM policy used to run IDT\. 
 
-For more information, see [Support Policy for AWS IoT Device Tester for FreeRTOS](idt-support-policy.md)\.
+For more information, see [Support policy for AWS IoT Device Tester for FreeRTOS](idt-support-policy.md)\.

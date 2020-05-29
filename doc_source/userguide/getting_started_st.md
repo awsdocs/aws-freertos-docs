@@ -1,10 +1,10 @@
-# Getting Started with the STMicroelectronics STM32L4 Discovery Kit IoT Node<a name="getting_started_st"></a>
+# Getting started with the STMicroelectronics STM32L4 Discovery Kit IoT Node<a name="getting_started_st"></a>
 
 This tutorial provides instructions for getting started with the STMicroelectronics STM32L4 Discovery Kit IoT Node\. If you do not already have the STMicroelectronics STM32L4 Discovery Kit IoT Node, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsWUAX/STM32L4-Discovery-Kit-IoT-Node)\.
 
 Make sure you have installed the latest Wi\-Fi firmware\. To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, Bluetooth Low Energy, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. Under **Binary Resources**, choose **Inventek ISM 43362 Wi\-Fi module firmware update \(read the readme file for instructions\) **\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="w14aab7c25c39b9"></a>
 
@@ -16,7 +16,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Loading the application binary image to your board, and then running the application\.
 
-## Set Up Your Development Environment<a name="st-setup-env"></a>
+## Set up your development environment<a name="st-setup-env"></a>
 
 ### Install System Workbench for STM32<a name="install-system-workbench"></a>
 
@@ -28,9 +28,9 @@ This tutorial contains instructions for the following getting started steps:
 
 If you experience issues during installation, see the FAQs on the [System Workbench website](http://www.openstm32.org/HomePage)\.
 
-## Build and Run the FreeRTOS Demo Project<a name="st-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="st-build-and-run-example"></a>
 
-### Import the FreeRTOS Demo into the STM32 System Workbench<a name="st-freertos-import-project"></a><a name="st-import-project"></a>
+### Import the FreeRTOS demo into the STM32 System Workbench<a name="st-freertos-import-project"></a><a name="st-import-project"></a>
 
 1. Open the STM32 System Workbench and enter a name for a new workspace\.
 
@@ -44,7 +44,7 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. From the **Project** menu, choose **Build All**\. Confirm the project compiles without any errors\.
 
-### Run the FreeRTOS Demo Project<a name="st-run-example"></a>
+### Run the FreeRTOS demo project<a name="st-run-example"></a>
 
 1. Use a USB cable to connect your STMicroelectronics STM32L4 Discovery Kit IoT Node to your computer\. 
 
@@ -68,12 +68,12 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
-First create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
+First create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
 
 Use the following command to generate build files:
 
 ```
-cmake -DVENDOR=st -DBOARD=stm32l475_discovery -DCOMPILER=arm-gcc -S <freertos> -B <BUILD_FOLDER>
+cmake -DVENDOR=st -DBOARD=stm32l475_discovery -DCOMPILER=arm-gcc -S freertos -B BUILD_FOLDER
 ```
 
 If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_TOOLCHAIN_PATH` CMake variable\. For example:
@@ -84,7 +84,7 @@ If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_
 
 For more information about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w14aab7c25c39c13b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w14aab7c25c39c13b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -107,4 +107,4 @@ If you see the following in the UART output from the demo application, you need 
 
 To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, Bluetooth Low Energy, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. In **Binary Resources**, choose the download link for **Inventek ISM 43362 Wi\-Fi module firmware update**\.
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

@@ -1,14 +1,14 @@
-# AWS IoT Device Shadow Library<a name="freertos-lib-cloud-shadows"></a>
+# AWS IoT Device Shadow library<a name="freertos-lib-cloud-shadows"></a>
 
 ## Overview<a name="freertos-shadow-overview"></a>
 
 The FreeRTOS Device Shadow APIs define functions to create, update, and delete AWS IoT Device Shadows\. For more information about AWS IoT Device Shadows, see [Device Shadow Service for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\. The Device Shadow service is accessed using the MQTT protocol\. The FreeRTOS Device Shadow API works with the MQTT API to handle the details of working with the MQTT protocol\.
 
-## Dependencies and Requirements<a name="freertos-shadow-dependencies"></a>
+## Dependencies and requirements<a name="freertos-shadow-dependencies"></a>
 
-To use AWS IoT Device Shadows with FreeRTOS, you need to register your device as an AWS IoT thing\. Your thing must have a certificate with a policy that permits accessing the device's shadow\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. For an example policy for FreeRTOS, see the [AWS IoT Device Shadow Demo Application](shadow-demo.md)\.
+To use AWS IoT Device Shadows with FreeRTOS, you need to register your device as an AWS IoT thing\. Your thing must have a certificate with a policy that permits accessing the device's shadow\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. For an example policy for FreeRTOS, see the [AWS IoT Device Shadow demo application](shadow-demo.md)\.
 
-An example client credentials header file is located at `<freertos>/demos/include/aws_clientcredential.h`\. Make sure that you set values for the following constants in that header file:
+An example client credentials header file is located at `freertos/demos/include/aws_clientcredential.h`\. Make sure that you set values for the following constants in that header file:
 
 `clientcredentialMQTT_BROKER_ENDPOINT`  
 Your AWS IoT endpoint\.
@@ -37,17 +37,17 @@ If you are developing your own application, you need to include the `aws_client_
 
 Before running the application, make sure the FreeRTOS MQTT library is installed on your device\. For more information, see [MQTT library](freertos-mqtt-2.md)\. 
 
-Also make sure that the MQTT buffers are large enough to contain the shadow JSON files\. The maximum size for a device shadow document is 8 KB\. All default settings for the device shadow API can be set in the `aws_shadow_config_defaults.h` file\. You can modify any of these settings in the `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_shadow_config.h` file\.
+Also make sure that the MQTT buffers are large enough to contain the shadow JSON files\. The maximum size for a device shadow document is 8 KB\. All default settings for the device shadow API can be set in the `aws_shadow_config_defaults.h` file\. You can modify any of these settings in the `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_shadow_config.h` file\.
 
 **Important**  
 The JSON format that you define for your Device Shadow tasks must include a `clientToken` field\. The `clientToken` can take any unique value\. For example, the `aws_shadow_lightbulb_on_off.c` demo application uses `token-%d`, where *%d* is the RTOS tick count at the time the JSON document is generated\.  
 If the JSON format does not include a `clientToken` field, calls to SHADOW\_Delete\(\), SHADOW\_Get\(\), and SHADOW\_Update\(\) will timeout\.
 
-## API Reference<a name="freertos-shadow-api"></a>
+## API reference<a name="freertos-shadow-api"></a>
 
 For a full API reference, see [Device Shadow C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__shadow_8h.html)\.
 
-## Example Usage<a name="freertos-shadow-example"></a>
+## Example usage<a name="freertos-shadow-example"></a>
 
 1. Use the `SHADOW_ClientCreate` API to create a shadow client\. For most applications, the only field to fill is `xCreateParams.xMQTTClientType = eDedicatedMQTTClient`\.
 

@@ -1,8 +1,8 @@
-# Understanding Results and Logs<a name="results-logs"></a>
+# Understanding results and logs<a name="results-logs"></a>
 
 This section describes how to view and interpret IDT result reports and logs\. 
 
-## Viewing Results<a name="view-results"></a>
+## Viewing results<a name="view-results"></a>
 
 While running, IDT writes errors to the console, log files, and test reports\. After IDT completes the qualification test suite, it writes a test run summary to the console and generates two test reports\. These reports can be found in `devicetester-extract-location/results/execution-id/`\. Both reports capture the results from the qualification test suite execution\.
 
@@ -19,7 +19,7 @@ The `FRQ_Report.xml` is a report in standard [JUnit XML format](https://llg.cubi
 + An aggregate summary of test case results\.
 + A breakdown of test case results by libraries that were tested based on the device features\.
 
-### Interpreting IDT for FreeRTOS Results<a name="interpreting-results"></a>
+### Interpreting IDT for FreeRTOS results<a name="interpreting-results"></a>
 
 The report section in `awsiotdevicetester_report.xml` or `FRQ_Report.xml` lists the results of the tests that are executed\.
 
@@ -67,7 +67,7 @@ When a test fails or an error occurs, `<failure>` or `<error>` tags are added to
 
 For more information, see [Troubleshooting](dt-afr-troublshooting.md)\.
 
-### Viewing Logs<a name="view-logs"></a>
+### Viewing logs<a name="view-logs"></a>
 
 You can find logs that IDT for FreeRTOS generates from test execution in `devicetester-extract-location/results/execution-id/logs`\. Two sets of logs are generated:
 

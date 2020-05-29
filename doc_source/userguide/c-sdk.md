@@ -1,6 +1,6 @@
 # AWS IoT Device SDK for Embedded C<a name="c-sdk"></a>
 
-The AWS IoT Device SDK for Embedded C is a collection of C source files that can be used in embedded applications to securely connect to the AWS IoT platform\. The SDK includes transport clients, TLS implementations, and usage examples\. It also includes libraries that interact with AWS IoT services on the AWS cloud\.
+The AWS IoT Device SDK for Embedded C is a collection of C source files that can be used in embedded applications to securely connect to the AWS IoT platform\. The SDK includes transport clients, TLS implementations, and usage examples\. It also includes libraries that interact with AWS IoT services on the AWS Cloud\.
 
 The AWS IoT Device SDK for Embedded C includes the following libraries\. These libraries have the same APIs as their corresponding FreeRTOS libraries\.
 + AWS IoT Device Defender

@@ -1,4 +1,4 @@
-# Porting the TLS Library<a name="afr-porting-tls"></a>
+# Porting the TLS library<a name="afr-porting-tls"></a>
 
 For Transport Layer Security \(TLS\) authentication, FreeRTOS uses either mbedTLS or an off\-chip TLS implementation, such as those found on some network co\-processors\. FreeRTOS includes a port of mbedTLS\. If you use mbedTLS for TLS, TLS porting is not required\. To allow different TLS implementations, third\-party TLS libraries are accessed through a TLS abstraction layer\.
 
@@ -12,10 +12,10 @@ To prepare your platform for testing TLS, you need to configure your device in t
 To port the FreeRTOS TLS library, you need the following:
 + A port of the FreeRTOS Secure Sockets library\.
 
-  For information about porting the Secure Sockets library to your platform, see [Porting the Secure Sockets Library](afr-porting-ss.md)\.
+  For information about porting the Secure Sockets library to your platform, see [Porting the Secure Sockets library](afr-porting-ss.md)\.
 + A port of the FreeRTOS PKCS \#11 library\.
 
-  For information about porting the PKCS \#11 library to your platform, see [Porting the PKCS \#11 Library](afr-porting-pkcs.md)\.
+  For information about porting the PKCS \#11 library to your platform, see [Porting the PKCS \#11 library](afr-porting-pkcs.md)\.
 + An AWS account\.
 
   For information about setting up an AWS account, see [How do I create and activate a new Amazon Web Services account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) on the AWS Knowledge Center\.
@@ -42,7 +42,7 @@ If your target hardware offloads TLS functionality to a separate network chip, y
 
 If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
 
-### Setting Up the IDE Test Project<a name="testing-ide-tls"></a>
+### Setting up the IDE test project<a name="testing-ide-tls"></a>
 
 If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
 
@@ -55,15 +55,15 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 1. Add the source file `iot_test_tls.c` to the virtual folder `aws_tests/application_code/common_tests/tls`\. This file includes the TLS tests\.
 
-### Configuring the `CMakeLists.txt` File<a name="testing-cmake-tls"></a>
+### Configuring the `CMakeLists.txt` file<a name="testing-cmake-tls"></a>
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `freertos/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
-### Setting Up Your Local Testing Environment<a name="testing-local-tls"></a>
+### Setting up your local testing environment<a name="testing-local-tls"></a>
 
 There are five separate tests for the TLS port, one for each type of authentication supported by the FreeRTOS TLS library:
 + `TLS_ConnectRSA()`
@@ -74,23 +74,21 @@ There are five separate tests for the TLS port, one for each type of authenticat
 
 To run these tests, your board must use the MQTT protocol to communicate with the AWS Cloud\. AWS IoT hosts an MQTT broker that sends and receives messages to and from connected devices at the edge\. The AWS IoT MQTT broker accepts mutually authenticated TLS connections only\.
 
-Follow the instructions in [Connecting Your Device to AWS IoT](testing-connect-iot.md) to connect your device to AWS IoT\.
+Follow the instructions in [Connecting your device to AWS IoT](testing-connect-iot.md) to connect your device to AWS IoT\.
 
 Each TLS test requires a different certificate/key combination, formatted and defined in either `freertos/tests/include/aws_clientcredential_keys.h` or `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
 
-Follow the instructions in [Setting Up Certificates and Keys for the TLS Tests](tls-certkey-setup.md) to obtain the certificates and keys that you need for testing\.
+Follow the instructions in [Setting up certificates and keys for the TLS tests](tls-certkey-setup.md) to obtain the certificates and keys that you need for testing\.
 
 After you set up the library in the IDE project, you need to configure some other files for testing\.
 
 **To configure the source and header files for the TLS tests**
 
-1. To enable the TLS tests, open `freertos/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_TLS_ENABLED` macro to `1`\.
+1. To enable the TLS tests, open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_TLS_ENABLED` macro to `1`\.
 
-1. Open `freertos/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. Open `freertos/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, make sure that the line that calls `SOCKETS_Init()` is uncommented\.
 
-   Make sure that the line that calls `SOCKETS_Init()` is uncommented\.
-
-### Running the Tests<a name="testing-run-tls"></a>
+### Running the tests<a name="testing-run-tls"></a>
 
 **To execute the TLS tests**
 
@@ -108,4 +106,4 @@ After you have ported the TLS library and tested your ports, you must run the Se
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you finish porting the FreeRTOS TLS library to your device, you can start setting up the MQTT library for testing\. See [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) for instructions\.
+After you finish porting the FreeRTOS TLS library to your device, you can start setting up the MQTT library for testing\. See [Configuring the MQTT library for testing](afr-porting-mqtt.md) for instructions\.

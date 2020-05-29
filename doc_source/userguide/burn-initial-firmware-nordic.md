@@ -1,14 +1,14 @@
-# Install the Initial Version of Firmware on the Nordic nRF52840 DK<a name="burn-initial-firmware-nordic"></a>
+# Install the initial version of firmware on the Nordic nRF52840 DK<a name="burn-initial-firmware-nordic"></a>
 
-This guide is written with the assumption that you have already performed the steps in [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md) and [Over\-the\-Air Update Prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/ota-prereqs.html)\. Before you attempt an OTA update, you might want to run the MQTT demo project described in [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) to ensure that your board and toolchain are set up correctly\.
+This guide is written with the assumption that you have already performed the steps in [Getting started with the Nordic nRF52840\-DK](getting_started_nordic.md) and [Over\-the\-Air Update Prerequisites](https://docs.aws.amazon.com/freertos/latest/userguide/ota-prereqs.html)\. Before you attempt an OTA update, you might want to run the MQTT demo project described in [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) to ensure that your board and toolchain are set up correctly\.
 
 **To flash an initial factory image to the board**
 
-1. Open `<freertos>/vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/aws_demo_config.h`\.
+1. Open `freertos/vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/aws_demo_config.h`\.
 
 1. Replace `#define CONFIG_MQTT_DEMO_ENABLED` with `#define democonfigOTA_UPDATE_DEMO_ENABLED`\.
 
-1. With the OTA Update demo selected, follow the same steps outlined in [Getting Started with the Nordic nRF52840\-DK](getting_started_nordic.md) to build and flash the image\.
+1. With the OTA Update demo selected, follow the same steps outlined in [Getting started with the Nordic nRF52840\-DK](getting_started_nordic.md) to build and flash the image\.
 
    You should see output similar to the following\.
 

@@ -16,11 +16,11 @@ To implement the `configPRINT_STRING()` macro, you need the following:
 
 1. Connect your device to a terminal emulator to output test results\.
 
-1. Open the file `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and locate the call to `configPRINT_STRING("Test Message")` in the `prvMiscInitialization()` function\.
+1. Open the file `freertos/vendors/vendor/boards/board/aws_tests/application_code/main.c`, and locate the call to `configPRINT_STRING("Test Message")` in the `prvMiscInitialization()` function\.
 
 1. Immediately before the call to `configPRINT_STRING("Test Message")`, add code that uses the vendor\-supplied UART driver to initialize the UART baud rate level to 115200\.
 
-1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`, and locate the empty definition of `configPRINT_STRING()`\. The macro takes a NULL\-terminated ASCII C string as its only parameter\.
+1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/FreeRTOSConfig.h`, and locate the empty definition of `configPRINT_STRING()`\. The macro takes a NULL\-terminated ASCII C string as its only parameter\.
 
 1. Update the empty definition of `configPRINT_STRING()` so that it calls the vendor\-supplied UART output function\.
 
@@ -40,4 +40,4 @@ To implement the `configPRINT_STRING()` macro, you need the following:
 
 Build and execute the test demo project\. If Test Message appears in the UART console, then the console is connected and configured correctly, `configPRINT_STRING()` is behaving properly, and testing is complete\. You can remove the call to `configPRINT_STRING("Test Message")` from `prvMiscInitialization()`\.
 
-After you implement the `configPRINT_STRING()` macro, you can start configuring a FreeRTOS kernel port for your device\. See [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md) for instructions\.
+After you implement the `configPRINT_STRING()` macro, you can start configuring a FreeRTOS kernel port for your device\. See [Configuring a FreeRTOS kernel port](afr-porting-kernel.md) for instructions\.

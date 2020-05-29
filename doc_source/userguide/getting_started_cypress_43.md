@@ -1,11 +1,11 @@
-# Getting Started with the Cypress CYW943907AEVAL1F Development Kit<a name="getting_started_cypress_43"></a>
+# Getting started with the Cypress CYW943907AEVAL1F Development Kit<a name="getting_started_cypress_43"></a>
 
 This tutorial provides instructions for getting started with the Cypress CYW943907AEVAL1F Development Kit\. If you do not have the Cypress CYW943907AEVAL1F Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAPg0UAH/CYW943907AEVAL1F)\.
 
 **Note**  
 This tutorial walks you through setting up and running the MQTT Hello World demo\. The FreeRTOS port for this board currently does not support the TCP server and client demos\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\.
 
 **Important**  
 In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
@@ -25,16 +25,16 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Setting Up Your Development Environment<a name="cypress43-setup-env"></a>
+## Setting up your development environment<a name="cypress43-setup-env"></a>
 
-### Download and Install the WICED Studio SDK<a name="cypress43-install-wiced-studio"></a>
+### Download and install the WICED Studio SDK<a name="cypress43-install-wiced-studio"></a>
 
 In this Getting Started guide, you use the Cypress WICED Studio SDK to program your board with the FreeRTOS demo\. Visit the [WICED Software](https://www.cypress.com/products/wiced-software) website to download the WICED Studio SDK from Cypress\. You must register for a free Cypress account to download the software\. The WICED Studio SDK is compatible with Windows, macOS, and Linux operating systems\.
 
 **Note**  
 Some operating systems require additional installation steps\. Make sure that you read and follow all installation instructions for the operating system and version of WICED Studio that you are installing\.
 
-### Set Environment Variables<a name="cypress43-environment"></a>
+### Set environment variables<a name="cypress43-environment"></a>
 
 Before you use WICED Studio to program your board, you must create an environment variable for the WICED Studio SDK installation directory\. If WICED Studio is running while you create your variables, you need to restart the application after you set your variables\.
 
@@ -75,7 +75,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-m.n`
    chmod +x make
    ```
 
-## Establishing a Serial Connection<a name="cypress43-serial-connection"></a>
+## Establishing a serial connection<a name="cypress43-serial-connection"></a>
 
 **To establish a serial connection between your host machine and your board**
 
@@ -90,9 +90,9 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-m.n`
    + Stop bits: 1
    + Flow control: None
 
-For more information about installing a terminal and setting up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
+For more information about installing a terminal and setting up a serial connection, see [Installing a terminal emulator](uart-term.md)\.
 
-## Build and Run the FreeRTOS Demo Project<a name="gsg-cypress43-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="gsg-cypress43-build-and-run-example"></a>
 
 After you set up a serial connection to your board, you can build the FreeRTOS demo project, flash the demo to your board, and then run the demo\.
 
@@ -110,7 +110,7 @@ After you set up a serial connection to your board, you can build the FreeRTOS d
 
 1. In the **Make Target** window, expand **aws\_demo**, right\-click the `demo.aws_demo` file, and then choose **Build Target** to build and download the demo to your board\. The demo should run automatically after it is built and downloaded to your board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="cypress43-monitor-mqtt"></a>
+### Monitoring MQTT messages on the cloud<a name="cypress43-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -147,4 +147,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
   sudo apt-get install libusb-dev
   ```
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

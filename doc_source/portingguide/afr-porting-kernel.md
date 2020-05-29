@@ -1,4 +1,4 @@
-# Configuring a FreeRTOS Kernel Port<a name="afr-porting-kernel"></a>
+# Configuring a FreeRTOS kernel port<a name="afr-porting-kernel"></a>
 
 This section provides instructions for integrating a port of the FreeRTOS kernel into a FreeRTOS port\-testing project\. For a list of available kernel ports, see [FreeRTOS Kernel Ports](https://freertos.org/RTOS_ports.html)\.
 
@@ -19,9 +19,9 @@ To set up the FreeRTOS kernel for porting, you need the following:
 
   For information about implementing `configPRINT_STRING()`, see [Implementing the `configPRINT_STRING()` macro](afr-porting-config.md)\.
 
-## Configuring the FreeRTOS Kernel<a name="porting-steps-kernel"></a>
+## Configuring the FreeRTOS kernel<a name="porting-steps-kernel"></a>
 
-The header file `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h` specifies application\-specific configuration settings for the FreeRTOS kernel\. For a description of each configuration option, see [Customisation](https://freertos.org/a00110.html) on FreeRTOS\.org\.
+The header file `freertos/vendors/vendor/boards/board/aws_tests/config_files/FreeRTOSConfig.h` specifies application\-specific configuration settings for the FreeRTOS kernel\. For a description of each configuration option, see [Customisation](https://freertos.org/a00110.html) on FreeRTOS\.org\.
 
 To configure the FreeRTOS kernel to work with your device, open `FreeRTOSConfig.h`, and verify that the configuration options in the following table are correctly specified for your platform\.
 
@@ -37,14 +37,14 @@ If you are porting ARM Cortex\-M3, M4, or M7 devices, you must also specify [`co
 
 ## Testing<a name="porting-testing-kernel"></a>
 
-1. Open `/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and comment out the lines that call `BUFFERPOOL_Init()`, `MQTT_AGENT_Init()`, and `SOCKETS_Init()` from within function `SYSTEM_Init()`\. These initialization functions belong to libraries that you haven't ported yet\. The porting sections for those libraries include instructions to uncomment these functions\.
+1. Open `/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and comment out the line that calls `SOCKETS_Init()` from within function `SYSTEM_Init()`\. This initialization function belongs to a library that you haven't ported yet\. The porting section for this library includes instructions to uncomment this function\.
 
 1. Build the test project, and then flash it to your device for execution\.
 
 1. If "\." appears in the UART console every 5 seconds, then the FreeRTOS kernel is configured correctly, and testing is complete\.
 
-   Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/FreeRTOSConfig.h`, and set `configUSE_IDLE_HOOK` to 0 to stop the kernel from executing `vApplicationIdleHook()` and outputting "`.`"\.
+   Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/FreeRTOSConfig.h`, and set `configUSE_IDLE_HOOK` to 0 to stop the kernel from executing `vApplicationIdleHook()` and outputting "`.`"\.
 
 1. If "`.`" appears at any frequency other than 5 seconds, open `FreeRTOSConfig.h` and verify that `configCPU_CLOCK_HZ` is set to the correct value for your board\.
 
-After you have configured the FreeRTOS kernel port for your device, you can start porting the Wi\-Fi library\. See [Porting the Wi\-Fi Library](afr-porting-wifi.md) for instructions\.
+After you have configured the FreeRTOS kernel port for your device, you can start porting the Wi\-Fi library\. See [Porting the Wi\-Fi library](afr-porting-wifi.md) for instructions\.

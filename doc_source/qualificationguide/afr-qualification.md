@@ -1,6 +1,6 @@
 # AWS Qualification Program for FreeRTOS<a name="afr-qualification"></a>
 
-## What Is FreeRTOS<a name="afr-qualification-what-is"></a>
+## What is FreeRTOS<a name="afr-qualification-what-is"></a>
 
 Developed in partnership with the world's leading chip companies over a 15\-year period, and now downloaded every 175 seconds, FreeRTOS is a market\-leading real\-time operating system \(RTOS\) for microcontrollers and small microprocessors\. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries suitable for use across all industry sectors\. FreeRTOS is built with an emphasis on reliability and ease of use\.
 
@@ -54,7 +54,7 @@ Q: *My device does not support Bluetooth Low Energy or over\-the\-air \(OTA\) up
 A: Bluetooth Low Energy and OTA ports are optional for qualification\.
 
 Q: *My board does not have on\-chip TCP/IP functionality\. Is a particular TCP/IP stack required for FreeRTOS qualification?*  
-A: If your board does not have on\-chip TCP/IP functionality, you can use either the FreeRTOS\+TCP TCP/IP stack or the latest version of the lwIP TCP/IP stack to pass TCP/IP qualification requirements\. For the latest version of lwIP supported by FreeRTOS, see the [changelog\.md file](https://github.com/aws/amazon-freertos/blob/master/CHANGELOG.md) on the GitHub website\. For more information, see [Porting a TCP/IP Stack](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tcp.html) in the *FreeRTOS Porting Guide*\.
+A: If your board does not have on\-chip TCP/IP functionality, you can use either the FreeRTOS\+TCP TCP/IP stack or the latest version of the lwIP TCP/IP stack to pass TCP/IP qualification requirements\. For the latest version of lwIP supported by FreeRTOS, see the [ changelog\.md file](https://github.com/aws/amazon-freertos/blob/master/CHANGELOG.md) on the GitHub website\. For more information, see [Porting a TCP/IP Stack](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tcp.html) in the *FreeRTOS Porting Guide*\.
 
 Q: *Is a particular TLS stack required for qualification?*  
 A: FreeRTOS supports mbedTLS and off\-chip TLS implementations, such as those found on some network processors\. No matter which TLS implementation is used by your device's port of FreeRTOS, the port must pass the Device Tester validation tests for TLS\. For more information, see [Porting the TLS Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tls.html) in the *FreeRTOS Porting Guide*\.
@@ -62,12 +62,15 @@ A: FreeRTOS supports mbedTLS and off\-chip TLS implementations, such as those fo
 Q: *Does my device need to pass all of the AWS IoT Device Tester validation tests to qualify? Is there a way to qualify without passing all of the tests?*  
 A: Your device must pass all of the required validation tests to qualify for FreeRTOS\. The only exceptions are for Wi\-Fi, Bluetooth Low Energy, and OTA\.
 
+Q: *My device uses only one of the protocols \(HTTP, MQTT\) and only one of the available communication channels \(Wi\-Fi, Ethernet, BLE\)\. If all the OTA related IDT tests pass using just one protocol\-communication channel combination, then will my device get listed as OTA qualified in the device catalog?*  
+A: Yes\. We encourage you to get other combinations qualified on your device as well, if possible\. In this way, you can provide support for more customer use cases\.
+
 If you have questions about qualification that are not answered on this page or in the rest of the FreeRTOS Qualification Guide, contact your AWS representative or [the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
-### Documentation History<a name="afr-doc-history"></a>
+### Documentation history<a name="afr-doc-history"></a>
 
 
-**Revision History of FreeRTOS Porting and Qualification Documentation**  
+**Revision history of FreeRTOS porting and qualification documentation**  
 
 |  Date  |  Porting and Qualification Documentation Version  |  Change History  |  FreeRTOS Version  | 
 | --- | --- | --- | --- | 

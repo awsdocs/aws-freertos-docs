@@ -8,21 +8,21 @@ To port the lwIP stack, you need the following:
 + An IDE project or `CMakeLists.txt` list file that includes vendor\-supplied network drivers\.
 + A validated configuration of the FreeRTOS kernel\.
 
-  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md)\.
+  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS kernel port](afr-porting-kernel.md)\.
 
 ## Porting<a name="porting-steps-lwip"></a>
 
-Before you port the lwIP TCP/IP stack to your device, check the `<freertos>/libraries/3rdparty/lwip/src/portable` directory to see if a port to your platform already exists\.
+Before you port the lwIP TCP/IP stack to your device, check the `freertos/libraries/3rdparty/lwip/src/portable` directory to see if a port to your platform already exists\.
 
 1. If a port does not exist, do the following:
 
-   Under `<freertos>/libraries/3rdparty/lwip/src/portable`, create a directory named `<vendor>/<board>/netif`, where the *<vendor>* and `<board>` directories match your platform\.
+   Under `freertos/libraries/3rdparty/lwip/src/portable`, create a directory named `vendor/board/netif`, where the *vendor* and `board` directories match your platform\.
 
-1. Port the `<freertos>/libraries/3rdparty/lwip/src/netif/ethernetif.c` stub file according to the comments in the stub file\.
+1. Port the `freertos/libraries/3rdparty/lwip/src/netif/ethernetif.c` stub file according to the comments in the stub file\.
 
 1. After you have created a port, or if a port already exists, in the test project's `main.c` file, add a call to `tcpip_init()`\.
 
-1. In `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files`, create a configuration file named `lwipopts.h`\. This file must contain the following line:
+1. In `freertos/vendors/vendor/boards/board/aws_tests/config_files`, create a configuration file named `lwipopts.h`\. This file must contain the following line:
 
    ```
    #include "arch/lwipopts_freertos.h"
@@ -37,7 +37,7 @@ If you are using an IDE to build test projects, you need to set up your library 
 **Note**  
 There are no TCP/IP porting tests specific to lwIP\.
 
-### Setting Up the IDE Test Project<a name="testing-ide-lwip"></a>
+### Setting up the IDE test project<a name="testing-ide-lwip"></a>
 
 If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
 
@@ -51,14 +51,14 @@ In the following steps, make sure that you add the source files to your IDE proj
 If you added a `.c` file to the IDE project, and then edited that `.c` file for a port, you must replace the original `.c` file with the edited one in the IDE project\.
 
 1. Add the following paths to your compiler's include path:
-   + `<freertos>/libraries/3rdparty/lwip/src/include`
-   + `<freertos>/libraries/3rdparty/lwip/src/portable`
-   + `<freertos>/libraries/3rdparty/lwip/src/portable/<vendor>/<board>/include`
+   + `freertos/libraries/3rdparty/lwip/src/include`
+   + `freertos/libraries/3rdparty/lwip/src/portable`
+   + `freertos/libraries/3rdparty/lwip/src/portable/vendor/board/include`
 
-### Configuring the `CMakeLists.txt` File<a name="testing-cmake-lwip"></a>
+### Configuring the `CMakeLists.txt` file<a name="testing-cmake-lwip"></a>
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.

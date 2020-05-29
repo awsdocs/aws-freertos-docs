@@ -1,4 +1,4 @@
-# FreeRTOS Porting Flowchart<a name="porting-chart"></a>
+# FreeRTOS porting flowchart<a name="porting-chart"></a>
 
 Use the flowchart below for visual aid as you port FreeRTOS to your device\.
 

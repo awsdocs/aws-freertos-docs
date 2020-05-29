@@ -1,4 +1,4 @@
-# OTA Update Manager Service<a name="ota-manager"></a>
+# OTA Update Manager service<a name="ota-manager"></a>
 
 The over\-the\-air \(OTA\) Update Manager service provides a way to:
 + Create an OTA update and the resources it uses, including an AWS IoT job, an AWS IoT stream, and code signing\.
@@ -20,8 +20,6 @@ OTA updates were designed to update device firmware, but you can use them to sen
 
 You can send updated firmware images using the HTTP or MQTT protocol, depending on the settings that you choose\. You can sign your firmware updates with [Code Signing for FreeRTOS](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html) or you can use your own code\-signing tools\.
 
-For more control over the process, you can use the [ CreateStream](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateStream.html) API to create a stream when sending updates over MQTT\. In some instances, you can modify the FreeRTOS agent [code](https://github.com/aws/amazon-freertos/tree/master/libraries/freertos_plus/aws/ota/src) to adjust the size of the blocks that you send and receive\.
+For more control over the process, you can use the [ CreateStream](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateStream.html) API to create a stream when sending updates over MQTT\. In some instances, you can modify the FreeRTOS Agent [code](https://github.com/aws/amazon-freertos/tree/master/libraries/freertos_plus/aws/ota/src) to adjust the size of the blocks that you send and receive\.
 
-\.
-
-When you create an OTA update, the OTA Manager service creates an [AWS IoT job](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) to notify your devices that an update is available\. The FreeRTOS OTA agent runs on your devices and listens for update messages\. When an update is available, it requests the firmware update image over HTTP or MQTT and stores the files locally\. It checks the digital signature of the downloaded files and, if valid, installs the firmware update\. If you're not using FreeRTOS, you must implement your own OTA agent to listen for and download updates and perform any installation operations\.
+When you create an OTA update, the OTA Manager service creates an [AWS IoT job](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) to notify your devices that an update is available\. The FreeRTOS OTA Agent runs on your devices and listens for update messages\. When an update is available, it requests the firmware update image over HTTP or MQTT and stores the files locally\. It checks the digital signature of the downloaded files and, if valid, installs the firmware update\. If you're not using FreeRTOS, you must implement your own OTA Agent to listen for and download updates and perform any installation operations\.

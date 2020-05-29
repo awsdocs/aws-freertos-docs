@@ -4,22 +4,22 @@ FreeRTOS includes some demo applications in the `demos` folder, under the main F
 
 Before you try the demo applications, we recommend that you complete the tutorial in [Getting Started with FreeRTOS](freertos-getting-started.md)\. It shows you how to set up and run the Hello World MQTT demo\.
 
-## Running the FreeRTOS Demos<a name="running-demos"></a>
+## Running the FreeRTOS demos<a name="running-demos"></a>
 
 The following topics show you how to set up and run the FreeRTOS demos:
-+ [Bluetooth Low Energy Demo Applications](ble-demo.md)
-+ [Demo Bootloader for the Microchip Curiosity PIC32MZEF](microchip-bootloader.md)
-+ [AWS IoT Device Defender Demo](dd-demo.md)
-+ [AWS IoT Greengrass Discovery Demo Application](gg-demo.md)
-+ [Over\-the\-Air Updates Demo Application](ota-demo.md)
-+ [Secure Sockets Echo Client Demo](secure-sockets-demo.md)
-+ [AWS IoT Device Shadow Demo Application](shadow-demo.md)
++ [Bluetooth Low Energy demo applications](ble-demo.md)
++ [Demo bootloader for the Microchip Curiosity PIC32MZEF](microchip-bootloader.md)
++ [AWS IoT Device Defender demo](dd-demo.md)
++ [AWS IoT Greengrass discovery demo application](gg-demo.md)
++ [Over\-the\-air updates demo application](ota-demo.md)
++ [Secure Sockets echo client demo](secure-sockets-demo.md)
++ [AWS IoT Device Shadow demo application](shadow-demo.md)
 
-The `DEMO_RUNNER_RunDemos()` function, located in `<freertos>/demos/demo_runner/iot_demo_runner.c`, initializes a detached thread on which a single demo application runs\. By default, `DEMO_RUNNER_RunDemos()` only calls the starts the Hello World MQTT demo\. Depending on the configuration you selected when you downloaded FreeRTOS, and depending on where you downloaded FreeRTOS, the other example runner functions might start by default\. To enable a demo application, open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, and define the demo that you want to run\.
+The `DEMO_RUNNER_RunDemos()` function, located in `freertos/demos/demo_runner/iot_demo_runner.c`, initializes a detached thread on which a single demo application runs\. By default, `DEMO_RUNNER_RunDemos()` only calls the starts the Hello World MQTT demo\. Depending on the configuration you selected when you downloaded FreeRTOS, and depending on where you downloaded FreeRTOS, the other example runner functions might start by default\. To enable a demo application, open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, and define the demo that you want to run\.
 
 **Note**  
 Be aware that not all combinations of examples work together\. Depending on the combination, the software might fail to execute on the selected target due to memory constraints\. We recommend that you run one demo at a time\.
 
-## Configuring the Demos<a name="configuring-demos"></a>
+## Configuring the demos<a name="configuring-demos"></a>
 
-The demos have been configured to get you started quickly\. You might want to change some of the configurations for your project to create a version that runs on your platform\. You can find configuration files at `vendors/<vendor>/boards/<board>/aws_demos/config_files`\.
+The demos have been configured to get you started quickly\. You might want to change some of the configurations for your project to create a version that runs on your platform\. You can find configuration files at `vendors/vendor/boards/board/aws_demos/config_files`\.

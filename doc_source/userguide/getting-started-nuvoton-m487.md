@@ -1,8 +1,8 @@
-# Getting Started with the Nuvoton NuMaker\-IoT\-M487<a name="getting-started-nuvoton-m487"></a>
+# Getting started with the Nuvoton NuMaker\-IoT\-M487<a name="getting-started-nuvoton-m487"></a>
 
 This tutorial provides instructions for getting started with the Nuvoton NuMaker\-IoT\-M487 development board\. The Nuvoton NuMaker\-IoT\-M487 development board is embedded with the NuMicro M487 series microcontroller, and includes built\-in RJ45 Ethernet and Wi\-Fi modules\. If you don't have the Nuvoton NuMaker\-IoT\-M487, visit the [AWS Partner Device Catalog](https://devices.amazonaws.com/detail/a3G0h000000Tg9cEAC/NuMaker-IoT-M487) to purchase one from our partner\. 
 
-Before you begin, you must configure AWS IoT and your FreeRTOS software to connect your development board to the AWS Cloud\. For instructions, see [First Steps](freertos-prereqs.md)\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS software to connect your development board to the AWS Cloud\. For instructions, see [First steps](freertos-prereqs.md)\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="getting-started-nuvoton-m487-overview"></a>
 
@@ -14,7 +14,7 @@ This tutorial guides you through the following steps:
 
 1. Load the application binary image to your board, and then run the application\.
 
-## Set Up Your Development Environment<a name="gsg-nuvoton-m487-setup-env"></a>
+## Set up your development environment<a name="gsg-nuvoton-m487-setup-env"></a>
 
 The Keil MDK Nuvoton edition is designed for developing and debugging applications for Nuvoton M487 boards\. The Keil MDK v5 Essential, Plus, or Pro version should also work for the Nuvoton M487 \(Cortex\-M4 core\) MCU\. You can download the Keil MDK Nuvoton edition with a price discount for the Nuvoton Cortex\-M4 series MCUs\. The Keil MDK is only supported on Windows\.
 
@@ -28,17 +28,17 @@ The Keil MDK Nuvoton edition is designed for developing and debugging applicatio
 
 1. Install the **Nu\-Link\_Keil\_Driver\_V3\.00\.6951** \(or latest version\), which is on the [ Nuvoton Development Tool](https://www.nuvoton.com/tool-and-software/software-development-tool/driver/) page\.
 
-## Build and Run the FreeRTOS Demo Project<a name="gsg-nuvoton-m487-build-run"></a>
+## Build and run the FreeRTOS demo project<a name="gsg-nuvoton-m487-build-run"></a>
 
-**To Build the FreeRTOS Demo Project**
+**To build the FreeRTOS demo project**
 
 1. Open the Keil µVision IDE\.
 
 1. On the **File** menu, choose **Open**\. In the **Open file** dialog box, make sure the file type selector is set to **Project Files**\.
 
 1. Choose either the Wi\-Fi or Ethernet demo project to build\.
-   + To open the Wi\-Fi demo project, choose the target project `aws_demos.uvproj` in the `<freertos>\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos` directory\. 
-   + To open the Ethernet demo project, choose the target project `aws_demos_eth.uvproj` in the `<freertos>\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos_eth` directory\. 
+   + To open the Wi\-Fi demo project, choose the target project `aws_demos.uvproj` in the `freertos\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos` directory\. 
+   + To open the Ethernet demo project, choose the target project `aws_demos_eth.uvproj` in the `freertos\projects\nuvoton\numaker_iot_m487_wifi\uvision\aws_demos_eth` directory\. 
 
 1. To make sure your settings are correct to flash the board, right\-click the `aws_demo` project in the IDE, and then choose **Options**\. \(See [Troubleshooting](#gsg-nuvoton-m487-troubleshoot) for more details\.\)
 
@@ -95,9 +95,9 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 **To generate build files from source files and run the demo project**
 
-1. On your host machine, open the command prompt and navigate to the *<freertos>* folder\. 
+1. On your host machine, open the command prompt and navigate to the *freertos* folder\. 
 
-1. Create a folder to contain the generated build file\. We will refer to this folder as the *<BUILD\_FOLDER>*\. 
+1. Create a folder to contain the generated build file\. We will refer to this folder as the *BUILD\_FOLDER*\. 
 
 1. Generate the build files for either the Wi\-Fi or Ethernet demo\.
    + For Wi\-Fi:
@@ -105,27 +105,27 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
      Navigate to the directory that contains the source files for the FreeRTOS demo project\. Then, generate the build files by running the following command\. 
 
      ```
-     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -S . -B <BUILD_FOLDER> -G Ninja 
+     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -S . -B BUILD_FOLDER -G Ninja 
      ```
    + For Ethernet:
 
      Navigate to the directory that contains the source files for the FreeRTOS demo project\. Then, generate the build files by running the following command\. 
 
      ```
-     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -DAFR_ENABLE_ETH=1 -S . -B <BUILD_FOLDER> -G Ninja 
+     cmake -DVENDOR=nuvoton -DBOARD=numaker_iot_m487_wifi -DCOMPILER=arm-keil -DAFR_ENABLE_ETH=1 -S . -B BUILD_FOLDER -G Ninja 
      ```
 
 1. Generate the binary to flash onto the M487 by running the following command\.
 
    ```
-   cmake --build <BUILD_FOLDER> 
+   cmake --build BUILD_FOLDER 
    ```
 
-   At this point, the binary file `aws_demos.bin` should be in the `<BUILD_FOLDER>/vendors/Nuvoton/boards/numaker_iot_m487_wifi` folder\. 
+   At this point, the binary file `aws_demos.bin` should be in the `BUILD_FOLDER/vendors/Nuvoton/boards/numaker_iot_m487_wifi` folder\. 
 
 1. To configure the board for flashing mode, make sure the MSG switch \(No\.4 of ISW1 on ICE\) is switched ON\. When you plug in the board, a window \(and drive\) will be assigned\. \(See [Troubleshooting](#gsg-nuvoton-m487-troubleshoot)\.\)
 
-1. Open a terminal emulator to view the messages over UART\. Follow the instructions at [Installing a Terminal Emulator](uart-term.md)\.
+1. Open a terminal emulator to view the messages over UART\. Follow the instructions at [Installing a terminal emulator](uart-term.md)\.
 
 1. Run the demo project by copying the generated binary onto the device\. 
 
@@ -138,13 +138,13 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 If you experience issues setting up your development environment or connecting to your board, contact [Nuvoton](http://www.nuvoton.com/hq/contact-us/)\.
 
-### Debugging FreeRTOS Projects in Keil μVision<a name="gsg-nuvoton-m487-troubleshoot-debug-projects"></a>
+### Debugging FreeRTOS projects in Keil μVision<a name="gsg-nuvoton-m487-troubleshoot-debug-projects"></a>
 
 **To start a debug session in Keil μVision**
 
 1. Open Keil μVision\. 
 
-1. Follow the steps to build the FreeRTOS demo project in [Build and Run the FreeRTOS Demo Project](#gsg-nuvoton-m487-build-run)\.
+1. Follow the steps to build the FreeRTOS demo project in [Build and run the FreeRTOS demo project](#gsg-nuvoton-m487-build-run)\.
 
 1. On the **Debug** menu, choose **Start/Stop Debug Session**\. 
 
@@ -153,7 +153,7 @@ If you experience issues setting up your development environment or connecting t
 1. Set breakpoints in your project's source code, and then run the code\. The project should look something like the following\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/numaker-iot-m487-debug.png)
 
-### Troubleshooting μVision Debug Settings<a name="gsg-nuvoton-m487-troubleshoot-debug"></a>
+### Troubleshooting μVision debug settings<a name="gsg-nuvoton-m487-troubleshoot-debug"></a>
 
 If you encounter problems while debugging an application, check that your debug settings are set correctly in Keil μVision\.
 

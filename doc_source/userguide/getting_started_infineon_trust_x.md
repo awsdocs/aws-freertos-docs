@@ -1,6 +1,6 @@
-# Getting Started with the Infineon OPTIGA Trust X and XMC4800 IoT Connectivity Kit<a name="getting_started_infineon_trust_x"></a>
+# Getting started with the Infineon OPTIGA Trust X and XMC4800 IoT Connectivity Kit<a name="getting_started_infineon_trust_x"></a>
 
-This tutorial provides instructions for getting started with the Infineon OPTIGA Trust X Secure Element and XMC4800 IoT Connectivity Kit\. In comparison to the [Getting Started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md) tutorial, this guide shows you how to provide secure credentials using an Infineon OPTIGA Trust X Secure Element\.
+This tutorial provides instructions for getting started with the Infineon OPTIGA Trust X Secure Element and XMC4800 IoT Connectivity Kit\. In comparison to the [Getting started with the Infineon XMC4800 IoT Connectivity Kit](getting_started_infineon.md) tutorial, this guide shows you how to provide secure credentials using an Infineon OPTIGA Trust X Secure Element\.
 
 You need the following hardware:
 
@@ -15,7 +15,7 @@ You need the following hardware:
 
 To follow the steps here, you must open a serial connection with the board to view logging and debugging information\. \(One of the steps requires you to copy a public key from the serial debugging output from the board and paste it to a file\.\) To do this, you need a 3\.3V USB/Serial converter in addition to the XMC4800 IoT Connectivity Kit\. The [ JBtek EL\-PN\-47310126](https://www.amazon.com/gp/product/B00QT7LQ88) USB/Serial converter is known to work for this demo\. You also need three male\-to\-male [jumper wires](https://www.amazon.com/gp/product/B077N6HFCX/) \(for receive \(RX\), transmit \(TX\), and ground \(GND\)\) to connect the serial cable to the Infineon MyIoT Adapter board\.  
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. For instructions, see [Option \#2: Onboard Private Key Generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. For instructions, see [Option \#2: onboard private key generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="getting_started_infineon_trust_x_overview"></a>
 
@@ -29,7 +29,7 @@ This tutorial contains the following steps:
 
 1. For monitoring and debugging purposes, interact with the application running on your board across a serial connection\.
 
-## Set Up Your Development Environment<a name="infineon_trust_x_setup_env"></a>
+## Set up your development environment<a name="infineon_trust_x_setup_env"></a>
 
 FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
 
@@ -39,7 +39,7 @@ FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. B
 
 1. Choose the DAVE package for your operating system and submit your registration information\. After you register, you should receive a confirmation email with a link to download a \.zip file\.
 
-1. Download the DAVE package \.zip file \(`DAVE_version_os_date.zip`\), and unzip it to the location where you want to install DAVE \(for example, `C:\DAVE4`\)\. 
+1. Download the DAVE package \.zip file \(`DAVE_version_os_date.zip`\), and unzip it to the location where you want to install DAVE \(for example, `C:\DAVE4`\)\.
 **Note**  
 Some Windows users have reported problems using Windows Explorer to unzip the file\. We recommend that you use a third\-party program such as 7\-Zip\.
 
@@ -47,11 +47,11 @@ Some Windows users have reported problems using Windows Explorer to unzip the fi
 
 For more information, see the [DAVE Quick Start Guide](https://www.infineon.com/dgdl/Infineon-DAVE_Quick_Start-GS-v02_00-EN.pdf?fileId=5546d4624cb7f111014d059f7b8c712d)\. 
 
-### Install Segger J\-Link Drivers<a name="infineon_trust_x_install_jlink"></a>
+### Install Segger J\-Link drivers<a name="infineon_trust_x_install_jlink"></a>
 
 To communicate with the XMC4800 IoT Connectivity kit's on\-board debugging probe, you need the drivers included in the J\-Link Software and Documentation pack\. You can download the J\-Link Software and Documentation pack from Segger's [J\-Link software download](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack) page\.
 
-## Establish a Serial Connection<a name="infineon_trust_x_install_serial_connection"></a>
+## Establish a serial connection<a name="infineon_trust_x_install_serial_connection"></a>
 
 Connect the USB/Serial converter cable to the Infineon Shield2Go Adapter\. This allows your board to send logging and debugging information in a form that you can view on your development machine\.  To set up a serial connection:
 
@@ -68,7 +68,7 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
  With the cable connected, you can open a serial connection on a terminal emulator such as [GNU Screen](https://www.gnu.org/software/screen/)\. The baud rate is set to 115200 by default with 8 data bits, no parity, and 1 stop bit\. 
 
-## Monitoring MQTT Messages on the Cloud<a name="infineon_trust_x_monitoring"></a>
+## Monitoring MQTT messages on the cloud<a name="infineon_trust_x_monitoring"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\. You might want to set this up before the device runs the demo project\.
 
@@ -80,9 +80,9 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
-## Build and Run the FreeRTOS Demo Project<a name="infineon_trust_x_build_and_run_example"></a>
+## Build and run the FreeRTOS demo project<a name="infineon_trust_x_build_and_run_example"></a>
 
-### Import the FreeRTOS Demo into DAVE<a name="infineon_trust_x_freertos_import-project"></a><a name="infineon_trust_x_load_project"></a>
+### Import the FreeRTOS demo into DAVE<a name="infineon_trust_x_freertos_import-project"></a><a name="infineon_trust_x_load_project"></a>
 
 1. Start DAVE\.
 
@@ -98,11 +98,11 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    The `aws_demos` project should be imported into your workspace and activated\.
 
-1. From the **Project** menu, choose **Build Active Project**\. 
+1. From the **Project** menu, choose **Build Active Project**\.
 
    Make sure that the project builds without errors\.
 
-### Run the FreeRTOS Demo Project<a name="infineon_trust_x_run_examples"></a>
+### Run the FreeRTOS demo project<a name="infineon_trust_x_run_examples"></a>
 
 1. From the **Project** menu, choose **Rebuild Active Project** to rebuild `aws_demos` and confirm that your configuration changes are picked up\.
 
@@ -112,7 +112,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-At this point, continue with the public key extraction step in [Option \#2: Onboard Private Key Generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. After all steps are complete, go to the AWS IoT console\. The MQTT client you set up previously should display the MQTT messages sent by your device\. Through the device's serial connection, you should see something like this on the UART output:
+At this point, continue with the public key extraction step in [Option \#2: onboard private key generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. After all steps are complete, go to the AWS IoT console\. The MQTT client you set up previously should display the MQTT messages sent by your device\. Through the device's serial connection, you should see something like this on the UART output:
 
 ```
 0 0 [Tmr Svc] Starting key provisioning...
@@ -156,7 +156,7 @@ At this point, continue with the public key extraction step in [Option \#2: Onbo
 38 122068 [MQTTEcho] ----Demo finished----
 ```
 
-#### Build the FreeRTOS Demo with CMake<a name="infineon_trust_x_cmake"></a>
+#### Build the FreeRTOS demo with CMake<a name="infineon_trust_x_cmake"></a>
 
 This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
@@ -178,15 +178,15 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
    For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
 
-1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\. 
+1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\. 
 
-1. Change directories to your FreeRTOS download directory \(`<freertos>`\), and use the following command to generate the build files:
+1. Change directories to your FreeRTOS download directory \(`freertos`\), and use the following command to generate the build files:
 
    ```
-   cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B <BUILD_FOLDER> -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B BUILD_FOLDER -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
    ```
 
-1. Change directories to the build directory \(*<BUILD\_FOLDER>*\), and use the following command to build the binary:
+1. Change directories to the build directory \(*BUILD\_FOLDER*\), and use the following command to build the binary:
 
    ```
    cmake --build . --parallel 8
@@ -196,7 +196,7 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
 1. Flash and run the image with [JLINK](getting_started_infineon.md#install-jlink)\.
 
-   1. From the build directory \(*<BUILD\_FOLDER>*\), use the following commands to create a flash script:
+   1. From the build directory \(*BUILD\_FOLDER*\), use the following commands to create a flash script:
 
       ```
       echo loadfile aws_demos.hex > flash.jlink
@@ -211,8 +211,8 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
       JLINK_PATH\JLink.exe  -device XMC4800-2048 -if SWD -speed auto -CommanderScript flash.jlink
       ```
 
-      The application logs should be visible through [ the serial connection](getting_started_infineon.md#install-serial-connection) that you established with the board\. Continue to the public key extraction step in [Option \#2: Onboard Private Key Generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. After all the steps are complete, go to the AWS IoT console\. The MQTT client you set up previously should display the MQTT messages sent by your device\. 
+      The application logs should be visible through [ the serial connection](getting_started_infineon.md#install-serial-connection) that you established with the board\. Continue to the public key extraction step in [Option \#2: onboard private key generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. After all the steps are complete, go to the AWS IoT console\. The MQTT client you set up previously should display the MQTT messages sent by your device\. 
 
 ### Troubleshooting<a name="infineon_trust_x_troubleshooting"></a>
 
-For general troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

@@ -1,4 +1,4 @@
-# Configuring the FreeRTOS Demos<a name="freertos-configure"></a>
+# Configuring the FreeRTOS demos<a name="freertos-configure"></a>
 
 You need to edit some configuration files in your FreeRTOS directory before you can compile and run any demos on your board\.
 
@@ -51,9 +51,9 @@ FreeRTOS is a C language project, and the certificate and private key must be sp
 
 1. In a browser window, open `tools/certificate_configuration/CertificateConfigurator.html`\.
 
-1. Under **Certificate PEM file**, choose the `<ID>-certificate.pem.crt` that you downloaded from the AWS IoT console\.
+1. Under **Certificate PEM file**, choose the `ID-certificate.pem.crt` that you downloaded from the AWS IoT console\.
 
-1. Under **Private Key PEM file**, choose the `<ID>-private.pem.key` that you downloaded from the AWS IoT console\.
+1. Under **Private Key PEM file**, choose the `ID-private.pem.key` that you downloaded from the AWS IoT console\.
 
 1. Choose **Generate and save aws\_clientcredential\_keys\.h**, and then save the file in `demos/include`\. This overwrites the existing file in the directory\.
 **Note**  

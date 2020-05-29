@@ -1,18 +1,14 @@
-# Prerequisites for OTA Updates using MQTT<a name="ota-mqtt-freertos"></a>
+# Prerequisites for OTA updates using MQTT<a name="ota-mqtt-freertos"></a>
 
-This section describes the general requirements for using MQTT to perform over\-the\-air \(OTA updates\. FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from Amazon S3 to devices\. If you specify both protocols when you create an OTA update in FreeRTOS, each device will determine the protocol used to transfer the image\. 
-
-**Note**  
-When you specify both MQTT and HTTP protocols for the OTA Update job, the setup of the OTA Agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA Agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
+This section describes the general requirements for using MQTT to perform over\-the\-air \(OTA updates\)\.
 
 ## Minimum requirements<a name="ota-mqtt-freertos-min-requirements"></a>
-+ Device firmware must include the necessary FreeRTOS libraries \(MQTT, OTA agent, and their dependencies\)\.
-+ FreeRTOS version 1\.4\.0 or later is required\.
++ Device firmware must include the necessary FreeRTOS libraries \(MQTT, OTA Agent, and their dependencies\)\.
++ FreeRTOS version 1\.4\.0 or later is required\. However, we recommend that you use the latest version when possible\.
 
 ## Configurations<a name="ota-mqtt-freertos-config"></a>
 
-**Note**  
-FreeRTOS version 201912\.00 or later is required to change the configuration of OTA protocols\.
+Beginning with version 201912\.00, FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from AWS IoT to devices\. If you specify both protocols when you create an OTA update in FreeRTOS, each device will determine the protocol used to transfer the image\. See [Prerequisites for OTA updates using HTTP](ota-http-freertos.md) for more information\.
 
 By default, the configuration of the OTA protocols in `aws_ota_agent_config.h` is to use the MQTT protocol:
 
@@ -92,3 +88,9 @@ Each device that receives an OTA update using MQTT must be registered as a thing
     ]
 }
 ```
+
+**Notes**
++ The `iot:Connect` permissions allow your device to connect to AWS IoT over MQTT\.
++ The `iot:Subscribe` and `iot:Publish` permissions on the topics of AWS IoT jobs \(`.../jobs/*`\) allow the connected device to receive job notifications and job documents, and to publish the completion state of a job execution\.
++ The `iot:Subscribe` and `iot:Publish` permissions on the topics of AWS IoT OTA streams \(`.../streams/*`\) allow the connected device to fetch OTA update data from AWS IoT\. These permissions are required to perform firmware updates over MQTT\.
++ The `iot:Receive` permissions allow AWS IoT Core to publish messages on those topics to the connected device\. This permission is checked on every delivery of an MQTT message\. You can use this permission to revoke access to clients that are currently subscribed to a topic\.

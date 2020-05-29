@@ -1,10 +1,10 @@
-# Wi\-Fi Library<a name="freertos-wifi"></a>
+# Wi\-Fi library<a name="freertos-wifi"></a>
 
 ## Overview<a name="freertos-wifi-overview"></a>
 
 The FreeRTOS Wi\-Fi library abstracts port\-specific Wi\-Fi implementations into a common API that simplifies application development and porting for all FreeRTOS\-qualified boards with Wi\-Fi capabilities\. Using this common API, applications can communicate with their lower\-level wireless stack through a common interface\.
 
-## Dependencies and Requirements<a name="freertos-wifi-dependencies"></a>
+## Dependencies and requirements<a name="freertos-wifi-dependencies"></a>
 
 The FreeRTOS Wi\-Fi library requires the [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) core\.
 
@@ -18,7 +18,7 @@ The Wi\-Fi library includes the following features:
 
 For more information about the features of the Wi\-Fi library, see below\.
 
-### Wi\-Fi Modes<a name="freertos-wifi-setup"></a>
+### Wi\-Fi modes<a name="freertos-wifi-setup"></a>
 
 Wi\-Fi devices can be in one of three modes: Station, Access Point, or P2P\. You can get the current mode of a Wi\-Fi device by calling `WIFI_GetMode`\. You can set a device's wi\-fi mode by calling `WIFI_SetMode`\. Switching modes by calling `WIFI_SetMode` disconnects the device, if it is already connected to a network\.
 
@@ -39,28 +39,28 @@ The Wi\-Fi API supports WEP, WPA, and WPA2 security types\. When a device is in 
 + `eWiFiSecurityWPA`
 + `eWiFiSecurityWPA2`
 
-### Scanning and Connecting<a name="freertos-wifi-connection"></a>
+### Scanning and connecting<a name="freertos-wifi-connection"></a>
 
-To scan for nearby access points, set your device to Station mode, and call the `WIFI_Scan` function\. If you find a desired network in the scan, you can connect to the network by calling `WIFI_ConnectAP` and providing the network credentials\. You can disconnect a Wi\-Fi device from the network by calling `WIFI_Disconnect`\. For more information about scanning and connecting, see [Example Usage](#freertos-wifi-example) and [API Reference](#freertos-wifi-api)\.
+To scan for nearby access points, set your device to Station mode, and call the `WIFI_Scan` function\. If you find a desired network in the scan, you can connect to the network by calling `WIFI_ConnectAP` and providing the network credentials\. You can disconnect a Wi\-Fi device from the network by calling `WIFI_Disconnect`\. For more information about scanning and connecting, see [Example usage](#freertos-wifi-example) and [API reference](#freertos-wifi-api)\.
 
-### Power Management<a name="freertos-wifi-power-management"></a>
+### Power management<a name="freertos-wifi-power-management"></a>
 
 Different Wi\-Fi devices have different power requirements, depending on the application and available power sources\. A device might always be powered on to reduce latency or it might be intermittently connected and switch into a low power mode when Wi\-Fi is not required\. The interface API supports various power management modes like always on, low power, and normal mode\. You set the power mode for a device using the `WIFI_SetPMMode` function\. You can get the current power mode of a device by calling the `WIFI_GetPMMode` function\.
 
-### Network Profiles<a name="freertos-wifi-profiles"></a>
+### Network profiles<a name="freertos-wifi-profiles"></a>
 
 The Wi\-Fi library enables you to save network profiles in the non\-volatile memory of your devices\. This allows you to save network settings so they can be retrieved when a device reconnects to a Wi\-Fi network, removing the need to provision devices again after they have been connected to a network\. `WIFI_NetworkAdd` adds a network profile\. `WIFI_NetworkGet` retrieves a network profile\. `WIFI_NetworkDel` deletes a network profile\. The number of profiles you can save depends on the platform\.
 
 ## Configuration<a name="freertos-wifi-config"></a>
 
-To use the Wi\-Fi library, you need to define several identifiers in a configuration file\. For information about these identifiers, see the [API Reference](#freertos-wifi-api)\.
+To use the Wi\-Fi library, you need to define several identifiers in a configuration file\. For information about these identifiers, see the [API reference](#freertos-wifi-api)\.
 
 **Note**  
 The library does not include the required configuration file\. You must create one\. When creating your configuration file, be sure to include any board\-specific configuration identifiers that your board requires\.
 
 ## Initialization<a name="freertos-wifi-init"></a>
 
-Before you use the Wi\-Fi library, you need to initialize some board\-specific components, in addition to the FreeRTOS components\. Using the `vendors/<vendor>/boards/<board>/aws_demos/application_code/main.c` file as a template for initialization, do the following:
+Before you use the Wi\-Fi library, you need to initialize some board\-specific components, in addition to the FreeRTOS components\. Using the `vendors/vendor/boards/board/aws_demos/application_code/main.c` file as a template for initialization, do the following:
 
 1. Remove the sample Wi\-Fi connection logic in `main.c` if your application handles Wi\-Fi connections\. Replace the following `DEMO_RUNNER_RunDemos()` function call:
 
@@ -90,15 +90,15 @@ Before you use the Wi\-Fi library, you need to initialize some board\-specific c
 **Note**  
 Some boards might require additional hardware initialization\.
 
-1. Pass a configured `WFINetworkParams_t` structure to `WIFI_ConnectAP()` to connect your board to an available Wi\-Fi network\. For more information about the `WFINetworkParams_t` structure, see [Example Usage](#freertos-wifi-example) and [API Reference](#freertos-wifi-api)\.
+1. Pass a configured `WFINetworkParams_t` structure to `WIFI_ConnectAP()` to connect your board to an available Wi\-Fi network\. For more information about the `WFINetworkParams_t` structure, see [Example usage](#freertos-wifi-example) and [API reference](#freertos-wifi-api)\.
 
-## API Reference<a name="freertos-wifi-api"></a>
+## API reference<a name="freertos-wifi-api"></a>
 
 For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/wifi/index.html)\.
 
-## Example Usage<a name="freertos-wifi-example"></a>
+## Example usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a Known AP<a name="w14aab9c39c17b3"></a>
+### Connecting to a known AP<a name="w14aab9c39c17b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -193,6 +193,6 @@ while (1)
 
 ## Porting<a name="freertos-wifi-porting"></a>
 
-The `aws_wifi.c` implementation needs to implement the functions defined in `aws_wifi.h`\. At the very least, the implementation needs to return `eWiFiNotSupported` for any non\-essential or unsupported functions\.
+The `iot_wifi.c` implementation needs to implement the functions defined in `iot_wifi.h`\. At the very least, the implementation needs to return `eWiFiNotSupported` for any non\-essential or unsupported functions\.
 
 For more information about porting the Wi\-Fi library, see [Porting the Wi\-Fi Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html) in the FreeRTOS Porting Guide\.

@@ -1,4 +1,4 @@
-# Creating a Getting Started with FreeRTOS Guide for Your Device<a name="afq-gsg"></a>
+# Creating a getting started with FreeRTOS guide for your device<a name="afq-gsg"></a>
 
 To qualify for FreeRTOS, you need to create a Getting Started with FreeRTOS guide for your device\. This guide walks users through setting up the hardware and development environment for developing applications for FreeRTOS devices, and building, running, and flashing the FreeRTOS Hello World demo on a device\.
 
@@ -19,4 +19,4 @@ We also recommend that your guide includes:
 **Important**  
 Where instructions differ by operating system, you must provide instructions for Windows, Linux, and macOS operating systems\.
 
-Follow the [Getting Started Guide Template](getting_started_template.md) when you write the guide for your board\. You can find examples of published guides for other qualified boards in the [FreeRTOS User Guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
+Follow the [Getting started guide template](getting_started_template.md) when you write the guide for your board\. You can find examples of published guides for other qualified boards in the [FreeRTOS User Guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.

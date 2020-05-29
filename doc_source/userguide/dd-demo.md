@@ -1,10 +1,10 @@
-# AWS IoT Device Defender Demo<a name="dd-demo"></a>
+# AWS IoT Device Defender demo<a name="dd-demo"></a>
 
-FreeRTOS includes a single\-threaded demo application that collects some AWS IoT Device Defender metrics for a device and publishes them to an MQTT topic\. This demo is defined in `<freertos>/demos/defender/aws_iot_defender_demo.c`\.
+FreeRTOS includes a single\-threaded demo application that collects some AWS IoT Device Defender metrics for a device and publishes them to an MQTT topic\. This demo is defined in `freertos/demos/defender/aws_iot_defender_demo.c`\.
 
-Before you can run the Device Defender demo, you must complete the getting started [First Steps](freertos-prereqs.md) to set up AWS IoT and FreeRTOS so your device can communicate with the AWS cloud\.
+Before you can run the Device Defender demo, you must complete the getting started [First steps](freertos-prereqs.md) to set up AWS IoT and FreeRTOS so your device can communicate with the AWS Cloud\.
 
- Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_DEFENDER_DEMO_ENABLED`\.
+ Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_DEFENDER_DEMO_ENABLED`\.
 
 When you build, flash, and run FreeRTOS on your device with the Device Defender demo enabled, the following output should appear:
 

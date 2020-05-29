@@ -6,12 +6,12 @@ In general, device drivers are independent of the underlying operating system an
 
 FreeRTOS common I/O acts as this hardware abstraction layer\. It provides a set of standard APIs for accessing common serial devices on supported reference boards\. These common APIs communicate and interact with these peripherals and enable your code to function across platforms\. Without common I/O, writing code to work with low level devices is silicon\-vendor specific\.
 
-**Supported Peripherals**
+**Supported peripherals**
 + UART
 + SPI
 + I2C
 
-**Supported Features**
+**Supported features**
 + Synchronous read/write – The function doesn't return until the requested amount of data is transferred\. 
 + Asynchronous read/write – The function returns immediately and the data transfer happens asynchronously\. When the action completes, a registered user callback is invoked\.
 

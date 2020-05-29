@@ -30,4 +30,4 @@ To run IDT for FreeRTOS, you can use the test resources\. There are two types of
 + A test suite is the set of test groups used to verify that a device works with particular versions of FreeRTOS\.
 + A test group is the set of individual tests related to a particular feature, such as BLE and MQTT messaging\.
 
-For more information, see [AWS IoT Device Tester for FreeRTOS Test Suite Versions](idt-test-suite-versions.md)\. 
+For more information, see [AWS IoT Device Tester for FreeRTOS test suite versions](idt-test-suite-versions.md)\. 

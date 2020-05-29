@@ -19,22 +19,22 @@ Previously, FreeRTOS releases used semantic versioning for major releases\. Alth
 
 LTS releases are maintained differently than other release types\. Major and minor releases are frequently updated with new features in addition to defect resolutions\. LTS releases are only updated with changes to address critical defects and security vulnerabilities\. No new features are introduced in a given LTS release after launch\. They are maintained for at least three calendar years after release, and provide device manufacturers the option to use a stable baseline as opposed to a more dynamic baseline represented by major and minor releases\.
 
-## FreeRTOS Architecture<a name="freertos-architecture"></a>
+## FreeRTOS architecture<a name="freertos-architecture"></a>
 
 FreeRTOS is typically flashed to devices as a single compiled image with all of the components required for device applications\. This image combines functionality for the applications written by the embedded developer, the software libraries provided by Amazon, the FreeRTOS kernel, and drivers and board support packages \(BSPs\) for the hardware platform\. Independent of the individual microcontroller being used, embedded application developers can expect the same standardized interfaces to the FreeRTOS kernel and all FreeRTOS software libraries\.
 
 
 
-## FreeRTOS Kernel<a name="freertos-kernel"></a>
+## FreeRTOS kernel<a name="freertos-kernel"></a>
 
 The FreeRTOS kernel is a real\-time operating system that supports numerous architectures and is ideal for building embedded microcontroller applications\. The kernel provides:
 + A multitasking scheduler\.
 + Multiple memory allocation options \(including the ability to create statically allocated systems\)\.
 + Inter\-task coordination primitives, including task notifications, message queues, multiple types of semaphores, and stream and message buffers\.
 
-For the most up\-to\-date documentation about the FreeRTOS kernel, see [FreeRTOS\.org](https://freertos.org/RTOS.html)\. FreeRTOS\.org offers a number of detailed tutorials and guides about using the FreeRTOS kernel, including a [Quick Start Guide](https://freertos.org/FreeRTOS-quick-start-guide.html#page_top) and the more in\-depth [ Mastering the FreeRTOS Real Time Kernel](https://freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)\. For more information about the FreeRTOS kernel in this guide, see [FreeRTOS Kernel Fundamentals](dev-guide-freertos-kernel.md)\.
+For the most up\-to\-date documentation about the FreeRTOS kernel, see [FreeRTOS\.org](https://freertos.org/RTOS.html)\. FreeRTOS\.org offers a number of detailed tutorials and guides about using the FreeRTOS kernel, including a [Quick Start Guide](https://freertos.org/FreeRTOS-quick-start-guide.html#page_top) and the more in\-depth [ Mastering the FreeRTOS Real Time Kernel](https://freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)\. For more information about the FreeRTOS kernel in this guide, see [FreeRTOS kernel fundamentals](dev-guide-freertos-kernel.md)\.
 
-## FreeRTOS Libraries<a name="freertos-libraries"></a>
+## FreeRTOS libraries<a name="freertos-libraries"></a>
 
 FreeRTOS includes libraries that make it possible to:
 + Securely connect devices to the AWS IoT Cloud using MQTT and device shadows\.
@@ -44,13 +44,13 @@ FreeRTOS includes libraries that make it possible to:
 
 For more information, see [FreeRTOS Libraries](https://docs.aws.amazon.com/freertos/latest/userguide/dev-guide-freertos-libraries.html)\.
 
-## Downloading FreeRTOS Source Code<a name="freertos-mds-projects-github"></a>
+## Downloading FreeRTOS source code<a name="freertos-mds-projects-github"></a>
 
-You can download versions of FreeRTOS that are configured for FreeRTOS\-qualified platforms from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [FreeRTOS\-Qualified Hardware Platforms](freertos-hardware.md) or the [FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
+You can download versions of FreeRTOS that are configured for FreeRTOS\-qualified platforms from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [FreeRTOS\-qualified hardware platforms](freertos-hardware.md) or the [FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
 
 You can also clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
 
-## FreeRTOS Console<a name="freertos-console"></a>
+## FreeRTOS console<a name="freertos-console"></a>
 
 From the [FreeRTOS console](https://console.aws.amazon.com/freertos), you can configure and download a package that contains everything you need to write an application for your microcontroller\-based devices:
 + The FreeRTOS kernel\.
@@ -58,15 +58,15 @@ From the [FreeRTOS console](https://console.aws.amazon.com/freertos), you can co
 + Platform support libraries\.
 + Hardware drivers\.
 
-For more information, see [FreeRTOS Console](freertos-ocw.md)\.
+For more information, see [FreeRTOS console](freertos-ocw.md)\.
 
-## Development Workflow<a name="development-workflow"></a>
+## Development workflow<a name="development-workflow"></a>
 
 You start development by downloading FreeRTOS\. You unzip the package and import it into your IDE\. You can then develop an application on your selected hardware platform and manufacture and deploy these devices using the development process appropriate for your device\. Deployed devices can connect to the AWS IoT service or AWS IoT Greengrass as part of a complete IoT solution\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/afr-getting-started-workflow.png)
 
-## Additional Resources<a name="resources"></a>
+## Additional resources<a name="resources"></a>
 
 These resources might be helpful to you\.
 + For questions about FreeRTOS for the FreeRTOS engineering team, you can open an issue [on the FreeRTOS GitHub page](https://github.com/aws/amazon-freertos/issues)\.

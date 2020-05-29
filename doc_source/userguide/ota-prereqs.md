@@ -1,10 +1,10 @@
-# OTA Update Prerequisites<a name="ota-prereqs"></a>
+# OTA update prerequisites<a name="ota-prereqs"></a>
 
 To use over\-the\-air \(OTA\) updates, do the following:
-+ Check the [Prerequisites for OTA Updates using HTTP](ota-http-freertos.md) or the [Prerequisites for OTA Updates using MQTT](ota-mqtt-freertos.md)\.
-+ [Create an Amazon S3 Bucket to Store Your Update](dg-ota-bucket.md)\.
-+ [Create an OTA Update Service Role](create-service-role.md)\.
-+ [Create an OTA User Policy](create-ota-user-policy.md)\.
-+ [Create a Code\-Signing Certificate](ota-code-sign-cert.md)\.
-+ If you are using Code Signing for AWS IoT, [Grant Access to Code Signing for AWS IoT](code-sign-policy.md)\.
-+ [Download FreeRTOS with the OTA Library](ota-download-freertos.md)\.
++ Check the [Prerequisites for OTA updates using HTTP](ota-http-freertos.md) or the [Prerequisites for OTA updates using MQTT](ota-mqtt-freertos.md)\.
++ [Create an Amazon S3 bucket to store your update](dg-ota-bucket.md)\.
++ [Create an OTA Update service role](create-service-role.md)\.
++ [Create an OTA user policy](create-ota-user-policy.md)\.
++ [Create a code\-signing certificate](ota-code-sign-cert.md)\.
++ If you are using Code Signing for AWS IoT, [Grant access to code signing for AWS IoT](code-sign-policy.md)\.
++ [Download FreeRTOS with the OTA library](ota-download-freertos.md)\.

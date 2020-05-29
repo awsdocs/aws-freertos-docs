@@ -1,4 +1,4 @@
-# AWS IoT Device Tester for FreeRTOS Test Suite Versions<a name="idt-test-suite-versions"></a>
+# AWS IoT Device Tester for FreeRTOS test suite versions<a name="idt-test-suite-versions"></a>
 
 IDT for FreeRTOS organizes tests into test suites and test groups\.
 + A test suite is the set of test groups used to verify that a device works with particular versions of FreeRTOS\.
@@ -9,7 +9,7 @@ Starting in IDT v3\.0\.0, test suites are versioned using a `major`\.`minor`\.`p
 When you start IDT in the command line interface, IDT checks whether a newer test suite version is available\. If so, it prompts you to update to the new version\. You can choose to update or continue with your current tests\.
 
 **Note**  
-IDT supports the three latest test suite versions for qualification\. For more information, see [Support Policy for AWS IoT Device Tester for FreeRTOS](idt-support-policy.md)\.
+IDT supports the three latest test suite versions for qualification\. For more information, see [Support policy for AWS IoT Device Tester for FreeRTOS](idt-support-policy.md)\.
 
 You can download test suites by using the `upgrade-test-suite` command\. Or, you can use the optional parameter `-upgrade-test-suite flag` when you start IDT where *flag* can be '`y`' to always download the latest version, or '`n`' to use the existing version\.
 

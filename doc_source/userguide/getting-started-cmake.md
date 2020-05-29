@@ -20,5 +20,5 @@ See the topics below for more information about using CMake with FreeRTOS\.
 
 **Topics**
 + [Prerequisites](building-cmake-prereqs.md)
-+ [Developing FreeRTOS Applications with Third\-Party Code Editors and Debugging Tools](developing-third-party.md)
++ [Developing FreeRTOS applications with third\-party code editors and debugging tools](developing-third-party.md)
 + [Building FreeRTOS with CMake](building-cmake.md)

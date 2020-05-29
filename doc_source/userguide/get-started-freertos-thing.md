@@ -1,4 +1,4 @@
-# Registering Your MCU Board with AWS IoT<a name="get-started-freertos-thing"></a>
+# Registering your MCU board with AWS IoT<a name="get-started-freertos-thing"></a>
 
 Your board must be registered with AWS IoT to communicate with the AWS Cloud\. To register your board with AWS IoT, you need the following:
 
@@ -11,7 +11,7 @@ An AWS IoT thing allows you to manage your devices in AWS IoT\. It is stored on 
 A private key and X\.509 certificate  
 The private key and certificate allow your device to authenticate with AWS IoT\. 
 
-If you use the **Quick Connect** workflow in the [FreeRTOS console](https://console.aws.amazon.com/freertos), a policy, an AWS IoT thing, and a key and certificate are created for you\. If you use the **Quick Connect** workflow, you can ignore the following procedures\.
+If you use the **Quick Connect** workflow in the [ FreeRTOS console](https://console.aws.amazon.com/freertos), a policy, an AWS IoT thing, and a key and certificate are created for you\. If you use the **Quick Connect** workflow, you can ignore the following procedures\.
 
 To register your board manually, follow the procedures below\.
 
@@ -52,22 +52,22 @@ To register your board manually, follow the procedures below\.
        {
            "Effect": "Allow",
            "Action": "iot:Connect",
-           "Resource":"arn:aws:iot:<aws-region>:<aws-account-id>:*"
+           "Resource":"arn:aws:iot:aws-region:aws-account-id:*"
        }, 
        {
            "Effect": "Allow",
            "Action": "iot:Publish",
-           "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+           "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
        },
        {
             "Effect": "Allow",
             "Action": "iot:Subscribe",
-            "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+            "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
        },
        {
             "Effect": "Allow",
             "Action": "iot:Receive",
-            "Resource": "arn:aws:iot:<aws-region>:<aws-account-id>:*"
+            "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
        }
        ]
    }

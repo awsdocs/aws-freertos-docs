@@ -1,4 +1,4 @@
-# Create an OTA Update Service Role<a name="create-service-role"></a>
+# Create an OTA Update service role<a name="create-service-role"></a>
 
 The OTA Update service assumes this role to create and manage OTA update jobs on your behalf\.<a name="create-service-role-steps"></a>
 
@@ -52,13 +52,13 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
                    "iam:GetRole",
                    "iam:PassRole"
                ],
-               "Resource": "arn:aws:iam::<your_account_id>:role/<your_role_name>"
+               "Resource": "arn:aws:iam::your_account_id:role/your_role_name"
          }
        ]
    }
    ```
 
-   Make sure that you replace *<your\_account\_id>* with your AWS account ID, and *<your\_role\_name>* with the name of the OTA service role\.
+   Make sure that you replace *your\_account\_id* with your AWS account ID, and *your\_role\_name* with the name of the OTA service role\.
 
 1. Choose **Review policy**\.
 
@@ -89,14 +89,14 @@ The following procedure isn't required if your Amazon S3 bucket name begins with
                    "s3:PutObject"
                ],
                "Resource": [
-                   "arn:aws:s3:::<example-bucket>/*"
+                   "arn:aws:s3:::example-bucket/*"
                ]
            }
        ]
    }
    ```
 
-   This policy grants your OTA service role permission to read Amazon S3 objects\. Make sure that you replace *<example\-bucket>* with the name of your bucket\.
+   This policy grants your OTA service role permission to read Amazon S3 objects\. Make sure that you replace *example\-bucket* with the name of your bucket\.
 
 1. Choose **Review policy**\.
 

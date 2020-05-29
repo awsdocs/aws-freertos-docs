@@ -1,8 +1,8 @@
-# FreeRTOS Console<a name="freertos-ocw"></a>
+# FreeRTOS console<a name="freertos-ocw"></a>
 
 In the [FreeRTOS console](https://console.aws.amazon.com/freertos), you can download a package with a predefined configuration, or you can create your own configuration by selecting your hardware platform and the libraries required for your application\. These configurations are saved in AWS and are available for download at any time\.
 
-## Predefined FreeRTOS Configurations<a name="freertos-predefined-configurations"></a>
+## Predefined FreeRTOS configurations<a name="freertos-predefined-configurations"></a>
 
 The predefined configurations make it possible for you to get started quickly with the supported use cases without thinking about which libraries are required\. To use a predefined configuration, browse to the [FreeRTOS console](https://console.aws.amazon.com/freertos), find the configuration you want to use, and then choose **Download**\.
 
@@ -22,7 +22,7 @@ You can also customize a predefined configuration if you want to change the Free
 
 1. At the bottom of the page, choose **Create and download**\.
 
-## Custom FreeRTOS Configurations<a name="freertos-custom-configurations"></a>
+## Custom FreeRTOS configurations<a name="freertos-custom-configurations"></a>
 
 Custom configurations allow you to specify your hardware platform, integrated development platform \(IDE\), compiler, and only those RTOS libraries you require\. This leaves more space on your devices for application code\.
 

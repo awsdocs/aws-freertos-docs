@@ -1,4 +1,4 @@
-# Installing a Terminal Emulator<a name="uart-term"></a>
+# Installing a terminal emulator<a name="uart-term"></a>
 
 A terminal emulator can help you diagnose problems or verify that your device code is running properly\. There are a variety of terminal emulators available for Windows, macOS, and Linux\.
 
@@ -15,7 +15,7 @@ Use the following settings to configure your terminal emulator:
 |  Stop  |  1 bit  | 
 |  Flow control  |  none  | 
 
-## Finding Your Board's Serial Port<a name="serial-port-ts"></a>
+## Finding your board's serial port<a name="serial-port-ts"></a>
 
 If you do not know your board's serial port, you can issue one of the following commands from the command line or terminal to return the serial ports for all devices connected to your host computer:
 

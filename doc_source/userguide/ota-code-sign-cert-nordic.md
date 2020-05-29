@@ -1,4 +1,4 @@
-# Creating a Code\-Signing Certificate for the Nordic nrf52840\-dk<a name="ota-code-sign-cert-nordic"></a>
+# Creating a code\-signing certificate for the Nordic nrf52840\-dk<a name="ota-code-sign-cert-nordic"></a>
 
 The Nordic nrf52840\-dk supports a self\-signed SHA256 with ECDSA code\-signing certificate\.
 

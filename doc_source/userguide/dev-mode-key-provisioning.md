@@ -1,22 +1,22 @@
-# Developer\-Mode Key Provisioning<a name="dev-mode-key-provisioning"></a>
+# Developer\-mode key provisioning<a name="dev-mode-key-provisioning"></a>
 
 ## Introduction<a name="dev-mode-key-provisioning-intro"></a>
 
 This section discusses two options to get a trusted X\.509 client certificate onto an IoT device for lab testing\. Depending on the capabilities of the device, various provisioning\-related operations may or may not be supported, including onboard ECDSA key generation, private key import, and X\.509 certificate enrollment\. In addition, different use cases call for different levels of key protection, ranging from onboard flash storage to the use of dedicated crypto hardware\. This section provides logic for working within the cryptographic capabilities of your device\.
 
-## Option \#1: Private Key Import from AWS IoT<a name="dev-mode-key-provisioning-option1"></a>
+## Option \#1: private key import from AWS IoT<a name="dev-mode-key-provisioning-option1"></a>
 
-For lab testing purposes, if your device allows the import of private keys, follow the instructions in [Configuring the FreeRTOS Demos](freertos-configure.md)\.
+For lab testing purposes, if your device allows the import of private keys, follow the instructions in [Configuring the FreeRTOS demos](freertos-configure.md)\.
 
-## Option \#2: Onboard Private Key Generation<a name="dev-mode-key-provisioning-option2"></a>
+## Option \#2: onboard private key generation<a name="dev-mode-key-provisioning-option2"></a>
 
 If your device has a secure element, or if you prefer to generate your own device key pair and certificate, follow the instructions here\.
 
 Initial Configuration  
-First, perform the steps in [Configuring the FreeRTOS Demos](freertos-configure.md), but skip the last step \(that is, don't do *To format your AWS IoT credentials*\)\. The net result should be that the `demos/include/aws_clientcredential.h` file has been updated with your settings, but the `demos/include/aws_clientcredential_keys.h` file has not\.
+First, perform the steps in [Configuring the FreeRTOS demos](freertos-configure.md), but skip the last step \(that is, don't do *To format your AWS IoT credentials*\)\. The net result should be that the `demos/include/aws_clientcredential.h` file has been updated with your settings, but the `demos/include/aws_clientcredential_keys.h` file has not\.
 
 Demo Project Configuration  
-Open the Hello World MQTT demo as described in the guide for your board in [Board\-specific Getting Started Guides](getting-started-guides.md) \. In the project, open the file `aws_dev_mode_key_provisioning.c` and change the definition of `keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR`, which is set to zero by default, to one:  
+Open the Hello World MQTT demo as described in the guide for your board in [Board\-specific getting started guides](getting-started-guides.md) \. In the project, open the file `aws_dev_mode_key_provisioning.c` and change the definition of `keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR`, which is set to zero by default, to one:  
 
 ```
 #define keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR 1

@@ -1,4 +1,4 @@
-# Compliance Validation<a name="freertos-compliance"></a>
+# Compliance validation<a name="freertos-compliance"></a>
 
 FreeRTOS is not in scope of any AWS compliance programs\. For a list of AWS services in scope of specific compliance programs, see [AWS Services in Scope by Compliance Program](http://aws.amazon.com/compliance/services-in-scope/)\. For general information, see [AWS Compliance Programs](http://aws.amazon.com/compliance/programs/)\.
 

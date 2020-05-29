@@ -1,8 +1,8 @@
-# Getting Started with the MediaTek MT7697Hx Development Kit<a name="getting_started_mediatek"></a>
+# Getting started with the MediaTek MT7697Hx development kit<a name="getting_started_mediatek"></a>
 
-This tutorial provides instructions for getting started with the MediaTek MT7697Hx Development Kit\. If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
+This tutorial provides instructions for getting started with the MediaTek MT7697Hx Development Kit\. If you do not have the MediaTek MT7697Hx Development Kit, visit the AWS Partner Device Catalog to purchase one from our [ partner](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="w14aab7c25c27b7"></a>
 
@@ -16,11 +16,11 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up Your Development Environment<a name="mediatek-setup-env"></a>
+## Set up your development environment<a name="mediatek-setup-env"></a>
 
 Before you set up your environment, connect your computer to the USB port on the MediaTek MT7697Hx Development Kit\.
 
-### Download and Install Keil MDK<a name="install-keil-mdk"></a>
+### Download and install Keil MDK<a name="install-keil-mdk"></a>
 
 You can use the GUI\-based Keil Microcontroller Development Kit \(MDK\) to configure, build, and run FreeRTOS projects on your board\. Keil MDK includes the μVision IDE and the μVision Debugger\.
 
@@ -37,7 +37,7 @@ Keil MDK is supported on Windows 7, Windows 8, and Windows 10 64\-bit machines o
 
 1. Open the Keil MDK installer and follow the steps to completion\. Make sure that you install the MediaTek device pack \(MT76x7 Series\)\.
 
-## Establish a Serial Connection<a name="mediatek-serial-connection"></a>
+## Establish a serial connection<a name="mediatek-serial-connection"></a>
 
 To establish a serial connection with the MediaTek MT7697Hx Development Kit, you must install the Arm Mbed Windows serial port driver\. You can download the driver from [Mbed](https://os.mbed.com/docs/latest/tutorials/windows-serial-driver.html)\. Follow the steps on the **Windows serial driver** page to download and install the driver for the MediaTek MT7697Hx Development Kit\. 
 
@@ -46,7 +46,7 @@ After you install the driver, a COM port appears in the Windows Device Manager\.
 **Note**  
 If you are having trouble connecting to your board after you install the driver, you might need to reboot your machine\.
 
-## Build and Run the FreeRTOS Demo Project with Keil MDK<a name="mediatek-build-and-run-keil"></a>
+## Build and run the FreeRTOS demo project with Keil MDK<a name="mediatek-build-and-run-keil"></a>
 
 **To build the FreeRTOS demo project in Keil μVision**
 
@@ -76,7 +76,7 @@ If you are having trouble connecting to your board after you install the driver,
 
 1. Choose the **RESET** button on your MediaTek MT7697Hx Development Kit\.
 
-### Monitoring MQTT Messages on the Cloud<a name="gsg-mediatek-monitor-mqtt"></a>
+### Monitoring MQTT messages on the cloud<a name="gsg-mediatek-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -90,7 +90,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="mediatek-troubleshooting"></a>
 
-### Debugging FreeRTOS Projects in Keil μVision<a name="mediatek-debugging"></a>
+### Debugging FreeRTOS projects in Keil μVision<a name="mediatek-debugging"></a>
 
 Currently, you must edit the MediaTek package that is included with Keil μVision before you can debug the FreeRTOS demo project for MediaTek with Keil μVision\.
 
@@ -136,7 +136,7 @@ Currently, you must edit the MediaTek package that is included with Keil μVisio
 
 1. Set breakpoints in your project's source code, and run the code\. 
 
-### Troubleshooting the IDE Debugger Settings<a name="gsg-mediatek-ts-ide"></a>
+### Troubleshooting the IDE debugger settings<a name="gsg-mediatek-ts-ide"></a>
 
 If you are having trouble debugging an application, your debugger settings might be incorrect\.
 
@@ -152,4 +152,4 @@ If you are having trouble debugging an application, your debugger settings might
 1. Verify that the settings under the **Flash Download** tab appear as follows:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/mediatek-debug-3.png)
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

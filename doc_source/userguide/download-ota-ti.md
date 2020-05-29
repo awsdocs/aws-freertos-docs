@@ -1,4 +1,4 @@
-# Download, Build, Flash, and Run the FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL<a name="download-ota-ti"></a><a name="download-demo"></a>
+# Download, build, flash, and run the FreeRTOS OTA demo on the Texas Instruments CC3220SF\-LAUNCHXL<a name="download-ota-ti"></a><a name="download-demo"></a>
 
 **To download FreeRTOS and the OTA demo code**
 
@@ -22,7 +22,7 @@ Save the zip file that contains FreeRTOS and the OTA demo code to your computer\
 
 1. Follow the instructions in [Getting Started with FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into Code Composer Studio, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
-1.  Open `<freertos>/vendors/<vendor>/boards/<board>/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 

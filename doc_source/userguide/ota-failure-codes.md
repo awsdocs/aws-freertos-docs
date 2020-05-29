@@ -1,4 +1,4 @@
-# Get OTA Failure Codes with the AWS CLI<a name="ota-failure-codes"></a>
+# Get OTA failure codes with the AWS CLI<a name="ota-failure-codes"></a>
 
 1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\. 
 
@@ -42,4 +42,4 @@
    }
    ```
 
-   In this example output, the "`reason`" in the "`detailsmap`" has two fields: the field shown as "0xEEEEEEEE" contains the generic error code from the OTA agent; the field shown as "0xffffffff" contains the sub\-code\. The generic error codes are listed in [ https://docs\.aws\.amazon\.com/freertos/latest/lib\-ref/html1/aws\_\_ota\_\_agent\_8h\.html](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\. See error codes with the prefix "`kOTA_Err_`"\. The sub\-code can be a platform specific code or provide more details about the generic error\. 
+   In this example output, the "`reason`" in the "`detailsmap`" has two fields: the field shown as "0xEEEEEEEE" contains the generic error code from the OTA Agent; the field shown as "0xffffffff" contains the sub\-code\. The generic error codes are listed in [ https://docs\.aws\.amazon\.com/freertos/latest/lib\-ref/html1/aws\_\_ota\_\_agent\_8h\.html](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\. See error codes with the prefix "`kOTA_Err_`"\. The sub\-code can be a platform specific code or provide more details about the generic error\. 

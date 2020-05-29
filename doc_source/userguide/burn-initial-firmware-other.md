@@ -1,4 +1,4 @@
-# Install the Initial Version of Firmware on a Custom Board<a name="burn-initial-firmware-other"></a>
+# Install the initial version of firmware on a custom board<a name="burn-initial-firmware-other"></a>
 
 Using your IDE, build the `aws_demos` project, making sure to include the OTA library\. For more information about the structure of the FreeRTOS source code, see [FreeRTOS Demos](freertos-next-steps.md)\.
 

@@ -1,4 +1,4 @@
-# Task Pool Library<a name="task-pool"></a>
+# Task Pool library<a name="task-pool"></a>
 
 ## Overview<a name="freertos-task-pool-overview"></a>
 
@@ -10,17 +10,17 @@ The Task Pool library is built on two main data structures: the Task Pool and Ta
 
 The Task Pool contains a dispatch queue that manages the job queue for execution, and manages the worker threads that execute jobs\.
 
-### Task Pool Jobs \(`IotTaskPoolJob_t`\)<a name="w14aab9c15c15b3b9"></a>
+### Task Pool jobs \(`IotTaskPoolJob_t`\)<a name="w14aab9c15c15b3b9"></a>
 
 Task Pool jobs can be executed as background jobs, or timed background jobs\. Background jobs are started in First\-In\-First\-Out order and have no time constraints\. Timed jobs are scheduled for background execution according to a timer\.
 
 **Note**  
-Task pool can only guarantee that a timed job will be executed after a timeout elapses, and not within a specific window of time\.
+Task Pool can only guarantee that a timed job will be executed after a timeout elapses, and not within a specific window of time\.
 
-## Dependencies and Requirements<a name="freertos-task-pool-dependencies"></a>
+## Dependencies and requirements<a name="freertos-task-pool-dependencies"></a>
 
 The Task Pool library has the following dependencies:
-+ The linear containers \(list/queue\) library for maintaining the data structures for scheduled and in\-progress task pool operations\.
++ The Linear Containers \(list/queue\) library for maintaining the data structures for scheduled and in\-progress task pool operations\.
 + The logging library \(if `IOT_LOG_LEVEL_TASKPOOL` configuration setting is not `IOT_LOG_NONE`\)\.
 + A platform layer that provides an interface to the operating system for thread management, timers, clock functions, etc\.
 
@@ -38,11 +38,11 @@ Using the Task Pool library APIs, you can do the following:
 
 The Task Pool library functions return error codes as `IotTaskPoolError_t` enumerated values\. For more information about each error code, see the reference documentation for `IotTaskPoolError_t` enumerated data type in [Task Pool C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/taskpool/index.html)\.
 
-## Usage Restrictions<a name="freertos-task-pool-restrictions"></a>
+## Usage restrictions<a name="freertos-task-pool-restrictions"></a>
 
 The Task Pool pool library cannot be used from an interrupt service routine \(ISR\)\.
 
-We strongly discourage Task Pool user callbacks that perform blocking operations, especially indefinite blocking operations\. Long\-standing blocking operations effectively steal a task pool thread, and create a potential for deadlock or starvation\.
+We strongly discourage task pool user callbacks that perform blocking operations, especially indefinite blocking operations\. Long\-standing blocking operations effectively steal a task pool thread, and create a potential for deadlock or starvation\.
 
 ## Initialization<a name="freertos-task-pool-initialization"></a>
 
@@ -51,11 +51,11 @@ An application needs to call `IotTaskPool_CreateSystemTaskPool` to initialize an
 **Note**  
 Calling `IotTaskPool_CreateSystemTaskPool` does not allocate memory to hold the task pool data structures and state, but it might allocate memory to hold the dependent entities and data structures, like the threads of the task pool\.
 
-## API Reference<a name="freertos-task-pool-api"></a>
+## API reference<a name="freertos-task-pool-api"></a>
 
 For a full API reference, see [Task Pool C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/taskpool/index.html)\.
 
-## Example Usage<a name="freertos-task-pool-example"></a>
+## Example usage<a name="freertos-task-pool-example"></a>
 
 Suppose that you need to schedule a recurring collection of AWS IoT Device Defender metrics, and you decide to use a timer to schedule the collection with calls to the MQTT connect, subscribe, and publish APIs\. The following code defines a callback function for accepting AWS IoT Device Defender metrics across MQTT, with a disconnect callback that disconnects from the MQTT connection\.
 

@@ -1,4 +1,4 @@
-# Create an Amazon S3 Bucket to Store Your Update<a name="dg-ota-bucket"></a>
+# Create an Amazon S3 bucket to store your update<a name="dg-ota-bucket"></a>
 
 OTA update files are stored in Amazon S3 buckets\.
 

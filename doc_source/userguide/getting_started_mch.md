@@ -1,18 +1,18 @@
-# Getting Started with the Microchip Curiosity PIC32MZ EF<a name="getting_started_mch"></a>
+# Getting started with the Microchip Curiosity PIC32MZ EF<a name="getting_started_mch"></a>
 
-This tutorial provides instructions for getting started with the Microchip Curiosity PIC32MZ EF\. If you do not have the Microchip Curiosity PIC32MZ EF bundle, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\.
+This tutorial provides instructions for getting started with the Microchip Curiosity PIC32MZ EF\. If you do not have the Microchip Curiosity PIC32MZ EF bundle, visit the AWS Partner Device Catalog to purchase one from our [ partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\.
 
 The bundle includes the following items:
 + [Curiosity PIC32MZ EF Development Board](https://www.microchip.com/Developmenttools/ProductDetails/DM320104)
 + [MikroElectronika USB UART click Board](https://www.mikroe.com/usb-uart-click)
 + [MikroElectronika WiFi 7 click Board](https://www.mikroe.com/wifi-7-click) 
-+ [PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
++ [ PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
 
 You also need the following items for debugging:
-+ [MPLAB Snap In\-Circuit Debugger](https://www.microchip.com/Developmenttools/ProductDetails/PG164100) 
-+ \(Optional\) [PICkit 3 Programming Cable Kit](https://www.microchip.com/TPROG001) 
++ [MPLAB Snap In\-Circuit Debugger](https://www.microchip.com/Developmenttools/ProductDetails/PG164100)
++ \(Optional\) [PICkit 3 Programming Cable Kit](https://www.microchip.com/TPROG001)
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\.
 
 **Important**  
 In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
@@ -33,7 +33,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up the Microchip Curiosity PIC32MZ EF Hardware<a name="setup-hw-mch"></a>
+## Set up the Microchip Curiosity PIC32MZ EF hardware<a name="setup-hw-mch"></a>
 
 1. Connect the MikroElectronika USB UART click Board to the microBUS 1 connector on the Microchip Curiosity PIC32MZ EF\.
 
@@ -42,7 +42,7 @@ This tutorial contains instructions for the following getting started steps:
 1. Connect the MikroElectronika USB UART click Board to your computer using a USB A to USB mini\-B cable\.
 
 1. To connect your board to the internet, use one of the following options:
-   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. See [Configuring the FreeRTOS Demos](freertos-configure.md)\.
+   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. See [Configuring the FreeRTOS demos](freertos-configure.md)\.
    + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
 1. If not done already, solder the angle connector to the ICSP header on the Microchip Curiosity PIC32MZ EF\.
@@ -57,21 +57,21 @@ This tutorial contains instructions for the following getting started steps:
 
    For more information about the MPLAB Snap Debugger, see the [MPLAB Snap In\-Circuit Debugger Information Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLAB%20Snap%20In-Circuit%20Debugger%20IS%20DS50002787A.pdf)\.
 
-## Set up the Microchip Curiosity PIC32MZ EF Hardware Using PICkit On Board \(PKOB\)<a name="setup-env_mch-pkob"></a>
+## Set up the Microchip Curiosity PIC32MZ EF hardware using PICkit On Board \(PKOB\)<a name="setup-env_mch-pkob"></a>
 
 We recommend that you follow the setup procedure in the previous section\. However, you can evaluate and run FreeRTOS demos with basic debugging using the integrated PICkit On Board \(PKOB\) programmer/debugger by following these steps\.
 
 1. Connect the MikroElectronika USB UART click Board to the microBUS 1 connector on the Microchip Curiosity PIC32MZ EF\.
 
 1. To connect your board to the internet, do one of the following:
-   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. \(Follow the steps "To configure your Wi\-Fi" in [Configuring the FreeRTOS Demos](freertos-configure.md)\.
+   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. \(Follow the steps "To configure your Wi\-Fi" in [Configuring the FreeRTOS demos](freertos-configure.md)\.
    + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
 1. Connect the USB micro\-B port named "USB DEBUG" on the Microchip Curiosity PIC32MZ EF Board to your computer using a USB type A to USB micro\-B cable\.
 
 1. Connect the MikroElectronika USB UART click Board to your computer using a USB A to USB mini\-B cable\.
 
-## Set Up Your Development Environment<a name="setup-env_mch"></a>
+## Set up your development environment<a name="setup-env_mch"></a>
 
 **Note**  
 The FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the project, you need to use versions of the MPLAB tools that are compatible with Harmony v2, like v2\.10 of the MPLAB XC32 Compiler and versions 2\.X\.X of the MPLAB Harmony Configurator \(MHC\)\.
@@ -95,9 +95,9 @@ The FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the
    + Stop bits: 1
    + Flow control: None
 
-## Build and Run FreeRTOS Demo Project<a name="mch-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="mch-build-and-run-example"></a>
 
-### Open the FreeRTOS Demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
+### Open the FreeRTOS demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
 
 1. Open MPLAB IDE\. If you have more than one version of the compiler installed, you need to select the compiler that you want to use from within the IDE\. 
 
@@ -110,7 +110,7 @@ The FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the
 **Note**  
 When you open the project for the first time, you might get an error message about the compiler\. In the IDE, navigate to **Tools**, **Options**, **Embedded**, and then select the compiler that you are using for your project\.
 
-### Run the FreeRTOS Demo Project<a name="mch-run-example"></a>
+### Run the FreeRTOS demo project<a name="mch-run-example"></a>
 
 1. Rebuild your project\.
 
@@ -129,16 +129,16 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 1. Use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/v5.10/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/v2.15/bin -S <freertos> -B <BUILD_FOLDER>
+   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/version/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/version/bin -S freertos -B BUILD_FOLDER
    ```
 **Note**  
-You must specify the correct paths to the Hexmate and toolchain binaries\.
+You must specify the correct paths to the Hexmate and toolchain binaries\. \(For example: `C:\Program Files (x86)\Microchip\MPLABX\v5.35\mplab_platform\bin` and `C:\Program Files\Microchip\xc32\v2.40\bin` respectively\.\)
 
 1. Change directories to the build directory \(*BUILD\_FOLDER*\), and run `make` from that directory\.
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="getting_started_mch_monitor_mqtt"></a>
+### Monitoring MQTT messages on the cloud<a name="getting_started_mch_monitor_mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -152,4 +152,4 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 
-For troubleshooting information, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For troubleshooting information, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

@@ -1,4 +1,4 @@
-# Creating a Code\-Signing Certificate for the Texas Instruments CC3220SF\-LAUNCHXL<a name="ota-code-sign-cert-ti"></a>
+# Creating a code\-signing certificate for the Texas Instruments CC3220SF\-LAUNCHXL<a name="ota-code-sign-cert-ti"></a>
 
 The SimpleLink Wi\-Fi CC3220SF Wireless Microcontroller Launchpad Development Kit supports two certificate chains for firmware code signing:
 + Production \(certificate\-catalog\)
@@ -8,7 +8,7 @@ The SimpleLink Wi\-Fi CC3220SF Wireless Microcontroller Launchpad Development Ki
 
   The playground certificate chain allows you to try out OTA updates with a self‐signed code\-signing certificate\.
 
-Use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For more information see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
+Use the AWS Command Line Interface to import your code\-signing certificate, private key, and certificate chain into AWS Certificate Manager\. For more information see [ Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
 
 Download and install the latest version of [SimpleLink CC3220 SDK](http://www.ti.com/tool/download/SIMPLELINK-CC3220-SDK)\. By default, the files you need are located here:
 
@@ -21,7 +21,7 @@ The certificates in the SimpleLink CC3220 SDK are in DER format\. To create a se
 Follow these steps to create a code\-signing certificate that is linked to the Texas Instruments playground certificate hierarchy and meets AWS Certificate Manager and Code Signing for AWS IoT criteria\.
 
 **Note**  
-To create a code signing certificate, install [OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.
+To create a code signing certificate, install [ OpenSSL](https://www.openssl.org/) on your machine\. After you install OpenSSL, make sure that `openssl` is assigned to the OpenSSL executable in your command prompt or terminal environment\.
 
 **To create a self‐signed code signing certificate**
 
@@ -89,7 +89,7 @@ You write the `tisigner.crt.der` certificate onto the TI development board later
 1. Import the code\-signing certificate, private key, and certificate chain into AWS Certificate Manager:
 
    ```
-   aws acm import-certificate --certificate fileb://tisigner.crt.pem --private-key fileb://tisigner.key --certificate-chain file://dummy-root-ca-cert.pem
+   aws acm import-certificate --certificate fileb://tisigner.crt.pem --private-key fileb://tisigner.key --certificate-chain fileb://dummy-root-ca-cert.pem
    ```
 
    This command displays an ARN for your certificate\. You need this ARN when you create an OTA update job\.

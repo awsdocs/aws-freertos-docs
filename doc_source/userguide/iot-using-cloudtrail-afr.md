@@ -1,10 +1,10 @@
-# Log AWS IoT OTA API Calls with AWS CloudTrail<a name="iot-using-cloudtrail-afr"></a>
+# Log AWS IoT OTA API calls with AWS CloudTrail<a name="iot-using-cloudtrail-afr"></a>
 
 FreeRTOS is integrated with CloudTrail, a service that captures AWS IoT OTA API calls and delivers the log files to an Amazon S3 bucket that you specify\. CloudTrail captures API calls from your code to the AWS IoT OTA APIs\. Using the information collected by CloudTrail, you can determine the request that was made to AWS IoT OTA, the source IP address from which the request was made, who made the request, when it was made, and so on\. 
 
 For more information about CloudTrail, including how to configure and enable it, see the [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
-## FreeRTOS Information in CloudTrail<a name="aws-iot-info-in-cloudtrail-afr"></a>
+## FreeRTOS information in CloudTrail<a name="aws-iot-info-in-cloudtrail-afr"></a>
 
 When CloudTrail logging is enabled in your AWS account, API calls made to AWS IoT OTA actions are tracked in CloudTrail log files where they are written with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
 
@@ -37,7 +37,7 @@ You can also aggregate AWS IoT OTA log files from multiple AWS Regions and multi
 
 For more information, see [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)\.
 
-## Understanding FreeRTOS Log File Entries<a name="understanding-aws-iot-entries-afr"></a>
+## Understanding FreeRTOS log file entries<a name="understanding-aws-iot-entries-afr"></a>
 
 CloudTrail log files can contain one or more log entries\. Each entry lists multiple JSON\-formatted events\. A log entry represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. Log entries are not an ordered stack trace of the public API calls, so they do not appear in any specific order\. 
 
@@ -49,10 +49,10 @@ The following example shows a CloudTrail log entry that demonstrates the log fro
     "userIdentity": {
         "type": "IAMUser",
         "principalId": "EXAMPLE",
-        "arn": "arn:aws:iam::<your_aws_account>:user/<your_user_id>",
-        "accountId": "<your_aws_account>",
-        "accessKeyId": "<your_access_key_id>",
-        "userName": "<your_username>",
+        "arn": "arn:aws:iam::your_aws_account:user/your_user_id",
+        "accountId": "your_aws_account",
+        "accessKeyId": "your_access_key_id",
+        "userName": "your_username",
         "sessionContext": {
             "attributes": {
                 "mfaAuthenticated": "false",
@@ -64,23 +64,23 @@ The following example shows a CloudTrail log entry that demonstrates the log fro
     "eventTime": "2018-08-23T17:27:19Z",
     "eventSource": "iot.amazonaws.com",
     "eventName": "CreateOTAUpdate",
-    "awsRegion": "<your_aws_region>",
+    "awsRegion": "your_aws_region",
     "sourceIPAddress": "apigateway.amazonaws.com",
     "userAgent": "apigateway.amazonaws.com",
     "requestParameters": {
         "targets": [
-            "arn:aws:iot:<your_aws_region>:<your_aws_account>:thing/Thing_CMH"
+            "arn:aws:iot:your_aws_region:your_aws_account:thing/Thing_CMH"
         ],
-        "roleArn": "arn:aws:iam::<your_aws_account>:role/Role_FreeRTOSJob",
+        "roleArn": "arn:aws:iam::your_aws_account:role/Role_FreeRTOSJob",
         "files": [
             {
                 "fileName": "/sys/mcuflashimg.bin",
                 "fileSource": {
                     "fileId": 0,
-                    "streamId": "<your_stream_id>"
+                    "streamId": "your_stream_id"
                 },
                 "codeSigning": {
-                    "awsSignerJobId": "<your_signer_job_id>"
+                    "awsSignerJobId": "your_signer_job_id"
                 }
             }
         ],
@@ -88,13 +88,13 @@ The following example shows a CloudTrail log entry that demonstrates the log fro
         "otaUpdateId": "FreeRTOSJob_CMH-23-1535045232806-92"
     },
     "responseElements": {
-        "otaUpdateArn": "arn:aws:iot:<your_aws_region>:<your_aws_account>:otaupdate/FreeRTOSJob_CMH-23-1535045232806-92",
+        "otaUpdateArn": "arn:aws:iot:your_aws_region:your_aws_account:otaupdate/FreeRTOSJob_CMH-23-1535045232806-92",
         "otaUpdateStatus": "CREATE_PENDING",
         "otaUpdateId": "FreeRTOSJob_CMH-23-1535045232806-92"
     },
     "requestID": "c9649630-a6f9-11e8-8f9c-e1cf2d0c9d8e",
     "eventID": "ce9bf4d9-5770-4cee-acf4-0e5649b845c0",
     "eventType": "AwsApiCall",
-    "recipientAccountId": "<recipient_aws_account>"
+    "recipientAccountId": "recipient_aws_account"
 }
 ```

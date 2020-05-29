@@ -1,15 +1,15 @@
-# Running Bluetooth Low Energy Tests<a name="afr-bridgekeeper-dt-bt"></a>
+# Running Bluetooth Low Energy tests<a name="afr-bridgekeeper-dt-bt"></a>
 
 This section describes how to set up and run the Bluetooth tests using AWS IoT Device Tester for FreeRTOS\. Bluetooth tests are not required for core qualification\. If you do not want to test your device with FreeRTOS Bluetooth support you may skip this setup, be sure to leave the BLE feature in device\.json set to `No`\.
 
 ## Prerequisites<a name="dt-bt-prereq"></a>
-+ Follow the instructions in [Preparing to Test Your Microcontroller Board for the First Time](qual-steps.md)\.
++ Follow the instructions in [Preparing to test your microcontroller board for the first time](qual-steps.md)\.
 + A Raspberry Pi 3B\+\. \(Required to run the Raspberry Pi BLE companion application\)
 + A micro SD card and SD card adapter for the Raspberry Pi software\.
 
  
 
-## Raspberry Pi Setup<a name="dt-bt-pi-setup"></a>
+## Raspberry Pi setup<a name="dt-bt-pi-setup"></a>
 
 To test the BLE capabilities of the device under test \(DUT\), you must have a Raspberry Pi Model 3B\+\.
 
@@ -123,7 +123,7 @@ The `ssh-copy-id` command assumes the public key is named `id_rsa.pub`\. On macO
          }
          ```
 
-## FreeRTOS Device Setup<a name="afr-device-setup"></a>
+## FreeRTOS device setup<a name="afr-device-setup"></a>
 
 In your `device.json` file, set the `BLE` feature to `Yes`\. If you are starting with a `device.json` file from before Bluetooth tests were available, you need to add the feature for BLE to the `features` array:
 
@@ -139,7 +139,7 @@ In your `device.json` file, set the `BLE` feature to `Yes`\. If you are starting
 }
 ```
 
-## Running the BLE Tests<a name="running-ble-test"></a>
+## Running the BLE tests<a name="running-ble-test"></a>
 
 After you have enabled the BLE feature in `device.json`, the BLE tests run when you run `devicetester_[linux | mac | win_x86-64] run-suite` *without specifying a group\-id*\.
 
@@ -147,6 +147,6 @@ If you want to run the BLE tests separately, you can specify the group ID for BL
 
 For the most reliable performance, place your Raspberry Pi close to the device under test \(DUT\)\.
 
-## Troubleshooting BLE Tests<a name="troubleshooting-ble"></a>
+## Troubleshooting BLE tests<a name="troubleshooting-ble"></a>
 
-Make sure you have followed the steps in [Preparing to Test Your Microcontroller Board for the First Time](qual-steps.md)\. If tests other than BLE are failing, then the problem is most likely not due to the Bluetooth configuration\.
+Make sure you have followed the steps in [Preparing to test your microcontroller board for the first time](qual-steps.md)\. If tests other than BLE are failing, then the problem is most likely not due to the Bluetooth configuration\.

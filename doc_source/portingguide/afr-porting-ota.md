@@ -1,4 +1,4 @@
-# Porting the OTA Library<a name="afr-porting-ota"></a>
+# Porting the OTA library<a name="afr-porting-ota"></a>
 
 With FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Deploy new firmware images to a single device, a group of devices, or your entire fleet\.
@@ -25,14 +25,14 @@ A port of the FreeRTOS OTA update library is currently not required for qualific
 To port the OTA agent library, you need the following:
 + A port of the TLS library\.
 
-  For information, see [Porting the TLS Library](afr-porting-tls.md)\.
+  For information, see [Porting the TLS library](afr-porting-tls.md)\.
 + A bootloader that can support OTA updates\.
 
-  For more information about porting a bootloader demo application, see [Porting the Bootloader Demo](#afr-porting-bootloader)\.
+  For more information about porting a bootloader demo application, see [Porting the bootloader demo](#afr-porting-bootloader)\.
 
 ## Porting<a name="porting-steps-ota"></a>
 
-`<freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
+`freertos/vendors/vendor/boards/board/ports/ota/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
 
 
 | Function | Description | 
@@ -53,17 +53,17 @@ Implement the functions in this table if your device has built\-in support for t
 | prvPAL\_CheckFileSignature | Verifies the signature of the specified file\. | 
 | prvPAL\_ReadAndAssumeCertificate | Reads the specified signer certificate from the file system and returns it to the caller\. | 
 
-Make sure that you have a bootloader that can support OTA updates\. For instructions on porting the bootloader demo application provided with FreeRTOS or creating your IoT device bootloader, see [IoT Device Bootloader](#afr-bootloader)\.
+Make sure that you have a bootloader that can support OTA updates\. For instructions on porting the bootloader demo application provided with FreeRTOS or creating your IoT device bootloader, see [IoT device bootloader](#afr-bootloader)\.
 
-## IoT Device Bootloader<a name="afr-bootloader"></a>
+## IoT device bootloader<a name="afr-bootloader"></a>
 
-### Porting the Bootloader Demo<a name="afr-porting-bootloader"></a>
+### Porting the bootloader demo<a name="afr-porting-bootloader"></a>
 
 FreeRTOS includes a demo bootloader application for the Microchip Curiosity PIC32MZEF platform\. For more information, see [Demo Bootloader for the Microchip Curiosity PIC32MZEF](https://docs.aws.amazon.com/freertos/latest/userguide/microchip-bootloader.html) in the *FreeRTOS User Guide*\. You can port this demo to other platforms\.
 
-If you choose not to port the demo to your platform, you can use your own bootloader application\. [Threat Modeling for the IoT Device Bootloader](#afr-threat-model-for-bootloader) discusses threat modeling to help you write your own secure bootloader application\.
+If you choose not to port the demo to your platform, you can use your own bootloader application\. [Threat modeling for the IoT device bootloader](#afr-threat-model-for-bootloader) discusses threat modeling to help you write your own secure bootloader application\.
 
-### Threat Modeling for the IoT Device Bootloader<a name="afr-threat-model-for-bootloader"></a>
+### Threat modeling for the IoT device bootloader<a name="afr-threat-model-for-bootloader"></a>
 
 #### Background<a name="afr-threat-model-for-bootloader-background"></a>
 
@@ -73,7 +73,7 @@ Threat modeling is an approach to security from the point of view of a hypotheti
 
 FreeRTOS offers OTA \("over\-the\-air"\) software updates to IoT devices\. The update facility combines cloud services with on\-device software libraries and a partner\-supplied bootloader\. This threat model focuses specifically on threats against the bootloader\.
 
-**Bootloader Use Cases**
+**Bootloader use cases**
 + Digitally sign and encrypt firmware before deployment\.
 + Deploy new firmware images to a single device, a group of devices, or an entire fleet\.
 + Verify the authenticity and integrity of new firmware after it's deployed to devices\.
@@ -119,11 +119,11 @@ Some attacks will have multiple mitigations; for example, a network man\-in\-the
   + The certificate is in a cryptographic co\-processor, and cannot be modified\.
   + The certificate is in ROM \(or OTP, or secure zone\), and cannot be modified\.
 
-#### Further Threat Modeling<a name="afr-threat-model-for-bootloader-further"></a>
+#### Further threat modeling<a name="afr-threat-model-for-bootloader-further"></a>
 
 This threat model considers only the bootloader\. Further threat modeling could improve overall security\. A recommended method is to list the adversary's goals, the assets targeted by those goals, and points of entry to the assets\. A list of threats can be made by considering attacks on the points of entry to gain control of the assets\. The following are lists of examples of goals, assets, and entry points for an IoT device\. These lists are not exhaustive, and are intended to spur further thought\.
 
-**Adversary's Goals**
+**Adversary's goals**
 + Extort money 
 + Ruin reputations 
 + Falsify data 
@@ -133,7 +133,7 @@ This threat model considers only the bootloader\. Further threat modeling could 
 + Wreak havoc
 + Instill terror 
 
-**Key Assets**
+**Key assets**
 + Private keys 
 + Client certificate 
 + CA root certificates 
@@ -144,7 +144,7 @@ This threat model considers only the bootloader\. Further threat modeling could 
 + Cloud analytics data store 
 + Cloud infrastructure 
 
-**Entry Points**
+**Entry points**
 + DHCP response 
 + DNS response 
 + MQTT over TLS 
@@ -158,7 +158,7 @@ This threat model considers only the bootloader\. Further threat modeling could 
 
 If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
 
-### Setting Up the IDE Test Project<a name="testing-ide-ota"></a>
+### Setting up the IDE test project<a name="testing-ide-ota"></a>
 
 If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
 
@@ -167,21 +167,21 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the OTA library in the IDE project**
 
-1. Add the source file `<freertos>/vendors/<vendor>/boards/<board>/ports/ota/aws_ota_pal.c` to the `aws_tests` IDE project\.
+1. Add the source file `freertos/vendors/vendor/boards/board/ports/ota/aws_ota_pal.c` to the `aws_tests` IDE project\.
 
 1. Add the following test source files to the `aws_tests` IDE project:
-   + `<freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
-   + `<freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
-   + `<freertos>/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
+   + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
+   + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
+   + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
    + `/demos/ota/aws_iot_ota_update_demo.c`
 
-### Configuring the `CMakeLists.txt` File<a name="testing-cmake-ota"></a>
+### Configuring the `CMakeLists.txt` file<a name="testing-cmake-ota"></a>
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 The following is an example of a portable layer target definition for the OTA library\.
 
@@ -194,15 +194,15 @@ target_sources(
 )
 ```
 
-There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tests](#testing-agent-pal) and [OTA End\-to\-End Tests](#testing-e2e)\.
+There are two sets of tests for the OTA library port: [OTA agent and OTA PAL tests](#testing-agent-pal) and [OTA end\-to\-end tests](#testing-e2e)\.
 
-### OTA Agent and OTA PAL Tests<a name="testing-agent-pal"></a>
+### OTA agent and OTA PAL tests<a name="testing-agent-pal"></a>
 
-#### Setting Up Your Local Testing Environment<a name="testing-local-ota-agent"></a>
+#### Setting up your local testing environment<a name="testing-local-ota-agent"></a>
 
 **To configure the source and header files for the OTA agent and OTA PAL tests**
 
-1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
+1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
 
 1. Choose a signing certificate for your device from `ota/test`\. The certificate are used in OTA tests for verification\. 
 
@@ -213,7 +213,7 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
 
    RSA/SHA1 and RSA/SHA256 are available for existing platforms only\. ECDSA/SHA256 is recommended for OTA updates\. If you have a different scheme, [contact the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
-#### Running the Tests<a name="testing-run-ota-agent"></a>
+#### Running the tests<a name="testing-run-ota-agent"></a>
 
 **To execute the OTA agent and OTA PAL tests**
 
@@ -225,20 +225,20 @@ There are two sets of tests for the OTA library port: [OTA Agent and OTA PAL Tes
    `...`  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-ota-tests2.png)
 
-### OTA End\-to\-End Tests<a name="testing-e2e"></a>
+### OTA end\-to\-end tests<a name="testing-e2e"></a>
 
 **To set up and run the end\-to\-end OTA tests**
 
-1. Follow the setup instructions in the README file \(`<freertos>/tools/ota_e2e_test/README.md`\)\. 
+1. Follow the setup instructions in the README file \(`freertos/tools/ota_e2e_test/README.md`\)\. 
 
 1. Make sure that running the agent and PAL tests do not modify the `aws_clientcredential.h`, `aws_clientcredential_keys.h`, `aws_application_version.h`, or `aws_ota_codesigner_certificate.h` header files\.
 
-1. To run the OTA end\-to\-end test script, follow the example in the README file \(`<freertos>/tools/ota_e2e_test/README.md`\)\. 
+1. To run the OTA end\-to\-end test script, follow the example in the README file \(`freertos/tools/ota_e2e_test/README.md`\)\. 
 
 ## Validation<a name="w3aac11c37c25"></a>
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you have ported the FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy Library](afr-porting-ble.md)\.
+After you have ported the FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy library](afr-porting-ble.md)\.
 
 If your device does not support Bluetooth Low Energy functionality, then you are finished and can start the FreeRTOS qualification process\. For more information, see the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.

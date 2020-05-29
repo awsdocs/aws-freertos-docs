@@ -1,4 +1,4 @@
-# Creating an OTA Update with the AWS CLI<a name="ota-cli-workflow"></a>
+# Creating an OTA update with the AWS CLI<a name="ota-cli-workflow"></a>
 
 When you use the AWS CLI to create an OTA update, you:
 
@@ -8,11 +8,11 @@ When you use the AWS CLI to create an OTA update, you:
 
 1. Start an OTA update job\.
 
-## Digitally Signing Your Firmware Update<a name="ota-sign-cli"></a>
+## Digitally signing your firmware update<a name="ota-sign-cli"></a>
 
 When you use the AWS CLI to perform OTA updates, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For a list of the cryptographic signing and hashing algorithms supported by Code Signing for AWS IoT, see [SigningConfigurationOverrides](https://docs.aws.amazon.com/signer/latest/api/API_SigningConfigurationOverrides.html)\. If you want to use a cryptographic algorithm that is not supported by Code Signing for AWS IoT, you must sign your firmware binary before you upload it to Amazon S3\.
 
-### Signing Your Firmware Image with Code Signing for AWS IoT<a name="ota-sign-csfa"></a>
+### Signing your firmware image with Code Signing for AWS IoT<a name="ota-sign-csfa"></a>
 
 To sign your firmware image using Code Signing for AWS IoT, you can use one of the [AWS SDKs or command line tools](https://aws.amazon.com/tools/)\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
 
@@ -20,21 +20,21 @@ After you install and configure the code\-signing tools, copy your unsigned firm
 
 ```
 aws signer put-signing-profile \
-    --profile-name <your_profile_name> \
-    --signing-material certificateArn=arn:aws:acm::<your-region>:<your-aws-account-id>:certificate/<your-certificate-id> \
-    --platform <your-hardware-platform> \
-    --signing-parameters certname=<your_certificate_path_on_device>
+    --profile-name your_profile_name \
+    --signing-material certificateArn=arn:aws:acm::your-region:your-aws-account-id:certificate/your-certificate-id \
+    --platform your-hardware-platform \
+    --signing-parameters certname=your_certificate_path_on_device
 ```
 
 ```
 aws signer start-signing-job \
-    --source 's3={bucketName=<your_s3_bucket>,key=<your_s3_object_key>,version=<your_s3_object_version_id>}' \
-    --destination 's3={bucketName=<your_destination_bucket>}' \
-    --profile-name <your_profile_name>
+    --source 's3={bucketName=your_s3_bucket,key=your_s3_object_key,version=your_s3_object_version_id}' \
+    --destination 's3={bucketName=your_destination_bucket}' \
+    --profile-name your_profile_name
 ```
 
 **Note**  
-*<your\-source\-bucket\-name>* and *<your\-destination\-bucket\-name>* can be the same Amazon S3 bucket\.
+*your\-source\-bucket\-name* and *your\-destination\-bucket\-name* can be the same Amazon S3 bucket\.
 
 These are the parameters for the put\-signing\-profile and start\-signing\-job commands:
 
@@ -62,11 +62,11 @@ The signing job starts and writes the signed firmware image into the destination
 
 The command displays a job ARN and job ID\. You need these values later on\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\. 
 
-### Signing Your Firmware Image Manually<a name="ota-sign-manual"></a>
+### Signing your firmware image manually<a name="ota-sign-manual"></a>
 
 Digitally sign your firmware image and upload your signed firmware image into your Amazon S3 bucket\.
 
-## Creating a Stream of Your Firmware Update<a name="ota-stream"></a>
+## Creating a stream of your firmware update<a name="ota-stream"></a>
 
 A stream is an abstract interface to data that can be consumed by a device\. A stream can hide the complexity of accessing data stored in different locations or different cloud\-based services\. The OTA Update Manager service enables you to use multiple pieces of data, stored in various locations in Amazon S3, to perform an OTA Update\.
 
@@ -75,10 +75,10 @@ When you create an AWS IoT OTA Update, you can also create a stream that contain
 ```
 [
   {
-    "fileId":"<your_file_id>",
+    "fileId":"your_file_id",
     "s3Location":{
-      "bucket":"<your_bucket_name>",
-      "key":"<your_s3_object_key<"
+      "bucket":"your_bucket_name",
+      "key":"your_s3_object_key"
     }
   }   
 ]
@@ -101,10 +101,10 @@ Use the create\-stream CLI command to create a stream\.
 
 ```
 aws iot create-stream \
-    --stream-id <your_stream_id> \
-    --description <your_description> \
-    --files file://<stream.json> \
-    --role-arn <your_role_arn>
+    --stream-id your_stream_id \
+    --description your_description \
+    --files file://stream.json \
+    --role-arn your_role_arn
 ```
 
 These are the arguments for the create\-stream CLI command:
@@ -143,7 +143,7 @@ The following is an example `stream.json` file\.
 `role-arn`  
 The [OTA service role](create-service-role.md) that also grants access to the Amazon S3 bucket where the firmware image is stored\.
 
-To find the Amazon S3 object key of your signed firmware image, use the aws signer describe\-signing\-job \-\-job\-id *<my\-job\-id>* command where `my-job-id` is the job ID displayed by the create\-signing\-job CLI command\. The output of the describe\-signing\-job command contains the key of the signed firmware image\. 
+To find the Amazon S3 object key of your signed firmware image, use the aws signer describe\-signing\-job \-\-job\-id *my\-job\-id* command where `my-job-id` is the job ID displayed by the create\-signing\-job CLI command\. The output of the describe\-signing\-job command contains the key of the signed firmware image\. 
 
 ```
 ... text deleted for brevity ...
@@ -157,21 +157,21 @@ To find the Amazon S3 object key of your signed firmware image, use the aws sign
 ```
 
 **Note**  
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream Limit Exceeded for your AWS Account](ota-troubleshooting-stream-limit.md)\.
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](ota-troubleshooting-stream-limit.md)\.
 
-## Creating an OTA Update<a name="create-ota-update"></a>
+## Creating an OTA update<a name="create-ota-update"></a>
 
 Use the create\-ota\-update CLI command to create an OTA update job\.
 
 ```
 aws iot create-ota-update \
-    --ota-update-id "<my_ota_update>" \
+    --ota-update-id "my_ota_update" \
     --target-selection SNAPSHOT \
     --protocols "[MQTT, HTTP]"
-    --description "<a cli ota update>" \
-    --files file://<ota.json> \
-    --targets arn:aws:iot:<your-aws-region>:<your-aws-account>:thing/<your-thing-name> \
-    --role-arn arn:aws:iam::<your-aws-account>:role/<your-ota-service-role>
+    --description "a cli ota update" \
+    --files file://ota.json \
+    --targets arn:aws:iot:your-aws-region:your-aws-account:thing/your-thing-name \
+    --role-arn arn:aws:iam::your-aws-account:role/your-ota-service-role
 ```
 
 **Note**  
@@ -273,14 +273,14 @@ The following is an example of a JSON file passed into the create\-ota\-update C
     "codeSigning": {
       "customCodeSigning":{
         "signature":{
-          "inlineDocument":"<your_signature>"
+          "inlineDocument":"your_signature"
         },
         "certificateChain": {
-          "certificateName": "<your_certificate_name>",
-          "inlineDocument":"<your_certificate_chain>"
+          "certificateName": "your_certificate_name",
+          "inlineDocument":"your_certificate_chain"
         },
-        "hashAlgorithm":"<your_hash_algorithm>",
-        "signatureAlgorithm":"<your_signature_algorithm>"
+        "hashAlgorithm":"your_hash_algorithm",
+        "signatureAlgorithm":"your_signature_algorithm"
       }
     }
   }
@@ -292,26 +292,26 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 [
   {
-    "fileName": "<your_firmware_path_on_device>",
+    "fileName": "your_firmware_path_on_device",
     "fileVersion": "1",
     "fileLocation": {
       "s3Location": {
-        "bucket": "<your_bucket_name>",
-        "key": "<your_object_key>",
-        "version": "<your_S3_object_version>"
+        "bucket": "your_bucket_name",
+        "key": "your_object_key",
+        "version": "your_S3_object_version"
       }
     },
     "codeSigning":{
       "startSigningJobParameter":{
         "signingProfileName": "myTestProfile",
         "signingProfileParameter": {
-          "certificateArn": "<your_certificate_arn>",
-          "platform": "<your_platform_id>",
-          "certificatePathOnDevice": "<certificate_path>"
+          "certificateArn": "your_certificate_arn",
+          "platform": "your_platform_id",
+          "certificatePathOnDevice": "certificate_path"
         },
         "destination": {
           "s3Destination": {
-            "bucket": "<your_destination_bucket>"
+            "bucket": "your_destination_bucket"
           }
         }
       }
@@ -325,21 +325,21 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 [
   {
-  "fileName": "<your_firmware_path_on_device>",
+  "fileName": "your_firmware_path_on_device",
     "fileVersion": "1",
     "fileLocation": {
       "s3Location": {
-        "bucket": "<your_s3_bucket_name>",
-        "key": "<your_object_key>",
-        "version": "<your_S3_object_version>"
+        "bucket": "your_s3_bucket_name",
+        "key": "your_object_key",
+        "version": "your_S3_object_version"
       }
     },
     "codeSigning":{
       "startSigningJobParameter":{
-        "signingProfileName": "<your_unique_profile_name>",
+        "signingProfileName": "your_unique_profile_name",
         "destination": {
           "s3Destination": {
-            "bucket": "<your_destination_bucket>"
+            "bucket": "your_destination_bucket"
           }
         }
       }
@@ -353,10 +353,10 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 [
   {
-    "fileName": "<your_firmware_path_on_device>",
+    "fileName": "your_firmware_path_on_device",
     "fileVersion": "1",
     "codeSigning":{
-      "awsSignerJobId": "<your_signer_job_id>"
+      "awsSignerJobId": "your_signer_job_id"
     }  
   }
 ]
@@ -367,26 +367,26 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 [
   {
-    "fileName": "<your_firmware_path_on_device>",
+    "fileName": "your_firmware_path_on_device",
     "fileVersion": "1",
     "fileLocation": {
       "s3Location": {
-        "bucket": "<your_bucket_name>",
-        "key": "<your_object_key>",
-        "version": "<your_S3_object_version>"
+        "bucket": "your_bucket_name",
+        "key": "your_object_key",
+        "version": "your_S3_object_version"
       }
     },
     "codeSigning":{
       "customCodeSigning": {
         "signature":{
-          "inlineDocument":"<your_signature>"
+          "inlineDocument":"your_signature"
         },
         "certificateChain": {
-          "inlineDocument":"<your_certificate_chain>",
-          "certificateName": "<your_certificate_path_on_device>"
+          "inlineDocument":"your_certificate_chain",
+          "certificateName": "your_certificate_path_on_device"
         },
-        "hashAlgorithm":"<your_hash_algorithm>",
-        "signatureAlgorithm":"<your_sig_algorithm>"
+        "hashAlgorithm":"your_hash_algorithm",
+        "signatureAlgorithm":"your_sig_algorithm"
       }
     }  
   }
@@ -394,9 +394,9 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 
 **Note**  
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream Limit Exceeded for your AWS Account](ota-troubleshooting-stream-limit.md)\.
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](ota-troubleshooting-stream-limit.md)\.
 
-## Listing OTA Updates<a name="list-ota-updates"></a>
+## Listing OTA updates<a name="list-ota-updates"></a>
 
 You can use the list\-ota\-updates CLI command to get a list of all OTA updates\.
 
@@ -429,12 +429,12 @@ The output from the list\-ota\-updates command looks like this\.
 }
 ```
 
-## Getting Information About an OTA Update<a name="get-ota-updates"></a>
+## Getting information about an OTA update<a name="get-ota-updates"></a>
 
 You can use the get\-ota\-update CLI command to get the creation or deletion status of an OTA update\.
 
 ```
-aws iot get-ota-update --ota-update-id <your-ota-update-id>
+aws iot get-ota-update --ota-update-id your-ota-update-id
 ```
 
 The output from the get\-ota\-update command looks like the following\.
@@ -513,19 +513,19 @@ The deletion of an OTA update failed\.
 **Note**  
 To get the execution status of an OTA update after it is created, you need to use the describe\-job\-execution command\. For more information, see [Describe Job Execution](https://docs.aws.amazon.com/iot/latest/developerguide/manage-job-cli.html#describe-job-execution)\.
 
-## Deleting OTA\-Related Data<a name="delete-ota-data"></a>
+## Deleting OTA\-related data<a name="delete-ota-data"></a>
 
 Currently, you cannot use the AWS IoT console to delete streams or OTA updates\. You can use the AWS CLI to delete streams, OTA updates, and the AWS IoT jobs created during an OTA update\.
 
-### Deleting an OTA Stream<a name="delete-ota-stream"></a>
+### Deleting an OTA stream<a name="delete-ota-stream"></a>
 
 When you create an OTA update that uses MQTT, either you can use the command\-line or the AWS IoT console to create a stream to break the firmware up into chunks so it can be sent over MQTT\. You can delete this stream with the delete\-stream CLI command, as shown in the following example\.
 
 ```
-aws iot delete-stream --stream-id <your_stream_id>
+aws iot delete-stream --stream-id your_stream_id
 ```
 
-### Deleting an OTA Update<a name="delete-ota-update"></a>
+### Deleting an OTA update<a name="delete-ota-update"></a>
 
 When you create an OTA update, the following are created:
 + An entry in the OTA update job database\.
@@ -537,7 +537,7 @@ The delete\-ota\-update command deletes the entry in the OTA update job database
 Use the delete\-ota\-update command to delete an OTA update\.
 
 ```
-aws iot delete-ota-update --ota-update-id <your_ota_update_id>
+aws iot delete-ota-update --ota-update-id your_ota_update_id
 ```
 
 `ota-update-id`  
@@ -549,12 +549,12 @@ Deletes the stream associated with the OTA update\.
 `force-delete-aws-job`  
 Deletes the AWS IoT job associated with the OTA update\. If this flag is not set and the job is in the `In_Progress` state, the job is not deleted\.
 
-### Deleting an IoT Job Created for an OTA Update<a name="delete-ota-job"></a>
+### Deleting an IoT job created for an OTA update<a name="delete-ota-job"></a>
 
 FreeRTOS creates an AWS IoT job when you create an OTA update\. A job execution is also created for each device that processes the job\. You can use the delete\-job CLI command to delete a job and its associated job executions\.
 
 ```
-aws iot delete-job --job-id <your-job-id --no-force
+aws iot delete-job --job-id your-job-id --no-force
 ```
 
 The `no-force` parameter specifies that only jobs that are in a terminal state \(COMPLETED or CANCELLED\) can be deleted\. You can delete a job that is in a non\-terminal state by passing the `force` parameter\. For more information, see [DeleteJob API](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteJob.html)\.
@@ -567,8 +567,8 @@ Depending on the number of job executions created for the job and other factors,
 You can use the delete\-job\-execution to delete a job execution\. You might want to delete a job execution when a small number of devices are unable to process a job\. This deletes the job execution for a single device, as shown in the following example\.
 
 ```
-aws iot delete-job-execution --job-id <your-job-id --thing-name
-                    <your-thing-name> --execution-number <your-job-execution-number --no-force
+aws iot delete-job-execution --job-id your-job-id --thing-name
+                    your-thing-name --execution-number your-job-execution-number --no-force
 ```
 
 As with the delete\-job CLI command, you can pass the `--force` parameter to the delete\-job\-execution to force the deletion of a job execution\. For more information , see [DeleteJobExecution API](https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteJobExecution.html)\.
@@ -576,4 +576,4 @@ As with the delete\-job CLI command, you can pass the `--force` parameter to the
 **Note**  
 Deleting a job execution with a status of IN\_PROGRESS interrupts any job executions that are IN\_PROGRESS on your devices and can result in a device being left in a nondeterministic state\. Make sure that each device executing a job that has been deleted can recover to a known state\.
 
-For more information about using the OTA update demo application, see [Over\-the\-Air Updates Demo Application](ota-demo.md)\.
+For more information about using the OTA update demo application, see [Over\-the\-air updates demo application](ota-demo.md)\.

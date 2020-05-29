@@ -1,8 +1,8 @@
-# Grant Access to Code Signing for AWS IoT<a name="code-sign-policy"></a>
+# Grant access to code signing for AWS IoT<a name="code-sign-policy"></a>
 
 In production environments, you should digitally sign your firmware update to ensure the authenticity and integrity of the update\. You can sign your update manually or you can use Code Signing for AWS IoT to sign your code\. To use Code Signing for FreeRTOS, you must grant your IAM user account access to Code Signing for FreeRTOS\.<a name="grant-user-account-code-signing-permissions"></a>
 
-**To grant your IAM user account permissions for Code Signing for AWS IoT**
+**To grant your IAM user account permissions for code signing for AWS IoT**
 
 1. Sign in to the [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 

@@ -8,14 +8,14 @@ You can download the version of FreeRTOS that you want to test from [GitHub](htt
 
 ## Download IDT for FreeRTOS<a name="download-dev-tester-afr"></a>
 
-Every version of FreeRTOS has a corresponding version of IDT for FreeRTOS to perform qualification tests\. Download the appropriate version of IDT for FreeRTOS from [Supported Versions of AWS IoT Device Tester for FreeRTOS](dev-test-versions-afr.md)\.
+Every version of FreeRTOS has a corresponding version of IDT for FreeRTOS to perform qualification tests\. Download the appropriate version of IDT for FreeRTOS from [Supported versions of AWS IoT Device Tester for FreeRTOS](dev-test-versions-afr.md)\.
 
 Extract IDT for FreeRTOS to a location on the file system where you have read and write permissions\. Because Microsoft Windows has a character limit for the path length, extract IDT for FreeRTOS into a root directory such as `C:\` or `D:\`\.
 
 **Note**  
 We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This may result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive\.
 
-## Create and Configure an AWS Account<a name="config-aws-account"></a>
+## Create and configure an AWS account<a name="config-aws-account"></a>
 
 Follow these steps to create and configure an AWS account, an IAM user, and an IAM policy that grants IDT for FreeRTOS permission to access resources on your behalf while running tests\.
 
@@ -117,7 +117,7 @@ The following policy template grants IDT permission to create roles, create poli
 
    1. To view the users' access keys \(access key IDs and secret access keys\), choose **Show** next to each password and access key and then choose **Download\.csv**\. Save the file to a safe location\.
 
-## AWS IoT Device Tester Managed Policy<a name="managed-policy"></a>
+## AWS IoT Device Tester managed policy<a name="managed-policy"></a>
 
 The `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy contains the following permissions to enable device tester to execute and to collect metrics:
 + `iot-device-tester:SupportedVersion`

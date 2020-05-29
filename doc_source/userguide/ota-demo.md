@@ -1,4 +1,4 @@
-# Over\-the\-Air Updates Demo Application<a name="ota-demo"></a>
+# Over\-the\-air updates demo application<a name="ota-demo"></a>
 
 FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the `freertos/demos/ota/aws_iot_ota_update_demo.c` file\.
 

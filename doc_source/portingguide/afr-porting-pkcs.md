@@ -1,4 +1,4 @@
-# Porting the PKCS \#11 Library<a name="afr-porting-pkcs"></a>
+# Porting the PKCS \#11 library<a name="afr-porting-pkcs"></a>
 
 FreeRTOS uses the open standard PKCS \#11 “CryptoKi” API as the abstraction layer for cryptographic operations, including:
 + Signing and verifying\.
@@ -17,7 +17,7 @@ To port the PKCS \#11 library, you need the following:
   For information about setting up a test project, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
 
-  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md)\.
+  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS kernel port](afr-porting-kernel.md)\.
 
 ## Porting<a name="porting-steps-pkcs"></a>
 
@@ -43,18 +43,18 @@ To port the PKCS \#11 library, you need the following:
    + A code\-verification public key \(or a certificate that contains the code\-verification public key\) for secure bootloader and over\-the\-air \(OTA\) updates\.
    + A Just\-In\-Time provisioning certificate\.
 
-    `<freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
+    `freertos/vendors/vendor/boards/board/ports/pkcs11/iot_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html)
 
 1. Add support for a cryptographically random entropy source to your port:
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\):
 
-     1. Implement the [ `mbedtls_hardware_poll()`](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `<freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c`\. 
+     1. Implement the [ `mbedtls_hardware_poll()`](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/iot_pkcs11_pal.c`\. 
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG:
 
-     1. Make a copy of `<freertos>/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
+     1. Make a copy of `freertos/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
 
-        Save the modified version of `config.h` to `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/config.h`\. Do not overwrite the original file\.
+        Save the modified version of `config.h` to `freertos/vendors/vendor/boards/board/aws_tests/config_files/config.h`\. Do not overwrite the original file\.
 
      1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
 
@@ -72,7 +72,7 @@ If you are interested in the FreeRTOS Qualification Program, please read our req
 
 If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
 
-### Setting Up the IDE Test Project<a name="testing-ide-pkcs"></a>
+### Setting up the IDE test project<a name="testing-ide-pkcs"></a>
 
 If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
 
@@ -81,25 +81,25 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the PKCS \#11 library in the IDE project**
 
-1. Add the source file `<freertos>/vendors/<vendor>/boards/<board>/ports/pkcs11/iot_pkcs11_pal.c` to the `aws_tests` IDE project\.
+1. Add the source file `freertos/vendors/vendor/boards/board/ports/pkcs11/iot_pkcs11_pal.c` to the `aws_tests` IDE project\.
 
-1. Add all of the files in the `<freertos>/libraries/abstractions/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\.
+1. Add all of the files in the `freertos/libraries/abstractions/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\.
 
-1. Add all of the files in the `<freertos>/libraries/freertos_plus/standard/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\. These files implement wrappers for commonly grouped PKCS \#11 function sets\.
+1. Add all of the files in the `freertos/libraries/freertos_plus/standard/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\. These files implement wrappers for commonly grouped PKCS \#11 function sets\.
 
-1. Add the source file `<freertos>/libraries/freertos_plus/standard/crypto/src/aws_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
+1. Add the source file `freertos/libraries/freertos_plus/standard/crypto/src/aws_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
 
-1. Add all of the source and header files from `<freertos>/libraries/3rdparty/mbedtls` and its subdirectories to the `aws_tests` IDE project\.
+1. Add all of the source and header files from `freertos/libraries/3rdparty/mbedtls` and its subdirectories to the `aws_tests` IDE project\.
 
-1. Add `<freertos>/libraries/3rdparty/mbedtls/include` and `<freertos>/libraries/abstractions/pkcs11` to the compiler’s include path\.
+1. Add `freertos/libraries/3rdparty/mbedtls/include` and `freertos/libraries/abstractions/pkcs11` to the compiler’s include path\.
 
-### Configuring the `CMakeLists.txt` File<a name="testing-cmake-pkcs"></a>
+### Configuring the `CMakeLists.txt` file<a name="testing-cmake-pkcs"></a>
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
 See below for an example portable layer target definition for the PKCS \#11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific PKCS \#11 PAL file\.
 
@@ -113,19 +113,17 @@ target_sources(
 )
 ```
 
-### Setting Up Your Local Testing Environment<a name="testing-local-pkcs"></a>
+### Setting up your local testing environment<a name="testing-local-pkcs"></a>
 
 After you set up the library in the IDE project, you need to configure some other files for testing\.
 
 **To configure the source and header files for the PKCS \#11 tests**
 
-1. Open `<freertos>/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, comment out the lines that call `BUFFERPOOL_Init()` and `MQTT_AGENT_Init()`, if you have not done so already\. Bufferpool and the MQTT agent are not used in this library's porting tests\. When you reach the [Configuring the MQTT Library for Testing](afr-porting-mqtt.md) section, you will be instructed to uncomment these initialization function calls for testing the MQTT library\.
+1. If you have ported the Secure Sockets library, open `freertos/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, uncomment calls to `SOCKETS_Init()`\.
 
-   Only uncomment calls to `SOCKETS_Init()` if you have ported the Secure Sockets library\.
+1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_PKCS11_ENABLED` macro to `1` to enable the PKCS \#11 test\.
 
-1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_PKCS11_ENABLED` macro to `1` to enable the PKCS \#11 test\.
-
-### Running the Tests<a name="testing-run-pkcs"></a>
+### Running the tests<a name="testing-run-pkcs"></a>
 
 **To execute the PKCS \#11 tests**
 
@@ -143,4 +141,4 @@ After you set up the library in the IDE project, you need to configure some othe
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you finish porting the FreeRTOS PKCS \#11 library to your device, you can start porting the TLS library\. See [Porting the TLS Library](afr-porting-tls.md) for instructions\.
+After you finish porting the FreeRTOS PKCS \#11 library to your device, you can start porting the TLS library\. See [Porting the TLS library](afr-porting-tls.md) for instructions\.

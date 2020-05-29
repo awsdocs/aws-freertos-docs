@@ -1,8 +1,8 @@
-# Getting Started with the Renesas Starter Kit\+ for RX65N\-2MB<a name="getting_started_renesas"></a>
+# Getting started with the Renesas Starter Kit\+ for RX65N\-2MB<a name="getting_started_renesas"></a>
 
-This tutorial provides instructions for getting started with the Renesas Starter Kit\+ for RX65N\-2MB\. If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
+This tutorial provides instructions for getting started with the Renesas Starter Kit\+ for RX65N\-2MB\. If you do not have the Renesas RSK\+ for RX65N\-2MB, visit the AWS Partner Device Catalog, and purchase one from our [ partners](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="gsg-renesas-overview"></a>
 
@@ -16,7 +16,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Loading the application binary image to your board, and then running the application\.
 
-## Set Up the Renesas Hardware<a name="renesas-setup-hardware"></a>
+## Set up the Renesas hardware<a name="renesas-setup-hardware"></a>
 
 **To set up the RSK\+ for RX65N\-2MB**
 
@@ -40,9 +40,9 @@ This tutorial contains instructions for the following getting started steps:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/renesas-board3.png)
 
-## Set Up Your Development Environment<a name="renesas-setup-env"></a>
+## Set up your development environment<a name="renesas-setup-env"></a>
 
-To set up FreeRTOS configurations for the RSK\+ for RX65N\-2MB, use the Renesas e2studio IDE and CC\-RX compiler\. 
+To set up FreeRTOS configurations for the RSK\+ for RX65N\-2MB, use the Renesas e2studio IDE and CC\-RX compiler\.
 
 **Note**  
 The Renesas e2studio IDE and CC\-RX compiler are only supported on Windows 7, 8, and 10 operating systems\.
@@ -74,7 +74,7 @@ For more information, see the [C/C\+\+ Compiler Package for RX Family](https://w
 **Note**  
 The compiler is available free for evaluation version only and valid for 60 days\. On the 61st day, you need to get a License Key\. For more information, see [Evaluation Software Tools](https://www.renesas.com/us/en/products/software-tools/evaluation-software-tools.html)\.
 
-## Build and Run FreeRTOS Samples<a name="renesas-build-and-run-example"></a>
+## Build and run FreeRTOS samples<a name="renesas-build-and-run-example"></a>
 
 Now that you have configured the demo project, you are ready to build and run the project on your board\.
 
@@ -108,7 +108,7 @@ Now that you have configured the demo project, you are ready to build and run th
 
    The build console issues a warning message that the License Manager is not installed\. You can ignore this message unless you have a license key for the CC\-RX compiler\. To install the License Manager, see the [License Manager](https://www.renesas.com/us/en/software/D4000398.html) download page\.
 
-### Run the FreeRTOS Project<a name="renesas-run"></a>
+### Run the FreeRTOS project<a name="renesas-run"></a>
 
 **To run the project in e2studio**
 
@@ -130,7 +130,7 @@ Now that you have configured the demo project, you are ready to build and run th
 
 1. After the code is downloaded to the board, choose **Resume** to run the code up to the first line of the main function\. Choose **Resume** again to run the rest of the code\.
 
-### Monitoring MQTT Messages on the Cloud<a name="gsg-renesas-monitor-mqtt"></a>
+### Monitoring MQTT messages on the cloud<a name="gsg-renesas-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -146,4 +146,4 @@ For the latest projects released by Renesas, see the `renesas-rx` fork of the `a
 
 ## Troubleshooting<a name="renesas-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

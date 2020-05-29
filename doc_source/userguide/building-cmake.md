@@ -1,6 +1,6 @@
 # Building FreeRTOS with CMake<a name="building-cmake"></a>
 
-CMake targets your host operating system as the target system by default\. To use it for cross compiling, CMake requires a toolchain file, which specifies the compiler that you want to use\. In FreeRTOS, we provide default toolchain files in `<freertos>/tools/cmake/toolchains`\. The way to provide this file to CMake depends on whether you’re using the CMake command line interface or GUI\. For more details, follow the [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) instructions below\. For more information about cross\-compiling in CMake, see [CrossCompiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) in the official CMake wiki\.
+CMake targets your host operating system as the target system by default\. To use it for cross compiling, CMake requires a toolchain file, which specifies the compiler that you want to use\. In FreeRTOS, we provide default toolchain files in `freertos/tools/cmake/toolchains`\. The way to provide this file to CMake depends on whether you’re using the CMake command line interface or GUI\. For more details, follow the [Generating build files \(CMake command\-line tool\)](#cmake-gen-cli) instructions below\. For more information about cross\-compiling in CMake, see [CrossCompiling](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling) in the official CMake wiki\.
 
 **To build a CMake\-based project**
 
@@ -8,13 +8,13 @@ CMake targets your host operating system as the target system by default\. To us
 
    You can use either the [CMake command\-line tool](https://cmake.org/cmake/help/latest/manual/cmake.1.html) or the [CMake GUI](https://cmake.org/cmake/help/latest/manual/cmake-gui.1.html) to generate the build files for your native build system\.
 
-   For information about generating FreeRTOS build files, see [Generating Build Files \(CMake Command\-Line Tool\)](#cmake-gen-cli) and [Generating Build Files \(CMake GUI\)](#cmake-gen-gui)\.
+   For information about generating FreeRTOS build files, see [Generating build files \(CMake command\-line tool\)](#cmake-gen-cli) and [Generating build files \(CMake GUI\)](#cmake-gen-gui)\.
 
 1. Invoke the native build system to make the project into an executable\.
 
-   For information about making FreeRTOS build files, see [Building FreeRTOS from Generated Build Files](#cmake-build)\.
+   For information about making FreeRTOS build files, see [Building FreeRTOS from generated build files](#cmake-build)\.
 
-## Generating Build Files \(CMake Command\-Line Tool\)<a name="cmake-gen-cli"></a>
+## Generating build files \(CMake command\-line tool\)<a name="cmake-gen-cli"></a>
 
 You can use the CMake command\-line tool \(cmake\) to generate build files for FreeRTOS\. To generate the build files, you need to specify a target board, a compiler, and the location of the source code and build directory\. 
 
@@ -80,7 +80,7 @@ cmake -DBOARD=cc3220 -DCOMPILER=arm-ti -DCMAKE_BUILD_TYPE=debug -S . -B build
 
 You can also set the `CMAKE_BUILD_TYPE` to `release` to add optimization flags to the compile options\.
 
-## Generating Build Files \(CMake GUI\)<a name="cmake-gen-gui"></a>
+## Generating build files \(CMake GUI\)<a name="cmake-gen-gui"></a>
 
 You can use the CMake GUI to generate FreeRTOS build files\.
 
@@ -96,7 +96,7 @@ You can use the CMake GUI to generate FreeRTOS build files\.
 
 1. Choose **Specify toolchain file for cross\-compiling**, and then choose **Next**\.
 
-1. Choose the toolchain file \(for example, `<freertos>/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
+1. Choose the toolchain file \(for example, `freertos/tools/cmake/toolchains/arm-ti.cmake`\), and then choose **Finish**\.
 
    The default configuration for FreeRTOS is the template board, which does not provide any portable layer targets\. As a result, a window appears with the message Error in configuration process\.
 **Note**  
@@ -116,9 +116,9 @@ If you are seeing the following error:
 
 1. Choose **Generate**\. CMake generates the build system files \(for example, makefiles or ninja files\), and these files appear in the build directory you specified in the first step\. Follow the instructions in the next section to generate the binary image\.
 
-## Building FreeRTOS from Generated Build Files<a name="cmake-build"></a>
+## Building FreeRTOS from generated build files<a name="cmake-build"></a>
 
-### Building with Native Build System<a name="gsg-cmake-native"></a>
+### Building with native build system<a name="gsg-cmake-native"></a>
 
 You can build FreeRTOS with a native build system by calling the build system command from the output binaries directory\.
 
@@ -134,24 +134,24 @@ make -j4
 You can also use the CMake command\-line tool to build FreeRTOS\. CMake provides an abstraction layer for calling native build systems\. For example:
 
 ```
-cmake --build <build_dir>
+cmake --build build_dir
 ```
 
 Here are some other common uses of the CMake command\-line tool's build mode:
 
 ```
 # Take advantage of CPU cores.
-cmake --build <build_dir> --parallel 8
+cmake --build build_dir --parallel 8
 ```
 
 ```
 # Build specific targets.
-cmake --build <build_dir> --target afr_kernel
+cmake --build build_dir --target afr_kernel
 ```
 
 ```
 # Clean first, then build.
-cmake --build <build_dir> --clean-first
+cmake --build build_dir --clean-first
 ```
 
 For more information about the CMake build mode, see the [CMake documentation](https://cmake.org/cmake/help/latest/manual/cmake.1.html#build-tool-mode)\.

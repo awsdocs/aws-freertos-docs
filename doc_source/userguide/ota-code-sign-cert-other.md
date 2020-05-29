@@ -1,4 +1,4 @@
-# Creating a Code\-Signing Certificate for Custom Hardware<a name="ota-code-sign-cert-other"></a>
+# Creating a code\-signing certificate for custom hardware<a name="ota-code-sign-cert-other"></a>
 
 Using an appropriate toolset, create a self\-signed certificate and private key for your hardware\.
 
@@ -7,7 +7,7 @@ Use the AWS Command Line Interface to import your code\-signing certificate, pri
 After you create your code\-signing certificate, you can use the AWS CLI to import it into ACM:
 
 ```
-aws acm import-certificate --certificate file://code-sign.crt --private-key file://code-sign.key
+aws acm import-certificate --certificate fileb://code-sign.crt --private-key fileb://code-sign.key
 ```
 
 The output from this command displays an ARN for your certificate\. You need this ARN when you create an OTA update job\.

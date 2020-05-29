@@ -1,16 +1,16 @@
-# Preparing to Test Your Microcontroller Board for the First Time<a name="qual-steps"></a>
+# Preparing to test your microcontroller board for the first time<a name="qual-steps"></a>
 
 You can use IDT for FreeRTOS to test as you port the FreeRTOS interfaces\. After you have ported the FreeRTOS interfaces for your board’s device drivers, you use AWS IoT Device Tester to run the qualification tests on your microcontroller board\. 
 
-## Add Library Porting Layers<a name="add-port-layer"></a>
+## Add library porting layers<a name="add-port-layer"></a>
 
  To port FreeRTOS for your device, follow the instructions in the [FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/)\.
 
-## Configure Your AWS Credentials<a name="cfg-aws-afr"></a>
+## Configure your AWS credentials<a name="cfg-aws-afr"></a>
 
-You need to configure your AWS credentials for Device Tester to communicate with the AWS cloud\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\. Valid AWS credentials must be specified in the `devicetester_extract_location/devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\.
+You need to configure your AWS credentials for Device Tester to communicate with the AWS Cloud\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\. Valid AWS credentials must be specified in the `devicetester_extract_location/devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\.
 
-## Create a Device Pool in IDT for FreeRTOS<a name="cfg-dt-dp"></a>
+## Create a device pool in IDT for FreeRTOS<a name="cfg-dt-dp"></a>
 
 Devices to be tested are organized in device pools\. Each device pool consists of one or more identical devices\. You can configure IDT for FreeRTOS to test a single device in a pool or multiple devices in a pool\. To accelerate the qualification process, IDT for FreeRTOS can test devices with the same specifications in parallel\. It uses a round\-robin method to execute a different test group on each device in a device pool\.
 
@@ -19,7 +19,7 @@ You can add one or more devices to a device pool by editing the `devices` sectio
 **Note**  
 All devices in the same pool must be of same technical specification and SKU\.
 
-To enable parallel builds of the source code for different test groups, IDT for FreeRTOS copies the source code to a results folder inside the IDT for FreeRTOS extracted folder\. The source code path in your build or flash command must be referenced using the `testdata.sourcePath` variable\. IDT for FreeRTOS replaces this variable with a temporary path of the copied source code\. For more information see, [IDT for FreeRTOS Variables](#dt-vars)\.
+To enable parallel builds of the source code for different test groups, IDT for FreeRTOS copies the source code to a results folder inside the IDT for FreeRTOS extracted folder\. The source code path in your build or flash command must be referenced using the `testdata.sourcePath` variable\. IDT for FreeRTOS replaces this variable with a temporary path of the copied source code\. For more information see, [IDT for FreeRTOS variables](#dt-vars)\.
 
 The following is an example `device.json` file used to create a device pool with multiple devices\.
 
@@ -144,11 +144,11 @@ The absolute path to the file that contains the hex bytes public key extracted f
 `identifiers`  
 \(Optional\) An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.
 
-## Configure Build, Flash, and Test Settings<a name="cfg-dt-ud"></a>
+## Configure build, flash, and test settings<a name="cfg-dt-ud"></a>
 
 For IDT for FreeRTOS to build and flash tests on to your board automatically, you must configure IDT to run the build and flash commands for your hardware\. The build and flash command settings are configured in the `userdata.json` template file located in the `config` folder\.
 
-### Configure Settings for Testing Devices<a name="config-settings-device"></a>
+### Configure settings for testing devices<a name="config-settings-device"></a>
 
 Build, flash, and test settings are made in the `configs/userdata.json` file\. The following JSON example shows how you can configure IDT for FreeRTOS for testing multiple devices:
 
@@ -322,7 +322,7 @@ The signing algorithm supported on the device\. Possible values are `RSA` or `EC
 The trusted certificate used for OTA\.  
 For AWS code signing method, use the Amazon Resource Name \(ARN\) for the trusted certificate uploaded to the AWS Certificate Manager\.  
 For Custom code signing method, use the absolute path to the signer certificate file\.  
-For more information about creating a trusted certificate, see [Create a Code\-Signing Certificate](ota-code-sign-cert.md)\.   
+For more information about creating a trusted certificate, see [Create a code\-signing certificate](ota-code-sign-cert.md)\.   
 `signerCertificateFileName`  
 The location of the code signing certificate on the device\.  
 `compileSignerCertificate`  
@@ -357,11 +357,11 @@ The fully\-qualified path to the CMake toolchain\. This field is optional
 **Note**  
 To execute CMake test cases, you must provide the board name, vendor name, and either the `afrToolchainPath` or `compilerName`\. You may also provide `cmakeToolchainPath` if you have a custom path to the CMake toolchain\.
 
-### IDT for FreeRTOS Variables<a name="dt-vars"></a>
+### IDT for FreeRTOS variables<a name="dt-vars"></a>
 
 The commands to build your code and flash the device might require connectivity or other information about your devices to run successfully\. AWS IoT Device Tester allows you to reference device information in flash and build commands using [JsonPath](http://goessner.net/articles/JsonPath/)\. By using simple JsonPath expressions, you can fetch the required information specified in your `device.json` file\.
 
-#### Path Variables<a name="path-variables"></a>
+#### Path variables<a name="path-variables"></a>
 
 IDT for FreeRTOS defines the following path variables that can be used in command lines and configuration files:
 

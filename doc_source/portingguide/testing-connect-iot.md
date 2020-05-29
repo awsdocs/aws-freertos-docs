@@ -1,4 +1,4 @@
-# Connecting Your Device to AWS IoT<a name="testing-connect-iot"></a>
+# Connecting your device to AWS IoT<a name="testing-connect-iot"></a>
 
 Your device must be registered with AWS IoT to communicate with the AWS Cloud\. To register your board with AWS IoT, you need the following:
 

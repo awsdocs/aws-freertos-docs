@@ -1,4 +1,4 @@
-# Running the FreeRTOS Qualification Suite<a name="run-tests"></a>
+# Running the FreeRTOS qualification suite<a name="run-tests"></a>
 
 You use the AWS IoT Device Tester for FreeRTOS executable to interact with IDT for FreeRTOS\. The following command line examples show you how to run the qualification tests for a device pool \(a set of identical devices\)\.
 
@@ -50,7 +50,7 @@ pool\-id
 
 suite\-id  
 \(Optional\) The test suite version to run\. If not specified, IDT uses the latest version in the tests directory on your system\.  
-Starting in IDT v3\.0\.0, IDT checks online for newer test suites\. For more information, see [Test Suite Versions](idt-test-suite-versions.md)\.
+Starting in IDT v3\.0\.0, IDT checks online for newer test suites\. For more information, see [Test suite versions](idt-test-suite-versions.md)\.
 
 test\-id  
 \(Optional\) The tests to run, as a comma\-separated list\. If specified, `group-id` must specify a single group\.  
@@ -122,7 +122,7 @@ suite\-id
 
 ------
 
-## IDT for FreeRTOS Commands<a name="dt-cli"></a>
+## IDT for FreeRTOS commands<a name="dt-cli"></a>
 
 The IDT for FreeRTOS command supports the following operations:
 
@@ -157,8 +157,8 @@ Use the `--test-id` to run an individual test case\.
 ```
 devicetester_[linux | mac | win_x86-64] run-suite --group-id mqtt --test-id mqtt_test
 ```
-For a complete list of options see [Running the FreeRTOS Qualification Suite](#run-tests)\.   
-Starting in IDT v3\.0\.0, IDT checks online for newer test suites\. For more information, see [Test Suite Versions](idt-test-suite-versions.md)\.
+For a complete list of options see [Running the FreeRTOS qualification suite](#run-tests)\.   
+Starting in IDT v3\.0\.0, IDT checks online for newer test suites\. For more information, see [Test suite versions](idt-test-suite-versions.md)\.
 
 ------
 #### [ IDT v1\.7\.0 and earlier ]

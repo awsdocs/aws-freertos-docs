@@ -1,8 +1,8 @@
-# Getting Started with the Nordic nRF52840\-DK<a name="getting_started_nordic"></a>
+# Getting started with the Nordic nRF52840\-DK<a name="getting_started_nordic"></a>
 
 This tutorial provides instructions for getting started with the Nordic nRF52840\-DK\. If you do not have the Nordic nRF52840\-DK, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)\.
 
-Before you begin, you need to [Set Up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy](ble-demo.md#set-up-ble-demo-aws)\.
+Before you begin, you need to [Set up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy](ble-demo.md#set-up-ble-demo-aws)\.
 
 To run the FreeRTOS Bluetooth Low Energy demo, you also need an iOS or Android mobile device with Bluetooth and Wi\-Fi capabilities\.
 
@@ -23,15 +23,15 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up the Nordic Hardware<a name="nordic-setup-hardware"></a>
+## Set up the Nordic hardware<a name="nordic-setup-hardware"></a>
 
 Connect your host computer to the USB port labeled J2, located directly above the coin cell battery holder on your Nordic nRF52840 board\.
 
 For more information about setting up the Nordic nRF52840\-DK, see the [nRF52840 Development Kit User Guide](http://infocenter.nordicsemi.com/pdf/nRF52840_DK_User_Guide_v1.2.pdf)\.
 
-## Set Up Your Development Environment<a name="nordic-setup-env"></a>
+## Set up your development environment<a name="nordic-setup-env"></a>
 
-### Download and Install Segger Embedded Studio<a name="install-embedded-studio"></a>
+### Download and install Segger Embedded Studio<a name="install-embedded-studio"></a>
 
 FreeRTOS supports Segger Embedded Studio as a development environment for the Nordic nRF52840\-DK\.
 
@@ -43,17 +43,17 @@ To set up your environment, you need to download and install Segger Embedded Stu
 
 1. Run the installer and follow the prompts to completion\.
 
-### Set Up the FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application<a name="install-mobile-sdks"></a>
+### Set up the FreeRTOS Bluetooth Low Energy Mobile SDK demo application<a name="install-mobile-sdks"></a>
 
-To run the FreeRTOS demo project across Bluetooth Low Energy, you need to run the FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application on your mobile device\.
+To run the FreeRTOS demo project across Bluetooth Low Energy, you need to run the FreeRTOS Bluetooth Low Energy Mobile SDK demo application on your mobile device\.
 
-**To set up the the FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application**
+**To set up the the FreeRTOS Bluetooth Low Energy Mobile SDK Demo application**
 
-1. Follow the instructions in [Mobile SDKs for FreeRTOS Bluetooth Devices](freertos-ble-mobile.md) to download and install the SDK for your mobile platform on your host computer\.
+1. Follow the instructions in [Mobile SDKs for FreeRTOS Bluetooth devices](freertos-ble-mobile.md) to download and install the SDK for your mobile platform on your host computer\.
 
-1. Follow the instructions in [FreeRTOS Bluetooth Low Energy Mobile SDK Demo Application](ble-demo.md#ble-sdk-app) to set up the demo mobile application on your mobile device\.
+1. Follow the instructions in [FreeRTOS Bluetooth Low Energy Mobile SDK demo application](ble-demo.md#ble-sdk-app) to set up the demo mobile application on your mobile device\.
 
-## Establish a Serial Connection<a name="nordic-serial-connection"></a>
+## Establish a serial connection<a name="nordic-serial-connection"></a>
 
 Segger Embedded Studio includes a terminal emulator that you can use to receive log messages across a serial connection to your board\.
 
@@ -63,14 +63,14 @@ Segger Embedded Studio includes a terminal emulator that you can use to receive 
 
 1. From the top menu, choose **Target**, **Connect J\-Link**\.
 
-1. From the top menu, choose **Tools**, **Terminal Emulator**, **Properties**, and set the properties as instructed in [Installing a Terminal Emulator](uart-term.md)\.
+1. From the top menu, choose **Tools**, **Terminal Emulator**, **Properties**, and set the properties as instructed in [Installing a terminal emulator](uart-term.md)\.
 
 1. From the top menu, choose **Tools**, **Terminal Emulator**, **Connect *port* \(115200,N,8,1\)**\.
 
 **Note**  
-The Segger embedded studio terminal emulator does not support an input capability\. For this, use a terminal emulator like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a Terminal Emulator](uart-term.md)\.
+The Segger embedded studio terminal emulator does not support an input capability\. For this, use a terminal emulator like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a terminal emulator](uart-term.md)\.
 
-## Download and Configure FreeRTOS<a name="nordic-download-and-configure"></a>
+## Download and configure FreeRTOS<a name="nordic-download-and-configure"></a>
 
 After you set up your hardware and environment, you can download FreeRTOS\.
 
@@ -83,9 +83,9 @@ In this topic, the path to the FreeRTOS download directory is referred to as `fr
 Space characters in the `freertos` path can cause build failures\. When cloning or copying the repository, make sure the path you create does not contain space characters\.
 The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
 
-### Configure Your Project<a name="nordic-freertos-config-project"></a>
+### Configure your project<a name="nordic-freertos-config-project"></a>
 
-To run the demo, you need to configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your device must be registered as an AWS IoT thing\. You should have registered your device when you [Set Up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy](ble-demo.md#set-up-ble-demo-aws)\.
+To run the demo, you need to configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your device must be registered as an AWS IoT thing\. You should have registered your device when you [Set up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy](ble-demo.md#set-up-ble-demo-aws)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -117,7 +117,7 @@ To run the demo, you need to configure your project to work with AWS IoT\. To co
 
    \(For tests, the location of the file is `freertos/vendors/nordic/boards/nrf52840-dk/aws_tests/config_files/sdk_config.h`\.\) 
 
-## Build and Run the FreeRTOS Demo Project<a name="nordic-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="nordic-build-and-run-example"></a>
 
 After you download FreeRTOS and configure your demo project, you are ready to build and run the demo project on your board\.
 
@@ -145,4 +145,4 @@ If this is your first time using Segger Embedded Studio, you might see you a war
 
 ## Troubleshooting<a name="nordic-troubleshooting"></a>
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

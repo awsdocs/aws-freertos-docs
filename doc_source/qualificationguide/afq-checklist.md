@@ -9,9 +9,9 @@ You must pass each of these items in order to be listed in the [AWS Partner Devi
   + A complete successful IDT log \(with all Test Groups passing on ONE log\) is required in your Device Qualification Portal \(DQP\) submission\.
   + All qualification submissions must be made through the Device Listing Portal on APN Partner Central\.
 + Create a Hello World demo
-  + Please refer to [Setting Up a Hello World Demo](afq-hw-demo.md)\.
+  + Please refer to [Setting up a hello world demo](afq-hw-demo.md)\.
 + Create a Getting Started Guide \(GSG\) for your device 
-  + Please refer to [Creating a Getting Started with FreeRTOS Guide for Your Device](afq-gsg.md)\.
+  + Please refer to [Creating a getting started with FreeRTOS guide for your device](afq-gsg.md)\.
 + Create an appropriate [open source license](https://opensource.org/licenses) text file and place it with your code\. 
   + FreeRTOS is distributed under the [MIT license](https://opensource.org/licenses/MIT)\. 
 + Provide an accessible location to download your code\.
@@ -27,7 +27,7 @@ You must pass each of these items in order to be listed in the [AWS Partner Devi
 
 To be listed in the Online Configuration Wizard, please contact your APN representative and provide the following items\.
 + Create a CMake list file, and build the test and demo applications with this file\. 
-  + For instructions, see [Creating a CMakeLists\.txt File for Your Platform](afq-cmake.md)\.
+  + For instructions, see [Creating a CMakeLists\.txt file for your platform](afq-cmake.md)\.
 **Note**  
 A CMake list file is not required to qualify a board through the AWS Device Qualification Program\. The file is only required for listing devices on the FreeRTOS Console\. 
 + Provide the following hardware information for your device\.

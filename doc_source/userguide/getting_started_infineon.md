@@ -1,10 +1,10 @@
-# Getting Started with the Infineon XMC4800 IoT Connectivity Kit<a name="getting_started_infineon"></a>
+# Getting started with the Infineon XMC4800 IoT Connectivity Kit<a name="getting_started_infineon"></a>
 
-This tutorial provides instructions for getting started with the Infineon XMC4800 IoT Connectivity Kit\. If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
+This tutorial provides instructions for getting started with the Infineon XMC4800 IoT Connectivity Kit\. If you do not have the Infineon XMC4800 IoT Connectivity Kit, visit the AWS Partner Device Catalog to purchase one from our [ partner](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)\.
 
 If you want to open a serial connection with the board to view logging and debugging information, you need a 3\.3V USB/Serial converter, in addition to the XMC4800 IoT Connectivity Kit\. The CP2104 is a common USB/Serial converter that is widely available in boards such as Adafruit's [CP2104 Friend](https://www.adafruit.com/product/3309)\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="w14aab7c25c19b9"></a>
 
@@ -18,7 +18,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up Your Development Environment<a name="infineon-setup-env"></a>
+## Set up your development environment<a name="infineon-setup-env"></a>
 
 FreeRTOS uses Infineon's DAVE development environment to program the XMC4800\. Before you begin, you need to download and install DAVE and some J\-Link drivers to communicate with the on\-board debugger\.
 
@@ -36,11 +36,11 @@ Some Windows users have reported problems using Windows Explorer to unzip the fi
 
 For more information, see the [DAVE Quick Start Guide](https://www.infineon.com/dgdl/Infineon-DAVE_Quick_Start-GS-v02_00-EN.pdf?fileId=5546d4624cb7f111014d059f7b8c712d)\.
 
-### Install Segger J\-Link Drivers<a name="install-jlink"></a>
+### Install Segger J\-Link drivers<a name="install-jlink"></a>
 
 To communicate with the XMC4800 Relax EtherCAT board's on\-board debugging probe, you need the drivers included in the J\-Link Software and Documentation pack\. You can download the J\-Link Software and Documentation pack from Segger's [J\-Link software download](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack) page\.
 
-## Establish a Serial Connection<a name="install-serial-connection"></a>
+## Establish a serial connection<a name="install-serial-connection"></a>
 
 Setting up a serial connection is optional, but recommended\. A serial connection allows your board to send logging and debugging information in a form that you can view on your development machine\.
 
@@ -59,9 +59,9 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
  With the cable connected, you can open a serial connection on a terminal emulator such as [GNU Screen](https://www.gnu.org/software/screen/)\. The baud rate is set to 115200 by default with 8 data bits, no parity, and 1 stop bit\. 
 
-## Build and Run the FreeRTOS Demo Project<a name="infineon-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="infineon-build-and-run-example"></a>
 
-### Import the FreeRTOS Demo into DAVE<a name="infineon-freertos-import-project"></a><a name="infineon-load-project"></a>
+### Import the FreeRTOS demo into DAVE<a name="infineon-freertos-import-project"></a><a name="infineon-load-project"></a>
 
 1. Start DAVE\.
 
@@ -81,7 +81,7 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
    Make sure that the project builds without errors\.
 
-### Run the FreeRTOS Demo Project<a name="infineon-run-examples"></a>
+### Run the FreeRTOS demo project<a name="infineon-run-examples"></a>
 
 1. Use a USB cable to connect your XMC4800 IoT Connectivity Kit to your computer\. The board has two microUSB connectors\. Use the one labeled “X101”, where Debug appears next to it on the board's silkscreen\.
 
@@ -160,15 +160,15 @@ On the final page of the installation wizard, select **Add path to environment v
 
    For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
 
-1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
+1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
 
-1. Change directories to your FreeRTOS download directory \(`<freertos>`\), and use the following command to generate the build files:
+1. Change directories to your FreeRTOS download directory \(`freertos`\), and use the following command to generate the build files:
 
    ```
-   cmake -DVENDOR=infineon -DBOARD=xmc4800_iotkit -DCOMPILER=arm-gcc -S . -B <BUILD_FOLDER> -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=infineon -DBOARD=xmc4800_iotkit -DCOMPILER=arm-gcc -S . -B BUILD_FOLDER -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
    ```
 
-1. Change directories to the build directory \(*<BUILD\_FOLDER>*\), and use the following command to build the binary:
+1. Change directories to the build directory \(*BUILD\_FOLDER*\), and use the following command to build the binary:
 
    ```
    cmake --build . --parallel 8
@@ -178,7 +178,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
 1. Flash and run the image with [JLINK](#install-jlink)\.
 
-   1. From the build directory \(*<BUILD\_FOLDER>*\), use the following commands to create a flash script:
+   1. From the build directory \(*BUILD\_FOLDER*\), use the following commands to create a flash script:
 
       ```
       echo loadfile aws_demos.hex > flash.jlink
@@ -204,7 +204,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w14aab7c25c19c15b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w14aab7c25c19c15b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -218,6 +218,6 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="infineon-troubleshooting"></a>
 
-If you haven't already, be sure to configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\.
+If you haven't already, be sure to configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\.
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

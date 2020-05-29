@@ -1,4 +1,4 @@
-# Setting Up Your AWS Account and Permissions<a name="freertos-account-and-permissions"></a>
+# Setting up your AWS account and permissions<a name="freertos-account-and-permissions"></a>
 
 To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
@@ -38,4 +38,4 @@ For more information about IAM and user accounts, see [IAM User Guide](https://d
 
 For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
-After you set up your AWS account and permissions, you can continue to [Registering Your MCU Board with AWS IoT](get-started-freertos-thing.md) or to the **Quick Connect** workflow in the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. 
+After you set up your AWS account and permissions, you can continue to [Registering your MCU board with AWS IoT](get-started-freertos-thing.md) or to the **Quick Connect** workflow in the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. 

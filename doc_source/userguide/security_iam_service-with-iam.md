@@ -1,14 +1,14 @@
-# How AWS Services Work with IAM<a name="security_iam_service-with-iam"></a>
+# How AWS services work with IAM<a name="security_iam_service-with-iam"></a>
 
 Before you use IAM to manage access to AWS services, you should understand what IAM features are available to use\. To get a high\-level view of how AWS services work with IAM, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) in the *IAM User Guide*\.
 
 **Topics**
-+ [Identity\-Based Policies](#security_iam_service-with-iam-id-based-policies)
-+ [AWS Resource\-Based Policies](#security_iam_service-with-iam-resource-based-policies)
-+ [Authorization Based on Tags](#security_iam_service-with-iam-tags)
-+ [IAM Roles](#security_iam_service-with-iam-roles)
++ [Identity\-based policies](#security_iam_service-with-iam-id-based-policies)
++ [AWS resource\-based policies](#security_iam_service-with-iam-resource-based-policies)
++ [Authorization based on tags](#security_iam_service-with-iam-tags)
++ [IAM roles](#security_iam_service-with-iam-roles)
 
-## Identity\-Based Policies<a name="security_iam_service-with-iam-id-based-policies"></a>
+## Identity\-based policies<a name="security_iam_service-with-iam-id-based-policies"></a>
 
 With IAM identity\-based policies, you can specify allowed or denied actions and resources as well as the conditions under which actions are allowed or denied\. To learn about all of the elements that you use in a JSON policy, see [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html) in the *IAM User Guide*\.
 
@@ -66,7 +66,7 @@ Some API actions involve multiple resources, so an IAM user must have permission
 
 To learn with which actions you can specify the ARN of each resource, see [Actions, Resources, and Condition Keys for AWS Services](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html)\.
 
-### Condition Keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
+### Condition keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
 
 The `Condition` element \(or `Condition` *block*\) lets you specify conditions in which a statement is in effect\. The `Condition` element is optional\. You can build conditional expressions that use [condition operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html), such as equals or less than, to match the condition in the policy with values in the request\. 
 
@@ -76,7 +76,7 @@ If you specify multiple `Condition` elements in a statement, or multiple keys in
 
 To see all AWS global condition keys, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\."
 
-## AWS Resource\-Based Policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
+## AWS resource\-based policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
 
 Resource\-based policies are JSON policy documents that specify what actions a specified principal can perform on a resource and under what conditions\. Resource\-based policies let you grant usage permission to other accounts on a per\-resource basis\.
 
@@ -84,24 +84,24 @@ To enable cross\-account access, you can specify an entire account or IAM entiti
 
 To view an example of a detailed resource\-based policy page, see [https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html](https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html)\. 
 
-## Authorization Based on Tags<a name="security_iam_service-with-iam-tags"></a>
+## Authorization based on tags<a name="security_iam_service-with-iam-tags"></a>
 
 You can attach tags to resources or pass tags in a request\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the `prefix:ResourceTag/key-name`, `aws:RequestTag/key-name`, or `aws:TagKeys` condition keys\. 
 
-To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [ Viewing Resources Based on Tags](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-view-input-tags)\.
+To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [Viewing resources based on tags](security_iam_id-based-policy-examples.md#security_iam_id-based-policy-examples-view-input-tags)\.
 
-## IAM Roles<a name="security_iam_service-with-iam-roles"></a>
+## IAM roles<a name="security_iam_service-with-iam-roles"></a>
 
 An [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) is an entity within your AWS account that has specific permissions\.
 
-### Using Temporary Credentials<a name="security_iam_service-with-iam-roles-tempcreds"></a>
+### Using temporary credentials<a name="security_iam_service-with-iam-roles-tempcreds"></a>
 
 You can use temporary credentials to sign in with federation, assume an IAM role, or to assume a cross\-account role\. You obtain temporary security credentials by calling AWS Security Token Service \(AWS STS\) API operations such as [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) or [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html)\. 
 
-### Service\-Linked Roles<a name="security_iam_service-with-iam-roles-service-linked"></a>
+### Service\-linked roles<a name="security_iam_service-with-iam-roles-service-linked"></a>
 
 [Service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role) allow AWS services to access resources in other services to complete an action on your behalf\. Service\-linked roles appear in your IAM account and are owned by the service\. An IAM administrator can view but not edit the permissions for service\-linked roles\.
 
-### Service Roles<a name="security_iam_service-with-iam-roles-service"></a>
+### Service roles<a name="security_iam_service-with-iam-roles-service"></a>
 
 This feature allows a service to assume a [service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-role) on your behalf\. This role allows the service to access resources in other services to complete an action on your behalf\. Service roles appear in your IAM account and are owned by the account\. This means that an IAM administrator can change the permissions for this role\. However, doing so might break the functionality of the service\.

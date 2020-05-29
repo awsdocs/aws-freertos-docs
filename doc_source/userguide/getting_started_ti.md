@@ -1,8 +1,8 @@
-# Getting Started with the Texas Instruments CC3220SF\-LAUNCHXL<a name="getting_started_ti"></a>
+# Getting started with the Texas Instruments CC3220SF\-LAUNCHXL<a name="getting_started_ti"></a>
 
-This tutorial provides instructions for getting started with the Texas Instruments CC3220SF\-LAUNCHXL\. If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)\.
+This tutorial provides instructions for getting started with the Texas Instruments CC3220SF\-LAUNCHXL\. If you do not have the Texas Instruments \(TI\) CC3220SF\-LAUNCHXL Development Kit, visit the AWS Partner Device Catalog to purchase one from our [ partner](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="w14aab7c25c41b7"></a>
 
@@ -14,7 +14,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Loading the application binary image to your board, and then running the application\.
 
-## Set Up Your Development Environment<a name="ti-setup-env"></a>
+## Set up your development environment<a name="ti-setup-env"></a>
 
 Follow the steps below to set up your development environment to get started with FreeRTOS\.
 
@@ -48,7 +48,7 @@ Install the [SimpleLink CC3220 SDK](http://www.ti.com/tool/SIMPLELINK-CC3220-SDK
 
 Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalone tool used to program on\-chip flash memory on TI MCUs\. Uniflash has a GUI, command line, and scripting interface\.
 
-### Install the Latest Service Pack<a name="ti-servicepack"></a>
+### Install the latest service pack<a name="ti-servicepack"></a>
 
 1. On your TI CC3220SF\-LAUNCHXL, place the SOP jumper on the middle set of pins \(position = 1\) and reset the board\.
 
@@ -66,15 +66,15 @@ Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalo
 
 1. Choose the **Burn** \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/flame.png)\) button, and then choose **Program Image \(Create & Program\)** to install the service pack\. Remember to switch the SOP jumper back to position 0 and reset the board\.
 
-### Configure Wi\-Fi Provisioning<a name="wifi-provision"></a>
+### Configure Wi\-Fi provisioning<a name="wifi-provision"></a>
 
 To configure the Wi\-Fi settings for your board, do one of the following:
-+ Configure the FreeRTOS demo application described in [Configuring the FreeRTOS Demos](freertos-configure.md)\.
++ Configure the FreeRTOS demo application described in [Configuring the FreeRTOS demos](freertos-configure.md)\.
 + Use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments\.
 
-## Build and Run the FreeRTOS Demo Project<a name="ti-build-and-run-examples"></a>
+## Build and run the FreeRTOS demo project<a name="ti-build-and-run-examples"></a>
 
-### Build and Run the FreeRTOS Demo Project in TI Code Composer<a name="ti-build-and-run-ccs"></a><a name="ti-load-project"></a>
+### Build and run the FreeRTOS demo project in TI Code Composer<a name="ti-build-and-run-ccs"></a><a name="ti-load-project"></a>
 
 **To import the FreeRTOS demo into TI Code Composer**
 
@@ -100,7 +100,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Run** menu, and choose **Resume**\.
 
-### Build and Run FreeRTOS Demo Project in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
+### Build and run FreeRTOS demo project in IAR Embedded Workbench<a name="ti-build-and-run-iar"></a><a name="ti-load-project-iar"></a>
 
 **To import the FreeRTOS demo into IAR Embedded Workbench**
 
@@ -130,19 +130,19 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 
 **To build the FreeRTOS demo with CMake**
 
-1. Create a folder to contain the generated build files \(*<BUILD\_FOLDER>*\)\.
+1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
 
 1. Make sure your search path \(**$PATH** environment variable\) contains the folder where the TI CGT compiler binary is located \(for example `C:\ti\ccs910\ccs\tools\compiler\ti-cgt-arm_18.12.2.LTS\bin`\)\.
 
    If you are using the TI ARM compiler with your TI board, use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=ti -DBOARD=cc3220_launchpad -DCOMPILER=arm-ti -S <freertos> -B <BUILD_FOLDER>
+   cmake -DVENDOR=ti -DBOARD=cc3220_launchpad -DCOMPILER=arm-ti -S freertos -B BUILD_FOLDER
    ```
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="w14aab7c25c41c11b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w14aab7c25c41c11b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -172,4 +172,4 @@ If you don’t see messages in the MQTT client of the AWS IoT console, you might
 
 If these steps don’t work, look at the program's output in the serial terminal\. You should see some text that indicates the source of the problem\.
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

@@ -1,4 +1,4 @@
-# Porting the Bluetooth Low Energy Library<a name="afr-porting-ble"></a>
+# Porting the Bluetooth Low Energy library<a name="afr-porting-ble"></a>
 
 You can use the FreeRTOS Bluetooth Low Energy library to provision Wi\-Fi and send MQTT messages over Bluetooth Low Energy\. The Bluetooth Low Energy library also includes higher\-level APIs that you can use to communicate directly with the Bluetooth Low Energy stack\. For more information, see [FreeRTOS Bluetooth Low Energy Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) in the FreeRTOS User Guide\.
 
@@ -13,12 +13,12 @@ To port the Bluetooth Low Energy library, you need the following:
   For information about setting up a test project, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
 + A validated configuration of the FreeRTOS kernel\.
 
-  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS Kernel Port](afr-porting-kernel.md)\.
+  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS kernel port](afr-porting-kernel.md)\.
 + A [Raspberry Pi 3 Model B\+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/), with a memory card\.
 
 ## Porting<a name="porting-steps-ble"></a>
 
-Three files in the `<freertos>/libraries/abstractions/ble_hal/include` folder define the FreeRTOS Bluetooth Low Energy APIs:
+Three files in the `freertos/libraries/abstractions/ble_hal/include` folder define the FreeRTOS Bluetooth Low Energy APIs:
 + `bt_hal_manager.h`
 + `bt_hal_manager_adapter_ble.h`
 + `bt_hal_gatt_server.h`
@@ -104,7 +104,7 @@ The Bluetooth Low Energy porting and qualification tests target the low\-level w
 
 If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
 
-### Setting Up the IDE Test Project<a name="testing-ide-ble"></a>
+### Setting up the IDE test project<a name="testing-ide-ble"></a>
 
 If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
 
@@ -113,23 +113,23 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the Bluetooth Low Energy library in the IDE project**
 
-1. Add all of the files in `<freertos>/vendors/<vendor>/boards/<board>/ports/ble` to your `aws_tests` IDE project\.
+1. Add all of the files in `freertos/vendors/vendor/boards/board/ports/ble` to your `aws_tests` IDE project\.
 
-1. Add all of the files in `<freertos>/libraries/abstractions/ble_hal/include` to your `aws_tests` IDE project\.
+1. Add all of the files in `freertos/libraries/abstractions/ble_hal/include` to your `aws_tests` IDE project\.
 
-1. Add all of the files in `<freertos>/libraries/c_sdk/standard/ble` to your `aws_tests` IDE project\.
+1. Add all of the files in `freertos/libraries/c_sdk/standard/ble` to your `aws_tests` IDE project\.
 
-1. Open `<freertos>/vendors/<vendor>/boards/<board>/aws_tests/application_code/main.c`, and enable the required Bluetooth Low Energy drivers\.
+1. Open `freertos/vendors/vendor/boards/board/aws_tests/application_code/main.c`, and enable the required Bluetooth Low Energy drivers\.
 
-### Configuring the `CMakeLists.txt` File<a name="testing-cmake-ble"></a>
+### Configuring the `CMakeLists.txt` file<a name="testing-cmake-ble"></a>
 
 If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS Portable Layers](cmake-template.md#cmake-portable)\.
+To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
 
-The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/boards/<board>/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
-### Setting Up Your Local Testing Environment<a name="testing-local-ble"></a>
+### Setting up your local testing environment<a name="testing-local-ble"></a>
 
 **To set up the Raspberry Pi for testing**
 
@@ -141,7 +141,7 @@ The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/board
 
 1. Enable SSH on the Raspberry Pi\. For instructions, see the [Raspberry Pi documentation](https://www.raspberrypi.org/documentation/remote-access/ssh/)\.
 
-1. On your computer, open the `<freertos>/tests/bleTestsScripts/runPI.sh` script, and change the IP addresses in the first two lines to the IP address of your Raspberry Pi:
+1. On your computer, open the `freertos/tests/bleTestsScripts/runPI.sh` script, and change the IP addresses in the first two lines to the IP address of your Raspberry Pi:
 
    ```
    #!/bin/sh
@@ -155,7 +155,7 @@ The `CMakeLists.txt` template list file under `<freertos>/vendors/<vendor>/board
    ENDSSH
    ```
 
-### Running the Tests<a name="testing-run-ble"></a>
+### Running the tests<a name="testing-run-ble"></a>
 
 **To execute the Bluetooth Low Energy tests**
 

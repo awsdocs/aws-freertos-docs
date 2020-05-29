@@ -1,4 +1,4 @@
-# Secure Sockets Library<a name="secure-sockets"></a>
+# Secure Sockets library<a name="secure-sockets"></a>
 
 ## Overview<a name="freertos-secure-sockets-overview"></a>
 
@@ -9,7 +9,7 @@ The FreeRTOS Secure Sockets library is based on the Berkeley sockets interface, 
 **Note**  
 Currently, only client APIs are supported for FreeRTOS Secure Sockets\.
 
-## Dependencies and Requirements<a name="freertos-secure-sockets-dependencies"></a>
+## Dependencies and requirements<a name="freertos-secure-sockets-dependencies"></a>
 
 The FreeRTOS Secure Sockets library depends on a TCP/IP stack and on a TLS implementation\. Ports for FreeRTOS meet these dependencies in one of three ways:
 + A custom implementation of both TCP/IP and TLS
@@ -34,9 +34,9 @@ FreeRTOS Secure Sockets library features include:
 The error codes that the FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-If the FreeRTOS Secure Sockets API returns an error code, the [MQTT Library, Version 1\.0\.0](freertos-lib-cloud-mqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
+If the FreeRTOS Secure Sockets API returns an error code, the [MQTT library, version 1\.0\.0](freertos-lib-cloud-mqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
 
-## Developer Support<a name="freertos-secure-sockets-support"></a>
+## Developer support<a name="freertos-secure-sockets-support"></a>
 
 The FreeRTOS Secure Sockets library includes two helper macros for handling IP addresses:
 
@@ -46,7 +46,7 @@ This macro converts an IP address that is expressed as four separate numeric oct
 `SOCKETS_inet_ntoa`  
 This macro converts an IP address that is expressed as a 32\-bit number in network byte order to a string in decimal\-dot notation\.
 
-## Usage Restrictions<a name="freertos-secure-sockets-restrictions"></a>
+## Usage restrictions<a name="freertos-secure-sockets-restrictions"></a>
 
 Only TCP sockets are supported by the FreeRTOS Secure Sockets library\. UDP sockets are not supported\.
 
@@ -63,11 +63,11 @@ xResult = SOCKETS_Init();
 
 Dependent libraries must be initialized separately\. For example, if FreeRTOS\+TCP is a dependency, you need to invoke [https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/API/FreeRTOS_IPInit.html](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/API/FreeRTOS_IPInit.html) in your application as well\.
 
-## API Reference<a name="freertos-secure-sockets-api"></a>
+## API reference<a name="freertos-secure-sockets-api"></a>
 
 For a full API reference, see [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
-## Example Usage<a name="freertos-secure-sockets-example"></a>
+## Example usage<a name="freertos-secure-sockets-example"></a>
 
 The following code connects a client to a server\.
 
@@ -153,13 +153,13 @@ void vConnectToServerWithSecureSocket( void )
 }
 ```
 
-For a full example, see the [Secure Sockets Echo Client Demo](secure-sockets-demo.md)\.
+For a full example, see the [Secure Sockets echo client demo](secure-sockets-demo.md)\.
 
 ## Porting<a name="freertos-secure-sockets-porting"></a>
 
 FreeRTOS Secure Sockets depends on a TCP/IP stack and on a TLS implementation\. Depending on your stack, to port the Secure Sockets library, you might need to port some of the following:
 + The [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) TCP/IP stack
-+ The [Public Key Cryptography Standard \(PKCS\) \#11 Library](security-pkcs.md)
++ The [Public Key Cryptography Standard \(PKCS\) \#11 library](security-pkcs.md)
 + The [Transport Layer Security](security-tls.md)
 
 For more information about porting, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the FreeRTOS Porting Guide\.

@@ -1,4 +1,4 @@
-# Set Up CloudWatch Logs for OTA Updates<a name="ota-logging"></a>
+# Set up CloudWatch Logs for OTA updates<a name="ota-logging"></a>
 
 The OTA Update service supports logging with Amazon CloudWatch\. You can use the AWS IoT console to enable and configure Amazon CloudWatch logging for OTA updates\. For more information, see [Cloudwatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html)\.
 
@@ -7,7 +7,7 @@ To enable logging, you must create an IAM role and configure OTA update logging\
 **Note**  
 Before you enable OTA update logging, make sure you understand the CloudWatch Logs access permissions\. Users with access to CloudWatch Logs can see your debugging information\. For information, see [Authentication and Access Control for Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/auth-and-access-control-cwl.html)\.
 
-## Create a Logging Role and Enable Logging<a name="create-ota-logging-role"></a>
+## Create a logging role and enable logging<a name="create-ota-logging-role"></a>
 
 Use the [AWS IoT console](https://console.aws.amazon.com/console/home) to create a logging role and enable logging\.
 
@@ -23,7 +23,7 @@ Use the [AWS IoT console](https://console.aws.amazon.com/console/home) to create
 
 1. Choose **Update**\.
 
-## OTA Update Logs<a name="ota-logs"></a>
+## OTA update logs<a name="ota-logs"></a>
 
 The OTA Update service publishes logs to your account when one of the following occurs:
 + An OTA update is created\.
@@ -92,7 +92,7 @@ The time when the log was generated\.
 topicName  
 An MQTT topic used to make the request that generated the log\.
 
-### Example Logs<a name="ota-example-logs"></a>
+### Example logs<a name="ota-example-logs"></a>
 
 The following is an example log generated when a code\-signing job is started:
 

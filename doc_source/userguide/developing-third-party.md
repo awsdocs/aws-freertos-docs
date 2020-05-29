@@ -1,4 +1,4 @@
-# Developing FreeRTOS Applications with Third\-Party Code Editors and Debugging Tools<a name="developing-third-party"></a>
+# Developing FreeRTOS applications with third\-party code editors and debugging tools<a name="developing-third-party"></a>
 
 You can use a code editor and a debugging extension or a third\-party debugging tool to develop applications for FreeRTOS\.
 

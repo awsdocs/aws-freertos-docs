@@ -21,7 +21,7 @@ Previously, FreeRTOS releases used semantic versioning for major releases\. Alth
 
 LTS releases are maintained differently than other release types\. Major and minor releases are frequently updated with new features in addition to defect resolutions\. LTS releases are only updated with changes to address critical defects and security vulnerabilities\. No new features are introduced in a given LTS release after launch\. They are maintained for at least three calendar years after release, and provide device manufacturers the option to use a stable baseline as opposed to a more dynamic baseline represented by major and minor releases\.
 
-## Porting FreeRTOS to Your IoT Device<a name="porting-to-your-device"></a>
+## Porting FreeRTOS to your IoT device<a name="porting-to-your-device"></a>
 
 Before a microcontroller board can run FreeRTOS, some FreeRTOS code must be ported to the device's hardware\. Basic kernel ports should refer to the [ FreeRTOS porting guide](https://www.freertos.org/FreeRTOS-porting-guide.html) on [www\.freertos\.org](https://www.freertos.org/)\. For ports intending to include the FreeRTOS libraries for security, connectivity, etc\., the following instructions build on the kernel port\.
 
@@ -33,20 +33,20 @@ Before a microcontroller board can run FreeRTOS, some FreeRTOS code must be port
 
 1. Follow the instructions in [Porting the FreeRTOS Libraries](afr-porting.md) to port the FreeRTOS libraries to your device\. Each porting topic includes instructions on testing the ports\.
 
-### System Requirements<a name="porting-requirements"></a>
+### System requirements<a name="porting-requirements"></a>
 
 The device that you port to FreeRTOS must be a microcontroller board that meets the following minimum requirements:
 + 25MHz processing speed
 + 64KB RAM
 + 128KB program memory per executable image stored on the MCU
-+ \(If [Porting the OTA Library](afr-porting-ota.md)\) Two executable images stored on the MCU
++ \(If [Porting the OTA library](afr-porting-ota.md)\) Two executable images stored on the MCU
 
-### Porting Older Versions of FreeRTOS<a name="porting-older"></a>
+### Porting older versions of FreeRTOS<a name="porting-older"></a>
 
 If you are porting an older version of FreeRTOS, go to the [`amazon-freertos` GitHub repository](https://github.com/aws/amazon-freertos), and checkout the version of FreeRTOS that you are porting by its version tag\. The qualification and testing documentation will be in PDF format, in the [https://github.com/aws/amazon-freertos/tree/master/tests](https://github.com/aws/amazon-freertos/tree/master/tests) folder\. See the table below for the qualification and testing documentation history\.
 
 
-**Revision History of FreeRTOS Porting and Qualification Documentation**  
+**Revision history of FreeRTOS porting and qualification documentation**  
 
 |  Date  |  Porting and Qualification Documentation Version  |  Change History  |  FreeRTOS Version  | 
 | --- | --- | --- | --- | 

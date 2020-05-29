@@ -1,4 +1,4 @@
-# FreeRTOS Qualification Check Script<a name="afq-script"></a>
+# FreeRTOS qualification check script<a name="afq-script"></a>
 
 After you have ported FreeRTOS, tested your ports, and gathered the other qualification items, run a qualification check script before you submit\.
 

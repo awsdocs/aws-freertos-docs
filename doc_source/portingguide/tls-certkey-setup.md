@@ -1,4 +1,4 @@
-# Setting Up Certificates and Keys for the TLS Tests<a name="tls-certkey-setup"></a>
+# Setting up certificates and keys for the TLS tests<a name="tls-certkey-setup"></a>
 
 ## `TLS_ConnectRSA()`<a name="tls-certs-rsa"></a>
 
@@ -29,16 +29,16 @@ For Elliptic Curve Digital Signature Algorithm \(ECDSA\) authentication, you nee
 
 **To generate a private key and a CSR**
 
-1. Use the following command to create a private key file named `<p256_privatekey>.pem` in the current working directory:
+1. Use the following command to create a private key file named `p256_privatekey.pem` in the current working directory:
 
    ```
-   openssl ecparam -name prime256v1 -genkey -noout -out <p256_privatekey>.pem
+   openssl ecparam -name prime256v1 -genkey -noout -out p256_privatekey.pem
    ```
 
-1. Use the following command to create a CSR file named `<csr>.csr` in the current working directory\.
+1. Use the following command to create a CSR file named `csr.csr` in the current working directory\.
 
    ```
-   openssl req –new –key p256_privatekey.pem –out <csr>.csr
+   openssl req –new –key p256_privatekey.pem –out csr.csr
    ```
 
 **To create a certificate in the AWS IoT console with a CSR**
@@ -47,11 +47,11 @@ For Elliptic Curve Digital Signature Algorithm \(ECDSA\) authentication, you nee
 
 1. In the navigation pane, choose **Secure**, choose **Certificates**, and then choose **Create**\.
 
-1. Choose **Create with CSR**, and then find and upload the `<csr>.csr` file that you created with OpenSSL\.
+1. Choose **Create with CSR**, and then find and upload the `csr.csr` file that you created with OpenSSL\.
 
 1. Choose **Activate** to activate the certificate, and then choose **Download** to download the certificate as a `.cert.pem` file\.
 
-1. Choose **Attach a policy**, and then find and select the AWS IoT policy that you created and attached to your RSA certificate in the [Connecting Your Device to AWS IoT](testing-connect-iot.md) instructions, and choose **Done**\.
+1. Choose **Attach a policy**, and then find and select the AWS IoT policy that you created and attached to your RSA certificate in the [Connecting your device to AWS IoT](testing-connect-iot.md) instructions, and choose **Done**\.
 
 1. Attach the certificate to the AWS IoT thing that you created when you registered your device\.
 
@@ -73,9 +73,9 @@ You must format the certificate and private key for your device before you add t
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-1. Follow the same steps to get the formatted string for the private key file that you created using OpenSSL \(`<p256_privatekey>.pem`\)\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_PRIVATE_KEY_PEM_EC` in `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
+1. Follow the same steps to get the formatted string for the private key file that you created using OpenSSL \(`p256_privatekey.pem`\)\. Copy and paste the formatted private key string into the definition for `tlstestCLIENT_PRIVATE_KEY_PEM_EC` in `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`\.
 
-In `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, define the `tlstestMQTT_BROKER_ENDPOINT_EC` with the same AWS IoT MQTT broker endpoint address that you used in [Connecting Your Device to AWS IoT](testing-connect-iot.md)\.
+In `freertos/libraries/freertos_plus/standard/tls/test/iot_test_tls.h`, define the `tlstestMQTT_BROKER_ENDPOINT_EC` with the same AWS IoT MQTT broker endpoint address that you used in [Connecting your device to AWS IoT](testing-connect-iot.md)\.
 
 ## `TLS_ConnectMalformedCert()`<a name="tls-certs-malformed"></a>
 
@@ -139,7 +139,7 @@ You can use your own certificate for authentication\. To create and register a c
 
 1. Choose **Actions**, and then choose **Attach policy**\.
 
-1. Find and choose the AWS IoT policy that you created and attached to your RSA certificate in the [Connecting Your Device to AWS IoT](testing-connect-iot.md) instructions, and then choose **Attach**\.
+1. Find and choose the AWS IoT policy that you created and attached to your RSA certificate in the [Connecting your device to AWS IoT](testing-connect-iot.md) instructions, and then choose **Attach**\.
 
 **To attach a thing to your device certificate**
 

@@ -1,14 +1,14 @@
-# Prerequisites for OTA Updates using HTTP<a name="ota-http-freertos"></a>
+# Prerequisites for OTA updates using HTTP<a name="ota-http-freertos"></a>
 
-This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. FreeRTOS OTA can use the HTTP or MQTT protocol to transfer firmware update images from Amazon S3 to devices\. If you can specify both protocols when you create an OTA update in FreeRTOS\. Each device will determine the protocol used to transfer the image\. 
+This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. Beginning with version 201912\.00, FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from AWS IoT to devices\. 
 
 **Note**  
 Although the HTTP protocol might be used to transfer the firmware image, the MQTT library is still required because other interactions with AWS IoT Core use the MQTT library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
-When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
+When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA Agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA Agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
 
 ## Minimum requirements<a name="ota-http-freertos-min-requirements"></a>
-+ Device firmware must include the necessary FreeRTOS libraries \(MQTT, HTTP, OTA agent, and their dependencies\)\.
-+ FreeRTOS version 201912\.00 or later is required\.
++ Device firmware must include the necessary FreeRTOS libraries \(MQTT, HTTP, OTA Agent, and their dependencies\)\.
++ FreeRTOS version 201912\.00 or later is required to change the configuration of the OTA protocols to enable OTA data transfer over HTTP\.
 
 ## Configurations<a name="ota-http-freertos-config"></a>
 
@@ -74,7 +74,7 @@ Due to a limited amount of RAM, you must turn off BLE when you enable HTTP as an
     #define configENABLED_NETWORKS      ( AWSIOT_NETWORK_TYPE_WIFI )
 ```
 
-## Memory Usage<a name="ota-http-freertos-memory"></a>
+## Memory usage<a name="ota-http-freertos-memory"></a>
 
 When MQTT is used for data transfer, no additional heap memory is required for the MQTT connection because it's shared between control and data operations\. However, enabling data over HTTP requires additional heap memory\. The following is the heap memory usage data for all supported platforms, calculated using the FreeRTOS `xPortGetFreeHeapSize` API\. You must make sure there is enough RAM to use the OTA library\.
 
@@ -100,6 +100,8 @@ Data operations \(HTTP\): 63 KB
 HTTP is not supported\.
 
 ## Device policy<a name="ota-http-freertos-device-policy"></a>
+
+This policy allows you to use either MQTT or HTTP for OTA updates\.
 
 Each device that receives an OTA update using HTTP must be registered as a thing in AWS IoT and the thing must have an attached policy like the one listed here\. You can find more information about the items in the `"Action"` and `"Resource"` objects at [AWS IoT Core Policy Actions](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policy-actions.html) and [AWS IoT Core Action Resources](https://docs.aws.amazon.com/iot/latest/developerguide/iot-action-resources.html)\.
 
@@ -132,3 +134,8 @@ Each device that receives an OTA update using HTTP must be registered as a thing
     ]
 }
 ```
+
+**Notes**
++ The `iot:Connect` permissions allow your device to connect to AWS IoT over MQTT\. 
++ The `iot:Subscribe` and `iot:Publish` permissions on the topics of AWS IoT jobs \(`.../jobs/*`\) allow the connected device to receive job notifications and job documents, and to publish the completion state of a job execution\.
++ The `iot:Receive` permissions allow AWS IoT Core to publish messages on those topics to the current connected device\. This permission is checked on every delivery of an MQTT message\. You can use this permission to revoke access to clients that are currently subscribed to a topic\.

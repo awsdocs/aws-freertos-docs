@@ -1,4 +1,4 @@
-# Getting Started with the Marvell MW320 AWS IoT Starter Kit<a name="getting_started_marvell320"></a>
+# Getting started with the Marvell MW320 AWS IoT Starter Kit<a name="getting_started_marvell320"></a>
 
 This tutorial provides instructions for getting started with the Marvell MW320 AWS IoT Starter Kit\.
 
@@ -9,7 +9,7 @@ If you do not have the Marvell MW320 AWS IoT Starter Kit, visit the AWS Partner 
 **Note**  
 In this tutorial, we use Ubuntu 16\.04 for developing and debugging applications for the Marvell MW320\. Other operating systems might work, but are not officially supported\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `<freertos>`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="w14aab7c25c23c13"></a>
 
@@ -25,7 +25,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. Interacting with the application running on your board across a serial connection, for monitoring and debugging purposes\.
 
-## Set Up Your Development Environment<a name="marvell320-setup-env"></a>
+## Set up your development environment<a name="marvell320-setup-env"></a>
 
 FreeRTOS includes some scripts for installing required third\-party libraries, and for building and flashing applications to the board\. These scripts are in the `vendors/marvell/WMSDK/mw320/sdk` directory\.
 
@@ -37,7 +37,7 @@ In addition to the software that is bundled with the M320 AWS IoT Starter Kit an
 + The CMake build system\. Versions 3\.13 and later are supported\.
 + \(Optional\) A supported IDE, for application development and debugging\.
 
-### Install Required Third\-Party Libraries with installpkgs\.sh<a name="marvell320-sdk"></a>
+### Install required third\-party libraries with installpkgs\.sh<a name="marvell320-sdk"></a>
 
 The `vendors/marvell/WMSDK/mw320/sdk/tools/bin/installpkgs.sh` script attempts to autodetect the machine type and install some required libraries, which include:
 + C libraries
@@ -65,7 +65,7 @@ You can configure the permissions on your Linux host machine to allow `flashprog
 **Note**  
 If you are using the Eclipse IDE, you must configure these permissions\.
 
-### Set Up the Toolchain<a name="marvell320-toolchain"></a>
+### Set up the toolchain<a name="marvell320-toolchain"></a>
 
 The FreeRTOS port for the this board is configured to use the GNU toolchain by default\. For the Makefiles to invoke the correct compiler toolchain, the GNU compiler toolchain binaries must be included in the user’s PATH variable\. The GNU toolchain binaries must also be prefixed with `arm-none-eabi-`\.
 
@@ -88,15 +88,15 @@ The GCC toolchain can be used with the GNU Debugger \(GDB\) for debugging with t
    For example, open the `.profile` file in your `$HOME` directory, and append the following line to the end of the file:
 
    ```
-   PATH="$PATH:<path>/gcc-arm-none-eabit-4_9_2015_q3/bin"
+   PATH="$PATH:path/gcc-arm-none-eabit-4_9_2015_q3/bin"
    ```
 
-   Where *<path>* is the full directory path to the `gcc-arm-none-eabit-4_9_2015_q3` folder\.
+   Where *path* is the full directory path to the `gcc-arm-none-eabit-4_9_2015_q3` folder\.
 
 **Note**  
 Some distributions of Ubuntu include a Debian version of the GCC cross compiler\. If your distribution includes a native cross compiler, remove it, and follow the steps to set up the GCC compiler toolchain\.
 
-### Set Up OpenOCD<a name="marvell320-openocd"></a>
+### Set up OpenOCD<a name="marvell320-openocd"></a>
 
 OpenOCD version 0\.9 is required\. If an earlier version is installed on your host machine, remove it using your distribution's uninstall process\.
 
@@ -134,7 +134,7 @@ You can download the latest version of CMake from [CMake\.org](https://cmake.org
 
 For more details about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-## Establish a Serial Connection<a name="marvell320-serial-connect"></a>
+## Establish a serial connection<a name="marvell320-serial-connect"></a>
 
 **To establish a serial connection between your host machine and your board**
 
@@ -188,13 +188,13 @@ Marvell development boards have an FTDI chip that exposes two USB interfaces to 
 
       Go to **Exit** to start showing messages from the serial console\.
 
-   For more information about installing a terminal emulator to set up a serial connection, see [Installing a Terminal Emulator](uart-term.md)\.
+   For more information about installing a terminal emulator to set up a serial connection, see [Installing a terminal emulator](uart-term.md)\.
 
-## Build, Flash, and Run the FreeRTOS Demo Project<a name="marvell320-build-and-run-example"></a>
+## Build, flash, and run the FreeRTOS demo project<a name="marvell320-build-and-run-example"></a>
 
 You can use CMake and the utility scripts included with the M320 port of FreeRTOS to build, flash, and run the FreeRTOS demo project from the command line\. Or you can use an IDE to build your project\.
 
-### Generate the Demo Build Files with CMake<a name="marvell320-cmake-gen"></a>
+### Generate the demo build files with CMake<a name="marvell320-cmake-gen"></a>
 
 Issue the following command from the root of the FreeRTOS download to generate the demo build files with CMake:
 
@@ -212,7 +212,7 @@ You should see output similar to the following:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-build-output-1.png)
 
-### Build the Demo with make<a name="w14aab7c25c23c19b7"></a>
+### Build the demo with make<a name="w14aab7c25c23c19b7"></a>
 
 Issue the following commands to build the demo:
 
@@ -251,13 +251,13 @@ make all -j4
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Flash the Application<a name="w14aab7c25c23c19b9"></a>
+### Flash the application<a name="w14aab7c25c23c19b9"></a>
 
 The `flashprog.py` script is used to program your board's flash memory\. The script is written in Python 2\.7\.
 
 Before you can flash the demo application image to the board, prepare the board's flash memory with a layout file and the Boot2 bootloader\. 
 
-**To load the layout file and Boot2 bootloader**
+**To load the layout file and boot2 bootloader**
 
 1. Change directories to the root of the FreeRTOS download\.
 
@@ -317,7 +317,7 @@ When you build, flash, and run the demo, you should see output similar to the fo
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/marvell-demo-output.png)
 
-#### Monitoring MQTT Messages on the Cloud<a name="w14aab7c25c23c19b9c23"></a>
+#### Monitoring MQTT messages on the cloud<a name="w14aab7c25c23c19b9c23"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -338,7 +338,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 1. Change directories:
 
    ```
-   cd <freertos>/vendors/marvell/WMSDK/mw320
+   cd freertos/vendors/marvell/WMSDK/mw320
    ```
 
 1. Connect to GDB with the arm\-none\-eabi\-gdb command:
@@ -349,7 +349,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    If you are debugging a FreeRTOS test application, target `aws_tests.axf` instead\.
 
-### Loading the Application to SRAM<a name="w14aab7c25c23c21b5"></a>
+### Loading the application to SRAM<a name="w14aab7c25c23c21b5"></a>
 
 You can load the demo to your device's static random\-access memory \(SRAM\) and then execute the application on your device with the `ramload.py` script\. Using `ramload.py` to load and execute the application is a faster operation than loading to flash memory with the `flashprog.py` script, making it a more efficient approach to iterative development\.
 
@@ -372,7 +372,7 @@ The `ramload.py` script is written in Python 2\.7\.
 **Note**  
 Images loaded to SRAM are erased on reboot\.
 
-### Enabling Other Logs<a name="w14aab7c25c23c21b7"></a>
+### Enabling other logs<a name="w14aab7c25c23c21b7"></a>
 
 You might need to enable other logging messages to troubleshoot problems that you encounter while getting started with this board\.
 
@@ -388,9 +388,9 @@ You might need to enable other logging messages to troubleshoot problems that yo
 
 1. Enable the macro `CONFIG_WLCMGR_DEBUG`\.
 
-### Using an IDE Development and Debugging<a name="w14aab7c25c23c21b9"></a>
+### Using an IDE for development and debugging<a name="w14aab7c25c23c21b9"></a>
 
-#### Set Up an IDE<a name="w14aab7c25c23c21b9b3"></a>
+#### Set up an IDE<a name="w14aab7c25c23c21b9b3"></a>
 
 You can use an IDE for developing and debugging applications, and for visualizing your projects\.
 
@@ -410,7 +410,7 @@ If you are using the Eclipse IDE, for example, use the `perm_fix.sh` script to c
 
 1. Extract the downloaded archive folder, and then run the platform\-specific Eclipse executable to start the IDE\.
 
-#### Build the Demo with an IDE<a name="w14aab7c25c23c21b9b5"></a>
+#### Build the demo with an IDE<a name="w14aab7c25c23c21b9b5"></a>
 
 You can open and build the demo project's build files in your IDE instead of building the demo directly from the command line with `make`\. Opening the files in an IDE can help you visualize the project before you build it\.
 
@@ -431,4 +431,4 @@ You must generate the build files with the cmake command every time you switch b
 
    A successful build generates the `aws_demos.bin` executable\.
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.

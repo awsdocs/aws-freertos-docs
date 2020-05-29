@@ -1,14 +1,14 @@
-# AWS IoT Greengrass Discovery Library<a name="freertos-lib-gg-connectivity"></a>
+# AWS IoT Greengrass Discovery library<a name="freertos-lib-gg-connectivity"></a>
 
 ## Overview<a name="freertos-gg-overview"></a>
 
 The AWS IoT Greengrass Discovery library is used by your microcontroller devices to discover a Greengrass core on your network\. Using the AWS IoT Greengrass Discovery APIs, your device can send messages to a Greengrass core after it finds the core's endpoint\.
 
-## Dependencies and Requirements<a name="freertos-gg-dependencies"></a>
+## Dependencies and requirements<a name="freertos-gg-dependencies"></a>
 
 To use the Greengrass Discovery library, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\. 
 
-You must set values for the following constants in the `<freertos>/demos/include/aws_clientcredential.h` file:
+You must set values for the following constants in the `freertos/demos/include/aws_clientcredential.h` file:
 
 `clientcredentialMQTT_BROKER_ENDPOINT`  
 Your AWS IoT endpoint\.
@@ -25,7 +25,7 @@ Your Wi\-Fi password\.
 `clientcredentialWIFI_SECURITY`  
 The type of security used by your Wi\-Fi network\.
 
-You must also set values for the following constants in the `<freertos>/demos/include/aws_clientcredential_keys.h` file:
+You must also set values for the following constants in the `freertos/demos/include/aws_clientcredential_keys.h` file:
 
 `keyCLIENT_CERTIFICATE_PEM`  
 The certificate PEM associated with your thing\.
@@ -37,19 +37,19 @@ You must have a Greengrass group and core device set up in the console\. For mor
 
 Although the MQTT library is not required for Greengrass connectivity, we strongly recommend you install it\. The library can be used to communicate with the Greengrass core after it has been discovered\.
 
-## API Reference<a name="freertos-gg-api"></a>
+## API reference<a name="freertos-gg-api"></a>
 
 For a full API reference, see [Greengrass API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__greengrass__discovery_8h.html)\.
 
-## Example Usage<a name="freertos-gg-example"></a>
+## Example usage<a name="freertos-gg-example"></a>
 
-### Greengrass Workflow<a name="freertos-lib-gg-workflow"></a>
+### Greengrass workflow<a name="freertos-lib-gg-workflow"></a>
 
 The MCU device initiates the discovery process by requesting from AWS IoT a JSON file that contains the Greengrass core connectivity parameters\. There are two methods for retrieving the Greengrass core connectivity parameters from the JSON file:
 + Automatic selection iterates through all of the Greengrass cores listed in the JSON file and connects to the first one available\. 
 + Manual selection uses the information in `aws_ggd_config.h` to connect to the specified Greengrass core\.
 
-### How to Use the Greengrass API<a name="freertos-lib-gg-api"></a>
+### How to use the Greengrass API<a name="freertos-lib-gg-api"></a>
 
 All default configuration options for the Greengrass API are defined in `aws_ggd_config_defaults.h`\.
 

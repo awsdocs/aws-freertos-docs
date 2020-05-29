@@ -1,12 +1,15 @@
-# Getting Started with the Windows Device Simulator<a name="getting_started_windows"></a>
+# Getting started with the Windows Device Simulator<a name="getting_started_windows"></a>
 
 This tutorial provides instructions for getting started with the FreeRTOS Windows Device Simulator\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First Steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 FreeRTOS is released as a zip file that contains the FreeRTOS libraries and sample applications for the platform you specify\. To run the samples on a Windows machine, download the libraries and samples ported to run on Windows\. This set of files is referred to as the FreeRTOS simulator for Windows\.
 
-## Set Up Your Development Environment<a name="win-setup-env"></a>
+**Note**  
+This tutorial cannot be successfully run on Amazon EC2 Windows instances\.
+
+## Set up your development environment<a name="win-setup-env"></a>
 
 1. Install the latest version of [WinPCap](https://www.winpcap.org/)\.
 
@@ -22,11 +25,11 @@ FreeRTOS is released as a zip file that contains the FreeRTOS libraries and samp
 
 1. \(Optional\) If you would like to use the CMake\-based build system to build your FreeRTOS projects, install the latest version of [CMake](https://cmake.org/download/)\. FreeRTOS requires CMake version 3\.13 or later\.
 
-## Build and Run the FreeRTOS Demo Project<a name="win-build-and-run-example"></a>
+## Build and run the FreeRTOS demo project<a name="win-build-and-run-example"></a>
 
 You can use Visual Studio or CMake to build FreeRTOS projects\.
 
-### Building and Running the FreeRTOS Demo Project with the Visual Studio IDE<a name="win-build-and-run-vs"></a>
+### Building and running the FreeRTOS demo project with the Visual Studio IDE<a name="win-build-and-run-vs"></a>
 
 1. Load the project into Visual Studio\.
 
@@ -40,7 +43,7 @@ You can use Visual Studio or CMake to build FreeRTOS projects\.
 
    From the **Build** menu, choose **Build Solution**, and make sure the solution builds without errors or warnings\. Choose **Debug**, **Start Debugging** to run the project\. On the first run, you will need to [select a network interface](#win-network-interface)\.
 
-### Building and Running the FreeRTOS Demo Project with CMake<a name="win-build-and-run-cmake"></a>
+### Building and running the FreeRTOS demo project with CMake<a name="win-build-and-run-cmake"></a>
 
 We recommend that you use the CMake GUI instead of the CMake command\-line tool to build the demo project for the Windows Simulator\.
 
@@ -76,7 +79,7 @@ Description
 
 For more information about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Configure Your Network Interface<a name="win-network-interface"></a>
+### Configure your network interface<a name="win-network-interface"></a>
 
 On the first run of the demo project, you must select the network interface to use\. The program enumerates your network interfaces\. Find the number for your hard\-wired Ethernet interface\. The output should look like this:
 
@@ -105,7 +108,7 @@ Open `FreeRTOSConfig.h` and set `configNETWORK_INTERFACE_TO_USE` to the number t
 **Important**  
 Only Ethernet interfaces are supported\. Wi\-Fi isn't supported\. For more information, see the *WinPcap FAQ* entry [Q\-16: Which network adapters are supported by WinPcap? ](https://www.winpcap.org/misc/faq.htm#Q-16)\.
 
-### Monitoring MQTT Messages on the Cloud<a name="getting_started_windows_monitor_mqtt"></a>
+### Monitoring MQTT messages on the cloud<a name="getting_started_windows_monitor_mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -119,7 +122,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Troubleshooting<a name="windows-troubleshooting"></a>
 
-### Troubleshooting Common Problems on Windows<a name="windows-troubleshooting-common"></a>
+### Troubleshooting common problems on Windows<a name="windows-troubleshooting-common"></a>
 
 You might run into the following error when trying to build the demo project with Visual Studio:
 
@@ -129,4 +132,4 @@ Error "The Windows SDK version X.Y was not found" when building the provided Vis
 
 The project must be targeted to a Windows SDK version present on your computer\.
 
-For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting Getting Started](gsg-troubleshooting.md)\.
+For general troubleshooting information about Getting Started with FreeRTOS, see [Troubleshooting getting started](gsg-troubleshooting.md)\.
