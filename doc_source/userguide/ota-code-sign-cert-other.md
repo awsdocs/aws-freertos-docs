@@ -14,4 +14,4 @@ The output from this command displays an ARN for your certificate\. You need thi
 
 ACM requires certificates to use specific algorithms and key sizes\. For more information, see [Prerequisites for Importing Certificates](https://docs.aws.amazon.com/acm/latest/userguide/import-certificate-prerequisites.html)\. For more information about ACM, see [Importing Certificates into AWS Certificate Manager](https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)\.
 
-You must copy, paste, and format the contents of your code\-signing certificate and private key into the `aws_ota_codesigner_certificate.h` file that is part of the FreeRTOS code you download later\.
+You must copy, paste, and format the contents of your code\-signing certificate into the `aws_ota_codesigner_certificate.h` file that is part of the FreeRTOS code you download later\.
