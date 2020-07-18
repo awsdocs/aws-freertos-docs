@@ -52,7 +52,7 @@ openssl version
 OpenSSL 1.0.2g  1 Mar 2016
 ```
 
-The following steps are written with the assumption that you have used the aws configure command to configure the AWS CLI\.
+The following steps are written with the assumption that you have used the aws configure command to configure the AWS CLI\. \(See [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config) for more information\.\)
 
 **Creating an AWS IoT thing based on a P\-256 client certificate**
 
@@ -123,6 +123,9 @@ The following steps are written with the assumption that you have used the aws c
    ```
 
 Now, follow the steps in the [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) section of this guide\. Don’t forget to copy the certificate and private key you created into your `aws_clientcredential_keys.h` file\. Copy your thing name into `aws_clientcredential.h`\.
+
+**Note**  
+The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 ## Porting<a name="freertos-pkcs-porting"></a>
 

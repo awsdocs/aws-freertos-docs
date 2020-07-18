@@ -5,7 +5,8 @@ You can use the FreeRTOS Secure Sockets library to create and configure a TCP so
 FreeRTOS includes a Secure Sockets implementation for the [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) and [lightweight IP \(lwIP\)](https://savannah.nongnu.org/projects/lwip/) TCP/IP stacks, which are used in conjunction with [mbedTLS](https://tls.mbed.org/)\. If you are using either the FreeRTOS\+TCP or the lwIP TCP/IP stack, you do not need to port the Secure Sockets library\.
 
 **Note**  
-Even if you do not need to create a port of the Secure Sockets library, your platform must still pass the qualification tests for the Secure Sockets library\. Qualification is based on results from AWS IoT Device Tester\.
+Even if you do not need to create a port of the Secure Sockets library, your platform must still pass the qualification tests for the Secure Sockets library\. Qualification is based on results from AWS IoT Device Tester\.  
+Also, your TLS implementation should support the [TLS cipher suites that are supported by AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html#tls-cipher-suite-support)\.
 
 If your platform offloads TCP/IP functionality to a separate network chip, you need to port the FreeRTOS Secure Sockets library to your device\.
 

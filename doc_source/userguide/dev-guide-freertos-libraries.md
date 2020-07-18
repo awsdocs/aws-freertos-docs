@@ -28,7 +28,7 @@ The following porting libraries are included in configurations of FreeRTOS that 
 You can optionally include the following standalone application libraries in your FreeRTOS configuration to interact with AWS IoT services on the cloud\.
 
 **Note**  
-Some of the application libraries have the same APIs as libraries in the AWS IoT Device SDK for Embedded C\. For these libraries, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. For more information about the the AWS IoT Device SDK for Embedded C, see [AWS IoT Device SDK for Embedded C](c-sdk.md)\.
+Some of the application libraries have the same APIs as libraries in the AWS IoT Device SDK for Embedded C\. For these libraries, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. For more information about the AWS IoT Device SDK for Embedded C, see [AWS IoT Device SDK for Embedded C](c-sdk.md)\.
 
 
 **FreeRTOS application libraries**  

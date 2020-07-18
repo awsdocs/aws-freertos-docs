@@ -12,6 +12,8 @@ devicetester_[linux | mac | win] run-suite  \
     --pool-id your-device-pool \
     --test-id test-id  \
     --upgrade-test-suite y|n  \
+    --update-idt y|n  \
+    --update-managed-policy y|n  \
     --userdata userdata.json
 ```
 
@@ -60,6 +62,12 @@ test\-id
 ```
 devicetester_[linux | mac | win_x86-64] run-suite --group-id mqtt --test-id mqtt_test
 ```
+
+update\-idt  
+\(Optional\) If this parameter is not set and a newer IDT version is available, you will be prompted to update IDT\. If this parameter is set to `Y`, IDT will stop test execution if it detects that a newer version is available\. If this parameter is set to `N`, IDT will continue the test execution\.
+
+update\-managed\-policy  
+\(Optional\) If this parameter is not used and IDT detects that your managed policy isn't up\-to\-date, you will be prompted to update your managed policy\. If this parameter is set to `Y`, IDT will stop test execution if it detects that your managed policy isn't up\-to\-date\. If this parameter is set to `N`, IDT will continue the test execution\.
 
 upgrade\-test\-suite  
 \(Optional\) If not used, and a newer test suite version is available, you're prompted to download it\. To hide the prompt, specify `y` to always download the latest test suite, or `n` to use the test suite specified or the latest version on your system\.  

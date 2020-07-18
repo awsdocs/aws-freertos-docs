@@ -40,9 +40,13 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Choose **Next**\.
 
+1. Enter an ID and description for your OTA update job\.
+
 1. Under **Job type**, choose **Your job will complete after deploying to the selected devices/groups \(snapshot\)**\.
 
-1. Enter an ID and description for your OTA update job, and then choose **Create**\.<a name="previously-signed"></a>
+1. Choose any appropriate optional configurations for your job \(**Job executions rollout**, **Job abort**, **Job executions timeout**, and **Tags**\)\.
+
+1. Choose **Create**\.<a name="previously-signed"></a>
 
 **To use a previously signed firmware image**
 

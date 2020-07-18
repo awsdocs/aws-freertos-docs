@@ -140,4 +140,4 @@ The `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy contains the follow
 
 You might prefer to use the AWS CLI to perform some operations\. If you don't have the AWS CLI installed, follow the instructions in [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
-Configure the CLI for the AWS Region you want to use by running `aws configure` from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\.
+Configure the CLI for the AWS Region you want to use by running `aws configure` from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\. For more information about `aws configure` see [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config)\.

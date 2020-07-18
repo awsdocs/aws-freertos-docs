@@ -47,7 +47,7 @@ To set up your environment, you need to download and install Segger Embedded Stu
 
 To run the FreeRTOS demo project across Bluetooth Low Energy, you need to run the FreeRTOS Bluetooth Low Energy Mobile SDK demo application on your mobile device\.
 
-**To set up the the FreeRTOS Bluetooth Low Energy Mobile SDK Demo application**
+**To set up the FreeRTOS Bluetooth Low Energy Mobile SDK Demo application**
 
 1. Follow the instructions in [Mobile SDKs for FreeRTOS Bluetooth devices](freertos-ble-mobile.md) to download and install the SDK for your mobile platform on your host computer\.
 

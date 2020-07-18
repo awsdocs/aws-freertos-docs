@@ -124,17 +124,17 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 
 **To build the FreeRTOS demo with CMake**
 
-1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\.
+1. Create a folder to contain the generated build files \(*build\-folder*\)\.
 
 1. Use the following command to generate build files from source code:
 
    ```
-   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/version/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/version/bin -S freertos -B BUILD_FOLDER
+   cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/version/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/version/bin -S freertos -B build-folder
    ```
 **Note**  
 You must specify the correct paths to the Hexmate and toolchain binaries\. \(For example: `C:\Program Files (x86)\Microchip\MPLABX\v5.35\mplab_platform\bin` and `C:\Program Files\Microchip\xc32\v2.40\bin` respectively\.\)
 
-1. Change directories to the build directory \(*BUILD\_FOLDER*\), and run `make` from that directory\.
+1. Change directories to the build directory \(*build\-folder*\), and run `make` from that directory\.
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 

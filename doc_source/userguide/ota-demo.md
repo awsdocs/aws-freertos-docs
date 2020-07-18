@@ -6,15 +6,17 @@ The OTA demo application does the following:
 
 1. Initializes the FreeRTOS network stack and MQTT buffer pool\.
 
-1. Creates a task to exercise the OTA library \(`vRunOTAUpdateDemo()`\)\.
+1. Creates a task to exercise the OTA library using `vRunOTAUpdateDemo()`\.
 
-1. Creates an MQTT client \(`prxCreateNetworkConnection()`\)\.
+1. Creates an MQTT client using `_establishMqttConnection()`\.
 
-1. Connects to the AWS IoT MQTT broker \(`IotMqtt_Connect()`\)\.
+1. Connects to the AWS IoT MQTT broker using `IotMqtt_Connect()` and registers an MQTT disconnect callback: `prvNetworkDisconnectCallback`\.
 
 1. Calls `OTA_AgentInit()` to create the OTA task and registers a callback to be used when the OTA task is complete\.
 
-1. Reuses the MQTT connection \(`xOTAConnectionCtx.pvControlClient = xConnection.xMqttConnection;`\)\.
+1. Reuses the MQTT connection with `xOTAConnectionCtx.pvControlClient = _mqttConnection;`
+
+1. If MQTT disconnects, the application suspends the OTA agent, tries to reconnect using exponential delay with jitter, and then resumes the OTA agent\.
 
 Before you can use OTA updates, complete all prerequisites in the [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)
 

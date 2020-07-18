@@ -1,11 +1,9 @@
-# Getting started with the Espressif ESP32\-WROOM\-32SE \(preview\)<a name="getting_started_esp32wroom-32se"></a>
+# Getting started with the Espressif ESP32\-WROOM\-32SE<a name="getting_started_esp32wroom-32se"></a>
 
-Follow this tutorial to get started with the Espressif ESP32\-WROOM\-32SE\. Support for the ESP32\-WROOM\-32SE \(with Microchip ATECC608A secure element\) is in preview only and isn't part of the official FreeRTOS release\. The ESP32\-WROOM\-32SE currently has limited availability for purchase\. Contact [sales@espressif\.com](mailto:sales@espressif.com) to obtain a board\.
+Follow this tutorial to get started with the Espressif ESP32\-WROOM\-32SE\.  To purchase one from our partner on the AWS Partner Device catalog, see [ESP32\-WROOM\-32SE](https://devices.amazonaws.com/detail/a3G0h0000077nRtEAI/ESP32-WROOM-32SE)\.
 
 **Note**  
-FreeRTOS port for ESP32\-WROOM\-32SE doesn't support the following features:  
-Symmetric multiprocessing \(SMP\)
-Online Configuration Wizard \(OCW\)
+The FreeRTOS port for ESP32\-WROOM\-32SE doesn't support symmetric multiprocessing \(SMP\)\.
 
 ## Overview<a name="getting_started_esp32wroom-32se-overview"></a>
 
@@ -67,7 +65,7 @@ To add an IAM user to your AWS account, see the [Adding a User](https://docs.aws
 
 1. Choose **Add permissions**\.
 
-For more information about IAM, see the [ IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide)\.
+For more information about IAM, see the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide)\.
 
 For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
@@ -119,10 +117,10 @@ For more details about using CMake with FreeRTOS, see [Using CMake with FreeRTOS
 
 ## Download and configure FreeRTOS<a name="download-and-configure-esp32wroom-32se"></a>
 
-After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. The code for ESP32\-WROOM32\-SE is only available on GitHub on the development branch [ feature/esp32\-wroom\-32se](https://github.com/aws/amazon-freertos/tree/feature/esp32-wroom-32se)\.
+After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file\.
 
 **Important**  
-The ATECC608A device has a one time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
+The ATECC608A device has a one\-time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
 
 1. Configure the FreeRTOS Demo Project by following the steps in [Configuring the FreeRTOS demos](freertos-configure.md)\. Skip the last step **To format your AWS IoT credentials** and follow the steps below instead\.
 
@@ -142,7 +140,7 @@ The ATECC608A device has a one time initialization that is locked onto the devic
 
 You can use CMake to generate the build files, Make to build the application binary, and Espressif's IDF utility to flash your board\.
 
-### Build FreeRTOS<a name="build-esp32wroom-32se"></a>
+### Build FreeRTOS on Linux or MacOS<a name="build-esp32wroom-32se"></a>
 
 If you're using Windows, you can skip to [Build FreeRTOS on Windows](#build-esp32wroom-32se-windows)\.
 
@@ -160,7 +158,13 @@ Use CMake to generate the build files, and then use Make to build the applicatio
 **Note**  
 To build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag\.  
 To generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.  
-To add Lightweight IP \(LwIP\) support, add the `-DAFR_ESP_LWIP=1` flag\.
+The code provided by Espressif uses the lightweight IP \(lwIP\) stack as the default networking stack\. To use the FreeRTOS\+TCP networking stack instead, add the `–DAFR_ESP_FREERTOS_TCP` flag to the CMake command\.  
+To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom WiFi component\.  
+
+   ```
+   # Add a dependency on the bluetooth espressif component to the common component
+   set(COMPONENT_REQUIRES lwip)
+   ```
 
 **To build the application with Make**
 
@@ -191,7 +195,14 @@ Use CMake to generate the build files, and then use Make to build the applicatio
    ```
 **Note**  
 To build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag\.  
-To generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.
+To generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.  
+The code provided by Espressif uses the lightweight IP \(lwIP\) stack as the default networking stack\. To use the FreeRTOS\+TCP networking stack instead, add the `–DAFR_ESP_FREERTOS_TCP` flag to the CMake command\.  
+To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom WiFi component\.  
+
+   ```
+   # Add a dependency on the bluetooth espressif component to the common component
+   set(COMPONENT_REQUIRES lwip)
+   ```
 
 **To build the application**
 
@@ -218,7 +229,7 @@ Use Espressif's IDF utility \(`freertos/vendors/espressif/esp-idf/tools/idf.py`\
 To erase the board's flash, navigate to the `freertos` directory and enter the following command\.
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build
+./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build-directory
 ```
 
 To flash the application binary to your board, use `make`\.
@@ -230,20 +241,20 @@ make flash
 You can also use the IDF script to flash your board\.
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py flash -B build
+./vendors/espressif/esp-idf/tools/idf.py flash -B build-directory
 ```
 
 To monitor:
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py monitor -p /dev/ttyUSB1 -B build
+./vendors/espressif/esp-idf/tools/idf.py monitor -p /dev/ttyUSB1 -B build-directory
 ```
 
 **Tip**  
 You can also combine these commands\.  
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build
+./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build-directory
 ```
 
 ### Monitoring MQTT messages on the AWS Cloud<a name="gsg-esp32wroom-32se-monitor-mqtt"></a>

@@ -31,6 +31,12 @@ Gets the state of the currently running microcontroller firmware image \(testing
 `OTA_CheckForUpdate`  
 Requests the next available OTA update from the OTA Update service\.
 
+`OTA_Suspend`  
+Suspend all OTA Agent operations\.
+
+`OTA_Resume`  
+Resume OTA Agent operations\.
+
 ## API reference<a name="freertos-ota-api"></a>
 
 For more information, see the [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\.

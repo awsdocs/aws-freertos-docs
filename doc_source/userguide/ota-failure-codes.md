@@ -2,7 +2,7 @@
 
 1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\. 
 
-1. Run "`aws configure`" and enter following information: 
+1. Run "`aws configure`" and enter following information:
 
    ```
    $ aws configure
@@ -12,13 +12,15 @@
    Default output format [None]: json
    ```
 
+   See [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config) for more information\.
+
 1. Run: 
 
    ```
    aws iot describe-job-execution --job-id JobID --thing-name ThingName
    ```
 
-   Where *JobID* is the complete job ID string for the job whose status we want to get and *ThingName* is the AWS IoT thing name that the device is registered as in AWS IoT
+   Where *JobID* is the complete job ID string for the job whose status we want to get \(it was associated with the OTA update job when it was created\) and *ThingName* is the AWS IoT thing name that the device is registered as in AWS IoT
 
 1. The output will look like this:
 

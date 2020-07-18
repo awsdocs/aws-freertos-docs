@@ -16,7 +16,7 @@ The FreeRTOS Secure Sockets library depends on a TCP/IP stack and on a TLS imple
 + A custom implementation of TCP/IP, and the FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
 + [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) and the FreeRTOS TLS layer with [mbedTLS](https://en.wikipedia.org/wiki/Mbed_TLS)
 
-The dependency diagram below shows the the reference implementation included with the FreeRTOS Secure Sockets library\. This reference implementation supports TLS and TCP/IP over Ethernet and Wi\-Fi with FreeRTOS\+TCP and mbedTLS as dependencies\. For more information about the FreeRTOS TLS layer, see [Transport Layer Security](security-tls.md)\.
+The dependency diagram below shows the reference implementation included with the FreeRTOS Secure Sockets library\. This reference implementation supports TLS and TCP/IP over Ethernet and Wi\-Fi with FreeRTOS\+TCP and mbedTLS as dependencies\. For more information about the FreeRTOS TLS layer, see [Transport Layer Security](security-tls.md)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/sockets-dependencies.png)
 

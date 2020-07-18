@@ -9,90 +9,104 @@ Although the integration of the OTA update feature into your application is rath
 
 The OTA Agent uses the MQTT protocol for all control communication operations involving AWS IoT services, but it doesn't manage the MQTT connection\. To ensure that the OTA Agent doesn't interfere with the connection management policy of your application, the MQTT connection \(including disconnect and any reconnect functionality\) must be handled by the main user application\. The file can be downloaded over the MQTT or HTTP protocol\. You can choose which protocol when you create the OTA job\. If you choose MQTT, the OTA Agent uses the same connection for control operations and for downloading file\. If you choose HTTP, the OTA Agent handles the HTTP connections\. 
 
-## Simple OTA demo using MQTT<a name="simple-demo-agent"></a>
+## Simple OTA demo<a name="simple-demo-agent"></a>
 
-The following is an excerpt of a simple OTA demo that shows you how the Agent connects to the MQTT broker and initializes the OTA Agent\. In this example, we configure the demo to use the default OTA completion callback and print out some statistics once per second\. For brevity, we leave out some details from this demo\.
+The following is an excerpt of a simple OTA demo that shows you how the Agent connects to the MQTT broker and initializes the OTA Agent\. In this example, we configure the demo to use the default OTA completion callback and to return some statistics once per second\. For brevity, we leave out some details from this demo\.
+
+The OTA demo also demonstrates MQTT connection management by monitoring the disconnect callback and reestablishing the connection\. When a disconnect happens, the demo first suspends the OTA Agent operations and then attempts to reestablish the MQTT connection\. The MQTT reconnection attempts are delayed by a time which is exponentially increased up to a maximum value and a jitter is also added\. If the connection is reestablished, the OTA Agent continues its operations\. 
 
 For a working example that uses the AWS IoT MQTT broker, see the OTA demo code in the `demos/ota` directory\.
 
 Because the OTA Agent is its own task, the intentional one\-second delay in this example affects this application only\. It has no impact on the performance of the Agent\.
 
 ```
-void vRunOTAUpdateDemo( const IotNetworkInterface_t * pNetworkInterface,
-                        void * pNetworkCredentialInfo )
+void vRunOTAUpdateDemo( bool awsIotMqttMode,
+                        const char * pIdentifier,
+                        void * pNetworkServerInfo,
+                        void * pNetworkCredentialInfo,
+                        const IotNetworkInterface_t * pNetworkInterface )
 {
-    IotMqttConnectInfo_t xConnectInfo = IOT_MQTT_CONNECT_INFO_INITIALIZER;
     OTA_State_t eState;
-    OTA_ConnectionContext_t xOTAConnectionCtx = { 0 };
+    static OTA_ConnectionContext_t xOTAConnectionCtx;
 
-    configPRINTF( ( "OTA demo version %u.%u.%u\r\n",
-                    xAppFirmwareVersion.u.x.ucMajor,
-                    xAppFirmwareVersion.u.x.ucMinor,
-                    xAppFirmwareVersion.u.x.usBuild ) );
-    configPRINTF( ( "Creating MQTT Client...\r\n" ) );
-
-    /* Create the MQTT Client. */
+    IotLogInfo( "OTA demo version %u.%u.%u\r\n",
+                xAppFirmwareVersion.u.x.ucMajor,
+                xAppFirmwareVersion.u.x.ucMinor,
+                xAppFirmwareVersion.u.x.usBuild );
 
     for( ; ; )
     {
-        xNetworkConnected = prxCreateNetworkConnection();
+        IotLogInfo( "Connecting to broker...\r\n" );
 
-        if( xNetworkConnected )
+        /* Establish a new MQTT connection. */
+        if( _establishMqttConnection( awsIotMqttMode,
+                                      pIdentifier,
+                                      pNetworkServerInfo,
+                                      pNetworkCredentialInfo,
+                                      pNetworkInterface,
+                                      &_mqttConnection ) == EXIT_SUCCESS )
         {
-            configPRINTF( ( "Connecting to broker...\r\n" ) );
-            memset( &xConnectInfo, 0, sizeof( xConnectInfo ) );
+            /* Update the connection context shared with OTA Agent.*/
+            xOTAConnectionCtx.pxNetworkInterface = ( void * ) pNetworkInterface;
+            xOTAConnectionCtx.pvNetworkCredentials = pNetworkCredentialInfo;
+            xOTAConnectionCtx.pvControlClient = _mqttConnection;
 
-            if( xConnection.ulNetworkType == AWSIOT_NETWORK_TYPE_BLE )
+            /* Set the base interval for connection retry.*/
+            _retryInterval = OTA_DEMO_CONN_RETRY_BASE_INTERVAL_SECONDS;
+
+            /* Update the connection available flag.*/
+            _networkConnected = true;
+
+            /* Check if OTA Agent is suspended and resume.*/
+            if( ( eState = OTA_GetAgentState() ) == eOTA_AgentState_Suspended )
             {
-                xConnectInfo.awsIotMqttMode = false;
-                xConnectInfo.keepAliveSeconds = 0;
+                OTA_Resume( &xOTAConnectionCtx );
             }
-            else
+
+            /* Initialize the OTA Agent , if it is resuming the OTA statistics will be cleared for new connection.*/
+            OTA_AgentInit( ( void * ) ( &xOTAConnectionCtx ),
+                           ( const uint8_t * ) ( clientcredentialIOT_THING_NAME ),
+                           App_OTACompleteCallback,
+                           ( TickType_t ) ~0 );
+
+            while( ( ( eState = OTA_GetAgentState() ) != eOTA_AgentState_Stopped ) && _networkConnected )
             {
-                xConnectInfo.awsIotMqttMode = true;
-                xConnectInfo.keepAliveSeconds = otaDemoKEEPALIVE_SECONDS;
+                /* Wait forever for OTA traffic but allow other tasks to run and output statistics only once per second. */
+                IotClock_SleepMs( OTA_DEMO_TASK_DELAY_SECONDS * 1000 );
+
+                IotLogInfo( "State: %s  Received: %u   Queued: %u   Processed: %u   Dropped: %u\r\n", _pStateStr[ eState ],
+                            OTA_GetPacketsReceived(), OTA_GetPacketsQueued(), OTA_GetPacketsProcessed(), OTA_GetPacketsDropped() );
             }
 
-            xConnectInfo.cleanSession = true;
-            xConnectInfo.clientIdentifierLength = ( uint16_t ) strlen( clientcredentialIOT_THING_NAME );
-            xConnectInfo.pClientIdentifier = clientcredentialIOT_THING_NAME;
-
-            /* Connect to the broker. */
-            if( IotMqtt_Connect( &( xConnection.xNetworkInfo ),
-                                 &xConnectInfo,
-                                 otaDemoCONN_TIMEOUT_MS, &( xConnection.xMqttConnection ) ) == IOT_MQTT_SUCCESS )
+            /* Check if we got network disconnect callback and suspend OTA Agent.*/
+            if( _networkConnected == false )
             {
-                configPRINTF( ( "Connected to broker.\r\n" ) );
-                xOTAConnectionCtx.pvControlClient = xConnection.xMqttConnection;
-                xOTAConnectionCtx.pxNetworkInterface = ( void * ) pNetworkInterface;
-                xOTAConnectionCtx.pvNetworkCredentials = pNetworkCredentialInfo;
-
-                OTA_AgentInit( ( void * ) ( &xOTAConnectionCtx ), ( const uint8_t * ) ( clientcredentialIOT_THING_NAME ), App_OTACompleteCallback, ( TickType_t ) ~0 );
-
-                while( ( eState = OTA_GetAgentState() ) != eOTA_AgentState_Stopped )
+                /* Suspend OTA agent.*/
+                if( OTA_Suspend() == kOTA_Err_None )
                 {
-                    /* Wait forever for OTA traffic but allow other tasks to run and output statistics only once per second. */
-                    vTaskDelay( myappONE_SECOND_DELAY_IN_TICKS );
-                    configPRINTF( ( "State: %s  Received: %u   Queued: %u   Processed: %u   Dropped: %u\r\n", pcStateStr[ eState ],
-                                    OTA_GetPacketsReceived(), OTA_GetPacketsQueued(), OTA_GetPacketsProcessed(), OTA_GetPacketsDropped() ) );
+                    while( ( eState = OTA_GetAgentState() ) != eOTA_AgentState_Suspended )
+                    {
+                        /* Wait for OTA Agent to process the suspend event. */
+                        IotClock_SleepMs( OTA_DEMO_TASK_DELAY_SECONDS * 1000 );
+                    }
                 }
-
-                IotMqtt_Disconnect( xConnection.xMqttConnection, false );
             }
             else
             {
-                configPRINTF( ( "ERROR:  MQTT_AGENT_Connect() Failed.\r\n" ) );
+                /* Try to close the MQTT connection. */
+                if( _mqttConnection != NULL )
+                {
+                    IotMqtt_Disconnect( _mqttConnection, 0 );
+                }
             }
-
-            vMqttDemoDeleteNetworkConnection( &xConnection );
-
-            /* After failure to connect or a disconnect, wait an arbitrary one second before retry. */
-            vTaskDelay( myappONE_SECOND_DELAY_IN_TICKS );
         }
         else
         {
-            configPRINTF( ( "Failed to create MQTT client.\r\n" ) );
+            IotLogError( "ERROR:  MQTT_AGENT_Connect() Failed.\r\n" );
         }
+
+        /* After failure to connect or a disconnect, delay for retrying connection. */
+        _connectionRetryDelay();
     }
 }
 ```
@@ -101,8 +115,11 @@ Here is the high\-level flow of this demo application:
 + Create an MQTT Agent context\.
 + Connect to your AWS IoT endpoint\.
 + Initialize the OTA Agent\.
-+ Loop allowing an OTA update job and output statistics once a second\.
-+ If the Agent stops, wait one second and try connecting again\.
++ Loop that allows an OTA update job and outputs statistics once a second\.
++ If MQTT disconnects, suspend the OTA Agent operations\.
++ Try connecting again with exponential delay and jitter\.
++ If reconnected, resume OTA Agent operations\.
++ If the Agent stops, delay one second, and then try reconnecting\.
 
 ## Using a custom callback for OTA completion events<a name="custom-callback-ota"></a>
 

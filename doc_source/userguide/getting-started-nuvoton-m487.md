@@ -58,7 +58,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\. 
 
-1. In **Subscription topic**, enter `freertos/demos/echo`, and then choose **Subscribe to topic**\. 
+1. In **Subscription topic**, enter `iotdemo/#`, and then choose **Subscribe to topic**\. 
 
 **To run the FreeRTOS demo project**
 
@@ -91,7 +91,7 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\. 
 
-1. In **Subscription topic**, enter `freertos/demos/echo`, and then choose **Subscribe to topic**\. 
+1. In **Subscription topic**, enter `iotdemo/#`, and then choose **Subscribe to topic**\. 
 
 **To generate build files from source files and run the demo project**
 

@@ -116,7 +116,7 @@ After your environment is set up, you can download FreeRTOS from [GitHub](https:
 
 ### Configure the FreeRTOS demo applications<a name="config-demos"></a>
 
-1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
+1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\. \([MinGW ](https://sourceforge.net/projects/mingw-w64/files/) is a minimalist development environment for native Microsoft Windows applications\.\)
 
 1. To verify that you have Python 2\.7\.10 or later installed, run python \-\-version\. The version installed is displayed\. If you do not have Python 2\.7\.10 or later installed, you can install it from the [Python website](https://www.python.org/downloads/)\.
 
@@ -163,6 +163,8 @@ The script does the following:
 + Attaches the IoT policy to the certificate and the certificate to the AWS IoT thing
 + Populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials
 + Formats your certificate and private key and writes them to the `aws_clientcredential.h` header file
+**Note**  
+The certificate is hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
 For more information about `SetupAWS.py`, see the README\.md in the `freertos/tools/aws_config_quick_start` directory\.
 
@@ -170,7 +172,7 @@ For more information about `SetupAWS.py`, see the README\.md in the `freertos/to
 
 You can use CMake to generate the build files, Make to build the application binary, and Espressif's IDF utility to flash your board\.
 
-### Build FreeRTOS<a name="build-espressif"></a>
+### Build FreeRTOS on Linux and MacOS<a name="build-espressif"></a>
 
 \(If you are using Windows, please see the next section\.\)
 
@@ -188,7 +190,13 @@ Use CMake to generate the build files, and then use Make to build the applicatio
 **Note**  
 If you want to build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag to this command\.  
 If you want to generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.  
-If you want to add Lightweight IP \(LwIP\) support, add the `-DAFR_ESP_LWIP=1` flag\.
+The code provided by Espressif uses the lightweight IP \(lwIP\) stack as the default networking stack\. To use the FreeRTOS\+TCP networking stack instead, add the `–DAFR_ESP_FREERTOS_TCP` flag to the CMake command\.  
+To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom WiFi component\.  
+
+   ```
+   # Add a dependency on the bluetooth espressif component to the common component
+   set(COMPONENT_REQUIRES lwip)
+   ```
 
 **To build the application with make**
 
@@ -215,11 +223,18 @@ Use CMake to generate the build files, and then use Make to build the applicatio
 1. Use the following command to generate the build files:
 
    ```
-   cmake -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 -GNinja -S . -B your-build-directory
+   cmake -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 -GNinja -S . -B build-directory
    ```
 **Note**  
 If you want to build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag to this command\.  
-If you want to generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.
+If you want to generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.  
+The code provided by Espressif uses the lightweight IP \(lwIP\) stack as the default networking stack\. To use the FreeRTOS\+TCP networking stack instead, add the `–DAFR_ESP_FREERTOS_TCP` flag to the CMake command\.  
+To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom WiFi component\.  
+
+   ```
+   # Add a dependency on the bluetooth espressif component to the common component
+   set(COMPONENT_REQUIRES lwip)
+   ```
 
 **To build the application**
 
@@ -234,7 +249,7 @@ If you want to generate the test application build files, add the `-DAFR_ENABLE_
    Or, use the generic CMake interface to build the application:
 
    ```
-   cmake --build your-build-directory
+   cmake --build build-directory
    ```
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
@@ -246,7 +261,7 @@ Use Espressif's IDF utility \(`freertos/vendors/espressif/esp-idf/tools/idf.py`\
 To erase the board's flash, go to the `freertos` directory and use the following command:
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build
+./vendors/espressif/esp-idf/tools/idf.py erase_flash -B build-directory
 ```
 
 To flash the application binary to your board, use `make`:
@@ -258,20 +273,20 @@ make flash
 You can also use the IDF script to flash your board:
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py flash -B build
+./vendors/espressif/esp-idf/tools/idf.py flash -B build-directory
 ```
 
 To monitor:
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py monitor -p /dev/ttyUSB1 -B build
+./vendors/espressif/esp-idf/tools/idf.py monitor -p /dev/ttyUSB1 -B build-directory
 ```
 
 **Note**  
 You can combine these commands\. For example:  
 
 ```
-./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build
+./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build-directory
 ```
 
 ### Monitoring MQTT messages on the cloud<a name="gsg-espressif-monitor-mqtt"></a>
@@ -353,14 +368,14 @@ target_link_libraries(my_app PRIVATE AFR::mqtt)
 To build the project, run the following CMake commands\. Make sure the ESP32 compiler is in the PATH environment variable\.
 
 ```
-cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
+cmake -S . -B build-directory -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
 cmake --build build
 ```
 
 To flash the application to your board, run
 
 ```
-cmake --build build --target flash
+cmake --build build-directory --target flash
 ```
 
 ### Using components from FreeRTOS<a name="getting_started_espressif_cmake_project_components"></a>
@@ -502,7 +517,7 @@ include_directories(BEFORE freertos-configs)
 In case you want to provide your own `sdkconfig.default`, you can set the CMake variable `IDF_SDKCONFIG_DEFAULTS`, from the command line:
 
 ```
-cmake -S . -B build -DIDF_SDKCONFIG_DEFAULTS=path_to_your_sdkconfig_defaults -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
+cmake -S . -B build-directory -DIDF_SDKCONFIG_DEFAULTS=path_to_your_sdkconfig_defaults -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
 ```
 
 If you don’t specify a location for your own `sdkconfig.default` file, FreeRTOS will use the default file located at `freertos/vendors/espressif/boards/esp32/aws_demos/sdkconfig.defaults`\. 

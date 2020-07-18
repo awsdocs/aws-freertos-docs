@@ -52,7 +52,7 @@ Device\-specific code is in the following files
 
 1. Create a test setup file named `freertos/vendors/vendor/boards/board/ports/common_io/test_iot_internal.c`\. For its content, refer to the "Test Setup" section for each peripheral\.
 
-1. To enable the common I/O tests, open the file `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`\.****\.
+1. To enable the common I/O tests, open the file `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`\.
 
 1. Set `testrunnerFULL_COMMON_IO_ENABLED` to **1**
 

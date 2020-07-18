@@ -21,7 +21,7 @@ You need to provide FreeRTOS with your AWS IoT endpoint so the application runni
 1. Open `/demos/include/aws_clientcredential.h`\. 
 
 1. Specify values for the following constants:
-   + `#define clientcredentialMQTT_BROKER_ENDPOINT[] = "Your AWS IoT endpoint";`
+   + `#define clientcredentialMQTT_BROKER_ENDPOINT "Your AWS IoT endpoint";`
    + `#define clientcredentialIOT_THING_NAME "The AWS IoT thing name of your board"`
 
 **To configure your Wi\-Fi**

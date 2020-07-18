@@ -8,12 +8,32 @@ By downloading the software, you agree to the IDT for FreeRTOS License Agreement
 
 Use the following links to download the latest version of IDT for FreeRTOS\.
 
+**IDT v3\.1\.0 and Test Suite version 1\.1\.0 for FreeRTOS 202007\.00**
++ IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.1.0.zip)
++ IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.1.0.zip)
++ IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.1.0.zip)
+
+**Note**  
+We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This may result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive\.
+
+**Release notes**
++ Supports FreeRTOS 202007\.00\. For more information about what's included in the FreeRTOS 202007\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202007.00/CHANGELOG.md) file in GitHub\.
++ New end to end tests to validate Over The Air \(OTA\) update suspend and resume feature\.
++ Fixed bug causing users in eu\-central\-1 region to be unable to pass config validation for OTA tests\.
++ Added `--update-idt` parameter to the `run-suite` command\. You can use this option to set the response for the IDT update prompt\.
++ Added `--update-managed-policy` parameter to the `run-suite` command\. You can use this option to set the response for the managed policy update prompt\.
+
+**Test suite versions**
++ FRQ\_1\.1\.0
+
+## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
+
+The following earlier versions of IDT for FreeRTOS are also supported\.
+
 **IDT v3\.0\.0 for FreeRTOS 202002\.00**
 + IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.0.0.zip)
 + IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.0.0.zip)
 + IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.0.0.zip)
-**Note**  
-We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This may result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive\.
 
 **Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
@@ -34,10 +54,6 @@ We don't recommend that multiple users run IDT from a shared location, such as a
 
 **Test suite versions**
 + FRQ\_1\.0\.0
-
-## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
-
-The following earlier versions of IDT for FreeRTOS are also supported\.
 
 **IDT v1\.7\.0 for FreeRTOS 202002\.00**
 + IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_1.7.0.zip)

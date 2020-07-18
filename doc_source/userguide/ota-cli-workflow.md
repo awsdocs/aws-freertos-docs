@@ -10,7 +10,7 @@ When you use the AWS CLI to create an OTA update, you:
 
 ## Digitally signing your firmware update<a name="ota-sign-cli"></a>
 
-When you use the AWS CLI to perform OTA updates, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For a list of the cryptographic signing and hashing algorithms supported by Code Signing for AWS IoT, see [SigningConfigurationOverrides](https://docs.aws.amazon.com/signer/latest/api/API_SigningConfigurationOverrides.html)\. If you want to use a cryptographic algorithm that is not supported by Code Signing for AWS IoT, you must sign your firmware binary before you upload it to Amazon S3\.
+When you use the AWS CLI to perform OTA updates, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For a list of the cryptographic signing and hashing algorithms supported by Code Signing for AWS IoT, see [ SigningConfigurationOverrides](https://docs.aws.amazon.com/signer/latest/api/API_SigningConfigurationOverrides.html)\. If you want to use a cryptographic algorithm that is not supported by Code Signing for AWS IoT, you must sign your firmware binary before you upload it to Amazon S3\.
 
 ### Signing your firmware image with Code Signing for AWS IoT<a name="ota-sign-csfa"></a>
 
@@ -163,17 +163,6 @@ If you see `"Error: You have exceeded the limit for the number of streams in you
 
 Use the create\-ota\-update CLI command to create an OTA update job\.
 
-```
-aws iot create-ota-update \
-    --ota-update-id "my_ota_update" \
-    --target-selection SNAPSHOT \
-    --protocols "[MQTT, HTTP]"
-    --description "a cli ota update" \
-    --files file://ota.json \
-    --targets arn:aws:iot:your-aws-region:your-aws-account:thing/your-thing-name \
-    --role-arn arn:aws:iam::your-aws-account:role/your-ota-service-role
-```
-
 **Note**  
 Do not use any personally identifiable information \(PII\) in your OTA update job ID\. Examples of personally identifiable information include:  
 Names\.
@@ -183,61 +172,212 @@ Locations\.
 Bank details\.
 Medical information\.
 
-`ota-update-id`  
-An arbitrary OTA update ID\.
+```
+aws iot  create-ota-update \
+    --ota-update-id value \
+    [--description value] \
+    --targets value \
+    [--protocols value] \
+    [--target-selection value] \
+    [--aws-job-executions-rollout-config value] \
+    [--aws-job-presigned-url-config value] \
+    [--aws-job-abort-config value] \
+    [--aws-job-timeout-config value] \
+    --files value \
+    --role-arn value \
+    [--additional-parameters value] \
+    [--tags value]  \
+    [--cli-input-json value] \
+    [--generate-cli-skeleton]
+```
 
-`target-selection`  
-Valid values are:  
-+ `SNAPSHOT`: The job terminates after deploying the update to the selected AWS IoT thing or groups\.
-+ `CONTINUOUS`: The job continues to deploy updates to devices added to the selected groups\.
+ `cli-input-json` format
 
-`protocols`  
-A list of protocols that support transfer of the firmware image\. You can specify the following values:   
-+ `MQTT`: The firmware image is transferred to the device using the MQTT protocol\.
-+ `HTTP`: The firmware image is transferred to the device using the HTTP protocol\. The firmware image must be hosted on Amazon S3\.
-+ `MQTT` and `HTTP`: The firmware image can be transferred to the device using the MQTT or the HTTP protocol\. The device can determine which protocol to use\.
+```
+{
+  "otaUpdateId": "string",
+  "description": "string",
+  "targets": [
+    "string"
+  ],
+  "protocols": [
+    "string"
+  ],
+  "targetSelection": "string",
+  "awsJobExecutionsRolloutConfig": {
+    "maximumPerMinute": "integer",
+    "exponentialRate": {
+      "baseRatePerMinute": "integer",
+      "incrementFactor": "double",
+      "rateIncreaseCriteria": {
+        "numberOfNotifiedThings": "integer",
+        "numberOfSucceededThings": "integer"
+      }
+    }
+  },
+  "awsJobPresignedUrlConfig": {
+    "expiresInSec": "long"
+  },
+  "awsJobAbortConfig": {
+    "abortCriteriaList": [
+      {
+        "failureType": "string",
+        "action": "string",
+        "thresholdPercentage": "double",
+        "minNumberOfExecutedThings": "integer"
+      }
+    ]
+  },
+  "awsJobTimeoutConfig": {
+    "inProgressTimeoutInMinutes": "long"
+  },
+  "files": [
+    {
+      "fileName": "string",
+      "fileVersion": "string",
+      "fileLocation": {
+        "stream": {
+          "streamId": "string",
+          "fileId": "integer"
+        },
+        "s3Location": {
+          "bucket": "string",
+          "key": "string",
+          "version": "string"
+        }
+      },
+      "codeSigning": {
+        "awsSignerJobId": "string",
+        "startSigningJobParameter": {
+          "signingProfileParameter": {
+            "certificateArn": "string",
+            "platform": "string",
+            "certificatePathOnDevice": "string"
+          },
+          "signingProfileName": "string",
+          "destination": {
+            "s3Destination": {
+              "bucket": "string",
+              "prefix": "string"
+            }
+          }
+        },
+        "customCodeSigning": {
+          "signature": {
+            "inlineDocument": "blob"
+          },
+          "certificateChain": {
+            "certificateName": "string",
+            "inlineDocument": "string"
+          },
+          "hashAlgorithm": "string",
+          "signatureAlgorithm": "string"
+        }
+      },
+      "attributes": {
+        "string": "string"
+      }
+    }
+  ],
+  "roleArn": "string",
+  "additionalParameters": {
+    "string": "string"
+  },
+  "tags": [
+    {
+      "Key": "string",
+      "Value": "string"
+    }
+  ]
+}
+```
 
-`description`  
-A text description of the OTA update\.
 
-`files`  
-One or more references to JSON files that contain data about the OTA update\. The JSON file can contain the following attributes:  
-+ `fileName`: The fully qualified firmware image file name\. For Texas Instruments CC3220SF\-LAUNCHXL, this must be `/sys/mcuflashimg.bin`\. For Microchip, this must be `mplab.production.bin`\. 
-+ `fileLocation`: Contains information about the firmware update\.
-  + `stream`: The stream that contains the firmware update\.
-    + `streamId`: The stream ID specified in the create\-stream CLI command\.
-    + `fileId`: The file ID specified in the JSON file passed to create\-stream\.
-  + `s3Location`: The location in Amazon S3 of the firmware update\.
-    + `bucket`: The Amazon S3 bucket that contains the firmware update\.
-    + `key`: The firmware update key\.
-    + `version`: The firmware update version\.
-+ `codeSigning`: Contains information about the code\-signing job\.
-  + `awsSignerJobId`: The signer job ID generated by the start\-signing\-job command\.
-  + `startSigningJobParamater`: The information required to start a code\-signing job\.
-    + `signingProfileParameter`: The information required to create a signing job profile\.
-      + `certificateArn`: The ACM ARN of the certificate used to create a code\-signing job\.
-      + `platformId`: The ID of the hardware platform you are using\.
-      + `certificatePathOnDevice`: The path to the certificate on your device\.
-    + `signingProfileName`: The signing profile name\. If a profile with this name does not exist, you must provide values for `signingProfileParameter`\. If a profile with the specified name exists, and you provide values for `signingProfileParameter`, the values you provide must match exactly the values you used for the signing profile\.
-    + `destination`: The location where the signed artifact is placed\.
-      + `s3Destination`: The Amazon S3 bucket where the signed artifact is placed\.
-        + `bucket`: The Amazon S3 bucket\.
-        + `prefix`: The prefix of the code\-signing artifact\. By default, this is `signedImage/`\. This creates a folder called `signedImage` under your folder\.
-  + `customCodeSigning`: Contains information about a custom signature\.
-    + `signature`: Contains a custom signature\.
-      + `inlineDocument`: The custom signature\.
-    + `certificateChain`: Contains a certificate chain for a custom signature\.
-      + `certificateName`: The path name of the code\-signing certificate on the device\.
-      + `inlineDocument`: The certificate chain\.
-    + `hashAlgorithm`: The hash algorithm used to create the signature\.
-    + `signatureAlgorithm`: The signature algorithm used for code signing\.
-  + `attributes`: Arbitrary key\-value pairs\.
+**`cli-input-json` fields**  
 
-`targets`  
-One or more AWS IoT thing ARN that specifies the devices to be updated by the OTA update\.
+| Name | Type | Description | 
+| --- | --- | --- | 
+| `otaUpdateId` |  string  \(max:128 min:1\)  | The ID of the OTA update to be created\. | 
+| `description` |  string  \(max:2028\)  | The description of the OTA update\. | 
+| `targets` |  list  | The devices targeted to receive OTA updates\. | 
+| `protocols` |  list  |  The protocol used to transfer the OTA update image\. Valid values are \[HTTP\], \[MQTT\], \[HTTP, MQTT\]\. When both HTTP and MQTT are specified, the target device can choose the protocol\.  | 
+| `targetSelection` | string |  Specifies whether the update will continue to run \(CONTINUOUS\), or will be complete after all the things specified as targets have completed the update \(SNAPSHOT\)\. If continuous, the update may also be run on a thing when a change is detected in a target\. For example, an update will run on a thing when the thing is added to a target group, even after the update was completed by all things originally in the group\. Valid values: CONTINUOUS \| SNAPSHOT\. enum: CONTINUOUS \| SNAPSHOT  | 
+| `awsJobExecutionsRolloutConfig` |  | Configuration for the rollout of OTA updates\. | 
+| `maximumPerMinute` |  integer  \(max:1000 min:1\)  | The maximum number of OTA update job executions started per minute\. | 
+| `exponentialRate` |  |  The rate of increase for a job rollout\. This parameter allows you to define an exponential rate increase for a job rollout\.  | 
+| `baseRatePerMinute` |  integer  \(max:1000 min:1\)  |  The minimum number of things that will be notified of a pending job, per minute, at the start of the job rollout\. This is the initial rate of the rollout\.  | 
+|   `rateIncreaseCriteria`  |   |  The criteria to initiate the increase in rate of rollout for a job\. AWS IoT supports up to one digit after the decimal \(for example, 1\.5, but not 1\.55\)\.  | 
+|   `numberOfNotifiedThings`  |  integer  \(min:1\)  |  When this number of things have been notified, it will initiate an increase in the rollout rate\.  | 
+|   `numberOfSucceededThings`  |  integer  \(min:1\)  |  When this number of things have succeeded in their job execution, it will initiate an increase in the rollout rate\.  | 
+| `awsJobPresignedUrlConfig` |  |  Configuration information for pre\-signed URLs\. | 
+|   `expiresInSec`  |  long |  How long \(in seconds\) pre\-signed URLs are valid\. Valid values are 60 \- 3600, the default value is 1800 seconds\. Pre\-signed URLs are generated when a request for the job document is received\.  | 
+|   `awsJobAbortConfig`  |   |  The criteria that determine when and how a job abort takes place\. | 
+|   `abortCriteriaList`  |  list  |  The list of criteria that determine when and how to abort the job\. | 
+|   `failureType`  |  string |  The type of job execution failures that can initiate a job abort\.  enum: FAILED \| REJECTED \| TIMED\_OUT \| ALL  | 
+|   `action`  |  string |  The type of job action to take to initiate the job abort\.  enum: CANCEL  | 
+|   `minNumberOfExecutedThings`  |  integer  \(min:1\)  |  The minimum number of things which must receive job execution notifications before the job can be aborted\.  | 
+|   `awsJobTimeoutConfig`  |   |  Specifies the amount of time each device has to finish its execution of the job\. A timer is started when the job execution status is set to `IN_PROGRESS`\. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to `TIMED_OUT`\.  | 
+|   `inProgressTimeoutInMinutes`  |  long |  Specifies the amount of time, in minutes, this device has to finish execution of this job\. The timeout interval can be anywhere between 1 minute and 7 days \(1 to 10080 minutes\)\. The in progress timer can't be updated and will apply to all job executions for the job\. Whenever a job execution remains in the IN\_PROGRESS status for longer than this interval, the job execution will fail and switch to the terminal `TIMED_OUT` status\.  | 
+|   `files`  |  list  |  The files to be streamed by the OTA update\. | 
+|   `fileName`  |  string |  The name of the file\. | 
+|   `fileVersion`  |  string |  The file version\. | 
+|   `fileLocation`  |   |  The location of the updated firmware\. | 
+|   `stream`  |   |  The stream that contains the OTA update\. | 
+|   `streamId`  |  string  \(max:128 min:1\)  |  The stream ID\. | 
+|   `fileId`  |  integer  \(max:255 min:0\)  |  The ID of a file associated with a stream\. | 
+|   `s3Location`  |   |  The location of the updated firmware in S3\. | 
+|   `bucket`  |  string  \(min:1\)  |  The S3 bucket\. | 
+|   `key`  |  string  \(min:1\)  |  The S3 key\. | 
+|   `version`  |  string |  The S3 bucket version\. | 
+|   `codeSigning`  |   |  The code signing method of the file\. | 
+|   `awsSignerJobId`  |  string |  The ID of the AWSSignerJob which was created to sign the file\. | 
+|   `startSigningJobParameter`  |   |  Describes the code\-signing job\. | 
+|   `signingProfileParameter`  |   |  Describes the code\-signing profile\. | 
+|   `certificateArn`  |  string |  Certificate ARN\. | 
+|   `platform`  |  string |  The hardware platform of your device\. | 
+|   `certificatePathOnDevice`  |  string |  The location of the code\-signing certificate on your device\. | 
+|   `signingProfileName`  |  string |  The code\-signing profile name\. | 
+|   `destination`  |   |  The location to write the code\-signed file\. | 
+|   `s3Destination`  |   |  Describes the location in S3 of the updated firmware\. | 
+|   `bucket`  |  string  \(min:1\)  |  The S3 bucket that contains the updated firmware\. | 
+|   `prefix`  |  string |  The S3 prefix\. | 
+|   `customCodeSigning`  |   |  A custom method for code signing a file\. | 
+|   `signature`  |   |  The signature for the file\. | 
+|   `inlineDocument`  |  blob |  A base64 encoded binary representation of the code signing signature\. | 
+|   `certificateChain`  |   |  The certificate chain\. | 
+|   `certificateName`  |  string |  The name of the certificate\. | 
+|   `inlineDocument`  |  string |  A base64 encoded binary representation of the code signing certificate chain\. | 
+|   `hashAlgorithm`  |  string |  The hash algorithm used to code sign the file\. | 
+|   `signatureAlgorithm`  |  string |  The signature algorithm used to code sign the file\. | 
+|   `attributes`  |  map |  A list of name/attribute pairs\. | 
+|   `roleArn`  |  string  \(max:2048 min:20\)  |  The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs and AWS Code Signing resources to create an OTA update job\. | 
+|   `additionalParameters`  |  map |  A list of additional OTA update parameters which are name\-value pairs\. | 
+|   `tags`  |  list  |  Metadata which can be used to manage updates\. | 
+|   `Key`  |  string  \(max:128 min:1\)  |  The tag's key\. | 
+|   `Value`  |  string  \(max:256 min:1\)  |  The tag's value\. | 
 
-`role-arn`  
-The ARN of your service role\.
+Output
+
+```
+{
+  "otaUpdateId": "string",
+  "awsIotJobId": "string",
+  "otaUpdateArn": "string",
+  "awsIotJobArn": "string",
+  "otaUpdateStatus": "string"
+}
+```
+
+
+**CLI output fields**  
+
+|  Name |  Type |  Description | 
+| --- | --- | --- | 
+|   `otaUpdateId`  |  string  \(max:128 min:1\)  |  The OTA update ID\. | 
+|   `awsIotJobId`  |  string |  The AWS IoT job ID associated with the OTA update\. | 
+|   `otaUpdateArn`  |  string |  The OTA update ARN\. | 
+|   `awsIotJobArn`  |  string |  The AWS IoT job ARN associated with the OTA update\. | 
+|   `otaUpdateStatus`  |  string |  The OTA update status\.  enum: CREATE\_PENDING \| CREATE\_IN\_PROGRESS \| CREATE\_COMPLETE \| CREATE\_FAILED  | 
 
 The following is an example of a JSON file passed into the create\-ota\-update command that uses Code Signing for AWS IoT\.
 

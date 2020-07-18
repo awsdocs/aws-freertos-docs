@@ -3,7 +3,8 @@
 For Transport Layer Security \(TLS\) authentication, FreeRTOS uses either mbedTLS or an off\-chip TLS implementation, such as those found on some network co\-processors\. FreeRTOS includes a port of mbedTLS\. If you use mbedTLS for TLS, TLS porting is not required\. To allow different TLS implementations, third\-party TLS libraries are accessed through a TLS abstraction layer\.
 
 **Note**  
-No matter which TLS implementation is used by your device's port of FreeRTOS, the port must pass the qualification tests for TLS\. Qualification is based on results from AWS IoT Device Tester\.
+No matter which TLS implementation is used by your device's port of FreeRTOS, the port must pass the qualification tests for TLS\. Qualification is based on results from AWS IoT Device Tester\.  
+Also, your TLS implementation should support the [TLS cipher suites that are supported by AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html#tls-cipher-suite-support)\.
 
 To prepare your platform for testing TLS, you need to configure your device in the AWS Cloud, and you need certificate and key provisioning on the device\.
 

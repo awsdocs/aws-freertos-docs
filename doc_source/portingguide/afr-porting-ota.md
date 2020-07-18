@@ -8,7 +8,7 @@ With FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Debug a failed deployment\.
 + Digitally sign firmware using Code Signing for AWS IoT\.
 
-For more information, see [FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide*\.
+For more information, see [ FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide*\.
 
 You can use the OTA agent library to integrate OTA functionality into your FreeRTOS applications\. For more information, see [FreeRTOS OTA Agent Library](https://docs.aws.amazon.com/freertos/latest/userguide/ota-agent-library.html) in the *FreeRTOS User Guide*\.
 
@@ -202,7 +202,7 @@ There are two sets of tests for the OTA library port: [OTA agent and OTA PAL tes
 
 **To configure the source and header files for the OTA agent and OTA PAL tests**
 
-1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\. 
+1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\.
 
 1. Choose a signing certificate for your device from `ota/test`\. The certificate are used in OTA tests for verification\. 
 
@@ -237,7 +237,7 @@ There are two sets of tests for the OTA library port: [OTA agent and OTA PAL tes
 
 ## Validation<a name="w3aac11c37c25"></a>
 
-To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you have ported the FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy library](afr-porting-ble.md)\.
 

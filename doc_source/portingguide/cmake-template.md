@@ -32,7 +32,7 @@ The first section of the template file defines the metadata that is used to disp
 | FAMILY\_NAME | The name of the board's MCU family\. | 
 | DATA\_RAM\_MEMORY | The size of the board's RAM, followed by abbreviated units\. For example, use KB for kilobytes\. | 
 | PROGRAM\_MEMORY | The size of the board's program memory, followed by abbreviated units\. For example, use "MB" for megabytes\. | 
-| CODE\_SIGNER | The code\-signing platform used for OTA updates\. Use AmazonFreeRTOS\-Default for SHA256 hash algorithm and ECDSA encryption algorithm\. If you want to use a different code\-signing platform, [contact us](https://freertos.org/RTOS-contact-and-support.html)\. | 
+| CODE\_SIGNER | The code\-signing platform used for OTA updates\. Use AmazonFreeRTOS\-Default for SHA256 hash algorithm and ECDSA encryption algorithm\. If you want to use a different code\-signing platform, [ contact us](https://freertos.org/RTOS-contact-and-support.html)\. | 
 | SUPPORTED\_IDE | A semicolon\-delimited list of IDs for the IDEs that the board supports\. | 
 | IDE\_ID\_NAME | The name of the supported IDE\. Replace ID with the ID listed for the IDE in the SUPPORTED\_IDE field\. | 
 | IDE\_ID\_COMPILER | A semicolon\-delimited list of names of supported compilers for the supported IDE\. Replace ID with the ID listed for the IDE in the SUPPORTED\_IDE field\. | 
@@ -125,7 +125,7 @@ The FreeRTOS kernel dependency is a minimum requirement\. The CMake configuratio
 
 To create the kernel porting target \(`AFR::kernel::mcu_port`\), call `afr_mcu_port` with the module name `kernel`\. When you call `afr_mcu_port`, specify the targets for the FreeRTOS portable layer and driver code\. After you create the target, you can provide the dependency information and the FreeRTOS portable layer and driver code information for the target to use\.
 
-Follow the these instructions to set up the kernel porting target\.
+Follow these instructions to set up the kernel porting target\.
 
 **To set up the kernel porting target**
 

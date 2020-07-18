@@ -26,7 +26,8 @@ Station mode
 Set your device to Station mode to connect the board to an existing access point\.
 
 Access Point \(AP\) mode  
-Set your device to AP mode to make the device an access point for other devices to connect to\. When your device is in AP mode, you can connect another device to your FreeRTOS device and configure the new Wi\-Fi credentials\. To configure AP mode, call `WIFI_ConfigureAP`\. To put your device into AP mode, call `WIFI_StartAP`\. To turn off AP mode, call `WIFI_StopAP`\.
+Set your device to AP mode to make the device an access point for other devices to connect to\. When your device is in AP mode, you can connect another device to your FreeRTOS device and configure the new Wi\-Fi credentials\. To configure AP mode, call `WIFI_ConfigureAP`\. To put your device into AP mode, call `WIFI_StartAP`\. To turn off AP mode, call `WIFI_StopAP`\.  
+FreeRTOS libraries do not provide Wi\-Fi provisioning in AP mode\. You must supply the additional functionality, including DHCP and HTTP server capabilities, to achieve full support of AP mode\.
 
 P2P mode  
 Set your device to P2P mode to allow multiple devices to connect to each other directly, without an access point\.
@@ -90,7 +91,7 @@ Before you use the Wi\-Fi library, you need to initialize some board\-specific c
 **Note**  
 Some boards might require additional hardware initialization\.
 
-1. Pass a configured `WFINetworkParams_t` structure to `WIFI_ConnectAP()` to connect your board to an available Wi\-Fi network\. For more information about the `WFINetworkParams_t` structure, see [Example usage](#freertos-wifi-example) and [API reference](#freertos-wifi-api)\.
+1. Pass a configured `WIFINetworkParams_t` structure to `WIFI_ConnectAP()` to connect your board to an available Wi\-Fi network\. For more information about the `WIFINetworkParams_t` structure, see [Example usage](#freertos-wifi-example) and [API reference](#freertos-wifi-api)\.
 
 ## API reference<a name="freertos-wifi-api"></a>
 
@@ -104,7 +105,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 #define clientcredentialWIFI_SSID    "MyNetwork"
 #define clientcredentialWIFI_PASSWORD   "hunter2"
 
-INetworkParams_t xNetworkParams;
+WIFINetworkParams_t xNetworkParams;
 WIFIReturnCode_t xWifiStatus;
 
 xWifiStatus = WIFI_On(); // Turn on Wi-Fi module

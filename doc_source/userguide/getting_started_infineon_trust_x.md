@@ -158,7 +158,7 @@ At this point, continue with the public key extraction step in [Option \#2: onbo
 
 #### Build the FreeRTOS demo with CMake<a name="infineon_trust_x_cmake"></a>
 
-This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
+This section covers using CMake on Windows with MingW as the native build system\. For more information about using CMake with other operating systems and options, see [Using CMake with FreeRTOS](getting-started-cmake.md)\. \([MinGW ](https://sourceforge.net/projects/mingw-w64/files/) is a minimalist development environment for native Microsoft Windows applications\.\)
 
 If you prefer not to use an IDE for FreeRTOS development, you can use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -178,15 +178,15 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
    For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
 
-1. Create a folder to contain the generated build files \(*BUILD\_FOLDER*\)\. 
+1. Create a folder to contain the generated build files \(*build\-folder*\)\. 
 
 1. Change directories to your FreeRTOS download directory \(`freertos`\), and use the following command to generate the build files:
 
    ```
-   cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B BUILD_FOLDER -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=infineon -DBOARD=xmc4800_plus_optiga_trust_x -DCOMPILER=arm-gcc -S . -B build-folder -G "MinGW Makefiles" -DAFR_ENABLE_TESTS=0
    ```
 
-1. Change directories to the build directory \(*BUILD\_FOLDER*\), and use the following command to build the binary:
+1. Change directories to the build directory \(*build\-folder*\), and use the following command to build the binary:
 
    ```
    cmake --build . --parallel 8
@@ -196,7 +196,7 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
 1. Flash and run the image with [JLINK](getting_started_infineon.md#install-jlink)\.
 
-   1. From the build directory \(*BUILD\_FOLDER*\), use the following commands to create a flash script:
+   1. From the build directory \(*build\-folder*\), use the following commands to create a flash script:
 
       ```
       echo loadfile aws_demos.hex > flash.jlink

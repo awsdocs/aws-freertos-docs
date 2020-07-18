@@ -1,4 +1,4 @@
-# What Is FreeRTOS?<a name="what-is-freertos"></a>
+# What is FreeRTOS?<a name="what-is-freertos"></a>
 
 Developed in partnership with the world's leading chip companies over a 15\-year period, and now downloaded every 175 seconds, FreeRTOS is a market\-leading real\-time operating system \(RTOS\) for microcontrollers and small microprocessors\. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries suitable for use across all industry sectors\. FreeRTOS is built with an emphasis on reliability and ease of use\.
 
@@ -8,14 +8,15 @@ FreeRTOS is an open\-source project\. You can download the source code, contribu
 
 We also welcome contributions to the FreeRTOS documentation \(*FreeRTOS User Guide*, *FreeRTOS Porting Guide*, and *FreeRTOS Qualification Guide*\)\. The markdown source for the documentation is available at [https://github\.com/awsdocs/aws\-freertos\-docs](https://github.com/awsdocs/aws-freertos-docs)\. It is released under the Creative Commons \(CC BY\-ND\) license\.
 
-The FreeRTOS kernel and components are released individually and use semantic versioning\. Integrated FreeRTOS releases are made periodically\. The three types of FreeRTOS releases are major, minor, and long\-term support \(LTS\)\. A major denotation indicates the addition of new features or significant updates to multiple libraries\. All releases use date\-based versioning with the format YYYYMM\.NN, where:
+The FreeRTOS kernel and components are released individually and use semantic versioning\. Integrated FreeRTOS releases are made periodically\.  All releases use date\-based versioning with the format YYYYMM\.NN, where:
 + Y represents the year\.
 + M represents the month\.
 + N represents the release order within the designated month \(00 being the first release\)\.
++ A "major" denotation indicates the addition of new features or significant updates to multiple libraries\.
 
-For example, a second release in June 2019 would be 201906\.01\. 
+For example, a second release in June 2021 would be 202106\.01\. 
 
-Previously, FreeRTOS releases used semantic versioning for major releases\. Although it has moved to date\-based versioning \(FreeRTOS 1\.4\.8 updated to FreeRTOS 201906\.00\), the FreeRTOS kernel and each individual FreeRTOS library still retain semantic versioning\. In semantic versioning, the version number itself \(X\.Y\.Z\) indicates whether the release is a major, minor, or point release\. This can create situations where semantic versioning indicates a major release based on changes that don't affect an individual application\. You can use the semantic version of a library to assess the scope and impact of a new release on your application\.
+Previously, FreeRTOS releases used semantic versioning for major releases\. Although it has moved to date\-based versioning \(FreeRTOS 1\.4\.8 updated to FreeRTOS AWS Reference Integrations 201906\.00\), the FreeRTOS kernel and each individual FreeRTOS library still retain semantic versioning\. In semantic versioning, the version number itself \(X\.Y\.Z\) indicates whether the release is a major, minor, or point release\.  You can use the semantic version of a library to assess the scope and impact of a new release on your application\.
 
 LTS releases are maintained differently than other release types\. Major and minor releases are frequently updated with new features in addition to defect resolutions\. LTS releases are only updated with changes to address critical defects and security vulnerabilities\. No new features are introduced in a given LTS release after launch\. They are maintained for at least three calendar years after release, and provide device manufacturers the option to use a stable baseline as opposed to a more dynamic baseline represented by major and minor releases\.
 

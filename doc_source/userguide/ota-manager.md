@@ -13,7 +13,7 @@ An OTA update is a data structure maintained by the OTA Update Manager service\.
 + The type of OTA update: CONTINUOUS or SNAPSHOT\. See the [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) section of the *AWS IoT Developer Guide* for a discussion of the type of update that you need\.
 + The protocol used to perform the OTA update: \[MQTT\], \[HTTP\] or \[MQTT, HTTP\]\. When you specify MQTT and HTTP, the device setup determines the protocol used\.
 + A list of files to send to the target devices\.
-+ An IAM role that allows access to the AWS IoT Jobs service\.
++ The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs and AWS Code Signing resources to create an OTA update job\.
 + An optional list of user\-defined name\-value pairs\.
 
 OTA updates were designed to update device firmware, but you can use them to send any files that you want to one or more devices registered with AWS IoT\. When you send firmware updates over the air, we recommend that you digitally sign them so that the devices that receive them can verify they haven't been tampered with en route\.

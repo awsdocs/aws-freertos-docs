@@ -31,7 +31,7 @@ The certificate PEM associated with your IoT thing\.
 `keyCLIENT_PRIVATE_KEY_PEM`  
 The private key PEM associated with your IoT thing\.
 
-This file is included in `aws_shadow_lightbulb_on_off.c` \(the [Device Shadow demo application](shadow-demo.md)\)\.
+This file is included in `aws_shadow_lightbulb_on_off.c` \(the [ Device Shadow demo application](shadow-demo.md)\)\.
 
 If you are developing your own application, you need to include the `aws_client_credentials.h` header file in the application, and then pass the credentials as `MQTTAgentConnectParams` to `SHADOW_ClientConnect` to connect to AWS IoT over MQTT\. Make sure that you specify your device's registered AWS IoT thing name for the `pucClientId` field of `MQTTAgentConnectParams`, or the Device Shadow client will not connect\.
 

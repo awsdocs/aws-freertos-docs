@@ -69,7 +69,7 @@ A CMake list file is not required to qualify a board through the AWS Device Qual
      For information, see [Providing an open source license for your code](afq-license.md)\.
    + \(For boards qualifying for OTA updates\) Instructions for code\-signing\.
 
-     For examples, see [Create a Code\-Signing Certificate](https://docs.aws.amazon.com/freertos/latest/userguide/ota-code-sign-cert.html) in the FreeRTOS User Guide\.
+     For examples, see [ Create a Code\-Signing Certificate](https://docs.aws.amazon.com/freertos/latest/userguide/ota-code-sign-cert.html) in the FreeRTOS User Guide\.
    + \(For boards qualifying for OTA updates that use custom bootloader\) Information and instructions on the custom bootloader application\.
 
      For a list of requirements, see [Porting the Bootloader Demo](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-bootloader.html.html) in the FreeRTOS Porting Guide\.
