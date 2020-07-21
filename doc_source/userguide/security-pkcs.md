@@ -52,9 +52,9 @@ openssl version
 OpenSSL 1.0.2g  1 Mar 2016
 ```
 
-The following steps are written with the assumption that you have used the aws configure command to configure the AWS CLI\. \(See [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config) for more information\.\)
+The following procedure assumes that you used the aws configure command to configure the AWS CLI\. For more information, see [Quick configuration with aws configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config) in the *AWS Command Line Interface User Guide*\.
 
-**Creating an AWS IoT thing based on a P\-256 client certificate**
+**To create an AWS IoT thing based on a P\-256 client certificate**
 
 1. Create an AWS IoT thing\.
 

@@ -37,11 +37,11 @@ Before you begin, install one of these IDEs\.
 
 **To install IAR Embedded Workbench for ARM**
 
-1. Browse to [Software for NXP Kits](https://www.iar.com/iar-embedded-workbench/partners/nxp/downloads-for-nxp-kits) and choose **Download Software**\.
+1. Browse to [ IAR Embedded Workbench for ARM](https://www.iar.com/iar-embedded-workbench/#!?architecture=Arm) and download the software\.
 **Note**  
 IAR Embedded Workbench for ARM requires Microsoft Windows\.
 
-1. Unzip and run the installer\. Follow the prompts\.
+1. Run the installer and follow the prompts\.
 
 1. In the **License Wizard**, choose **Register with IAR Systems to get an evaluation license**\.
 

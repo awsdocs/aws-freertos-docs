@@ -2,7 +2,7 @@
 
 1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\. 
 
-1. Run "`aws configure`" and enter following information:
+1. Run `aws configure` and enter following information\.
 
    ```
    $ aws configure
@@ -12,7 +12,7 @@
    Default output format [None]: json
    ```
 
-   See [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config) for more information\.
+   For more information, see [ Quick configuration with aws configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config)\.
 
 1. Run: 
 

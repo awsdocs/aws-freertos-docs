@@ -1,6 +1,6 @@
 # Getting started with the Cypress CY8CKIT\-064S0S2\-4343W kit<a name="getting_started_cypress_psoc64"></a>
 
-This tutorial provides instructions for getting started with the [CY8CKIT\-064S0S2\-4343W](https://www.cypress.com/CY8CKIT-064S0S2-4343W) kit\. If you don't have a kit, you can purchase one using the previous link\. If you haven't already, sign in to the Cypress website\.
+This tutorial provides instructions for getting started with the [CY8CKIT\-064S0S2\-4343W](https://www.cypress.com/CY8CKIT-064S0S2-4343W) kit\. If you don't already have one, you can use that link to purchase a kit\. You can also use that link to access the kit user guide\. 
 
 ## Getting started<a name="getting_started_cypress_psoc64_first"></a>
 
@@ -26,10 +26,7 @@ Follow these steps to set up the kit's hardware\.
 **Provision your kit**  
 Follow the [Provisioning Guide for CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20043) instructions to securely provision your kit for AWS IoT\.
 
-1. 
-
-**Set up a serial connection**  
-Follow these steps to set up a serial connection\.
+1. **Set up a serial connection**
 
    1. Connect the kit to your host computer\.
 
@@ -46,10 +43,13 @@ Follow these steps to set up a serial connection\.
 
 In this section you build and run the demo\.
 
-1. 
+1. If you didn't follow the steps in [Provisioning Guide for CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20043), run the following command in your terminal to install the Secure Boot SDK package\.
 
-**Build the FreeRTOS Demo\.**  
-Follow these steps to build the FreeRTOS demo\.
+   ```
+   pip install -U cysecuretools
+   ```
+
+1. **Build the FreeRTOS Demo\.**
 
    1. Open the Eclipse IDE for ModusToolbox and choose, or create, a workspace\.
 
@@ -67,10 +67,7 @@ Follow these steps to build the FreeRTOS demo\.
 
       Make sure the project compiles without errors\.
 
-1. 
-
-**Run the FreeRTOS demo project**  
-Follow these steps to run the FreeRTOS demo\.
+1. **Run the FreeRTOS demo project**
 
    1. Select the project `aws_demos` in the workspace\.
 

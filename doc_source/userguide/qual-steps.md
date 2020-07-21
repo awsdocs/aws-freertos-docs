@@ -195,7 +195,7 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
     "sourcePath": "/absolute-path-to/freertos",
     "vendorPath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-name",
     // ***********The sdkConfiguration block below is needed if you are not using the default, unmodified FreeRTOS repo. 
-    // In other words, if you are using the the default, unmodified FreeRTOS repo then remove this block***************
+    // In other words, if you are using the default, unmodified FreeRTOS repo then remove this block***************
     "sdkConfiguration": {
         "name": "sdk-name",
         "version": "sdk-version",
