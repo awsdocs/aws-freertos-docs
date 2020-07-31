@@ -10,11 +10,11 @@ If you're using Code Signing for AWS IoT, the command that you use to create a c
 
 1. Choose **Create bucket**\.
 
-1. Type a bucket name, and then choose **Next**\.
+1. Enter a **bucket name**\.
 
-1. Select **Versioning** to keep all versions in the same bucket, and then choose **Next**\.
+1. Under **Bucket settings for Block Public Access** keep **Block all public access** selected to accept the default permissions\.
 
-1. Choose **Next** to accept the default permissions\.
+1. Under **Bucket Versioning**, select **Enable** to keep all versions in the same bucket\.
 
 1. Choose **Create bucket**\.
 

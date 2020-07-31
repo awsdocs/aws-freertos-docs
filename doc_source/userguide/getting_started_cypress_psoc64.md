@@ -4,18 +4,18 @@ This tutorial provides instructions for getting started with the [CY8CKIT\-064S0
 
 ## Getting started<a name="getting_started_cypress_psoc64_first"></a>
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. For instructions, see [First steps](freertos-prereqs.md)\. After you complete the prerequisites, you will have a FreeRTOS package with AWS IoT Core credentials\.
+Before you begin, you must configure AWS IoT and FreeRTOS to connect your device to the AWS Cloud\. For instructions, see [First steps](freertos-prereqs.md)\. After you complete the prerequisites, you will have a FreeRTOS package with AWS IoT Core credentials\.
 
 **Note**  
-In this tutorial, the path to the FreeRTOS download directory is referred to as *freertos*\.
+In this tutorial, the path to the FreeRTOS download directory you created in the "First steps" section is referred to as *freertos*\.
 
 ## Setting up the development environment<a name="getting_started_cypress_psoc64_setup"></a>
 
-FreeRTOS works with either a Cmake or make build flow\. You can use ModusToolbox for your make build flow\. You can use the Eclipse IDE delivered with ModusToolbox or a partner IDE such as IAR EW\-Arm, Arm MDK, or Microsoft Visual Studio Code\. The Eclipse IDE is compatible with the Windows, MacOS, and Linux operating systems\. 
+FreeRTOS works with either a CMake or Make build flow\. You can use ModusToolbox for your Make build flow\. You can use the Eclipse IDE delivered with ModusToolbox or a partner IDE such as IAR EW\-Arm, Arm MDK, or Microsoft Visual Studio Code\. The Eclipse IDE is compatible with the Windows, macOS, and Linux operating systems\. 
 
 Before you begin, download and install the latest [ModusToolbox software](https://www.cypress.com/products/modustoolbox-software-environment)\. For more information, see the [ModusToolbox Installation Guide](https://www.cypress.com/ModusToolboxInstallGuide)\.
 
-You can also use CMake to generate project build files from FreeRTOS application source code, build the project using your preferred build tool, and then program the kit using OpenOCD\. If you prefer to use a GUI tool for programming, download and install Cypress Programmer from the [Cypress Programming Solutions](https://www.cypress.com/products/psoc-programming-solutions) website\. For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
+Use CMake to generate project build files from FreeRTOS application source code, build the project using your preferred build tool, and then program the kit using OpenOCD\. If you prefer to use a GUI tool for programming with the CMake flow, download and install Cypress Programmer from the [Cypress Programming Solutions](https://www.cypress.com/products/psoc-programming-solutions) website\. For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
 ## Setting up your hardware<a name="getting_started_cypress_psoc64_hardware"></a>
 
@@ -43,11 +43,7 @@ Follow the [Provisioning Guide for CY8CKIT\-064S0S2\-4343W Kit](https://communit
 
 In this section you build and run the demo\.
 
-1. If you didn't follow the steps in [Provisioning Guide for CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20043), run the following command in your terminal to install the Secure Boot SDK package\.
-
-   ```
-   pip install -U cysecuretools
-   ```
+1. Make sure to follow the steps in [Provisioning Guide for CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20043)\.
 
 1. **Build the FreeRTOS Demo\.**
 
@@ -103,7 +99,7 @@ You can also use CMake to build and run the demo application\. To set up CMake a
 **Example**  
 
       ```
-      cmake -DVENDOR=cypress -DBOARD=CY8CKIT_064s0s2_4343W -DCOMPILER=arm-gcc -S freertos -B build_dir -G Ninja
+      cmake -DVENDOR=cypress -DBOARD=CY8CKIT_064S0S2_4343W -DCOMPILER=arm-gcc -S freertos -B build_dir -G Ninja
       ```
 
       If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_TOOLCHAIN_PATH` CMake variable\.   
@@ -130,7 +126,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-   1. In the **Subscription topic** textbox enter `iotdemo/#`\. For **Quality of Service** select **1 \- This client will acknowledge to the Device Gateway that messages are received**\. For **MQTT payload display** select **Display payloads as strings \(more accurate\)**\. Then choose **Subscribe to topic**\.
+   1. In the **Subscription topic** textbox enter **iotdemo/\#**\. For **Quality of Service** select **1 \- This client will acknowledge to the Device Gateway that messages are received**\. For **MQTT payload display** select **Display payloads as strings \(more accurate\)**\. Then choose **Subscribe to topic**\.
 
       A hash \(\#\) symbol at the end of a topic name acts as a wildcard\. For example, if you subscribe to the topic `iotdemo/#` you receive messages published to any topic that starts with **iotdemo/**\. You can change the topic name by modifying the macro `IOT_DEMO_MQTT_TOPIC_PREFIX` in the `freertos/demos/mqtt/iot_demo_mqtt.c` file\.
 
@@ -146,13 +142,50 @@ The following demo applications have been tested and verified to work with the c
 
 ## Debugging<a name="getting_started_cypress_psoc64_debugging"></a>
 
-The KitProg on the kit supports debugging over the SWD protocol\.
+The KitProg3 on the kit supports debugging over the SWD protocol\.
 + To debug the FreeRTOS application, select the **aws\_demos project** in the workspace and then select **aws\_demos Debug \(KitProg3\)** from the **Quick Panel**\.
 
 ## OTA updates<a name="getting_started_cypress_psoc64_ota_updates"></a>
 
-PSoC 64 devices have passed all of the required FreeRTOS qualification tests\. However, the optional over\-the\-air \(OTA\) feature implemented in the PSoC 64 Standard Secure AWS firmware library is still pending evaluation\. The OTA feature as\-implemented currently passes all of the OTA qualification tests except [ aws\_ota\_test\_case\_rollback\_if\_unable\_to\_connect\_after\_update\.py](https://github.com/aws/amazon-freertos/tree/202007.00/tools/ota_e2e_tests/aws_ota_test/aws_ota_test_case_rollback_if_unable_to_connect_after_update.py)\. 
+PSoC 64 MCUs have passed all of the required FreeRTOS qualification tests\. However, the optional over\-the\-air \(OTA\) feature implemented in the PSoC 64 Standard Secure AWS firmware library is still pending evaluation\. The OTA feature as\-implemented currently passes all of the OTA qualification tests except [ aws\_ota\_test\_case\_rollback\_if\_unable\_to\_connect\_after\_update\.py](https://github.com/aws/amazon-freertos/tree/202007.00/tools/ota_e2e_tests/aws_ota_test/aws_ota_test_case_rollback_if_unable_to_connect_after_update.py)\. 
 
-When a successfully validated OTA image is applied to a device using the PSoC64 Standard Secure AWS MCU and the device can't communicate with AWS IoT Core, the device can't automatically rollback to the original known good image\. This might result in the device being unreachable from AWS IoT Core for further updates\. This functionality is still under development by the Cypress team\.
+When a successfully validated OTA image is applied to a device using the PSoC64 Secure MCU and the device can't communicate with AWS IoT Core, the device can't automatically rollback to the original known good image\. This might result in the device being unreachable from AWS IoT Core for further updates\. This functionality is still under development by the Cypress team\.
 
 For more information, see [OTA Updates with AWS and the CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20063)\. If you have further questions or need technical support, contact the [Cypress Developer Community](https://community.cypress.com/community/software-forums/modustoolbox-amazon-freertos-sdk)\.
+
+## Updating tools for ModusToolbox 2\.1 or older<a name="getting_started_cypress_psoc64_modus_toolbox_updates"></a>
+
+If you're using the ModusToolbox 2\.1 Eclipse IDE to program this kit, you'll need to update the OpenOCD and Firmware\-loader tools\. 
+
+In the following steps, by default the `Modustoolbox` path for:
++ Windows is `C:\Users\user_name\ModusToolbox`\.
++ Linux is `user_home/ModusToolbox` or where you choose to extract the archive file\.
++ MacOS is under the Applications folder in the volume you select in the wizard\.
+
+### Updating OpenOCD<a name="getting_started_cypress_psoc64_openocd_update"></a>
+
+This kit requires Cypress OpenOCD 4\.0\.0 or later to successfully program and erase the chip\.
+
+**To update Cypress OpenOCD**
+
+1. Go to the [Cypress OpenOCD release page](https://github.com/cypresssemiconductorco/openocd/releases)\.
+
+1. Download the archive file for your OS \(Windows/Mac/Linux\)\.
+
+1. Delete the existing files in `ModusToolbox/tools_2.x/openocd`\.
+
+1. Replace the files in `ModusToolbox/tools_2.x/openocd` with the extracted contents of the archive that you downloaded in a previous step\.
+
+### Updating Firmware\-loader<a name="getting_started_cypress_psoc64_firmware_loader_update"></a>
+
+This kit requires Cypress Firmware\-loader 3\.0\.0 or later\.
+
+**To update Cypress Firmware\-loader**
+
+1. Go to the [Cypress Firmware\-loader release page](https://github.com/cypresssemiconductorco/Firmware-loader/releases)\.
+
+1. Download the archive file for your OS \(Windows/Mac/Linux\)\.
+
+1. Delete the existing files in `ModusToolbox/tools_2.x/fw-loader`\.
+
+1. Replace the files in `ModusToolbox/tools_2.x/fw-loader` with the extracted contents of the archive that you downloaded in a previous step\.

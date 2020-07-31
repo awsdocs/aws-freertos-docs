@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-wifi-overview"></a>
 
-The FreeRTOS Wi\-Fi library abstracts port\-specific Wi\-Fi implementations into a common API that simplifies application development and porting for all FreeRTOS\-qualified boards with Wi\-Fi capabilities\. Using this common API, applications can communicate with their lower\-level wireless stack through a common interface\.
+The FreeRTOS [Wi\-Fi](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/wifi/index.html) library abstracts port\-specific Wi\-Fi implementations into a common API that simplifies application development and porting for all FreeRTOS\-qualified boards with Wi\-Fi capabilities\. Using this common API, applications can communicate with their lower\-level wireless stack through a common interface\.
 
 ## Dependencies and requirements<a name="freertos-wifi-dependencies"></a>
 

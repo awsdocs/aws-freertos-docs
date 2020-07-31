@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-task-pool-overview"></a>
 
-FreeRTOS supports task management with the FreeRTOS Task Pool library\. The Task Pool library enables you to schedule background tasks, and allows safe, asynchronous task scheduling and cancellation\. Using the Task Pool APIs, you can configure your application's tasks to optimize the trade\-off between performance and memory footprint\.
+FreeRTOS supports task management with the FreeRTOS [Task Pool](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/taskpool/index.html) library\. The Task Pool library enables you to schedule background tasks, and allows safe, asynchronous task scheduling and cancellation\. Using the Task Pool APIs, you can configure your application's tasks to optimize the trade\-off between performance and memory footprint\.
 
 The Task Pool library is built on two main data structures: the Task Pool and Task Pool jobs\.
 

@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-mqtt-2-overview"></a>
 
-You can use the FreeRTOS MQTT library to create applications that publish and subscribe to MQTT topics, as MQTT clients on a network\. The FreeRTOS MQTT library implements the MQTT 3\.1\.1 standard for compatibility with the [AWS IoT MQTT server](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#mqtt)\. The library is also compatible with other MQTT servers\.
+You can use the FreeRTOS [MQTT](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/mqtt/index.html) library to create applications that publish and subscribe to MQTT topics, as MQTT clients on a network\. The FreeRTOS MQTT library implements the MQTT 3\.1\.1 standard for compatibility with the [AWS IoT MQTT server](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#mqtt)\. The library is also compatible with other MQTT servers\.
 
 The source files for the FreeRTOS MQTT library are located in `freertos/.../mqtt`\. These files implement version 2\.0\.0 of the FreeRTOS MQTT library\. FreeRTOS also includes a backward\-compatibility layer for version 1\.0\.0 of the FreeRTOS MQTT library\. For information about FreeRTOS MQTT version 1\.0\.0, see [MQTT library, version 1\.0\.0](freertos-lib-cloud-mqtt.md)\.
 
@@ -37,7 +37,7 @@ For example usage of the FreeRTOS MQTT library, see MQTT demo application define
 
 The MQTT demo demonstrates the subscribe\-publish workflow of MQTT\. After subscribing to multiple topic filters, the application publishes bursts of data to various topic names\. As each message arrives, the demo publishes an acknowledgement message back to the MQTT server\.
 
-To use the MQTT demo, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [ AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\.Global demo configuration parameters
+To use the MQTT demo, you must create a thing in AWS IoT, including a certificate and policy\. For more information, see [AWS IoT Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html)\.Global demo configuration parameters
 
 You must set values for the following constants in the `freertos/demos/include/aws_clientcredential.h` file:
 

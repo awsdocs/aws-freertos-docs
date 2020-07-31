@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-ota-overview"></a>
 
-The Over\-The\-Air \(OTA\) Agent enables you to manage the notification, download, and verification of firmware updates for FreeRTOS devices using HTTP or MQTT as the protocol\. By using the OTA Agent library, you can logically separate firmware updates and the application running on your devices\. The OTA Agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA Agent library lets you define application\-specific logic for testing, committing, or rolling back a firmware update\.
+The [Over\-The\-Air \(OTA\) Agent](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/ota/index.html) enables you to manage the notification, download, and verification of firmware updates for FreeRTOS devices using HTTP or MQTT as the protocol\. By using the OTA Agent library, you can logically separate firmware updates and the application running on your devices\. The OTA Agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA Agent library lets you define application\-specific logic for testing, committing, or rolling back a firmware update\.
 
 For more information about setting up OTA updates with FreeRTOS, see [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
 
@@ -39,7 +39,7 @@ Resume OTA Agent operations\.
 
 ## API reference<a name="freertos-ota-api"></a>
 
-For more information, see the [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\.
+For more information, see the [ OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)\.
 
 ## Example usage<a name="freertos-ota-example"></a>
 

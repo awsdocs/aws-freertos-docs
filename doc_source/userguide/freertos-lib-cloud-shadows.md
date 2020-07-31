@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-shadow-overview"></a>
 
-The FreeRTOS Device Shadow APIs define functions to create, update, and delete AWS IoT Device Shadows\. For more information about AWS IoT Device Shadows, see [Device Shadow Service for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\. The Device Shadow service is accessed using the MQTT protocol\. The FreeRTOS Device Shadow API works with the MQTT API to handle the details of working with the MQTT protocol\.
+The FreeRTOS [Device Shadow APIs](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/shadow/index.html) define functions to create, update, and delete AWS IoT Device Shadows\. For more information about AWS IoT Device Shadows, see [Device Shadow Service for AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)\. The Device Shadow service is accessed using the MQTT protocol\. The FreeRTOS Device Shadow API works with the MQTT API to handle the details of working with the MQTT protocol\.
 
 ## Dependencies and requirements<a name="freertos-shadow-dependencies"></a>
 

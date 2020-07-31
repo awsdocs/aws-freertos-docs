@@ -46,7 +46,7 @@ We recommend version 4\_9\_2015q3 of the gcc\-arm\-embedded toolchain\.
 
 Follow these steps to set up the GCC toolchain in Linux\.
 
-1. Download the toolchain tarball available at [GNU Arm Embedded Toolchain 4\.9\-2015\-q3\-update](https://launchpad.net/gcc-armembedded/4.9/4.9-2015-q3-update)\. The file is `gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2`\.
+1. Download the toolchain tarball available at [GNU Arm Embedded Toolchain 4\.9\-2015\-q3\-update](https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update)\. The file is `gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2`\.
 
 1. Copy the file to a directory of your choice\. Make sure there are no spaces in the directory name\.
 

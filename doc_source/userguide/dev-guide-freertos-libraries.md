@@ -13,7 +13,7 @@ The following porting libraries are included in configurations of FreeRTOS that 
 
 | Library | API Reference | Description | 
 | --- | --- | --- | 
-| Bluetooth Low Energy |  [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/index.html)  | Using the FreeRTOS Bluetooth Low Energy library, your microcontroller can communicate with the AWS IoT MQTT broker through a gateway device\. For more information, see [Bluetooth Low Energy library](freertos-ble-library.md)\.  | 
+| Bluetooth Low Energy |  [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/ble/index.html)  | Using the FreeRTOS Bluetooth Low Energy library, your microcontroller can communicate with the AWS IoT MQTT broker through a gateway device\. For more information, see [Bluetooth Low Energy library](freertos-ble-library.md)\.  | 
 | Over\-the\-Air Updates |  [OTA Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__ota__agent_8h.html)  |  The FreeRTOS AWS IoT Over\-the\-Air \(OTA\) Agent library connects your FreeRTOS device to the AWS IoT OTA Agent\. For more information, see [OTA Agent library](ota-agent-library.md)\.  | 
 | FreeRTOS\+POSIX | [FreeRTOS\+POSIX API Reference](https://freertos.org/Documentation/api-ref/POSIX/index.html) |  You can use the FreeRTOS\+POSIX library to port POSIX\-compliant applications to the FreeRTOS ecosystem\. For more information, see [FreeRTOS\+POSIX](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_POSIX/index.html)\. | 
 | Secure Sockets |  [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)  | For more information, see [Secure Sockets library](secure-sockets.md)\. | 

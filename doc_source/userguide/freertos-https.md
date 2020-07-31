@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-https-overview"></a>
 
-You can use the FreeRTOS HTTPS Client library to create applications that interact with an HTTP server to send HTTP requests and receive HTTP responses over TLS\. The FreeRTOS HTTPS Client library implements the HTTP/1\.1 standard over TLS\.
+You can use the FreeRTOS [HTTPS Client](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/https/index.html) library to create applications that interact with an HTTP server to send HTTP requests and receive HTTP responses over TLS\. The FreeRTOS HTTPS Client library implements the HTTP/1\.1 standard over TLS\.
 
 The source files for the FreeRTOS HTTPS Client library are located in `freertos/libraries/csdk/standard/https`\.
 
@@ -29,4 +29,4 @@ The FreeRTOS HTTPS Client library has the following features:
 
 ## API reference<a name="freertos-https-api"></a>
 
-For a full API reference, see the [HTTPS Client API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/https/index.html)\.
+For a full API reference, see the [HTTPS Client API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/https/index.html)\.

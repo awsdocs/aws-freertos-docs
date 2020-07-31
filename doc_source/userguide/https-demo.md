@@ -32,8 +32,8 @@ The HTTPS server TCP port to connect to\. The default is 443\.
 `IOT_DEMO_HTTPS_TRUSTED_ROOT`  
 The trusted ROOT CA to connect to the HTTPS server\. The HTTPS server is defined by the host name in the `IOT_DEMO_HTTPS_PRESIGNED_GET_URL`\. The default is the Baltimore Cybertrust root certificate authority\. 
 
-See [ HTTPS Client API Reference Demo Configuration](https://docs.aws.amazon.com/freertos/latest/lib-ref/https/https_demo_config.html) for other configurations\.
+See [ HTTPS Client API Reference Demo Configuration](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/https/https_demo_config.html) for other configurations\.
 
 ## Usage instructions<a name="https-demo-usage"></a>
 
-Please see the [ HTTPS Client API Reference Demo Usage Instructions](https://docs.aws.amazon.com/freertos/latest/lib-ref/https/https_demo_usage.html) for more information and output examples\. 
+Please see the [ HTTPS Client API Reference Demo Usage Instructions](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/https/https_demo_usage.html) for more information and output examples\. 

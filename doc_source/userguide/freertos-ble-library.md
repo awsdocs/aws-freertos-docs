@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-ble-overview"></a>
 
-FreeRTOS supports publishing and subscribing to MQTT topics over Bluetooth Low Energy through a proxy device, such as a mobile phone\. With the FreeRTOS Bluetooth Low Energy library, your microcontroller can securely communicate with the AWS IoT MQTT broker\. 
+FreeRTOS supports publishing and subscribing to MQTT topics over Bluetooth Low Energy through a proxy device, such as a mobile phone\. With the FreeRTOS [Bluetooth Low Energy](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/ble/index.html) library, your microcontroller can securely communicate with the AWS IoT MQTT broker\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/blediagram.png)
 
@@ -92,7 +92,7 @@ Allows users to create their own services\.
 `IOT_BLE_SET_CUSTOM_ADVERTISEMENT_MSG`  
 Allows users to customize the advertisement and scan response messages\.
 
-For more information, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/index.html)\. 
+For more information, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/ble/index.html)\. 
 
 ## Optimization<a name="freertos-ble-optimization"></a>
 
@@ -232,7 +232,7 @@ If you don't want to use the FreeRTOS Bluetooth Low Energy GATT services, you ca
 
 ## API reference<a name="freertos-ble-api"></a>
 
-For a full API reference, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/ble/index.html)\. 
+For a full API reference, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/ble/index.html)\. 
 
 ## Example usage<a name="freertos-ble-examples"></a>
 

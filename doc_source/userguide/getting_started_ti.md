@@ -90,7 +90,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 **To run the FreeRTOS demo in TI Code Composer**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455j/swru455j.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455k/swru455k.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -112,7 +112,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 **To run the FreeRTOS demo in IAR Embedded Workbench**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455j/swru455j.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455k/swru455k.pdf)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 

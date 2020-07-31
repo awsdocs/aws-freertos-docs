@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-atomic-overview"></a>
 
-Atomic operations ensure non\-blocking synchronization in concurrent programming\. You can use atomic operations to solve performance issues that are caused by asynchronous operations that act on shared memory\. FreeRTOS supports atomic operations, as implemented in the `iot_atomic.h` header file\.
+[ Atomic operations](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/platform/iot__atomic__generic_8h.html) ensure non\-blocking synchronization in concurrent programming\. You can use atomic operations to solve performance issues that are caused by asynchronous operations that act on shared memory\. FreeRTOS supports atomic operations, as implemented in the `iot_atomic.h` header file\.
 
 The `iot_atomic.h` header file includes two implementations for atomic operations:
 + Disabling interrupt globally\.

@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-secure-sockets-overview"></a>
 
-You can use the FreeRTOS Secure Sockets library to create embedded applications that communicate securely\. The library is designed to make onboarding easy for software developers from various network programming backgrounds\.
+You can use the FreeRTOS [Secure Sockets](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html) library to create embedded applications that communicate securely\. The library is designed to make onboarding easy for software developers from various network programming backgrounds\.
 
 The FreeRTOS Secure Sockets library is based on the Berkeley sockets interface, with an additional secure communication option by TLS protocol\. For information about the differences between the FreeRTOS Secure Sockets library and the Berkeley sockets interface, see `SOCKETS_SetSockOpt` in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 

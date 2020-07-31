@@ -2,7 +2,7 @@
 
 ## Overview<a name="freertos-gg-overview"></a>
 
-The AWS IoT Greengrass Discovery library is used by your microcontroller devices to discover a Greengrass core on your network\. Using the AWS IoT Greengrass Discovery APIs, your device can send messages to a Greengrass core after it finds the core's endpoint\.
+The [AWS IoT Greengrass Discovery ](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__greengrass__discovery_8h.html) library is used by your microcontroller devices to discover a Greengrass core on your network\. Using the AWS IoT Greengrass Discovery APIs, your device can send messages to a Greengrass core after it finds the core's endpoint\.
 
 ## Dependencies and requirements<a name="freertos-gg-dependencies"></a>
 
