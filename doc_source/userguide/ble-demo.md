@@ -336,7 +336,7 @@ You can run the MQTT demo over a Bluetooth Low Energy or Wi\-Fi connection\. The
 
 If you use Bluetooth Low Energy to pair the microcontroller with your mobile device, the MQTT messages are routed through the Bluetooth Low Energy Mobile SDK demo application on your mobile device\.
 
-If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at `demos/mqtt/aws_hello_world.c`\. That demo is used in most of the [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
+If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at `demos/mqtt/iot_demo_mqtt.c`\. That demo is used in most of the [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
 
 **To enable the demo over Bluetooth Low Energy or Wi\-Fi**
 

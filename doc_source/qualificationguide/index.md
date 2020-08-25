@@ -26,5 +26,4 @@ Amazon's trademarks and trade dress may not be used in
       + [Creating a list file for your platform from the CMakeLists.txt template](cmake-template.md)
       + [Building FreeRTOS with CMake](building-cmake.md)
    + [Providing an open source license for your code](afq-license.md)
-   + [FreeRTOS qualification check script](afq-script.md)
 + [FreeRTOS Qualification Checklist](afq-checklist.md)

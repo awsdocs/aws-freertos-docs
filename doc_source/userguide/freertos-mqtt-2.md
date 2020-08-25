@@ -1,10 +1,10 @@
-# MQTT library, version 2\.0\.0<a name="freertos-mqtt-2"></a>
+# MQTT library, version 2\.x\.x<a name="freertos-mqtt-2"></a>
 
 ## Overview<a name="freertos-mqtt-2-overview"></a>
 
 You can use the FreeRTOS [MQTT](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/mqtt/index.html) library to create applications that publish and subscribe to MQTT topics, as MQTT clients on a network\. The FreeRTOS MQTT library implements the MQTT 3\.1\.1 standard for compatibility with the [AWS IoT MQTT server](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#mqtt)\. The library is also compatible with other MQTT servers\.
 
-The source files for the FreeRTOS MQTT library are located in `freertos/.../mqtt`\. These files implement version 2\.0\.0 of the FreeRTOS MQTT library\. FreeRTOS also includes a backward\-compatibility layer for version 1\.0\.0 of the FreeRTOS MQTT library\. For information about FreeRTOS MQTT version 1\.0\.0, see [MQTT library, version 1\.0\.0](freertos-lib-cloud-mqtt.md)\.
+The source files for the FreeRTOS MQTT library are located in `freertos/.../mqtt`\. These files implement version 2\.x\.x of the FreeRTOS MQTT library\. FreeRTOS also includes a backward\-compatibility layer for version 1\.x\.x of the FreeRTOS MQTT library\. For information about FreeRTOS MQTT version 1\.x\.x, see [MQTT library, version 1\.x\.x](freertos-lib-cloud-mqtt.md)\.
 
 ## Dependencies and requirements<a name="freertos-mqtt-2-dependencies"></a>
 
@@ -29,7 +29,7 @@ The FreeRTOS MQTT library has the following features:
 
 ## API reference<a name="freertos-mqtt-2-api"></a>
 
-FreeRTOS and the AWS IoT Device SDK for Embedded C have the same MQTT v2\.0\.0 library APIs\. For a full API reference, see [MQTT \(v2\.0\.0\) C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/mqtt/index.html)\.
+FreeRTOS and the AWS IoT Device SDK for Embedded C have the same MQTT v2\.x\.x library APIs\. For a full API reference, see [MQTT \(v2\.x\.x\) C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/mqtt/index.html)\.
 
 ## Example usage<a name="freertos-mqtt-2-example"></a>
 

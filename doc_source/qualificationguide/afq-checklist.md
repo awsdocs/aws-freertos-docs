@@ -8,7 +8,6 @@ You must pass each of these items in order to be listed in the [AWS Partner Devi
 + Validate your FreeRTOS port with AWS IoT Device Tester\.
   + A complete successful IDT log \(with all Test Groups passing on ONE log\) is required in your Device Qualification Portal \(DQP\) submission\.
   + All qualification submissions must be made through the Device Listing Portal on APN Partner Central\.
-  + Beginning with IDT version 3\.1\.0, if you want to qualify your board using your own SDK which contains a modified version of FreeRTOS, you can customize the `freertos/checksums.json` file\. IDT uses the information in this file when it runs its tests and, beginning with IDT v3\.1\.0, you can specify modifications you have made to the FreeRTOS files and directory structure there\. For more information, see [AWS IoT Device Tester support for FreeRTOS directory structure changes](https://docs.aws.amazon.com/freertos/latest/userguide/qual-steps.html#idt-fr-dir-struct)\.
 + Create a Hello World demo
   + Please refer to [Setting up a hello world demo](afq-hw-demo.md)\.
 + Create a Getting Started Guide \(GSG\) for your device 

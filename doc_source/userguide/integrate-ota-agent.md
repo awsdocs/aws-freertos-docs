@@ -123,7 +123,7 @@ Here is the high\-level flow of this demo application:
 
 ## Using a custom callback for OTA completion events<a name="custom-callback-ota"></a>
 
-The previous example used the built\-in callback handler for OTA completion events by specifying `NULL` for the third parameter to the `OTA_AgentInit` API\. If you want to implement custom handling of the completion events, you must pass the function address of your callback handler to the `OTA_AgentInit` API\. During the OTA process, the Agent can send one of the following event enums to the callback handler\. It is up to the application developer to decide how and when to handle these events\.
+The previous example used `App_OTACompleteCallback` as the callback handler for OTA completion events\. \(See the third parameter to the `OTA_AgentInit` API call\.\) `App_OTACompleteCallback` is defined in `freertos/demos/ota/aws_iot_ota_update_demo.c`\. If you want to implement custom handling of the completion events, you must pass the function address of your callback handler to the `OTA_AgentInit` API\. During the OTA process, the Agent can send one of the following event enums to the callback handler\. It is up to the application developer to decide how and when to handle these events\.
 
 ```
 /**

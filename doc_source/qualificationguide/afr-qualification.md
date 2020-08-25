@@ -66,6 +66,9 @@ A: Your device must pass all of the required validation tests to qualify for Fre
 Q: *My device uses only one of the protocols \(HTTP, MQTT\) and only one of the available communication channels \(Wi\-Fi, Ethernet, BLE\)\. If all the OTA related IDT tests pass using just one protocol\-communication channel combination, then will my device get listed as OTA qualified in the device catalog?*  
 A: Yes\. We encourage you to get other combinations qualified on your device as well, if possible\. In this way, you can provide support for more customer use cases\.
 
+Q: *We will be hosting our FreeRTOS port in our own repo as per the qualification requirements\. What should we include in the repo in terms of folders and demos to support? *  
+A: Please host all the files and folders necessary to make the port work as an out of the box experience for a customer who downloads it from the repository\. You should include your entire `freertos_kernel`, `libraries`, and `tools` folders, along with a `docs` folder for your documents, a `projects` folder for your IDE projects, and a `vendors` folder for your vendor\-specifc files\. Also include your entire demo folder\. \(The MQTT Hello World demo must be supported, however, other demos are at your discretion\. Also, the `tools` folder is not required, however, we recommend that you host this folder to assist customers with testing\.\)
+
 If you have questions about qualification that are not answered on this page or in the rest of the FreeRTOS Qualification Guide, contact your AWS representative or [the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
 ### Documentation history<a name="afr-doc-history"></a>

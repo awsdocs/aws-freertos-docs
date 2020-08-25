@@ -14,7 +14,7 @@ When you use the AWS CLI to perform OTA updates, you can use Code Signing for AW
 
 ### Signing your firmware image with Code Signing for AWS IoT<a name="ota-sign-csfa"></a>
 
-To sign your firmware image using Code Signing for AWS IoT, you can use one of the [AWS SDKs or command line tools](https://aws.amazon.com/tools/)\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
+To sign your firmware image using Code Signing for AWS IoT, you can use one of the [AWS SDKs or command line tools](https://aws.amazon.com/tools/)\. For more information about Code Signing for AWS IoT, see [ Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
 
 After you install and configure the code\-signing tools, copy your unsigned firmware image to your Amazon S3 bucket and start a code\-signing job with the following CLI commands\. The put\-signing\-profile command creates a reusable code\-signing profile\. The start\-signing\-job command starts the signing job\.
 
@@ -60,7 +60,7 @@ To return a list of the available platforms and their `platformId` values, use t
 
 The signing job starts and writes the signed firmware image into the destination Amazon S3 bucket\. The file name for the signed firmware image is a GUID\. You need this file name when you create a stream\. You can find the file name by browsing to the Amazon S3 console and choosing your bucket\. If you don't see a file with a GUID file name, refresh your browser\.
 
-The command displays a job ARN and job ID\. You need these values later on\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\. 
+The command displays a job ARN and job ID\. You need these values later on\. For more information about Code Signing for AWS IoT, see [Code Signing for AWS IoT](https://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html)\.
 
 ### Signing your firmware image manually<a name="ota-sign-manual"></a>
 

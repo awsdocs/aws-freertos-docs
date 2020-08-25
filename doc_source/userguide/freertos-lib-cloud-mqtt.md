@@ -1,10 +1,10 @@
-# MQTT library, version 1\.0\.0<a name="freertos-lib-cloud-mqtt"></a>
+# MQTT library, version 1\.x\.x<a name="freertos-lib-cloud-mqtt"></a>
 
 ## Overview<a name="freertos-mqtt-overview"></a>
 
 FreeRTOS includes an open source [ MQTT client library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-mqtt-2.html) that you can use to create applications that publish and subscribe to MQTT topics, as MQTT clients on a network\.
 
-Version 2\.0\.0 of the MQTT Library is available for FreeRTOS versions 201960\.00 and later\. This newer library is compatible with all transport types, meaning you can use it with Bluetooth Low Energy and TCP/IP\. For more information, see [MQTT library, version 2\.0\.0](freertos-mqtt-2.md)\.
+Version 2\.x\.x of the MQTT Library is available for FreeRTOS versions 201906\.00 and later\. This newer library is compatible with all transport types, meaning you can use it with Bluetooth Low Energy and TCP/IP\. For more information, see [MQTT library, version 2\.x\.x](freertos-mqtt-2.md)\.
 
 ### The FreeRTOS MQTT Agent<a name="freertos-mqtt-agent"></a>
 
@@ -106,7 +106,7 @@ BaseType_t SYSTEM_Init() {
 
 ## API reference<a name="freertos-mqtt-api"></a>
 
-For a full API reference, see [ MQTT \(v1\.0\.0\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html)\.
+For a full API reference, see [ MQTT \(v1\.x\.x\) Library API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__lib_8h.html) and [MQTT \(v1\) Agent API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html1/aws__mqtt__agent_8h.html)\.
 
 ## Porting<a name="freertos-mqtt-porting"></a>
 

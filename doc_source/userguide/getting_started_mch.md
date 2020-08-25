@@ -79,6 +79,15 @@ The FreeRTOS project for this device is based on MPLAB Harmony v2\. To build the
 1. Install [Python version 3\.x](https://www.python.org/downloads/) or later\.
 
 1. Install the MPLAB X IDE:
+**Note**  
+FreeRTOS AWS Reference Integrations v202007\.00 is currently supported on MPLabv5\.35 only\. Prior versions of FreeRTOS AWS Reference Integrations are supported on MPLabv5\.40\.
+
+**MPLabv5\.35 downloads**
+   + [ MPLAB X Integrated Development Environment for Windows](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-windows-installer.exe)
+   + [MPLAB X Integrated Development Environment for macOS](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-osx-installer.dmg)
+   + [MPLAB X Integrated Development Environment for Linux](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-linux-installer.tar)
+
+**Latest MPLab downloads \(MPLabv5\.40\)**
    + [MPLAB X Integrated Development Environment for Windows](http://www.microchip.com/mplabx-ide-windows-installer)
    + [MPLAB X Integrated Development Environment for macOS](http://www.microchip.com/mplabx-ide-osx-installer)
    + [MPLAB X Integrated Development Environment for Linux](http://www.microchip.com/mplabx-ide-linux-installer)

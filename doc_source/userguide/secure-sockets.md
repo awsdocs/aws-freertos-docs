@@ -34,7 +34,7 @@ FreeRTOS Secure Sockets library features include:
 The error codes that the FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-If the FreeRTOS Secure Sockets API returns an error code, the [MQTT library, version 1\.0\.0](freertos-lib-cloud-mqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
+If the FreeRTOS Secure Sockets API returns an error code, the [MQTT library, version 1\.x\.x](freertos-lib-cloud-mqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
 
 ## Developer support<a name="freertos-secure-sockets-support"></a>
 
