@@ -162,7 +162,7 @@ The script does the following:
 + Creates an IoT thing, certificate, and policy
 + Attaches the IoT policy to the certificate and the certificate to the AWS IoT thing
 + Populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials
-+ Formats your certificate and private key and writes them to the `aws_clientcredential.h` header file
++ Formats your certificate and private key and writes them to the `aws_clientcredential_keys.h` header file
 **Note**  
 The certificate is hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 

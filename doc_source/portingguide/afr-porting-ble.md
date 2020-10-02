@@ -161,6 +161,8 @@ The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/bo
 
 1. Execute the `runPI.sh` script\.
 
+1. Clear any existing BLE bonds stored in the device\.
+
 1. Build the test project, and then flash it to your device for execution\.
 
 1. Check the test results in the UART console\.

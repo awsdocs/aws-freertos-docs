@@ -4,15 +4,15 @@
 
 FreeRTOS Bluetooth Low Energy includes three demo applications:
 
-### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo<a name="w14aac11c11b3b5"></a>
+### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo<a name="w15aac19c11b3b5"></a>
 
 This application demonstrates how to use the MQTT over Bluetooth Low Energy service\.
 
-### [Wi\-Fi provisioning](#ble-demo-wifi) demo<a name="w14aac11c11b3b7"></a>
+### [Wi\-Fi provisioning](#ble-demo-wifi) demo<a name="w15aac19c11b3b7"></a>
 
 This application demonstrates how to use the Bluetooth Low Energy Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) demo<a name="w14aac11c11b3b9"></a>
+### [Generic Attributes Server](#ble-demo-server) demo<a name="w15aac19c11b3b9"></a>
 
 This application demonstrates how to use the FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
 
@@ -287,7 +287,7 @@ This policy is different from the IAM policy created for the cognito authenticat
 
 **To discover and establish secure connections with your microcontroller over Bluetooth Low Energy**
 
-1. In order to pair your microcontroller and mobile device securely \(step 6\), you need a serial terminal emulator with both input and output capabilities \(such as TeraTerm\)\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a terminal emulator](uart-term.md)\.
+1. In order to pair your microcontroller and mobile device securely \(step 6\), you need a serial terminal emulator with both input and output capabilities \(such as TeraTerm\)\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a terminal emulator](gsg-troubleshooting.md#uart-term)\.
 
 1. Run the Bluetooth Low Energy demo project on your microcontroller\.
 

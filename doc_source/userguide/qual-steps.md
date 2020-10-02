@@ -229,6 +229,19 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
         "wifiPassword": "password",
         "wifiSecurityType": "eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
     },
+    //**********
+    //This section is used to start echo server based on server certificate generation method,
+    //When certificateGenerationMethod is set as Automatic specify the eccCurveFormat to generate certifcate and key based on curve format,
+    //When certificateGenerationMethod is set as Custom specify the certificatePath and PrivateKeyPath to be used to start echo server
+    //**********
+    "echoServerCertificateConfiguration": {
+      "certificateGenerationMethod": "Automatic | Custom",
+      "customPath": {
+        "certificatePath":"</path/to/certificate>",
+        "privateKeyPath": "</path/to/privateKey>"
+      },
+    "eccCurveFormat": "P224 | P256 | P384 | P521"
+    },
     "echoServerConfiguration": {
         "securePortForSecureSocket": 33333, // Secure tcp port used by SecureSocket test. Default value is 33333. Ensure that the port configured isn't blocked by the firewall or your corporate network
         "insecurePortForSecureSocket": 33334, // Insecure tcp port used by SecureSocket test. Default value is 33334. Ensure that the port configured isn't blocked by the firewall or your corporate network
@@ -357,6 +370,19 @@ The type of Wi\-Fi security used\. One of the values:
 + `eWiFiSecurityWPA`
 + `eWiFiSecurityWPA2`
 If your board does not support Wi\-Fi, you must still include the `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
+
+`echoServerCertificateConfiguration`  
+The configurable echo server certificate generation placeholder for secure socket tests\. This field is required\.    
+`certificateGenerationMethod`  
+Specifies whether the server certificate is generated automatically or provided manually\.  
+`customPath`  
+If `certificateGenerationMethod` is "Custom", `certificatePath` and `privateKeyPath` are required\.    
+`certificatePath`  
+Specifies the filepath for the server certificate\.  
+`privateKeyPath`  
+Specifies the filepath for the private key\.  
+`eccCurveFormat`  
+Specifies the curve format supported by the board\. Required when `PKCS11` is set to "ecc" in `device.json`\. Valid values are "P224", "P256", "P384", or "P521"\.
 
 `echoServerConfiguration`  
 The configurable echo server ports for WiFi and secure sockets tests\. This field is optional\.    

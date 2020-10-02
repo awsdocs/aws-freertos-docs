@@ -13,24 +13,32 @@ To run the TLS echo server, you must install the following:
 After you finish the prerequisites, you must enter the following commands to create your credentials\.
 
 **Server**  
-The following `openssl` command generates a self\-signed server certificate\.  
+The following `openssl` command generates a self\-signed server certificate\.    
+**RSA**  
 
 ```
 openssl req -newkey rsa:2048 -nodes -x509 -sha256 -out certs/server.pem -keyout certs/server.key -days 365 -subj "/C=US/ST=WA/L=Place/O=YourCompany/OU=IT/CN=www.your-company-website.com/emailAddress=yourEmail@your-company-website.com"
+```  
+**EC**  
+
+```
+openssl req -new -x509 -nodes -newkey ec:<(openssl ecparam -name prime256v1) -keyout certs/server.key -out certs/server.pem -days 365 -subj "/C=US/ST=WA/L=Place/O=YourCompany/OU=IT/CN=www.your-company-website.com/emailAddress=yourEmail@your-company-website.com"
 ```
 
 **Client**  
-The following `openssl` commands generate a client certificate\.  
+The following `openssl` commands generate a client certificate\.    
+**RSA**  
 
 ```
 openssl genrsa -out certs/client.key 2048
-```
-
-```
 openssl req -new -key certs/client.key -out certs/client.csr -subj "/C=US/ST=WA/L=Place/O=YourCompany/OU=IT/CN=www.your-company-website.com/emailAddress=yourEmail@your-company-website.com"
-```
+openssl x509 -req -in certs/client.csr -CA certs/server.pem -CAkey certs/server.key -CAcreateserial -out certs/client.pem -days 365 -sha256
+```  
+**EC**  
 
 ```
+ecparam -genkey -name prime256v1 -out certs/client.key 
+openssl req -new -key certs/client.key -out certs/client.csr -subj "/C=US/ST=WA/L=Place/O=YourCompany/OU=IT/CN=www.your-company-website.com/emailAddress=yourEmail@your-company-website.com"
 openssl x509 -req -in certs/client.csr -CA certs/server.pem -CAkey certs/server.key -CAcreateserial -out certs/client.pem -days 365 -sha256
 ```
 
@@ -100,10 +108,10 @@ Before you run the TCP tests on your device, we recommend that you read [Getting
 After you complete the steps in [Create credentials](#afr-echo-server-credentials), you should have the following files:
 + `certs/server.pem`
 + `certs/server.key`
++ `certs/server.srl`
 + `certs/client.pem`
 + `certs/client.key`
 + `certs/client.csr`
-+ `certs/server.srl`
 
 Make the following changes to these files:
 
@@ -116,7 +124,7 @@ Make the following changes to these files:
 + Set `keyCLIENT_CERTIFICATE_PEM` to the contents of `certs/client.pem`\.
 + Leave `keyJITR_DEVICE_CERTIFICATE_AUTHORITY_PEM` as `NULL`\.
 + Set `keyCLIENT_PRIVATE_KEY_PEM` to the contents of `certs/client.key`\.
-+ For more information, see [ Configuring the FreeRTOS demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-configure.html)\.
++ For more information, see [ Configuring the FreeRTOS demos](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-prereqs.html#freertos-configure)\.
 
  `freertos/tests/include/aws_test_tcp.h`   
 + Set `tcptestECHO_HOST_ROOT_CA` to the contents of `certs/server.pem`\.

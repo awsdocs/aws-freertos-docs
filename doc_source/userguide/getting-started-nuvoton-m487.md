@@ -125,7 +125,7 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 1. To configure the board for flashing mode, make sure the MSG switch \(No\.4 of ISW1 on ICE\) is switched ON\. When you plug in the board, a window \(and drive\) will be assigned\. \(See [Troubleshooting](#gsg-nuvoton-m487-troubleshoot)\.\)
 
-1. Open a terminal emulator to view the messages over UART\. Follow the instructions at [Installing a terminal emulator](uart-term.md)\.
+1. Open a terminal emulator to view the messages over UART\. Follow the instructions at [Installing a terminal emulator](gsg-troubleshooting.md#uart-term)\.
 
 1. Run the demo project by copying the generated binary onto the device\. 
 

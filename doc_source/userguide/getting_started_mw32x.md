@@ -219,7 +219,7 @@ The SSID and password should be enclosed in double quotes\.
 1. Use the following command to start building the demo application\.
 
    ```
-   cmake -DVENDOR=marvell -DBOARD=mw300_rd -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=marvell -DBOARD=mw300 -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=0
    ```
 
    Make sure you get the same output as shown in the following example\.  
@@ -243,7 +243,7 @@ The SSID and password should be enclosed in double quotes\.
 1. Use the following commands to build a test application\.
 
    ```
-   cmake -DVENDOR=marvell -DBOARD=mw300_rd -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=1
+   cmake -DVENDOR=marvell -DBOARD=mw300 -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=1
    cd build
    make all -j4
    ```
@@ -319,13 +319,13 @@ The SSID and password should be enclosed in double quotes\.
    Run the following command to work with the `aws_demos` Eclipse project\.
 
    ```
-   cmake -DVENDOR=marvell -DBOARD=mw300_rd -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=0
+   cmake -DVENDOR=marvell -DBOARD=mw300 -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=0
    ```
 
    Run the following command to work with the `aws_tests` Eclipse project\.
 
    ```
-   cmake -DVENDOR=marvell -DBOARD=mw300_rd -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=1
+   cmake -DVENDOR=marvell -DBOARD=mw300 -DCOMPILER=arm-gcc -S .  -Bbuild -DAFR_ENABLE_TESTS=1
    ```
 **Tip**  
 Run the `cmake` command every time you switch between the `aws_demos` project and the `aws_tests` project\.

@@ -4,7 +4,15 @@ This section describes the prerequisites for testing microcontrollers with AWS I
 
 ## Download FreeRTOS<a name="download-afr"></a>
 
-You can download the version of FreeRTOS that you want to test from [GitHub](https://github.com/aws/amazon-freertos)\. Windows has a path length limitation of 260 characters\. The path structure of FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone FreeRTOS to `C:\FreeRTOS` rather than `C:\Users\username\programs\projects\myproj\FreeRTOS\`\.
+You can download a release of FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) with the following command:
+
+```
+git clone --branch <FREERTOS_RELEASE_VERSION> --recurse-submodules https://github.com/aws/amazon-freertos.git
+```
+
+where <FREERTOS\_RELEASE\_VERSION> is a version of FreeRTOS \(for example, 202007\.00\) corresponding to an IDT version listed in [Supported versions of AWS IoT Device Tester for FreeRTOS](dev-test-versions-afr.md)\. This ensures you have the full source code, including submodules, and are using the correct version of IDT for your version of FreeRTOS, and vice versa\.
+
+Windows has a path length limitation of 260 characters\. The path structure of FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone FreeRTOS to `C:\FreeRTOS` rather than `C:\Users\username\programs\projects\myproj\FreeRTOS\`\.
 
 ## Download IDT for FreeRTOS<a name="download-dev-tester-afr"></a>
 

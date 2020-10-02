@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Texas Instrumen
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w14aab7c25c45b7"></a>
+## Overview<a name="w15aac13c27c45b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -69,7 +69,7 @@ Install [Uniflash](http://www.ti.com/tool/UNIFLASH)\. CCS Uniflash is a standalo
 ### Configure Wi\-Fi provisioning<a name="wifi-provision"></a>
 
 To configure the Wi\-Fi settings for your board, do one of the following:
-+ Configure the FreeRTOS demo application described in [Configuring the FreeRTOS demos](freertos-configure.md)\.
++ Configure the FreeRTOS demo application described in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
 + Use [SmartConfig](http://dev.ti.com/tirex/#/?link=Software%2FSimpleLink%20CC32xx%20SDK%2FSimpleLink%20Academy%2FWi-Fi%2FWi-Fi%20Provisioning) from Texas Instruments\.
 
 ## Build and run the FreeRTOS demo project<a name="ti-build-and-run-examples"></a>
@@ -90,7 +90,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 **To run the FreeRTOS demo in TI Code Composer**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455k/swru455k.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [SimpleLink Wi\-Fi CC3x20, CC3x3x Network Processor User's Guide](http://www.ti.com/lit/swru455)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -112,7 +112,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 **To run the FreeRTOS demo in IAR Embedded Workbench**
 
-1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [UniFlash CC3x20, CC3x35 SimpleLink Wi\-Fi and Internet of Things Programmer's Guide](http://www.ti.com/lit/ug/swru455k/swru455k.pdf)\.
+1. Make sure the Sense On Power \(SOP\) jumper on your Texas Instruments CC3220SF\-LAUNCHXL is in position 0\. For more information, see [SimpleLink Wi\-Fi CC3x20, CC3x3x Network Processor User's Guide](http://www.ti.com/lit/swru455)\.
 
 1. Use a USB cable to connect your Texas Instruments CC3220SF\-LAUNCHXL to your computer\.
 
@@ -124,7 +124,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Debug** menu, and choose **Go**\.
 
-### Using CMake with FreeRTOS<a name="w14aab7c25c45c11b7"></a>
+### Using CMake with FreeRTOS<a name="w15aac13c27c45c11b7"></a>
 
 If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -142,7 +142,7 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT messages on the cloud<a name="w14aab7c25c45c11b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w15aac13c27c45c11b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

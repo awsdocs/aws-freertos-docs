@@ -1,6 +1,6 @@
 # AWS IoT Greengrass discovery demo application<a name="gg-demo"></a>
 
-Before you run the AWS IoT Greengrass Discovery demo for FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting up your AWS account and permissions](freertos-account-and-permissions.md)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
+Before you run the AWS IoT Greengrass Discovery demo for FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting up your AWS account and permissions](freertos-prereqs.md#freertos-account-and-permissions)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
 
 After you set up AWS and AWS IoT Greengrass, you need to configure some additional permissions for AWS IoT Greengrass\.
 
@@ -29,7 +29,7 @@ You can use the **Quick Connect** workflow in the [FreeRTOS console](https://con
 
 You can also connect your board to AWS IoT and configure your FreeRTOS demo manually\.
 
-1. [Registering your MCU board with AWS IoT](get-started-freertos-thing.md)
+1. [Registering your MCU board with AWS IoT](freertos-prereqs.md#get-started-freertos-thing)
 
    After you register your board, you need to create and attach a new Greengrass policy to the device's certificate\.
 
@@ -69,11 +69,11 @@ You can also connect your board to AWS IoT and configure your FreeRTOS demo manu
 
    1. Find and choose the Greengrass policy that you created earlier, and then choose **Attach**\.
 
-1. [Downloading FreeRTOS](freertos-download.md)
+1. [Downloading FreeRTOS](freertos-prereqs.md#freertos-download)
 **Note**  
 If you are downloading FreeRTOS from the FreeRTOS console, choose **Connect to AWS IoT Greengrass\- *Platform*** instead of **Connect to AWS IoT\- *Platform***\.
 
-1. [Configuring the FreeRTOS demos](freertos-configure.md)\.
+1. [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
 
    Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
 

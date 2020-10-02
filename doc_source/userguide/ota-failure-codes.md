@@ -1,6 +1,6 @@
 # Get OTA failure codes with the AWS CLI<a name="ota-failure-codes"></a>
 
-1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\. 
+1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\.
 
 1. Run `aws configure` and enter following information\.
 

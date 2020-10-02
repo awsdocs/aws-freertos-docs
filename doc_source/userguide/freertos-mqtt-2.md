@@ -29,7 +29,7 @@ The FreeRTOS MQTT library has the following features:
 
 ## API reference<a name="freertos-mqtt-2-api"></a>
 
-FreeRTOS and the AWS IoT Device SDK for Embedded C have the same MQTT v2\.x\.x library APIs\. For a full API reference, see [MQTT \(v2\.x\.x\) C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/mqtt/index.html)\.
+FreeRTOS and the AWS IoT Device SDK for Embedded C have the same MQTT v2\.x\.x library APIs\. For a full API reference, see [MQTT \(v2\.x\.x\) C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/mqtt/index.html)\.
 
 ## Example usage<a name="freertos-mqtt-2-example"></a>
 

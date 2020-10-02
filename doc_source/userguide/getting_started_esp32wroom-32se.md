@@ -122,7 +122,7 @@ After you set up your environment, you can download FreeRTOS from [GitHub](https
 **Important**  
 The ATECC608A device has a one\-time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
 
-1. Configure the FreeRTOS Demo Project by following the steps in [Configuring the FreeRTOS demos](freertos-configure.md)\. Skip the last step **To format your AWS IoT credentials** and follow the steps below instead\.
+1. Configure the FreeRTOS Demo Project by following the steps in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\. Skip the last step **To format your AWS IoT credentials** and follow the steps below instead\.
 
 1. Microchip has provided several scripting tools to help with the setup of the ATECC608A parts\. Navigate to the `freertos/vendors/microchip/secure_elements/app/example_trust_chain_tool` directory, and open the `README.md` file\.
 

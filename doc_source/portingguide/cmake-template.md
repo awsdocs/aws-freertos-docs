@@ -36,6 +36,7 @@ The first section of the template file defines the metadata that is used to disp
 | SUPPORTED\_IDE | A semicolon\-delimited list of IDs for the IDEs that the board supports\. | 
 | IDE\_ID\_NAME | The name of the supported IDE\. Replace ID with the ID listed for the IDE in the SUPPORTED\_IDE field\. | 
 | IDE\_ID\_COMPILER | A semicolon\-delimited list of names of supported compilers for the supported IDE\. Replace ID with the ID listed for the IDE in the SUPPORTED\_IDE field\. | 
+| KEY\_IMPORT\_PROVISIONING |  Set to TRUE if the board demo project imports the credentials from the pre\-provisioned `aws_clientcredential_keys.h` header file; in this case, **Quick Connect** will be enabled in the FreeRTOS console\. Set to FALSE if the intended board provisioning mechanism is JITR/JITP or multi\-account registration; in this case, **Quick Connect** will be disabled in the FreeRTOS console\.  | 
 
 ## Compiler settings<a name="cmake-compiler"></a>
 

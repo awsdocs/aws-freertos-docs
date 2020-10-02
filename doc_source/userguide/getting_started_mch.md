@@ -42,7 +42,7 @@ This tutorial contains instructions for the following getting started steps:
 1. Connect the MikroElectronika USB UART click Board to your computer using a USB A to USB mini\-B cable\.
 
 1. To connect your board to the internet, use one of the following options:
-   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. See [Configuring the FreeRTOS demos](freertos-configure.md)\.
+   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. See [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
    + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
 1. If not done already, solder the angle connector to the ICSP header on the Microchip Curiosity PIC32MZ EF\.
@@ -64,7 +64,7 @@ We recommend that you follow the setup procedure in the previous section\. Howev
 1. Connect the MikroElectronika USB UART click Board to the microBUS 1 connector on the Microchip Curiosity PIC32MZ EF\.
 
 1. To connect your board to the internet, do one of the following:
-   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. \(Follow the steps "To configure your Wi\-Fi" in [Configuring the FreeRTOS demos](freertos-configure.md)\.
+   + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. \(Follow the steps "To configure your Wi\-Fi" in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
    + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
 
 1. Connect the USB micro\-B port named "USB DEBUG" on the Microchip Curiosity PIC32MZ EF Board to your computer using a USB type A to USB micro\-B cable\.

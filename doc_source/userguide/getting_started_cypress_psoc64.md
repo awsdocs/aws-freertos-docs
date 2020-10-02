@@ -124,7 +124,7 @@ In this section you build and run the demo\.
 1. 
 
 **Using CMake with FreeRTOS**  
-You can also use CMake to build and run the demo application\. To set up CMake and a native build system, see [Prerequisites](building-cmake-prereqs.md)\.
+You can also use CMake to build and run the demo application\. To set up CMake and a native build system, see [Prerequisites](getting-started-cmake.md#building-cmake-prereqs)\.
 
    1. Use the following command to generate build files\. Specify the target board with the `-DBOARD` option\. 
 

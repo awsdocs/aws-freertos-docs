@@ -31,11 +31,11 @@ For more information, see the [CloudTrail userIdentity Element](https://docs.aws
 
 You can store your log files in your Amazon S3 bucket for as long as you want, but you can also define Amazon S3 lifecycle rules to archive or delete log files automatically\. By default, your log files are encrypted with Amazon S3 server\-side encryption \(SSE\)\.
 
-If you want to be notified when log files are delivered, you can configure CloudTrail to publish Amazon SNS notifications\. For more information, see [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)\.
+If you want to be notified when log files are delivered, you can configure CloudTrail to publish Amazon SNS notifications\. For more information, see [ Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)\.
 
 You can also aggregate AWS IoT OTA log files from multiple AWS Regions and multiple AWS accounts into a single Amazon S3 bucket\. 
 
-For more information, see [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)\.
+For more information, see [ Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)\.
 
 ## Understanding FreeRTOS log file entries<a name="understanding-aws-iot-entries-afr"></a>
 

@@ -9,6 +9,8 @@ The FreeRTOS kernel never performs non\-deterministic operations, such as walkin
 
 The FreeRTOS kernel is designed to be small, simple, and easy to use\. A typical RTOS kernel binary image is in the range of 4000 to 9000 bytes\.
 
+For the most up\-to\-date documentation about the FreeRTOS kernel, see [ FreeRTOS\.org](https://freertos.org/RTOS.html)\. FreeRTOS\.org offers a number of detailed tutorials and guides about using the FreeRTOS kernel, including a [Quick Start Guide](https://freertos.org/FreeRTOS-quick-start-guide.html#page_top) and the more in\-depth [ Mastering the FreeRTOS Real Time Kernel](https://freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)\.
+
 ## FreeRTOS kernel scheduler<a name="freertos-kernel-scheduler"></a>
 
 An embedded application that uses an RTOS can be structured as a set of independent tasks\. Each task executes within its own context, with no dependency on other tasks\. Only one task in the application is running at any point in time\. The real\-time RTOS scheduler determines when each task should run\. Each task is provided with its own stack\. When a task is swapped out so another task can run, the task’s execution context is saved to the task stack so it can be restored when the same task is later swapped back in to resume its execution\. 

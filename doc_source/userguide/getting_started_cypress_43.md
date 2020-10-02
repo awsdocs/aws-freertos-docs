@@ -11,7 +11,7 @@ Before you begin, you must configure AWS IoT and your FreeRTOS download to conne
 In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
 Space characters in the `freertos` path can cause build failures\. When you clone or copy the repository, make sure the path that you create doesn't contain space characters\.
 The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
-As noted in [Downloading FreeRTOS](freertos-download.md), FreeRTOS ports for Cypress are currently only available on [ GitHub](https://github.com/aws/amazon-freertos)\.
+As noted in [Downloading FreeRTOS](freertos-prereqs.md#freertos-download), FreeRTOS ports for Cypress are currently only available on [ GitHub](https://github.com/aws/amazon-freertos)\.
 
 ## Overview<a name="overview-for-cypress-tutorial"></a>
 
@@ -90,7 +90,7 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-m.n`
    + Stop bits: 1
    + Flow control: None
 
-For more information about installing a terminal and setting up a serial connection, see [Installing a terminal emulator](uart-term.md)\.
+For more information about installing a terminal and setting up a serial connection, see [Installing a terminal emulator](gsg-troubleshooting.md#uart-term)\.
 
 ## Build and run the FreeRTOS demo project<a name="gsg-cypress43-build-and-run-example"></a>
 

@@ -176,7 +176,7 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
 
 1. Install CMake and MingW\.
 
-   For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
+   For instructions, see [CMake Prerequisites](getting-started-cmake.md#building-cmake-prereqs)\.
 
 1. Create a folder to contain the generated build files \(*build\-folder*\)\. 
 

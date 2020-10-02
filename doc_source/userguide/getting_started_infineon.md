@@ -6,7 +6,7 @@ If you want to open a serial connection with the board to view logging and debug
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w14aab7c25c21b9"></a>
+## Overview<a name="w15aac13c27c21b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -158,7 +158,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
 1. Install CMake and MingW\.
 
-   For instructions, see [CMake Prerequisites](building-cmake-prereqs.md)\.
+   For instructions, see [CMake Prerequisites](getting-started-cmake.md#building-cmake-prereqs)\.
 
 1. Create a folder to contain the generated build files \(*build\-folder*\)\.
 
@@ -204,7 +204,7 @@ On the final page of the installation wizard, select **Add path to environment v
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
 
-### Monitoring MQTT messages on the cloud<a name="w14aab7c25c21c15b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w15aac13c27c21c15b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

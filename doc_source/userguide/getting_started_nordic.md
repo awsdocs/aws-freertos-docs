@@ -63,12 +63,12 @@ Segger Embedded Studio includes a terminal emulator that you can use to receive 
 
 1. From the top menu, choose **Target**, **Connect J\-Link**\.
 
-1. From the top menu, choose **Tools**, **Terminal Emulator**, **Properties**, and set the properties as instructed in [Installing a terminal emulator](uart-term.md)\.
+1. From the top menu, choose **Tools**, **Terminal Emulator**, **Properties**, and set the properties as instructed in [Installing a terminal emulator](gsg-troubleshooting.md#uart-term)\.
 
 1. From the top menu, choose **Tools**, **Terminal Emulator**, **Connect *port* \(115200,N,8,1\)**\.
 
 **Note**  
-The Segger embedded studio terminal emulator does not support an input capability\. For this, use a terminal emulator like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a terminal emulator](uart-term.md)\.
+The Segger embedded studio terminal emulator does not support an input capability\. For this, use a terminal emulator like PuTTy, Tera Term, or GNU Screen\. Configure the terminal to connect to your board by a serial connection as instructed in [Installing a terminal emulator](gsg-troubleshooting.md#uart-term)\.
 
 ## Download and configure FreeRTOS<a name="nordic-download-and-configure"></a>
 

@@ -1,6 +1,10 @@
 # FreeRTOS Libraries<a name="dev-guide-freertos-libraries"></a>
 
-FreeRTOS libraries provide additional functionality to the FreeRTOS kernel and its internal libraries\. You can use FreeRTOS libraries for networking and security in embedded applications\. FreeRTOS libraries also enable your applications to interact with AWS IoT services\.
+FreeRTOS libraries provide additional functionality to the FreeRTOS kernel and its internal libraries\. You can use FreeRTOS libraries for networking and security in embedded applications\. FreeRTOS libraries also enable your applications to interact with AWS IoT services\. FreeRTOS includes libraries that make it possible to:
++ Securely connect devices to the AWS IoT Cloud using MQTT and device shadows\.
++ Discover and connect to AWS IoT Greengrass cores\.
++ Manage Wi\-Fi connections\.
++ Listen for and process [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
 
 The `libraries` directory contains the source code of the FreeRTOS libraries\. There are helper functions that assist in implementing the library functionality\. We do not recommend that you change these helper functions\.
 
@@ -28,7 +32,7 @@ The following porting libraries are included in configurations of FreeRTOS that 
 You can optionally include the following standalone application libraries in your FreeRTOS configuration to interact with AWS IoT services on the cloud\.
 
 **Note**  
-Some of the application libraries have the same APIs as libraries in the AWS IoT Device SDK for Embedded C\. For these libraries, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. For more information about the AWS IoT Device SDK for Embedded C, see [AWS IoT Device SDK for Embedded C](c-sdk.md)\.
+Some of the application libraries have the same APIs as libraries in the AWS IoT Device SDK for Embedded C\. For these libraries, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. For more information about the AWS IoT Device SDK for Embedded C, see [AWS IoT Device SDK for Embedded C](c-sdk.md)\.
 
 
 **FreeRTOS application libraries**  
@@ -45,7 +49,7 @@ Some of the application libraries have the same APIs as libraries in the AWS IoT
 The following common libraries extend the kernel functionality with additional data structures and functions for embedded application development\. These libraries are often dependencies of the FreeRTOS porting and application libraries\.
 
 **Note**  
-The AWS IoT Device SDK for Embedded C includes common libraries with APIs and functionality identical to these libraries\. For an API reference, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. 
+The AWS IoT Device SDK for Embedded C includes common libraries with APIs and functionality identical to these libraries\. For an API reference, see the [AWS IoT Device SDK C API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/index.html)\. 
 
 
 **FreeRTOS common libraries**  
@@ -60,7 +64,7 @@ The AWS IoT Device SDK for Embedded C includes common libraries with APIs and fu
 
 ## Configuring the FreeRTOS libraries<a name="lib-config"></a>
 
-Configuration settings for FreeRTOS and the AWS IoT Device SDK for Embedded C are defined as C preprocessor constants\. You can set configuration settings with a global configuration file, or by using a compiler option such as `-D` in `gcc`\. Because configuration settings are defined as compile\-time constants, a library must be rebuilt if a configuration setting is changed\.
+Configuration settings for FreeRTOS and the AWS IoT Device SDK for Embedded C are defined as C preprocessor constants\. You can set configuration settings with a global configuration file, or by using a compiler option such as `-D` in `gcc`\. Because configuration settings are defined as compile\-time constants, a library must be rebuilt if a configuration setting is changed\.
 
 If you want to use a global configuration file to set configuration options, create and save the file with the name `iot_config.h`, and place it in your include path\. Within the file, use `#define` directives to configure the FreeRTOS libraries, demos, and tests\.
 

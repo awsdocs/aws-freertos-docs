@@ -8,6 +8,14 @@ FreeRTOS is an open\-source project\. You can download the source code, contribu
 
 We also welcome contributions to the FreeRTOS documentation \(*FreeRTOS User Guide*, *FreeRTOS Porting Guide*, and *FreeRTOS Qualification Guide*\)\. The markdown source for the documentation is available at [https://github\.com/awsdocs/aws\-freertos\-docs](https://github.com/awsdocs/aws-freertos-docs)\. It is released under the Creative Commons \(CC BY\-ND\) license\.
 
+## Downloading FreeRTOS source code<a name="freertos-mds-projects-github"></a>
+
+You can download versions of FreeRTOS that are configured for FreeRTOS\-qualified platforms from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [FreeRTOS\-qualified hardware platforms](#freertos-hardware) or the [FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
+
+You can also clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
+
+## FreeRTOS versioning<a name="freertos-versioning"></a>
+
 The FreeRTOS kernel and components are released individually and use semantic versioning\. Integrated FreeRTOS releases are made periodically\.  All releases use date\-based versioning with the format YYYYMM\.NN, where:
 + Y represents the year\.
 + M represents the month\.
@@ -26,40 +34,32 @@ FreeRTOS is typically flashed to devices as a single compiled image with all of 
 
 
 
-## FreeRTOS kernel<a name="freertos-kernel"></a>
+## FreeRTOS\-qualified hardware platforms<a name="freertos-hardware"></a>
 
-The FreeRTOS kernel is a real\-time operating system that supports numerous architectures and is ideal for building embedded microcontroller applications\. The kernel provides:
-+ A multitasking scheduler\.
-+ Multiple memory allocation options \(including the ability to create statically allocated systems\)\.
-+ Inter\-task coordination primitives, including task notifications, message queues, multiple types of semaphores, and stream and message buffers\.
+The following hardware platforms are qualified for FreeRTOS:
++ [ATECC608A Zero Touch Provisioning Kit for AWS IoT](https://devices.amazonaws.com/detail/a3G0L00000AANvOUAX/ATECC608a-Zero-Touch-Provisioning-Kit-for-AWS-IoT)
++ [Cypress CYW943907AEVAL1F Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAPg0UAH/CYW943907AEVAL1F)
++ [Cypress CYW954907AEVAL1F Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)
++ [Espressif ESP32\-DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC)
++ [Espressif ESP\-WROVER\-KIT](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)
++ [Infineon XMC4800 IoT Connectivity Kit](https://devices.amazonaws.com/detail/a3G0L00000AANsbUAH/XMC4800-IoT-Amazon-FreeRTOS-Connectivity-Kit-WiFi)
++ [Marvell MW320 AWS IoT Starter Kit](https://devices.amazonaws.com/detail/a3G0h000000OaRnEAK/Marvell-MW320)
++ [Marvell MW322 AWS IoT Starter Kit](https://devices.amazonaws.com/detail/a3G0h000000OblKEAS/Marvell-MW322)
++ [MediaTek MT7697Hx Development Kit](https://devices.amazonaws.com/detail/a3G0L00000AAOmPUAX/MT7697Hx-Development-Kit)
++ [Microchip Curiosity PIC32MZEF Bundle](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)
++ [Nordic nRF52840\-DK](https://devices.amazonaws.com/detail/a3G0L00000AANtrUAH/nRF52840-Development-Kit)
++ [NuMaker\-IoT\-M487](https://devices.amazonaws.com/detail/a3G0h000000Tg9cEAC/NuMaker-IoT-M487)
++ [NXP LPC54018 IoT Module](https://devices.amazonaws.com/detail/a3G0L00000AANtAUAX/LPC54018-IoT-Solution)
++ [OPTIGA Trust X Security Solution](https://devices.amazonaws.com/detail/a3G0h000007712QEAQ/OPTIGA%E2%84%A2-Trust-X-Security-Solution)
++ [Renesas RX65N RSK IoT Module](https://devices.amazonaws.com/detail/a3G0L00000AAOkeUAH/Renesas-Starter-Kit+-for-RX65N-2MB)
++ [STMicroelectronicsSTM32L4 Discovery Kit IoT Node](https://devices.amazonaws.com/detail/a3G0L00000AANsWUAX/STM32L4-Discovery-Kit-IoT-Node)
++ [Texas Instruments CC3220SF\-LAUNCHXL](https://devices.amazonaws.com/detail/a3G0L00000AANtaUAH/SimpleLink-Wi-Fi®-CC3220SF-Wireless-Microcontroller-LaunchPad-Development-Kit)
++ Microsoft Windows 7 or later, with at least a dual core and a hard\-wired Ethernet connection
++ [Xilinx Avnet MicroZed Industrial IoT Kit](https://devices.amazonaws.com/detail/a3G0L00000AANtqUAH/MicroZed-IIoT-Bundle-with-Amazon-FreeRTOS)
 
-For the most up\-to\-date documentation about the FreeRTOS kernel, see [FreeRTOS\.org](https://freertos.org/RTOS.html)\. FreeRTOS\.org offers a number of detailed tutorials and guides about using the FreeRTOS kernel, including a [Quick Start Guide](https://freertos.org/FreeRTOS-quick-start-guide.html#page_top) and the more in\-depth [ Mastering the FreeRTOS Real Time Kernel](https://freertos.org/Documentation/161204_Mastering_the_FreeRTOS_Real_Time_Kernel-A_Hands-On_Tutorial_Guide.pdf)\. For more information about the FreeRTOS kernel in this guide, see [FreeRTOS kernel fundamentals](dev-guide-freertos-kernel.md)\.
+Qualified devices are also listed on the [AWS Partner Device Catalog](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
 
-## FreeRTOS libraries<a name="freertos-libraries"></a>
-
-FreeRTOS includes libraries that make it possible to:
-+ Securely connect devices to the AWS IoT Cloud using MQTT and device shadows\.
-+ Discover and connect to AWS IoT Greengrass cores\.
-+ Manage Wi\-Fi connections\.
-+ Listen for and process [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)\.
-
-For more information, see [FreeRTOS Libraries](https://docs.aws.amazon.com/freertos/latest/userguide/dev-guide-freertos-libraries.html)\.
-
-## Downloading FreeRTOS source code<a name="freertos-mds-projects-github"></a>
-
-You can download versions of FreeRTOS that are configured for FreeRTOS\-qualified platforms from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [FreeRTOS\-qualified hardware platforms](freertos-hardware.md) or the [FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
-
-You can also clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
-
-## FreeRTOS console<a name="freertos-console"></a>
-
-From the [FreeRTOS console](https://console.aws.amazon.com/freertos), you can configure and download a package that contains everything you need to write an application for your microcontroller\-based devices:
-+ The FreeRTOS kernel\.
-+ FreeRTOS libraries\.
-+ Platform support libraries\.
-+ Hardware drivers\.
-
-For more information, see [FreeRTOS console](freertos-ocw.md)\.
+For information about qualifying a new device, see the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
 
 ## Development workflow<a name="development-workflow"></a>
 

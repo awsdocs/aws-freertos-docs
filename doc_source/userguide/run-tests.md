@@ -26,7 +26,7 @@ Use the following command to run a specific test group:
 
 ```
 devicetester_[linux | mac | win] run-suite  \
-    --suite-id FRQ_1.0.0  \
+    --suite-id FRQ_1.0.1  \
     --group-id group-id  \
     --pool-id pool-id  \
     --userdata userdata.json

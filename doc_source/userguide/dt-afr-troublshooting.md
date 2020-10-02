@@ -180,7 +180,7 @@ If you see timeout errors while running a test suite, increase the timeout by sp
 **Example**  
 
 ```
-./devicetester_linux run-suite --suite-id FRQ_1.0.0 --pool-id DevicePool1 --timeout-multiplier 2.5
+./devicetester_linux run-suite --suite-id FRQ_1.0.1 --pool-id DevicePool1 --timeout-multiplier 2.5
 ```
 
 ```

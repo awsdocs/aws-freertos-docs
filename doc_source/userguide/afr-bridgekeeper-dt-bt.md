@@ -99,7 +99,7 @@ The `ssh-copy-id` command assumes the public key is named `id_rsa.pub`\. On macO
                          "id": "ble-test-raspberry-pi-1",
                          "connectivity": {
                              "protocol": "ssh",
-                             "ip": "rasp-pi-id-address"
+                             "ip": "rasp-pi-ip-address"
                          }
                      }
                  ]
@@ -107,12 +107,28 @@ The `ssh-copy-id` command assumes the public key is named `id_rsa.pub`\. On macO
          ]
          ```
 
+      1. If you didn't choose to use public key authentication for SSH, add the following to the `connectivity` section of the `resource.json` file\.
+
+         ```
+         "connectivity": {
+             "protocol": "ssh",
+             "ip": "rasp-pi-ip-address",
+             "auth": {
+                 "method": "password",
+                 "credentials": {
+                     "user": "root",
+                     "password": "idtafr"
+                 }
+             }
+         }
+         ```
+
       1. \(Optional\) If you chose to use public key authentication for SSH, add the following to the `connectivity` section of the `resource.json` file\.
 
          ```
          "connectivity": {
              "protocol": "ssh",
-             "ip": "rasp-pi-id-address",
+             "ip": "rasp-pi-ip-address",
              "auth": {
                  "method": "pki",
                  "credentials": {

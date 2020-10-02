@@ -2,7 +2,7 @@
 
 Devices on the edge can use the MQTT protocol to communicate with the AWS Cloud\. AWS IoT hosts an MQTT broker that sends and receives messages to and from connected devices at the edge\.
 
-The MQTT library implements the MQTT protocol for devices running FreeRTOS\. The MQTT library does not need to be ported, but your device's test project must pass all MQTT tests for qualification\. For more information, see [FreeRTOS MQTT Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-lib-cloud-mqtt.html.html) in the FreeRTOS User Guide\.
+The MQTT library implements the MQTT protocol for devices running FreeRTOS\. The MQTT library does not need to be ported, but your device's test project must pass all MQTT tests for qualification\. For more information, see [FreeRTOS MQTT Library](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-lib-cloud-mqtt.html) in the FreeRTOS User Guide\.
 
 ## Prerequisites<a name="testing-prereqs-mqtt"></a>
 
