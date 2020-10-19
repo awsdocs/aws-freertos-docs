@@ -167,8 +167,10 @@ The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/bo
 
 1. Check the test results in the UART console\.
 
-## Validation<a name="w3aac11c39c13"></a>
+## Validation<a name="ble-validation"></a>
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you have ported the Bluetooth Low Energy library, you can start the FreeRTOS qualification process\. For more information, see the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
+
+If the device supports Over the Air Updates, then you should also validate Over the Air Updates over Bluetooth Low Energy using a companion device\. For more details, see the next topic, [Perform Over the Air Updates using Bluetooth Low Energy](ota-updates-ble.md)\.

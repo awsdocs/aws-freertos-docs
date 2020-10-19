@@ -279,7 +279,7 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
         "required": [
             {
                 "configName": "pkcs11Config",
-                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-path/aws_tests/config_files/iot_pkcs11_config.h"
+                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-path/aws_tests/config_files/core_pkcs11_config.h"
             },
             {
                 "configName": "pkcs11TestConfig",

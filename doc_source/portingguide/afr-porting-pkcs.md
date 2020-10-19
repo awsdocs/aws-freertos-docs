@@ -43,13 +43,13 @@ To port the PKCS \#11 library, you need the following:
    + A code\-verification public key \(or a certificate that contains the code\-verification public key\) for secure bootloader and over\-the\-air \(OTA\) updates\.
    + A Just\-In\-Time provisioning certificate\.
 
-    `freertos/vendors/vendor/boards/board/ports/pkcs11/iot_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
+    `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html)
 
 1. Add support for a cryptographically random entropy source to your port:
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\):
 
-     1. Implement the [ `mbedtls_hardware_poll()`](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/iot_pkcs11_pal.c`\. 
+     1. Implement the [ `mbedtls_hardware_poll()`](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c`\. 
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG:
 
      1. Make a copy of `freertos/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
@@ -81,7 +81,7 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 **To set up the PKCS \#11 library in the IDE project**
 
-1. Add the source file `freertos/vendors/vendor/boards/board/ports/pkcs11/iot_pkcs11_pal.c` to the `aws_tests` IDE project\.
+1. Add the source file `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c` to the `aws_tests` IDE project\.
 
 1. Add all of the files in the `freertos/libraries/abstractions/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\.
 
@@ -109,7 +109,7 @@ afr_mcu_port(pkcs11_implementation DEPENDS AFR::pkcs11_mbedtls)
 target_sources(
     AFR::pkcs11_implementation::mcu_port
     INTERFACE
-    "${afr_ports_dir}/pkcs11/iot_pkcs11_pal.c"
+    "${afr_ports_dir}/pkcs11/core_pkcs11_pal.c"
 )
 ```
 

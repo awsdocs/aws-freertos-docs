@@ -44,5 +44,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Configuring the HTTPS client library for testing](afr-porting-https.md)
    + [Porting the OTA library](afr-porting-ota.md)
    + [Porting the Bluetooth Low Energy library](afr-porting-ble.md)
+   + [Perform Over the Air Updates using Bluetooth Low Energy](ota-updates-ble.md)
    + [Porting the common I/O libraries](freertos-porting-commonio.md)
 + [Migrating from Version 1.4.x to Version 201906.00 (and newer)](porting-migration.md)

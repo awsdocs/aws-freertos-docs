@@ -34,6 +34,10 @@ Currently, a port of the FreeRTOS OTA update library is not required for qualifi
 **Note**  
 Currently, a port of the FreeRTOS Bluetooth Low Energy library is not required for qualification\.
 
+1. [Perform Over the Air Updates using Bluetooth Low Energy](ota-updates-ble.md)
+**Note**  
+Currently AWS IoT Device Tester does not support qualification of Over the Air updates using Bluetooth Low Energy library\. A partner interested in this qualification should contact AWS through the APN \(AWS Partner Network\) team\.
+
 1. [Porting the common I/O libraries](freertos-porting-commonio.md)
 **Note**  
 Currently, a port of the FreeRTOS common I/O library is not required for qualification\.
