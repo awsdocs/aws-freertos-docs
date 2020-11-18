@@ -16,7 +16,7 @@ Initial Configuration
 First, perform the steps in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure), but skip the last step \(that is, don't do *To format your AWS IoT credentials*\)\. The net result should be that the `demos/include/aws_clientcredential.h` file has been updated with your settings, but the `demos/include/aws_clientcredential_keys.h` file has not\.
 
 Demo Project Configuration  
-Open the Hello World MQTT demo as described in the guide for your board in [Board\-specific getting started guides](getting-started-guides.md) \. In the project, open the file `aws_dev_mode_key_provisioning.c` and change the definition of `keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR`, which is set to zero by default, to one:  
+Open the coreMQTT Mutual Authentication demo as described in the guide for your board in [Board\-specific getting started guides](getting-started-guides.md) \. In the project, open the file `aws_dev_mode_key_provisioning.c` and change the definition of `keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR`, which is set to zero by default, to one:  
 
 ```
 #define keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR 1
@@ -24,7 +24,7 @@ Open the Hello World MQTT demo as described in the guide for your board in [Boar
 Then build and run the demo project and continue to the next step\.
 
 Public Key Extraction  
-Since the device has not yet been provisioned with a private key and client certificate, the demo will fail to authenticate to AWS IoT\. However, the Hello World MQTT demo starts by running developer\-mode key provisioning, resulting in the creation of a private key if one was not already present\. You should see something like the following near the beginning of the serial console output:  
+Because the device hasn't been provisioned with a private key and client certificate, the demo will fail to authenticate to AWS IoT\. However, the coreMQTT Mutual Authentication demo starts by running developer\-mode key provisioning, resulting in the creation of a private key if one was not already present\. You should see something like the following near the beginning of the serial console output\.  
 
 ```
 7 910 [IP-task] Device public key, 91 bytes:
@@ -71,4 +71,4 @@ With the certificate issued, the next step is to import it into your device\. Yo
 
 Device Authorization  
 Import `deviceCert.pem` into the AWS IoT registry as described in [ Use Your Own Certificate](https://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html#manual-cert-registration)\. You must create a new AWS IoT thing, attach the PENDING certificate and a policy to your thing, then mark the certificate as ACTIVE\. All of these steps can be performed manually in the AWS IoT console\.  
-Once the new client certificate is ACTIVE and associated with a thing and a policy, run the MQTT Hello World demo again\. This time, the connection to the AWS IoT MQTT broker will succeed\.
+Once the new client certificate is ACTIVE and associated with a thing and a policy, run the coreMQTT Mutual Authentication demo again\. This time, the connection to the AWS IoT MQTT broker will succeed\.

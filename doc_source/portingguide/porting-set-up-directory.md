@@ -2,7 +2,7 @@
 
 Follow the instructions below to configure the FreeRTOS download for porting FreeRTOS code to your device\.
 
-## Configuring directories for vendor\-supplied, board\-specific libraries<a name="w3aab9c13b5"></a>
+## Configuring directories for vendor\-supplied, board\-specific libraries<a name="porting-set-up-directory-config"></a>
 
 Under the download's root directory \(`freertos`\), the `vendors` folder is structured as follows:
 
@@ -44,7 +44,7 @@ Other vendor\-supplied files, such as a GPIO library, are common across a board'
 **Important**  
 Do not save vendor\-supplied libraries that are common across a target board's MCU family to any subdirectories of `freertos/test` or `freertos/demos`\.
 
-## Configuring directories for project files<a name="w3aab9c13b7"></a>
+## Configuring directories for project files<a name="porting-set-up-directory-config-dir"></a>
 
 Under `freertos`, the `projects` folder is structured as follows:
 
@@ -62,7 +62,7 @@ projects
 
 1. Rename the `vendor` folder to the name of the vendor, and rename the `board` folder to the name of the development board\.
 
-## Configuring `FreeRTOSConfig.h`<a name="w3aab9c13b9"></a>
+## Configuring `FreeRTOSConfig.h`<a name="porting-set-up-directory-config-dot-h"></a>
 
 After you have configured the directory structure of your FreeRTOS download, configure your board name in the `FreeRTOSConfig.h` configuration header file\.
 

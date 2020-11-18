@@ -8,13 +8,32 @@ By downloading the software, you agree to the IDT for FreeRTOS License Agreement
 
 Use the following links to download the latest version of IDT for FreeRTOS\.
 
+**IDT v3\.4\.0 and test suite version 1\.3\.0 for FreeRTOS 202011\.00**
++ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.4.0.zip)
++ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.4.0.zip)
++ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.4.0.zip)
+
+**Note**  
+We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This might result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive and run the IDT binary on your local workstation\.
+
+**Release notes**
++ Supports FreeRTOS 202011\.00\. For more information about what's included in the FreeRTOS 202011\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202011.00/CHANGELOG.md) file in GitHub\.
++ Fixed bug where 'RSA' was not a valid PKCS11 configuration option\.
++ Fixed bug where Amazon S3 buckets aren’t cleaned up correctly after OTA tests\.
++ Updates to support the new test cases inside of the FullMQTT test group\.
+
+**Test suite versions**
++ FRQ\_1\.3\.0
+  + Released 2020\.11\.05\.
+
+## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
+
+The following earlier versions of IDT for FreeRTOS are also supported\.
+
 **IDT v3\.3\.0 and Test Suite version 1\.2\.0 for FreeRTOS 202007\.00**
 + IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.3.0.zip)
 + IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.3.0.zip)
 + IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.3.0.zip)
-
-**Note**  
-We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This may result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive and run the IDT binary on your local workstation\.
 
 **Release notes**
 + Supports FreeRTOS 202007\.00\. For more information about what's included in the FreeRTOS 202007\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202007.00/CHANGELOG.md) file in GitHub\.
@@ -30,11 +49,7 @@ We don't recommend that multiple users run IDT from a shared location, such as a
   + Released 2020\.09\.17\.
   + Internal improvements and bug fixes, including:
     + For OTA, the Disconnect And Resume test now properly uses the MQTT dataplane if MQTT is configured\.
-    + For BLE, you can now change the password of the RaspberryPi image if you so choose\.
-
-## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
-
-The following earlier versions of IDT for FreeRTOS are also supported\.
+    + For BLE, you can now change the password of the Raspberry Pi image if you so choose\.
 
 **IDT v3\.0\.2 for FreeRTOS 202002\.00**
 + IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.0.2.zip)

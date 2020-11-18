@@ -1,4 +1,4 @@
-# Public Key Cryptography Standard \(PKCS\) \#11 library<a name="security-pkcs"></a>
+# corePKCS11 library<a name="security-pkcs"></a>
 
 ## Overview<a name="freertos-pkcs-overview"></a>
 
@@ -129,4 +129,4 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 
 ## Porting<a name="freertos-pkcs-porting"></a>
 
-For information about porting the PKCS \#11 library to your platform, see [Porting the PKCS \#11 Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html) in the FreeRTOS Porting Guide\.
+For information about porting the corePKCS11 library to your platform, see [Porting the corePKCS11 Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html) in the FreeRTOS Porting Guide\.

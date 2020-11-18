@@ -3,7 +3,7 @@
 This section describes the general requirements for using MQTT to perform over\-the\-air \(OTA updates\)\.
 
 ## Minimum requirements<a name="ota-mqtt-freertos-min-requirements"></a>
-+ Device firmware must include the necessary FreeRTOS libraries \(MQTT, OTA Agent, and their dependencies\)\.
++ Device firmware must include the necessary FreeRTOS libraries \(coreMQTT, OTA Agent, and their dependencies\)\.
 + FreeRTOS version 1\.4\.0 or later is required\. However, we recommend that you use the latest version when possible\.
 
 ## Configurations<a name="ota-mqtt-freertos-config"></a>

@@ -3,11 +3,11 @@
 This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. Beginning with version 201912\.00, FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from AWS IoT to devices\. 
 
 **Note**  
-Although the HTTP protocol might be used to transfer the firmware image, the MQTT library is still required because other interactions with AWS IoT Core use the MQTT library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
+Although the HTTP protocol might be used to transfer the firmware image, the coreMQTT library is still required because other interactions with AWS IoT Core use the coreMQTT library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
 When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA Agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA Agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
 
 ## Minimum requirements<a name="ota-http-freertos-min-requirements"></a>
-+ Device firmware must include the necessary FreeRTOS libraries \(MQTT, HTTP, OTA Agent, and their dependencies\)\.
++ Device firmware must include the necessary FreeRTOS libraries \(coreMQTT, HTTP, OTA Agent, and their dependencies\)\.
 + FreeRTOS version 201912\.00 or later is required to change the configuration of the OTA protocols to enable OTA data transfer over HTTP\.
 
 ## Configurations<a name="ota-http-freertos-config"></a>

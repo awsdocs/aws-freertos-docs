@@ -3,7 +3,7 @@
 This tutorial provides instructions for getting started with the Cypress CYW954907AEVAL1F Development Kit\. If you don't have the Cypress CYW954907AEVAL1F Development Kit, visit the AWS Partner Device Catalog to purchase one from our [partner](https://devices.amazonaws.com/detail/a3G0L00000AAPg5UAH/CYW954907AEVAL1F)\.
 
 **Note**  
-This tutorial walks you through setting up and running the MQTT Hello World demo\. The FreeRTOS port for this board currently doesn't support the TCP server and client demos\.
+This tutorial walks you through setting up and running the coreMQTT Mutual Authentication demo\. The FreeRTOS port for this board currently doesn't support the TCP server and client demos\.
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 

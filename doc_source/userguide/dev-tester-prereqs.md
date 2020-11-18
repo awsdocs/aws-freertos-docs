@@ -8,6 +8,8 @@ You can download a release of FreeRTOS from [GitHub](https://github.com/aws/amaz
 
 ```
 git clone --branch <FREERTOS_RELEASE_VERSION> --recurse-submodules https://github.com/aws/amazon-freertos.git
+cd amazon-freertos
+git submodule update --checkout --init --recursive
 ```
 
 where <FREERTOS\_RELEASE\_VERSION> is a version of FreeRTOS \(for example, 202007\.00\) corresponding to an IDT version listed in [Supported versions of AWS IoT Device Tester for FreeRTOS](dev-test-versions-afr.md)\. This ensures you have the full source code, including submodules, and are using the correct version of IDT for your version of FreeRTOS, and vice versa\.

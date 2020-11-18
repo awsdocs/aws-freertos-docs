@@ -117,7 +117,7 @@ FreeRTOS modules:
   Available tests:
 ```
 
-As you update the `CMakeLists.txt` file with porting layer targets, the corresponding FreeRTOS modules are enabled\. You should also be able to build any FreeRTOS module whose dependency requirements are subsequently satisfied\. For example, if the MQTT library is enabled, the Device Shadow library is also enabled, because its only dependency is the MQTT library\.
+As you update the `CMakeLists.txt` file with porting layer targets, the corresponding FreeRTOS modules are enabled\. You should also be able to build any FreeRTOS module whose dependency requirements are subsequently satisfied\. For example, if the coreMQTT library is enabled, the Device Shadow library is also enabled, because its only dependency is the coreMQTT library\.
 
 **Note**  
 The FreeRTOS kernel dependency is a minimum requirement\. The CMake configuration fails if the FreeRTOS kernel dependency is not satisfied\.

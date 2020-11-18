@@ -17,7 +17,7 @@ The Device Defender library has the following dependencies:
 + [Static Memory library](lib-static.md) \(if Static Memory only\)\.
 + A platform layer that provides an interface to the operating system for thread management, timers, clock functions, etc\.
 + [Task Pool library](task-pool.md)\.
-+ [MQTT library, version 2\.x\.x](freertos-mqtt-2.md)\.
++ [coreMQTT library](coremqtt.md)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/defender-dependencies.png)
 

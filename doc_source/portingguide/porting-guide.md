@@ -14,7 +14,6 @@ The FreeRTOS kernel and components are released individually and use semantic ve
 + Y represents the year\.
 + M represents the month\.
 + N represents the release order within the designated month \(00 being the first release\)\.
-+ A "major" denotation indicates the addition of new features or significant updates to multiple libraries\.
 
 For example, a second release in June 2021 would be 202106\.01\. 
 
@@ -51,6 +50,7 @@ If you are porting an older version of FreeRTOS, go to the [FreeRTOS AWS Referen
 
 |  Date  |  Documentation version for the Porting and Qualification guides  |  Change history  |  FreeRTOS version  | 
 | --- | --- | --- | --- | 
+|  November, 2020  |  [ 202011\.00](https://github.com/aws/amazon-freertos/blob/202011.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202011\.00](https://github.com/aws/amazon-freertos/blob/202011.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202011\.00](https://github.com/aws/amazon-freertos/tree/202011.00)  | 
 |  July, 2020  |  [ 202007\.00](https://github.com/aws/amazon-freertos/blob/202007.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202007\.00](https://github.com/aws/amazon-freertos/blob/202007.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202007\.00](https://github.com/aws/amazon-freertos/tree/202007.00)  | 
 |  February 18, 2020  |  [ 202002\.00](https://github.com/aws/amazon-freertos/blob/202002.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202002\.00](https://github.com/aws/amazon-freertos/blob/202002.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202002\.00](https://github.com/aws/amazon-freertos/tree/202002.00)  | 
 |  December 17, 2019  |  [ 201912\.00](https://github.com/aws/amazon-freertos/blob/201912.00/doc/freertos_port_qual/aFreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 201912\.00](https://github.com/aws/amazon-freertos/blob/201912.00/doc/freertos_port_qual/aFreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [201912\.00](https://github.com/aws/amazon-freertos/tree/201912.00)  | 
@@ -74,7 +74,7 @@ If you are porting an older version of FreeRTOS, go to the [FreeRTOS AWS Referen
 A FreeRTOS port is a board\-specific implementation of APIs for the required FreeRTOS libraries and the FreeRTOS that your platform supports\. The port enables the APIs to work on the board, and implements the required integration with the device drivers and BSPs that are provided by the platform vendor\. Your port should also include any configuration adjustments \(e\.g\. clock rate, stack size, heap size\) that are required by the board\.
 
 *My device does not support Wi\-Fi, Bluetooth Low Energy, or over\-the\-air \(OTA\) updates\. Are all libraries required to port FreeRTOS?*  
-The primary requirement for porting FreeRTOS connectivity libraries is that your device can connect to the cloud\. If, for example, you can connect to the cloud across a secure ethernet connection, FreeRTOS, the Wi\-Fi library is not a required\. Keep in mind that some test and demo applications will not work without all of the libraries ported\.
+The primary requirement for porting FreeRTOS connectivity libraries is that your device can connect to the cloud\. If, for example, you can connect to the cloud across a secure Ethernet connection, the Wi\-Fi, Bluetooth Low Energy, and over\-the\-air \(OTA\) libraries are not required\. Keep in mind that some test and demo applications will not work without porting all of the libraries\.
 
 *Can I reach an "[echo server](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-echo-server.html)" from two different networks \(for example, from two subnets across 2 different access points\)? *  
 An echo server is required to pass the TCP/IP and TLS port tests\. The echo server must be reachable from the network that a board is connected to\. Please consult your IT support to enable routing across subnets if you need devices on different subnets to communicate with a single echo server\.

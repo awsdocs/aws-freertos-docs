@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the NXP LPC54018 Io
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w15aac13c27c35b7"></a>
+## Overview<a name="w19aac13c27c35b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -119,7 +119,7 @@ When the debugger stops at the breakpoint in `main()`, press the debug restart b
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Debug** menu, choose **Go**\.
 
-### Monitoring MQTT messages on the cloud<a name="w15aac13c27c35c13b7"></a>
+### Monitoring MQTT messages on the cloud<a name="w19aac13c27c35c13b7"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

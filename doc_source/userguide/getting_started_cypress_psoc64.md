@@ -113,7 +113,7 @@ In this section you build and run the demo\.
 
       1. 1 to 4 – Device connects to the configured Access Point \(AP\) and is provisioned by connecting to the AWS server using the configured endpoint and certificates\.
 
-      1. 5 to 13 – MQTT library is initialized and device establishes MQTT connection\.
+      1. 5 to 13 – coreMQTT library is initialized and device establishes MQTT connection\.
 
       1. 14 to 17 – Device subscribes to all the topics to receive the published messages back\.
 
@@ -163,15 +163,13 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-   1. In the **Subscription topic** textbox enter **iotdemo/\#**\. For **Quality of Service** select **1 \- This client will acknowledge to the Device Gateway that messages are received**\. For **MQTT payload display** select **Display payloads as strings \(more accurate\)**\. Then choose **Subscribe to topic**\.
-
-      A hash \(\#\) symbol at the end of a topic name acts as a wildcard\. For example, if you subscribe to the topic `iotdemo/#` you receive messages published to any topic that starts with **iotdemo/**\. You can change the topic name by modifying the macro `IOT_DEMO_MQTT_TOPIC_PREFIX` in the `freertos/demos/mqtt/iot_demo_mqtt.c` file\.
+   1. For **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
 
    1. Reset the kit to force it to publish MQTT messages, which can then be seen on the console test client\.
 
 ### Running other demos<a name="getting_started_cypress_psoc64_demos"></a>
 
-The following demo applications have been tested and verified to work with the current release\. You can find these demos under the `freertos/demos` directory\. For information on how to run these demos, see [FreeRTOS Demos](freertos-next-steps.md)\.
+The following demo applications have been tested and verified to work with the current release\. You can find these demos under the `freertos/demos` directory\. For information on how to run these demos, see [FreeRTOS demos](freertos-next-steps.md)\.
 + Bluetooth Low Energy demo
 + Over\-the\-Air Updates demo
 + Secure Sockets Echo Client demo

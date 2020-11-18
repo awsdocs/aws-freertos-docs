@@ -45,7 +45,7 @@ For more information, see the [ OTA Agent API Reference](https://docs.aws.amazon
 
 A typical OTA\-capable device application using the MQTT protocol drives the OTA Agent by using the following sequence of API calls\.
 
-1. Connect to the AWS IoT MQTT broker\. For more information, see [MQTT library, version 1\.x\.x](freertos-lib-cloud-mqtt.md)\.
+1. Connect to the AWS IoT MQTT broker\. For more information, see [coreMQTT library](coremqtt.md)\.
 
 1. Initialize the OTA Agent by calling `OTA_AgentInit`\. Your application may define a custom OTA callback function or use the default callback by specifying a NULL callback function pointer\. You must also supply an initialization timeout\.
 

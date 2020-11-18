@@ -9,7 +9,7 @@ Before you enable OTA update logging, make sure you understand the CloudWatch Lo
 
 ## Create a logging role and enable logging<a name="create-ota-logging-role"></a>
 
-Use the [AWS IoT console](https://console.aws.amazon.com/console/home) to create a logging role and enable logging\.
+Use the [AWS IoT console](https://console.aws.amazon.com/iot/home) to create a logging role and enable logging\.
 
 1. From the navigation pane, choose **Settings**\.
 

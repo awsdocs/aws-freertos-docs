@@ -14,9 +14,9 @@ To port the FreeRTOS TLS library, you need the following:
 + A port of the FreeRTOS Secure Sockets library\.
 
   For information about porting the Secure Sockets library to your platform, see [Porting the Secure Sockets library](afr-porting-ss.md)\.
-+ A port of the FreeRTOS PKCS \#11 library\.
++ A port of the corePKCS11 library\.
 
-  For information about porting the PKCS \#11 library to your platform, see [Porting the PKCS \#11 library](afr-porting-pkcs.md)\.
+  For information about porting the corePKCS11 library to your platform, see [Porting the corePKCS11 library](afr-porting-pkcs.md)\.
 + An AWS account\.
 
   For information about setting up an AWS account, see [How do I create and activate a new Amazon Web Services account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) on the AWS Knowledge Center\.
@@ -107,4 +107,4 @@ After you have ported the TLS library and tested your ports, you must run the Se
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you finish porting the FreeRTOS TLS library to your device, you can start setting up the MQTT library for testing\. See [Configuring the MQTT library for testing](afr-porting-mqtt.md) for instructions\.
+After you finish porting the FreeRTOS TLS library to your device, you can start setting up the coreMQTT library for testing\. See [Configuring the coreMQTT library for testing](afr-porting-mqtt.md) for instructions\.

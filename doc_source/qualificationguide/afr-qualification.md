@@ -14,7 +14,6 @@ The FreeRTOS kernel and components are released individually and use semantic ve
 + Y represents the year\.
 + M represents the month\.
 + N represents the release order within the designated month \(00 being the first release\)\.
-+ A "major" denotation indicates the addition of new features or significant updates to multiple libraries\.
 
 For example, a second release in June 2021 would be 202106\.01\. 
 
@@ -36,7 +35,7 @@ For information about qualifying your device for FreeRTOS, see [Qualifying Your 
 
 ### Qualification FAQs<a name="afr-qualification-faqs"></a>
 
-Q: *Can I qualify an MCU that doesn't have Wi\-Fi or ethernet?*  
+Q: *Can I qualify an MCU that doesn't have Wi\-Fi or Ethernet?*  
 A: Yes\. There are qualified MCUs that use external Wi\-Fi modules and offload various functions to the Wi\-Fi module, including TCP/IP and TLS\. An example is the STM32L4 Discovery Kit that uses an Inventek Wi\-Fi module\. Follow the [Device Qualification Program submittal process](https://aws.amazon.com/partners/dqp/) and let us know how we can help with your efforts\.
 
 Q: *If a version of FreeRTOS is released after I have started porting a previous version, do I need to start over using the latest version?*  
@@ -45,11 +44,11 @@ A: Always start porting the latest version of FreeRTOS\. If we release a new ver
 Q: *My board uses a kernel architecture that I have modified and that is not part of the official FreeRTOS release\. Can I still qualify?*   
 A: Unfortunately, only official kernel ports are accepted\. These are available from [GitHub](https://github.com/aws/amazon-freertos) or [SourceForge](https://sourceforge.net/projects/freertos/files/FreeRTOS/)\. If you have an unsupported architecture or additional functionality to add to an existing kernel port, contact your local APN representative\.
 
-Q: *If I want to update a port listed on the Device Catalog to a newer version of FreeRTOS, do I need to requalify all over again?*   
+Q: *If I want to update a port listed on the Device Catalog to a newer version of FreeRTOS, do I need to qualify all over again?*   
 A: After you have updated your port, run the AWS IoT Device Tester again and check the [FreeRTOS Qualification Checklist](afq-checklist.md) to see if any items have been impacted \(especially the Getting Started Guide\)\. Submit a Device Qualification Program ticket with a copy of your passing log to update the Device Catalog listing to point to your new port\. 
 
 Q: *My device does not support Wi\-Fi\. Is a port of the FreeRTOS Wi\-Fi library required to qualify for FreeRTOS?*  
-A: The primary requirement is that your device can connect to the AWS Cloud\. If your device can connect to the AWS Cloud across a secure ethernet connection, the Wi\-Fi library is not a requirement\.
+A: The primary requirement is that your device can connect to the AWS Cloud\. If your device can connect to the AWS Cloud across a secure Ethernet connection, the Wi\-Fi library is not a requirement\.
 
 Q: *My device does not support Bluetooth Low Energy or over\-the\-air \(OTA\) updates\. Are ports for these FreeRTOS libraries required to qualify for FreeRTOS?*  
 A: Bluetooth Low Energy and OTA ports are optional for qualification\.
@@ -67,9 +66,10 @@ Q: *My device uses only one of the protocols \(HTTP, MQTT\) and only one of the 
 A: Yes\. We encourage you to get other combinations qualified on your device as well, if possible\. In this way, you can provide support for more customer use cases\.
 
 Q: *We will be hosting our FreeRTOS port in our own repo as per the qualification requirements\. What should we include in the repo in terms of folders and demos to support? *  
-A: Please host all the files and folders necessary to make the port work as an out of the box experience for a customer who downloads it from the repository\. You should include your entire `freertos_kernel`, `libraries`, and `tools` folders, along with a `docs` folder for your documents, a `projects` folder for your IDE projects, and a `vendors` folder for your vendor\-specifc files\. Also include your entire demo folder\. \(The MQTT Hello World demo must be supported, however, other demos are at your discretion\. Also, the `tools` folder is not required, however, we recommend that you host this folder to assist customers with testing\.\)
+A: Host all the files and folders necessary to make the port work as an out of the box experience for a customer who downloads it from the repository\. You should include your entire `freertos_kernel`, `libraries`, and `tools` folders, along with a `docs` folder for your documents, a `projects` folder for your IDE projects, and a `vendors` folder for your vendor\-specifc files\. Also include your entire demo folder\.   
+The coreMQTT Mutual Authentication demo must be supported\. Other demos are at your discretion\. Also, the `tools` folder isn't required\. However, we recommend that you host this folder to assist customers with testing\.
 
-If you have questions about qualification that are not answered on this page or in the rest of the FreeRTOS Qualification Guide, contact your AWS representative or [the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
+If you have questions about qualification that are not answered on this page or in the rest of the *FreeRTOS Qualification Guide*, contact your AWS representative or [the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
 ### Documentation history<a name="afr-doc-history"></a>
 

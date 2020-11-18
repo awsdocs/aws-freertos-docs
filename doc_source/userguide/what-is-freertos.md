@@ -20,7 +20,6 @@ The FreeRTOS kernel and components are released individually and use semantic ve
 + Y represents the year\.
 + M represents the month\.
 + N represents the release order within the designated month \(00 being the first release\)\.
-+ A "major" denotation indicates the addition of new features or significant updates to multiple libraries\.
 
 For example, a second release in June 2021 would be 202106\.01\. 
 

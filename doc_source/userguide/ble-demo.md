@@ -4,15 +4,15 @@
 
 FreeRTOS Bluetooth Low Energy includes three demo applications:
 
-### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo<a name="w15aac19c11b3b5"></a>
+### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo<a name="w19aac19c11b3b5"></a>
 
 This application demonstrates how to use the MQTT over Bluetooth Low Energy service\.
 
-### [Wi\-Fi provisioning](#ble-demo-wifi) demo<a name="w15aac19c11b3b7"></a>
+### [Wi\-Fi provisioning](#ble-demo-wifi) demo<a name="w19aac19c11b3b7"></a>
 
 This application demonstrates how to use the Bluetooth Low Energy Wi\-Fi Provisioning service\.
 
-### [Generic Attributes Server](#ble-demo-server) demo<a name="w15aac19c11b3b9"></a>
+### [Generic Attributes Server](#ble-demo-server) demo<a name="w19aac19c11b3b9"></a>
 
 This application demonstrates how to use the FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
 
@@ -160,7 +160,7 @@ If you are using an iOS device, you need Xcode to build the demo mobile applicat
 
 When you define configuration variables, use the format of the placeholder values provided in the configuration files\.
 
-1. Confirm that you the [iOS SDK for FreeRTOS Bluetooth devices](freertos-ble-mobile.md#freertos-ble-ios) is installed\.
+1. Confirm that the [iOS SDK for FreeRTOS Bluetooth devices](freertos-ble-mobile.md#freertos-ble-ios) is installed\.
 
 1. Issue the following command from `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo/`:
 
@@ -329,33 +329,14 @@ In the MQTT over Bluetooth Low Energy demo, your microcontroller publishes messa
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-hw-test-console.png)
-
-You can run the MQTT demo over a Bluetooth Low Energy or Wi\-Fi connection\. The configuration of the [Network Manager](#ble-demo-network-manager) determines which connection type is used\. 
+1. In **Subscription topic**, enter ***thing\-name*/example/topic1**, and then choose **Subscribe to topic**\.
 
 If you use Bluetooth Low Energy to pair the microcontroller with your mobile device, the MQTT messages are routed through the Bluetooth Low Energy Mobile SDK demo application on your mobile device\.
 
-If you use Wi\-Fi, the demo is the same as the MQTT Hello World demo project located at `demos/mqtt/iot_demo_mqtt.c`\. That demo is used in most of the [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html) demo projects\.
-
-**To enable the demo over Bluetooth Low Energy or Wi\-Fi**
-
-Open `vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, and define `CONFIG_MQTT_DEMO_ENABLED`\.
-+ Open `freertos/aws_demos/config_files/aws_demo_config.h`, and configure your network type\.
-
-  Configurations include:  
-`#define democonfigNETWORK_TYPES ( AWSIOT_NETWORK_TYPE_BLE )`  
-Run when Bluetooth Low Energy gets a connection\.  
-`#define democonfigNETWORK_TYPES ( AWSIOT_NETWORK_TYPE_WIFI)`  
-Run when WIFI connects to AP\.  
-`#define democonfigNETWORK_TYPES ( AWSIOT_NETWORK_TYPE_WIFI| AWSIOT_NETWORK_TYPE_BLE)`  
-Connects to the first available network type\. If both types are available, Wi\-Fi is used\.
+**To enable the demo over Bluetooth Low Energy**
++ Open `vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, and define `CONFIG_MQTT_BLE_TRANSPORT_DEMO_ENABLED`\.
 
 **To run the demo**
-
-If the Network Manager is configured for Wi\-Fi only, simply build and run the demo project on your board\.
-
-If the Network Manager is configured for Bluetooth Low Energy, do the following:
 
 1. Build and run the demo project on your microcontroller\.
 
@@ -364,7 +345,7 @@ If the Network Manager is configured for Bluetooth Low Energy, do the following:
 1. From the **Devices** list in the demo mobile app, choose your microcontroller, and then choose **MQTT Proxy** to open the MQTT proxy settings\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)
 
-1. After you enable the MQTT proxy, MQTT messages appear on the `iotdemo/#` topic, and data is printed to the UART terminal\.
+1. After you enable the MQTT proxy, MQTT messages appear on the `thing-name/example/topic1` topic, and data is printed to the UART terminal\.
 
 ## Wi\-Fi provisioning<a name="ble-demo-wifi"></a>
 

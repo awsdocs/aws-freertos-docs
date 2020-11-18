@@ -35,7 +35,7 @@ The private key PEM associated with your thing\.
 
 You must have a Greengrass group and core device set up in the console\. For more information, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/)\.
 
-Although the MQTT library is not required for Greengrass connectivity, we strongly recommend you install it\. The library can be used to communicate with the Greengrass core after it has been discovered\.
+Although the coreMQTT library is not required for Greengrass connectivity, we strongly recommend you install it\. The library can be used to communicate with the Greengrass core after it has been discovered\.
 
 ## API reference<a name="freertos-gg-api"></a>
 

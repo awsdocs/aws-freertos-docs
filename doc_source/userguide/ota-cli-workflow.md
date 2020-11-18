@@ -45,7 +45,7 @@ Specifies the location of the unsigned firmware in an S3 bucket\.
 + `version`: The S3 version of your firmware in your S3 bucket\. This is different from your firmware version\. You can find it by browsing to the Amazon S3 console, choosing your bucket, and at the top of the page, next to **Versions**, choosing **Show**\.
 
 `destination`  
-The destination for the signed firmware in an S3 bucket\. The format of this parameter is the same as the `source` parameter\.
+The destination on the device to which the signed firmware in the S3 bucket will be copied\. The format of this parameter is the same as the `source` parameter\.
 
 `signing-material`  
 The ARN of your code\-signing certificate\. This ARN is generated when you import your certificate into ACM\.

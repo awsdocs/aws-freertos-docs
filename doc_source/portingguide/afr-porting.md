@@ -16,11 +16,11 @@ If your device does not support Wi\-Fi, you can use an ethernet connection to co
 
 1. [Porting the Secure Sockets library](afr-porting-ss.md)
 
-1. [Porting the PKCS \#11 library](afr-porting-pkcs.md)
+1. [Porting the corePKCS11 library](afr-porting-pkcs.md)
 
 1. [Porting the TLS library](afr-porting-tls.md)
 
-1. [Configuring the MQTT library for testing](afr-porting-mqtt.md)
+1. [Configuring the coreMQTT library for testing](afr-porting-mqtt.md)
 
 1. [Configuring the HTTPS client library for testing](afr-porting-https.md)
 **Note**  

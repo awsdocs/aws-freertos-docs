@@ -123,7 +123,7 @@ Indicates if your board has Wi\-Fi capabilities\.
 `TLS`  
 Indicates if your board supports TLS\. TLS is required for qualification\.  
 `PKCS11`  
-Indicates the public key cryptography algorithm that the board supports\. PKCS11 is required for qualification\. Supported values are `ECC`, `RSA`, `Both` and `No`\. `Both` indicates the board supports both the `ECC` and `RSA` algorithms\. Currently, no board supports RSA only, so the choice `RSA` is invalid\.  
+Indicates the public key cryptography algorithm that the board supports\. PKCS11 is required for qualification\. Supported values are `ECC`, `RSA`, `Both` and `No`\. `Both` indicates the board supports both the `ECC` and `RSA` algorithms\.  
 `KeyProvisioning`  
 Indicates the method of writing a trusted X\.509 client certificate onto your board\. Valid values are `Import`, `Onboard` and `No`\. Key provisioning is required for qualification\.  
 + Use `Import` if your board allows the import of private keys\. IDT will create a private key and build this to the FreeRTOS source code\.
@@ -222,12 +222,12 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
     "clientWifiConfig": {
         "wifiSSID": "ssid",
         "wifiPassword": "password",
-        "wifiSecurityType": "eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+        "wifiSecurityType": "eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2 | eWiFiSecurityWPA3"
     },
     "testWifiConfig": {
         "wifiSSID": "ssid",
         "wifiPassword": "password",
-        "wifiSecurityType": "eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2"
+        "wifiSecurityType": "eWiFiSecurityOpen | eWiFiSecurityWEP | eWiFiSecurityWPA | eWiFiSecurityWPA2 | eWiFiSecurityWPA3"
     },
     //**********
     //This section is used to start echo server based on server certificate generation method,
@@ -355,6 +355,7 @@ The type of Wi\-Fi security used\. One of the values:
 + `eWiFiSecurityWEP`
 + `eWiFiSecurityWPA`
 + `eWiFiSecurityWPA2`
++ `eWiFiSecurityWPA3`
 If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 
 `testWifiConfig`  
@@ -369,6 +370,7 @@ The type of Wi\-Fi security used\. One of the values:
 + `eWiFiSecurityWEP`
 + `eWiFiSecurityWPA`
 + `eWiFiSecurityWPA2`
++ `eWiFiSecurityWPA3`
 If your board does not support Wi\-Fi, you must still include the `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 
 `echoServerCertificateConfiguration`  

@@ -7,7 +7,7 @@ You can use the FreeRTOS [Secure Sockets](https://docs.aws.amazon.com/freertos/l
 The FreeRTOS Secure Sockets library is based on the Berkeley sockets interface, with an additional secure communication option by TLS protocol\. For information about the differences between the FreeRTOS Secure Sockets library and the Berkeley sockets interface, see `SOCKETS_SetSockOpt` in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-Currently, only client APIs are supported for FreeRTOS Secure Sockets\.
+Currently, only client APIs, plus a [lightweight IP \(lwIP\)](https://savannah.nongnu.org/projects/lwip/) implementation of the server side `Bind` API, are supported for FreeRTOS Secure Sockets\.
 
 ## Dependencies and requirements<a name="freertos-secure-sockets-dependencies"></a>
 
@@ -29,12 +29,12 @@ FreeRTOS Secure Sockets library features include:
 
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w15aac17c37c11b5"></a>
+### Error codes<a name="w19aac17c41c11b5"></a>
 
 The error codes that the FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
 **Note**  
-If the FreeRTOS Secure Sockets API returns an error code, the [MQTT library, version 1\.x\.x](freertos-lib-cloud-mqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
+If the FreeRTOS Secure Sockets API returns an error code, the [coreMQTT library](coremqtt.md), which depends on the FreeRTOS Secure Sockets library, returns the error code `AWS_IOT_MQTT_SEND_ERROR`\.
 
 ## Developer support<a name="freertos-secure-sockets-support"></a>
 
@@ -50,7 +50,7 @@ This macro converts an IP address that is expressed as a 32\-bit number in netwo
 
 Only TCP sockets are supported by the FreeRTOS Secure Sockets library\. UDP sockets are not supported\.
 
-Only client APIs are supported by the FreeRTOS Secure Sockets library\. Server APIs, including `Bind`, `Accept`, and `Listen`, are not supported\.
+Server APIs are not supported by the FreeRTOS Secure Sockets library, except for a [lightweight IP \(lwIP\)](https://savannah.nongnu.org/projects/lwip/) implementation of the server side `Bind` API\. Client APIs are supported\.
 
 ## Initialization<a name="freertos-secure-sockets-initialization"></a>
 
@@ -159,7 +159,7 @@ For a full example, see the [Secure Sockets echo client demo](secure-sockets-dem
 
 FreeRTOS Secure Sockets depends on a TCP/IP stack and on a TLS implementation\. Depending on your stack, to port the Secure Sockets library, you might need to port some of the following:
 + The [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) TCP/IP stack
-+ The [Public Key Cryptography Standard \(PKCS\) \#11 library](security-pkcs.md)
++ The [corePKCS11 library](security-pkcs.md)
 + The [Transport Layer Security](security-tls.md)
 
 For more information about porting, see [Porting the Secure Sockets Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ss.html) in the FreeRTOS Porting Guide\.

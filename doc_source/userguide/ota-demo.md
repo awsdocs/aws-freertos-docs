@@ -24,6 +24,7 @@ After you complete the setup for OTA updates, download, build, flash, and run th
 + [Texas Instruments CC3220SF\-LAUNCHXL](download-ota-ti.md)
 + [Microchip Curiosity PIC32MZEF](download-ota-mchip.md)
 + [Espressif ESP32](download-ota-esp.md)
++ [Download, build, flash and run the FreeRTOS OTA demo on the Renesas RX65N](download-rx65n-ota.md)
 
 After you build, flash, and run the OTA demo application on your device, you can use the AWS IoT console or the AWS CLI to create an OTA update job\. After you have created an OTA update job, connect a terminal emulator to see the progress of the OTA update\. Make a note of any errors generated during the process\.
 

@@ -60,7 +60,7 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Under **Select and sign your firmware image**, choose **Use my custom signed firmware image**\.
 
-1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. This path name might vary by platform\.
+1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. This path name varies by platform\.
 
 1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location on your device where the OTA job will copy the firmware image\. This location varies by platform\.
 

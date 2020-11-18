@@ -14,7 +14,7 @@ To port the FreeRTOS\+TCP library, you need the following:
 
 ## Porting<a name="porting-steps-freertos-tcp"></a>
 
-Before you start porting the FreeRTOS\-TCP library, check the `freertos/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/NetworkInterface` directory to see if a port to your device already exists\.
+Before you start porting the FreeRTOS\-TCP library, check the `freertos/libraries/freertos_plus/standard/freertos_plus_tcp/portable/NetworkInterface` directory to see if a port to your device already exists\.
 
 If a port does not exist, do the following:
 
@@ -22,9 +22,9 @@ If a port does not exist, do the following:
 
 1. If necessary, follow the [Porting FreeRTOS\+TCP to a New Embedded C Compiler](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Compiler_Porting.html) instructions on FreeRTOS\.org to port FreeRTOS\+TCP to a new compiler\.
 
-1. Implement a new port that uses the vendor\-supplied Ethernet or Wi\-Fi drivers in a file called `NetworkInterface.c`, and save the file to `freertos/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/NetworkInterface/board_family`\.
+1. Implement a new port that uses the vendor\-supplied Ethernet or Wi\-Fi drivers in a file called `NetworkInterface.c`, and save the file to `freertos/libraries/freertos_plus/standard/freertos_plus_tcp/portable/NetworkInterface/board_family`\.
 **Note**  
-The files in the `freertos/libraries/freertos_plus/standard/freertos_plus_tcp/source/portable/BufferManagement` directory are used by multiple ports\. Do not edit the files in this directory\.
+The files in the `freertos/libraries/freertos_plus/standard/freertos_plus_tcp/portable/BufferManagement` directory are used by multiple ports\. Do not edit the files in this directory\.
 
 After you create a port, or if a port already exists, open `freertos/vendors/vendor/boards/board/aws_tests/config_files/FreeRTOSIPConfig.h`, and edit the configuration options so they are correct for your platform\. For more information about the configuration options, see [FreeRTOS\+TCP Configuration](https://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/TCP_IP_Configuration.html) on FreeRTOS\.org\.
 

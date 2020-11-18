@@ -5,7 +5,7 @@ The FreeRTOS Wi\-Fi library interfaces with vendor\-supplied Wi\-Fi drivers\. Fo
 If your device does not support Wi\-Fi networking, you can skip porting the FreeRTOS Wi\-Fi library and start [Porting a TCP/IP stack](afr-porting-tcp.md)\.
 
 **Note**  
-For qualification, your device must connect to the AWS Cloud\. If your device does not support Wi\-Fi, you can use an ethernet connection instead\. A port of the FreeRTOS Wi\-Fi library is not necessarily required\.
+For qualification, your device must connect to the AWS Cloud\. If your device does not support Wi\-Fi, you can use an Ethernet connection instead\. A port of the FreeRTOS Wi\-Fi library is not necessarily required\.
 
 ## Prerequisites<a name="porting-prereqs-wifi"></a>
 
@@ -37,14 +37,14 @@ To port the Wi\-Fi library, you need the following:
 
 ## Testing<a name="porting-testing-wifi"></a>
 
-If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
+If you're using an IDE to build test projects, you need to set up your library port in the IDE project\.
 
 ### Setting up the IDE test project<a name="testing-ide-wifi"></a>
 
-If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
+If you're using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
 
 **Important**  
-In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Do not create duplicate copies of source files\.
+In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Don't create duplicate copies of source files\.
 
 **To set up the Wi\-Fi library in the IDE project**
 

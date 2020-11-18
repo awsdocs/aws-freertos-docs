@@ -10,8 +10,8 @@ This guide is written with the assumption that you have already performed the st
 
    ```
    static const char signingcredentialSIGNING_CERTIFICATE_PEM[] = "-----BEGIN CERTIFICATE-----\n"
-      ...base64 data...\n"
-      -----END CERTIFICATE-----\n";
+   "...base64 data...\n"
+   "-----END CERTIFICATE-----\n";
    ```
 
 1. With the OTA Update demo selected, follow the same steps outlined in [Getting Started with ESP32](https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html) to build and flash the image\. If you have previously built and flashed the project, you might need to run `make clean` first\. After you run `make flash monitor`, you should see something like the following\. The ordering of some messages might vary, because the demo application runs multiple tasks at once\.

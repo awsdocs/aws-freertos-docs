@@ -256,6 +256,6 @@ FreeRTOS is a C language project, and the certificate and private key must be sp
 **Note**  
 The certificate and private key are hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
-After you configure FreeRTOS, you can continue to the Getting Started guide for your board to compile and run the FreeRTOS demo\. The demo application that is used in the Getting Started tutorial is the Hello World MQTT demo, which is located at `demos/mqtt/iot_demo_mqtt.c`\.
+After you configure FreeRTOS, you can continue to the Getting Started guide for your board to compile and run the FreeRTOS demo\. The demo application that is used in the Getting Started tutorial is the coreMQTT Mutual Authentication demo, which is located at `demos/mqtt/iot_demo_mqtt.c`\.
 
 After you complete the [First steps](#freertos-prereqs), you can set up your platform's hardware and its software development environment, and then compile and run the demo on your board\. For board\-specific instructions, see the [Board\-specific getting started guides](getting-started-guides.md)\.

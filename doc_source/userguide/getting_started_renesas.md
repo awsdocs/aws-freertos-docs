@@ -61,7 +61,7 @@ The Renesas e2studio IDE and CC\-RX compiler are only supported on Windows 7, 8,
 
 1. Open the installer and follow the steps to completion\.
 
-For more information, see the [e2studio](https://www.renesas.com/us/en/products/software-tools/tools/ide/e2studio.html#productInfo) on the Renesas website\.
+For more information, see the [ e2studio](https://www.renesas.com/us/en/products/software-tools/tools/ide/e2studio.html#productInfo) on the Renesas website\.
 
 **To download and install the RX Family C/C\+\+ Compiler Package**
 

@@ -23,8 +23,7 @@ Eclipse generates an additional `includes` folder\. This folder is not a part of
 
 1. Import all of the folders and files from the following directories into the `application_code` virtual folder in your IDE:
    + `freertos/demos/demo_runner`
-   + `freertos/demos/mqtt`
-   + `freertos/demos/logging`
+   + `freertos/demos/coreMQTT`
    + `freertos/libraries/.../provisioning/src`
 
 1. Import the `freertos/demos/include` directory and its contents into the `application_code` virtual folder in your IDE\.

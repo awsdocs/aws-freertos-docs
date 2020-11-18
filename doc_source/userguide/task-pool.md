@@ -6,11 +6,11 @@ FreeRTOS supports task management with the FreeRTOS [Task Pool](https://docs.aws
 
 The Task Pool library is built on two main data structures: the Task Pool and Task Pool jobs\.
 
-### Task Pool \(`IotTaskPool_t`\)<a name="w15aac17c17c15b3b7"></a>
+### Task Pool \(`IotTaskPool_t`\)<a name="w19aac17c17c15b3b7"></a>
 
 The Task Pool contains a dispatch queue that manages the job queue for execution, and manages the worker threads that execute jobs\.
 
-### Task Pool jobs \(`IotTaskPoolJob_t`\)<a name="w15aac17c17c15b3b9"></a>
+### Task Pool jobs \(`IotTaskPoolJob_t`\)<a name="w19aac17c17c15b3b9"></a>
 
 Task Pool jobs can be executed as background jobs, or timed background jobs\. Background jobs are started in First\-In\-First\-Out order and have no time constraints\. Timed jobs are scheduled for background execution according to a timer\.
 

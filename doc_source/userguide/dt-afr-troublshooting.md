@@ -13,13 +13,19 @@ We recommend the following workflow for troubleshooting:
 
 1. Look in the `FRQ_Report.xml` file for error statements from each test\. This directory contains execution logs of each test group\.
 
-1. Look in the logs files under `/results/execution-id/logs`\.
+1. Look in the log files under `/results/execution-id/logs`\.
 
 1. Investigate one of the following problem areas:
    + Device configuration, such as JSON configuration files in the `/configs/` folder\.
    + Device interface\. Check the logs to determine which interface is failing\.
    + Device tooling\. Make sure that the toolchains for building and flashing the device are installed and configured correctly\.
-   + Make sure that you have a clean, cloned version of the FreeRTOS source code\. FreeRTOS releases are tagged according to FreeRTOS version\. To clone a specific version of the code, use `git clone --branch version-number https://github.com/aws/amazon-freertos.git`\.
+   + Make sure that you have a clean, cloned version of the FreeRTOS source code\. FreeRTOS releases are tagged according to the FreeRTOS version\. To clone a specific version of the code, use the following commands:
+
+     ```
+     git clone --branch version-number https://github.com/aws/amazon-freertos.git
+     cd amazon-freertos
+     git submodule update --checkout --init --recursive
+     ```
 
 ## Troubleshooting device configuration<a name="troubleshoot-device-config"></a>
 
@@ -54,6 +60,14 @@ Occasionally, a typo in a JSON configuration can lead to parsing errors\. Most o
 ### Debugging integrity check failures<a name="integrity-check"></a>
 
 When you run the FreeRTOSIntegrity test group and you encounter failures, first make sure that you haven't modified any of the `freertos` directory files\. If you haven’t, and are still seeing issues, make sure you are using the correct branch\. If you run IDT's `list-supported-products` command, you can find which tagged branch of the `freertos` repo you should be using\.
+
+If you cloned the correct tagged branch of the `freertos` repo and still have issues, make sure you have also run the `submodule update` command\. The clone workflow for the `freertos` repo is as follows\. 
+
+```
+git clone --branch version-number https://github.com/aws/amazon-freertos.git
+cd amazon-freertos
+git submodule update --checkout —init —recursive
+```
 
 The list of files the integrity checker looks for are in the `checksums.json` file in your `freertos` directory\. To qualify a FreeRTOS port without any modifications to files and the folder structure, make sure that none of the files listed in the '`exhaustive`' and '`minimal`' sections of the `checksums.json` file have been modified\. To run with an SDK configured, verify that none of the files under the '`minimal`' section have been modified\.
 
@@ -172,6 +186,12 @@ When AWS IoT Device Tester is run, failures are reported to the console with bri
 #### Log errors<a name="err-log"></a>
 
 Each test suite execution has a unique execution ID that is used to create a folder named `results/execution-id`\. Individual test case logs are under the `results/execution-id/logs` directory\. Use the output of the IDT for FreeRTOS console to find the execution id, test case id, and test group id of the test case that failed\. Then use this information to find and open the log file for that test case named `results/execution-id/logs/test_group_id__test_case_id.log` The information in this file includes the full build and flash command output, test execution output, and more verbose AWS IoT Device Tester console output\.
+
+#### S3 bucket issues<a name="s3-bucket-issues"></a>
+
+If you press CTRL\+C while running IDT, IDT will start a clean up process\. Part of that clean up is to remove Amazon S3 resources that have been created as a part of the IDT tests\. If the clean up can't finish, you might run into an issue where you have too many Amazon S3 buckets that have been created\. This means the next time that you run IDT the tests will start to fail\. 
+
+If you press CTRL\+C to stop IDT, you must let it finish the clean up process to avoid this issue\. You can also delete the Amazon S3 buckets from your account that were created manually\.
 
 ## Troubleshooting timeout errors<a name="troubleshoot-timeout"></a>
 

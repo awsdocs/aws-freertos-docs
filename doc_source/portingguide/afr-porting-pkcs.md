@@ -1,4 +1,4 @@
-# Porting the PKCS \#11 library<a name="afr-porting-pkcs"></a>
+# Porting the corePKCS11 library<a name="afr-porting-pkcs"></a>
 
 FreeRTOS uses the open standard PKCS \#11 “CryptoKi” API as the abstraction layer for cryptographic operations, including:
 + Signing and verifying\.
@@ -7,11 +7,11 @@ FreeRTOS uses the open standard PKCS \#11 “CryptoKi” API as the abstraction 
 
 For more information, see [PKCS \#11 Cryptographic Token Interface Base Specification](http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html)\.
 
-Storing private keys in general\-purpose flash memory can be convenient in evaluation and rapid prototyping scenarios\. In production scenarios, to reduce the threats of data theft and device duplication, we recommend that you use dedicated cryptographic hardware\. Cryptographic hardware includes components with features that prevent cryptographic secret keys from being exported\. To use dedicated cryptographic hardware with FreeRTOS, you need to port the PKCS \#11 API to the hardware\. For information about the FreeRTOS PKCS \#11 library, see [FreeRTOS PKCS \#11 Library](https://docs.aws.amazon.com/freertos/latest/userguide/security-pkcs.html) in the FreeRTOS User Guide\.
+Storing private keys in general\-purpose flash memory can be convenient in evaluation and rapid prototyping scenarios\. In production scenarios, to reduce the threats of data theft and device duplication, we recommend that you use dedicated cryptographic hardware\. Cryptographic hardware includes components with features that prevent cryptographic secret keys from being exported\. To use dedicated cryptographic hardware with FreeRTOS, you need to port the PKCS \#11 API to the hardware\. For information about the FreeRTOS corePKCS11 library, see [FreeRTOS corePKCS11 Library](https://docs.aws.amazon.com/freertos/latest/userguide/security-pkcs.html) in the *FreeRTOS User Guide*\.
 
 ## Prerequisites<a name="porting-prereqs-pkcs"></a>
 
-To port the PKCS \#11 library, you need the following:
+To port the corePKCS11 library, you need the following:
 + An IDE project or `CMakeLists.txt` list file that includes vendor\-supplied drivers that are suitable for sensitive data\.
 
   For information about setting up a test project, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
@@ -21,7 +21,7 @@ To port the PKCS \#11 library, you need the following:
 
 ## Porting<a name="porting-steps-pkcs"></a>
 
-**To port the PKCS \#11 library**
+**To port the corePKCS11 library**
 
 1. Port the PKCS \#11 API functions\.
 
@@ -79,7 +79,7 @@ If you are using an IDE for porting and testing, you need to add some source fil
 **Important**  
 In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Do not create duplicate copies of source files\.
 
-**To set up the PKCS \#11 library in the IDE project**
+**To set up the corePKCS11 library in the IDE project**
 
 1. Add the source file `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c` to the `aws_tests` IDE project\.
 
@@ -87,21 +87,21 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 1. Add all of the files in the `freertos/libraries/freertos_plus/standard/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\. These files implement wrappers for commonly grouped PKCS \#11 function sets\.
 
-1. Add the source file `freertos/libraries/freertos_plus/standard/crypto/src/aws_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
+1. Add the source file `freertos/libraries/freertos_plus/standard/crypto/src/iot_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
 
 1. Add all of the source and header files from `freertos/libraries/3rdparty/mbedtls` and its subdirectories to the `aws_tests` IDE project\.
 
-1. Add `freertos/libraries/3rdparty/mbedtls/include` and `freertos/libraries/abstractions/pkcs11` to the compiler’s include path\.
+1. Add `freertos/libraries/3rdparty/mbedtls/include` and `freertos/libraries/abstractions/pkcs11` to the compiler's include path\.
 
 ### Configuring the `CMakeLists.txt` file<a name="testing-cmake-pkcs"></a>
 
-If you are using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
+If you're using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
 
 To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
 
 The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
-See below for an example portable layer target definition for the PKCS \#11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific PKCS \#11 PAL file\.
+See the following example portable layer target definition for the corePKCS11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific PKCS \#11 PAL file\.
 
 ```
 # PKCS11
@@ -137,8 +137,8 @@ After you set up the library in the IDE project, you need to configure some othe
 
    Testing is complete when all tests pass\.
 
-## Validation<a name="w3aac11c29c17"></a>
+## Validation<a name="pkcs-validation"></a>
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you finish porting the FreeRTOS PKCS \#11 library to your device, you can start porting the TLS library\. See [Porting the TLS library](afr-porting-tls.md) for instructions\.
+After you finish porting the corePKCS11 library to your device, you can start porting the TLS library\. See [Porting the TLS library](afr-porting-tls.md) for instructions\.
