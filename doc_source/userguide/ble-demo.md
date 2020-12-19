@@ -3,18 +3,18 @@
 ## Overview<a name="ble-demo-overview"></a>
 
 FreeRTOS Bluetooth Low Energy includes three demo applications:
++ [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo 
 
-### [MQTT over Bluetooth Low Energy](#ble-demo-mqtt) demo<a name="w19aac19c11b3b5"></a>
+  This application demonstrates how to use the MQTT over Bluetooth Low Energy service\.
++ [Wi\-Fi provisioning](#ble-demo-wifi) demo
 
-This application demonstrates how to use the MQTT over Bluetooth Low Energy service\.
+  This application demonstrates how to use the Bluetooth Low Energy Wi\-Fi Provisioning service\.
++ [Generic Attributes Server](#ble-demo-server) demo
 
-### [Wi\-Fi provisioning](#ble-demo-wifi) demo<a name="w19aac19c11b3b7"></a>
+  This application demonstrates how to use the FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
 
-This application demonstrates how to use the Bluetooth Low Energy Wi\-Fi Provisioning service\.
-
-### [Generic Attributes Server](#ble-demo-server) demo<a name="w19aac19c11b3b9"></a>
-
-This application demonstrates how to use the FreeRTOS Bluetooth Low Energy middleware APIs to create a simple GATT server\.
+**Note**  
+To set up and run the FreeRTOS demos, follow the steps in [Getting Started with FreeRTOS](freertos-getting-started.md)\.
 
 ## Prerequisites<a name="ble-demo-prereqs"></a>
 
@@ -119,7 +119,7 @@ To set up your environment, you need to download FreeRTOS with the [Bluetooth Lo
 
 **To set up your microcontroller's environment with FreeRTOS Bluetooth Low Energy**
 
-1. Download or clone FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+1. Download or clone FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
 1. Set up FreeRTOS on your microcontroller\.
 
@@ -151,7 +151,7 @@ To get a list of currently supported network connection types, see the lines tha
 
 ### FreeRTOS Bluetooth Low Energy Mobile SDK demo application<a name="ble-sdk-app"></a>
 
-The FreeRTOS Bluetooth Low Energy Mobile SDK demo application is located in the [Android SDK for FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-android-sdk) under `amazon-freertos-ble-android-sdk/app` and the [iOS SDK for FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-ios-sdk) under `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo`\. In this example, we use screenshots of the iOS version of the demo mobile application\.
+The FreeRTOS Bluetooth Low Energy Mobile SDK demo application is located on GitHub at [Android SDK for FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-android-sdk) under `amazon-freertos-ble-android-sdk/app` and the [iOS SDK for FreeRTOS Bluetooth Devices](https://github.com/aws/amazon-freertos-ble-ios-sdk) under `amazon-freertos-ble-ios-sdk/Example/AmazonFreeRTOSDemo`\. In this example, we use screenshots of the iOS version of the demo mobile application\.
 
 **Note**  
 If you are using an iOS device, you need Xcode to build the demo mobile application\. If you are using an Android device, you can use Android Studio to build the demo mobile application\.
@@ -273,7 +273,7 @@ This policy is different from the IAM policy created for the cognito authenticat
    + `AWS_IOT_POLICY_NAME`: Your AWS IoT policy name\.
    + `AWS_IOT_REGION`: Your AWS Region\.
 
-1. Open  [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/res/raw/awsconfiguration\.json](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/res/raw/awsconfiguration.json )\.
+1. Open  [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/res/raw/awsconfiguration\.json](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/res/raw/awsconfiguration.json )\. 
 
    Under `CognitoIdentity`, redefine the following variables:
    + `PoolId`: Your Amazon Cognito identity pool ID\.

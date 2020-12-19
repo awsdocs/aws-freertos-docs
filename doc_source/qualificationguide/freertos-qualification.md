@@ -1,4 +1,4 @@
-# Qualifying Your Device<a name="freertos-qualification"></a>
+# Qualifying your device<a name="freertos-qualification"></a>
 
 **To qualify your device for FreeRTOS**
 
@@ -63,7 +63,7 @@ A CMake list file is not required to qualify a board through the AWS Device Qual
      For information, see [Creating a CMakeLists\.txt file for your platform](afq-cmake.md)\.
    + A list of detailed information for your hardware platform\.
 
-     For information, see [FreeRTOS Qualification Checklist](afq-checklist.md)\.
+     For information, see [FreeRTOS qualification checklist](afq-checklist.md)\.
    + An appropriate open source license file for your device's FreeRTOS port\.
 
      For information, see [Providing an open source license for your code](afq-license.md)\.
@@ -78,4 +78,4 @@ A CMake list file is not required to qualify a board through the AWS Device Qual
 
 1. Submit your qualified board for listing in the AWS Partner Device Catalog through the [Device Listing Portal](https://partnercentral.awspartner.com/DeviceListPage) on APN Partner Central\. All submissions require an AWS IoT Device Tester test result file that indicates that you passed all mandatory test cases\. You must be a registered APN Partner to submit your board for listing\.
 
-You can use the [FreeRTOS Qualification Checklist](afq-checklist.md) to keep track of the list of required steps for qualification\.
+You can use the [FreeRTOS qualification checklist](afq-checklist.md) to keep track of the list of required steps for qualification\.

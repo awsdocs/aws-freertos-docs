@@ -5,9 +5,9 @@ You can use the FreeRTOS Secure Sockets library to create and configure a TCP so
 FreeRTOS includes a Secure Sockets implementation for the [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html) and [lightweight IP \(lwIP\)](https://savannah.nongnu.org/projects/lwip/) TCP/IP stacks, which are used in conjunction with [mbedTLS](https://tls.mbed.org/)\. If you are using either the FreeRTOS\+TCP or the lwIP TCP/IP stack, you do not need to port the Secure Sockets library\.
 
 **Note**  
-Even if you do not need to create a port of the Secure Sockets library, your platform must still pass the qualification tests for the Secure Sockets library\. Qualification is based on results from AWS IoT Device Tester\.  
-Also, your TLS implementation should support the [TLS cipher suites that are supported by AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html#tls-cipher-suite-support)\.
-
+Even if you do not need to create a port of the Secure Sockets library, your platform must still pass the qualification tests for the Secure Sockets library\. Qualification is based on results from AWS IoT Device Tester\.
+Your TLS implementation should support the [TLS cipher suites that are supported by AWS IoT](https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html#tls-cipher-suite-support)\.
+If you modify the TLS configuration of the Secure Sockets library, this may cause a failure when you attempt to connect to the echo server\. Not all cipher suites supported by the echo server are supported by the Secure Sockets library, and if you enable a cipher suite that the library does not currently support \(for example, SHA384\) you may be unable to connect\.
 If your platform offloads TCP/IP functionality to a separate network chip, you need to port the FreeRTOS Secure Sockets library to your device\.
 
 ## Prerequisites<a name="porting-prereqs-ss"></a>
@@ -16,6 +16,9 @@ To port the Secure Sockets library, you need the following:
 + A port of the Wi\-Fi library \(required only if you are using Wi\-Fi for network connectivity\)\.
 
   For information about porting the Wi\-Fi library, see [Porting the Wi\-Fi library](afr-porting-wifi.md)\.
++ If your board has cellular connectivity, you must provide a Secure Sockets library that uses the cellular modem as transport\. You can implement the Secure Sockets library in two ways:
+  + Implement the Secure Sockets API by using the AT commands of your modem directly\.
+  + Use the Cellular library provided by FreeRTOS, which hides the AT commands and provides a socket\-like API\. For more information, see [Porting the Cellular library](freertos-porting-cellular.md)\.
 + A port of a TCP/IP stack\.
 
   For information about porting a TCP/IP stack, see [Porting a TCP/IP stack](afr-porting-tcp.md)\.

@@ -9,13 +9,14 @@ The AWS IoT Device Shadow library has no dependencies on additional libraries ot
 This library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 
 ```
-----------------------------------------------------------------------------------
-| Code Size of Device Shadow Library                                             |
-|   (sizes generated with [GCC for ARM Cortex\-M toolchain 20191025](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))               |
-|----------|---------------------|-----------------------|-----------------------|
-| File     | No Optimization     | With -O1 Optimization | With -Os Optimization |
-|          |   (asserts enabled) |   (asserts disabled)  |   (asserts disabled)  |
-|----------|---------------------|-----------------------|-----------------------|
-| [shadow\.c](https://docs.aws.amazon.com/freertos/latest/lib-ref/embedded-csdk/202009.00/lib-ref/libraries/aws/device-shadow-for-aws-iot-embedded-sdk/docs/doxygen/output/html/shadow_8c.html) | 2.3K                | 1.8K                  | 1.0K                  |
-----------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+| Code Size of AWS IoT Device Shadow                                      |
+|     (example generated with [GCC for ARM Cortex\-M](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                       |
+|-------------------------------------------------------------------------|
+| File                    | With -O1 Optimisation | With -Os Optimisation |
+|-------------------------|-----------------------|-----------------------|
+| shadow.c                | 1.2K                  | 0.7K                  |
+|-------------------------|-----------------------|-----------------------|
+| Total estimate          | 1.2K                  | 0.7K                  |
+---------------------------------------------------------------------------
 ```

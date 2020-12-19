@@ -9,6 +9,9 @@ The bootloader supports the following features required for OTA:
 + Allows self\-test execution of a received OTA image and rollback on failure\.
 + Checks signature and version of the OTA update image\.
 
+**Note**  
+To set up and run the FreeRTOS demos, follow the steps in [Getting Started with FreeRTOS](freertos-getting-started.md)\.
+
 ## Bootloader states<a name="bootloader-states"></a>
 
 The bootloader process is shown in the following state machine\.

@@ -157,7 +157,7 @@ To find the Amazon S3 object key of your signed firmware image, use the aws sign
 ```
 
 **Note**  
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](ota-troubleshooting-stream-limit.md)\.
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](streaming-service.md#ota-troubleshooting-stream-limit)\.
 
 ## Creating an OTA update<a name="create-ota-update"></a>
 
@@ -234,6 +234,7 @@ aws iot  create-ota-update \
   "files": [
     {
       "fileName": "string",
+      "fileType": "integer",
       "fileVersion": "string",
       "fileLocation": {
         "stream": {
@@ -320,6 +321,7 @@ aws iot  create-ota-update \
 |   `inProgressTimeoutInMinutes`  |  long |  Specifies the amount of time, in minutes, this device has to finish execution of this job\. The timeout interval can be anywhere between 1 minute and 7 days \(1 to 10080 minutes\)\. The in progress timer can't be updated and will apply to all job executions for the job\. Whenever a job execution remains in the IN\_PROGRESS status for longer than this interval, the job execution will fail and switch to the terminal `TIMED_OUT` status\.  | 
 |   `files`  |  list  |  The files to be streamed by the OTA update\. | 
 |   `fileName`  |  string |  The name of the file\. | 
+|   `fileType`  |  integer  range\- max:255 min:0  |  An integer value you can include in the job document to allow your devices to identify the type of file received from the cloud\.  | 
 |   `fileVersion`  |  string |  The file version\. | 
 |   `fileLocation`  |   |  The location of the updated firmware\. | 
 |   `stream`  |   |  The stream that contains the OTA update\. | 
@@ -385,6 +387,7 @@ The following is an example of a JSON file passed into the create\-ota\-update c
 [
   {
     "fileName": "firmware.bin",                
+    "fileType": 1,
     "fileLocation": {
       "stream": {
         "streamId": "004",                         
@@ -404,6 +407,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 [
   {
     "fileName": "firmware.bin",
+    "fileType": 1,
     "fileLocation": {
       "stream": {
         "streamId": "004",
@@ -433,6 +437,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 [
   {
     "fileName": "your_firmware_path_on_device",
+    "fileType": 1,
     "fileVersion": "1",
     "fileLocation": {
       "s3Location": {
@@ -465,7 +470,8 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 [
   {
-  "fileName": "your_firmware_path_on_device",
+    "fileName": "your_firmware_path_on_device",
+    "fileType": 1,
     "fileVersion": "1",
     "fileLocation": {
       "s3Location": {
@@ -494,6 +500,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 [
   {
     "fileName": "your_firmware_path_on_device",
+    "fileType": 1,
     "fileVersion": "1",
     "codeSigning":{
       "awsSignerJobId": "your_signer_job_id"
@@ -508,6 +515,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 [
   {
     "fileName": "your_firmware_path_on_device",
+    "fileType": 1,
     "fileVersion": "1",
     "fileLocation": {
       "s3Location": {
@@ -534,7 +542,7 @@ The following is an example of a JSON file passed into the create\-ota\-update C
 ```
 
 **Note**  
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](ota-troubleshooting-stream-limit.md)\.
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](streaming-service.md#ota-troubleshooting-stream-limit)\.
 
 ## Listing OTA updates<a name="list-ota-updates"></a>
 
@@ -600,6 +608,7 @@ The output from the get\-ota\-update command looks like the following\.
         "otaUpdateFiles": [ 
             { 
                 "fileName": "my_firmware.bin", 
+                "fileType": 1,
                 "fileLocation": { 
                     "s3Location": { 
                         "bucket": "my-bucket", 
@@ -651,7 +660,7 @@ An OTA update is being deleted\.
 The deletion of an OTA update failed\.
 
 **Note**  
-To get the execution status of an OTA update after it is created, you need to use the describe\-job\-execution command\. For more information, see [Describe Job Execution](https://docs.aws.amazon.com/iot/latest/developerguide/manage-job-cli.html#describe-job-execution)\.
+To get the execution status of an OTA update after it is created, you need to use the describe\-job\-execution command\. For more information, see [ Describe Job Execution](https://docs.aws.amazon.com/iot/latest/developerguide/manage-job-cli.html#describe-job-execution)\.
 
 ## Deleting OTA\-related data<a name="delete-ota-data"></a>
 

@@ -22,17 +22,18 @@ When using MQTT connections in IoT applications, we recommended that you use a s
 This MQTT library doesn't have platform dependencies, such as threading or synchronization\. This library does have [proofs](https://www.cprover.org/cbmc/) that demonstrate safe memory use and no heap allocation, which makes it suitable for IoT microcontrollers, but also fully portable to other platforms\. It can be freely used, and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 
 ```
------------------------------------------------------------------------------------------------
-| Code Size of coreMQTT library files                                                         |
-| (sizes generated with [GCC for ARM Cortex\-M toolchain 20191025](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                              |
-|-------------------------|-------------------|-----------------------|-----------------------|
-| File                    | No Optimization   | With -O1 Optimization | With -Os Optimization |
-|                         | (asserts enabled) | (asserts disabled)    | (asserts disabled)    |
-|-------------------------|-------------------|-----------------------|-----------------------|
-| core_mqtt.c             | 13.3K             | 5.1K                  | 4.6K                  |
-| core_mqtt_state.c       | 5.9K              | 2.2K                  | 1.8K                  |
-| core_mqtt_serializer.c  | 12.0K             | 4.2K                  | 3.7K                  |
-|-------------------------|-------------------|-----------------------|-----------------------|
-| Total estimates         | 31.2K             | 11.5K                 | 10.1K                 |  
------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
+| Code Size of coreMQTT                                                   |
+|     (example generated with [GCC for ARM Cortex\-M](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                       |
+|-------------------------------------------------------------------------|
+| File                    | With -O1 Optimisation | With -Os Optimisation |
+|-------------------------|-----------------------|-----------------------|
+| core_mqtt.c             | 3.0K                  | 2.6K                  |
+|-------------------------|-----------------------|-----------------------|
+| core_mqtt_state.c       | 1.4K                  | 1.1K                  |
+|-------------------------|-----------------------|-----------------------|
+| core_mqtt_serializer.c  | 2.5K                  | 2.0K                  |
+|-------------------------|-----------------------|-----------------------|
+| Total estimate          | 6.9K                  | 5.7K                  |
+---------------------------------------------------------------------------
 ```

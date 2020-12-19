@@ -206,3 +206,7 @@ If you see timeout errors while running a test suite, increase the timeout by sp
 ```
 ./devicetester_linux run-suite --suite-id FRQ_1 --pool-id DevicePool1 --timeout-multiplier 2.5
 ```
+
+## Cellular feature and AWS charges<a name="troubleshoot-cellular-costs"></a>
+
+When the `Cellular` feature is set to `Yes` in your `device.JSON` file, FullSecureSockets will use t\.micro EC2 instances for running tests and this may incur additional costs to your AWS account\. For more information, see [Amazon EC2 pricing](https://aws.amazon.com/ec2/pricing/)\.

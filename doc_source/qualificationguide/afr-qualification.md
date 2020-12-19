@@ -31,7 +31,7 @@ Qualified boards are eligible for listing on the [AWS Partner Device Catalog](ht
 
 To qualify a device for FreeRTOS, you must port FreeRTOS to your device, and then follow the AWS Device Qualification Program steps\. For information, see the [AWS Device Qualification Program page](https://aws.amazon.com/partners/dqp/) and the [ AWS Device Qualification Program Guide](https://partnercentral.awspartner.com/sfc/#version?selectedDocumentId=0690L000005HXjb)\.
 
-For information about qualifying your device for FreeRTOS, see [Qualifying Your Device](freertos-qualification.md)\.
+For information about qualifying your device for FreeRTOS, see [Qualifying your device](freertos-qualification.md)\.
 
 ### Qualification FAQs<a name="afr-qualification-faqs"></a>
 
@@ -45,7 +45,7 @@ Q: *My board uses a kernel architecture that I have modified and that is not par
 A: Unfortunately, only official kernel ports are accepted\. These are available from [GitHub](https://github.com/aws/amazon-freertos) or [SourceForge](https://sourceforge.net/projects/freertos/files/FreeRTOS/)\. If you have an unsupported architecture or additional functionality to add to an existing kernel port, contact your local APN representative\.
 
 Q: *If I want to update a port listed on the Device Catalog to a newer version of FreeRTOS, do I need to qualify all over again?*   
-A: After you have updated your port, run the AWS IoT Device Tester again and check the [FreeRTOS Qualification Checklist](afq-checklist.md) to see if any items have been impacted \(especially the Getting Started Guide\)\. Submit a Device Qualification Program ticket with a copy of your passing log to update the Device Catalog listing to point to your new port\. 
+A: After you have updated your port, run the AWS IoT Device Tester again and check the [FreeRTOS qualification checklist](afq-checklist.md) to see if any items have been impacted \(especially the Getting Started Guide\)\. Submit a Device Qualification Program ticket with a copy of your passing log to update the Device Catalog listing to point to your new port\. 
 
 Q: *My device does not support Wi\-Fi\. Is a port of the FreeRTOS Wi\-Fi library required to qualify for FreeRTOS?*  
 A: The primary requirement is that your device can connect to the AWS Cloud\. If your device can connect to the AWS Cloud across a secure Ethernet connection, the Wi\-Fi library is not a requirement\.

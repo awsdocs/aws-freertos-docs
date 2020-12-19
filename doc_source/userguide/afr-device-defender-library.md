@@ -1,96 +1,11 @@
 # AWS IoT Device Defender library<a name="afr-device-defender-library"></a>
 
-## Overview<a name="freertos-defender-overview"></a>
+## Introduction<a name="freertos-defender-introduction"></a>
 
-[AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html) is an AWS IoT service that enables you to monitor connected devices to detect abnormal behavior and to mitigate security risks\. With AWS IoT Device Defender, you can enforce consistent IoT configurations across your AWS IoT device fleet and respond quickly when devices are compromised\.
+You can use the AWS IoT Device Defender library to send security metrics from your IoT devices to AWS IoT Device Defender\. You can use AWS IoT Device Defender to continuously monitor these security metrics from devices for deviations from what you have defined as appropriate behavior for each device\. If something doesn’t look right, AWS IoT Device Defender sends out an alert so that you can take action to fix the issue\. Interactions with AWS IoT Device Defender use [MQTT](https://freertos.org/mqtt/index.html), a lightweight publish\-subscribe protocol\. This library provides an API to compose and recognize the MQTT topic strings used by AWS IoT Device Defender\.
 
-FreeRTOS provides a [library ](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html) that allows your FreeRTOS\-based devices to work with AWS IoT Device Defender\. You can download FreeRTOS with the Device Defender library from the [FreeRTOS Console](https://console.aws.amazon.com/freertos) by adding the Device Defender library to your software configuration\. You can also clone the FreeRTOS GitHub repository, which includes all FreeRTOS libraries\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+ For more information, see [AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html) in the *AWS IoT Developer Guide*\.
 
-**Note**  
-The FreeRTOS AWS IoT Device Defender library only supports a subset of the [device\-side AWS IoT Device Defender metrics](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html#DetectMetricsMessages) related to connection metrics\. For more information, see [Usage restrictions](#freertos-defender-restrictions)\.
+The library is written in C and designed to be compliant with [ISO C90](https://en.wikipedia.org/wiki/ANSI_C#C90) and [MISRA C:2012](https://www.misra.org.uk/MISRAHome/MISRAC2012/tabid/196/Default.aspx)\. The library has no dependencies on any additional libraries other than the standard C library\. It also doesn’t have any platform dependencies, such as threading or synchronization\. It can be used with any MQTT library and any [JSON](https://freertos.org/json/json-terminology.html) or [CBOR](https://cbor.io/) library\. The library has [proofs](https://www.cprover.org/cbmc/) showing safe memory use and no heap allocation, making it suitable for IoT microcontrollers, but also fully portable to other platforms\.
 
-## Dependencies and requirements<a name="freertos-defender-dependencies"></a>
-
-The Device Defender library has the following dependencies:
-+ [Linear Containers library](lib-linear.md)\.
-+ [Logging library](lib-logging.md) \(if the configuration parameter `AWS_IOT_LOG_LEVEL_DEFENDER` is not set to `IOT_LOG_NONE`\)\.
-+ [Static Memory library](lib-static.md) \(if Static Memory only\)\.
-+ A platform layer that provides an interface to the operating system for thread management, timers, clock functions, etc\.
-+ [Task Pool library](task-pool.md)\.
-+ [coreMQTT library](coremqtt.md)\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/defender-dependencies.png)
-
-## Troubleshooting<a name="freertos-defender-troubleshooting"></a>
-
-### FreeRTOS Device Defender error codes<a name="afr-device-defender-error-codes"></a>
-
-The Device Defender library returns error codes as positive values\. For more information about each error code, see `AwsIotDefenderError_t` in the [Device Defender C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html)\.
-
-### FreeRTOS Device Defender events<a name="afr-device-defender-events"></a>
-
-The Device Defender library includes the `AwsIotDefenderCallback_t` callback function, which returns positive, enumerated values known as "events" that indicate success or failure\. For more information about event types, see `AwsIotDefenderEventType_t` in the [Device Defender C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html)\.
-
-### Debugging FreeRTOS Device Defender<a name="afr-device-defender-debugging"></a>
-
-To enable the debugging for the Device Defender library, set the log level for Device Defender to debug mode in the [global configuration file](dev-guide-freertos-libraries.md#lib-config):
-
-```
-#define  AWS_IOT_LOG_LEVEL_DEFENDER  IOT_LOG_DEBUG
-```
-
-For more information, see the [Global Configuration File Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/main/global_library_config.html#IOT_CONFIG_FILE)\.
-
-## Developer support<a name="freertos-defender-support"></a>
-
-The Device Defender library includes the `AwsIotDefender_strerror` helper function, which returns a string that describes the error that you provide to the function:
-
-```
-const char * AwsIotDefender_strerror( AwsIotDefenderError_t error );
-```
-
-## Usage restrictions<a name="freertos-defender-restrictions"></a>
-
-Although the AWS IoT Device Defender service supports both JSON and CBOR formats for data serialization, the FreeRTOS Device Defender library currently only supports CBOR, which is controlled by the configuration option `AWS_IOT_DEFENDER_FORMAT`\.
-
-Additionally, the FreeRTOS AWS IoT Device Defender library only supports a subset of [device\-side AWS IoT Device Defender metrics](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html#DetectMetricsMessages):
-
-
-| Long Name | Short Name | Parent Element | Description | 
-| --- | --- | --- | --- | 
-| remote\_addr | rad | connections | Lists the remote address of a TCP connection\. | 
-| total | t | established\_connections | Lists the number of established TCP connections\. | 
-
-For example:
-
-```
-{
-    "tcp_connections": {
-        "established_connections": {
-            "connections": [
-                {
-                    "remote_addr": "192.168.0.1:8000"
-                },
-                {
-                    "remote_addr": "192.168.0.2:8000"
-                }
-            ],
-            "total": 2
-        }
-    }
-}
-```
-
-This JSON document is for example purposes only, as FreeRTOS Device Defender library does not support JSON\-formatted metrics\.
-
-## Initialization<a name="afr-device-defender-init"></a>
-
-The macro `AWS_IOT_SECURE_SOCKETS_METRICS_ENABLED` must be defined to enable the secure sockets metrics\. Leaving this macro undefined could result in unpredictable behavior\.
-
-## FreeRTOS Device Defender API<a name="afr-device-defender-api"></a>
-
-For a full API reference, see the [Device Defender C SDK API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/defender/index.html)\.
-
-## Example usage<a name="freertos-defender-example"></a>
-
-For a full example of the Device Defender library in use, see [AWS IoT Device Defender demo](dd-demo.md)\.
+The AWS IoT Device Defender library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.

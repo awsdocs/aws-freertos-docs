@@ -22,9 +22,7 @@ If your device does not support Wi\-Fi, you can use an ethernet connection to co
 
 1. [Configuring the coreMQTT library for testing](afr-porting-mqtt.md)
 
-1. [Configuring the HTTPS client library for testing](afr-porting-https.md)
-**Note**  
-Currently, a port of the FreeRTOS HTTPS library is not required for qualification\.
+1. [Configuring the coreHTTP library for testing](afr-porting-corehttp.md)
 
 1. [Porting the OTA library](afr-porting-ota.md)
 **Note**  
@@ -41,6 +39,10 @@ Currently AWS IoT Device Tester does not support qualification of Over the Air u
 1. [Porting the common I/O libraries](freertos-porting-commonio.md)
 **Note**  
 Currently, a port of the FreeRTOS common I/O library is not required for qualification\.
+
+1. [Porting the Cellular library](freertos-porting-cellular.md)
+**Note**  
+Currently, a port of the FreeRTOS Cellular library is not required for qualification\.
 
 After you port FreeRTOS to your board, you can officially validate the ports for FreeRTOS qualification with AWS IoT Device Tester for FreeRTOS\. For more information about AWS IoT Device Tester for FreeRTOS, see [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide\. 
 

@@ -1,6 +1,6 @@
 # Getting started with the Nuvoton NuMaker\-IoT\-M487<a name="getting-started-nuvoton-m487"></a>
 
-This tutorial provides instructions for getting started with the Nuvoton NuMaker\-IoT\-M487 development board\. The Nuvoton NuMaker\-IoT\-M487 development board is embedded with the NuMicro M487 series microcontroller, and includes built\-in RJ45 Ethernet and Wi\-Fi modules\. If you don't have the Nuvoton NuMaker\-IoT\-M487, visit the [AWS Partner Device Catalog](https://devices.amazonaws.com/detail/a3G0h000000Tg9cEAC/NuMaker-IoT-M487) to purchase one from our partner\. 
+This tutorial provides instructions for getting started with the Nuvoton NuMaker\-IoT\-M487 development board\. The series microcontroller, and includes built\-in RJ45 Ethernet and Wi\-Fi modules\. If you don't have the Nuvoton NuMaker\-IoT\-M487, visit the [AWS Partner Device Catalog](https://devices.amazonaws.com/detail/a3G0h000000Tg9cEAC/NuMaker-IoT-M487) to purchase one from our partner\. 
 
 Before you begin, you must configure AWS IoT and your FreeRTOS software to connect your development board to the AWS Cloud\. For instructions, see [First steps](freertos-prereqs.md)\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 

@@ -14,6 +14,7 @@ The `awsiotdevicetester_report.xml` is the qualification test report that you su
 + The features of the device specified in the `device.json` file\.
 + The aggregate summary of test case results\.
 + A breakdown of test case results by libraries that were tested based on the device features \(for example, FullWiFi, FullMQTT, and so on\)\.
++ Whether this qualification of FreeRTOS is for version 202012\.00 that uses LTS libraries\.
 
 The `FRQ_Report.xml` is a report in standard [JUnit XML format](https://llg.cubic.org/docs/junit/)\. You can integrate it into CI/CD platforms like [Jenkins](https://jenkins.io/), [Bamboo](https://www.atlassian.com/software/bamboo), and so on\. The report contains the following elements:
 + An aggregate summary of test case results\.
@@ -93,7 +94,12 @@ The format is similar to the `<testsuites>` tag, but has a `skipped` attribute t
 
 ```
 <testcase classname="FreeRTOSVersion" name="FreeRTOSVersion"></testcase>
-```Attributes used in the `<testcase>` tag
+```
+
+`lts`  
+True if you are qualifying for a version of FreeRTOS that uses LTS libraries, false otherwise\.
+
+ Attributes used in the `<testcase>` tag
 
 `name`  
 The name of the test case\.

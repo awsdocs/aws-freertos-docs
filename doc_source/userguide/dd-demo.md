@@ -1,44 +1,55 @@
 # AWS IoT Device Defender demo<a name="dd-demo"></a>
 
-FreeRTOS includes a single\-threaded demo application that collects some AWS IoT Device Defender metrics for a device and publishes them to an MQTT topic\. This demo is defined in `freertos/demos/defender/aws_iot_defender_demo.c`\.
+## Introduction<a name="dd-demo-introduction"></a>
 
-Before you can run the Device Defender demo, you must complete the getting started [First steps](freertos-prereqs.md) to set up AWS IoT and FreeRTOS so your device can communicate with the AWS Cloud\.
+This demo shows you how to use the AWS IoT Device Shadow library to connect to [AWS IoT Device Defender](https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html)\. The demo uses the coreMQTT library to establish an MQTT connection with TLS \(mutual authentication\) to the AWS IoT MQTT Broker and the coreJSON library to validate and parse responses received from AWS IoT Device Defender\. The demo shows how to create a JSON formatted report using metrics collected from the device, and how to submit the report to AWS IoT Device Defender\. The demo also shows how to register a callback function with the coreMQTT library to handle the responses that AWS IoT Device Defender sends to confirm whether a report was accepted or rejected\. 
 
- Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_DEFENDER_DEMO_ENABLED`\.
+**Note**  
+To set up and run the FreeRTOS demos, follow the steps in [Getting Started with FreeRTOS](freertos-getting-started.md)\.
 
-When you build, flash, and run FreeRTOS on your device with the Device Defender demo enabled, the following output should appear:
+## Functionality<a name="dd-demo-functionality"></a>
+
+This demo creates a single application task that demonstrates how to collect metrics, construct a device defender report in JSON format, and submit it to the AWS IoT Device Defender through a secure MQTT connection to the AWS IoT MQTT Broker\.
+
+How we collect metrics depends on the TCP/IP stack in use\. For FreeRTOS\+TCP and supported lwIP configurations, we provide metrics collection implementations that collect real metrics from the device and submit them in the AWS IoT Device Defender report\. You can find the implemenatations for [ FreeRTOS\+TCP](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/metrics_collector/freertos_plus_tcp/metrics_collector.c) and [ lwIP](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/metrics_collector/lwip/metrics_collector.c) on GitHub\.
+
+For boards using any other TCP/IP stack, stub definitions of the metrics collection functions that return zeros for all metrics are provided\. To send real metrics on boards using this stub implementation, implement the functions in `freertos/demos/device_defender_for_aws/metrics_collector/stub/metrics_collector.c` for your network stack\. The file is also available on the [ GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/metrics_collector/stub/metrics_collector.c) website\.
+
+For ESP32, the default lwIP configuration does not use core locking and therefore the demo will use stubbed metrics\. If you want to use the reference lwIP metrics collection implementation, define the following macros in `lwiopts.h`:
 
 ```
-12 343 [iot_thread] [INFO ][DEMO][343] ----Device Defender Demo Start----
-13 343 [iot_thread] [INFO ][MQTT][343] MQTT library successfully initialized.
-14 343 [iot_thread] [INFO ][Defender][343] Metrics are successfully updated.
-15 343 [iot_thread] [INFO ][Defender][343] Period has been set to 300 seconds successfully.
-16 343 [iot_thread] [INFO ][DEMO][343] Defender Thing Name is Thing-1 (length 7).
-17 711 [iot_thread] [INFO ][MQTT][711] Establishing new MQTT connection.
-18 711 [iot_thread] [INFO ][MQTT][711] Anonymous metrics (SDK language, SDK version) will be provided to AWS IoT. Recompile with AWS_IOT_MQTT_ENABLE_METRICS set to 0 to disable.
-19 711 [iot_thread] [INFO ][MQTT][711] (MQTT connection 00530B30, CONNECT operation 00530CC0) Waiting for operation completion.
-20 771 [iot_thread] [INFO ][MQTT][771] (MQTT connection 00530B30, CONNECT operation 00530CC0) Wait complete with result SUCCESS.
-21 771 [iot_thread] [INFO ][MQTT][771] New MQTT connection 0203FA0C established.
-22 771 [iot_thread] [INFO ][MQTT][771] (MQTT connection 00530B30) SUBSCRIBE operation scheduled.
-23 771 [iot_thread] [INFO ][MQTT][771] (MQTT connection 00530B30, SUBSCRIBE operation 00530E30) Waiting for operation completion.
-24 811 [iot_thread] [INFO ][MQTT][811] (MQTT connection 00530B30, SUBSCRIBE operation 00530E30) Wait complete with result SUCCESS.
-25 811 [iot_thread] [INFO ][Defender][811] Defender agent has successfully started.
-26 812 [iot_thread] [INFO ][MQTT][812] (MQTT connection 00530B30) MQTT PUBLISH operation queued.
-27 932 [iot_thread] [INFO ][Defender][932] Metrics report was accepted by defender service.
-28 932 [iot_thread] [INFO ][DEMO][932] User's callback is invoked on event: Defender Metrics accepted.
-29 932 [iot_thread] [INFO ][DEMO][932] Published metrics report.
-30 932 [iot_thread] [INFO ][DEMO][932] Received MQTT message.
-31 8811 [iot_thread] [INFO ][Defender][8811] Unsubscribing from MQTT topics
-32 8811 [iot_thread] [INFO ][MQTT][8811] (MQTT connection 00530B30) UNSUBSCRIBE operation scheduled.
-33 8811 [iot_thread] [INFO ][MQTT][8811] (MQTT connection 00530B30, UNSUBSCRIBE operation 00530F40) Waiting for operation completion.
-34 8891 [iot_thread] [INFO ][MQTT][8891] (MQTT connection 00530B30, UNSUBSCRIBE operation 00530F40) Wait complete with result SUCCESS.
-35 8891 [iot_thread] [INFO ][Defender][8891] Defender agent has stopped.
-35 8891 [iot_thread] [INFO ][MQTT][8891] (MQTT connection 00530B30) Disconnecting connection.
-37 8892 [iot_thread] [INFO ][MQTT][8892] (MQTT connection 00530B30, DISCONNECT operation 00530CE0) Waiting for operation completion.
-38 8892 [iot_thread] [INFO ][MQTT][8892] (MQTT connection 00530B30, DISCONNECT operation 00530CE0) Wait complete with result SUCCESS.
-39 8892 [iot_thread] [INFO ][MQTT][8892] (MQTT connection 00530B30) Connection disconnected.
-40 8893 [iot_thread] [INFO ][MQTT][8893] (MQTT connection 00530B30) Network connection closed.
-41 8931 [iot_thread] [INFO ][MQTT][8931] (MQTT connection 00530B30) Network connection destroyed.
-42 8931 [iot_thread] [INFO ][MQTT][8931] MQTT library cleanup done.
-43 8931 [iot_thread] [INFO ][DEMO][8931] ----Device Defender Demo End. Status: SUCCESS----.
+#define LINK_SPEED_OF_YOUR_NETIF_IN_BPS 0
+#define LWIP_TCPIP_CORE_LOCKING         1
+#define LWIP_STATS                      1
+#define MIB2_STATS                      1
 ```
+
+The following is an example output when you run the demo\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/Defender_p4_supported.png)
+
+If your board isn't using FreeRTOS\+TCP or a supported lwIP configuration, the output will look like the following\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/Defender_p4_unsupported.png)
+
+The source code of the demo is in your download in `freertos/demos/device_defender_for_aws/` directory or on the [GitHub](https://github.com/aws/amazon-freertos/tree/master/demos/device_defender_for_aws) website\.
+
+### Subscribing to AWS IoT Device Defender topics<a name="dd-demo-subscribing"></a>
+
+The [ subscribeToDefenderTopics](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/defender_demo.c#L434-L450) function subscribes to the MQTT topics on which responses to published Device Defender reports will be received\. It uses the macro `DEFENDER_API_JSON_ACCEPTED` to construct the topic string on which responses for accepted device defender reports are received\. It uses the macro `DEFENDER_API_JSON_REJECTED` to construct the topic string on which responses for rejected device defender reports will be received\.
+
+### Collecting device metrics<a name="dd-demo-collecting-metrics"></a>
+
+The [ `collectDeviceMetrics`](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/defender_demo.c#L360-L431) function gathers networking metrics using the functions defined in `metrics_collector.h`\. The metrics collected are the number of bytes and packets sent and received, the open TCP ports, the open UDP ports, and the established TCP connections\.
+
+### Generating the AWS IoT Device Defender report<a name="dd-demo-generating-report"></a>
+
+The [ `generateDeviceMetricsReport`](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/defender_demo.c#L472-L501)function generates a device defender report using the function defined in `report_builder.h`\. That function takes the networking metrics and a buffer, creates a JSON document in the format as expected by AWS IoT Device Defender and writes it to the provided buffer\. The format of the JSON document expected by AWS IoT Device Defender is specified in [Device\-side metrics](https://docs.aws.amazon.com/iot/latest/developerguide/detect-device-side-metrics.html) in the *AWS IoT Developer Guide*\.
+
+### Publishing the AWS IoT Device Defender report<a name="dd-demo-publishing-report"></a>
+
+The AWS IoT Device Defender report is published on the MQTT topic for publishing JSON AWS IoT Device Defender reports\. The report is constructed using the macro `DEFENDER_API_JSON_PUBLISH`, as shown in this [ code snippet](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/defender_demo.c#L602-L612) on the GitHub website\. 
+
+### Callback for handling responses<a name="dd-demo-callback-handling"></a>
+
+The [ `publishCallback`](https://github.com/aws/amazon-freertos/blob/master/demos/device_defender_for_aws/defender_demo.c#L286-L357) function handles incoming MQTT publish messages\. It uses the `Defender_MatchTopic` API from the AWS IoT Device Defender library to check if the incoming MQTT message is from the AWS IoT Device Defender service\. If the message is from AWS IoT Device Defender, it parses the received JSON response and extracts the report ID in the response\. The report ID is then verified to be the same as the one sent in the report\.

@@ -4,6 +4,9 @@
 
 The coreMQTT \(Mutual Authentication\) demo project shows you how to establish a connection to an MQTT broker using TLS with mutual authentication between the client and the server\. This demo uses an mbedTLS\-based transport interface implementation to establish a server and client\-authenticated TLS connection, and demonstrates the subscribe\-publish workflow of MQTT at [ QoS 1](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/errata01/os/mqtt-v3.1.1-errata01-os-complete.html#_Toc442180914) level\. After it subscribes to a single topic filter, it publishes to the same topic and waits for receipt of that message back from the server at QoS 1 level\. This cycle of publishing to the broker and receiving the same message back from the broker is repeated indefinitely\. Messages in this demo are sent at QoS 1, which guarantees at least one delivery according to the MQTT spec\.
 
+**Note**  
+To set up and run the FreeRTOS demos, follow the steps in [Getting Started with FreeRTOS](freertos-getting-started.md)\.
+
 ## Functionality<a name="mqtt-demo-functionality"></a>
 
 The demo creates a single application task that loops through a set of examples that demonstrate how to connect to the broker, subscribe to a topic on the broker, publish to a topic on the broker, then finally, disconnect from the broker\. The demo application both subscribes to and publishes to the same topic\. Each time the demo publishes a message to the MQTT broker, the broker sends the same message back to the demo application\.
@@ -124,84 +127,13 @@ static void prvMQTTDemoTask( void * pvParameters )
 }
 ```
 
+## Retry logic with exponential backoff and jitter<a name="mqtt-demo-retry-logic"></a>
+
+The [ prvBackoffForRetry](https://github.com/aws/amazon-freertos/blob/master/demos/coreMQTT/mqtt_demo_mutual_auth.c#L652-L698) function shows how failed network operations with the server, for example, TLS connections or MQTT subscribe requests, can be retried with exponential backoff and jitter\. The function calculates the backoff period for the next retry attempt, and performs the backoff delay if the retry attempts have not been exhausted\. Because the calculation of the backoff period requires the generation of a random number, the function uses the PKCS11 module to generate the random number\. Use of the PKCS11 module allows access to a True Random Number Generator \(TRNG\) if the vendor platform supports it\. We recommended that you seed the random number generator with a device\-specific entropy source so that the probability of collisions from devices during connection retries is mitigated\.
+
 ## Connecting to the MQTT broker<a name="mqtt-demo-connecting"></a>
 
-The `prvConnectToServerWithBackoffRetries` function attempts to make a mutually authenticated TLS connection to the MQTT broker\. If the connection fails, it retries after a timeout\. The timeout value will exponentially increase until the maximum number of attempts are reached or the maximum timeout value is reached\. The `RetryUtils_BackoffAndSleep` function provides exponentially increasing timeout value and returns `RetryUtilsRetriesExhausted` when the maximum number of attempts have been reached\. The `prvConnectToServerWithBackoffRetries` function returns a failure status if the TLS connection can't be established to the broker after the configured number of attempts\.
-
-```
-static TlsTransportStatus_t prvConnectToServerWithBackoffRetries( NetworkCredentials_t * pxNetworkCredentials,
-                                                                  NetworkContext_t * pxNetworkContext )
-{
-    TlsTransportStatus_t xNetworkStatus;
-    RetryUtilsStatus_t xRetryUtilsStatus = RetryUtilsSuccess;
-    RetryUtilsParams_t xReconnectParams;
-
-    #ifdef democonfigUSE_AWS_IOT_CORE_BROKER
-
-        /* ALPN protocols must be a NULL-terminated list of strings. Therefore,
-         * the first entry will contain the actual ALPN protocol string while the
-         * second entry must remain NULL. */
-        char * pcAlpnProtocols[] = { NULL, NULL };
-
-        /* The ALPN string changes depending on whether username/password authentication is used. */
-        #ifdef democonfigCLIENT_USERNAME
-            pcAlpnProtocols[ 0 ] = AWS_IOT_CUSTOM_AUTH_ALPN;
-        #else
-            pcAlpnProtocols[ 0 ] = AWS_IOT_MQTT_ALPN;
-        #endif
-        pxNetworkCredentials->pAlpnProtos = pcAlpnProtocols;
-    #endif /* ifdef democonfigUSE_AWS_IOT_CORE_BROKER */
-
-    pxNetworkCredentials->disableSni = democonfigDISABLE_SNI;
-    /* Set the credentials for establishing a TLS connection. */
-    pxNetworkCredentials->pRootCa = ( const unsigned char * ) democonfigROOT_CA_PEM;
-    pxNetworkCredentials->rootCaSize = sizeof( democonfigROOT_CA_PEM );
-    #ifdef democonfigCLIENT_CERTIFICATE_PEM
-        pxNetworkCredentials->pClientCert = ( const unsigned char * ) democonfigCLIENT_CERTIFICATE_PEM;
-        pxNetworkCredentials->clientCertSize = sizeof( democonfigCLIENT_CERTIFICATE_PEM );
-        pxNetworkCredentials->pPrivateKey = ( const unsigned char * ) democonfigCLIENT_PRIVATE_KEY_PEM;
-        pxNetworkCredentials->privateKeySize = sizeof( democonfigCLIENT_PRIVATE_KEY_PEM );
-    #endif
-    /* Initialize reconnect attempts and interval. */
-    RetryUtils_ParamsReset( &xReconnectParams );
-    xReconnectParams.maxRetryAttempts = MAX_RETRY_ATTEMPTS;
-
-    /* Attempt to connect to MQTT broker. If connection fails, retry after
-     * a timeout. Timeout value will exponentially increase till maximum
-     * attempts are reached.
-     */
-    do
-    {
-        /* Establish a TLS session with the MQTT broker. This example connects to
-         * the MQTT broker as specified in democonfigMQTT_BROKER_ENDPOINT and
-         * democonfigMQTT_BROKER_PORT at the top of this file. */
-        LogInfo( ( "Creating a TLS connection to %s:%u.\r\n",
-                   democonfigMQTT_BROKER_ENDPOINT,
-                   democonfigMQTT_BROKER_PORT ) );
-        /* Attempt to create a mutually authenticated TLS connection. */
-        xNetworkStatus = TLS_FreeRTOS_Connect( pxNetworkContext,
-                                               democonfigMQTT_BROKER_ENDPOINT,
-                                               democonfigMQTT_BROKER_PORT,
-                                               pxNetworkCredentials,
-                                               mqttexampleTRANSPORT_SEND_RECV_TIMEOUT_MS,
-                                               mqttexampleTRANSPORT_SEND_RECV_TIMEOUT_MS );
-
-        if( xNetworkStatus != TLS_TRANSPORT_SUCCESS )
-        {
-            LogWarn( ( "Connection to the broker failed. Retrying connection with backoff and jitter." ) );
-            xRetryUtilsStatus = RetryUtils_BackoffAndSleep( &xReconnectParams );
-        }
-
-        if( xRetryUtilsStatus == RetryUtilsRetriesExhausted )
-        {
-            LogError( ( "Connection to the broker failed, all attempts exhausted." ) );
-            xNetworkStatus = TLS_TRANSPORT_CONNECT_FAILURE;
-        }
-    } while( ( xNetworkStatus != TLS_TRANSPORT_SUCCESS ) && ( xRetryUtilsStatus == RetryUtilsSuccess ) );
-
-    return xNetworkStatus;
-}
-```
+The [ prvConnectToServerWithBackoffRetries](https://github.com/aws/amazon-freertos/blob/master/demos/coreMQTT/mqtt_demo_mutual_auth.c#L702-L764) function attempts to make a mutually authenticated TLS connection to the MQTT broker\. If the connection fails, it retries after a backoff period\. The backoff period will exponentially increase until the maximum number of attempts is reached or the maximum backoff period is reached\. The `BackoffAlgorithm_GetNextBackoff` function provides an exponentially increasing backoff value and returns `RetryUtilsRetriesExhausted` when the maximum number of attempts has been reached\. The `prvConnectToServerWithBackoffRetries` function returns a failure status if the TLS connection to the broker can't be established after the configured number of attempts\.
 
 The `prvCreateMQTTConnectionWithBroker` function demonstrates how to establish an MQTT connection to an MQTT broker with a clean session\. It uses the TLS transport interface, which is implemented in the `FreeRTOS-Plus/Source/Application-Protocols/platform/freertos/transport/src/tls_freertos.c` file\. The definition of the `prvCreateMQTTConnectionWithBroker` function is shown below\. Keep in mind that we are setting the keep\-alive seconds for the broker in `xConnectInfo`\.
 
@@ -227,7 +159,11 @@ static void prvCreateMQTTConnectionWithBroker( MQTTContext_t * pxMQTTContext,
     xTransport.recv = TLS_FreeRTOS_recv;
 
     /* Initialize MQTT library. */
-    xResult = MQTT_Init( pxMQTTContext, &xTransport, prvGetTimeMs, prvEventCallback, &xBuffer );
+    xResult = MQTT_Init( pxMQTTContext, 
+                         &xTransport, 
+                         prvGetTimeMs, 
+                         prvEventCallback, 
+                         &xBuffer );
     configASSERT( xResult == MQTTSuccess );
 
     /* Some fields are not used in this demo so start with everything at 0. */
@@ -245,8 +181,9 @@ static void prvCreateMQTTConnectionWithBroker( MQTTContext_t * pxMQTTContext,
     xConnectInfo.pClientIdentifier = democonfigCLIENT_IDENTIFIER;
     xConnectInfo.clientIdentifierLength = ( uint16_t ) strlen( democonfigCLIENT_IDENTIFIER );
 
-    /* Set MQTT keep-alive period. If the application does not send packets at an interval less than
-     * the keep-alive period, the MQTT library will send PINGREQ packets. */
+    /* Set MQTT keep-alive period. If the application does not send packets at 
+     * an interval less than the keep-alive period, the MQTT library will send 
+     * PINGREQ packets. */
     xConnectInfo.keepAliveSeconds = mqttexampleKEEP_ALIVE_TIMEOUT_SECONDS;
 
     /* Append metrics when connecting to the AWS IoT Core broker. */
@@ -288,85 +225,7 @@ static void prvCreateMQTTConnectionWithBroker( MQTTContext_t * pxMQTTContext,
 
 ## Subscribing to an MQTT topic<a name="mqtt-demo-subscribing"></a>
 
-The `prvMQTTSubscribeWithBackoffRetries` function demonstrates how to subscribe to a topic filter on the MQTT broker\. The example demonstrates how to subscribe to one topic filter, but it's possible to pass a list of topic filters in the same subscribe API call to subscribe to more than one topic filter\. Also, in case the MQTT broker rejects the subscription request, the subscription will retry for `MAX_RETRY_ATTEMPTS`\. The definition of the function is shown here\.
-
-```
-static void prvMQTTSubscribeWithBackoffRetries( MQTTContext_t * pxMQTTContext )
-{
-    MQTTStatus_t xResult = MQTTSuccess;
-    RetryUtilsStatus_t xRetryUtilsStatus = RetryUtilsSuccess;
-    RetryUtilsParams_t xRetryParams;
-    MQTTSubscribeInfo_t xMQTTSubscription[ mqttexampleTOPIC_COUNT ];
-    bool xFailedSubscribeToTopic = false;
-    uint32_t ulTopicCount = 0U;
-
-    /* Some fields not used by this demo so start with everything at 0. */
-    ( void ) memset( ( void * ) &xMQTTSubscription, 0x00, sizeof( xMQTTSubscription ) );
-
-    /* Get a unique packet id. */
-    usSubscribePacketIdentifier = MQTT_GetPacketId( pxMQTTContext );
-
-    /* Subscribe to the mqttexampleTOPIC topic filter. This example subscribes to
-     * only one topic and uses QoS1. */
-    xMQTTSubscription[ 0 ].qos = MQTTQoS1;
-    xMQTTSubscription[ 0 ].pTopicFilter = mqttexampleTOPIC;
-    xMQTTSubscription[ 0 ].topicFilterLength = ( uint16_t ) strlen( mqttexampleTOPIC );
-
-    /* Initialize retry attempts and interval. */
-    RetryUtils_ParamsReset( &xRetryParams );
-    xRetryParams.maxRetryAttempts = MAX_RETRY_ATTEMPTS;
-
-    do
-    {
-        /* The client is now connected to the broker. Subscribe to the topic
-         * as specified in mqttexampleTOPIC at the top of this file by sending a
-         * subscribe packet then waiting for a subscribe acknowledgment (SUBACK).
-         * This client will then publish to the same topic it subscribed to, so it
-         * will expect all the messages it sends to the broker to be sent back to it
-         * from the broker. This demo uses QOS0 in Subscribe, therefore, the Publish
-         * messages received from the broker will have QOS0. */
-        LogInfo( ( "Attempt to subscribe to the MQTT topic %s.\r\n", mqttexampleTOPIC ) );
-        xResult = MQTT_Subscribe( pxMQTTContext,
-                                  xMQTTSubscription,
-                                  sizeof( xMQTTSubscription ) / sizeof( MQTTSubscribeInfo_t ),
-                                  usSubscribePacketIdentifier );
-        configASSERT( xResult == MQTTSuccess );
-
-        LogInfo( ( "SUBSCRIBE sent for topic %s to broker.\n\n", mqttexampleTOPIC ) );
-
-        /* Process incoming packet from the broker. After sending the subscribe, the
-         * client may receive a publish before it receives a subscribe ack. Therefore,
-         * call generic incoming packet processing function. Since this demo is
-         * subscribing to the topic to which no one is publishing, probability of
-         * receiving Publish message before subscribe ack is zero; but application
-         * must be ready to receive any packet.  This demo uses the generic packet
-         * processing function everywhere to highlight this fact. */
-        xResult = MQTT_ProcessLoop( pxMQTTContext, mqttexamplePROCESS_LOOP_TIMEOUT_MS );
-        configASSERT( xResult == MQTTSuccess );
-
-        /* Reset flag before checking suback responses. */
-        xFailedSubscribeToTopic = false;
-
-        /* Check if recent subscription request has been rejected. #xTopicFilterContext is updated
-         * in the event callback to reflect the status of the SUBACK sent by the broker. It represents
-         * either the QoS level granted by the server upon subscription, or acknowledgement of
-         * server rejection of the subscription request. */
-        for( ulTopicCount = 0; ulTopicCount < mqttexampleTOPIC_COUNT; ulTopicCount++ )
-        {
-            if( xTopicFilterContext[ ulTopicCount ].xSubAckStatus == MQTTSubAckFailure )
-            {
-               LogWarn( ( "Server rejected subscription request. Attempting to re-subscribe to topic %s.",
-                          xTopicFilterContext[ ulTopicCount ].pcTopicFilter ) );
-               xFailedSubscribeToTopic = true;
-               xRetryUtilsStatus = RetryUtils_BackoffAndSleep( &xRetryParams );
-               break;
-            }
-        }
-
-        configASSERT( xRetryUtilsStatus != RetryUtilsRetriesExhausted );
-    } while( ( xFailedSubscribeToTopic == true ) && ( xRetryUtilsStatus == RetryUtilsSuccess ) );
-}
-```
+The [ prvMQTTSubscribeWithBackoffRetries](https://github.com/aws/amazon-freertos/blob/master/demos/coreMQTT/mqtt_demo_mutual_auth.c#L848-L946) function demonstrates how to subscribe to a topic filter on the MQTT broker\. The example demonstrates how to subscribe to one topic filter, but it's possible to pass a list of topic filters in the same subscribe API call to subscribe to more than one topic filter\. Also, in case the MQTT broker rejects the subscription request, the subscription will retry, with exponential backoff, for `RETRY_MAX_ATTEMPTS`\.
 
 ## Publishing to a topic<a name="mqtt-demo-publishing"></a>
 
@@ -441,7 +300,9 @@ static void prvMQTTProcessIncomingPublish( MQTTPublishInfo_t * pxPublishInfo )
 
     /* Verify the received publish is for the we have subscribed to. */
     if( ( pxPublishInfo->topicNameLength == strlen( mqttexampleTOPIC ) ) &&
-        ( 0 == strncmp( mqttexampleTOPIC, pxPublishInfo->pTopicName, pxPublishInfo->topicNameLength ) ) )
+        ( 0 == strncmp( mqttexampleTOPIC, 
+                        pxPublishInfo->pTopicName, 
+                        pxPublishInfo->topicNameLength ) ) )
     {
         LogInfo( ( "\r\nIncoming Publish Topic Name: %.*s matches subscribed topic.\r\n"
                    "Incoming Publish Message : %.*s\r\n",

@@ -36,6 +36,8 @@ The Microchip Curiosity PIC32MZEF demo projects produce two binary images with d
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the firmware image path name must be `/sys/mcuflashimg.bin`\.
 
+1. Under **File Type**, enter an integer value in the range 0\-255\. The file type you enter will be added to the Job document that is delivered to the MCU\. The MCU firmware/software developer has full ownership on what to do with this value\. Possible scenarios include an MCU that has a secondary processor whose firmware can be updated independently from the primary processor\. When the device receives an OTA update job, it can use the File Type to identify which processor the update is for\.
+
 1. Under **IAM role for OTA update job**, choose a role according to the instructions in [Create an OTA Update service role](create-service-role.md)\. 
 
 1. Choose **Next**\.
@@ -93,7 +95,7 @@ The job appears in the AWS IoT console with a status of **IN PROGRESS**\.
 
 **Note**  
 The AWS IoT console does not update the state of jobs automatically\. Refresh your browser to see updates\.
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](ota-troubleshooting-stream-limit.md)\.
+If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](streaming-service.md#ota-troubleshooting-stream-limit)\.
 
 Connect your serial UART terminal to your device\. You should see output that indicates the device is downloading the updated firmware\.
 

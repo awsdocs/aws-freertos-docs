@@ -2,11 +2,12 @@
 
 The following example uses a single RTOS task\. The source code for this example can be found at `demos/tcp/aws_tcp_echo_client_single_task.c`\.
 
-Before you begin, verify that you have downloaded FreeRTOS to your microcontroller and built and run the FreeRTOS demo projects\. You can clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. For more information about setting up a FreeRTOS\-qualified board, see [Getting Started with FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
+Before you begin, verify that you have downloaded FreeRTOS to your microcontroller and built and run the FreeRTOS demo projects\. You can clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
 
 **To run the demo**
 
 **Note**  
+To set up and run the FreeRTOS demos, follow the steps in [Getting Started with FreeRTOS](freertos-getting-started.md)\.  
 The TCP server and client demos are currently not supported on the Cypress CYW943907AEVAL1F and CYW954907AEVAL1F Development Kits\.
 
 1. Follow the instructions in [Setting Up the TLS Echo Server](https://docs.aws.amazon.com/freertos/latest/portingguide/tls-echo-server.html) in the FreeRTOS Porting Guide\.

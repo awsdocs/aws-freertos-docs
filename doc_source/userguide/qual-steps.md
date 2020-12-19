@@ -34,6 +34,10 @@ The following is an example `device.json` file used to create a device pool with
                 "value": "Yes | No"
             },
             {
+                "name": "Cellular",
+                "value": "Yes | No"
+            },
+            {
                 "name": "OTA",
                 "value": "Yes | No",
                 "configs": [
@@ -42,6 +46,10 @@ The following is an example `device.json` file used to create a device pool with
                         "value": "HTTP | MQTT | Both"
                     }
                 ]
+            },
+            {
+                "name": "BLE",
+                "value": "Yes | No"
             },
             {
                 "name": "TCP/IP",
@@ -58,47 +66,29 @@ The following is an example `device.json` file used to create a device pool with
             {
                 "name": "KeyProvisioning",
                 "value": "Import | Onboard | No"
-            },
-            {
-                "name": "BLE",
-                "value": "Yes | No"
             }
         ],
+
         "devices": [
-            {
-                "id": "device-id1",
-                "connectivity": {
-                    "protocol": "uart",
-                    "serialPort": "computer_serial_port_1"
-                },
-                "secureElementConfig": {
-                    "publicKeyAsciiHexFilePath":"absolute-path-to-public-key",
-                    "secureElementSerialNumber": "optional: serialnumber-of-secure-element"
-                },
-                "identifiers": [
-                    {
-                        "name": "serialNo",
-                        "value": "serialNo-value"
-                    }
-                ]
+          {
+            "id": "device-id",
+            "connectivity": {
+              "protocol": "uart",
+              "serialPort": "/dev/tty*"
             },
-            {
-                "id": "device-id2",
-                "connectivity": {
-                    "protocol": "uart",
-                    "serialPort": "computer_serial_port_2"
-                },
-                "secureElementConfig": {
-                    "publicKeyAsciiHexFilePath": "absolute-path-to-public-key",
-                    "secureElementSerialNumber": "optional: serialnumber-of-secure-element"
-                },
-                "identifiers": [
-                    {
-                        "name": "serialNo",
-                        "value": "serialNo-value"
-                    }
-                ]
-            }
+            ***********Remove the section below if the device does not support onboard key generation***************
+            "secureElementConfig" : {
+              "publicKeyAsciiHexFilePath": "absolute-path-to/public-key-txt-file: contains-the-hex-bytes-public-key-extracted-from-onboard-private-key",
+              "secureElementSerialNumber": "secure-element-serialNo-value"
+            },
+            **********************************************************************************************************
+            "identifiers": [
+              {
+                "name": "serialNo",
+                "value": "serialNo-value"
+              }
+            ]
+          }
         ]
     }
 ]
@@ -119,7 +109,9 @@ Supported values are:
 `TCP/IP`  
 Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\. TCP/IP is required for qualification\.  
 `WIFI`  
-Indicates if your board has Wi\-Fi capabilities\.  
+Indicates if your board has Wi\-Fi capabilities\. Must be set to `No` if `Cellular` is set to `Yes`\.  
+`Cellular`  
+Indicates if your board has cellular capabilities\. Must be set to `No` if `WIFI` is set to `Yes`\. When this feature is set to `Yes`, the FullSecureSockets test will be executed using AWS t2\.micro EC2 instances and this may incur additional costs to your account\. For more information, see [Amazon EC2 pricing](https://aws.amazon.com/ec2/pricing/)\.  
 `TLS`  
 Indicates if your board supports TLS\. TLS is required for qualification\.  
 `PKCS11`  
@@ -188,7 +180,7 @@ For IDT for FreeRTOS to build and flash tests on to your board automatically, yo
 
 ### Configure settings for testing devices<a name="config-settings-device"></a>
 
-Build, flash, and test settings are made in the `configs/userdata.json` file\. The following JSON example shows how you can configure IDT for FreeRTOS for testing multiple devices:
+Build, flash, and test settings are made in the `configs/userdata.json` file\. We support Echo Server configuration by loading both the client and server certificates and keys in the `customPath`\. For more information, see [Setting up an echo server](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-echo-server.html) in the *FreeRTOS Porting Guide*\. The following JSON example shows how you can configure IDT for FreeRTOS to test multiple devices:
 
 ```
 {
@@ -237,8 +229,10 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. T
     "echoServerCertificateConfiguration": {
       "certificateGenerationMethod": "Automatic | Custom",
       "customPath": {
-        "certificatePath":"</path/to/certificate>",
-        "privateKeyPath": "</path/to/privateKey>"
+          "clientCertificatePath":"/path/to/clientCertificate",
+          "clientPrivateKeyPath": "/path/to/clientPrivateKey",
+          "serverCertificatePath":"/path/to/serverCertificate",
+          "serverPrivateKeyPath": "/path/to/serverPrivateKey"
       },
     "eccCurveFormat": "P224 | P256 | P384 | P521"
     },

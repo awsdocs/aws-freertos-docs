@@ -93,6 +93,8 @@ You can use the following options for cmake:
 + `-S` – Specifies the location of the source code\.
 + `-B` – Specifies the location of generated build files\.
 
+ 
+
 **Note**  
 The compiler must be in the system's `PATH` variable, or you must specify the location of the compiler\.
 
