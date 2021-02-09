@@ -58,7 +58,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\. 
 
-1. In **Subscription topic**, enter `iotdemo/#`, and then choose **Subscribe to topic**\. 
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\. 
 
 **To run the FreeRTOS demo project**
 
@@ -91,7 +91,7 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\. 
 
-1. In **Subscription topic**, enter `iotdemo/#`, and then choose **Subscribe to topic**\. 
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\. 
 
 **To generate build files from source files and run the demo project**
 
@@ -136,7 +136,7 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 + If you connect your device to the Keil MDK \(IDE\) through Nu\-Link, make sure the MSG switch \(No\.4 of ISW1 on ICE\) is OFF, as shown\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/nuvoton-m487-gsg.png)
 
-If you experience issues setting up your development environment or connecting to your board, contact [Nuvoton](http://www.nuvoton.com/hq/contact-us/)\.
+If you experience issues setting up your development environment or connecting to your board, contact [Nuvoton](http://www.nuvoton.com/contact-us/)\.
 
 ### Debugging FreeRTOS projects in Keil μVision<a name="gsg-nuvoton-m487-troubleshoot-debug-projects"></a>
 

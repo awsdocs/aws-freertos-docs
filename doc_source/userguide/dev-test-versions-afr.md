@@ -8,10 +8,10 @@ By downloading the software, you agree to the IDT for FreeRTOS License Agreement
 
 Use the following links to download the latest version of IDT for FreeRTOS\.
 
-**IDT v4\.0\.0 and test suite version 1\.4\.0 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
-+ IDT v4\.0\.0 with test suite FRQ\_1\.4\.0 for [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_4.0.0.zip)
-+ IDT v4\.0\.0 with test suite FRQ\_1\.4\.0 for [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_4.0.0.zip)
-+ IDT v4\.0\.0 with test suite FRQ\_1\.4\.0 for [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_4.0.0.zip)
+**IDT v4\.0\.1 and test suite version 1\.4\.1 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
++ IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.1.zip)
++ IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.1.zip)
++ IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.1.zip)
 
 **Note**  
 We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This practice might result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive and run the IDT binary on your local workstation\.
@@ -24,22 +24,23 @@ We don't recommend that multiple users run IDT from a shared location, such as a
 + Fixes a bug in the echo server configuration\.
 + Enables you to develop and run your own custom test suites using AWS IoT Device Tester for FreeRTOS\. For more information, see [Use IDT to develop and run your own test suites](idt-custom-tests.md)\.
 + Provides code signed IDT applications, so you don't need to grant permissions when you run it under Windows or macOS\.
++ Refined the BLE test result parsing logic\.
 
 **Test suite versions**
-+ FRQ\_1\.4\.0
-  + Released 2020\.12\.15\.
++ FRQ\_1\.4\.1
+  + Released 2020\.01\.19\.
 
 ## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
 
 The following earlier versions of IDT for FreeRTOS are also supported\.
 
-**IDT v3\.4\.0 and test suite version 1\.3\.0 for FreeRTOS 202011\.00**
-+ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.4.0.zip)
-+ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.4.0.zip)
-+ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.4.0.zip)
+**IDT v3\.4\.0 and test suite version 1\.3\.0 for FreeRTOS 202011\.01**
++ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_3.4.0.zip)
++ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_3.4.0.zip)
++ IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_3.4.0.zip)
 
 **Release notes**
-+ Supports FreeRTOS 202011\.00\. For more information about what's included in the FreeRTOS 202011\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202011.00/CHANGELOG.md) file in GitHub\.
++ Supports FreeRTOS 202011\.01\. For more information about what's included in the FreeRTOS 202011\.01 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202011.01/CHANGELOG.md) file in GitHub\.
 + Fixed bug where 'RSA' was not a valid PKCS11 configuration option\.
 + Fixed bug where Amazon S3 buckets aren’t cleaned up correctly after OTA tests\.
 + Updates to support the new test cases inside of the FullMQTT test group\.
@@ -49,9 +50,9 @@ The following earlier versions of IDT for FreeRTOS are also supported\.
   + Released 2020\.11\.05\.
 
 **IDT v3\.3\.0 and Test Suite version 1\.2\.0 for FreeRTOS 202007\.00**
-+ IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.3.0.zip)
-+ IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.3.0.zip)
-+ IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.3.0.zip)
++ IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_3.3.0.zip)
++ IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_3.3.0.zip)
++ IDT v3\.3\.0 with test suite FRQ\_1\.2\.0 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_3.3.0.zip)
 
 **Release notes**
 + Supports FreeRTOS 202007\.00\. For more information about what's included in the FreeRTOS 202007\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202007.00/CHANGELOG.md) file in GitHub\.

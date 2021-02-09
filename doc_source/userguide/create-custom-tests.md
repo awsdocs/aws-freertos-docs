@@ -4,7 +4,9 @@ A test suite combines the following:
 + Test executables that contain the test logic
 + JSON configuration files that describe the test suite
 
-This tutorial shows you how to use IDT for FreeRTOS to develop a Python test suite that contains a single test case\. In this tutorial, you will complete the following steps: 
+This tutorial shows you how to use IDT for FreeRTOS to develop a Python test suite that contains a single test case\. Although this tutorial uses SSH, it is useful to learn how to use AWS IoT Device Tester with FreeRTOS devices\.
+
+In this tutorial, you will complete the following steps: 
 
 1. [Create a test suite directory](#test-suite-dir)
 

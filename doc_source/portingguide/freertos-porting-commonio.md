@@ -344,7 +344,7 @@ The UART stop bit configuration\.
 
 ## Porting the SPI library<a name="porting-commonio-spi"></a>
 
-The SPI library interfaces with vendor\-supplied SPI drivers\. If the device doesn't have an SPI peripheral, you can skip porting the SPI interfaces\. The SPI library can only use the SPI peripheral on the device as master\.
+The SPI library interfaces with vendor\-supplied SPI drivers\. If the device doesn't have an SPI peripheral, you can skip porting the SPI interfaces\. The SPI library can only use the SPI peripheral on the device as controller\.
 
 **Porting**
 

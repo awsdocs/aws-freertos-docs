@@ -5,9 +5,9 @@ This section lists unsupported versions of IDT for FreeRTOS\. Unsupported versio
 The following versions of IDT\-FreeRTOS are no longer supported\.
 
 **IDT v3\.0\.2 for FreeRTOS 202002\.00**
-+ IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_3.0.2.zip)
-+ IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_3.0.2.zip)
-+ IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_3.0.2.zip)
++ IDT for FreeRTOS: [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_3.0.2.zip)
++ IDT for FreeRTOS: [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_3.0.2.zip)
++ IDT for FreeRTOS: [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_3.0.2.zip)
 
 **Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
@@ -30,9 +30,9 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + FRQ\_1\.0\.1
 
 **IDT v1\.7\.1 for FreeRTOS 202002\.00**
-+ IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_linux_1.7.1.zip)
-+ IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_mac_1.7.1.zip)
-+ IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/freertos/devicetester_freertos_win_1.7.1.zip)
++ IDT for FreeRTOS: [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_1.7.1.zip)
++ IDT for FreeRTOS: [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_1.7.1.zip)
++ IDT for FreeRTOS: [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_1.7.1.zip)
 
 **Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [ CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
@@ -42,9 +42,9 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + The file named `AFQ_Report.xml` in the results directory is now `FRQ_Report.xml`\.
 
 **IDT v1\.6\.2 for FreeRTOS 201912\.00**
-+ IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.6.2.zip)
-+ IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.6.2.zip)
-+ IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.6.2.zip)
++ IDT for FreeRTOS: [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_linux_1.6.2.zip)
++ IDT for FreeRTOS: [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_mac_1.6.2.zip)
++ IDT for FreeRTOS: [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_win_1.6.2.zip)
 
 **Release notes**
 + Supports FreeRTOS 201912\.00\.
@@ -53,9 +53,9 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + Supports capability to inform users on latest IDT version before start of test suite\.
 
 **IDT v1\.5\.2 for FreeRTOS 201910\.00**
-+ IDT for Amazon FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.5.2.zip)
-+ IDT for Amazon FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.5.2.zip)
-+ IDT for Amazon FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.5.2.zip)
++ IDT for Amazon FreeRTOS: [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_linux_1.5.2.zip)
++ IDT for Amazon FreeRTOS: [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_mac_1.5.2.zip)
++ IDT for Amazon FreeRTOS: [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_win_1.5.2.zip)
 
 **Release notes**
 + Supports qualification of FreeRTOS devices with secure element \(onboard key\)\.
@@ -65,9 +65,9 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + Supports iot ats endpoint in testing\.
 
 **IDT v1\.4\.1 for FreeRTOS 201908\.00**
-+ IDT for Amazon FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.4.1.zip)
-+ IDT for Amazon FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.4.1.zip)
-+ IDT for Amazon FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.4.1.zip)
++ IDT for Amazon FreeRTOS: [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_linux_1.4.1.zip)
++ IDT for Amazon FreeRTOS: [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_mac_1.4.1.zip)
++ IDT for Amazon FreeRTOS: [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_win_1.4.1.zip)
 
 **Release notes**
 + Added support for new PKCS11 library and test case updates\.
@@ -75,9 +75,9 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + Updated IAM policy used to run IDT\. 
 
 **IDT v1\.3\.2 for FreeRTOS 201906\.00 Major**
-+ IDT for FreeRTOS: [ Linux](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_linux_1.3.2.zip)
-+ IDT for FreeRTOS: [ macOS](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_mac_1.3.2.zip)
-+ IDT for FreeRTOS: [ Windows](https://d232ctwt5kahio.cloudfront.net/afr/devicetester_afreertos_win_1.3.2.zip)
++ IDT for FreeRTOS: [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_linux_1.3.2.zip)
++ IDT for FreeRTOS: [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_mac_1.3.2.zip)
++ IDT for FreeRTOS: [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/afr/devicetester_afreertos_win_1.3.2.zip)
 
 **Release notes**
 + Added support for testing Bluetooth Low Energy \(BLE\)\.

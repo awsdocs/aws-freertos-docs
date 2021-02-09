@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the MediaTek MT7697
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w21aac13c27c27b7"></a>
+## Overview<a name="w49aac13c27c27b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -86,7 +86,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter  ***your\-thing\-name*example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="mediatek-troubleshooting"></a>
 

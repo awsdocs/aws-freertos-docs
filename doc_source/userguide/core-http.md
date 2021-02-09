@@ -10,7 +10,7 @@ The coreHTTP library implements a subset of the [HTTP/1\.1 ](https://tools.ietf.
 
 The library is written in C and designed to be compliant with [ISO C90](https://en.wikipedia.org/wiki/ANSI_C#C90) and [MISRA C:2012](https://www.misra.org.uk/MISRAHome/MISRAC2012/tabid/196/Default.aspx)\. The library's only dependencies are the standard C library and [LTS version \(v12\.19\.1\) of the http\-parser](https://github.com/nodejs/node/tree/v12.19.1/deps/http_parser) from Node\.js\. The library has [proofs](https://www.cprover.org/cbmc/) showing safe memory use and no heap allocation, making it suitable for IoT microcontrollers, but also fully portable to other platforms\.
 
-When using HTTP connections in IoT applications, we recommend that you use a secure transport interface, such as one that uses the TLS protocol as demonstrated in the [HTTP TLS](https://freertos.org/mutual-authentication-http-example.html) demo\.
+When using HTTP connections in IoT applications, we recommend that you use a secure transport interface, such as one that uses the TLS protocol as demonstrated in the  [coreHTTP Demo \(Mutual Authentication\)](https://www.freertos.org/http/http-demo-with-tls-mutual-authentication.html)\.
 
 This library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 

@@ -15,7 +15,7 @@ To test the BLE capabilities of the device under test \(DUT\), you must have a R
 
 **To set up your Raspberry Pi to run BLE tests**
 
-1. Download the custom [Yocto image](https://d232ctwt5kahio.cloudfront.net/afr/IDT_AFR_BLE_RaspberryPi_1.0.0.rpi-sdimg) that contains the software required to perform the tests\.
+1. Download the custom [Yocto image](https://docs.aws.amazon.com/freertos/latest/userguide/afr/IDT_AFR_BLE_RaspberryPi_1.0.0.rpi-sdimg) that contains the software required to perform the tests\.
 
 1. Flash the yocto image onto the SD card for Raspberry Pi\.
 
@@ -53,7 +53,7 @@ To test the BLE capabilities of the device under test \(DUT\), you must have a R
 
       1. Create an SSH key using the OpenSSL `ssh-keygen` command\. If you already have an SSK key pair on your host computer, it is a best practice to create a new one to allow AWS IoT Device Tester for FreeRTOS to sign in to your Raspberry Pi\.
 **Note**  
-Windows does not come with an installed SSH client\. For information about how to install an SSH client on Windows, see [Download SSH Software](hhttps://www.ssh.com/ssh/#sec-Download-client-software)\.
+Windows does not come with an installed SSH client\. For information about how to install an SSH client on Windows, see [Download SSH Software](https://www.ssh.com/ssh/#sec-Download-client-software)\.
 
       1. The `ssh-keygen` command prompts you for a name and path to store the key pair\. By default, the key pair files are named `id_rsa` \(private key\) and `id_rsa.pub` \(public key\)\. On macOS and Linux, the default location of these files is `~/.ssh/`\. On Windows, the default location is `C:\Users\user-name`\.
 

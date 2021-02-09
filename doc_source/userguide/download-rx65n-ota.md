@@ -57,7 +57,7 @@ The procedures in this section use the following environments:
 
 1. To create a code\-signing profile and register a code\-signing certificate on AWS\.
 
-   1. To create the keys and certification, see section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [Renesas MCU Firmware Update Design Policy](https://www.renesas.com/kr/en/doc/products/mpumcu/apn/rx/013/r01an5548ej0100-rx.pdf)\.
+   1. To create the keys and certification, see section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [ Renesas MCU Firmware Update Design Policy](https://www.renesas.com/us/en/document/apn/renesas-mcu-firmware-update-design-policy)\.
 
    1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/home)\. In the left navigation pane, select **Manage**, then **Jobs**\. Select **Create a job** then **Create OTA update Job**\. 
 
@@ -123,7 +123,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/project-properties-settings-rx65n.png)  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/project-properties-settings-2-rx65n.png)
 
-1. In the bootloader project, open `projects\renesas\rx65n-rsk\e2studio\boot_loader\src\key\code_signer_public_key.h` and input the public key\. For information on how to create a public key, see [How to implement FreeRTOS OTA by using Amazon Web Services on RX65N](https://www.renesas.com/us/en/doc/products/mpumcu/apn/rx/013/r01an5549ej0100-rx.pdf) and section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [ Renesas MCU Firmware Update Design Policy](https://www.renesas.com/kr/en/doc/products/mpumcu/apn/rx/013/r01an5548ej0100-rx.pdf)\.  
+1. In the bootloader project, open `projects\renesas\rx65n-rsk\e2studio\boot_loader\src\key\code_signer_public_key.h` and input the public key\. For information on how to create a public key, see [ How to implement FreeRTOS OTA by using Amazon Web Services on RX65N](https://www.renesas.com/us/en/document/apn/rx-family-how-implement-freertos-ota-using-amazon-web-services-rx65n) and section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [Renesas MCU Firmware Update Design Policy](https://www.renesas.com/us/en/document/apn/renesas-mcu-firmware-update-design-policy)\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/open-bootloader-project-rx65n.png)
 
    Then build the project to create `boot_loader.mot`\.
@@ -157,7 +157,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
       #define signingcredentialSIGNING_CERTIFICATE_PEM [] = "your-certificate-key";
       ```
 
-      Where *your\-certificate\-key* is the value from the file `secp256r1.crt`\. Remember to add "\\" after each line in the certification\. For more information on creating the `secp256r1.crt` file, see [How to implement FreeRTOS OTA by using Amazon Web Services on RX65N](https://www.renesas.com/us/en/doc/products/mpumcu/apn/rx/013/r01an5549ej0100-rx.pdf) and section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [Renesas MCU Firmware Update Design Policy](https://www.renesas.com/kr/en/doc/products/mpumcu/apn/rx/013/r01an5548ej0100-rx.pdf)\.  
+      Where *your\-certificate\-key* is the value from the file `secp256r1.crt`\. Remember to add "\\" after each line in the certification\. For more information on creating the `secp256r1.crt` file, see [ How to implement FreeRTOS OTA by using Amazon Web Services on RX65N](https://www.renesas.com/us/en/document/apn/rx-family-how-implement-freertos-ota-using-amazon-web-services-rx65n) and section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [Renesas MCU Firmware Update Design Policy](https://www.renesas.com/us/en/document/apn/renesas-mcu-firmware-update-design-policy)\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/codesigner-cert-rx65n.png)
 
 1. **Task A: Install the initial version of the firmware**

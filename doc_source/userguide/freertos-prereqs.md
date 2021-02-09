@@ -191,7 +191,7 @@ Space characters in the `freertos` path can cause build failures\. When you clon
 The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
 
 **Note**  
-If you're getting started with the Cypress CYW954907AEVAL1F or CYW943907AEVAL1F development kits, you must download FreeRTOS from GitHub\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. Configurations of FreeRTOS for these boards aren't currently available from the FreeRTOS console\.
+If you're getting started with the Cypress CYW954907AEVAL1F or CYW943907AEVAL1F development kits, you must download FreeRTOS from GitHub\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. Configurations of FreeRTOS for these boards aren't currently available from the FreeRTOS console\.
 
 After you download FreeRTOS, you can continue to [Configuring the FreeRTOS demos](#freertos-configure)\.
 

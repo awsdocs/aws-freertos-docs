@@ -78,7 +78,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Build and run the FreeRTOS demo project<a name="infineon_trust_x_build_and_run_example"></a>
 

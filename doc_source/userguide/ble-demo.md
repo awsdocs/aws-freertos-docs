@@ -273,7 +273,7 @@ This policy is different from the IAM policy created for the cognito authenticat
    + `AWS_IOT_POLICY_NAME`: Your AWS IoT policy name\.
    + `AWS_IOT_REGION`: Your AWS Region\.
 
-1. Open  [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/res/raw/awsconfiguration\.json](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/res/raw/awsconfiguration.json )\. 
+1. Open  [ https://github\.com/aws/amazon\-freertos\-ble\-android\-sdk/blob/master/app/src/main/res/raw/awsconfiguration\.json](https://github.com/aws/amazon-freertos-ble-android-sdk/blob/master/app/src/main/res/raw/awsconfiguration.json)\. 
 
    Under `CognitoIdentity`, redefine the following variables:
    + `PoolId`: Your Amazon Cognito identity pool ID\.
@@ -411,6 +411,6 @@ The Bluetooth Low Energy GATT demo is disabled by default\.
 
 1. Return to the **Devices** list, choose your board, and then choose **Custom GATT MQTT** to open the custom GATT service options\.
 
-1. Choose **Start Counter** to start publishing data to the `iotdemo/#` MQTT topic\.
+1. Choose **Start Counter** to start publishing data to the ***your\-thing\-name*/example/topic** MQTT topic\.
 
-   After you enable the MQTT proxy, Hello World and incrementing counter messages appear on the `iotdemo/#` topic\.
+   After you enable the MQTT proxy, Hello World and incrementing counter messages appear on the `your-thing-name/example/topic` topic\.

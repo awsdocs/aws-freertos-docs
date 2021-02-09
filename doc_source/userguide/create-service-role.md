@@ -16,6 +16,8 @@ The OTA Update service assumes this role to create and manage OTA update jobs on
 
 1. Under **Select your use case**, choose **IoT**\.
 
+1. Choose **Next: Permissions**\.
+
 1. Choose **Next: Tags**\.
 
 1. Choose **Next: Review**\.

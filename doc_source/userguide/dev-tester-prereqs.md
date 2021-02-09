@@ -17,7 +17,7 @@ where <FREERTOS\_RELEASE\_VERSION> is a version of FreeRTOS \(for example, 20200
 Windows has a path length limitation of 260 characters\. The path structure of FreeRTOS is many levels deep, so if you are using Windows, keep your file paths under the 260\-character limit\. For example, clone FreeRTOS to `C:\FreeRTOS` rather than `C:\Users\username\programs\projects\myproj\FreeRTOS\`\.
 
 ## LTS Qualification \(Qualification for FreeRTOS that uses LTS libraries\)<a name="lts-qualification-dev-tester-afr"></a>
-+ In order for your microcontroller to be designated as supporting the long\-term support \(LTS\) version of FreeRTOS in the AWS Partner Device Catalog, you must provide a manifest file\. For more information, see the [ FreeRTOS Qualification Checklist](https://docs.aws.amazon.com/freertos/qualificationguide/afq-checklist.html) in the *FreeRTOS Qualification Guide*\.
++ In order for your microcontroller to be designated as supporting the long\-term support \(LTS\) version of FreeRTOS in the AWS Partner Device Catalog, you must provide a manifest file\. For more information, see the [ FreeRTOS Qualification Checklist](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html) in the *FreeRTOS Qualification Guide*\.
 + In order to validate that your microcontroller supports the LTS version of FreeRTOS and qualify it for submission to the AWS Partner Device Catalog, you must use AWS IoT Device Tester \(IDT\) for FreeRTOS v4\.0\.0\.
 + At this time, support for LTS based versions of FreeRTOS is limited to the 202012\.00 version of FreeRTOS\. 
 

@@ -1,6 +1,6 @@
 # Tutorial: Build and run the sample IDT test suite<a name="build-sample-suite"></a>
 
-The AWS IoT Device Tester download includes the source code for a sample test suite\. You can complete this tutorial to build and run the sample test suite to understand how you can use AWS IoT Device Tester for FreeRTOS to run custom test suites\.
+The AWS IoT Device Tester download includes the source code for a sample test suite\. You can complete this tutorial to build and run the sample test suite to understand how you can use AWS IoT Device Tester for FreeRTOS to run custom test suites\. Although this tutorial uses SSH, it is useful to learn how to use AWS IoT Device Tester with FreeRTOS devices\.
 
  In this tutorial, you will complete the following steps: 
 

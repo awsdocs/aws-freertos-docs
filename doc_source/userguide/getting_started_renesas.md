@@ -49,7 +49,7 @@ The Renesas e2studio IDE and CC\-RX compiler are only supported on Windows 7, 8,
 
 **To download and install e2studio**
 
-1. Go to the [Renesas e2studio installer](https://www.renesas.com/us/en/software/D4000894.html) download page, and download the offline installer\.
+1. Go to the [ Renesas e2studio installer](https://www.renesas.com/us/en/document/uid/e-studio-2020-10-installer-offline-installer) download page, and download the offline installer\.
 
 1. You are directed to a Renesas Login page\.
 
@@ -65,7 +65,7 @@ For more information, see the [ e2studio](https://www.renesas.com/us/en/products
 
 **To download and install the RX Family C/C\+\+ Compiler Package**
 
-1. Go to the [RX Family C/C\+\+ Compiler Package](https://www.renesas.com/us/en/software/D4000890.html) download page, and download the V3\.00\.00 package\.
+1. Go to the [ RX Family C/C\+\+ Compiler Package](https://www.renesas.com/us/en/document/esw/rx-family-cc-compiler-package-v3-without-ide-v30000) download page, and download the V3\.00\.00 package\.
 
 1. Open the executable and install the compiler\.
 
@@ -106,7 +106,7 @@ Now that you have configured the demo project, you are ready to build and run th
 
 1. From **Project** menu, choose **Project**, **Build All**\.
 
-   The build console issues a warning message that the License Manager is not installed\. You can ignore this message unless you have a license key for the CC\-RX compiler\. To install the License Manager, see the [License Manager](https://www.renesas.com/us/en/software/D4000398.html) download page\.
+   The build console issues a warning message that the License Manager is not installed\. You can ignore this message unless you have a license key for the CC\-RX compiler\. To install the License Manager, see the [License Manager](https://www.renesas.com/us/en/document/swr/license-manager-v20301) download page\.
 
 ### Run the FreeRTOS project<a name="renesas-run"></a>
 
@@ -140,7 +140,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter  ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 For the latest projects released by Renesas, see the `renesas-rx` fork of the `amazon-freertos` repository on [GitHub](https://github.com/renesas-rx/amazon-freertos)\.
 

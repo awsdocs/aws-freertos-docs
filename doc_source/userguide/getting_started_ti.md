@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the Texas Instrumen
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w21aac13c27c41b7"></a>
+## Overview<a name="w49aac13c27c41b7"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -124,7 +124,7 @@ To configure the Wi\-Fi settings for your board, do one of the following:
 
 1. When the debugger stops at the breakpoint in `main()`, go to the **Debug** menu, and choose **Go**\.
 
-### Using CMake with FreeRTOS<a name="w21aac13c27c41c11b7"></a>
+### Using CMake with FreeRTOS<a name="w49aac13c27c41c11b7"></a>
 
 If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -142,7 +142,7 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT messages on the cloud<a name="w21aac13c27c41c11b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w49aac13c27c41c11b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -152,7 +152,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_ti_troubleshooting"></a>
 

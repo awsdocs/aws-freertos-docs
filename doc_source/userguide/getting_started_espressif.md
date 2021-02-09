@@ -1,14 +1,15 @@
 # Getting started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT<a name="getting_started_espressif"></a>
 
-This tutorial provides instructions for getting started with the Espressif ESP32\-DevKitC equipped with ESP32\-WROOM\-32, ESP32\-SOLO\-1, or ESP\-WROVER modules and the ESP\-WROVER\-KIT\-VB\. To purchase one from our partner on the AWS Partner Device catalog, use the following links: [ESP32\-WROOM\-32 DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC), [ESP32\-SOLO\-1](https://devices.amazonaws.com/detail/a3G0h0000076lSMEAY), or [ ESP32\-WROVER\-KIT](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. These versions of development boards are supported on FreeRTOS\. For more information about these boards, see [ ESP32\-DevKitC](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [ ESP\-WROVER\-KIT](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
+Follow this tutorial to get started with the Espressif ESP32\-DevKitC equipped with ESP32\-WROOM\-32, ESP32\-SOLO\-1, or ESP\-WROVER modules and the ESP\-WROVER\-KIT\-VB\. To purchase one from our partner on the AWS Partner Device catalog, use the following links: [ESP32\-WROOM\-32 DevKitC](https://devices.amazonaws.com/detail/a3G0L00000AANtjUAH/ESP32-DevKitC), [ESP32\-SOLO\-1](https://devices.amazonaws.com/detail/a3G0h0000076lSMEAY), or [ESP32\-WROVER\-KIT](https://devices.amazonaws.com/detail/a3G0L00000AANtlUAH/ESP-WROVER-KIT)\. These versions of development boards are supported on FreeRTOS\. 
+
+For more information about the latest versions of these boards, see [  ESP32\-DevKitC V4](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/modules-and-boards.html#esp32-devkitc-v4) or [  ESP\-WROVER\-KIT v4\.1](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1) on the Espressif website\.
 
 **Note**  
-Currently, the FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the following features:  
-Symmetric multiprocessing \(SMP\)\.
+Currently, the FreeRTOS port for ESP32\-WROVER\-KIT and ESP DevKitC does not support the Symmetric multiprocessing \(SMP\) feature\.
 
 ## Overview<a name="getting_started_espressif-overview"></a>
 
-This tutorial contains instructions for the following getting started steps:
+This tutorial guides you through the following steps:
 
 1. Connecting your board to a host machine\.
 
@@ -62,39 +63,45 @@ For more information about IAM and user accounts, see [IAM User Guide](https://d
 
 For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
-## Set up the Espressif hardware<a name="setup-hw-espressif"></a>
-
-See the [ESP32\-DevKitC Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html) for information about setting up the ESP32\-DevKitC development board hardware\.
-
-See the [ESP\-WROVER\-KIT Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-wrover-kit.html) for information about setting up the ESP\-WROVER\-KIT development board hardware\.
-
 **Note**  
-Do not proceed to the **Get Started** section of the Espressif guides\. Instead, follow the steps below\.
+The FreeRTOS 202012\.00 release supports ESP\-IDF v3\.3\. If you are using a newer version of FreeRTOS, follow the instructions specific to IDFv4\.2 at [Get started with the ESP\-IDF v4\.2](#setup-espressif-idf42)\.
 
-## Set up your development environment<a name="setup-env-esspressif"></a>
+## Get started with ESP\-IDF v3\.3<a name="setup-espressif-idf33"></a>
+
+This section shows you how to use ESP\-IDF v3\.3 on Espressif hardware\. To use ESP\-IDF v4\.2, see [Get started with the ESP\-IDF v4\.2](#setup-espressif-idf42)\.
+
+### Set up the Espressif hardware<a name="setup-hw-espressif-idf33"></a>
+
+See the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html) for information about setting up the ESP32\-DevKitC development board hardware\.
+
+See the [ ESP\-WROVER\-KIT V4\.1 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-wrover-kit.html) for information about setting up the ESP\-WROVER\-KIT development board hardware\.
+
+**Important**  
+When you reach the **Get Started** section of the Espressif guides STOP, then follow the steps below\.
+
+### Set up your development environment<a name="setup-env-esspressif-idf33"></a>
 
 To communicate with your board, you need to download and install a toolchain\.
 
-### Setting up the toolchain<a name="setup-toolchain"></a>
-
-To set up the toolchain, follow the instructions for your host machine's operating system:
-+ [ Standard Setup of Toolchain for Windows](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/windows-setup.html)
-+ [ Standard Setup of Toolchain for macOS](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/macos-setup.html)
-+ [ Standard Setup of Toolchain for Linux](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/linux-setup.html)
-
-**Important**  
-When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop and return to the instructions on this page\.
-
-Make sure that the `IDF_PATH` environment variable is cleared from your system before you continue\. This environment variable is automatically set if you followed the "Get ESP\-IDF" instructions under **Next Steps**\.
+#### Setting up the toolchain<a name="setup-toolchain-idf33"></a>
 
 **Note**  
-Version 3\.3 of the ESP\-IDF \(the version that FreeRTOS uses\) doesn't support the latest version of the ESP32 compiler\. You must use the compiler that is compatible with version 3\.3 of the ESP\-IDF\. See the previous links\. To check the version of your compiler, run the following command\.  
+ESP\-IDF v3\.3 doesn't support the latest version of the ESP32 compiler\. If you have already installed the latest version of the ESP32 compiler you should uninstall it and use the compatible version of the compiler that is included in the toolchain installation\. See the links in this section\. If you want to check the version of your compiler, run the following command\.  
 
 ```
 xtensa-esp32-elf-gcc --version
 ```
 
-### Install CMake<a name="gsg-espressif-cmake"></a>
+To set up the toolchain, follow these instructions for your host machine's operating system:
++ [ Standard Setup of Toolchain \(ESP\-IDF v3\.3\) for Windows](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/windows-setup.html)
++ [ Standard Setup of Toolchain \(ESP\-IDF v3\.3\) for macOS](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/macos-setup.html)
++ [ Standard Setup of Toolchain \(ESP\-IDF v3\.3\) for Linux](https://docs.espressif.com/projects/esp-idf/en/v3.3/get-started-cmake/linux-setup.html)
+
+**Important**  
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, STOP and return to the instructions on this page\.  
+If you followed the "Get ESP\-IDF" instructions under **Next Steps**, just now or on a previous occasion, you should clear the `IDF_PATH` environment variable from your system before you continue\. This environment variable was automatically set if you followed the "Get ESP\-IDF" instructions\.
+
+#### Install CMake<a name="gsg-espressif-cmake-idf33"></a>
 
 The CMake build system is required to build the FreeRTOS demo and test applications for this device\. FreeRTOS supports versions 3\.13 and later\.
 
@@ -102,19 +109,19 @@ You can download the latest version of CMake from [CMake\.org](https://cmake.org
 
 For more details about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-## Establish a serial connection<a name="establish-serial-connection"></a>
+### Establish a serial connection<a name="establish-serial-connection-idf33"></a>
 
-To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\. 
+To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\.
 
 To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you must install some FTDI virtual COM port drivers\. You can download these drivers from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
 
-For more information, see [Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
+For more information, see [ Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
 
-## Download and configure FreeRTOS<a name="download-and-configure-espressif"></a>
+### Download and configure FreeRTOS<a name="download-and-configure-espressif-idf33"></a>
 
-After your environment is set up, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
 
-### Configure the FreeRTOS demo applications<a name="config-demos"></a>
+#### Configure the FreeRTOS demo applications<a name="config-demos-idf33"></a>
 
 1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\. \([MinGW ](https://sourceforge.net/projects/mingw-w64/files/) is a minimalist development environment for native Microsoft Windows applications\.\)
 
@@ -168,13 +175,13 @@ The certificate is hard\-coded for demonstration purposes only\. Production\-lev
 
 For more information about `SetupAWS.py`, see the README\.md in the `freertos/tools/aws_config_quick_start` directory\.
 
-## Build, flash, and run the FreeRTOS demo project<a name="build-and-run-example-espressif"></a>
+### Build, flash, and run the FreeRTOS demo project<a name="build-and-run-example-espressif-idf33"></a>
 
 You can use CMake to generate the build files, Make to build the application binary, and Espressif's IDF utility to flash your board\.
 
-### Build FreeRTOS on Linux and MacOS<a name="build-espressif"></a>
+#### Build FreeRTOS on Linux and MacOS \(ESP\-IDF v3\.3\)<a name="build-espressif-idf33"></a>
 
-\(If you are using Windows, please see the next section\.\)
+\(If you're using Windows, see [Build FreeRTOS on Windows \(ESP\-IDF v3\.3\)](#build-espressif-windows-idf33)\.\)
 
 Use CMake to generate the build files, and then use Make to build the application\.
 
@@ -210,7 +217,7 @@ To add the lwIP dependency for non\-vendor provided code, add the following line
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Build FreeRTOS on Windows<a name="build-espressif-windows"></a>
+#### Build FreeRTOS on Windows \(ESP\-IDF v3\.3\)<a name="build-espressif-windows-idf33"></a>
 
 On Windows, you must specify a build generator for CMake, otherwise CMake defaults to Visual Studio\. Espressif officially recommends the Ninja build system because it works on Windows, Linux and MacOS\. You must run CMake commands in a native Windows environment like cmd or PowerShell\. Running CMake commands in a virtual Linux environment, like MSYS2 or WSL, is not supported\.
 
@@ -254,7 +261,9 @@ To add the lwIP dependency for non\-vendor provided code, add the following line
 **Note**  
 You must generate the build files with the cmake command every time you switch between the `aws_demos` project and the `aws_tests` project\.
 
-### Flash and run FreeRTOS<a name="flash-espressif"></a>
+#### Flash and run FreeRTOS \(ESP\-IDF v3\.3\)<a name="flash-espressif-idf33"></a>
+
+This section shows you how to use ESP\-IDF v3\.3 on Espressif hardware\. To use ESP\-IDF v4\.2, see [Get started with the ESP\-IDF v4\.2](#setup-espressif-idf42)\.
 
 Use Espressif's IDF utility \(`freertos/vendors/espressif/esp-idf/tools/idf.py`\) to flash your board, run the application, and see logs\.
 
@@ -289,7 +298,268 @@ You can combine these commands\. For example:
 ./vendors/espressif/esp-idf/tools/idf.py erase_flash flash monitor -p /dev/ttyUSB1 -B build-directory
 ```
 
-### Monitoring MQTT messages on the cloud<a name="gsg-espressif-monitor-mqtt"></a>
+## Get started with the ESP\-IDF v4\.2<a name="setup-espressif-idf42"></a>
+
+This section shows you how to use ESP\-IDF v4\.2 on Espressif hardware\. To use ESP\-IDF v3\.3, see [Get started with ESP\-IDF v3\.3](#setup-espressif-idf33)\.
+
+### Set up the Espressif hardware<a name="setup-hw-espressif-idf42"></a>
+
+For information about setting up the ESP32\-DevKitC development board hardware see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
+
+For information about setting up the ESP\-WROVER\-KIT development board hardware, see the [ ESP\-WROVER\-KIT V4\.1 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-wrover-kit.html)\.
+
+**Important**  
+When you reach the **Get Started** section of the Espressif guides STOP, then follow the steps below\.
+
+### Set up your development environment<a name="setup-env-esspressif-idf42"></a>
+
+To communicate with your board, you need to download and install a toolchain\.
+
+#### Setting up the toolchain<a name="setup-toolchain-idf42"></a>
+
+To set up the toolchain, follow these instructions for your host machine's operating system:
++ [ Standard Setup of Toolchain and prerequisites \(ESP\-IDF v4\.2\) for Windows](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/windows-setup.html)
++ [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for macOS](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/macos-setup.html)
++ [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for Linux](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/linux-setup.html)
+
+**Important**  
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, STOP and return to the instructions on this page\.
+
+##### Complete the installation \(Linux / MacOS\)<a name="setup-toolchain-idf42-posix"></a>
+
+The ESP\-IDF Windows installer installs all of the neceesary tools\. The Linux and MacOS platforms require an additional step in order to complete the installation\.
+
+Open a command line window, navigate to the FreeRTOS download directory, and run the following script to download and install the espressif toolchain for your platform: 
+
+```
+vendors/espressif/esp-idf/install.sh
+```
+
+ Next, add the ESP\-IDF toolchain tools to your terminal's path with the following command: 
+
+```
+source vendors/espressif/esp-idf/export.sh
+```
+
+### Establish a serial connection<a name="establish-serial-connection-idf42"></a>
+
+To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install the CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\.
+
+To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you must install the FTDI virtual COM port driver\. You can download this driver from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
+
+For more information, see [ Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
+
+### Download and configure FreeRTOS<a name="download-and-configure-espressif-idf42"></a>
+
+After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+
+#### Configure the FreeRTOS demo applications<a name="config-demos-idf42"></a>
+
+1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\. \([MinGW ](https://sourceforge.net/projects/mingw-w64/files/) is a minimalist development environment for native Microsoft Windows applications\.\)
+
+1. To verify that you have Python3 installed, run python \-\-version\. The version installed is displayed\. If you do not have Python 3\.0\.1 or later installed, you can install it from the [Python website](https://www.python.org/downloads/)\.
+
+1. You need the AWS CLI to run AWS IoT commands\. If you are running Windows, use the easy\_install awscli to install the AWS CLI in the mingw32 environment\.
+
+   If you are running macOS or Linux, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\. 
+
+1. Run aws configure and configure the AWS CLI with your AWS access key ID, secret access key, and default region name\. For more information, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+
+1. Use the following command to install the AWS SDK for Python \(boto3\):
+   + On Windows, in the mingw32 environment, run easy\_install boto3\.
+   + On macOS or Linux, run pip install tornado nose \-\-user and then run pip install boto3 \-\-user\.
+
+FreeRTOS includes the `SetupAWS.py` script to make it easier to set up your Espressif board to connect to AWS IoT\. To configure the script, open `freertos/tools/aws_config_quick_start/configure.json` and set the following attributes:
+
+`afr_source_dir`  
+The complete path to the *freertos* directory on your computer\. Make sure that you use forward slashes to specify this path\.
+
+`thing_name`  
+The name that you want to assign to the AWS IoT thing that represents your board\.
+
+`wifi_ssid`  
+The SSID of your Wi\-Fi network\.
+
+`wifi_password`  
+The password for your Wi\-Fi network\.
+
+`wifi_security`  
+The security type for your Wi\-Fi network\.   
+Valid security types are:  
++ `eWiFiSecurityOpen` \(Open, no security\)
++ `eWiFiSecurityWEP` \(WEP security\)
++ `eWiFiSecurityWPA` \(WPA security\)
++ `eWiFiSecurityWPA2` \(WPA2 security\)
+
+**To run the configuration script**
+
+1. If you are running macOS or Linux, open a terminal prompt\. If you are running Windows, open mingw32\.exe\.
+
+1. Go to the `freertos/tools/aws_config_quick_start` directory and run python SetupAWS\.py setup\.
+
+The script does the following:
++ Creates an IoT thing, certificate, and policy
++ Attaches the IoT policy to the certificate and the certificate to the AWS IoT thing
++ Populates the `aws_clientcredential.h` file with your AWS IoT endpoint, Wi\-Fi SSID, and credentials
++ Formats your certificate and private key and writes them to the `aws_clientcredential_keys.h` header file
+**Note**  
+The certificate is hard\-coded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
+
+For more information about `SetupAWS.py`, see the README\.md in the `freertos/tools/aws_config_quick_start` directory\.
+
+### Build, flash, and run the FreeRTOS demo project using the idy\.py script<a name="build-and-run-example-espressif-idf42"></a>
+
+You can use Espressif's IDF utility to generate the build files, build the application binary, and flash your board\.
+
+#### Build and flash FreeRTOS on Windows, Linux, and MacOS \(ESP\-IDF v4\.2\)<a name="build-espressif-posix-idf-idf42"></a>
+
+Use the "idf\.py" script to build the project and flash the binaries onto your device\.
+
+**Note**  
+Some setups may require that you use the port option `"-p port-name"` with "idf\.py" to specify the correct port\. For example:  
+
+```
+idf.py -p /dev/cu.usbserial-00101301B flash
+```
+
+**To build and flash the project**
+
+1. Navigate to the root of your FreeRTOS download directory\.
+
+1. In a command line window, enter the following command to add the ESP\-IDF tools to your terminal's PATH:
+
+   Windows: 
+
+   ```
+   vendors\espressif\esp-idf\export.bat
+   ```
+
+   Linux / MacOS: 
+
+   ```
+   source vendors/espressif/esp-idf/export.sh
+   ```
+
+1. Configure cmake in the `build` directory and build the firmware image with the following command\.
+
+   ```
+   idf.py -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 build
+   ```
+
+   You should see output like this:
+
+   ```
+   Running cmake in directory /path/to/hello_world/build
+   Executing "cmake -G Ninja --warn-uninitialized /path/to/hello_world"...
+   Warn about uninitialized values.
+   -- Found Git: /usr/bin/git (found version "2.17.0")
+   -- Building empty aws_iot component due to configuration
+   -- Component names: ...
+   -- Component paths: ...
+   
+   ... (more lines of build system output)
+   
+   [527/527] Generating hello-world.bin
+   esptool.py v2.3.1
+   
+   Project build complete. To flash, run this command:
+   ../../../components/esptool_py/esptool/esptool.py -p (PORT) -b 921600 write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x10000 build/hello-world.bin  build 0x1000 build/bootloader/bootloader.bin 0x8000 build/partition_table/partition-table.bin
+   or run 'idf.py -p PORT flash'
+   ```
+
+   If there are no errors, the build will generate the firmware binary \.bin files\.
+
+1. Erase your development board's flash memory with the following command:
+
+   ```
+   idf.py erase_flash 
+   ```
+
+1. Use the idf\.py script to flash the application binary to your board:
+
+   ```
+   idf.py flash
+   ```
+
+1. Monitor the output from your board's serial port with the following command:
+
+   ```
+   idf.py monitor
+   ```
+
+**Note**  
+You can combine these commands\. For example:  
+
+```
+idf.py erase_flash flash monitor 
+```
+
+**Note**  
+For certain host machine setups, you must specify the port when you flash the board\. For example:  
+
+```
+idf.py erase_flash flash monitor -p /dev/ttyUSB1
+```
+
+#### Build and Flash FreeRTOS with CMake<a name="flash-espressif-cmake-idf42"></a>
+
+Besides using the idf\.py script provided by the IDF SDK to build and run your code, you can also build the project with CMake\. Currently it supports either Unix Makefiles or the Ninja build system\.
+
+**To build and flash the project**
+
+1. In a command line window, navigate to the root of your FreeRTOS download directory\.
+
+1. Run the following script to add the ESP\-IDF tools to your shell's PATH\.
+
+   Windows: 
+
+   ```
+   vendors\espressif\esp-idf\export.bat
+   ```
+
+   Linux / MacOS: 
+
+   ```
+   source vendors/espressif/esp-idf/export.sh
+   ```
+
+1. Enter the following command to generate the build files\.
+
+   With Unix Makefiles: 
+
+   ```
+   cmake -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 -S . -B ./YOUR_BUILD_DIRECTORY -DAFR_ENABLE_ALL_MODULES=1 -DAFR_ENABLE_TESTS=0
+   ```
+
+   With Ninja:
+
+   ```
+   cmake -DVENDOR=espressif -DBOARD=esp32_wrover_kit -DCOMPILER=xtensa-esp32 -S . -B ./YOUR_BUILD_DIRECTORY -DAFR_ENABLE_ALL_MODULES=1 -DAFR_ENABLE_TESTS=0 -GNinja
+   ```
+
+1. Erase the flash and then flash the board\.
+
+   With Unix Makefiles: 
+
+   ```
+   make -C ./YOUR_BUILD_DIRECTORY erase_flash
+   ```
+
+   ```
+   make -C ./YOUR_BUILD_DIRECTORY flash
+   ```
+
+   With Ninja:
+
+   ```
+   ninja -C ./YOUR_BUILD_DIRECTORY erase_flash
+   ```
+
+   ```
+   ninja -C ./YOUR_BUILD_DIRECTORY flash
+   ```
+
+## Monitoring MQTT messages on the cloud<a name="gsg-espressif-monitor-mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
@@ -299,9 +569,9 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-1. In **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
-### Run the Bluetooth Low Energy demos<a name="espressif-run-ble"></a>
+## Run the Bluetooth Low Energy demos<a name="espressif-run-ble"></a>
 
 FreeRTOS supports [Bluetooth Low Energy](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ble-library.html) connectivity\.
 
@@ -330,8 +600,14 @@ If a newer version is released, you can update your local copy with these comman
 ```
 # Pull the latest changes from the remote tracking branch.
 git submodule update --remote -- amazon-freertos
+```
+
+```
 # Commit the submodule change because it is pointing to a different revision now.
 git add amazon-freertos
+```
+
+```
 git commit -m "Update FreeRTOS to a new release"
 ```
 
@@ -369,6 +645,9 @@ To build the project, run the following CMake commands\. Make sure the ESP32 com
 
 ```
 cmake -S . -B build-directory -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolchains/xtensa-esp32.cmake -GNinja
+```
+
+```
 cmake --build build
 ```
 
@@ -467,7 +746,7 @@ register_component()
 target_link_libraries(${COMPONENT_TARGET} PRIVATE AFR::mqtt)
 ```
 
-For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_PRIV_REQUIRES`\. See [ Build System \(CMake\)](https://docs.espressif.com/projects/esp-idf/en/v3.3/api-guides/build-system-cmake.html) in the *ESP\-IDF Programming Guide v3\.3*\.
+For ESP components, this is done by setting 2 variables `COMPONENT_REQUIRES` and `COMPONENT_PRIV_REQUIRES`\. See [  Build System \(CMake\)](https://docs.espressif.com/projects/esp-idf/en/v3.3/api-guides/build-system-cmake.html) in the *ESP\-IDF Programming Guide v4\.2*\.
 
 ```
 # If the dependencies are from ESP-IDF, use these 2 variables. Note these need to be
@@ -558,9 +837,9 @@ target_link_libraries(my_app PRIVATE AFR::mqtt)
 
 ## Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>
 + If you are running macOS and the operating system does not recognize your ESP\-WROVER\-KIT, make sure you do not have the D2XX drivers installed\. To uninstall them, follow the instructions in the [ FTDI Drivers Installation Guide for macOS X](http://www.ftdichip.com/Support/Documents/AppNotes/AN_134_FTDI_Drivers_Installation_Guide_for_MAC_OSX.pdf)\.
-+ The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [ Automatically Decoding Addresses](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#automatically-decoding-addresses) on the Espressif website\.
-+ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [ Launch GDB for GDBStub](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/idf-monitor.html#launch-gdb-for-gdbstub) on the Espressif website\.
-+ For information about setting up an OpenOCD\-based environment if JTAG hardware\-based debugging is required, see the document *JTAG Debugging for ESP32* available on the [ Espressif website](https://www.espressif.com/en/support/download/documents?keys=jtag)\.
++ The monitor utility provided by ESP\-IDF \(and invoked using make monitor\) helps you decode addresses\. For this reason, it can help you get some meaningful backtraces in the event the application crashes\. For more information, see [  Automatic Address Decoding](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/api-guides/tools/idf-monitor.html#automatic-address-decoding) on the Espressif website\.
++ It is also possible to enable GDBstub for communication with gdb without requiring any special JTAG hardware\. For more information, see [  Launching GDB with GDBStub](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/api-guides/tools/idf-monitor.html#launching-gdb-with-gdbstub) on the Espressif website\.
++ For information about setting up an OpenOCD\-based environment if JTAG hardware\-based debugging is required, see the document [ JTAG Debugging](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/jtag-debugging/index.html) on the Espressif website\.
 + If `pyserial` cannot be installed using `pip` on macOS, download it from the [pyserial website](https://pypi.org/simple/pyserial)\.
 + If the board resets continuously, try erasing the flash by entering the following command on the terminal:
 
@@ -576,8 +855,31 @@ target_link_libraries(my_app PRIVATE AFR::mqtt)
   ```
 + If your device has trouble connecting to AWS IoT, open the `aws_clientcredential.h` file, and verify that the configuration variables are properly defined in the file\. `clientcredentialMQTT_BROKER_ENDPOINT[]` should look like `1234567890123-ats.iot.us-east-1.amazonaws.com`\. 
 + If you're following the steps in [Using FreeRTOS in your own CMake project for ESP32](#getting_started_espressif_cmake_project) and you see undefined reference errors from the linker, it's usually because of missing dependent libraries or demos\. To add them, update the `CMakeLists.txt` file \(under the root directory\) using the standard CMake function `target_link_libraries`\.
++ ESP\-IDF v4\.2 supports the use of the *xtensa\-esp32\-elf\-gcc 8\.2\.0\.* toolchain\. If you're using an older version of the Xtensa toolchain, please download the required version\.
++ If you see an error log like the following about python dependencies that are not being met for ESP\-IDF v4\.2:
 
-For troubleshooting information, see [Troubleshooting getting started](gsg-troubleshooting.md)\.
+  ```
+  The following Python requirements are not satisfied:
+  click>=5.0
+  pyserial>=3.0
+  future>=0.15.2
+  pyparsing>=2.0.3,<2.4.0
+  pyelftools>=0.22
+  gdbgui==0.13.2.0
+  pygdbmi<=0.9.0.2
+  reedsolo>=1.5.3,<=1.5.4
+  bitstring>=3.1.6
+  ecdsa>=0.16.0
+  Please follow the instructions found in the "Set up the tools" section of ESP-IDF Getting Started Guide
+  ```
+
+  then install the python dependencies on your platform using the following python command:
+
+  ```
+  root/vendors/espressif/esp-idf/requirements.txt
+  ```
+
+For more troubleshooting information, see [Troubleshooting getting started](gsg-troubleshooting.md)\.
 
 ### Debugging code on Espressif ESP32\-DevKitC and ESP\-WROVER\-KIT<a name="debugging-espressif"></a>
 

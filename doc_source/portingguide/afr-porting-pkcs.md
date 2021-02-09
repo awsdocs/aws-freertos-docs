@@ -49,7 +49,7 @@ To port the corePKCS11 library, you need the following:
 1. Add support for a cryptographically random entropy source to your port:
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\):
 
-     1. Implement the [ `mbedtls_hardware_poll()`](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L92) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c`\. 
+     1. Implement the [ mbedtls\_hardware\_poll\(\)](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L90-L91) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c`\. 
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG:
 
      1. Make a copy of `freertos/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
@@ -58,15 +58,15 @@ To port the corePKCS11 library, you need the following:
 
      1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
 
-        For information about implementing these functions, see the comments in the [ mbedtls/include/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L102) and [ mbedtls/include/mbedtls/config\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/config.h#L1121) mbedTLS header files\.
+        For information about implementing these functions, see the comments in the [ mbedtls/include/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/entropy_poll.h#L94-L102) and [ mbedtls/include/mbedtls/config\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/config.h#L3482-L3511) mbedTLS header files\.
 **Important**  
 A seed file with an NIST\-approved entropy source must be supplied to the device at manufacturing time\.
 **Note**  
-If you are interested in the FreeRTOS Qualification Program, please read our requirements for [ RNG](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html)\.
+If you are interested in the FreeRTOS Qualification Program, please read our requirements for [RNG](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html)\.
 
    For more information about NIST\-approved DRBGs and entropy sources, see the following NIST publications:
-   + [Recommendation for Random Number Generation Using Deterministic Random Bit Generators](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf)
-   + [Recommendation for Random Bit Generator \(RBG\) Constructions](https://csrc.nist.gov/csrc/media/publications/sp/800-90c/draft/documents/draft-sp800-90c.pdf)
+   + [ Recommendation for Random Number Generation Using Deterministic Random Bit Generators](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf)
+   + [ Recommendation for Random Bit Generator \(RBG\) Constructions](https://csrc.nist.gov/csrc/media/publications/sp/800-90c/draft/documents/draft-sp800-90c.pdf)
 
 ## Testing<a name="porting-testing-pkcs"></a>
 

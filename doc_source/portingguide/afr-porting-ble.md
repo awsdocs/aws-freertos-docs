@@ -141,7 +141,7 @@ The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/bo
 
 1. Enable SSH on the Raspberry Pi\. For instructions, see the [Raspberry Pi documentation](https://www.raspberrypi.org/documentation/remote-access/ssh/)\.
 
-1. On your computer, open the `freertos/tests/bleTestsScripts/runPI.sh` script, and change the IP addresses in the first two lines to the IP address of your Raspberry Pi:
+1. On your computer, open the `freertos/libraries/abstractions/ble_hal/test/ble_test_scripts/runPI.sh` script, and change the IP addresses in the first two lines to the IP address of your Raspberry Pi:
 
    ```
    #!/bin/sh

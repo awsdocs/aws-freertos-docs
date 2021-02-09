@@ -1,7 +1,7 @@
 # FreeRTOS User Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -72,7 +72,6 @@ Amazon's trademarks and trade dress may not be used in
       + [Creating an OTA update (AWS IoT console)](ota-console-workflow.md)
       + [Creating an OTA update with the AWS CLI](ota-cli-workflow.md)
    + [OTA Update Manager service](ota-manager.md)
-   + [AWS IoT OTA Streaming service](streaming-service.md)
    + [Integrating the OTA Agent into your application](integrate-ota-agent.md)
    + [OTA security](dev-guide-ota-security.md)
    + [OTA troubleshooting](ota-troubleshooting.md)
@@ -89,6 +88,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Logging library](lib-logging.md)
       + [Static Memory library](lib-static.md)
       + [Task Pool library](task-pool.md)
+   + [backoffAlgorithm library](backoffalgorithm-library.md)
    + [Bluetooth Low Energy library](freertos-ble-library.md)
       + [Mobile SDKs for FreeRTOS Bluetooth devices](freertos-ble-mobile.md)
    + [Common I/O](common-io.md)
@@ -113,6 +113,7 @@ Amazon's trademarks and trade dress may not be used in
       + [coreHTTP mutual authentication demo](core-http-ma-demo.md)
       + [coreHTTP basic Amazon S3 upload demo](core-http-s3-upload-demo.md)
       + [coreHTTP basic S3 download demo](core-http-s3-download-demo.md)
+      + [coreHTTP basic multithreaded demo](core-http-bmt-demo.md)
    + [AWS IoT Jobs library demo](freertos-jobs-demo.md)
    + [coreMQTT Mutual Authentication demo](mqtt-demo.md)
    + [Over-the-air updates demo application](ota-demo.md)

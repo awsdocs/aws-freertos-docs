@@ -17,7 +17,7 @@ In this demo, you use an MQTT connection to the AWS IoT MQTT broker\. This conne
 
 ## Functionality<a name="freertos-jobs-demo-functionality"></a>
 
-The demo shows the workflow used to receive jobs from AWS IoT and process them on a device\. The demo is interactive and requires you to create jobs by using either the AWS IoT console or the AWS Command Line Interface \(AWS CLI\)\. For more information about creating a job\. see [create\-job](https://docs.aws.amazon.com/cli/latest/reference/iot/create-job.html) in the *AWS CLI Command Reference*\. The demo requires the job document to have an `action` key set to `print` to print a message to the console\.
+The demo shows the workflow used to receive jobs from AWS IoT and process them on a device\. The demo is interactive and requires you to create jobs by using either the AWS IoT console or the AWS Command Line Interface \(AWS CLI\)\. For more information about creating a job, see [create\-job](https://docs.aws.amazon.com/cli/latest/reference/iot/create-job.html) in the *AWS CLI Command Reference*\. The demo requires the job document to have an `action` key set to `print` to print a message to the console\.
 
 See the following format for this job document\.
 
@@ -55,9 +55,9 @@ The demo loops until it receives a job document with the `action` key set to `ex
 }
 ```
 
-### Entry point of the jobs demo<a name="freertos-jobs-demo-functionality-entry-point"></a>
+### Entry point of the Jobs demo<a name="freertos-jobs-demo-functionality-entry-point"></a>
 
-The source code for the Jobs demo entry point function can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L705-L899)\. This function performs the following operations:
+The source code for the Jobs demo entry point function can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L717-L911)\. This function performs the following operations:
 
 1. Establish an MQTT connection using the helper functions in `mqtt_demo_helpers.c`\.
 
@@ -71,14 +71,10 @@ The source code for the Jobs demo entry point function can be found on [ GitHub]
 
 ### Callback for received MQTT messages<a name="freertos-jobs-demo-functionality-callback"></a>
 
-This function calls `Jobs_MatchTopic` from the AWS IoT Jobs library to classify the incoming MQTT message\. If the message type corresponds to a new job, `prvNextJobHandler()` is called\.
+The [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L618-L713) function calls `Jobs_MatchTopic` from the AWS IoT Jobs library to classify the incoming MQTT message\. If the message type corresponds to a new job, `prvNextJobHandler()` is called\.
 
-The `prvNextJobHandler` function, and the functions it calls, parse the job document from the JSON\-formatted message, and runs the action specified by the job\. Of particular interest is the `prvSendUpdateForJob` function\.
-
-The source code for this callback function for incoming messages can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L564-L602)\.
+The [ prvNextJobHandler](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L576-L614) function, and the functions it calls, parse the job document from the JSON\-formatted message, and run the action specified by the job\. Of particular interest is the `prvSendUpdateForJob` function\.
 
 ### Send an update for a running job<a name="freertos-jobs-demo-functionality-send-update"></a>
 
-The function `prvSendUpdateForJob()` calls `Jobs_Update()` from the Jobs library to populate the topic string used in the MQTT publish operation that immediately follows\.
-
-The source code for the `prvSendUpdateForJob()` function can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L384-L428)\.
+The function [ prvSendUpdateForJob\(\)](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L396-L440) calls `Jobs_Update()` from the Jobs library to populate the topic string used in the MQTT publish operation that immediately follows\.

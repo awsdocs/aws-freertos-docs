@@ -156,9 +156,6 @@ To find the Amazon S3 object key of your signed firmware image, use the aws sign
 ... text deleted for brevity ...
 ```
 
-**Note**  
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](streaming-service.md#ota-troubleshooting-stream-limit)\.
-
 ## Creating an OTA update<a name="create-ota-update"></a>
 
 Use the create\-ota\-update CLI command to create an OTA update job\.
@@ -540,9 +537,6 @@ The following is an example of a JSON file passed into the create\-ota\-update C
   }
 ]
 ```
-
-**Note**  
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](streaming-service.md#ota-troubleshooting-stream-limit)\.
 
 ## Listing OTA updates<a name="list-ota-updates"></a>
 

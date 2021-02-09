@@ -95,7 +95,6 @@ The job appears in the AWS IoT console with a status of **IN PROGRESS**\.
 
 **Note**  
 The AWS IoT console does not update the state of jobs automatically\. Refresh your browser to see updates\.
-If you see `"Error: You have exceeded the limit for the number of streams in your AWS account."`, then see [Stream limit exceeded for your AWS account](streaming-service.md#ota-troubleshooting-stream-limit)\.
 
 Connect your serial UART terminal to your device\. You should see output that indicates the device is downloading the updated firmware\.
 

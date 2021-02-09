@@ -163,7 +163,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
    1. In the navigation pane, choose **Test** to open the MQTT client\.
 
-   1. For **Subscription topic**, enter **iotdemo/\#**, and then choose **Subscribe to topic**\.
+   1. For **Subscription topic**,  enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
    1. Reset the kit to force it to publish MQTT messages, which can then be seen on the console test client\.
 
@@ -186,4 +186,4 @@ PSoC 64 MCUs have passed all of the required FreeRTOS qualification tests\. Howe
 
 When a successfully validated OTA image is applied to a device using the PSoC64 Standard Secure – AWS MCU and the device can't communicate with AWS IoT Core, the device can't automatically rollback to the original known good image\. This might result in the device being unreachable from AWS IoT Core for further updates\. This functionality is still under development by the Cypress team\.
 
-For more information, see [OTA Updates with AWS and the CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20063)\. If you have further questions or need technical support, contact the [Cypress Developer Community](https://community.cypress.com/community/software-forums/modustoolbox-amazon-freertos-sdk)\.
+For more information, see [OTA Updates with AWS and the CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20063)\. If you have further questions or need technical support, contact the [Cypress Developer Community](https://community.cypress.com)\.
