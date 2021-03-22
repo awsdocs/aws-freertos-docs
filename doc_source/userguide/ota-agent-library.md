@@ -62,3 +62,18 @@ A typical OTA\-capable device application using the MQTT protocol drives the OTA
 ## Porting<a name="freertos-ota-porting"></a>
 
 For information about porting OTA functionality to your platform, see [Porting the OTA Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ota.html) in the FreeRTOS Porting Guide\.
+
+## Memory use<a name="freertos-ota-memory"></a>
+
+
+****  
+
+| Code Size of AWS IoT OTA \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| ota\.c | 8\.0K | 7\.1K | 
+| ota\_interface\.c | 0\.1K | 0\.1K | 
+| ota\_base64\.c | 0\.6K | 0\.6K | 
+| ota\_mqtt\.c | 2\.2K | 2\.1K | 
+| ota\_cbor\.c | 0\.8K | 0\.6K | 
+| ota\_http\.c | 0\.3K | 0\.3K | 
+| Total estimate | 12\.0K | 10\.8K | 

@@ -41,6 +41,7 @@ To grant your IAM user the required permissions, create an OTA user policy and t
                    "s3:PutBucketVersioning",
                    "s3:GetBucketLocation",
                    "s3:GetObjectVersion",
+                   "s3:ListBucketVersions",
                    "acm:ImportCertificate",
                    "acm:ListCertificates",
                    "iot:*",

@@ -10,15 +10,10 @@ The library is written in C and designed to be compliant with [ISO C90](https://
 
 This library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 
-```
------------------------------------------------------------------------
-| Code Size of backoffAlgorithm                                       |
-|     (example generated with [GCC for ARM Cortex\-M](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                   |
-|---------------------------------------------------------------------|
-| File                | With -O1 Optimisation | With -Os Optimisation |
-|---------------------|-----------------------|-----------------------|
-| backoff_algorithm.c | 0.1K                  | 0.1K                  | 
-|---------------------|-----------------------|-----------------------|
-| Total estimate      | 0.1K                  | 0.1K                  |
------------------------------------------------------------------------
-```
+
+****  
+
+| Code Size of backoffAlgorithm \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| backoff\_algorithm\.c | 0\.1K | 0\.1K | 
+| Total estimate | 0\.1K | 0\.1K | 

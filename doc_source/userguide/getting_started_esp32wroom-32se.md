@@ -9,29 +9,25 @@ Currently, the FreeRTOS port for ESP32\-WROOM\-32SE doesn't support the symmetri
 
 This tutorial guides you through the following steps:
 
-1. Connect your board to a host machine\.
+1. Connect your board to a host machine
 
-1. Install software on your host machine to develop and debug embedded applications for your microcontroller board\.
+1. Install software on your host machine to develop and debug embedded applications for your microcontroller board
 
-1. Cross\-compile a FreeRTOS demo application to a binary image\.
+1. Cross\-compile a FreeRTOS demo application to a binary image
 
-1. Load the application binary image to your board, and then run the application\.
+1. Load the application binary image to your board, and then run the application
 
-1. Monitor and debug the running application using a serial connection\.
+1. Monitor and debug the running application using a serial connection
 
 ## Prerequisites<a name="setup-esp32wroom-32se-prereqs"></a>
 
-Before you get started with FreeRTOS on your Espressif board, you need to set up your AWS account and permissions\.
+Before you get started with FreeRTOS on your Espressif board, you must set up your AWS account and permissions\.
 
-To create an AWS account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
+To create an account, see [Create and Activate an AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 
-To add an IAM user to your AWS account, see the [Adding a User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. To grant your IAM user permission to AWS IoT and FreeRTOS, attach the following IAM managed policies to your IAM users:
-+ `AmazonFreeRTOSFullAccess`
-
-  Allows full access to all of your IAM user's FreeRTOS resources \(`freertos:*`\)\. 
-+ `AWSIoTFullAccess`
-
-  Allows full access to all of your IAM user's IoT resources \(`iot:*`\)\.
+To add an AWS Identity and Access Management \(IAM\) user to your account, see [Adding a user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. To grant your IAM user permission to AWS IoT and FreeRTOS, attach the following IAM managed policies to your IAM users:
++ `AmazonFreeRTOSFullAccess` – Allows full access to all of your IAM user's FreeRTOS resources \(`freertos:*`\) 
++ `AWSIoTFullAccess` – Allows full access to all of your IAM user's AWS IoT resources \(`iot:*`\)\.
 
 **To attach the `AmazonFreeRTOSFullAccess` policy to your IAM user**
 
@@ -53,7 +49,7 @@ To add an IAM user to your AWS account, see the [Adding a User](https://docs.aws
 
 1. Navigate to the [IAM console](https://console.aws.amazon.com/iam/home)\.
 
-1. In the navigation pane, choose ** Users**\.
+1. In the navigation pane, choose **Users**\.
 
 1. Enter your user name in the search text box, and then choose it from the list\.
 
@@ -65,12 +61,12 @@ To add an IAM user to your AWS account, see the [Adding a User](https://docs.aws
 
 1. Choose **Add permissions**\.
 
-For more information about IAM, see the [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide)\.
+For more information about IAM, see the [ IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide)\.
 
-For more information about policies, see [IAM Permissions and Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
+For more information about policies, see [Permissions and policies in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
 **Note**  
-The FreeRTOS 202012\.00 release supports ESP\-IDF v3\.3\. If you are using a newer revision of FreeRTOS, follow the instructions specific to IDFv4\.2 at [Get started with the ESP\-IDF v4\.2](getting_started_espressif.md#setup-espressif-idf42)\.
+The FreeRTOS 202012\.00 release supports ESP\-IDF v3\.3\. If you're using a later revision of FreeRTOS, follow the instructions specific to IDFv4\.2 at [Get started with the ESP\-IDF v4\.2](getting_started_espressif.md#setup-espressif-idf42)\.
 
 ## Get started with ESP\-IDF v3\.3<a name="setup-esp32wroom-32se-idf33"></a>
 
@@ -81,11 +77,11 @@ This section shows you how to use ESP\-IDF v3\.3 on Espressif hardware\. To use 
 See the [ ESP32\-DevKitC Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/get-started-devkitc.html) for information about setting up the ESP32\-WROOM\-32SE development board hardware\.
 
 **Important**  
-When you reach the **Get Started** section of the Espressif guide STOP, then follow the steps below\.
+When you reach the **Get Started** section of the Espressif guide, stop and then follow the steps below\.
 
 ### Set up your development environment<a name="setup-env-esp32wroom-32se-idf33"></a>
 
-To communicate with your board, you need to download and install a toolchain\.
+To communicate with your board, you must download and install a toolchain\.
 
 #### Setting up the toolchain<a name="setup-esp32wroom-32se-toolchain-idf33"></a>
 
@@ -123,22 +119,22 @@ For more details about using CMake with FreeRTOS, see [Using CMake with FreeRTOS
 
 ### Download and configure FreeRTOS<a name="download-and-configure-esp32wroom-32se-idf33"></a>
 
-After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file\.
+After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file on the GitHub website\.
 
 **Important**  
 The ATECC608A device has a one\-time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
 
 1. Configure the FreeRTOS Demo Project by following the steps in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\. Skip the last step **To format your AWS IoT credentials** and follow the steps below instead\.
 
-1. Microchip has provided several scripting tools to help with the setup of the ATECC608A parts\. Navigate to the `freertos/vendors/microchip/secure_elements/app/example_trust_chain_tool` directory, and open the `README.md` file\.
+1. Microchip has provided several scripting tools to help with the setup of the ATECC608A parts\. Navigate to the `freertos/vendors/microchip/secure_elements/app/example_trust_chain_tool` directory, and then open the `README.md` file\.
 
-   Follow the instructions in the `README.md` file to provision your device\. The steps include:
+1. Follow the instructions in the `README.md` file to provision your device\. The steps include the following:
 
-   1. Create and register a certificate authority with AWS\.
+   1. Create and register a certificate authority with AWS
 
-   1. Generate your keys on the ATECC608A and export the public key and device serial number\.
+   1. Generate your keys on the ATECC608A and export the public key and device serial number
 
-   1. Generate a certificate for the device and register that certificate with AWS\.
+   1. Generate a certificate for the device and register that certificate with AWS
 
 1. Load the CA certificate and device certificate onto the device by following the instructions for [Developer\-mode key provisioning](dev-mode-key-provisioning.md)\.
 
@@ -161,11 +157,11 @@ Use CMake to generate the build files, and then use Make to build the applicatio
    ```
    cmake -DVENDOR=espressif -DBOARD=esp32_plus_ecc608a_devkitc -DCOMPILER=xtensa-esp32 -S . -B your-build-directory
    ```
-**Note**  
+**Notes**  
 To build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag\.  
 To generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.  
 The code provided by Espressif uses the lightweight IP \(lwIP\) stack as the default networking stack\. To use the FreeRTOS\+TCP networking stack instead, add the `–DAFR_ESP_FREERTOS_TCP` flag to the CMake command\.  
-To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom WiFi component\.  
+To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom Wi\-Fi component\.  
 
    ```
    # Add a dependency on the bluetooth espressif component to the common component
@@ -203,7 +199,7 @@ Use CMake to generate the build files, and then use Make to build the applicatio
 To build the application for debugging, add the `-DCMAKE_BUILD_TYPE=Debug` flag\.  
 To generate the test application build files, add the `-DAFR_ENABLE_TESTS=1` flag\.  
 The code provided by Espressif uses the lightweight IP \(lwIP\) stack as the default networking stack\. To use the FreeRTOS\+TCP networking stack instead, add the `–DAFR_ESP_FREERTOS_TCP` flag to the CMake command\.  
-To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom WiFi component\.  
+To add the lwIP dependency for non\-vendor provided code, add the following lines to the CMake dependency file, `CMakeLists.txt`, for your custom Wi\-Fi component\.  
 
    ```
    # Add a dependency on the bluetooth espressif component to the common component
@@ -250,7 +246,7 @@ You can also use the IDF script to flash your board\.
 ./vendors/espressif/esp-idf/tools/idf.py flash -B build-directory
 ```
 
-To monitor:
+Use the following command to view logs:
 
 ```
 ./vendors/espressif/esp-idf/tools/idf.py monitor -p /dev/ttyUSB1 -B build-directory
@@ -272,7 +268,7 @@ This section shows you how to use ESP\-IDF v4\.2 on Espressif hardware\. To use 
 For information about setting up the ESP32\-WROOM\-32SE development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
 
 **Important**  
-When you reach the **Get Started** section of the Espressif guides STOP, then follow the steps below\.
+When you reach the **Get Started** section of the Espressif guides, stop, and then follow the steps below\.
 
 ### Set up your development environment<a name="setup-env-esp32wroom-32se-idf42"></a>
 
@@ -286,19 +282,19 @@ To set up the toolchain, follow the instructions for your host machine's operati
 + [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for Linux](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/linux-setup.html)
 
 **Important**  
-When you reach the "Get ESP\-IDF" instructions under **Next Steps**, STOP and return to the instructions on this page\.
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and then return to the instructions on this page\.
 
 ##### Complete the installation \(Linux / Mac\)<a name="setup-esp32wroom-32se-toolchain-idf42-posix"></a>
 
-The ESP\-IDF Windows installer installs all of the neceesary tools\. The Linux and MAC OSX platforms require an additional step in order to complete the installation\.
+The ESP\-IDF Windows installer installs all of the necessary tools\. The Linux and MAC OSX platforms require an additional step in order to complete the installation\.
 
-Open a command line window, navigate to the FreeRTOS download directory, and run the following script to download and install the espressif toolchain for your platform: 
+Open a command line window, navigate to the FreeRTOS download directory, and then run the following script to download and install the espressif toolchain for your platform\.
 
 ```
 vendors/espressif/esp-idf/install.sh
 ```
 
- Next, add the ESP\-IDF toolchain tools to your terminal's path with the following command: 
+ Next, add the ESP\-IDF toolchain tools to your terminal's path with the following command\.
 
 ```
 source vendors/espressif/esp-idf/export.sh
@@ -314,7 +310,7 @@ source vendors/espressif/esp-idf/export.sh
 
 ### Download and configure FreeRTOS<a name="download-and-configure-esp32wroom-32se-idf42"></a>
 
-After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file\.
+After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file on the GitHub website\.
 
 **Important**  
 The ATECC608A device has a one\-time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
@@ -323,13 +319,13 @@ The ATECC608A device has a one\-time initialization that is locked onto the devi
 
 1. Microchip has provided several scripting tools to help with the setup of the ATECC608A parts\. Navigate to the `freertos/vendors/microchip/secure_elements/app/example_trust_chain_tool` directory, and open the `README.md` file\.
 
-   Follow the instructions in the `README.md` file to provision your device\. The steps include:
+1. Follow the instructions in the `README.md` file to provision your device\. The steps include the following:
 
-   1. Create and register a certificate authority with AWS\.
+   1. Create and register a certificate authority with AWS
 
-   1. Generate your keys on the ATECC608A and export the public key and device serial number\.
+   1. Generate your keys on the ATECC608A and export the public key and device serial number
 
-   1. Generate a certificate for the device and register that certificate with AWS\.
+   1. Generate a certificate for the device and register that certificate with AWS
 
 1. Load the CA certificate and device certificate onto the device by following the instructions for [Developer\-mode key provisioning](dev-mode-key-provisioning.md)\.
 
@@ -339,10 +335,10 @@ You can use Espressif's IDF utility to generate the build files, build the appli
 
 #### Build and flash FreeRTOS on Windows, Linux, and MacOS \(ESP\-IDF v4\.2\)<a name="build-esp32wroom-32se-idf42"></a>
 
-Use the "idf\.py" script to build the project and flash the binaries onto your device\.
+Use the `idf.py` script to build the project and flash the binaries onto your device\.
 
 **Note**  
-Some setups may require that you use the port option `"-p port-name"` with "idf\.py" to specify the correct port\. For example:  
+Some setups might require that you use the port option `"-p port-name"` with `idf.py` to specify the correct port, as in the following example\.  
 
 ```
 idf.py -p /dev/cu.usbserial-00101301B flash
@@ -354,13 +350,13 @@ idf.py -p /dev/cu.usbserial-00101301B flash
 
 1. In a command line window, enter the following command to add the ESP\-IDF tools to your terminal's PATH:
 
-   Windows: 
+   Windows
 
    ```
    vendors\espressif\esp-idf\export.bat
    ```
 
-   Linux / MacOS: 
+   Linux / MacOS
 
    ```
    source vendors/espressif/esp-idf/export.sh
@@ -369,10 +365,10 @@ idf.py -p /dev/cu.usbserial-00101301B flash
 1. Configure cmake in the `build` directory and build the firmware image with the following command\.
 
    ```
-   idf.py -DVENDOR=espressif -DBOARD=esp32_ecc608a_devkitc -DCOMPILER=xtensa-esp32 build
+   idf.py -DVENDOR=espressif -DBOARD=esp32_ecc608a_devkitc -DCOMPILER=xtensa-esp32 build 
    ```
 
-   You should see output like this:
+   You should see output like this following example\.
 
    ```
    Running cmake in directory /path/to/hello_world/build
@@ -395,33 +391,33 @@ idf.py -p /dev/cu.usbserial-00101301B flash
 
    If there are no errors, the build will generate the firmware binary \.bin files\.
 
-1. Erase your development board's flash memory with the following command:
+1. Erase your development board's flash memory with the following command\.
 
    ```
    idf.py erase_flash 
    ```
 
-1. Use the idf\.py script to flash the application binary to your board:
+1. Use the `idf.py` script to flash the application binary to your board\.
 
    ```
    idf.py flash
    ```
 
-1. Monitor the output from your board's serial port with the following command:
+1. Monitor the output from your board's serial port with the following command\.
 
    ```
    idf.py monitor
    ```
 
 **Note**  
-You can combine these commands\. For example:  
+You can combine these commands as in the following example\.  
 
 ```
 idf.py erase_flash flash monitor 
 ```
 
 **Note**  
-For certain host machine setups, you must specify the port when you flash the board\. For example:  
+For certain host machine setups, you must specify the port when you flash the board as in the following example\.  
 
 ```
 idf.py erase_flash flash monitor -p /dev/ttyUSB1
@@ -437,13 +433,13 @@ Besides using the idf\.py script provided by the IDF SDK to build and run your c
 
 1. Run the following script to add the ESP\-IDF tools to your shell's PATH\.
 
-   Windows: 
+   Windows
 
    ```
    vendors\espressif\esp-idf\export.bat
    ```
 
-   Linux / MacOS: 
+   Linux / MacOS
 
    ```
    source vendors/espressif/esp-idf/export.sh
@@ -451,13 +447,13 @@ Besides using the idf\.py script provided by the IDF SDK to build and run your c
 
 1. Enter the following command to generate the build files\.
 
-   With Unix Makefiles: 
+   With Unix Makefiles 
 
    ```
    cmake -DVENDOR=espressif -DBOARD=esp32_plus_ecc608a_devkitc -DCOMPILER=xtensa-esp32 -S . -B ./YOUR_BUILD_DIRECTORY -DAFR_ENABLE_ALL_MODULES=1 -DAFR_ENABLE_TESTS=0
    ```
 
-   With Ninja:
+   With Ninja
 
    ```
    cmake -DVENDOR=espressif -DBOARD=esp32_plus_ecc608a_devkitc -DCOMPILER=xtensa-esp32 -S . -B ./YOUR_BUILD_DIRECTORY -DAFR_ENABLE_ALL_MODULES=1 -DAFR_ENABLE_TESTS=0 -GNinja
@@ -465,7 +461,7 @@ Besides using the idf\.py script provided by the IDF SDK to build and run your c
 
 1. Erase the flash and then flash the board\.
 
-   With Unix Makefiles: 
+   With Unix Makefiles 
 
    ```
    make -C ./YOUR_BUILD_DIRECTORY erase_flash
@@ -475,7 +471,7 @@ Besides using the idf\.py script provided by the IDF SDK to build and run your c
    make -C ./YOUR_BUILD_DIRECTORY flash
    ```
 
-   With Ninja:
+   With Ninja
 
    ```
    ninja -C ./YOUR_BUILD_DIRECTORY erase_flash
@@ -499,6 +495,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 ## Additional information<a name="getting_started_esp32wroom-32se-additional"></a>
 
-For additional information on using and troubleshooting Espressif ESP32 boards, see: 
+For additional information on using and troubleshooting Espressif ESP32 boards, see the following topics:
 +  [Using FreeRTOS in your own CMake project for ESP32](getting_started_espressif.md#getting_started_espressif_cmake_project) 
 +  [Troubleshooting](getting_started_espressif.md#getting_started_espressif_troubleshooting) 
++  [Debugging](getting_started_espressif.md#getting_started_espressif_debugging) 

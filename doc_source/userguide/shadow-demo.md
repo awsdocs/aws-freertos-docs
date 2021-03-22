@@ -37,7 +37,7 @@ The following screenshot shows the expected output when the demo succeeds\.
 
 ## Connect to the AWS IoT MQTT broker<a name="shadow-demo-connect-mqtt"></a>
 
-To connect to the AWS IoT MQTT broker, we use the same method as `MQTT_Connect()` in the [coreMQTT Mutual Authentication demo](mqtt-demo.md)\.
+To connect to the AWS IoT MQTT broker, we use the same method as `MQTT_Connect()` in the [coreMQTT mutual authentication demo](mqtt-demo-ma.md)\.
 
 ## Delete the shadow document<a name="shadow-demo-delete-document"></a>
 

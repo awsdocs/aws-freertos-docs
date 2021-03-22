@@ -2,11 +2,15 @@
 
 ## Overview<a name="freertos-pkcs-overview"></a>
 
-Public Key Cryptography Standard \#11 \(PKCS\#11\) is a cryptographic API that abstracts key storage, get/set properties for cryptographic objects, and session semantics\. See `pkcs11.h` \(obtained from OASIS,  the standard body\) in the FreeRTOS source code repository\. In the FreeRTOS reference implementation, [ corePKCS11 API](https://docs.aws.amazon.com/embedded-csdk/latest/lib-ref/libraries/standard/corePKCS11/docs/doxygen/output/html/index.html) calls are made by the TLS helper interface in order to perform TLS client authentication during `SOCKETS_Connect`\. PKCS\#11 API calls are also made by our one\-time developer provisioning workflow to import a TLS client certificate and private key for authentication to the AWS IoT MQTT broker\. Those two use cases, provisioning and TLS client authentication, require implementation of only a small subset of the PKCS\#11 interface standard\.
+The Public Key Cryptography Standard \#11 defines a platform\-independent API to manage and use cryptographic tokens\. [PKCS \#11](https://en.wikipedia.org/wiki/PKCS_11) refers to the API defined by the standard and to the standard itself\. The PKCS \#11 cryptographic API abstracts key storage, get/set properties for cryptographic objects, and session semantics\. It's widely used for manipulating common cryptographic objects, and it's important because the functions it specifies allow application software to use, create, modify, and delete cryptographic objects, without ever exposing those objects to the application's memory\. For example, FreeRTOS AWS reference integrations use a small subset of the PKCS \#11 API to access the secret \(private\) key necessary to create a network connection that is authenticated and secured by the [Transport Layer Security \(TLS\)](https://en.wikipedia.org/wiki/Transport_Layer_Security) protocol without the application ever 'seeing' the key\.
+
+The corePKCS11 library contains a software\-based mock implementation of the PKCS \#11 interface \(API\) that uses the cryptographic functionality provided by Mbed TLS\. Using a software mock enables rapid development and flexibility, but it's expected that you will replace the mock with an implementation specific to the secure key storage used in your production devices\. Generally, vendors for secure cryptoprocessors, such as Trusted Platform Module \(TPM\), Hardware Security Module \(HSM\), Secure Element, or any other type of secure hardware enclave, distribute a PKCS \#11 implementation with the hardware\. The purpose of the corePKCS11 software only mock library is therefore to provide a non hardware specific PKCS \#11 implementation that allows for rapid prototyping and development before switching to a cryptoprocessor specific PKCS \#11 implementation in production devices\.
+
+Only a subset of the PKCS \#11 standard is implemented, with a focus on operations involving asymmetric keys, random number generation, and hashing\. The targeted use cases include certificate and key management for TLS authentication, and code\-sign signature verification, on small embedded devices\. See the file `pkcs11.h` \(obtained from OASIS, the standard body\) in the FreeRTOS source code repository\. In the [ FreeRTOS reference implementation](https://docs.aws.amazon.com/embedded-csdk/latest/lib-ref/libraries/standard/corePKCS11/docs/doxygen/output/html/index.html), PKCS \#11 API calls are made by the TLS helper interface in order to perform TLS client authentication during `SOCKETS_Connect`\. PKCS \#11 API calls are also made by our one\-time developer provisioning workflow to import a TLS client certificate and private key for authentication to the AWS IoT MQTT broker\. Those two use cases, provisioning and TLS client authentication, require implementation of only a small subset of the PKCS \#11 interface standard\.
 
 ## Features<a name="freertos-pcks-features"></a>
 
-The following subset of PKCS\#11 is used\. This list is in roughly the order in which the routines are called in support of provisioning, TLS client authentication, and cleanup\. For detailed descriptions of the functions, see the PKCS\#11 documentation provided by the standard committee\.
+The following subset of PKCS \#11 is used\. This list is in roughly the order in which the routines are called in support of provisioning, TLS client authentication, and cleanup\. For detailed descriptions of the functions, see the PKCS \#11 documentation provided by the standard committee\.
 
 ### General setup and tear down API<a name="pkcs-required-setup-teardown"></a>
 + `C_Initialize`
@@ -40,7 +44,7 @@ The following subset of PKCS\#11 is used\. This list is in roughly the order in 
 
 ## Asymmetric cryptosystem support<a name="pkcs-asym-crypto"></a>
 
-The FreeRTOS PKCS\#11 reference implementation supports 2048\-bit RSA \(signing only\) and ECDSA with the NIST P\-256 curve\. The following instructions describe how to create an AWS IoT thing based on a P\-256 client certificate\.
+The FreeRTOS reference implementation uses PKCS \#11 2048\-bit RSA \(signing only\) and ECDSA with the NIST P\-256 curve\. The following instructions describe how to create an AWS IoT thing based on a P\-256 client certificate\.
 
 Make sure you are using the following \(or more recent\) versions of the AWS CLI and OpenSSL:
 
@@ -130,3 +134,15 @@ The certificate and private key are hard\-coded for demonstration purposes only\
 ## Porting<a name="freertos-pkcs-porting"></a>
 
 For information about porting the corePKCS11 library to your platform, see [Porting the corePKCS11 Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html) in the FreeRTOS Porting Guide\.
+
+## Memory use<a name="freertos-pkcs-memory"></a>
+
+
+****  
+
+| Code Size of corePKCS11 \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| core\_pkcs11\.c | 0\.8K | 0\.8K | 
+| core\_pki\_utils\.c | 0\.5K | 0\.3K | 
+| core\_pkcs11\_mbedtls\.c | 7\.2K | 6\.3K | 
+| Total estimate | 8\.5K | 7\.4K | 

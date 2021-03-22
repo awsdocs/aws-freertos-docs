@@ -478,7 +478,7 @@ Expands to the value in your `userData.sdkConfiguration.path` when used in the b
 `{{device.connectivity.serialPort}}`  
 Expands to the serial port\.
 
-`{{device.identifiers[?(@.name == 'serialNo')].value}}`  
+`{{device.identifiers[?(@.name == 'serialNo')].value[0]}}`  
 Expands to the serial number of your device\.
 
 `{{enableTests}}`  

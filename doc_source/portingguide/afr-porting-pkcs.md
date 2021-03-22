@@ -1,13 +1,12 @@
 # Porting the corePKCS11 library<a name="afr-porting-pkcs"></a>
 
-FreeRTOS uses the open standard PKCS \#11 “CryptoKi” API as the abstraction layer for cryptographic operations, including:
-+ Signing and verifying\.
-+ Storage and enumeration of X\.509 certificates\.
-+ Storage and management of cryptographic keys\.
+The corePKCS11 library contains a software\-based mock implementation of the PKCS \#11 interface \(API\) that uses the cryptographic functionality provided by Mbed TLS\. Storing private keys in general\-purpose flash memory can be convenient in evaluation and rapid prototyping scenarios\. In production scenarios, to reduce the threats of data theft and device duplication, we recommend that you use dedicated cryptographic hardware\. Cryptographic hardware includes components with features that prevent cryptographic secret keys from being exported\. 
 
-For more information, see [PKCS \#11 Cryptographic Token Interface Base Specification](http://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html)\.
+To use dedicated cryptographic hardware with FreeRTOS, port the PKCS \#11 API for the hardware you are using\. Generally, vendors for secure cryptoprocessors, such as Trusted Platform Module \(TPM\), Hardware Security Module \(HSM\), Secure Element, or any other type of secure hardware enclave, distribute a PKCS \#11 implementation with the hardware\. You can add the library to CMake and your IDE project, compile it and run the PKCS \#11 test suite\.
 
-Storing private keys in general\-purpose flash memory can be convenient in evaluation and rapid prototyping scenarios\. In production scenarios, to reduce the threats of data theft and device duplication, we recommend that you use dedicated cryptographic hardware\. Cryptographic hardware includes components with features that prevent cryptographic secret keys from being exported\. To use dedicated cryptographic hardware with FreeRTOS, you need to port the PKCS \#11 API to the hardware\. For information about the FreeRTOS corePKCS11 library, see [FreeRTOS corePKCS11 Library](https://docs.aws.amazon.com/freertos/latest/userguide/security-pkcs.html) in the *FreeRTOS User Guide*\.
+This section describes how to use the FreeRTOS corePKCS11 library as the basis of your own port of the PKCS \#11 API\. Only a subset of the PKCS \#11 standard is implemented, with a focus on operations involving asymmetric keys, random number generation, and hashing\. PKCS \#11 API calls are made by the TLS helper interface in order to perform TLS client authentication during `SOCKETS_Connect`\. PKCS \#11 API calls are also made by our one\-time developer provisioning workflow to import a TLS client certificate and private key for authentication to the AWS IoT MQTT broker\. Those two use cases, provisioning and TLS client authentication, require implementation of only a small subset of the PKCS \#11 interface standard\.
+
+For information about the FreeRTOS corePKCS11 library, see [FreeRTOS corePKCS11 Library](https://docs.aws.amazon.com/freertos/latest/userguide/security-pkcs.html) in the *FreeRTOS User Guide*\.
 
 ## Prerequisites<a name="porting-prereqs-pkcs"></a>
 
@@ -23,19 +22,19 @@ To port the corePKCS11 library, you need the following:
 
 **To port the corePKCS11 library**
 
-1. Port the PKCS \#11 API functions\.
+1. Port the PKCS \#11 API functions implemented by corePKCS11\.
 
    The PKCS \#11 API is dependent on the implementation of cryptographic primitives, such as SHA256 hashing and Elliptic Curve Digital Signature Algorithm \(ECDSA\) signing\.
 
-   The FreeRTOS implementation of PKCS \#11 uses the cryptographic primitives implemented in the mbedTLS library\. FreeRTOS includes a port for mbedTLS\. If your target hardware offloads crypto to a separate module, or if you want to use a software implementation of the cryptographic primitives other than mbedTLS, you need to modify the existing PKCS \#11 port\.
+   The FreeRTOS implementation of PKCS \#11 uses the cryptographic primitives implemented in the mbedTLS library\. FreeRTOS includes a port for mbedTLS\. If your target hardware offloads crypto to a separate module, or if you want to use a software implementation of the cryptographic primitives other than mbedTLS, you need to modify the existing PKCS \#11 implementation\.
 
-1. Port the PKCS \# 11 Platform Abstraction Layer \(PAL\) for device\-specific certificate and key storage\.
+1. Port the corePKCS11 Platform Abstraction Layer \(PAL\) for device\-specific certificate and key storage\.
 
    If you decide to use the FreeRTOS implementation of PKCS \#11, little customization is required to read and write cryptographic objects to non\-volatile memory \(NVM\), such as onboard flash memory\.
 
-   Cryptographic objects should be stored in a section of NVM that is not initialized and is not erased on device reprogramming\. Users of the PKCS \#11 library should be able to provision devices with credentials, and then reprogram the device with a new application that accesses these credentials through the PKCS \#11 interface\.
+   Cryptographic objects should be stored in a section of NVM that is not initialized and is not erased on device reprogramming\. Users of the corePKCS11 library should be able to provision devices with credentials, and then reprogram the device with a new application that accesses these credentials through the corePKCS11 interface\.
 
-   PKCS \#11 PAL ports must provide a location to store:
+   corePKCS11 PAL ports must provide a location to store:
    + The device client certificate\. 
    + The device client private key\.
    + The device client public key\.
@@ -101,7 +100,7 @@ To define a library's portable layer target in `CMakeLists.txt`, follow the inst
 
 The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
 
-See the following example portable layer target definition for the corePKCS11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific PKCS \#11 PAL file\.
+See the following example portable layer target definition for the corePKCS11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific corePKCS11 PAL file\.
 
 ```
 # PKCS11
@@ -139,6 +138,6 @@ After you set up the library in the IDE project, you need to configure some othe
 
 ## Validation<a name="pkcs-validation"></a>
 
-To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
+To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you finish porting the corePKCS11 library to your device, you can start porting the TLS library\. See [Porting the TLS library](afr-porting-tls.md) for instructions\.

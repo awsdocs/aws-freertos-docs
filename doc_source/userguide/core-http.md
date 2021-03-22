@@ -14,18 +14,11 @@ When using HTTP connections in IoT applications, we recommend that you use a sec
 
 This library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 
-```
----------------------------------------------------------------------------
-| Code Size of coreHTTP                                                   |
-|     (example generated with [GCC for ARM Cortex\-M](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                       |
-|-------------------------------------------------------------------------|
-| File                    | With -O1 Optimisation | With -Os Optimisation |
-|-------------------------|-----------------------|-----------------------|
-| core-http_client.c      | 3.0K                  | 2.4K                  |
-|-------------------------|-----------------------|-----------------------|
-| http_parser.c           | 15.7K                 | 13.0K                 |
-|   (third-party utility) |                       |                       |
-|-------------------------|-----------------------|-----------------------|
-| Total estimate          | 18.7K                 | 15.4K                 |
----------------------------------------------------------------------------
-```
+
+****  
+
+| Code Size of coreHTTP \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| core\_http\_client\.c | 3\.1K | 2\.5K | 
+| http\_parser\.c \(third\-party utility\) | 15\.7K | 13\.0K | 
+| Total estimate | 18\.8K | 15\.5K | 

@@ -6,7 +6,7 @@ Make sure you have installed the latest Wi\-Fi firmware\. To download the latest
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w49aac13c27c39b9"></a>
+## Overview<a name="w31aac13c27c39b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -64,7 +64,7 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-### Using CMake with FreeRTOS<a name="w49aac13c27c39c13b7"></a>
+### Using CMake with FreeRTOS<a name="w31aac13c27c39c13b7"></a>
 
 If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -84,7 +84,7 @@ If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_
 
 For more information about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT messages on the cloud<a name="w49aac13c27c39c13b9"></a>
+### Monitoring MQTT messages on the cloud<a name="w31aac13c27c39c13b9"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

@@ -1,7 +1,7 @@
 # FreeRTOS User Guide
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -115,7 +115,9 @@ Amazon's trademarks and trade dress may not be used in
       + [coreHTTP basic S3 download demo](core-http-s3-download-demo.md)
       + [coreHTTP basic multithreaded demo](core-http-bmt-demo.md)
    + [AWS IoT Jobs library demo](freertos-jobs-demo.md)
-   + [coreMQTT Mutual Authentication demo](mqtt-demo.md)
+   + [coreMQTT demos](mqtt-demo.md)
+      + [coreMQTT mutual authentication demo](mqtt-demo-ma.md)
+      + [coreMQTT connection sharing demo](mqtt-demo-cs.md)
    + [Over-the-air updates demo application](ota-demo.md)
       + [Over-the-air demo configurations](ota-demo-specific-config.md)
       + [Download, build, flash, and run the FreeRTOS OTA demo on the Texas Instruments CC3220SF-LAUNCHXL](download-ota-ti.md)

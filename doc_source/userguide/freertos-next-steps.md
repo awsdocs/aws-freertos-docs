@@ -13,7 +13,7 @@ The following topics show you how to set up and run the FreeRTOS demos:
 + [AWS IoT Greengrass discovery demo application](gg-demo.md)
 + [coreHTTP demos](core-http-demo.md)
 + [AWS IoT Jobs library demo](freertos-jobs-demo.md)
-+ [coreMQTT Mutual Authentication demo](mqtt-demo.md)
++ [coreMQTT demos](mqtt-demo.md)
 + [Over\-the\-air updates demo application](ota-demo.md)
 + [Secure Sockets echo client demo](secure-sockets-demo.md)
 + [AWS IoT Device Shadow demo application](shadow-demo.md)

@@ -136,7 +136,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 
    1. Choose **Manage**, and then choose **Things**\. Make a note of the AWS IoT thing name of your board\.
 
-   1. In the `aws_demos` project, open `/demos/include/aws_clientcredential.h` and specify the following values\.
+   1. In the `aws_demos` project, open `demos/include/aws_clientcredential.h` and specify the following values\.
 
       ```
       #define clientcredentialMQTT_BROKER_ENDPOINT[] = "Your AWS IoT endpoint";
@@ -148,10 +148,10 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 
    1. Import the certificate PEM file and Private Key PEM file that you downloaded earlier\.
 
-   1. Choose **Generate and save aws\_clientcredential\_keys\.h** and replace this file in the `/demos/include/` directory\.  
+   1. Choose **Generate and save aws\_clientcredential\_keys\.h** and replace this file in the `demos/include/` directory\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/certificate-config-tool-rx65n.png)
 
-   1. Open the `/demos/include/aws_ota_codesigner_certificate.h` file, and specify these values\.
+   1. Open the `demos/include/aws_ota_codesigner_certificate.h` file, and specify these values\.
 
       ```
       #define signingcredentialSIGNING_CERTIFICATE_PEM [] = "your-certificate-key";
@@ -164,7 +164,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 
    1. Open the `vendors/renesas/boards/board/aws_demos/config_files/aws_demo_config.h` file, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
 
-   1. Open the `/demos/include/ aws_application_version.h` file, and set the initial version of the firmware to `0.9.2`\.  
+   1. Open the `demos/include/ aws_application_version.h` file, and set the initial version of the firmware to `0.9.2`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/firmware-version-rx65n.png)
 
    1. Change the following settings in the **Section Viewer**\.  

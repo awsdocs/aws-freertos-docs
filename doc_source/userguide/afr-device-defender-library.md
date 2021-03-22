@@ -9,3 +9,11 @@ You can use the AWS IoT Device Defender library to send security metrics from yo
 The library is written in C and designed to be compliant with [ISO C90](https://en.wikipedia.org/wiki/ANSI_C#C90) and [MISRA C:2012](https://www.misra.org.uk/MISRAHome/MISRAC2012/tabid/196/Default.aspx)\. The library has no dependencies on any additional libraries other than the standard C library\. It also doesn’t have any platform dependencies, such as threading or synchronization\. It can be used with any MQTT library and any [JSON](https://freertos.org/json/json-terminology.html) or [CBOR](https://cbor.io/) library\. The library has [proofs](https://www.cprover.org/cbmc/) showing safe memory use and no heap allocation, making it suitable for IoT microcontrollers, but also fully portable to other platforms\.
 
 The AWS IoT Device Defender library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
+
+
+****  
+
+| Code Size of AWS IoT Device Defender \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| defender\.c | 1\.1K | 0\.6K | 
+| Total estimate | 1\.1K | 0\.6K | 

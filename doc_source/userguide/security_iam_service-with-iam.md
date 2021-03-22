@@ -32,15 +32,11 @@ You can specify multiple actions using wildcards \(\*\)\. For example, to specif
 "Action": "service-prefix:Describe*"
 ```
 
-
-
 To see a list of AWS actions, see [Actions, Resources, and Condition Keys for AWS Services](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_actions-resources-contextkeys.html) in the *IAM User Guide*\.
 
 ### Resources<a name="security_iam_service-with-iam-id-based-policies-resources"></a>
 
 The `Resource` element specifies the object or objects to which the action applies\. Statements must include either a `Resource` or a `NotResource` element\. You specify a resource using an ARN or using the wildcard \(\*\) to indicate that the statement applies to all resources\.
-
-
 
 For more information about the format of ARNs, see [Amazon Resource Names \(ARNs\) and AWS Service Namespaces](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)\.
 

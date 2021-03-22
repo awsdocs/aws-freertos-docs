@@ -16,6 +16,8 @@ To test the BLE capabilities of the device under test \(DUT\), you must have a R
 **To set up your Raspberry Pi to run BLE tests**
 
 1. Download the custom [Yocto image](https://docs.aws.amazon.com/freertos/latest/userguide/afr/IDT_AFR_BLE_RaspberryPi_1.0.0.rpi-sdimg) that contains the software required to perform the tests\.
+**Note**  
+The Yocto image should only be used for testing with AWS IoT Device Tester for FreeRTOS and not for any other purpose\.
 
 1. Flash the yocto image onto the SD card for Raspberry Pi\.
 

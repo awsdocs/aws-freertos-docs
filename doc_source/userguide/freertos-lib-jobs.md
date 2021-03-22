@@ -8,15 +8,10 @@ The AWS IoT Jobs library is written in C and designed to be compliant with [ISO 
 
 This library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 
-```
----------------------------------------------------------------------------
-| Code Size of AWS IoT Jobs                                               |
-|     (example generated with [GCC for ARM Cortex\-M](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                       |
-|-------------------------------------------------------------------------|
-| File                    | With -O1 Optimisation | With -Os Optimisation |
-|-------------------------|-----------------------|-----------------------|
-| jobs.c                  | 1.7K                  | 1.4K                  |
-|-------------------------|-----------------------|-----------------------|
-| Total estimate          | 1.7K                  | 1.4K                  |
----------------------------------------------------------------------------
-```
+
+****  
+
+| Code Size of AWS IoT Jobs \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| jobs\.c | 1\.7K | 1\.4K | 
+| Total estimate | 1\.7K | 1\.4K | 

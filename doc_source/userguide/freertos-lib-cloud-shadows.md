@@ -8,15 +8,10 @@ The AWS IoT Device Shadow library has no dependencies on additional libraries ot
 
 This library can be freely used and is distributed under the [MIT open source license](https://freertos.org/a00114.html)\.
 
-```
----------------------------------------------------------------------------
-| Code Size of AWS IoT Device Shadow                                      |
-|     (example generated with [GCC for ARM Cortex\-M](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads/9-2019-q4-major))                       |
-|-------------------------------------------------------------------------|
-| File                    | With -O1 Optimisation | With -Os Optimisation |
-|-------------------------|-----------------------|-----------------------|
-| shadow.c                | 1.2K                  | 0.7K                  |
-|-------------------------|-----------------------|-----------------------|
-| Total estimate          | 1.2K                  | 0.7K                  |
----------------------------------------------------------------------------
-```
+
+****  
+
+| Code Size of AWS IoT Device Shadow \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| --- | --- | --- | --- | 
+| shadow\.c | 1\.2K | 0\.7K | 
+| Total estimate | 1\.2K | 0\.7K | 

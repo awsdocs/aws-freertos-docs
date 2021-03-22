@@ -76,11 +76,11 @@ You can query the context using JSONPath notation from your JSON files and from 
 + In `statemachine.json`, you use `{{$.query}}`\.
 + In API commands, you use `query` or `{{$.query}}`, depending on the command\. For more information, see the inline documentation in the SDKs\. 
 
-The following table describes the operators in a typical JSONPath expression:
+The following table describes the operators in a typical foobar JSONPath expression:
 
 
 | Operator  | Description  | 
-| --- |--- |
+| --- | --- | 
 | $ | The root element\. Because the top\-level context value for IDT is an object, you will typically use $\. to start your queries\. | 
 | \.childName | Accesses the child element with name childName from an object\. If applied to an array, yields a new array with this operator applied to each element\. The element name is case sensitive\. For example, the query to access the awsRegion value in the config object is $\.config\.awsRegion\. | 
 | \[start:end\] | Filters elements from an array, retrieving items beginning from the start index and going up to the end index, both inclusive\. | 
