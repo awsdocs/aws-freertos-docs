@@ -8,13 +8,30 @@ By downloading the software, you agree to the IDT for FreeRTOS License Agreement
 
 Use the following links to download the latest version of IDT for FreeRTOS\.
 
+**IDT v4\.0\.2 and test suite version 1\.5\.0 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
++ IDT v4\.0\.2 with test suite FRQ\_1\.5\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.2.zip)
++ IDT v4\.0\.2 with test suite FRQ\_1\.5\.0 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.2.zip)
++ IDT v4\.0\.2 with test suite FRQ\_1\.5\.0 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.2.zip)
+
+**Note**  
+We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This practice might result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive and run the IDT binary on your local workstation\.
+
+**Release notes**
++ Support for qualification of devices with locked\-down credentials on a Hardware Security Module\.
++ Minor bug fixes and improvements\.
+
+**Test suite versions**
++ FRQ\_1\.5\.0
+  + Released 2021\.04\.16\.
+
+## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
+
+The following earlier versions of IDT for FreeRTOS are also supported\.
+
 **IDT v4\.0\.1 and test suite version 1\.4\.1 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
 + IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.1.zip)
 + IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.1.zip)
 + IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.1.zip)
-
-**Note**  
-We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This practice might result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive and run the IDT binary on your local workstation\.
 
 **Release notes**
 + Supports FreeRTOS 202012\.00 that uses FreeRTOS LTS libraries\. For more information about what's included in the FreeRTOS 202012\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202012.00/CHANGELOG.md) file in GitHub\.
@@ -28,11 +45,7 @@ We don't recommend that multiple users run IDT from a shared location, such as a
 
 **Test suite versions**
 + FRQ\_1\.4\.1
-  + Released 2020\.01\.19\.
-
-## Earlier IDT versions for FreeRTOS<a name="idt-prev-versions-afr"></a>
-
-The following earlier versions of IDT for FreeRTOS are also supported\.
+  + Released 2021\.01\.19\.
 
 **IDT v3\.4\.0 and test suite version 1\.3\.0 for FreeRTOS 202011\.01**
 + IDT v3\.4\.0 with test suite FRQ\_1\.3\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_3.4.0.zip)

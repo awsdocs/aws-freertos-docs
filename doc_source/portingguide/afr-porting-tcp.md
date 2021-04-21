@@ -4,7 +4,7 @@ FreeRTOS provides a TCP/IP stack for boards that do not have on\-chip TCP/IP fun
 
 FreeRTOS\+TCP is a native TCP/IP stack for the FreeRTOS kernel\. FreeRTOS\+TCP is maintained by the FreeRTOS engineering team and is the recommended TCP/IP stack to use with FreeRTOS\. For more information, see [Porting FreeRTOS\+TCP](porting-freertos-tcp.md)\.
 
-The lightweight IP \(lwIP\) TCP/IP stack is an open source third\-party TCP/IP stack, ported to the FreeRTOS kernel\. The lwIP port layer currently supports lwIP version 2\.03\. For more information, see [Porting lwIP](porting-lwip.md)\.
+The lightweight IP \(lwIP\) TCP/IP stack is an open source third\-party TCP/IP stack, ported to the FreeRTOS kernel\. The lwIP port layer currently supports lwIP version 2\.1\.2\. For more information, see [Porting lwIP](porting-lwip.md)\.
 
 **Note**  
 These porting sections only provide instructions for porting to a platform's Ethernet or Wi\-Fi driver\. The tests only ensure that the Ethernet or Wi\-Fi driver can connect to a network\. You cannot test sending and receiving data across a network until you have ported the Secure Sockets library\.

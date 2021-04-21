@@ -18,8 +18,8 @@ Windows has a path length limitation of 260 characters\. The path structure of F
 
 ## LTS Qualification \(Qualification for FreeRTOS that uses LTS libraries\)<a name="lts-qualification-dev-tester-afr"></a>
 + In order for your microcontroller to be designated as supporting long\-term support \(LTS\) based versions of FreeRTOS in the AWS Partner Device Catalog, you must provide a manifest file\. For more information, see the [ FreeRTOS Qualification Checklist](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html) in the *FreeRTOS Qualification Guide*\.
-+ At this time, in order to validate that your microcontroller supports LTS based versions of FreeRTOS and qualify it for submission to the AWS Partner Device Catalog, you must use AWS IoT Device Tester \(IDT\) with FreeRTOS Qualification \(FRQ\) test suite version v1\.4\.x\.
-+ At this time, support for LTS based versions of FreeRTOS is limited to the 202012\.xx version of FreeRTOS\. 
++ In order to validate that your microcontroller supports LTS based versions of FreeRTOS and qualify it for submission to the AWS Partner Device Catalog, you must use AWS IoT Device Tester \(IDT\) with FreeRTOS Qualification \(FRQ\) test suite version v1\.4\.x\.
++ Support for LTS based versions of FreeRTOS is limited to the 202012\.xx version of FreeRTOS\. 
 
 ## Download IDT for FreeRTOS<a name="download-dev-tester-afr"></a>
 
@@ -155,4 +155,4 @@ The `AWSIoTDeviceTesterForFreeRTOSFullAccess` managed policy contains the follow
 
 You might prefer to use the AWS CLI to perform some operations\. If you don't have the AWS CLI installed, follow the instructions in [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
-Configure the CLI for the AWS Region you want to use by running `aws configure` from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\. For more information about `aws configure` see [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config)\.
+Configure the AWS CLI for the AWS Region you want to use by running `aws configure` from a command line\. For information about the AWS Regions that support IDT for FreeRTOS, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#amazon-freertos-ota-control)\. For more information about `aws configure` see [ Quick configuration with `aws configure`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-config)\.

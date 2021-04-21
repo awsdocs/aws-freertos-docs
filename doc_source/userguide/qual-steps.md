@@ -79,7 +79,8 @@ The following is an example `device.json` file used to create a device pool with
             ***********Remove the section below if the device does not support onboard key generation***************
             "secureElementConfig" : {
               "publicKeyAsciiHexFilePath": "absolute-path-to/public-key-txt-file: contains-the-hex-bytes-public-key-extracted-from-onboard-private-key",
-              "secureElementSerialNumber": "secure-element-serialNo-value"
+              "secureElementSerialNumber": "secure-element-serialNo-value",
+              "preProvisioned"           : "Yes | No"
             },
             **********************************************************************************************************
             "identifiers": [
@@ -170,6 +171,9 @@ For example, use these commands to generate a hex file for a \.pem public key:
 
 `devices.secureElementConfig.SecureElementSerialNumber`  
 \(Optional\) The serial number of the secure element\. Provide this field when the serial number is printed out along with the device public key when you run the FreeRTOS demo/test project\.
+
+`devices.secureElementConfig.preProvisioned`  
+\(Optional\) Set to "Yes" if the device has a pre\-provisioned secure element with locked\-down credentials, that cannot import, create, or destroy objects\. This configuration takes effect only when `features` has `KeyProvisioning` set to "Onboard", along with `PKCS11` set to "ECC"\.
 
 `identifiers`  
 \(Optional\) An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.

@@ -54,8 +54,8 @@ The action that generated the log\. This can be set to one of the following valu
 + `StartCodeSigning`: A code\-signing job was started\.
 + `CreateAWSJob`: An AWS IoT job was created\.
 + `CreateStream`: A stream was created\.
-+ `GetStream`: A request for a stream was sent to the AWS IoT Streaming service\.
-+ `DescribeStream`: A request for information about a stream was sent to the AWS IoT Streaming service\.
++ `GetStream`: A request for a stream was sent to the AWS IoT MQTT\-based file delivery feature\.
++ `DescribeStream`: A request for information about a stream was sent to the AWS IoT MQTT\-based file delivery feature\.
 
 awsJobId  
 The AWS IoT job ID that generated the log\.
@@ -166,7 +166,7 @@ The following is an example log generated when an OTA update is deleted:
 }
 ```
 
-The following is an example log generated when a device requests a stream from the streaming service:
+The following is an example log generated when a device requests a stream from the MQTT\-based file delivery feature:
 
 ```
 { 

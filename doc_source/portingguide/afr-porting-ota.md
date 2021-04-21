@@ -173,7 +173,7 @@ In the following steps, make sure that you add the source files to your IDE proj
    + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
    + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
    + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
-   + `/demos/ota/aws_iot_ota_update_demo.c`
+   + `freertos/demos/ota/aws_iot_ota_update_demo.c`
 
 ### Configuring the `CMakeLists.txt` file<a name="testing-cmake-ota"></a>
 

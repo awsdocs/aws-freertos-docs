@@ -185,22 +185,22 @@ This policy is different from the IAM policy created for the cognito authenticat
               {
                   "Effect": "Allow",
                   "Action": "iot:Connect",
-                  "Resource":"arn:aws:iot:aws-region:aws-account-id:*"
+                  "Resource":"arn:aws:iot:region:account-id:*"
               }, 
               {
                   "Effect": "Allow",
                   "Action": "iot:Publish",
-                  "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+                  "Resource": "arn:aws:iot:region:account-id:*"
               },
               {
                    "Effect": "Allow",
                    "Action": "iot:Subscribe",
-                   "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+                   "Resource": "arn:aws:iot:region:account-id:*"
               },
               {
                    "Effect": "Allow",
                    "Action": "iot:Receive",
-                   "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+                   "Resource": "arn:aws:iot:region:account-id:*"
               }
           ]
       }
@@ -246,22 +246,22 @@ This policy is different from the IAM policy created for the cognito authenticat
               {
                   "Effect": "Allow",
                   "Action": "iot:Connect",
-                  "Resource":"arn:aws:iot:aws-region:aws-account-id:*"
+                  "Resource":"arn:aws:iot:region:account-id:*"
               }, 
               {
                   "Effect": "Allow",
                   "Action": "iot:Publish",
-                  "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+                  "Resource": "arn:aws:iot:region:account-id:*"
               },
               {
                    "Effect": "Allow",
                    "Action": "iot:Subscribe",
-                   "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+                   "Resource": "arn:aws:iot:region:account-id:*"
               },
               {
                    "Effect": "Allow",
                    "Action": "iot:Receive",
-                   "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+                   "Resource": "arn:aws:iot:region:account-id:*"
               }
           ]
       }

@@ -71,5 +71,6 @@ You start development by downloading FreeRTOS\. You unzip the package and import
 These resources might be helpful to you\.
 + For questions about FreeRTOS for the FreeRTOS engineering team, you can open an issue [on the FreeRTOS GitHub page](https://github.com/aws/amazon-freertos/issues)\.
 + For technical questions about FreeRTOS visit the [FreeRTOS Community Forums](https://forums.freertos.org/)\.
++ For more information about connecting devices to AWS IoT, see the [AWS IoT Core Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide) and the chapter on [Device Provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html) in that guide\.
 + For technical support for AWS, visit the [AWS Support Center](https://aws.amazon.com/support)\.
 + For questions about AWS billing, account services, events, abuse, or other issues with AWS, visit the [Contact Us](https://aws.amazon.com/contact-us/) page\.

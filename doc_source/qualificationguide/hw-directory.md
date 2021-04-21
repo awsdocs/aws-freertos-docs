@@ -15,7 +15,7 @@ vendors
         + - driver_library_version    (Template, to be renamed to the library version)
 ```
 
-The `vendor and ``board` folders are template folders that we provide to make it easier to create demo and test projects\. Their directory structure ensures that all demo and test projects have a consistent organization\.
+The `vendor` and `board` folders are template folders that we provide to make it easier to create demo and test projects\. Their directory structure ensures that all demo and test projects have a consistent organization\.
 
 The `aws_demos` folder has the following structure:
 
@@ -29,7 +29,7 @@ vendors/vendor/boards/board/aws_demos
 
 **To configure the demo project files**
 
-Copy `main.c` and `main.h` files for the demo application to the `application_code` folder\. You can reuse the `main.c` from [the `aws_tests` project](https://docs.aws.amazon.com/freertos/latest/portingguide/porting-create-project.html) that you used to test your ports\.
+Copy `main.c` and `main.h` files for the demo application to the `application_code` folder\. You can reuse the `main.c` from [ the `aws_tests` project](https://docs.aws.amazon.com/freertos/latest/portingguide/porting-create-project.html) that you used to test your ports\.
 
 1. Save any required vendor\-supplied, board\-specific libraries to the `vendor_code` folder\.
 **Important**  

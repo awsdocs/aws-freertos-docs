@@ -3,7 +3,7 @@
 You must grant your IAM user permission to perform over\-the\-air updates\. Your IAM user must have permissions to:
 + Access the S3 bucket where your firmware updates are stored\.
 + Access certificates stored in AWS Certificate Manager\.
-+ Access the AWS IoT Streaming service\.
++ Access the AWS IoT MQTT\-based file delivery feature\.
 + Access FreeRTOS OTA updates\.
 + Access AWS IoT jobs\.
 + Access IAM\.

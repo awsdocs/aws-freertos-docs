@@ -33,7 +33,7 @@ You can use the AWS CLI to create a job as in the following example command\.
 ```
 aws iot create-job \
     --job-id t12 \
-    --targets arn:aws:iot:us-east-1:123456789012:thing/device1 \
+    --targets arn:aws:iot:region:123456789012:thing/device1 \
     --document '{"action":"print","message":"hello world!"}'
 ```
 

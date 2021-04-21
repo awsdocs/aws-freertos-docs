@@ -64,14 +64,14 @@ You can skip these steps by launching the [AWS CloudFormation template](https://
 ```
 aws acm import-certificate --profile=ota-update-user --certificate file://ecdsasigner.crt --private-key file://ecdsasigner.key
 {
-"CertificateArn": "arn:aws:acm:us-east-1:account:certificate/certid"
+"CertificateArn": "arn:aws:acm:region:account:certificate/certid"
 }
 ```
 
 The ARN will be used later to create a signing profile\. If desired, the profile can be created using the following command at this point:
 
 ```
-aws signer put-signing-profile --profile=ota-update-user --profile-name myOTAProfile --signing-material certificateArn=arn:aws:acm:us-east-1:account:certificate/certid --platform AmazonFreeRTOS-Default --signing-parameters certname=/cert.pem
+aws signer put-signing-profile --profile=ota-update-user --profile-name myOTAProfile --signing-material certificateArn=arn:aws:acm:region:account:certificate/certid --platform AmazonFreeRTOS-Default --signing-parameters certname=/cert.pem
 {
 "arn": "arn:aws:signer::account:/signing-profiles/myOTAProfile"
 }
@@ -108,22 +108,22 @@ Before you create the AWS IoT Policy, you need to know your AWS region and AWS a
          { 
              "Effect": "Allow", 
              "Action": "iot:Connect",
-             "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+             "Resource": "arn:aws:iot:region:account-id:*"
          },
          {
              "Effect": "Allow",
              "Action": "iot:Publish",
-             "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+             "Resource": "arn:aws:iot:region:account-id:*"
          },
          {
              "Effect": "Allow",
              "Action": "iot:Subscribe",
-             "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+             "Resource": "arn:aws:iot:region:account-id:*"
          },
          {
              "Effect": "Allow",
              "Action": "iot:Receive",
-             "Resource": "arn:aws:iot:aws-region:aws-account-id:*"
+             "Resource": "arn:aws:iot:region:account-id:*"
          }
       ]
    }
@@ -131,7 +131,7 @@ Before you create the AWS IoT Policy, you need to know your AWS region and AWS a
 
 1. Choose **Create**\.
 
-**Step 3b: Create an AWS IoT Thing**
+**Step 3b: Create an AWS IoT thing**
 
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iot/)\.
 

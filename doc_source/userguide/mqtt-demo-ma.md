@@ -25,32 +25,65 @@ The AWS IoT console will generate an output similar to the following image\.
 
 ## Retry logic with exponential backoff and jitter<a name="mqtt-demo-ma-retry-logic"></a>
 
-The [ `prvBackoffForRetry`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L652-L698) function shows how failed network operations with the server, for example, TLS connections or MQTT subscribe requests, can be retried with exponential backoff and jitter\. The function calculates the backoff period for the next retry attempt, and performs the backoff delay if the retry attempts haven't been exhausted\. Because the calculation of the backoff period requires the generation of a random number, the function uses the PKCS11 module to generate the random number\. Use of the PKCS11 module allows access to a True Random Number Generator \(TRNG\) if the vendor platform supports it\. We recommended that you seed the random number generator with a device\-specific entropy source so that the probability of collisions from devices during connection retries is mitigated\.
+The [ prvBackoffForRetry](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L652-L698) function shows how failed network operations with the server, for example, TLS connections or MQTT subscribe requests, can be retried with exponential backoff and jitter\. The function calculates the backoff period for the next retry attempt, and performs the backoff delay if the retry attempts haven't been exhausted\. Because the calculation of the backoff period requires the generation of a random number, the function uses the PKCS11 module to generate the random number\. Use of the PKCS11 module allows access to a True Random Number Generator \(TRNG\) if the vendor platform supports it\. We recommended that you seed the random number generator with a device\-specific entropy source so that the probability of collisions from devices during connection retries is mitigated\.
 
 ## Connecting to the MQTT broker<a name="mqtt-demo-ma-connecting"></a>
 
-The [ `prvConnectToServerWithBackoffRetries`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L702-L764) function attempts to make a mutually authenticated TLS connection to the MQTT broker\. If the connection fails, it retries after a backoff period\. The backoff period will exponentially increase until the maximum number of attempts is reached or the maximum backoff period is reached\. The `BackoffAlgorithm_GetNextBackoff` function provides an exponentially increasing backoff value and returns `RetryUtilsRetriesExhausted` when the maximum number of attempts has been reached\. The `prvConnectToServerWithBackoffRetries` function returns a failure status if the TLS connection to the broker can't be established after the configured number of attempts\.
+The [ prvConnectToServerWithBackoffRetries](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L702-L764) function attempts to make a mutually authenticated TLS connection to the MQTT broker\. If the connection fails, it retries after a backoff period\. The backoff period will exponentially increase until the maximum number of attempts is reached or the maximum backoff period is reached\. The `BackoffAlgorithm_GetNextBackoff` function provides an exponentially increasing backoff value and returns `RetryUtilsRetriesExhausted` when the maximum number of attempts has been reached\. The `prvConnectToServerWithBackoffRetries` function returns a failure status if the TLS connection to the broker can't be established after the configured number of attempts\.
 
-The [ `prvCreateMQTTConnectionWithBroker`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L767-L825) function demonstrates how to establish an MQTT connection to an MQTT broker with a clean session\. It uses the TLS transport interface, which is implemented in the `FreeRTOS-Plus/Source/Application-Protocols/platform/freertos/transport/src/tls_freertos.c` file\. Keep in mind that we're setting the keep\-alive seconds for the broker in `xConnectInfo`\.
+The [ prvCreateMQTTConnectionWithBroker](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L767-L825) function demonstrates how to establish an MQTT connection to an MQTT broker with a clean session\. It uses the TLS transport interface, which is implemented in the `FreeRTOS-Plus/Source/Application-Protocols/platform/freertos/transport/src/tls_freertos.c` file\. Keep in mind that we're setting the keep\-alive seconds for the broker in `xConnectInfo`\.
 
 The next function shows how the TLS transport interface and time function are set in an MQTT context using the `MQTT_Init` function\. It also shows how an event callback function pointer \(`prvEventCallback`\) is set\. This callback is used for reporting incoming messages\.
 
 ## Subscribing to an MQTT topic<a name="mqtt-demo-ma-subscribing"></a>
 
-The [ `prvMQTTSubscribeWithBackoffRetries`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L848-L946) function demonstrates how to subscribe to a topic filter on the MQTT broker\. The example demonstrates how to subscribe to one topic filter, but it's possible to pass a list of topic filters in the same subscribe API call to subscribe to more than one topic filter\. Also, in case the MQTT broker rejects the subscription request, the subscription will retry, with exponential backoff, for `RETRY_MAX_ATTEMPTS`\.
+The [ prvMQTTSubscribeWithBackoffRetries](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L848-L946) function demonstrates how to subscribe to a topic filter on the MQTT broker\. The example demonstrates how to subscribe to one topic filter, but it's possible to pass a list of topic filters in the same subscribe API call to subscribe to more than one topic filter\. Also, in case the MQTT broker rejects the subscription request, the subscription will retry, with exponential backoff, for `RETRY_MAX_ATTEMPTS`\.
 
 ## Publishing to a topic<a name="mqtt-demo-ma-publishing"></a>
 
-The [ `prvMQTTPublishToTopic`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L949-L981) function demonstrates how to publish to a topic on the MQTT broker\. 
+The [ prvMQTTPublishToTopic](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L949-L981) function demonstrates how to publish to a topic on the MQTT broker\. 
 
 ## Receiving incoming messages<a name="mqtt-demo-ma-receiving"></a>
 
-The application registers an event callback function before it connects to the broker, as described earlier\. The `prvMQTTDemoTask` function calls the `MQTT_ProcessLoop` function to receive incoming messages\. When an incoming MQTT message is received, it calls the event callback function registered by the application\. The [ `prvEventCallback`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L1116-L1131) function is an example of such an event callback function\. `prvEventCallback` examines the incoming packet type and calls the appropriate handler\. In the example below, the function either calls `prvMQTTProcessIncomingPublish()` for handling incoming publish messages or `prvMQTTProcessResponse()` to handle acknowledgements \(ACK\)\.
+The application registers an event callback function before it connects to the broker, as described earlier\. The `prvMQTTDemoTask` function calls the `MQTT_ProcessLoop` function to receive incoming messages\. When an incoming MQTT message is received, it calls the event callback function registered by the application\. The [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L1116-L1131) function is an example of such an event callback function\. `prvEventCallback` examines the incoming packet type and calls the appropriate handler\. In the example below, the function either calls `prvMQTTProcessIncomingPublish()` for handling incoming publish messages or `prvMQTTProcessResponse()` to handle acknowledgements \(ACK\)\.
 
 ## Processing incoming MQTT publish packets<a name="mqtt-demo-ma-processing"></a>
 
-The [ `prvMQTTProcessIncomingPublish`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L1085-L1112) function demonstrates how to process a publish packet from the MQTT broker\. 
+The [ prvMQTTProcessIncomingPublish](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L1085-L1112) function demonstrates how to process a publish packet from the MQTT broker\. 
 
 ## Unsubscribing from a topic<a name="mqtt-demo-ma-unsubscribing"></a>
 
-The last step in the workflow is to unsubscribe from the topic so that the broker won't send any published messages from `mqttexampleTOPIC`\. Here is the definition of the function [ `prvMQTTUnsubscribeFromTopic`](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L984-L1020)\.
+The last step in the workflow is to unsubscribe from the topic so that the broker won't send any published messages from `mqttexampleTOPIC`\. Here is the definition of the function [ prvMQTTUnsubscribeFromTopic](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreMQTT/mqtt_demo_mutual_auth.c#L984-L1020)\.
+
+## Changing the root CA used in the demo<a name="mqtt-demo-ma-root-ca"></a>
+
+By default, the FreeRTOS demos use the Amazon Root CA 1 certificate \(RSA 2048 bit key\) to authenticate with the AWS IoT Core server\. It is possible to use other [ CA certificates for server authentication](https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs), including the Amazon Root CA 3 certificate \(ECC 256 bit key\)\. To change the root CA for the coreMQTT mutual authentication demo: 
+
+1. In a text editor, open the `freertos/vendors/vendor/boards/board/aws_demos/config_files/mqtt_demo_mutual_auth_config.h` file\.
+
+1. In the file, locate the following line\.
+
+   ```
+    * #define democonfigROOT_CA_PEM    "...insert here..." 
+   ```
+
+   Uncomment this line and, if necessary, move it past the comment block end ` */`\.
+
+1. Copy the CA certificate that you want to use and then paste it in the `"...insert here..."` text\. The result should look like the following example\.
+
+   ```
+   #define democonfigROOT_CA_PEM   "-----BEGIN CERTIFICATE-----\n"\
+   "MIIBtjCCAVugAwIBAgITBmyf1XSXNmY/Owua2eiedgPySjAKBggqhkjOPQQDAjA5\n"\
+   "MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6b24g\n"\
+   "Um9vdCBDQSAzMB4XDTE1MDUyNjAwMDAwMFoXDTQwMDUyNjAwMDAwMFowOTELMAkG\n"\
+   "A1UEBhMCVVMxDzANBgNVBAoTBkFtYXpvbjEZMBcGA1UEAxMQQW1hem9uIFJvb3Qg\n"\
+   "Q0EgMzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABCmXp8ZBf8ANm+gBG1bG8lKl\n"\
+   "ui2yEujSLtf6ycXYqm0fc4E7O5hrOXwzpcVOho6AF2hiRVd9RFgdszflZwjrZt6j\n"\
+   "QjBAMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGGMB0GA1UdDgQWBBSr\n"\
+   "ttvXBp43rDCGB5Fwx5zEGbF4wDAKBggqhkjOPQQDAgNJADBGAiEA4IWSoxe3jfkr\n"\
+   "BqWTrBqYaGFy+uGh0PsceGCmQ5nFuMQCIQCcAu/xlJyzlvnrxir4tiz+OpAUFteM\n"\
+   "YyRIHN8wfdVoOw==\n"\
+   "-----END CERTIFICATE-----\n"
+   ```
+
+1. \(Optional\) You can change the root CA for other demos\. Repeat steps 1 through 3 for each `freertos/vendors/vendor/boards/board/aws_demos/config_files/demo-name_config.h` file\.

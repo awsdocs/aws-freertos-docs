@@ -339,6 +339,9 @@ You can combine these commands\. For example:
 
 This section shows you how to use ESP\-IDF v4\.2 on Espressif hardware\. To use ESP\-IDF v3\.3, see [Get started with ESP\-IDF v3\.3](#setup-espressif-idf33)\.
 
+**Note**  
+The Linux commands in this tutorial require that you use the Bash shell\.
+
 ### Set up the Espressif hardware<a name="setup-hw-espressif-idf42"></a>
 
 For information about setting up the ESP32\-DevKitC development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.

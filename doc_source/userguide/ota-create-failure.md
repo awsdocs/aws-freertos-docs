@@ -30,11 +30,11 @@ If the process of creating an OTA update job fails, there may be actions you can
    {
        "otaUpdateInfo": {
            "otaUpdateId": "ota_update_job_001",
-           "otaUpdateArn": "arn:aws:iot:us-west-2:account_id:otaupdate/ota_update_job_001",
+           "otaUpdateArn": "arn:aws:iot:region:account_id:otaupdate/ota_update_job_001",
            "creationDate": 1584646864.534,
            "lastModifiedDate": 1584646865.913,
            "targets": [
-               "arn:aws:iot:us-west-2:account_id:thing/thing_001"
+               "arn:aws:iot:region:account_id:thing/thing_001"
            ],
            "protocols": [
                "MQTT"

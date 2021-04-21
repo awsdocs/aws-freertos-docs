@@ -4,24 +4,26 @@ This section describes how to set up and run the Bluetooth tests using AWS IoT D
 
 ## Prerequisites<a name="dt-bt-prereq"></a>
 + Follow the instructions in [Preparing to test your microcontroller board for the first time](qual-steps.md)\.
-+ A Raspberry Pi 3B\+\. \(Required to run the Raspberry Pi BLE companion application\)
++ A Raspberry Pi 4B or 3B\+\. \(Required to run the Raspberry Pi BLE companion application\)
 + A micro SD card and SD card adapter for the Raspberry Pi software\.
 
  
 
 ## Raspberry Pi setup<a name="dt-bt-pi-setup"></a>
 
-To test the BLE capabilities of the device under test \(DUT\), you must have a Raspberry Pi Model 3B\+\.
+To test the BLE capabilities of the device under test \(DUT\), you must have a Raspberry Pi Model 4B or 3B\+\.
 
 **To set up your Raspberry Pi to run BLE tests**
 
-1. Download the custom [Yocto image](https://docs.aws.amazon.com/freertos/latest/userguide/afr/IDT_AFR_BLE_RaspberryPi_1.0.0.rpi-sdimg) that contains the software required to perform the tests\.
+1. Download one of the custom Yocto images that contains the software required to perform the tests\.
+   + [ Image for Raspberry Pi 4B](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/IDTFR_BLE_RaspberryPi4B_1.0.0_2021-04-13.rpi-sd.img) 
+   + [ Image for Raspberry Pi 3B\+](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/IDTFR_BLE_RaspberryPi3Bplus_1.0.0_2021-04-13.rpi-sd.img) 
 **Note**  
 The Yocto image should only be used for testing with AWS IoT Device Tester for FreeRTOS and not for any other purpose\.
 
 1. Flash the yocto image onto the SD card for Raspberry Pi\.
 
-   1. Using an SD card\-writing tool such as [Etcher](https://www.balena.io/etcher), flash the downloaded `image-name.rpi-sdimg` file onto the SD card\. Because the operating system image is large, this step might take some time\. Then eject your SD card from your computer and insert the microSD card into your Raspberry Pi\.
+   1. Using an SD card\-writing tool such as [Etcher](https://www.balena.io/etcher), flash the downloaded `image-name.rpi-sd.img` file onto the SD card\. Because the operating system image is large, this step might take some time\. Then eject your SD card from your computer and insert the microSD card into your Raspberry Pi\.
 
 1. Configure your Raspberry Pi\.
 
