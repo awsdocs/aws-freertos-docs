@@ -26,7 +26,7 @@ The Keil MDK Nuvoton edition is designed for developing and debugging applicatio
 
    If you experience issues during installation, contact [Nuvoton](https://www.nuvoton.com/contact-us) for assistance\.
 
-1. Install the **Nu\-Link\_Keil\_Driver\_V3\.00\.6951** \(or latest version\), which is on the [ Nuvoton Development Tool](https://www.nuvoton.com/tool-and-software/software-development-tool/driver/) page\.
+1. Install the **Nu\-Link\_Keil\_Driver\_V3\.06\.7215r** \(or latest version\), which is on the [ Nuvoton Development Tool](https://www.nuvoton.com/tool-and-software/ide-and-compiler/) page\.
 
 ## Build and run the FreeRTOS demo project<a name="gsg-nuvoton-m487-build-run"></a>
 

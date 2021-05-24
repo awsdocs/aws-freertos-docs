@@ -172,7 +172,7 @@ When you define configuration variables, use the format of the placeholder value
 
 1. Create an AWS IoT policy in your region \(if you haven't already\)\.
 **Note**  
-This policy is different from the IAM policy created for the cognito authenticated identity\.
+This policy is different from the IAM policy created for the Amazon Cognito authenticated identity\.
 
    1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/)\.
 
@@ -233,7 +233,7 @@ When you define configuration variables, use the format of the placeholder value
 
 1. Create an AWS IoT policy in your region \(if you haven't already\)\.
 **Note**  
-This policy is different from the IAM policy created for the cognito authenticated identity\.
+This policy is different from the IAM policy created for the Amazon Cognito authenticated identity\.
 
    1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/)\.
 

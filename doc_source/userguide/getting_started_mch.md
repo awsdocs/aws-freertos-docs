@@ -6,7 +6,7 @@ The bundle includes the following items:
 + [Curiosity PIC32MZ EF Development Board](https://www.microchip.com/Developmenttools/ProductDetails/DM320104)
 + [MikroElectronika USB UART click Board](https://www.mikroe.com/usb-uart-click)
 + [MikroElectronika WiFi 7 click Board](https://www.mikroe.com/wifi-7-click) 
-+ [ PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
++ [PIC32 LAN8720 PHY daughter board](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=ac320004-3)
 
 You also need the following items for debugging:
 + [MPLAB Snap In\-Circuit Debugger](https://www.microchip.com/Developmenttools/ProductDetails/PG164100)
@@ -43,7 +43,7 @@ This tutorial contains instructions for the following getting started steps:
 
 1. To connect your board to the internet, use one of the following options:
    + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. See [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
-   + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
+   + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\. You must also define the preprocessor macro `PIC32_USE_ETHERNET`\.
 
 1. If not done already, solder the angle connector to the ICSP header on the Microchip Curiosity PIC32MZ EF\.
 
@@ -55,7 +55,7 @@ This tutorial contains instructions for the following getting started steps:
 
    Make sure that any cabling to Pin 1 on the Microchip Curiosity PIC32MZ EF, signified by the white circle, aligns with Pin 1 on the MPLAB Snap Debugger\.
 
-   For more information about the MPLAB Snap Debugger, see the [MPLAB Snap In\-Circuit Debugger Information Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLAB%20Snap%20In-Circuit%20Debugger%20IS%20DS50002787A.pdf)\.
+   For more information about the MPLAB Snap Debugger, see the [ MPLAB Snap In\-Circuit Debugger Information Sheet](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLAB%20Snap%20In-Circuit%20Debugger%20IS%20DS50002787A.pdf)\.
 
 ## Set up the Microchip Curiosity PIC32MZ EF hardware using PICkit On Board \(PKOB\)<a name="setup-env_mch-pkob"></a>
 
@@ -65,7 +65,7 @@ We recommend that you follow the setup procedure in the previous section\. Howev
 
 1. To connect your board to the internet, do one of the following:
    + To use **Wi\-Fi**, connect the MikroElectronika Wi\-Fi 7 click Board to the microBUS 2 connector on the Microchip Curiosity PIC32MZ EF\. \(Follow the steps "To configure your Wi\-Fi" in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
-   + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\.
+   + To use **Ethernet** to connect the Microchip Curiosity PIC32MZ EF Board to the internet, connect the PIC32 LAN8720 PHY daughter board to the J18 header on the Microchip Curiosity PIC32MZ EF\. Connect one end of an Ethernet cable to the LAN8720 PHY daughter board\. Connect the other end to your router or other internet port\. You must also define the preprocessor macro `PIC32_USE_ETHERNET`\.
 
 1. Connect the USB micro\-B port named "USB DEBUG" on the Microchip Curiosity PIC32MZ EF Board to your computer using a USB type A to USB micro\-B cable\.
 
@@ -84,8 +84,8 @@ FreeRTOS AWS Reference Integrations v202007\.00 is currently supported on MPLabv
 
 **MPLabv5\.35 downloads**
    + [ MPLAB X Integrated Development Environment for Windows](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-windows-installer.exe)
-   + [MPLAB X Integrated Development Environment for macOS](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-osx-installer.dmg)
-   + [MPLAB X Integrated Development Environment for Linux](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-linux-installer.tar)
+   + [ MPLAB X Integrated Development Environment for macOS](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-osx-installer.dmg)
+   + [ MPLAB X Integrated Development Environment for Linux](http://ww1.microchip.com/downloads/en/DeviceDoc/MPLABX-v5.35-linux-installer.tar)
 
 **Latest MPLab downloads \(MPLabv5\.40\)**
    + [MPLAB X Integrated Development Environment for Windows](http://www.microchip.com/mplabx-ide-windows-installer)
@@ -119,6 +119,16 @@ FreeRTOS AWS Reference Integrations v202007\.00 is currently supported on MPLabv
 **Note**  
 When you open the project for the first time, you might get an error message about the compiler\. In the IDE, navigate to **Tools**, **Options**, **Embedded**, and then select the compiler that you are using for your project\.
 
+To use Ethernet to connect, you must define the preprocessor macro `PIC32_USE_ETHERNET`\. 
+
+**To use Ethernet to connect using the MPLAB IDE**
+
+1. In the MPLAB IDE, right\-click the project and choose **Properties**\.
+
+1. In the **Project Properties** dialog box, choose ***compiler\-name* \(Global Options\)** to expand it, and then select ***compiler\-name*\-gcc**\.
+
+1. For **Options categories**, choose **Preprocessing and messages**, and then add the `PIC32_USE_ETHERNET` string to **Preprocessor macros**\.
+
 ### Run the FreeRTOS demo project<a name="mch-run-example"></a>
 
 1. Rebuild your project\.
@@ -133,21 +143,23 @@ If you prefer not to use an IDE for FreeRTOS development, you can alternatively 
 
 **To build the FreeRTOS demo with CMake**
 
-1. Create a folder to contain the generated build files \(*build\-folder*\)\.
+1. Create a directory to contain the generated build files, such as *build\-directory*\.
 
-1. Use the following command to generate build files from source code:
+1. Use the following command to generate build files from source code\.
 
    ```
    cmake -DVENDOR=microchip -DBOARD=curiosity_pic32mzef -DCOMPILER=xc32 -DMCHP_HEXMATE_PATH=path/microchip/mplabx/version/mplab_platform/bin  -DAFR_TOOLCHAIN_PATH=path/microchip/xc32/version/bin -S freertos -B build-folder
    ```
 **Note**  
-You must specify the correct paths to the Hexmate and toolchain binaries\. \(For example: `C:\Program Files (x86)\Microchip\MPLABX\v5.35\mplab_platform\bin` and `C:\Program Files\Microchip\xc32\v2.40\bin` respectively\.\)
+You must specify the correct paths to the Hexmate and toolchain binaries, such as the `C:\Program Files (x86)\Microchip\MPLABX\v5.35\mplab_platform\bin` and `C:\Program Files\Microchip\xc32\v2.40\bin` paths\.
 
-1. Change directories to the build directory \(*build\-folder*\), and run `make` from that directory\.
+1. Change directories to the build directory \(*build\-directory*\), and then run `make` from that directory\.
 
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
-### Monitoring MQTT messages on the cloud<a name="getting_started_mch_monitor_mqtt"></a>
+To use Ethernet to connect, you must define the preprocessor macro `PIC32_USE_ETHERNET`\. 
+
+### Monitoring MQTT messages in the cloud<a name="getting_started_mch_monitor_mqtt"></a>
 
 You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 

@@ -8,7 +8,7 @@ You can use IDT for FreeRTOS to test as you port the FreeRTOS interfaces\. After
 
 ## Configure your AWS credentials<a name="cfg-aws-afr"></a>
 
-You need to configure your AWS credentials for Device Tester to communicate with the AWS Cloud\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\. Valid AWS credentials must be specified in the `devicetester_extract_location/devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\.
+You need to configure your AWS credentials for AWS IoT Device Tester to communicate with the AWS Cloud\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\. Valid AWS credentials must be specified in the `devicetester_extract_location/devicetester_afreertos_[win|mac|linux]/configs/config.json` configuration file\.
 
 ## Create a device pool in IDT for FreeRTOS<a name="cfg-dt-dp"></a>
 
@@ -105,7 +105,7 @@ An alphanumeric value that uniquely identifies the board you are testing\. The S
 If you want to list your board in AWS Partner Device Catalog, the SKU you specify here must match the SKU that you use in the listing process\.
 
 `features`  
-An array that contains the device's supported features\. The Device Tester uses this information to select the qualification tests to run\.  
+An array that contains the device's supported features\. AWS IoT Device Tester uses this information to select the qualification tests to run\.  
 Supported values are:    
 `TCP/IP`  
 Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\. TCP/IP is required for qualification\.  

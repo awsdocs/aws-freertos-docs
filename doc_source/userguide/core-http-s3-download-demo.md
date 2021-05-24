@@ -21,7 +21,7 @@ The demo project is named `http_demo_s3_download.c` and can be found in the `fre
 
 This demo uses a pre\-signed URL to connect to the Amazon S3 HTTP server and authorize access to the object to download\. The Amazon S3 HTTP server's TLS connection uses server authentication only\. At the application level, access to the object is authenticated with parameters in the pre\-signed URL query\. Follow the steps below to configure your connection to AWS\.
 
-1. Set up an Amazon Web Services \(AWS\) account:
+1. Set up an AWS account:
 
    1. If you haven't already, [ create and activate an AWS account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)\.
 

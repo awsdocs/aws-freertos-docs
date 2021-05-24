@@ -8,10 +8,10 @@ By downloading the software, you agree to the IDT for FreeRTOS License Agreement
 
 Use the following links to download the latest version of IDT for FreeRTOS\.
 
-**IDT v4\.0\.2 and test suite version 1\.5\.0 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
-+ IDT v4\.0\.2 with test suite FRQ\_1\.5\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.2.zip)
-+ IDT v4\.0\.2 with test suite FRQ\_1\.5\.0 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.2.zip)
-+ IDT v4\.0\.2 with test suite FRQ\_1\.5\.0 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.2.zip)
+**IDT v4\.0\.3 and test suite version 1\.5\.0 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
++ IDT v4\.0\.3 with test suite FRQ\_1\.5\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.3.zip)
++ IDT v4\.0\.3 with test suite FRQ\_1\.5\.0 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.3.zip)
++ IDT v4\.0\.3 with test suite FRQ\_1\.5\.0 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.3.zip)
 
 **Note**  
 We don't recommend that multiple users run IDT from a shared location, such as an NFS directory or a Windows network shared folder\. This practice might result in crashes or data corruption\. We recommend that you extract the IDT package to a local drive and run the IDT binary on your local workstation\.

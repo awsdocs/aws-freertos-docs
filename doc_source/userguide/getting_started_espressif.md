@@ -671,12 +671,12 @@ If a later version is released, you can update your local copy with these comman
 
 ```
 # Pull the latest changes from the remote tracking branch.
-git submodule update --remote -- amazon-freertos
+git submodule update --remote -- freertos
 ```
 
 ```
 # Commit the submodule change because it is pointing to a different revision now.
-git add amazon-freertos
+git add freertos
 ```
 
 ```
