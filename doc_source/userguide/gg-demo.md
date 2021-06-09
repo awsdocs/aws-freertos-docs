@@ -117,4 +117,6 @@ Message from Thing to Greengrass Core: Address of Greengrass Core found! 1234567
 **Subscriptions**    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/userguide/gg-demo.html)
 
+SOURCE: It is the name given to IOT thing that is created in IOT console while registering the board. Ex: TIGG1 can be an example name for the IOT thing.
+
 1. Start a deployment of your AWS IoT Greengrass group and make sure that the deployment is successful\. You should now be able to successfully run the AWS IoT Greengrass discovery demo\.
