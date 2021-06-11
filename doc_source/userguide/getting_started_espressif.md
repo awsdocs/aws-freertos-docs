@@ -479,7 +479,7 @@ The certificate is hardcoded for demonstration purposes only\. Production\-level
 
 For more information about `SetupAWS.py`, see the `README.md` in the `freertos/tools/aws_config_quick_start` directory\.
 
-### Build, flash, and run the FreeRTOS demo project using the idy\.py script<a name="build-and-run-example-espressif-idf42"></a>
+### Build, flash, and run the FreeRTOS demo project using the idf\.py script<a name="build-and-run-example-espressif-idf42"></a>
 
 You can use Espressif's IDF utility to generate the build files, build the application binary, and flash your board\.
 
