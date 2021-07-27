@@ -62,7 +62,7 @@ Use the Bluetooth Low Energy service APIs to interact with the Bluetooth Low Ene
 ## Dependencies and requirements<a name="freertos-ble-dependencies"></a>
 
 The Bluetooth Low Energy library has the following direct dependencies:
-+ [Linear Containers library](lib-linear.md)
++ [Linear Containers](https://docs.aws.amazon.com/freertos/latest/lib-ref/c-sdk/linear_containers/index.html) library
 + A platform layer that interfaces with the operating system for thread management, timers, clock functions, and network access\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-dependencies.png)
@@ -86,10 +86,10 @@ Applications that use the FreeRTOS MQTT over Bluetooth Low Energy service must p
 
 Some important configuration parameters include:
 
-`IOT_BLE_ADD_CUSTOM_SERVICES`  
+**`IOT_BLE_ADD_CUSTOM_SERVICES`**  
 Allows users to create their own services\.
 
-`IOT_BLE_SET_CUSTOM_ADVERTISEMENT_MSG`  
+**`IOT_BLE_SET_CUSTOM_ADVERTISEMENT_MSG`**  
 Allows users to customize the advertisement and scan response messages\.
 
 For more information, see [Bluetooth Low Energy API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/ble/index.html)\. 
@@ -107,7 +107,7 @@ By default, the FreeRTOS Bluetooth Low Energy library sets the `eBTpropertySecur
 
 Here are the supported modes, and their associated properties:
 
-Mode 1, Level 1 \(No security\)  
+**Mode 1, Level 1 \(No security\)**  
 
 ```
 /* Disable numeric comparison */
@@ -117,7 +117,7 @@ Mode 1, Level 1 \(No security\)
 #define IOT_BLE_ENCRYPTION_REQUIRED               ( 0 )
 ```
 
-Mode 1, Level 2 \(Unauthenticated pairing with encryption\)  
+**Mode 1, Level 2 \(Unauthenticated pairing with encryption\)**  
 
 ```
 #define IOT_BLE_ENABLE_NUMERIC_COMPARISON        ( 0 )
@@ -125,10 +125,10 @@ Mode 1, Level 2 \(Unauthenticated pairing with encryption\)
 #define IOT_BLE_INPUT_OUTPUT                     ( eBTIONone )
 ```
 
-Mode 1, Level 3 \(Authenticated pairing with encryption\)  
+**Mode 1, Level 3 \(Authenticated pairing with encryption\)**  
 This mode is not supported\.
 
-Mode 1, Level 4 \(Authenticated LE Secure Connections pairing with encryption\)  
+**Mode 1, Level 4 \(Authenticated LE Secure Connections pairing with encryption\)**  
 This mode is supported by default\.
 
 For information about LE security modes, see the [Bluetooth Core Specification](https://www.bluetooth.com/specifications/bluetooth-core-specification) v5\.0, Vol 3, Part C, 10\.2\.1\.

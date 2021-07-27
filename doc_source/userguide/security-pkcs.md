@@ -140,9 +140,9 @@ For information about porting the corePKCS11 library to your platform, see [Port
 
 ****  
 
-| Code Size of corePKCS11 \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| Code Size of corePKCS11 \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
 | core\_pkcs11\.c | 0\.8K | 0\.8K | 
 | core\_pki\_utils\.c | 0\.5K | 0\.3K | 
-| core\_pkcs11\_mbedtls\.c | 7\.2K | 6\.3K | 
-| Total estimate | 8\.5K | 7\.4K | 
+| core\_pkcs11\_mbedtls\.c | 8\.6K | 7\.1K | 
+| Total estimates | 9\.9K | 8\.2K | 

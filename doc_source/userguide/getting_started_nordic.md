@@ -76,16 +76,27 @@ After you set up your hardware and environment, you can download FreeRTOS\.
 
 ### Download FreeRTOS<a name="nordic-download"></a>
 
-To download FreeRTOS for the Nordic nRF52840\-DK, go to the [FreeRTOS GitHub page](https://github.com/aws/amazon-freertos) and clone the repository\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
+To download FreeRTOS for the Nordic nRF52840\-DK, go to the [FreeRTOS GitHub page](https://github.com/aws/amazon-freertos) and clone the repository\. See the [ README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file for instructions\. 
 
 **Important**  
 In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
 Space characters in the `freertos` path can cause build failures\. When cloning or copying the repository, make sure the path you create does not contain space characters\.
 The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
+Because the source code may contain symbolic links, if you're using Windows to extract the archive, you may have to:  
+Enable [ Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) or, 
+Use a console that is elevated as administrator\.
+In this way, Windows can properly create symbolic links when it extracts the archive\. Otherwise, symbolic links will be written as normal files that contain the paths of the symbolic links as text or are empty\. For more information, see the blog entry [ Symlinks in Windows 10\!](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/)\.  
+If you use Git under Windows, you must enable Developer Mode or you must:   
+Set `core.symlinks` to true with the following command:  
+
+    ```
+    git config --global core.symlinks true
+    ```
+Use a console that is elevated as administrator whenever you use a git command that writes to the system \(for example, git pull, git clone, and git submodule update \-\-init \-\-recursive\)\.
 
 ### Configure your project<a name="nordic-freertos-config-project"></a>
 
-To run the demo, you need to configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your device must be registered as an AWS IoT thing\. You should have registered your device when you [Set up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy](ble-demo.md#set-up-ble-demo-aws)\.
+To enable the demo, you need to configure your project to work with AWS IoT\. To configure your project to work with AWS IoT, your device must be registered as an AWS IoT thing\. You should have registered your device when you [Set up AWS IoT and Amazon Cognito for FreeRTOS Bluetooth Low Energy](ble-demo.md#set-up-ble-demo-aws)\.
 
 **To configure your AWS IoT endpoint**
 
@@ -105,15 +116,31 @@ To run the demo, you need to configure your project to work with AWS IoT\. To co
 
 1. Check that the Bluetooth Low Energy GATT Demo is enabled\. Go to `vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/iot_ble_config.h`, and add `#define IOT_BLE_ADD_CUSTOM_SERVICES ( 1 )` to the list of define statements\.
 
-1. Open `vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/aws_demos_config.h`, and define `CONFIG_MQTT_DEMO_ENABLED`\.
+1. Open `vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/aws_demo_config.h`, and define either `CONFIG_OTA_MQTT_BLE_TRANSPORT_DEMO_ENABLED` or `CONFIG_OTA_HTTP_BLE_TRANSPORT_DEMO_ENABLED` as in this example\.
+
+   ```
+   /* To run a particular demo you need to define one of these.
+    * Only one demo can be configured at a time
+    *
+    *          CONFIG_BLE_GATT_SERVER_DEMO_ENABLED
+    *          CONFIG_MQTT_BLE_TRANSPORT_DEMO_ENABLED
+    *          CONFIG_SHADOW_BLE_TRANSPORT_DEMO_ENABLED
+    *          CONFIG_OTA_MQTT_BLE_TRANSPORT_DEMO_ENABLED
+    *          CONFIG_OTA_HTTP_BLE_TRANSPORT_DEMO_ENABLED
+    *          CONFIG_POSIX_DEMO_ENABLED
+    *
+    *  These defines are used in iot_demo_runner.h for demo selection */
+   
+   #define CONFIG_OTA_MQTT_BLE_TRANSPORT_DEMO_ENABLED
+   ```
 
 1. Since the Nordic chip comes with very little RAM \(250KB\), the BLE configuration might need to be changed to allow for larger GATT table entries compared to the size of each attribute\. In this way you can adjust the amount of memory the application gets\. To do this, override the definitions of the following attributes in the file `freertos/vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/sdk_config.h`: 
    + NRF\_SDH\_BLE\_VS\_UUID\_COUNT
 
-     The number of vendor\-specific UUIDs\.
+     The number of vendor\-specific UUIDs\. Increase this count by 1 when you add a new vendor\-specific UUID\.
    + NRF\_SDH\_BLE\_GATTS\_ATTR\_TAB\_SIZE
 
-     Attribute Table size in bytes\. The size must be a multiple of 4\.
+     Attribute Table size in bytes\. The size must be a multiple of 4\. This value indicates the set amount of memory dedicated for the attribute table \(including the characteristic size\), so this will vary from project to project\. If you exceed the size of the attribute table you will get a NRF\_ERROR\_NO\_MEM error\. If you modify the NRF\_SDH\_BLE\_GATTS\_ATTR\_TAB\_SIZE usually you must also reconfigure the RAM settings\.
 
    \(For tests, the location of the file is `freertos/vendors/nordic/boards/nrf52840-dk/aws_tests/config_files/sdk_config.h`\.\) 
 
@@ -135,7 +162,7 @@ To build and flash the bootloader, follow the steps below, but instead of using 
 
 1. Right\-click the `aws_demos` demo project in the **Project Explorer**, and choose **Build**\.
 **Note**  
-If this is your first time using Segger Embedded Studio, you might see you a warning "No license for commercial use"\. Segger Embedded Studio can be used free of charge for Nordic Semiconductor devices\. Choose **Activate Your Free License**, and follow the instructions\.
+If this is your first time using Segger Embedded Studio, you might see you a warning "No license for commercial use"\. Segger Embedded Studio can be used free of charge for Nordic Semiconductor devices\. [Request a free license](http://license.segger.com/Nordic.cgi) then, during setup choose **Activate Your Free License**, and follow the instructions\.
 
 1. Choose **Debug**, and then choose **Go**\.
 

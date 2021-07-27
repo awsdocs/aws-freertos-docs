@@ -29,7 +29,7 @@ The demo performs the following operations:
 
 ![\[shadow demo terminal output\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/shadow-demo-output.png)
 
-The demo can be found in the file `freertos/demos/device_shadow_for_aws/shadow_demo_main.c` or on [ GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/device_shadow_for_aws/shadow_demo_main.c)\.
+The demo can be found in the file `freertos/demos/device_shadow_for_aws/shadow_demo_main.c` or on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/device_shadow_for_aws/shadow_demo_main.c)\.
 
 The following screenshot shows the expected output when the demo succeeds\.
 
@@ -107,10 +107,10 @@ xPublishToTopic( SHADOW_TOPIC_STRING_UPDATE( THING_NAME ),
 
 ## Handle shadow delta messages and shadow update messages<a name="shadow-demo-delta-and-update"></a>
 
-The user callback function, that was registered to the [coreMQTT Client Library](https://freertos-wordpress.corp.amazon.com/shadow/device-shadow-demo.html#handle-shadow-messages) using the `MQTT_Init` function, will notify us about an incoming packet event\. See the callback function [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/202012.00/demos/device_shadow_for_aws/shadow_demo_main.c#L655-L737) on GitHub\.
+The user callback function, that was registered to the [coreMQTT Client Library](https://freertos-wordpress.corp.amazon.com/shadow/device-shadow-demo.html#handle-shadow-messages) using the `MQTT_Init` function, will notify us about an incoming packet event\. See the callback function [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/main/demos/device_shadow_for_aws/shadow_demo_main.c#L671-L753) on GitHub\.
 
 The callback function confirms the incoming packet is of type `MQTT_PACKET_TYPE_PUBLISH`, and uses the Device Shadow Library API `Shadow_MatchTopic` to confirm that the incoming message is a shadow message\.
 
-If the incoming message is a shadow message with type `ShadowMessageTypeUpdateDelta`, then we call [ prvUpdateDeltaHandler](https://github.com/aws/amazon-freertos/blob/202012.00/demos/device_shadow_for_aws/shadow_demo_main.c#L655-L737) to handle this message\. The handler `prvUpdateDeltaHandler` uses the  coreJSON library to parse the message to get the delta value for the `powerOn` state and compares this against the current device state maintained locally\. If those are different, the local device state is updated to reflect the new value of the `powerOn` state from the shadow document\.
+If the incoming message is a shadow message with type `ShadowMessageTypeUpdateDelta`, then we call  [ prvUpdateDeltaHandler](https://github.com/aws/amazon-freertos/blob/main/demos/device_shadow_for_aws/shadow_demo_main.c#L464-L580) to handle this message\. The handler `prvUpdateDeltaHandler` uses the  coreJSON library to parse the message to get the delta value for the `powerOn` state and compares this against the current device state maintained locally\. If those are different, the local device state is updated to reflect the new value of the `powerOn` state from the shadow document\.
 
-If the incoming message is a shadow message with type `ShadowMessageTypeUpdateAccepted`, then we call [ prvUpdateAcceptedHandler](https://github.com/aws/amazon-freertos/blob/202012.00/demos/device_shadow_for_aws/shadow_demo_main.c#L568-L651) to handle this message\. The handler `prvUpdateAcceptedHandler` parses the message using the  coreJSON library to get the `clientToken` from the message\. This handler function checks that the client token from the JSON message matches the client token used by the application\. If it doesn't match, the function logs a warning message\.
+If the incoming message is a shadow message with type `ShadowMessageTypeUpdateAccepted`, then we call [ prvUpdateAcceptedHandler](https://github.com/aws/amazon-freertos/blob/main/demos/device_shadow_for_aws/shadow_demo_main.c#L584-L667) to handle this message\. The handler `prvUpdateAcceptedHandler` parses the message using the  coreJSON library to get the `clientToken` from the message\. This handler function checks that the client token from the JSON message matches the client token used by the application\. If it doesn't match, the function logs a warning message\.

@@ -15,7 +15,7 @@ There are two coreHTTP usage models, *single threaded* and *multithreaded* \(mul
 
 ## Source code organization<a name="core-http-s3-download-demo-source-code"></a>
 
-The demo project is named `http_demo_s3_download.c` and can be found in the `freertos/demos/coreHTTP/` directory and on the [ GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreHTTP/http_demo_s3_download.c) website\. 
+The demo project is named `http_demo_s3_download.c` and can be found in the `freertos/demos/coreHTTP/` directory and on the  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/coreHTTP/http_demo_s3_download.c) website\. 
 
 ## Configuring the Amazon S3 HTTP server connection<a name="core-http-s3-download-demo-configure-server"></a>
 
@@ -36,21 +36,21 @@ This demo uses a pre\-signed URL to connect to the Amazon S3 HTTP server and aut
 
 1. Upload a file to S3 by following the steps in [How do I upload files and folders to an S3 bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html)\.
 
-1. Generate a pre\-signed URL using the script located at `FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/Common/presigned_url_generator/presigned_urls_gen.py`\. For usage instructions, see `FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/Common/presigned_url_generato/README.md`\. 
+1. Generate a pre\-signed URL using the script located at `FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/Common/presigned_url_generator/presigned_urls_gen.py`\. For usage instructions, see `FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/Common/presigned_url_generator/README.md`\. 
 
 ## Functionality<a name="core-http-s3-download-demo-functionality"></a>
 
 The demo retrieves the size of the file first\. Then it requests each byte range sequentially, in a loop, with range sizes of `democonfigRANGE_REQUEST_LENGTH`\.
 
-Source code for the demo can be found on the [GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreHTTP/http_demo_s3_download.c) website\.
+Source code for the demo can be found on the [GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/coreHTTP/http_demo_s3_download.c) website\.
 
 ### Connecting to the Amazon S3 HTTP server<a name="core-http-s3-download-demo-connecting"></a>
 
-The function [ connectToServerWithBackoffRetries\(\)](https://github.com/aws/amazon-freertos/blob/202012.00/demos/common/http_demo_helpers/http_demo_utils.c#L131-L170) attempts to make a TCP connection to the HTTP server\. If the connection fails, it retries after a timeout\. The timeout value will exponentially increase until the maximum number of attempts are reached or the maximum timeout value is reached\. `connectToServerWithBackoffRetries()` returns a failure status if the TCP connection to the server cannot be established after the configured number of attempts\. 
+The function [ connectToServerWithBackoffRetries\(\)](https://github.com/aws/amazon-freertos/blob/main/demos/common/http_demo_helpers/http_demo_utils.c#L131-L170) attempts to make a TCP connection to the HTTP server\. If the connection fails, it retries after a timeout\. The timeout value will exponentially increase until the maximum number of attempts are reached or the maximum timeout value is reached\. `connectToServerWithBackoffRetries()` returns a failure status if the TCP connection to the server cannot be established after the configured number of attempts\. 
 
 The function `prvConnectToServer()` demonstrates how to establish a connection to the Amazon S3 HTTP server using server authentication only\. It uses the mbedTLS\-based transport interface that is implemented in the file [ FreeRTOS\-Plus/Source/Application\-Protocols/network\_transport/freertos\_plus\_tcp/using\_mbedtls/using\_mbedtls\.c](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Source/Application-Protocols/network_transport/freertos_plus_tcp/using_mbedtls/using_mbedtls.c)\. 
 
-The source code for `prvConnectToServer()` can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreHTTP/http_demo_s3_download.c#L257-L318)\.
+The source code for `prvConnectToServer()` can be found on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/coreHTTP/http_demo_s3_download.c#L273-L333)\.
 
 ### Creating a range request<a name="core-http-s3-download-demo-creating-range-request"></a>
 
@@ -58,7 +58,7 @@ The API function `HTTPClient_AddRangeHeader()` supports serializing a byte range
 
 The function `prvGetS3ObjectFileSize()` retrieves the size of the file in the S3 bucket\. The `Connection: keep-alive` header is added in this first request to Amazon S3 to keep the connection open after the response is sent\. The S3 HTTP server does not currently support HEAD requests using a pre\-signed URL, so the 0th byte is requested\. The size of the file is contained in the response's `Content-Range` header field\. A `206 Partial Content` response is expected from the server; any other response status\-code received is an error\.
 
-The source code for `prvGetS3ObjectFileSize()` can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreHTTP/http_demo_s3_download.c#L321-L486)\.
+The source code for `prvGetS3ObjectFileSize()` can be found on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/coreHTTP/http_demo_s3_download.c#L337-L502)\.
 
 After it retrieves the file size, this demo creates a new range request for each byte range of the file to download\. It uses `HTTPClient_AddRangeHeader()` for each section of the file\. 
 
@@ -66,4 +66,4 @@ After it retrieves the file size, this demo creates a new range request for each
 
 The function `prvDownloadS3ObjectFile()` sends the range requests in a loop until the entire file is downloaded\. The API function `HTTPClient_Send()` sends a request and receives the response synchronously\. When the function returns, the response is received in an `xResponse`\. The status\-code is then verified to be `206 Partial Content` and the number of bytes downloaded so far is incremented by the `Content-Length` header value\. 
 
-The source code for `prvDownloadS3ObjectFile()` can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreHTTP/http_demo_s3_download.c#L490-L635)\.
+The source code for `prvDownloadS3ObjectFile()` can be found on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/coreHTTP/http_demo_s3_download.c#L506-L651)\.

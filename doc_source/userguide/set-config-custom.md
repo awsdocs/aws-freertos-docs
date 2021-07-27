@@ -62,65 +62,65 @@ Test runners can provide this information using the following template `device.j
 
 All fields that contain values are required as described here:
 
-`id`  
+**`id`**  
 A user\-defined alphanumeric ID that uniquely identifies a collection of devices called a *device pool*\. Devices that belong to a pool must have identical hardware\. When you run a suite of tests, devices in the pool are used to parallelize the workload\. Multiple devices are used to run different tests\.
 
-`sku`  
+**`sku`**  
 An alphanumeric value that uniquely identifies the device under test\. The SKU is used to track qualified devices\.  
 If you want to list your board in the AWS Partner Device Catalog, the SKU you specify here must match the SKU that you use in the listing process\.
 
-`features`  
+**`features`**  
 Optional\. An array that contains the device's supported features\. Device features are user\-defined values that you configure in your test suite\. You must provide your test runners with information about the feature names and values to include in the `device.json` file\. For example, if you want to test a device that functions as an MQTT server for other devices, then you can configure your test logic to validate specific supported levels for a feature named `MQTT_QOS`\. Test runners provide this feature name and set the feature value to the QOS levels supported by their device\. You can retrieve the provided information from the [IDT context](idt-context.md) with the `devicePool.features` query, or from the [state machine context](idt-state-machine.md#state-machine-context) with the `pool.features` query\.    
-`features.name`  
+**`features.name`**  
 The name of the feature\.  
-`features.value`  
+**`features.value`**  
 The supported feature values\.  
-`features.configs`  
+**`features.configs`**  
 Configuration settings, if needed, for the feature\.    
-`features.config.name`  
+**`features.config.name`**  
 The name of the configuration setting\.  
-`features.config.value`  
+**`features.config.value`**  
 The supported setting values\.
 
-`devices`  
+**`devices`**  
 An array of devices in the pool to be tested\. At least one device is required\.    
-`devices.id`  
+**`devices.id`**  
 A user\-defined unique identifier for the device being tested\.  
-`connectivity.protocol`  
+**`connectivity.protocol`**  
 The communication protocol used to communicate with this device\. Each device in a pool must use the same protocol\.  
 Currently, the only supported values are `ssh` and `uart` for physical devices, and `docker` for Docker containers\.  
-`connectivity.ip`  
+**`connectivity.ip`**  
 The IP address of the device being tested\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
-`connectivity.port`  
+**`connectivity.port`**  
 Optional\. The port number to use for SSH connections\.  
 The default value is 22\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
-`connectivity.auth`  
+**`connectivity.auth`**  
 Authentication information for the connection\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.    
-`connectivity.auth.method`  
+**`connectivity.auth.method`**  
 The authentication method used to access a device over the given connectivity protocol\.  
 Supported values are:  
 + `pki`
 + `password`  
-`connectivity.auth.credentials`  
+**`connectivity.auth.credentials`**  
 The credentials used for authentication\.    
-`connectivity.auth.credentials.password`  
+**`connectivity.auth.credentials.password`**  
 The password used for signing in to the device being tested\.  
 This value applies only if `connectivity.auth.method` is set to `password`\.  
-`connectivity.auth.credentials.privKeyPath`  
+**`connectivity.auth.credentials.privKeyPath`**  
 The full path to the private key used to sign in to the device under test\.  
 This value applies only if `connectivity.auth.method` is set to `pki`\.  
-`connectivity.auth.credentials.user`  
+**`connectivity.auth.credentials.user`**  
 The user name for signing in to the device being tested\.  
-`connectivity.serialPort`  
+**`connectivity.serialPort`**  
 Optional\. The serial port to which the device is connected\.  
 This property applies only if `connectivity.protocol` is set to `uart`\.  
-`connectivity.containerId`  
+**`connectivity.containerId`**  
 The container ID or name of the Docker container being tested\.  
 This property applies only if `connectivity.protocol` is set to `docker`\.  
-`connectivity.containerUser`  
+**`connectivity.containerUser`**  
 Optional\. The name of the user to user inside the container\. The default value is the user provided in the Dockerfile\.  
 The default value is 22\.  
 This property applies only if `connectivity.protocol` is set to `docker`\.
@@ -183,57 +183,57 @@ Test runners can provide this information using the following template `resource
 
 All fields that contain values are required as described here:
 
-`id`  
+**`id`**  
 A user\-defined alphanumeric ID that uniquely identifies a collection of devices called a *device pool*\. Devices that belong to a pool must have identical hardware\. When you run a suite of tests, devices in the pool are used to parallelize the workload\. Multiple devices are used to run different tests\.
 
-`features`  
+**`features`**  
 Optional\. An array that contains the device's supported features\. The information required in this field is defined in the [test\.json files](idt-json-config.md#test-json) in the test suite and determines which tests to run and how to run those tests\. If the test suite does not require any features, then this field is not required\.    
-`features.name`  
+**`features.name`**  
 The name of the feature\.  
-`features.version`  
+**`features.version`**  
 The feature version\.  
-`features.jobSlots`  
+**`features.jobSlots`**  
 Setting to indicate how many tests can concurrently use the device\. The default value is `1`\.
 
-`devices`  <a name="device-array"></a>
+**`devices`**  <a name="device-array"></a>
 An array of devices in the pool to be tested\. At least one device is required\.    
-`devices.id`  
+**`devices.id`**  
 A user\-defined unique identifier for the device being tested\.  
-`connectivity.protocol`  
+**`connectivity.protocol`**  
 The communication protocol used to communicate with this device\. Each device in a pool must use the same protocol\.  
 Currently, the only supported values are `ssh` and `uart` for physical devices, and `docker` for Docker containers\.  
-`connectivity.ip`  
+**`connectivity.ip`**  
 The IP address of the device being tested\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
-`connectivity.port`  
+**`connectivity.port`**  
 Optional\. The port number to use for SSH connections\.  
 The default value is 22\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
-`connectivity.auth`  
+**`connectivity.auth`**  
 Authentication information for the connection\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.    
-`connectivity.auth.method`  
+**`connectivity.auth.method`**  
 The authentication method used to access a device over the given connectivity protocol\.  
 Supported values are:  
 + `pki`
 + `password`  
-`connectivity.auth.credentials`  
+**`connectivity.auth.credentials`**  
 The credentials used for authentication\.    
-`connectivity.auth.credentials.password`  
+**`connectivity.auth.credentials.password`**  
 The password used for signing in to the device being tested\.  
 This value applies only if `connectivity.auth.method` is set to `password`\.  
-`connectivity.auth.credentials.privKeyPath`  
+**`connectivity.auth.credentials.privKeyPath`**  
 The full path to the private key used to sign in to the device under test\.  
 This value applies only if `connectivity.auth.method` is set to `pki`\.  
-`connectivity.auth.credentials.user`  
+**`connectivity.auth.credentials.user`**  
 The user name for signing in to the device being tested\.  
-`connectivity.serialPort`  
+**`connectivity.serialPort`**  
 Optional\. The serial port to which the device is connected\.  
 This property applies only if `connectivity.protocol` is set to `uart`\.  
-`connectivity.containerId`  
+**`connectivity.containerId`**  
 The container ID or name of the Docker container being tested\.  
 This property applies only if `connectivity.protocol` is set to `docker`\.  
-`connectivity.containerUser`  
+**`connectivity.containerUser`**  
 Optional\. The name of the user to user inside the container\. The default value is the user provided in the Dockerfile\.  
 The default value is 22\.  
 This property applies only if `connectivity.protocol` is set to `docker`\.
@@ -297,26 +297,26 @@ All fields that contain values are required as described here:
 **Note**  
 All paths in this file are defined relative to the *<device\-tester\-extract\-location>*\.
 
-`log.location`  
+**`log.location`**  
 The path to the logs folder in the *<device\-tester\-extract\-location>*\.
 
-`configFiles.root`  
+**`configFiles.root`**  
 The path to the folder that contains the configuration files\.
 
-`configFiles.device`  
+**`configFiles.device`**  
 The path to the `device.json` file\.
 
-`testPath`  
+**`testPath`**  
 The path to the folder that contains test suites\.
 
-`reportPath`  
+**`reportPath`**  
 The path to the folder that will contain test results after IDT runs a test suite\.
 
-`awsRegion`  
+**`awsRegion`**  
 Optional\. The AWS region that test suites will use\. If not set, then test suites will use the default region specified in each test suite\.
 
-`auth.method`  
+**`auth.method`**  
 The method IDT uses to retrieve AWS credentials\. Supported values are `file` to retrieve credentials from a credentials file, and `environment` to retrieve credentials using environment variables\.
 
-`auth.credentials.profile`  
+**`auth.credentials.profile`**  
 The credentials profile to use from the credentials file\. This property applies only if `auth.method` is set to `file`\.

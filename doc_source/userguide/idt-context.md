@@ -42,31 +42,31 @@ The IDT context uses the following format:
 }
 ```
 
-`config`  
+**`config`**  
 Information from the [`config.json` file](set-config-custom.md#config-json-custom)\. The `config` field also contains the following additional field:    
-`config.timeoutMultiplier`  
+**`config.timeoutMultiplier`**  
 The multiplier for the any timeout value used by the test suite\. This value is specified by the test runner from the IDT CLI\. The default value is `1`\.
 
-`device`  
+**`device`**  
 Information about the device selected for the test run\. This information is equivalent to the `devices` array element in the [`device.json` file](set-config-custom.md#device-config-custom) for the selected device\.
 
-`devicePool`  
+**`devicePool`**  
 Information about the device pool selected for the test run\. This information is equivalent to the top\-level device pool array element defined in the `device.json` file for the selected device pool\.
 
-`resource`  
+**`resource`**  
 Information about resource devices from the `resource.json` file\.    
-`resource.devices`  
+**`resource.devices`**  
 This information is equivalent to the `devices` array defined in the `resource.json` file\. Each `devices` element includes the following additional field:    
-`resource.device.name`  
+**`resource.device.name`**  
 The name of the resource device\. This value is set to the `requiredResource.name` value in the `test.json` file\.
 
-`testData.awsCredentials`  
+**`testData.awsCredentials`**  
 The AWS credentials used by the test to connect to the AWS cloud\. This information is obtained from the `config.json` file\.
 
-`testData.logFilePath`  
+**`testData.logFilePath`**  
 The path to the log file to which the test case writes log messages\. The test suite creates this file if it doesn't exist\. 
 
-`userData`  
+**`userData`**  
 Information provided by the test runner in the [`userdata.json` file](set-config-custom.md#userdata-config-custom)\.
 
 ## Access data in the context<a name="accessing-context-data"></a>

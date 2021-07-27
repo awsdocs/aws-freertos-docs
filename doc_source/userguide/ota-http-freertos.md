@@ -3,49 +3,16 @@
 This section describes the general requirements for using HTTP to perform over\-the\-air \(OTA\) updates\. Beginning with version 201912\.00, FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from AWS IoT to devices\. 
 
 **Note**  
-Although the HTTP protocol might be used to transfer the firmware image, the coreMQTT library is still required because other interactions with AWS IoT Core use the coreMQTT library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
+Although the HTTP protocol might be used to transfer the firmware image, the coreMQTT Agent library is still required because other interactions with AWS IoT Core use the coreMQTT Agent library, including sending or receiving job execution notifications, job documents, and execution status updates\. 
 When you specify both MQTT and HTTP protocols for the OTA update job, the setup of the OTA Agent software on each individual device determines the protocol used to transfer the firmware image\. To change the OTA Agent from the default MQTT protocol method to the HTTP protocol, you can modify the header files used to compile the FreeRTOS source code for the device\.
 
 ## Minimum requirements<a name="ota-http-freertos-min-requirements"></a>
-+ Device firmware must include the necessary FreeRTOS libraries \(coreMQTT, HTTP, OTA Agent, and their dependencies\)\.
++ Device firmware must include the necessary FreeRTOS libraries \(coreMQTT Agent, HTTP, OTA Agent, and their dependencies\)\.
 + FreeRTOS version 201912\.00 or later is required to change the configuration of the OTA protocols to enable OTA data transfer over HTTP\.
 
 ## Configurations<a name="ota-http-freertos-config"></a>
 
-See the following configuration of the OTA protocols in the `\vendors\boards\board\aws_demos\config_files\aws_ota_agent_config.h` file\.
-
-```
-/**
- * @brief The protocol selected for OTA control operations.
- * This configuration parameter sets the default protocol for all the OTA control
- * operations like requesting an OTA job, updating the job status, and so on.
- *
- * Note - Only MQTT is supported at this time for control operations.
- */
-#define configENABLED_CONTROL_PROTOCOL       ( OTA_CONTROL_OVER_MQTT )
-/**
- * @brief The protocol selected for OTA data operations.
- * This configuration parameter sets the protocols selected for the data operations
- * like requesting file blocks from the service.
- *
- * Note - Both MQTT and HTTP are supported for data transfer. This configuration parameter
- * can be set to the following -
- * Enable data over MQTT - ( OTA_DATA_OVER_MQTT )
- * Enable data over HTTP - ( OTA_DATA_OVER_HTTP)
- * Enable data over both MQTT & HTTP ( OTA_DATA_OVER_MQTT | OTA_DATA_OVER_HTTP )
- */
-#define configENABLED_DATA_PROTOCOLS         ( OTA_DATA_OVER_MQTT )
- /**
-  * @brief The preferred protocol selected for OTA data operations.
-  *
-  * Primary data protocol will be the protocol used for downloading files if more than
-  * one protocol is selected while creating OTA job. Default primary data protocol is MQTT
-  * and the following update here switches to HTTP as primary.
-  *
-  * Note - use OTA_DATA_OVER_HTTP for HTTP as primary data protocol.
-  */
-#define configOTA_PRIMARY_DATA_PROTOCOL     ( OTA_DATA_OVER_MQTT )
-```
+See the following configuration of the OTA protocols in the [ `\vendors\boards\board\aws_demos\config_files\ota_config.h` ](https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h) file\.
 
 **To enable OTA data transfer over HTTP**
 
@@ -59,7 +26,7 @@ HTTP is only supported for OTA data operations\. For control operations, you mus
 ## Device specific configurations<a name="ota-http-freertos-device-configuration"></a>
 
 **ESP32**  
-Due to a limited amount of RAM, you must turn off BLE when you enable HTTP as an OTA data protocol\. In the `vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h` file, change `configENABLED_NETWORKS` to `AWSIOT_NETWORK_TYPE_WIFI` only\.  
+Due to a limited amount of RAM, you must turn off BLE when you enable HTTP as an OTA data protocol\. In the [ `vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h` ](https://github.com/aws/amazon-freertos/blob/main/vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h) file, change `configENABLED_NETWORKS` to `AWSIOT_NETWORK_TYPE_WIFI` only\.  
 
 ```
 /**

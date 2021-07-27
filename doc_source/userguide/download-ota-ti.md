@@ -22,7 +22,7 @@ Save the zip file that contains FreeRTOS and the OTA demo code to your computer\
 
 1. Follow the instructions in [Getting Started with FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into Code Composer Studio, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
-1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`,  comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define `CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED` or `CONFIG_OTA_HTTP_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 
@@ -37,50 +37,62 @@ Save the zip file that contains FreeRTOS and the OTA demo code to your computer\
 When run, the terminal emulator should display text like the following:
 
 ```
-0 0 [Tmr Svc] Starting Wi-Fi Module ...
-1 0 [Tmr Svc] Simple Link task created
-Device came up in Station mode
-2 142 [Tmr Svc] Wi-Fi module initialized.
-3 142 [Tmr Svc] Starting key provisioning...
-4 142 [Tmr Svc] Write root certificate...
-5 243 [Tmr Svc] Write device private key...
-6 340 [Tmr Svc] Write device certificate...
-7 433 [Tmr Svc] Key provisioning done...
-[WLAN EVENT] STA Connected to the AP: Mobile , BSSID: 24:de:c6:5d:32:a4
-[NETAPP EVENT] IP acquired by the device
-
-Device has connected to Mobile
-Device IP Address is 192.168.111.12
-
-8 2666 [Tmr Svc] Wi-Fi connected to AP Mobile.
-9 2666 [Tmr Svc] IP Address acquired 192.168.111.12
-10 2667 [OTA] OTA demo version 0.9.2
-11 2667 [OTA] Creating MQTT Client...
-12 2667 [OTA] Connecting to broker...
-13 3512 [OTA] Connected to broker.
-14 3715 [OTA Task] [prvSubscribeToJobNotificationTopics] OK: $aws/things/OtaGA/jobs/$next/get/accepted
-15 4018 [OTA Task] [prvSubscribeToJobNotificationTopics] OK: $aws/things/OtaGA/jobs/notify-next
-16 4027 [OTA Task] [prvPAL_GetPlatformImageState] xFileInfo.Flags = 0250
-17 4027 [OTA Task] [prvPAL_GetPlatformImageState] eOTA_PAL_ImageState_Valid
-18 4034 [OTA Task] [OTA_CheckForUpdate] Request #0
-19 4248 [OTA] [OTA_AgentInit] Ready.
-20 4249 [OTA Task] [prvParseJSONbyModel] Extracted parameter [ clientToken: 0:OtaGA ]
-21 4249 [OTA Task] [prvParseJSONbyModel] parameter not present: execution
-22 4249 [OTA Task] [prvParseJSONbyModel] parameter not present: jobId
-23 4249 [OTA Task] [prvParseJSONbyModel] parameter not present: jobDocument
-24 4249 [OTA Task] [prvParseJSONbyModel] parameter not present: afr_ota
-25 4250 [OTA Task] [prvParseJSONbyModel] parameter not present: streamname
-26 4250 [OTA Task] [prvParseJSONbyModel] parameter not present: files
-27 4250 [OTA Task] [prvParseJSONbyModel] parameter not present: filepath
-28 4250 [OTA Task] [prvParseJSONbyModel] parameter not present: filesize
-29 4250 [OTA Task] [prvParseJSONbyModel] parameter not present: fileid
-30 4250 [OTA Task] [prvParseJSONbyModel] parameter not present: certfile
-31 4251 [OTA Task] [prvParseJSONbyModel] parameter not present: sig-sha1-rsa
-32 4251 [OTA Task] [prvParseJobDoc] Ignoring job without ID.
-33 4251 [OTA Task] [prvOTA_Close] Context->0x2001b2c4
-34 5248 [OTA] State: Ready Received: 1 Queued: 1 Processed: 1 Dropped: 0
-35 6248 [OTA] State: Ready Received: 1 Queued: 1 Processed: 1 Dropped: 0
-36 7248 [OTA] State: Ready Received: 1 Queued: 1 Processed: 1 Dropped: 0
-37 8248 [OTA] State: Ready Received: 1 Queued: 1 Processed: 1 Dropped: 0
-38 9248 [OTA] State: Ready Received: 1 Queued: 1 Processed: 1 Dropped: 0
+    0 1000 [Tmr Svc] Simple Link task created
+    Device came up in Station mode
+    1 2534 [Tmr Svc] Write certificate...
+    2 5486 [Tmr Svc] [ERROR] Failed to destroy object. PKCS11_PAL_DestroyObject failed.
+    3 5486 [Tmr Svc] Write certificate...
+    4 5776 [Tmr Svc] Security alert threshold = 15
+    5 5776 [Tmr Svc] Current number of alerts = 1
+    6 5778 [Tmr Svc] Running Demos.
+    7 5779 [iot_thread] [INFO ][DEMO][5779] ---------STARTING DEMO---------
+    8 5779 [iot_thread] [INFO ][INIT][5779] SDK successfully initialized.
+    Device came up in Station mode
+    [WLAN EVENT] STA Connected to the AP: afrlab-pepper , BSSID: 74:83:c2:b4:46:27
+    [NETAPP EVENT] IP acquired by the device
+    Device has connected to afrlab-pepper
+    Device IP Address is 192.168.36.176 
+    9 8283 [iot_thread] [INFO ][DEMO][8282] Successfully initialized the demo. Network type for the demo: 1
+    10 8283 [iot_thread] [INFO] OTA over MQTT demo, Application version 0.9.0
+    11 8283 [iot_thread] [INFO] Creating a TLS connection to <endpoint>-ats.iot.us-west-2.amazonaws.com:8883.
+    12 8852 [iot_thread] [INFO] Creating an MQTT connection to <endpoint>-ats.iot.us-west-2.amazonaws.com.
+    13 8914 [iot_thread] [INFO] Packet received. ReceivedBytes=2.
+    14 8914 [iot_thread] [INFO] CONNACK session present bit not set.
+    15 8914 [iot_thread] [INFO] Connection accepted.
+    16 8914 [iot_thread] [INFO] Received MQTT CONNACK successfully from broker.
+    17 8914 [iot_thread] [INFO] MQTT connection established with the broker.
+    18 8915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    19 8953 [OTA Agent T] [INFO] Current State=[RequestingJob], Event=[Start], New state=[RequestingJob]
+    20 9008 [MQTT Agent ] [INFO] Packet received. ReceivedBytes=3.
+    21 9015 [OTA Agent T] [INFO] SUBSCRIBED to topic $aws/things/__test_infra_thing73/jobs/notify-next to broker.
+    22 9015 [OTA Agent T] [INFO] Subscribed to MQTT topic: $aws/things/__test_infra_thing73/jobs/notify-next
+    23 9504 [MQTT Agent ] [INFO] Publishing message to $aws/things/__test_infra_thing73/jobs/$next/get.
+    24 9535 [MQTT Agent ] [INFO] Packet received. ReceivedBytes=2.
+    25 9535 [MQTT Agent ] [INFO] Ack packet deserialized with result: MQTTSuccess.
+    26 9536 [MQTT Agent ] [INFO] State record updated. New state=MQTTPublishDone.
+    27 9537 [OTA Agent T] [INFO] Sent PUBLISH packet to broker $aws/things/__test_infra_thing73/jobs/$next/get to broker.
+    28 9537 [OTA Agent T] [WARN] OTA Timer handle NULL for Timerid=0, can't stop.
+    29 9537 [OTA Agent T] [INFO] Current State=[WaitingForJob], Event=[RequestJobDocument], New state=[WaitingForJob]
+    30 9539 [MQTT Agent ] [INFO] Packet received. ReceivedBytes=120.
+    31 9539 [MQTT Agent ] [INFO] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+    32 9540 [MQTT Agent ] [INFO] State record updated. New state=MQTTPublishDone.
+    33 9540 [MQTT Agent ] [INFO] Received job message callback, size 62.
+    34 9616 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=execution
+    35 9616 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=execution.jobId
+    36 9617 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=execution.jobDocument
+    37 9617 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=execution.jobDocument.afr_ota
+    38 9617 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=execution.jobDocument.afr_ota.protocols
+    39 9618 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=execution.jobDocument.afr_ota.files
+    40 9618 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=filesize
+    41 9618 [OTA Agent T] [INFO] Failed job document content check: Required job document parameter was not extracted: parameter=fileid
+    42 9619 [OTA Agent T] [INFO] Failed to parse JSON document as AFR_OTA job: DocParseErr_t=7
+    43 9619 [OTA Agent T] [INFO] No active job available in received job document: OtaJobParseErr_t=OtaJobParseErrNoActiveJobs
+    44 9619 [OTA Agent T] [ERROR] Failed to execute state transition handler: Handler returned error: OtaErr_t=OtaErrJobParserError
+    45 9620 [OTA Agent T] [INFO] Current State=[WaitingForJob], Event=[ReceivedJobDocument], New state=[CreatingFile]
+    46 9915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    47 10915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    48 11915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    49 12915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    50 13915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    51 14915 [iot_thread] [INFO]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
 ```

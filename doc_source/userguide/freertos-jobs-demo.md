@@ -2,18 +2,18 @@
 
 ## Introduction<a name="freertos-jobs-demo-introduction"></a>
 
-The AWS IoT Jobs library demo shows you how to connect to the [AWS IoT Jobs service](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) through an MQTT connection, retrieve a job from AWS IoT, and process it on a device\. The AWS IoT Jobs demo project uses the [ FreeRTOS Windows port](https://www.freertos.org/FreeRTOS-Windows-Simulator-Emulator-for-Visual-Studio-and-Eclipse-MingW.html), so it can be built and evaluated with the [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) version on Windows\. No microcontroller hardware is needed\. The demo establishes a secure connection to the AWS IoT MQTT broker using TLS in the same manner as the [MQTT mutual authentication demo](https://freertos.org/mqtt/mutual-authentication-mqtt-example.html)\.
+The AWS IoT Jobs library demo shows you how to connect to the [AWS IoT Jobs service](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html) through an MQTT connection, retrieve a job from AWS IoT, and process it on a device\. The AWS IoT Jobs demo project uses the [ FreeRTOS Windows port](https://www.freertos.org/FreeRTOS-Windows-Simulator-Emulator-for-Visual-Studio-and-Eclipse-MingW.html), so it can be built and evaluated with the [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) version on Windows\. No microcontroller hardware is needed\. The demo establishes a secure connection to the AWS IoT MQTT broker using TLS  in the same manner as the [coreMQTT mutual authentication demo](mqtt-demo-ma.md)\.
 
 **Note**  
 To set up and run the FreeRTOS demos, follow the steps in [Getting Started with FreeRTOS](freertos-getting-started.md)\.
 
 ## Source code organization<a name="freertos-jobs-demo-source-code-org"></a>
 
-The demo code is in the `jobs_demo.c` file and can be found on the [GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c) website or in the `freertos/demos/jobs_for_aws/` directory\.
+The demo code is in the `jobs_demo.c` file and can be found on the [GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c) website or in the `freertos/demos/jobs_for_aws/` directory\.
 
 ## Configure the AWS IoT MQTT broker connection<a name="freertos-jobs-demo-configure-mqtt-broker"></a>
 
-In this demo, you use an MQTT connection to the AWS IoT MQTT broker\. This connection is configured in the same way as in the [MQTT mutual authentication demo](https://freertos.org/mqtt/mutual-authentication-mqtt-example.html#configuration)\.
+In this demo, you use an MQTT connection to the AWS IoT MQTT broker\. This connection is configured in the same  way as the [coreMQTT mutual authentication demo](mqtt-demo-ma.md)\.
 
 ## Functionality<a name="freertos-jobs-demo-functionality"></a>
 
@@ -57,7 +57,7 @@ The demo loops until it receives a job document with the `action` key set to `ex
 
 ### Entry point of the Jobs demo<a name="freertos-jobs-demo-functionality-entry-point"></a>
 
-The source code for the Jobs demo entry point function can be found on [ GitHub](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L717-L911)\. This function performs the following operations:
+The source code for the Jobs demo entry point function can be found on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L773-L967)\. This function performs the following operations:
 
 1. Establish an MQTT connection using the helper functions in `mqtt_demo_helpers.c`\.
 
@@ -71,10 +71,10 @@ The source code for the Jobs demo entry point function can be found on [ GitHub]
 
 ### Callback for received MQTT messages<a name="freertos-jobs-demo-functionality-callback"></a>
 
-The [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L618-L713) function calls `Jobs_MatchTopic` from the AWS IoT Jobs library to classify the incoming MQTT message\. If the message type corresponds to a new job, `prvNextJobHandler()` is called\.
+The [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L773-L967) function calls `Jobs_MatchTopic` from the AWS IoT Jobs library to classify the incoming MQTT message\. If the message type corresponds to a new job, `prvNextJobHandler()` is called\.
 
-The [ prvNextJobHandler](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L576-L614) function, and the functions it calls, parse the job document from the JSON\-formatted message, and run the action specified by the job\. Of particular interest is the `prvSendUpdateForJob` function\.
+The [ prvNextJobHandler](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L601-L670) function, and the functions it calls, parse the job document from the JSON\-formatted message, and run the action specified by the job\. Of particular interest is the `prvSendUpdateForJob` function\.
 
 ### Send an update for a running job<a name="freertos-jobs-demo-functionality-send-update"></a>
 
-The function [ prvSendUpdateForJob\(\)](https://github.com/aws/amazon-freertos/blob/master/demos/jobs_for_aws/jobs_demo.c#L396-L440) calls `Jobs_Update()` from the Jobs library to populate the topic string used in the MQTT publish operation that immediately follows\.
+The function [ prvSendUpdateForJob\(\)](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L413-L457) calls `Jobs_Update()` from the Jobs library to populate the topic string used in the MQTT publish operation that immediately follows\.

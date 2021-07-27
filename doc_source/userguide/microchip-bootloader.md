@@ -1,5 +1,8 @@
 # Demo bootloader for the Microchip Curiosity PIC32MZEF<a name="microchip-bootloader"></a>
 
+**Note**  
+In agreement with Microchip, we are removing the Curiosity PIC32MZEF \(DM320104\) from the FreeRTOS Reference Integration repository main branch and will no longer carry it in new releases\. Microchip has issued an [official notice](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM320104) that the PIC32MZEF \(DM320104\) is no longer recommended for new designs\. The PIC32MZEF projects and source code can still be accessed through the previous release tags\. Microchip recommends that customers use the Curiosity [ PIC32MZ\-EF\-2\.0 Development board \(DM320209\)](https://devices.amazonaws.com/detail/a3G0h0000077I69EAE/Curiosity-PIC32MZ-EF-2-0-Development-Board) for new designs\. The PIC32MZv1 platform can still be found in [v202012\.00](https://github.com/aws/amazon-freertos/tree/202012.00) of the FreeRTOS Reference Integration repository\. However, the platform is no longer supported by [v202107\.00](https://github.com/aws/amazon-freertos/tree/202107.00) of the FreeRTOS Reference\.
+
  This demo bootloader implements firmware version checking, cryptographic signature verification, and application self\-testing\. These capabilities support over\-the\-air \(OTA\) firmware updates for FreeRTOS\.
 
 The firmware verification includes verifying the authenticity and integrity of the new firmware received over the air\. The bootloader verifies the cryptographic signature of the application before booting\. The demo uses elliptic\-curve digital signature algorithm \(ECDSA\) over SHA\-256\. The utilities provided can be used to generate a signed application that can be flashed on the device\.
@@ -31,13 +34,13 @@ The following table describes the bootloader states\.
 
 In the preceding diagram, both `Execute Image` and `Execute Default` are shown as the `Execution` state\.
 
-Bootloader Execution State  
+**Bootloader Execution State**  
 The bootloader is in the `Execution` state and is ready to launch the selected verified image\. If the image to be launched is in the upper bank, the banks are swapped before executing the image, because the application is always built for the lower bank\.
 
-Bootloader Default Execution State  
+**Bootloader Default Execution State**  
 If the configuration option to launch the default image is enabled, the bootloader launches the application from a default execution address\. This option must be disabled except while debugging\.
 
-Bootloader Error State  
+**Bootloader Error State**  
 The bootloader is in an error state and no valid images are present on the device\. The bootloader must notify the user\. The default implementation sends a log message to the console and fast\-blinks the LED on the board indefinitely\.
 
 ## Flash device<a name="flash-device"></a>
@@ -102,22 +105,22 @@ The application image on the flash device must contain the image descriptor foll
 |  Hardware ID  |  4 bytes  | 
 |  Reserved  |  4 bytes  | 
 
-Sequence Number  
+**Sequence Number**  
 The sequence number must be incremented before building a new OTA image\. See the `ota-descriptor.config` file\. The bootloader uses this number to determine the image to boot\. Valid values are from 1 to ‭4294967295‬\.
 
-Start Address  
+**Start Address**  
 The starting address of the application image on the device\. As the image descriptor is prepended to the application binary, this address is the start of the image descriptor\.
 
-End Address  
+**End Address**  
 The ending address of the application image on the device, excluding the image trailer\.
 
-Execution Address  
+**Execution Address**  
 The execution address of the image\.
 
-Hardware ID  
+**Hardware ID**  
 A unique hardware ID used by the bootloader to verity the OTA image is built for the correct platform\.
 
-Reserved  
+**Reserved**  
 This is reserved for future use\.
 
 ## Image trailer<a name="image-trailer"></a>
@@ -131,32 +134,32 @@ The image trailer is appended to the application binary\. It contains the signat
 |  Signature Size  |  4 bytes  | 
 |  Signature  |  256 bytes  | 
 
-Signature Type  
+**Signature Type**  
 The signature type is a string that represents the cryptographic algorithm being used and serves as a marker for the trailer\. The bootloader supports the elliptic\-curve digital signature algorithm \(ECDSA\)\. The default is sig\-sha256\-ecdsa\.
 
-Signature Size  
+**Signature Size**  
 The size of the cryptographic signature, in bytes\.
 
-Signature  
+**Signature**  
 The cryptographic signature of the application binary prepended with the image descriptor\.
 
 ## Bootloader configuration<a name="bootloader-configuration"></a>
 
 The basic bootloader configuration options are provided in `freertos/vendors/microchip/boards/curiosity_pic32mzef/bootloader/config_files/aws_boot_config.h`\. Some options are provided for debugging purposes only\.
 
-Enable Default Start  
+**Enable Default Start**  
 Enables the execution of the application from the default address and must be enabled for debugging only\. The image is executed from the default address without any verification\. 
 
-Enable Crypto Signature Verification  
+**Enable Crypto Signature Verification**  
 Enables cryptographic signature verification on boot\. Failed images are erased from the device\. This option is provided for debugging purposes only and must remain enabled in production\.
 
-Erase Invalid Image  
+**Erase Invalid Image**  
 Enables a full bank erase if image verification on that bank fails\. The option is provided for debugging and must remain enabled in production\.
 
-Enable Hardware ID Verification  
+**Enable Hardware ID Verification**  
 Enables verification of the hardware ID in the descriptor of the OTA image and the hardware ID programmed in the bootloader\. This is optional and can be disabled if hardware ID verification is not required\. 
 
-Enable Address Verification  
+**Enable Address Verification**  
 Enables verification of the start, end, and execution addresses in the descriptor of OTA image\. We recommend that you keep this option enabled\.
 
 ## Building the bootloader<a name="building-bootloader"></a>

@@ -7,6 +7,7 @@ Throughout this tutorial, we assume that you are familiar with AWS IoT and the A
 **Topics**
 + [FreeRTOS demo application](freertos-getting-started-demo.md)
 + [First steps](freertos-prereqs.md)
++ [First steps with the console Quick Connect workflow](freertos-console-quickstart.md)
 + [Troubleshooting getting started](gsg-troubleshooting.md)
 + [Using CMake with FreeRTOS](getting-started-cmake.md)
 + [Developer\-mode key provisioning](dev-mode-key-provisioning.md)

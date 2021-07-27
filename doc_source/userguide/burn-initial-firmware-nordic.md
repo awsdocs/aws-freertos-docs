@@ -6,7 +6,7 @@ This guide is written with the assumption that you have already performed the st
 
 1. Open `freertos/vendors/nordic/boards/nrf52840-dk/aws_demos/config_files/aws_demo_config.h`\.
 
-1. Replace `#define CONFIG_MQTT_DEMO_ENABLED` with `#define democonfigOTA_UPDATE_DEMO_ENABLED`\.
+1. Replace `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED` with `CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED` or `CONFIG_OTA_HTTP_UPDATE_DEMO_ENABLED`\.
 
 1. With the OTA Update demo selected, follow the same steps outlined in [Getting started with the Nordic nRF52840\-DK](getting_started_nordic.md) to build and flash the image\.
 

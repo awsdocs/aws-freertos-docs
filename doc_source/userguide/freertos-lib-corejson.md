@@ -13,7 +13,7 @@ The coreJSON library uses an internal stack to track nested structures in a JSON
 
 ****  
 
-| Code Size of coreJSON \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| Code Size of coreJSON \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
-| core\_json\.c | 2\.7K | 2\.2K | 
-| Total estimate | 2\.7K | 2\.2K | 
+| core\_json\.c | 2\.9K | 2\.4K | 
+| Total estimates | 2\.9K | 2\.4K | 

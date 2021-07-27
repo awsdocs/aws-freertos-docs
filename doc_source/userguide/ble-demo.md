@@ -119,7 +119,7 @@ To set up your environment, you need to download FreeRTOS with the [Bluetooth Lo
 
 **To set up your microcontroller's environment with FreeRTOS Bluetooth Low Energy**
 
-1. Download or clone FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\.
+1. Download or clone FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file for instructions\.
 
 1. Set up FreeRTOS on your microcontroller\.
 
@@ -307,7 +307,7 @@ All devices with FreeRTOS and the device information service \(`freertos/.../dev
 1. Choose your microcontroller from the list of devices\. The application establishes a connection with the board, and a green line appears next to the connected device\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list2.png)
 
-   You can disconnect from your microntroller by dragging the line to the left\.  
+   You can disconnect from your microcontroller by dragging the line to the left\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list3.png)
 
 1. If prompted, pair your microcontroller and mobile device\.  
@@ -334,7 +334,12 @@ In the MQTT over Bluetooth Low Energy demo, your microcontroller publishes messa
 If you use Bluetooth Low Energy to pair the microcontroller with your mobile device, the MQTT messages are routed through the Bluetooth Low Energy Mobile SDK demo application on your mobile device\.
 
 **To enable the demo over Bluetooth Low Energy**
-+ Open `vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, and define `CONFIG_MQTT_BLE_TRANSPORT_DEMO_ENABLED`\.
+
+1. Open `vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, and define `CONFIG_MQTT_BLE_TRANSPORT_DEMO_ENABLED`\.
+
+1. Open `demos/include/aws_clientcredential.h`, and configure `clientcredentialMQTT_BROKER_ENDPOINT` with the AWS IoT broker endpoint\. Configure `clientcredentialIOT_THING_NAME` with the thing name for the BLE micro controller device\. The AWS IoT broker endpoint can be obtained from the AWS IoT console by choosing **Settings** in the left navigation pane, or through the CLI by running the command: `aws iot describe-endpoint --endpoint-type=iot:Data-ATS`\.
+**Note**  
+The AWS IoT broker endpoint and thing name must both be in the same region where the cognito identity and user pool are configured\.
 
 **To run the demo**
 
@@ -366,7 +371,7 @@ The Wi\-Fi Provisioning service is disabled by default\.
 
 1. Build and run the demo project on your microcontroller\.
 
-1. Make sure that you have paired your microntroller and your mobile device using the [FreeRTOS Bluetooth Low Energy Mobile SDK demo application](#ble-sdk-app)\.
+1. Make sure that you have paired your microcontroller and your mobile device using the [FreeRTOS Bluetooth Low Energy Mobile SDK demo application](#ble-sdk-app)\.
 
 1. From the **Devices** list in the demo mobile app, choose your microcontroller, and then choose **Network Config** to open the network configuration settings\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-device-list4.png)
@@ -377,7 +382,7 @@ The Wi\-Fi Provisioning service is disabled by default\.
    From the **Scanned Networks** list, choose your network, and then enter the SSID and password, if required\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-wifi-password.png)
 
-   The micrcontroller connects to and saves the network\. The network appears under **Saved Networks**\.  
+   The microcontroller connects to and saves the network\. The network appears under **Saved Networks**\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/ble-network-config2.png)
 
 You can save several networks in the demo mobile app\. When you restart the application and demo, the microcontroller connects to the first available saved network, starting from the top of the **Saved Networks** list\. 
@@ -398,7 +403,7 @@ Using the Bluetooth Low Energy Mobile SDKs, you can create your own GATT client 
 **Note**  
 The Bluetooth Low Energy GATT demo is disabled by default\.
 
-1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_BLE_GATT_SERVER_DEMO_ENABLED`\.
+1. Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define  `CONFIG_BLE_GATT_SERVER_DEMO_ENABLED`\.
 
 **To run the demo**
 

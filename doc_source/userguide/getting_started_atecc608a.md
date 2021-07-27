@@ -7,7 +7,7 @@ You need the following hardware:
 + [ SAMD21 XPlained Pro](https://www.microchipdirect.com/product/ATSAMD21-XPRO?dfw_tracker=64197-ATSAMD21-XPRO&gclid=EAIaIQobChMIn5jIuM3C5QIVk_5kCh1m1Ag4EAQYASABEgLKtfD_BwE)
 + [ mikroBUS Xplained Pro adapter](https://www.microchip.com/Developmenttools/ProductDetails/ATMBUSADAPTER-XPRO)
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\.  In this tutorial, the path to the FreeRTOS download directory is referred to as *freertos*\.
+Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as *freertos*\.
 
 ## Overview<a name="gsg-atcc608a-overview"></a>
 
@@ -102,6 +102,17 @@ Your setup should look like the following\.
 In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
 Space characters in the `freertos` path can cause build failures\. When you clone or copy the repository, make sure the path that you create doesn't contain space characters\.
 The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
+Because the source code may contain symbolic links, if you're using Windows to extract the archive, you may have to:  
+Enable [ Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) or, 
+Use a console that is elevated as administrator\.
+In this way, Windows can properly create symbolic links when it extracts the archive\. Otherwise, symbolic links will be written as normal files that contain the paths of the symbolic links as text or are empty\. For more information, see the blog entry [Symlinks in Windows 10\!](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/)\.  
+If you use Git under Windows, you must enable Developer Mode or you must:   
+Set `core.symlinks` to true with the following command:  
+
+          ```
+          git config --global core.symlinks true
+          ```
+Use a console that is elevated as administrator whenever you use a git command that writes to the system \(for example, git pull, git clone, and git submodule update \-\-init \-\-recursive\)\.
 
    1. From the `freertos` directory, check out the branch to use\.
 
@@ -113,7 +124,7 @@ The maximum length of a file path on Microsoft Windows is 260 characters\. Long 
 
       Visual Studio versions 2017 and 2019 are known to work\. All editions of these Visual Studio versions are supported \(Community, Professional, or Enterprise\)\.
 
-      In addition to the IDE, install the Desktop development with C\+\+ component\. Then, under **Optional**, install the latest Windows 10 SDK\. 
+      In addition to the IDE, install the Desktop development with C\+\+ component\. Then, under **Optional**, install the latest Windows 10 SDK\.
 
    1. Make sure that you have an active hard\-wired Ethernet connection\.
 
@@ -150,7 +161,7 @@ The Microchip ATECC608A device has a one time initialization that is locked onto
 
    1. Load the CA certificate and device certificate onto the device\.
 
-1. Build and run FreeRTOS samples\. 
+1. Build and run FreeRTOS samples\.
 
    Re\-run the demo project again\. This time you should connect\!
 

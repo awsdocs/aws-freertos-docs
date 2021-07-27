@@ -83,31 +83,31 @@ Configure your device information for IDT to run the test\. You must update the 
 
 In the `devices` object, provide the following information:
 
-`id`  
+**`id`**  
 A user\-defined unique identifier for your device\.
 
-`connectivity.ip`  
+**`connectivity.ip`**  
 The IP address of your device\.
 
-`connectivity.port`  
+**`connectivity.port`**  
 Optional\. The port number to use for SSH connections to your device\.
 
-`connectivity.auth`  
+**`connectivity.auth`**  
 Authentication information for the connection\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.    
-`connectivity.auth.method`  
+**`connectivity.auth.method`**  
 The authentication method used to access a device over the given connectivity protocol\.  
 Supported values are:  
 + `pki`
 + `password`  
-`connectivity.auth.credentials`  
+**`connectivity.auth.credentials`**  
 The credentials used for authentication\.    
-`connectivity.auth.credentials.user`  
+**`connectivity.auth.credentials.user`**  
 The user name used to sign in to your device\.  
-`connectivity.auth.credentials.privKeyPath`  
+**`connectivity.auth.credentials.privKeyPath`**  
 The full path to the private key used to sign in to your device\.  
 This value applies only if `connectivity.auth.method` is set to `pki`\.  
-`devices.connectivity.auth.credentials.password`  
+**`devices.connectivity.auth.credentials.password`**  
 The password used for signing in to your device\.  
 This value applies only if `connectivity.auth.method` is set to `password`\.
 

@@ -40,13 +40,13 @@ You can use the following template to configure your own `<custom-test-suite-fol
 
 All fields that contain values are required as described here:
 
-`Comment`  
+**`Comment`**  
 A description of the state machine\.
 
-`StartAt`  
+**`StartAt`**  
 The name of the state at which IDT starts running the test suite\. The value of `StartAt` must be set to one of the states listed in the `States` object\.
 
-`States`  
+**`States`**  
 An object that maps user\-defined state names to valid IDT states\. Each States\.*state\-name* object contains the definition of a valid state mapped to the *state\-name*\.  
 The `States` object must include the `Succeed` and `Fail` states\. For information about valid states, see [Valid states and state definitions](#valid-states)\.
 
@@ -83,13 +83,13 @@ The `RunTask` state runs test cases from a test group defined in the test suite\
 
 All fields that contain values are required as described here:
 
-`Next`  
+**`Next`**  
 The name of the state to transition to after executing the actions in the current state\.
 
-`TestGroup`  
+**`TestGroup`**  
 Optional\. The ID of the test group to run\. If this value is not specified, then IDT runs the test group that the test runner selects\.
 
-`TestCases`  
+**`TestCases`**  
 Optional\. An array of test case IDs from the group specified in `TestGroup`\. Based on the values of `TestGroup` and `TestCases`, IDT determines the test execution behavior as follows:   
 + When both `TestGroup` and `TestCases` are specified, IDT runs the specified test cases from the test group\. 
 + When `TestCases` are specified but `TestGroup` is not specified, IDT runs the specified test cases\.
@@ -98,7 +98,7 @@ Optional\. An array of test case IDs from the group specified in `TestGroup`\. B
 
   For more information about enabling IDT CLI commands for test runners, see [Enable IDT CLI commands](test-executables.md#idt-cli-coop)\.
 
-`ResultVar`  
+**`ResultVar`**  
 The name of the context variable to set with the results of the test run\. Do not specify this value if you did not specify a value for `TestGroup`\. IDT sets the value of the variable that you define in `ResultVar` to `true` or `false` based on the following:   
 + If the variable name is of the form `text_text_passed`, then the value is set to whether all tests in the first test group passed or were skipped\.
 + In all other cases, the value is set to whether all tests in all test groups passed or were skipped\.
@@ -129,17 +129,17 @@ The `Choice` state lets you dynamically set the next state to transition to base
 
 All fields that contain values are required as described here:
 
-`Default`  
+**`Default`**  
 The default state to transition to if none of the expressions defined in `Choices` can be evaluated to `true`\.
 
-`FallthroughOnError`  
+**`FallthroughOnError`**  
 Optional\. Specifies the behavior when the state encounters an error in evaluating expressions\. Set to `true` if you want to skip an expression if the evaluation results in an error\. If no expressions match, then the state machine transitions to the `Default` state\. If the `FallthroughOnError` value is not specified, it defaults to `false`\. 
 
-`Choices`  
+**`Choices`**  
 An array of expressions and states to determine which state to transition to after executing the actions in the current state\.    
-`Choices.Expression`  
-An expression string that evaluates to a boolean value\. If the expression evaluates to `true`, then the state machine transitions to the state defined in `Choices.Next`\. Expression strings retrieve values from the state machine context and then perform operations on them to arrive at a boolean value\. For information about accesing the state machine context, see [State machine context](#state-machine-context)\.   
-`Choices.Next`  
+**`Choices.Expression`**  
+An expression string that evaluates to a boolean value\. If the expression evaluates to `true`, then the state machine transitions to the state defined in `Choices.Next`\. Expression strings retrieve values from the state machine context and then perform operations on them to arrive at a boolean value\. For information about accessing the state machine context, see [State machine context](#state-machine-context)\.   
+**`Choices.Next`**  
 The name of the state to transition to if the expression defined in `Choices.Expression` evaluates to `true`\.
 
 **Error handling**
@@ -169,10 +169,10 @@ The `Parallel` state lets you define and run new state machines in parallel with
 
 All fields that contain values are required as described here:
 
-`Next`  
+**`Next`**  
 The name of the state to transition to after executing the actions in the current state\.
 
-`Branches`  
+**`Branches`**  
 An array of state machine definitions to run\. Each state machine definition must contain its own `StartAt`, `Succeed`, and `Fail` states\. The state machine definitions in this array cannot reference states outside of their own definition\.   
 Because each branch state machine shares the same state machine context, setting variables in one branch and then reading those variables from another branch might result in unexpected behavior\.
 
@@ -222,14 +222,14 @@ The `AddProductFeatures` state does not generate reports by itself\. This state 
 
 All fields that contain values are required as described here:
 
-`Next`  
+**`Next`**  
 The name of the state to transition to after executing the actions in the current state\.
 
-`Features`  
+**`Features`**  
 An array of product features to show in the `awsiotdevicetester_report.xml` file\.    
-`Feature`  
+**`Feature`**  
 The name of the feature  
-`FeatureValue`  
+**`FeatureValue`**  
 Optional\. The custom value to use in the report instead of `supported`\. If this value is not specified, then based on test results, the feature value is set to `supported` or `not-supported`\.   
 If you use a custom value for `FeatureValue`, you can test the same feature with different conditions, and IDT concatenates the feature values for the supported conditions\. For example, the following excerpt shows the `MyFeature` feature with two separate feature values:  
 
@@ -248,18 +248,18 @@ If you use a custom value for `FeatureValue`, you can test the same feature with
 ...
 ```
 If both test groups pass, then the feature value is set to `first-feature-supported, second-feature-supported`\.   
-`Groups`  
+**`Groups`**  
 Optional\. An array of test group IDs\. All tests within each specified test group must pass for the feature to be supported\.  
-`OneOfGroups`  
+**`OneOfGroups`**  
 Optional\. An array of test group IDs\. All tests within at least one of the specified test groups must pass for the feature to be supported\.   
-`TestCases`  
+**`TestCases`**  
 Optional\. An array of test case IDs\. If you specify this value, then the following apply:  
 + All of the specified test cases must pass for the feature to be supported\.
 + `Groups` must contain only one test group ID\.
 + `OneOfGroups` must not be specified\.  
-`IsRequired`  
+**`IsRequired`**  
 Optional\. Set to `false` to mark this feature as an optional feature in the report\. The default value is `true`\.  
-`ExecutionMethods`  
+**`ExecutionMethods`**  
 Optional\. An array of execution methods that match the `protocol` value specified in the `device.json` file\. If this value is specified, then test runners must specify a `protocol` value that matches one of the values in this array to include the feature in the report\. If this value is not specified, then the feature will always be included in the report\.
 
 To use the `AddProductFeatures` state, you must set the value of `ResultVar` in the `RunTask` state to one of the following values:
@@ -287,7 +287,7 @@ The `Report` state generates the `suite-name_Report.xml` and `awsiotdevicetester
 
 All fields that contain values are required as described here:
 
-`Next`  
+**`Next`**  
 The name of the state to transition to after executing the actions in the current state\.
 
 You should always transition to the `Report` state towards the end of the test execution flow so that test runners can view test results\. Typically, the next state after this state is `Succeed`\. 
@@ -311,13 +311,13 @@ The `LogMessage` state generates the `test_manager.log` file and streams the log
 
 All fields that contain values are required as described here:
 
-`Next`  
+**`Next`**  
 The name of the state to transition to after executing the actions in the current state\.
 
-`Level`  
+**`Level`**  
 The error level at which to create the log message\. If you specify a level that is not valid, this state generates an error message and discards it\. 
 
-`Message`  
+**`Message`**  
 The message to log\.
 
 ### SelectGroup<a name="state-selectgroup"></a>
@@ -336,10 +336,10 @@ The `SelectGroup` state updates the state machine context to indicate which grou
 
 All fields that contain values are required as described here:
 
-`Next`  
+**`Next`**  
 The name of the state to transition to after executing the actions in the current state\.
 
-`TestGroups`  
+**`TestGroups`**  
 An array of test groups that will be marked as selected\. For each test group ID in this array, the `group-id_selected` variable is set to `true` in the context\. Make sure that you provide valid test group IDs because IDT does not validate whether the specified groups exist\.
 
 ### Fail<a name="state-fail"></a>
@@ -390,25 +390,25 @@ The state machine context uses the following format:
 }
 ```
 
-`pool`  
+**`pool`**  
 Information about the device pool selected for the test run\. For a selected device pool, this information is retrieved from the corresponding top\-level device pool array element defined in the `device.json` file\.
 
-`userData`  
+**`userData`**  
 Information in the `userdata.json` file\.
 
-`config`  
+**`config`**  
 Information pin the `config.json` file\.
 
-`suiteFailed`  
+**`suiteFailed`**  
 The value is set to `false` when the state machine starts\. If a test group fails in a `RunTask` state, then this value is set to `true` for the remaining duration of the state machine execution\.
 
-`specificTestGroups`  
+**`specificTestGroups`**  
 If the test runner selects specific test groups to run instead of the entire test suite, this key is created and contains the list of specific test group IDs\.
 
-`specificTestCases`  
+**`specificTestCases`**  
 If the test runner selects specific test cases to run instead of the entire test suite, this key is created and contains the list of specific test case IDs\.
 
-`hasExecutionErrors`  
+**`hasExecutionErrors`**  
 Does not exit when the state machine starts\. If any state encounters an execution errors, this variable is created and set to `true` for the remaining duration of the state machine execution\.
 
 You can query the context using JSONPath notation\. The syntax for JSONPath queries in state definitions is `{{$.query}}`\. You can use JSONPath queries as placeholder strings within some states\. IDT replaces the placeholder strings with the value of the evaluated JSONPath query from the context\. You can use placeholders for the following values:
@@ -446,10 +446,10 @@ To use `Catch`, add the following to your state definition:
 
 All fields that contain values are required as described here:
 
-`Catch.ErrorEquals`  
+**`Catch.ErrorEquals`**  
 An array of the error types to catch\. If an execution error matches one of the specified values, then the state machine transitions to the state specified in `Catch.Next`\. See each state definition for information about the type of error it produces\.
 
-`Catch.Next`  
+**`Catch.Next`**  
 The next state to transition to if the current state encounters an execution error that matches one of the values specified in `Catch.ErrorEquals` \.
 
 Catch blocks are handled sequentially until one matches\. If the no errors match the ones listed in the Catch blocks, then the state machines continues to execute\. Because execution errors are a result of incorrect state definitions, we recommend that you transition to the Fail state when a state encounters an execution error\.

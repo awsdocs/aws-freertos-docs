@@ -13,7 +13,7 @@ This library can be freely used and is distributed under the [MIT open source li
 
 ****  
 
-| Code Size of backoffAlgorithm \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| Code Size of backoffAlgorithm \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
 | backoff\_algorithm\.c | 0\.1K | 0\.1K | 
-| Total estimate | 0\.1K | 0\.1K | 
+| Total estimates | 0\.1K | 0\.1K | 

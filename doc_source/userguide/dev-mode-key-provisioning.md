@@ -12,10 +12,10 @@ For lab testing purposes, if your device allows the import of private keys, foll
 
 If your device has a secure element, or if you prefer to generate your own device key pair and certificate, follow the instructions here\.
 
-Initial Configuration  
+**Initial Configuration**  
 First, perform the steps in [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure), but skip the last step \(that is, don't do *To format your AWS IoT credentials*\)\. The net result should be that the `demos/include/aws_clientcredential.h` file has been updated with your settings, but the `demos/include/aws_clientcredential_keys.h` file has not\.
 
-Demo Project Configuration  
+**Demo Project Configuration**  
 Open the coreMQTT Mutual Authentication demo as described in the guide for your board in [Board\-specific getting started guides](getting-started-guides.md) \. In the project, open the file `aws_dev_mode_key_provisioning.c` and change the definition of `keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR`, which is set to zero by default, to one:  
 
 ```
@@ -23,7 +23,7 @@ Open the coreMQTT Mutual Authentication demo as described in the guide for your 
 ```
 Then build and run the demo project and continue to the next step\.
 
-Public Key Extraction  
+**Public Key Extraction**  
 Because the device hasn't been provisioned with a private key and client certificate, the demo will fail to authenticate to AWS IoT\. However, the coreMQTT Mutual Authentication demo starts by running developer\-mode key provisioning, resulting in the creation of a private key if one was not already present\. You should see something like the following near the beginning of the serial console output\.  
 
 ```
@@ -51,7 +51,7 @@ Don't forget to disable the temporary key generation setting you enabled above\.
 #define keyprovisioningFORCE_GENERATE_NEW_KEY_PAIR 0
 ```
 
-Public Key Infrastructure Setup  
+**Public Key Infrastructure Setup**  
 Follow the instructions in [ Registering Your CA Certificate](https://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html#register-CA-cert) to create a certificate hierarchy for your device lab certificate\. Stop before executing the sequence described in the section *Creating a Device Certificate Using Your CA Certificate*\.  
 In this case, the device will not be signing the certificate request \(that is, the Certificate Service Request or CSR\) because the X\.509 encoding logic required for creating and signing a CSR has been excluded from the FreeRTOS demo projects to reduce ROM size\. Instead, for lab testing purposes, create a private key on your workstation and use it to sign the CSR\.  
 
@@ -66,9 +66,9 @@ openssl x509 -req -in deviceCert.csr -CA rootCA.pem -CAkey rootCA.key -CAcreates
 ```
 Even though the CSR was signed with a temporary private key, the issued certificate can only be used with the actual device private key\. The same mechanism can be used in production if you store the CSR signer key in separate hardware, and configure your certificate authority so that it only issues certificates for requests that have been signed by that specific key\. That key should also remain under the control of a designated administrator\.
 
-Certificate Import  
+**Certificate Import**  
 With the certificate issued, the next step is to import it into your device\. You will also need to import your Certificate Authority \(CA\) certificate, since it is required in order for first\-time authentication to AWS IoT to succeed when using JITP\. In the `aws_clientcredential_keys.h` file in your project, set the `keyCLIENT_CERTIFICATE_PEM` macro to be the contents of deviceCert\.pem and set the `keyJITR_DEVICE_CERTIFICATE_AUTHORITY_PEM` macro to be the contents of `rootCA.pem`\.
 
-Device Authorization  
+**Device Authorization**  
 Import `deviceCert.pem` into the AWS IoT registry as described in [ Use Your Own Certificate](https://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html#manual-cert-registration)\. You must create a new AWS IoT thing, attach the PENDING certificate and a policy to your thing, then mark the certificate as ACTIVE\. All of these steps can be performed manually in the AWS IoT console\.  
 Once the new client certificate is ACTIVE and associated with a thing and a policy, run the coreMQTT Mutual Authentication demo again\. This time, the connection to the AWS IoT MQTT broker will succeed\.

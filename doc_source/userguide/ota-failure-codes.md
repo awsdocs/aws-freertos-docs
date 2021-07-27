@@ -2,7 +2,7 @@
 
 1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\.
 
-1. Run `aws configure` and enter following information\.
+1. Run aws configure and enter following information\.
 
    ```
    $ aws configure

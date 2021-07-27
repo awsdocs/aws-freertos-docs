@@ -13,16 +13,16 @@ executionId=9a52f362-1227-11eb-86c9-8c8590419f30
 
 Most console messages consist of the following fields:
 
-`time`  
+**`time`**  
 A full ISO 8601 timestamp for the logged event\.
 
-`level`  
+**`level`**  
 The message level for the logged event\. Typically, the logged message level is one of `info`, `warn`, or `error`\. IDT issues a `fatal` or `panic` message if it encounters an expected event that causes it to exit early\.
 
-`msg`  
+**`msg`**  
 The logged message\. 
 
-`executionId`  
+**`executionId`**  
 A unique ID string for the current IDT process\. This ID is used to differentiate between individual IDT runs\.
 
 Console messages generated from a test suite provide additional information about the device under test and the test suite, test group, and test cases that IDT runs\. The following excerpt shows an example of a console message generated from a test suite\.
@@ -35,16 +35,16 @@ executionId=9a52f362-1227-11eb-86c9-8c8590419f30
 
 The test\-suite specific part of the console message contains the following fields:
 
-`suiteId`  
+**`suiteId`**  
 The name of the test suite currently running\.
 
-`groupId`  
+**`groupId`**  
 The ID of the test group currently running\.
 
-`testCaseId`  
+**`testCaseId`**  
 The ID of the test case current running\. 
 
-`deviceId`  
+**`deviceId`**  
 A ID of the device under test that the current test case is using\.
 
 To print a test summary to the console when a IDT finishes running a test, you must include a [`Report` state](idt-state-machine.md#state-report) in your state machine\. The test summary contains information about the test suite, the test results for each group that was run, and the locations of the generated logs and report files\. The following example shows a test summary message\.
@@ -118,13 +118,13 @@ Path to Aggregated JUnit Report: /path/to/MyTestSuite_Report.xml
 
 The `awsiotdevicetester_report.xml` file contains an `<awsproduct>` tag that contains information about the product being tested and the product features that were validated after running a suite of tests\.Attributes used in the `<awsproduct>` tag
 
-`name`  
+**`name`**  
 The name of the product being tested\.
 
-`version`  
+**`version`**  
 The version of the product being tested\.
 
-`features`  
+**`features`**  
 The features validated\. Features marked as `required` are required for the test suite to validate the device\. The following snippet shows how this information appears in the `awsiotdevicetester_report.xml` file\.  
 
 ```
@@ -176,22 +176,22 @@ The first XML tag `<testsuites>` contains the summary of the test execution\. Fo
 <testsuites name="MyTestSuite results" time="2299" tests="28" failures="0" errors="0" disabled="0">
 ```Attributes used in the `<testsuites>` tag
 
-`name`  
+**`name`**  
 The name of the test suite\.
 
-`time`  
+**`time`**  
 The time, in seconds, it took to run the test suite\.
 
-`tests`  
+**`tests`**  
 The number of tests executed\.
 
-`failures`  
+**`failures`**  
 The number of tests that were run, but did not pass\.
 
-`errors`  
+**`errors`**  
 The number of tests that IDT couldn't execute\.
 
-`disabled`  
+**`disabled`**  
 This attribute is not used and can be ignored\.
 
 In the event of test failures or errors, you can identify the test that failed by reviewing the `<testsuites>` XML tags\. The `<testsuite>` XML tags inside the `<testsuites>` tag show the test result summary for a test group\. For example:
@@ -206,10 +206,10 @@ The format is similar to the `<testsuites>` tag, but with a `skipped` attribute 
 <testcase classname="Security Test" name="IP Change Tests" attempts="1"></testcase>
 ```Attributes used in the `<testcase>` tag
 
-`name`  
+**`name`**  
 The name of the test\.
 
-`attempts`  
+**`attempts`**  
 The number of times IDT executed the test case\.
 
 When a test fails or an error occurs, `<failure>` or `<error>` tags are added to the `<testcase>` tag with information for troubleshooting\. For example:

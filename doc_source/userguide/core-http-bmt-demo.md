@@ -7,11 +7,11 @@ This demo uses [FreeRTOS's thread\-safe queues](https://freertos.org/a00018.html
 + A request task creates HTTP library request objects to send to the server and places them into the request queue\. Each request object specifies a byte range of the S3 file that the application has configured for download\.
 + A response task waits for responses to appear in the response queue\. It logs every response it receives\.
 
-This basic multithreaded demo is configured to use a TLS connection with server authentication only, this is required by the Amazon S3 HTTP server\. Application layer authentication is done using the [Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) paramters in the [presigned URL query](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)\.
+This basic multithreaded demo is configured to use a TLS connection with server authentication only, this is required by the Amazon S3 HTTP server\. Application layer authentication is done using the [Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) parameters in the [presigned URL query](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)\.
 
 ## Source code organization<a name="core-http-bmt-demo-source"></a>
 
-The demo project is named `http_demo_s3_download_multithreaded.c` and can be found in the `freertos/demos/coreHTTP/` directory and the [ GitHub](https://github.com/aws/amazon-freertos/blob/202012.00/demos/coreHTTP/http_demo_s3_download_multithreaded.c) website\.
+The demo project is named `http_demo_s3_download_multithreaded.c` and can be found in the `freertos/demos/coreHTTP/` directory and the [ GitHub](https://github.com/aws/amazon-freertos/blob/main/demos/coreHTTP/http_demo_s3_download_multithreaded.c) website\.
 
 ## Building the demo project<a name="core-http-bmt-demo-building"></a>
 
@@ -123,26 +123,26 @@ The main application task:
 
 1. Creates the request and response queues\.
 
-1. Creates the reqest and response tasks\.
+1. Creates the request and response tasks\.
 
-The function `prvHTTPDemoTask()` does this set up, and gives the demo status\. The source code for this function can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L451-L650)\.
+The function `prvHTTPDemoTask()` does this set up, and gives the demo status\. The source code for this function can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L451-L650)\.
 
 In the function `prvDownloadLoop()`, the main task blocks and waits on requests from the request queue\. When it receives a request it sends it using API function `HTTPClient_Send()`\. If the API function was successful, then it places the response into the response queue\. 
 
-The source code for `prvDownloadLoop()` can be found on [ Github\.](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L1071-L1174)
+The source code for `prvDownloadLoop()` can be found on [ Github\.](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L1071-L1174)
 
 ## HTTP request task<a name="core-http-bmt-demo-request-task"></a>
 
-The request task is specified in the function `prvRequestTask`\. The source code for this function can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L778-L876)\.
+The request task is specified in the function `prvRequestTask`\. The source code for this function can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L778-L876)\.
 
 The request task retrieves the size of the file in the Amazon S3 bucket\. This is done in the function `prvGetS3ObjectFileSize`\. The "Connection: keep\-alive" header is added to this request to Amazon S3 to keep the connection open after the response is sent\. The Amazon S3 HTTP server does not currently support HEAD requests using a presigned URL, so the 0th byte is requested\. The size of the file is contained in the response's `Content-Range` header field\. A `206 Partial Content` response is expected from the server; any other response status\-code received is an error\. 
 
-The source code for `prvGetS3ObjectFileSize` can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L757-L774)\.
+The source code for `prvGetS3ObjectFileSize` can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L757-L774)\.
 
 After retrieving the file size, the request task continues to request each range of the file\. Each range request is placed into the request queue for the main task to send\. The file ranges are configured by the demo user in the macro `democonfigRANGE_REQUEST_LENGTH`\. Range requests are natively supported in the HTTP client library API using the function `HTTPClient_AddRangeHeader`\. The function `prvRequestS3ObjectRange` demonstrates how to use `HTTPClient_AddRangeHeader()`\.
 
-The source code for the function `prvRequestS3ObjectRange` can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L694-L753)\.
+The source code for the function `prvRequestS3ObjectRange` can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L694-L753)\.
 
 ## HTTP response task<a name="core-http-bmt-demo-response-task"></a>
 
-The response tasks waits on the response queue for responses received over the network\. The main task populates the response queue when it successfully receives an HTTP response\. This task processes the responses by logging the status\-code, headers, and body\. A real\-world application may process the response by writing the response body to flash memory, for example\. If the response status\-code is not `206 partial content`, then the task notifies the main task that the demo should fail\. The response task is specified in function `prvResponseTask`\. The source code for this function can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/202012.00/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L961-L1047)\.
+The response tasks waits on the response queue for responses received over the network\. The main task populates the response queue when it successfully receives an HTTP response\. This task processes the responses by logging the status\-code, headers, and body\. A real\-world application may process the response by writing the response body to flash memory, for example\. If the response status\-code is not `206 partial content`, then the task notifies the main task that the demo should fail\. The response task is specified in function `prvResponseTask`\. The source code for this function can be found on [ Github](https://github.com/FreeRTOS/FreeRTOS/blob/main/FreeRTOS-Plus/Demo/coreHTTP_Windows_Simulator/HTTP_S3_Download_Multithreaded/DemoTasks/S3DownloadMultithreadedHTTPExample.c#L961-L1047)\.

@@ -44,8 +44,8 @@ After you set up the library in the IDE project, you need to configure other fil
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [ Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
-After you set up the coreMQTT library for your device, you can start porting the OTA agent library\. See [Porting the OTA library](afr-porting-ota.md) for instructions\.
+After you set up the coreMQTT library for your device, you can start porting the OTA agent library\. See [Porting the AWS IoT over\-the\-air update library](afr-porting-ota.md) for instructions\.
 
 If your device doesn't support OTA functionality, you can start porting the Bluetooth Low Energy library\. See [Porting the Bluetooth Low Energy library](afr-porting-ble.md) for instructions\.
 
-If your device doesn't support OTA and Bluetooth Low Energy functionality, then you are finished porting and can start the FreeRTOS qualification process\. See the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/) for more information\.
+If your device doesn't support OTA and Bluetooth Low Energy functionality, then you are finished porting and can start the FreeRTOS qualification process\. See the [ FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/) for more information\.

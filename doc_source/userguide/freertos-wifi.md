@@ -22,14 +22,14 @@ For more information about the features of the Wi\-Fi library, see below\.
 
 Wi\-Fi devices can be in one of three modes: Station, Access Point, or P2P\. You can get the current mode of a Wi\-Fi device by calling `WIFI_GetMode`\. You can set a device's wi\-fi mode by calling `WIFI_SetMode`\. Switching modes by calling `WIFI_SetMode` disconnects the device, if it is already connected to a network\.
 
-Station mode  
+**Station mode**  
 Set your device to Station mode to connect the board to an existing access point\.
 
-Access Point \(AP\) mode  
+**Access Point \(AP\) mode**  
 Set your device to AP mode to make the device an access point for other devices to connect to\. When your device is in AP mode, you can connect another device to your FreeRTOS device and configure the new Wi\-Fi credentials\. To configure AP mode, call `WIFI_ConfigureAP`\. To put your device into AP mode, call `WIFI_StartAP`\. To turn off AP mode, call `WIFI_StopAP`\.  
 FreeRTOS libraries do not provide Wi\-Fi provisioning in AP mode\. You must supply the additional functionality, including DHCP and HTTP server capabilities, to achieve full support of AP mode\.
 
-P2P mode  
+**P2P mode**  
 Set your device to P2P mode to allow multiple devices to connect to each other directly, without an access point\.
 
 ### Security<a name="freertos-wifi-security"></a>
@@ -100,7 +100,7 @@ For a full API reference, see [Wi\-Fi API Reference](https://docs.aws.amazon.com
 
 ## Example usage<a name="freertos-wifi-example"></a>
 
-### Connecting to a known AP<a name="w37aac17c47c17b3"></a>
+### Connecting to a known AP<a name="w44aac17c51c19b3"></a>
 
 ```
 #define clientcredentialWIFI_SSID    "MyNetwork"
@@ -144,7 +144,7 @@ else
 }
 ```
 
-### Scanning for nearby APs<a name="w37aac17c47c17b5"></a>
+### Scanning for nearby APs<a name="w44aac17c51c19b5"></a>
 
 ```
 WIFINetworkParams_t xNetworkParams;

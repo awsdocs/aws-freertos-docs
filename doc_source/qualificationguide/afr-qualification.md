@@ -15,7 +15,7 @@ The FreeRTOS kernel and components are released individually and use semantic ve
 + M represents the month\.
 + N represents the release order within the designated month \(00 being the first release\)\.
 
-For example, a second release in June 2021 would be 202106\.01\. 
+For example, a second release in July 2021 would be 202107\.01\. 
 
 Previously, FreeRTOS releases used semantic versioning for major releases\. Although it has moved to date\-based versioning \(FreeRTOS 1\.4\.8 updated to FreeRTOS AWS Reference Integrations 201906\.00\), the FreeRTOS kernel and each individual FreeRTOS library still retain semantic versioning\. In semantic versioning, the version number itself \(X\.Y\.Z\) indicates whether the release is a major, minor, or point release\.  You can use the semantic version of a library to assess the scope and impact of a new release on your application\.
 
@@ -42,7 +42,7 @@ Q: *If a version of FreeRTOS is released after I have started porting a previous
 A: Always start porting the latest version of FreeRTOS\. If we release a new version of FreeRTOS while you are working on your port, you can still qualify on the previous version\.
 
 Q: *My board uses a kernel architecture that I have modified and that is not part of the official FreeRTOS release\. Can I still qualify?*   
-A: Unfortunately, only official kernel ports are accepted\. These are available from [GitHub](https://github.com/aws/amazon-freertos) or [SourceForge](https://sourceforge.net/projects/freertos/files/FreeRTOS/)\. If you have an unsupported architecture or additional functionality to add to an existing kernel port, contact your local APN representative\.
+A: Unfortunately, only official kernel ports are accepted\. These are available from [GitHub](https://github.com/aws/amazon-freertos)\. If you have an unsupported architecture or additional functionality to add to an existing kernel port, contact your local APN representative\.
 
 Q: *If I want to update a port listed on the Device Catalog to a newer version of FreeRTOS, do I need to qualify all over again?*   
 A: After you have updated your port, run the AWS IoT Device Tester again and check the [FreeRTOS qualification checklist](afq-checklist.md) to see if any items have been impacted \(especially the Getting Started Guide\)\. Submit a Device Qualification Program ticket with a copy of your passing log to update the Device Catalog listing to point to your new port\. 
@@ -54,7 +54,7 @@ Q: *My device does not support Bluetooth Low Energy or over\-the\-air \(OTA\) up
 A: Bluetooth Low Energy and OTA ports are optional for qualification\.
 
 Q: *My board does not have on\-chip TCP/IP functionality\. Is a particular TCP/IP stack required for FreeRTOS qualification?*  
-A: If your board does not have on\-chip TCP/IP functionality, you can use either the FreeRTOS\+TCP TCP/IP stack or the latest version of the lwIP TCP/IP stack to pass TCP/IP qualification requirements\. For the latest version of lwIP supported by FreeRTOS, see the [ changelog\.md file](https://github.com/aws/amazon-freertos/blob/master/CHANGELOG.md) on the GitHub website\. For more information, see [Porting a TCP/IP Stack](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tcp.html) in the *FreeRTOS Porting Guide*\.
+A: If your board does not have on\-chip TCP/IP functionality, you can use either the FreeRTOS\+TCP TCP/IP stack or the latest version of the lwIP TCP/IP stack to pass TCP/IP qualification requirements\. For the latest version of lwIP supported by FreeRTOS, see the [ changelog\.md file](https://github.com/aws/amazon-freertos/blob/main/CHANGELOG.md) on the GitHub website\. For more information, see [Porting a TCP/IP Stack](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tcp.html) in the *FreeRTOS Porting Guide*\.
 
 Q: *Is a particular TLS stack required for qualification?*  
 A: FreeRTOS supports mbedTLS and off\-chip TLS implementations, such as those found on some network processors\. No matter which TLS implementation is used by your device's port of FreeRTOS, the port must pass the Device Tester validation tests for TLS\. For more information, see [Porting the TLS Library](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-tls.html) in the *FreeRTOS Porting Guide*\.
@@ -67,7 +67,7 @@ A: Yes\. We encourage you to get other combinations qualified on your device as 
 
 Q: *We will be hosting our FreeRTOS port in our own repo as per the qualification requirements\. What should we include in the repo in terms of folders and demos to support? *  
 A: Host all the files and folders necessary to make the port work as an out of the box experience for a customer who downloads it from the repository\. You should include your entire `freertos_kernel`, `libraries`, and `tools` folders, along with a `docs` folder for your documents, a `projects` folder for your IDE projects, and a `vendors` folder for your vendor\-specifc files\. Also include your entire demo folder\.   
-The coreMQTT Mutual Authentication demo must be supported\. Other demos are at your discretion\. Also, the `tools` folder isn't required\. However, we recommend that you host this folder to assist customers with testing\.
+The coreMQTT Agent demo must be supported\. Other demos are at your discretion\. Also, the `tools` folder isn't required\. However, we recommend that you host this folder to assist customers with testing\.
 
 If you have questions about qualification that are not answered on this page or in the rest of the *FreeRTOS Qualification Guide*, contact your AWS representative or [the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 

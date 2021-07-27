@@ -10,14 +10,14 @@ For board\-specific troubleshooting, see the [Getting Started with FreeRTOS](fre
 
 ## General getting started troubleshooting tips<a name="gsg-troubleshooting-general"></a>
 
-No messages appear in the AWS IoT console after I run the Hello World demo project\. What do I do?  
+**No messages appear in the AWS IoT console after I run the Hello World demo project\. What do I do?**  
 Try the following:  
 
 1. Open a terminal window to view the logging output of the sample\. This can help you determine what is going wrong\.
 
 1. Check that your network credentials are valid\.
 
-The logs shown in my terminal when running a demo are truncated\. How can I increase their length?  
+**The logs shown in my terminal when running a demo are truncated\. How can I increase their length?**  
 Increase the value of `configLOGGING_MAX_MESSAGE_LENGTH` to 255 in the `FreeRTOSconfig.h` file for the demo you are running:  
 
 ```
@@ -45,19 +45,19 @@ Use the following settings to configure your terminal emulator:
 
 If you do not know your board's serial port, you can issue one of the following commands from the command line or terminal to return the serial ports for all devices connected to your host computer:
 
-Windows  
+**Windows**  
 
 ```
 chgport
 ```
 
-Linux  
+**Linux**  
 
 ```
 ls /dev/tty*
 ```
 
-macOS  
+**macOS**  
 
 ```
 ls /dev/cu.*

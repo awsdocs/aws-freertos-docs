@@ -1,4 +1,7 @@
-# Download, build, flash, and run the FreeRTOS OTA demo on the Microchip Curiosity PIC32MZEF<a name="download-ota-mchip"></a><a name="mch-dowload-demo"></a>
+# Download, build, flash, and run the FreeRTOS OTA demo on the Microchip Curiosity PIC32MZEF<a name="download-ota-mchip"></a>
+
+**Note**  
+In agreement with Microchip, we are removing the Curiosity PIC32MZEF \(DM320104\) from the FreeRTOS Reference Integration repository main branch and will no longer carry it in new releases\. Microchip has issued an [official notice](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM320104) that the PIC32MZEF \(DM320104\) is no longer recommended for new designs\. The PIC32MZEF projects and source code can still be accessed through the previous release tags\. Microchip recommends that customers use the Curiosity [ PIC32MZ\-EF\-2\.0 Development board \(DM320209\)](https://devices.amazonaws.com/detail/a3G0h0000077I69EAE/Curiosity-PIC32MZ-EF-2-0-Development-Board) for new designs\. The PIC32MZv1 platform can still be found in [v202012\.00](https://github.com/aws/amazon-freertos/tree/202012.00) of the FreeRTOS Reference Integration repository\. However, the platform is no longer supported by [v202107\.00](https://github.com/aws/amazon-freertos/tree/202107.00) of the FreeRTOS Reference\.<a name="mch-dowload-demo"></a>
 
 **To download the FreeRTOS OTA demo code**
 
@@ -22,9 +25,19 @@
 
 1. Follow the instructions in [Getting Started with FreeRTOS](freertos-getting-started.md) to import the `aws_demos` project into the MPLAB X IDE, configure your AWS IoT endpoint, your Wi\-Fi SSID and password, and a private key and certificate for your board\.
 
-1. Open `demos/include/aws_ota_codesigner_certificate.h`\.
+1. Open the `vendors/vendor/boards/board/aws_demos/config_files/ota_demo_config.h` file, and enter your certificate\.
 
-1. Paste the contents of your code\-signing certificate into the `static const char signingcredentialSIGNING_CERTIFICATE_PEM` variable\. Following the same format as `aws_clientcredential_keys.h`, each line must end with the new line character \('\\n'\) and be enclosed in quotation marks\.
+   ```
+   [] = "your-certificate-key";
+   ```
+
+1. Paste the contents of your code\-signing certificate here:
+
+   ```
+   #define otapalconfigCODE_SIGNING_CERTIFICATE [] = "your-certificate-key";
+   ```
+
+   Follow the same format as `aws_clientcredential_keys.h` \-\- each line must end with the new line character \('\\n'\) and be enclosed in quotation marks\.
 
    For example, your certificate should look similar to the following:
 
@@ -47,7 +60,7 @@
 
 1. Copy your code\-signing certificate in \.pem format in the path `demos/ota/bootloader/utility/codesigner_cert_utility/`\. Rename the certificate file `aws_ota_codesigner_certificate.pem`\.
 
-1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define `CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED` or `CONFIG_OTA_HTTP_UPDATE_DEMO_ENABLED`\.
 
 1. Build the solution and make sure it builds without errors\.
 

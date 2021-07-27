@@ -49,23 +49,23 @@ The following section describes the IDT CLI commands:
 ------
 #### [ IDT v4\.0\.0 ]
 
-`help`  <a name="idt-command-help"></a>
+**`help`**  <a name="idt-command-help"></a>
 Lists information about the specified command\.
 
-`list-groups`  <a name="idt-command-list-groups"></a>
+**`list-groups`**  <a name="idt-command-list-groups"></a>
 Lists the groups in a given test suite\.
 
-`list-suites`  <a name="idt-command-list-suites"></a>
+**`list-suites`**  <a name="idt-command-list-suites"></a>
 Lists the available test suites\.
 
-`list-supported-products`  
+**`list-supported-products`**  
 Lists the supported products for your version of IDT, in this case FreeRTOS versions, and FreeRTOS qualification test suite versions available for the current IDT version\.
 
-`list-test-cases`  
+**`list-test-cases`**  
 Lists the test cases in a given test group\. The following option is supported:  
 + `group-id`\. The test group to search for\. This option is required and must specify a single group\.
 
-`run-suite`  
+**`run-suite`**  
 Runs a suite of tests on a pool of devices\. The following are some commonly used options:  
 + `suite-id`\. The test suite version to run\. If not specified, IDT uses the latest version in the `tests` folder\.
 + `group-id`\. The test groups to run, as a comma\-separated list\. If not specified, IDT runs all test groups in the test suite\.
@@ -80,7 +80,7 @@ For more information about `run-suite` options, use the `help` option:
 devicetester_[linux | mac | win_x86-64] run-suite -h
 ```
 
-`debug-test-suite`  
+**`debug-test-suite`**  
 Run the test suite in debug mode\. For more information, see [Run IDT in debug mode](#idt-debug-mode)\.
 
 ------

@@ -97,7 +97,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 1. Choose **Check for more version…** to show the download dialog box\.  
 ![\[e-squared studio download dialog window\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/check-more-version-rx65n.png)
 
-1. Select the lastest package\.  
+1. Select the latest package\.  
 ![\[e-squared studio module download dialog window\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/choose-latest-version-rx65n.png)
 
 1. Choose **Agree** to accept the end user license agreement\.  
@@ -151,10 +151,10 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
    1. Choose **Generate and save aws\_clientcredential\_keys\.h** and replace this file in the `demos/include/` directory\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/certificate-config-tool-rx65n.png)
 
-   1. Open the `demos/include/aws_ota_codesigner_certificate.h` file, and specify these values\.
+   1. Open the `vendors/renesas/boards/rx65n-rsk/aws_demos/config_files/ota_demo_config.h` file, and specify these values\.
 
       ```
-      #define signingcredentialSIGNING_CERTIFICATE_PEM [] = "your-certificate-key";
+      #define otapalconfigCODE_SIGNING_CERTIFICATE [] = "your-certificate-key";
       ```
 
       Where *your\-certificate\-key* is the value from the file `secp256r1.crt`\. Remember to add "\\" after each line in the certification\. For more information on creating the `secp256r1.crt` file, see [ How to implement FreeRTOS OTA by using Amazon Web Services on RX65N](https://www.renesas.com/us/en/document/apn/rx-family-how-implement-freertos-ota-using-amazon-web-services-rx65n) and section 7\.3 "Generating ECDSA\-SHA256 Key Pairs with OpenSSL" in [Renesas MCU Firmware Update Design Policy](https://www.renesas.com/us/en/document/apn/renesas-mcu-firmware-update-design-policy)\.  
@@ -162,7 +162,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 
 1. **Task A: Install the initial version of the firmware**
 
-   1. Open the `vendors/renesas/boards/board/aws_demos/config_files/aws_demo_config.h` file, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+   1. Open the `vendors/renesas/boards/board/aws_demos/config_files/aws_demo_config.h` file, comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define either `CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED` or `CONFIG_OTA_HTTP_UPDATE_DEMO_ENABLED`\.
 
    1. Open the `demos/include/ aws_application_version.h` file, and set the initial version of the firmware to `0.9.2`\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/firmware-version-rx65n.png)

@@ -20,11 +20,11 @@
 
    1. Under **Device hardware platform**, choose your hardware platform\.
 **Note**  
-Only hardware platforms that have been qualified for FreeRTOS are displayed in this list\. If you are testing a non\-qualified platform, and you are using the ECDSA P\-256 SHA\-256 ciphersuite for signing, you can pick the Windows Simulator code signing profile to produce a compatible signature\. If you are using a non\-qualified platform, and you are using a ciphersuite other than ECDSA P\-256 SHA\-256 for signing, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For more information, see [Digitally signing your firmware update](ota-cli-workflow.md#ota-sign-cli)\. 
+Only hardware platforms that have been qualified for FreeRTOS are displayed in this list\. If you are testing a non\-qualified platform, and you are using the ECDSA P\-256 SHA\-256 ciphersuite for signing, you can pick the Windows Simulator code signing profile to produce a compatible signature\. If you are using a non\-qualified platform, and you are using a ciphersuite other than ECDSA P\-256 SHA\-256 for signing, you can use Code Signing for AWS IoT, or you can sign your firmware update yourself\. For more information, see [Digitally signing your firmware update](ota-cli-workflow.md#ota-sign-cli)\.
 
    1. Under **Code signing certificate**, choose **Select** to select a previously imported certificate or **Import** to import a new certificate\.
 
-   1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. The certificate's location varies by platform\. It should be the location where you put the code\-signing certificate when you followed the instructions in [Installing the initial firmware](dg-ota-initial-firmware.md)\.
+   1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. For most devices you can leave this field blank\. For the Windows simulator and for devices that do place the certificate in a specific file location, enter the pathname here\.
 **Important**  
 On the Texas Instruments CC3220SF\-LAUNCHXL, do not include a leading forward slash \(**/**\) in front of the file name if your code signing certificate exists in the root of the file system\. Otherwise, the OTA update fails during authentication with a `file not found` error\.
 
@@ -62,7 +62,7 @@ On the Texas Instruments CC3220SF\-LAUNCHXL, due to security restrictions, the f
 
 1. Under **Select and sign your firmware image**, choose **Use my custom signed firmware image**\.
 
-1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. This path name varies by platform\.
+1. Under **Pathname of code signing certificate on device**, enter the fully qualified path name to the code signing certificate on your device\. For most devices you can leave this field blank\. For the Windows simulator and for devices that do place the certificate in a specific file location, enter the pathname here\.
 
 1. Under **Pathname of firmware image on device**, enter the fully qualified path name to the location on your device where the OTA job will copy the firmware image\. This location varies by platform\.
 

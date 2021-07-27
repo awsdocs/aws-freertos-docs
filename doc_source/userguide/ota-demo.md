@@ -1,6 +1,6 @@
 # Over\-the\-air updates demo application<a name="ota-demo"></a>
 
-FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the `freertos/demos/ota/aws_iot_ota_update_demo.c` file\.
+FreeRTOS includes a demo application that demonstrates the functionality of the over\-the\-air \(OTA\) library\. The OTA demo application is located in the  `freertos/demos/ota/ota_demo_core_mqtt/ota_demo_core_mqtt.c` or the `freertos/demos/ota/ota_demo_core_http/ota_demo_core_http.c` file\.
 
 The OTA demo application does the following:
 
@@ -18,7 +18,7 @@ The OTA demo application does the following:
 
 1. If MQTT disconnects, the application suspends the OTA agent, tries to reconnect using exponential delay with jitter, and then resumes the OTA agent\.
 
-Before you can use OTA updates, complete all prerequisites in the [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)
+Before you can use OTA updates, complete all prerequisites in [FreeRTOS Over\-the\-Air Updates](freertos-ota-dev.md)
 
 After you complete the setup for OTA updates, download, build, flash, and run the FreeRTOS OTA demo on a platform that supports OTA functionality\. Device\-specific demo instructions are available for the following FreeRTOS\-qualified devices:
 + [Texas Instruments CC3220SF\-LAUNCHXL](download-ota-ti.md)
@@ -31,162 +31,91 @@ After you build, flash, and run the OTA demo application on your device, you can
 A successful OTA update job displays output like the following\. Some lines in this example have been removed from the listing for brevity\.
 
 ```
-313 267848 [OTA] [OTA] Queued: 1   Processed: 1   Dropped: 0
-314 268733 [OTA Task] [OTA] Set job doc parameter [ jobId: fe18c7ec_8c31_4438_b0b9_ad55acd95610 ]
-315 268734 [OTA Task] [OTA] Set job doc parameter [ streamname: 327 ]
-316 268734 [OTA Task] [OTA] Set job doc parameter [ filepath: /sys/mcuflashimg.bin ]
-317 268734 [OTA Task] [OTA] Set job doc parameter [ filesize: 130388 ]
-318 268735 [OTA Task] [OTA] Set job doc parameter [ fileid: 126 ]
-319 268735 [OTA Task] [OTA] Set job doc parameter [ attr: 0 ]
-320 268735 [OTA Task] [OTA] Set job doc parameter [ certfile: tisigner.crt.der ]
-321 268737 [OTA Task] [OTA] Set job doc parameter [ sig-sha1-rsa: Q56qxHRq3Lxv6KkorvilVs4AyGJbWsJd ]
-322 268737 [OTA Task] [OTA] Job was accepted. Attempting to start transfer.
-323 268737 [OTA Task] Sending command to MQTT task.
-324 268737 [MQTT] Received message 50000 from queue.
-325 268848 [OTA] [OTA] Queued: 2   Processed: 1   Dropped: 0
-326 269039 [MQTT] MQTT Subscribe was accepted. Subscribed.
-327 269039 [MQTT] Notifying task.
-328 269040 [OTA Task] Command sent to MQTT task passed.
-329 269041 [OTA Task] [OTA] Subscribed to topic: $aws/things/TI-LaunchPad/streams/327
-
-330 269848 [OTA] [OTA] Queued: 2   Processed: 1   Dropped: 0
-... // Output removed for brevity
-346 284909 [OTA Task] [OTA] file token: 74594452
-.. // Output removed for brevity
-363 301327 [OTA Task] [OTA] file ready for access.
-364 301327 [OTA Task] [OTA] Returned buffer to MQTT Client.
-365 301328 [OTA Task] Sending command to MQTT task.
-366 301328 [MQTT] Received message 60000 from queue.
-367 301328 [MQTT] Notifying task.
-368 301329 [OTA Task] Command sent to MQTT task passed.
-369 301329 [OTA Task] [OTA] Published file request to $aws/bin/things/TI-LaunchPad/streams/327/get
-370 301632 [OTA Task] [OTA] Received file block 0, size 1024
-371 301647 [OTA Task] [OTA] Remaining: 127
-... // Output removed for brevity
-508 304622 [OTA Task] Sending command to MQTT task.
-509 304622 [MQTT] Received message 70000 from queue.
-510 304622 [MQTT] Notifying task.
-511 304623 [OTA Task] Command sent to MQTT task passed.
-512 304623 [OTA Task] [OTA] Published file request to $aws/bin/things/TI-LaunchPad/streams/327/get
-513 304860 [OTA] [OTA] Queued: 47   Processed: 47   Dropped: 83
-514 304926 [OTA Task] [OTA] Received file block 4, size 1024
-515 304941 [OTA Task] [OTA] Remaining: 82
-... // Output removed for brevity
-797 315047 [MQTT] MQTT Publish was successful.
-798 315048 [MQTT] Notifying task.
-799 315048 [OTA Task] Command sent to MQTT task passed.
-800 315049 [OTA Task] [OTA] Published 'IN_PROGRESS' status to $aws/things/TI-LaunchPad/jobs/fe18c7ec_8c31_4438_b0b9_ad55acd9561801 315049 [OTA Task] Sending command to MQTT task.
-802 315049 [MQTT] Received message d0000 from queue.
-803 315150 [MQTT] MQTT Unsubscribe was successful.
-804 315150 [MQTT] Notifying task.
-805 315151 [OTA Task] Command sent to MQTT task passed.
-806 315152 [OTA Task] [OTA] Un-subscribed from topic: $aws/things/TI-LaunchPad/streams/327
-
-807 315172 [OTA Task] Sending command to MQTT task.
-808 315172 [MQTT] Received message e0000 from queue.
-809 315273 [MQTT] MQTT Unsubscribe was successful.
-810 315273 [MQTT] Notifying task.
-811 315274 [OTA Task] Command sent to MQTT task passed.
-812 315274 [OTA Task] [OTA] Un-subscribed from topic: $aws/things/TI-LaunchPad/streams/327
-
-813 315275 [OTA Task] [OTA] Resetting MCU to activate new image.
-0 0 [Tmr Svc] Starting Wi-Fi Module ...
-1 0 [Tmr Svc] Simple Link task created
-
-Device came up in Station mode
-
-2 137 [Tmr Svc] Wi-Fi module initialized.
-3 137 [Tmr Svc] Starting key provisioning...
-4 137 [Tmr Svc] Write root certificate...
-5 243 [Tmr Svc] Write device private key...
-6 339 [Tmr Svc] Write device certificate...
-7 436 [Tmr Svc] Key provisioning done...
-Device disconnected from the AP on an ERROR..!! 
-
-[WLAN EVENT] STA Connected to the AP: Guest , BSSID: 44:48:c1:ba:b2:c3
-
-[NETAPP EVENT] IP acquired by the device
-
-
-Device has connected to Guest
-
-Device IP Address is 192.168.3.72 
-
-
-8 1443 [Tmr Svc] Wi-Fi connected to AP Guest.
-9 1444 [Tmr Svc] IP Address acquired 192.168.3.72
-10 1444 [OTA] OTA demo version 0.9.1
-11 1445 [OTA] Creating MQTT Client...
-12 1445 [OTA] Connecting to broker...
-13 1445 [OTA] Sending command to MQTT task.
-14 1445 [MQTT] Received message 10000 from queue.
-15 2910 [MQTT] MQTT Connect was accepted. Connection established.
-16 2910 [MQTT] Notifying task.
-17 2911 [OTA] Command sent to MQTT task passed.
-18 2912 [OTA] Connected to broker.
-19 2913 [OTA Task] Sending command to MQTT task.
-20 2913 [MQTT] Received message 20000 from queue.
-21 3014 [MQTT] MQTT Subscribe was accepted. Subscribed.
-22 3014 [MQTT] Notifying task.
-23 3015 [OTA Task] Command sent to MQTT task passed.
-24 3015 [OTA Task] [OTA] Subscribed to topic: $aws/things/TI-LaunchPad/jobs/$next/get/accepted
-
-25 3028 [OTA Task] Sending command to MQTT task.
-26 3028 [MQTT] Received message 30000 from queue.
-27 3129 [MQTT] MQTT Subscribe was accepted. Subscribed.
-28 3129 [MQTT] Notifying task.
-29 3130 [OTA Task] Command sent to MQTT task passed.
-30 3138 [OTA Task] [OTA] Subscribed to topic: $aws/things/TI-LaunchPad/jobs/notify-next
-
-31 3138 [OTA Task] [OTA] Check For Update #0
-32 3138 [OTA Task] Sending command to MQTT task.
-33 3138 [MQTT] Received message 40000 from queue.
-34 3241 [MQTT] MQTT Publish was successful.
-35 3241 [MQTT] Notifying task.
-36 3243 [OTA Task] Command sent to MQTT task passed.
-37 3245 [OTA Task] [OTA] Set job doc parameter [ clientToken: 0:TI-LaunchPad ]
-38 3245 [OTA Task] [OTA] Set job doc parameter [ jobId: fe18c7ec_8c31_4438_b0b9_ad55acd95610 ]
-39 3245 [OTA Task] [OTA] Identified job doc parameter [ self_test ]
-40 3246 [OTA Task] [OTA] Set job doc parameter [ updatedBy: 589827 ]
-41 3246 [OTA Task] [OTA] Set job doc parameter [ streamname: 327 ]
-42 3246 [OTA Task] [OTA] Set job doc parameter [ filepath: /sys/mcuflashimg.bin ]
-43 3247 [OTA Task] [OTA] Set job doc parameter [ filesize: 130388 ]
-44 3247 [OTA Task] [OTA] Set job doc parameter [ fileid: 126 ]
-45 3247 [OTA Task] [OTA] Set job doc parameter [ attr: 0 ]
-46 3247 [OTA Task] [OTA] Set job doc parameter [ certfile: tisigner.crt.der ]
-47 3249 [OTA Task] [OTA] Set job doc parameter [ sig-sha1-rsa: Q56qxHRq3Lxv6KkorvilVs4AyGJbWsJd ]
-48 3249 [OTA Task] [OTA] Job is ready for self test.
-49 3250 [OTA Task] Sending command to MQTT task.
-51 3351 [MQTT] MQTT Publish was successful.
-52 3352 [MQTT] Notifying task.
-53 3352 [OTA Task] Command sent to MQTT task passed.
-54 3353 [OTA Task] [OTA] Published 'IN_PROGRESS' status to $aws/things/TI-LaunchPad/jobs/fe18c7ec_8c31_4438_b0b9_ad55acd95610/u55 3353 [OTA Task] Sending command to MQTT task.
-56 3353 [MQTT] Received message 60000 from queue.
-57 3455 [MQTT] MQTT Unsubscribe was successful.
-58 3455 [MQTT] Notifying task.
-59 3456 [OTA Task] Command sent to MQTT task passed.
-60 3456 [OTA Task] [OTA] Un-subscribed from topic: $aws/things/TI-LaunchPad/streams/327
-
-61 3456 [OTA Task] [OTA] Accepted final image. Commit.
-62 3578 [OTA Task] Sending command to MQTT task.
-63 3578 [MQTT] Received message 70000 from queue.
-64 3779 [MQTT] MQTT Publish was successful.
-65 3780 [MQTT] Notifying task.
-66 3780 [OTA Task] Command sent to MQTT task passed.
-67 3781 [OTA Task] [OTA] Published 'SUCCEEDED' status to $aws/things/TI-LaunchPad/jobs/fe18c7ec_8c31_4438_b0b9_ad55acd95610/upd68 3781 [OTA Task] [OTA] Returned buffer to MQTT Client.
-69 4251 [OTA] [OTA] Queued: 1   Processed: 1   Dropped: 0
-70 4381 [OTA Task] [OTA] Missing job parameter: execution
-71 4382 [OTA Task] [OTA] Missing job parameter: jobId
-72 4382 [OTA Task] [OTA] Missing job parameter: jobDocument
-73 4382 [OTA Task] [OTA] Missing job parameter: ts_ota
-74 4382 [OTA Task] [OTA] Missing job parameter: files
-75 4382 [OTA Task] [OTA] Missing job parameter: streamname
-76 4382 [OTA Task] [OTA] Missing job parameter: certfile
-77 4382 [OTA Task] [OTA] Missing job parameter: filepath
-78 4383 [OTA Task] [OTA] Missing job parameter: filesize
-79 4383 [OTA Task] [OTA] Missing job parameter: sig-sha1-rsa
-80 4383 [OTA Task] [OTA] Missing job parameter: fileid
-81 4383 [OTA Task] [OTA] Missing job parameter: attr
-82 4383 [OTA Task] [OTA] Returned buffer to MQTT Client.
-83 5251 [OTA] [OTA] Queued: 2   Processed: 2   Dropped: 0
+    249 21207 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    250 21247 [MQTT Agent Task] [core_mqtt.c:886] [INFO] [MQTT] Packet received. ReceivedBytes=601.
+    251 21247 [MQTT Agent Task] [core_mqtt.c:1045] [INFO] [MQTT] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+    252 21248 [MQTT Agent Task] [core_mqtt.c:1058] [INFO] [MQTT] State record updated. New state=MQTTPubAckSend.
+    253 21249 [MQTT Agent Task] [ota_demo_core_mqtt.c:976] [INFO] [MQTT] Received job message callback, size 548.
+    254 21252 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[execution.jobId: AFR_OTA-9702f1a3-b747-4c3e-a0eb-a3b0cf83ddbb]
+    255 21253 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[execution.jobDocument.afr_ota.streamname: AFR_OTA-945d320b-a18b-441b-b435-4a18d4e7671f]
+    256 21255 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[execution.jobDocument.afr_ota.protocols: ["MQTT"]]
+    257 21256 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[filepath: aws_demos.bin]
+    258 21257 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[filesize: 1164016]
+    259 21258 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[fileid: 0]
+    260 21259 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[certfile: ecdsa-sha256-signer.crt.pem]
+    261 21260 [OTA Agent Task] [ota.c:1575] [INFO] [OTA] Extracted parameter [ sig-sha256-ecdsa: MEQCIE1SFkIHHiZAvkPpu6McJtx7SYoD... ]
+    262 21261 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[fileType: 0]
+    263 21262 [OTA Agent Task] [ota.c:2199] [INFO] [OTA] Job document was accepted. Attempting to begin the update.
+    264 21263 [OTA Agent Task] [ota.c:2323] [INFO] [OTA] Job parsing success: OtaJobParseErr_t=OtaJobParseErrNone, Job name=AFR_OTA-9702f1a3-b747-4c3e-a0eb-a3b0cf83ddbb
+    265 21318 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    266 21418 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    267 21469 [OTA Agent Task] [ota.c:938] [INFO] [OTA] Setting OTA data interface.
+    268 21470 [OTA Agent Task] [ota.c:2839] [INFO] [OTA] Current State=[CreatingFile], Event=[ReceivedJobDocument], New state=[CreatingFile]
+    269 21482 [MQTT Agent Task] [core_mqtt.c:886] [INFO] [MQTT] Packet received. ReceivedBytes=3.
+    270 21483 [OTA Agent Task] [ota_demo_core_mqtt.c:1503] [INFO] [MQTT] SUBSCRIBED to topic $aws/things/__test_infra_thing71/streams/AFR_OTA-945d320b-a18b-441b-b435-4a18d4e7671f/data/cbor to bro
+    271 21484 [OTA Agent Task] [ota.c:2839] [INFO] [OTA] Current State=[RequestingFileBlock], Event=[CreateFile], New state=[RequestingFileBlock]
+    272 21518 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    273 21532 [MQTT Agent Task] [core_mqtt_agent_command_functions.c:76] [INFO] [MQTT] Publishing message to $aws/things/__test_infra_thing71/streams/AFR_OTA-945d320b-a18b-441b-b435-4a18d4e7671f/
+    274 21534 [OTA Agent Task] [ota_demo_core_mqtt.c:1553] [INFO] [MQTT] Sent PUBLISH packet to broker $aws/things/__test_infra_thing71/streams/AFR_OTA-945d320b-a18b-441b-b435-4a18d4e7671f/get/cbor
+    275 21534 [OTA Agent Task] [ota_mqtt.c:1112] [INFO] [OTA] Published to MQTT topic to request the next block: topic=$aws/things/__test_infra_thing71/streams/AFR_OTA-945d320b-a18b-441b-b435-4a1
+    276 21537 [OTA Agent Task] [ota.c:2839] [INFO] [OTA] Current State=[WaitingForFileBlock], Event=[RequestFileBlock], New state=[WaitingForFileBlock]
+    277 21558 [MQTT Agent Task] [core_mqtt.c:886] [INFO] [MQTT] Packet received. ReceivedBytes=4217.
+    278 21559 [MQTT Agent Task] [core_mqtt.c:1045] [INFO] [MQTT] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+    279 21560 [MQTT Agent Task] [core_mqtt.c:1058] [INFO] [MQTT] State record updated. New state=MQTTPublishDone.
+    280 21561 [MQTT Agent Task] [ota_demo_core_mqtt.c:1026] [INFO] [MQTT] Received data message callback, size 4120.
+    281 21563 [OTA Agent Task] [ota.c:2464] [INFO] [OTA] Received valid file block: Block index=0, Size=4096
+    282 21566 [OTA Agent Task] [ota.c:2683] [INFO] [OTA] Number of blocks remaining: 284
+     
+    ... // Output removed for brevity
+     
+    3672 42745 [OTA Agent Task] [ota.c:2464] [INFO] [OTA] Received valid file block: Block index=284, Size=752
+    3673 42747 [OTA Agent Task] [ota.c:2633] [INFO] [OTA] Received final block of the update.
+    (428298) ota_pal: No such certificate file: ecdsa-sha256-signer.crt.pem. Using certificate in ota_demo_config.h.
+    3674 42818 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 285   Queued: 285   Processed: 284   Dropped: 0
+    3675 42918 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 285   Queued: 285   Processed: 284   Dropped: 0
+     
+    ... // Output removed for brevity
+     
+    3678 43197 [OTA Agent Task] [ota.c:2654] [INFO] [OTA] Received entire update and validated the signature.
+    3685 43215 [OTA Agent Task] [ota_demo_core_mqtt.c:862] [INFO] [MQTT] Received OtaJobEventActivate callback from OTA Agent.
+     
+    ... // Output removed for brevity
+     
+    2 39 [iot_thread] [INFO ][DEMO][390] ---------STARTING DEMO---------
+     
+    [0;32mI (3633) WIFI: WIFI_EVENT_STA_CONNECTED
+    [0;32mI (4373) WIFI: SYSTEM_EVENT_STA_GOT_IP
+     
+    ... // Output removed for brevity 
+     
+    4 351 [sys_evt] [INFO ][DEMO][3510] Connected to WiFi access point, ip address: 255.255.255.0.
+    5 351 [iot_thread] [INFO ][DEMO][3510] Successfully initialized the demo. Network type for the demo: 1
+    6 351 [iot_thread] [ota_demo_core_mqtt.c:1902] [INFO] [MQTT] OTA over MQTT demo, Application version 0.9.1
+    7 351 [iot_thread] [ota_demo_core_mqtt.c:1323] [INFO] [MQTT] Creating a TLS connection to <endpoint>-ats.iot.us-west-2.amazonaws.com:8883.
+    9 718 [iot_thread] [core_mqtt.c:886] [INFO] [MQTT] Packet received. ReceivedBytes=2.
+    10 718 [iot_thread] [core_mqtt_serializer.c:970] [INFO] [MQTT] CONNACK session present bit not set.
+    11 718 [iot_thread] [core_mqtt_serializer.c:912] [INFO] [MQTT] Connection accepted.
+     
+    ... // Output removed for brevity
+     
+    17 736 [OTA Agent Task] [ota_demo_core_mqtt.c:1503] [INFO] [MQTT] SUBSCRIBED to topic $aws/things/__test_infra_thing71/jobs/notify-next to broker.
+    18 737 [OTA Agent Task] [ota_mqtt.c:381] [INFO] [OTA] Subscribed to MQTT topic: $aws/things/__test_infra_thing71/jobs/notify-next
+    30 818 [iot_thread] [ota_demo_core_mqtt.c:1850] [INFO] [MQTT]  Received: 0   Queued: 0   Processed: 0   Dropped: 0
+    31 819 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[execution.jobId: AFR_OTA-9702f1a3-b747-4c3e-a0eb-a3b0cf83ddbb]
+    32 820 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[execution.statusDetails.updatedBy: 589824]
+    33 822 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[execution.jobDocument.afr_ota.streamname: AFR_OTA-945d320b-a18b-441b-b435-4a18d4e7671f]
+    34 823 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[execution.jobDocument.afr_ota.protocols: ["MQTT"]]
+    35 824 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[filepath: aws_demos.bin]
+    36 825 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[filesize: 1164016]
+    37 826 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[fileid: 0]
+    38 827 [OTA Agent Task] [ota.c:1645] [INFO] [OTA] Extracted parameter: [key: value]=[certfile: ecdsa-sha256-signer.crt.pem]
+    39 828 [OTA Agent Task] [ota.c:1575] [INFO] [OTA] Extracted parameter [ sig-sha256-ecdsa: MEQCIE1SFkIHHiZAvkPpu6McJtx7SYoD... ]
+    40 829 [OTA Agent Task] [ota.c:1684] [INFO] [OTA] Extracted parameter: [key: value]=[fileType: 0]
+    41 830 [OTA Agent Task] [ota.c:2102] [INFO] [OTA] In self test mode.
+    42 830 [OTA Agent Task] [ota.c:1936] [INFO] [OTA] New image has a higher version number than the current image: New image version=0.9.1, Previous image version=0.9.0
+    43 832 [OTA Agent Task] [ota.c:2120] [INFO] [OTA] Image version is valid: Begin testing file: File ID=0
+    53 896 [OTA Agent Task] [ota.c:794] [INFO] [OTA] Beginning self-test.
+    62 971 [OTA Agent Task] [ota_demo_core_mqtt.c:1553] [INFO] [MQTT] Sent PUBLISH packet to broker $aws/things/__test_infra_thing71/jobs/AFR_OTA-9702f1a3-b747-4c3e-a0eb-a3b0cf83ddbb/update to br63 971 [MQTT Agent Task] [core_mqtt.c:1045] [INFO] [MQTT] De-serialized incoming PUBLISH packet: DeserializerResult=MQTTSuccess.
+    65 973 [MQTT Agent Task] [core_mqtt.c:1058] [INFO] [MQTT] State record updated. New state=MQTTPublishDone.
+    64 973 [OTA Agent Task] [ota_demo_core_mqtt.c:902] [INFO] [MQTT] Successfully updated with the new image.
 ```

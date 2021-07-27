@@ -28,22 +28,22 @@ The first XML tag `<testsuites>` contains the overall summary of the test execut
 
 `<testsuites name="FRQ results" time="5633" tests="184" failures="0" errors="0" disabled="0">`Attributes used in the `<testsuites>` tag
 
-`name`  
+**`name`**  
 The name of the test suite\.
 
-`time`  
+**`time`**  
 The time, in seconds, it took to run the qualification suite\.
 
-`tests`  
+**`tests`**  
 The number of test cases executed\.
 
-`failures`  
+**`failures`**  
 The number of test cases that were run, but did not pass\.
 
-`errors`  
+**`errors`**  
 The number of test cases that IDT for FreeRTOS couldn't execute\.
 
-`disabled`  
+**`disabled`**  
 This attribute is not used and can be ignored\.
 
 If there are no test case failures or errors, your device meets the technical requirements to run FreeRTOS and can interoperate with AWS IoT services\. If you choose to list your device in the AWS Partner Device Catalog, you can use this report as qualification evidence\.
@@ -56,13 +56,13 @@ The format is similar to the `<testsuites>` tag, but with an attribute called `s
 
 `<testcase classname="mcu.Full_MQTT" name="AFQP_MQTT_Connect_HappyCase" attempts="1"></testcase>`Attributes used in the `<awsproduct>` tag
 
-`name`  
+**`name`**  
 The name of the product being tested\.
 
-`version`  
+**`version`**  
 The version of the product being tested\.
 
-`sdk`  
+**`sdk`**  
 If you ran IDT with an SDK, this block contains the name and version of your SDK\. If you didn't run IDT with an SDK, then this block contains:   
 
 ```
@@ -72,7 +72,7 @@ If you ran IDT with an SDK, this block contains the name and version of your SDK
 </sdk>
 ```
 
-`features`  
+**`features`**  
 The features validated\. Features marked as `required` are required to submit your board for qualification\. The following snippet shows how this appears in the `awsiotdevicetester_report.xml` file\.  
 
 ```
@@ -96,15 +96,15 @@ The format is similar to the `<testsuites>` tag, but has a `skipped` attribute t
 <testcase classname="FreeRTOSVersion" name="FreeRTOSVersion"></testcase>
 ```
 
-`lts`  
+**`lts`**  
 True if you are qualifying for a version of FreeRTOS that uses LTS libraries, false otherwise\.
 
  Attributes used in the `<testcase>` tag
 
-`name`  
+**`name`**  
 The name of the test case\.
 
-`attempts`  
+**`attempts`**  
 The number of times IDT for FreeRTOS executed the test case\.
 
 When a test fails or an error occurs, `<failure>` or `<error>` tags are added to the `<testcase>` tag with information for troubleshooting\. For example:
@@ -122,8 +122,8 @@ For more information, see [Troubleshooting](dt-afr-troublshooting.md)\.
 
 You can find logs that IDT for FreeRTOS generates from test execution in `devicetester-extract-location/results/execution-id/logs`\. Two sets of logs are generated:
 
-`test_manager.log`  
+**`test_manager.log`**  
 Contains logs generated from IDT for FreeRTOS \(for example, logs related configuration and report generation\)\.
 
-`test_group_id__test_case_id.log` \(for example, `FullMQTT__Full_MQTT.log`\)  
+**`test_group_id__test_case_id.log` \(for example, `FullMQTT__Full_MQTT.log`\)**  
 The log file for a test case, including output from the device under test\. The log file is named according to the test group and test case that was run\.

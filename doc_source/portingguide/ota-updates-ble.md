@@ -7,7 +7,7 @@ You can use the FreeRTOS Bluetooth Low Energy \(BLE\) and Over the Air Updates \
 ## Prerequisites<a name="ota-updates-ble-prereqs"></a>
 
 1. Port the Over The Air Updates agent to each microcontroller device:
-   + Follow the steps in [Porting](afr-porting-ota.md#porting-steps-ota) and [IoT device bootloader](afr-porting-ota.md#afr-bootloader)\.
+   + Follow the steps in [Platform porting](afr-porting-ota.md#porting-steps-ota) and [IoT device bootloader](afr-porting-ota.md#afr-bootloader)\.
    + After porting, follow the steps in [Testing](afr-porting-ota.md#porting-testing-ota) to verify that the OTA PAL tests pass\.
 
 1. Port the Bluetooth Low Energy library to each microcontroller:
@@ -273,8 +273,8 @@ Certificates don't have to be added when you use Amazon Cognito credentials\.
 1. Open `vendors/vendor/boards/board/aws_demos/common/config_files/aws_iot_network_config.h`\. 
    + Change `configSUPPORTED_NETWORKS` and `configENABLED_NETWORKS` to only include `AWSIOT_NETWORK_TYPE_BLE`\.
 
-1. Open `demos/include/aws_ota_codesigner_certificate.h`:
-   + Change `signingcredentialSIGNING_CERTIFICATE_PEM` to refer to the certificate to be used to sign the firmware binary file\.
+1. Open `ota_demo_config.h`:
+   + Change `otapalconfigCODE_SIGNING_CERTIFICATE` to refer to the certificate to be used to sign the firmware binary file\.
 
    The application should start up and print the demo version:
 

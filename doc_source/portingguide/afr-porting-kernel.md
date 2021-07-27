@@ -6,7 +6,7 @@ FreeRTOS uses the FreeRTOS kernel for multitasking and inter\-task communication
 
 **Note**  
 Porting the FreeRTOS kernel to a new architecture is out of the scope of this documentation\. If you are interested in porting the FreeRTOS kernel to a new architecture, [contact the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.  
-For the FreeRTOS Qualification program, only existing ports are supported\. Modifications to these ports are not accepted within the Qualification program\. Only the official ports that can be downloaded from [Github](https://github.com/aws/amazon-freertos) or [Sourceforge](https://sourceforge.net/projects/freertos/) are accepted\.
+For the FreeRTOS Qualification program, only existing ports are supported\. Modifications to these ports are not accepted within the Qualification program\. Only the official ports that can be downloaded from [Github](https://github.com/aws/amazon-freertos) are accepted\.
 
 ## Prerequisites<a name="porting-prereqs-kernel"></a>
 

@@ -63,6 +63,8 @@ Follow these steps to set up the kit's hardware\.
 **Provision your kit**  
 Follow the [Provisioning Guide for CY8CKIT\-064S0S2\-4343W Kit](https://community.cypress.com/docs/DOC-20043) instructions to securely provision your kit for AWS IoT\.
 
+   This kit requires CySecureTools 3\.1\.0 or later\.
+
 1. **Set up a serial connection**
 
    1. Connect the kit to your host computer\.
@@ -182,7 +184,7 @@ The KitProg3 on the kit supports debugging over the SWD protocol\.
 
 ## OTA updates<a name="getting_started_cypress_psoc64_ota_updates"></a>
 
-PSoC 64 MCUs have passed all of the required FreeRTOS qualification tests\. However, the optional over\-the\-air \(OTA\) feature implemented in the PSoC 64 Standard Secure AWS firmware library is still pending evaluation\. The OTA feature as\-implemented currently passes all of the OTA qualification tests except [ aws\_ota\_test\_case\_rollback\_if\_unable\_to\_connect\_after\_update\.py](https://github.com/aws/amazon-freertos/tree/202007.00/tools/ota_e2e_tests/aws_ota_test/aws_ota_test_case_rollback_if_unable_to_connect_after_update.py)\. 
+PSoC 64 MCUs have passed all of the required FreeRTOS qualification tests\. However, the optional over\-the\-air \(OTA\) feature implemented in the PSoC 64 Standard Secure AWS firmware library is still pending evaluation\. The OTA feature as\-implemented currently passes all of the OTA qualification tests except [ aws\_ota\_test\_case\_rollback\_if\_unable\_to\_connect\_after\_update\.py](https://github.com/aws/amazon-freertos/blob/202012.00/tools/ota_e2e_tests/aws_ota_test/aws_ota_test_case_rollback_if_unable_to_connect_after_update.py)\. 
 
 When a successfully validated OTA image is applied to a device using the PSoC64 Standard Secure – AWS MCU and the device can't communicate with AWS IoT Core, the device can't automatically rollback to the original known good image\. This might result in the device being unreachable from AWS IoT Core for further updates\. This functionality is still under development by the Cypress team\.
 

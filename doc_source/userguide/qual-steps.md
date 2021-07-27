@@ -43,7 +43,7 @@ The following is an example `device.json` file used to create a device pool with
                 "configs": [
                     {
                         "name": "OTADataPlaneProtocol",
-                        "value": "HTTP | MQTT | Both"
+                        "value": "HTTP | MQTT"
                     }
                 ]
             },
@@ -97,46 +97,47 @@ The following is an example `device.json` file used to create a device pool with
 
 The following attributes are used in the `device.json` file:
 
-`id`  
+**`id`**  
 A user\-defined alphanumeric ID that uniquely identifies a pool of devices\. Devices that belong to a pool must be of the same type\. When a suite of tests is running, devices in the pool are used to parallelize the workload\.
 
-`sku`  
+**`sku`**  
 An alphanumeric value that uniquely identifies the board you are testing\. The SKU is used to track qualified boards\.  
 If you want to list your board in AWS Partner Device Catalog, the SKU you specify here must match the SKU that you use in the listing process\.
 
-`features`  
+**`features`**  
 An array that contains the device's supported features\. AWS IoT Device Tester uses this information to select the qualification tests to run\.  
 Supported values are:    
-`TCP/IP`  
+**`TCP/IP`**  
 Indicates if your board supports a TCP/IP stack and whether it is supported on\-chip \(MCU\) or offloaded to another module\. TCP/IP is required for qualification\.  
-`WIFI`  
+**`WIFI`**  
 Indicates if your board has Wi\-Fi capabilities\. Must be set to `No` if `Cellular` is set to `Yes`\.  
-`Cellular`  
+**`Cellular`**  
 Indicates if your board has cellular capabilities\. Must be set to `No` if `WIFI` is set to `Yes`\. When this feature is set to `Yes`, the FullSecureSockets test will be executed using AWS t2\.micro EC2 instances and this may incur additional costs to your account\. For more information, see [Amazon EC2 pricing](https://aws.amazon.com/ec2/pricing/)\.  
-`TLS`  
+**`TLS`**  
 Indicates if your board supports TLS\. TLS is required for qualification\.  
-`PKCS11`  
+**`PKCS11`**  
 Indicates the public key cryptography algorithm that the board supports\. PKCS11 is required for qualification\. Supported values are `ECC`, `RSA`, `Both` and `No`\. `Both` indicates the board supports both the `ECC` and `RSA` algorithms\.  
-`KeyProvisioning`  
+**`KeyProvisioning`**  
 Indicates the method of writing a trusted X\.509 client certificate onto your board\. Valid values are `Import`, `Onboard` and `No`\. Key provisioning is required for qualification\.  
 + Use `Import` if your board allows the import of private keys\. IDT will create a private key and build this to the FreeRTOS source code\.
 + Use `Onboard` if your board supports on\-board private key generation \(for example, if your device has a secure element, or if you prefer to generate your own device key pair and certificate\)\. Make sure you add a `secureElementConfig` element in each of the device sections and put the absolute path to the public key file in the `publicKeyAsciiHexFilePath` field\.
 + Use `No` if your board does not support key provisioning\.   
-`OTA`  
+**`OTA`**  
 Indicates if your board supports over\-the\-air \(OTA\) update functionality\. The `OtaDataPlaneProtocol` attribute indicates which OTA dataplane protocol the device supports\. The attribute is ignored if the OTA feature is not supported by the device\. When `"Both"` is selected, the OTA test execution time is prolonged due to running both MQTT, HTTP, and mixed tests\.  
-`BLE`  
+Starting with IDT v4\.1\.0, `OtaDataPlaneProtocol` accepts only `HTTP` and `MQTT` as supported values\.  
+**`BLE`**  
 Indicates if your board supports Bluetooth Low Energy \(BLE\)\.
 
-`devices.id`  
+**`devices.id`**  
 A user\-defined unique identifier for the device being tested\.
 
-`devices.connectivity.protocol`  
+**`devices.connectivity.protocol`**  
 The communication protocol used to communicate with this device\. Supported value: `uart`\.
 
-`devices.connectivity.serialPort`  
+**`devices.connectivity.serialPort`**  
 The serial port of the host computer used to connect to the devices being tested\.
 
-`devices.secureElementConfig.PublicKeyAsciiHexFilePath`  
+**`devices.secureElementConfig.PublicKeyAsciiHexFilePath`**  
 The absolute path to the file that contains the hex bytes public key extracted from onboard private key\.  
 Example format:   
 
@@ -169,13 +170,13 @@ For example, use these commands to generate a hex file for a \.pem public key:
    xxd -p pubkey.der > outFile
    ```
 
-`devices.secureElementConfig.SecureElementSerialNumber`  
+**`devices.secureElementConfig.SecureElementSerialNumber`**  
 \(Optional\) The serial number of the secure element\. Provide this field when the serial number is printed out along with the device public key when you run the FreeRTOS demo/test project\.
 
-`devices.secureElementConfig.preProvisioned`  
+**`devices.secureElementConfig.preProvisioned`**  
 \(Optional\) Set to "Yes" if the device has a pre\-provisioned secure element with locked\-down credentials, that cannot import, create, or destroy objects\. This configuration takes effect only when `features` has `KeyProvisioning` set to "Onboard", along with `PKCS11` set to "ECC"\.
 
-`identifiers`  
+**`identifiers`**  
 \(Optional\) An array of arbitrary name\-value pairs\. You can use these values in the build and flash commands described in the next section\.
 
 ## Configure build, flash, and test settings<a name="cfg-dt-ud"></a>
@@ -215,6 +216,7 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. W
             "demosImageName": "demos-image-name"
         }
     },
+    "testStartDelayms": 0,
     "clientWifiConfig": {
         "wifiSSID": "ssid",
         "wifiPassword": "password",
@@ -277,21 +279,25 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. W
         "required": [
             {
                 "configName": "pkcs11Config",
-                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-path/aws_tests/config_files/core_pkcs11_config.h"
+                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-name/aws_tests/config_files/core_pkcs11_config.h"
             },
             {
                 "configName": "pkcs11TestConfig",
-                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-path/aws_tests/config_files/iot_test_pkcs11_config.h"
+                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-name/aws_tests/config_files/iot_test_pkcs11_config.h"
             }
         ],
         "optional": [
             {
                 "configName": "otaAgentTestsConfig",
-                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-path/aws_tests/config_files/aws_ota_agent_config.h"
+                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-name/aws_tests/config_files/ota_config.h"
             },
             {
                 "configName": "otaAgentDemosConfig",
-                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-path/aws_demos/config_files/aws_ota_agent_config.h"
+                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-name/aws_demos/config_files/ota_config.h"
+            },
+            {
+                "configName": "otaDemosConfig",
+                "filePath": "{{testData.sourcePath}}/vendors/vendor-name/boards/board-name/aws_demos/config_files/ota_demo_config.h"
             }
         ]
     }
@@ -300,14 +306,14 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. W
 
 The following lists the attributes used in `userdata.json`:
 
-`sourcePath`  
+**`sourcePath`**  
 The path to the root of the ported FreeRTOS source code\. For parallel testing with an SDK, the `sourcePath` can be set using the `{{userData.sdkConfiguration.path}}` place holder\. For example:   
 
 ```
 { "sourcePath":"{{userData.sdkConfiguration.path}}/freertos" }
 ```
 
-`vendorPath`  
+**`vendorPath`**  
 The path to the vendor specific FreeRTOS code\. For serial testing, the `vendorPath` can be set as an absolute path\. For example:  
 
 ```
@@ -321,33 +327,36 @@ For parallel testing, the `vendorPath` can be set using the `{{testData.sourcePa
 The `vendorPath` variable is only necessary when running without an SDK, it can be removed otherwise\.  
 When running tests in parallel without an SDK, the `{{testData.sourcePath}}` placeholder must be used in the `vendorPath`, `buildTool`, `flashTool` fields\. When running test with a single device, absolute paths must be used in the `vendorPath`, `buildTool`, `flashTool` fields\. When running with an SDK, the `{{sdkPath}}` placeholder must be used in the `sourcePath`, `buildTool`, and `flashTool` commands\.
 
-`sdkConfiguration`  
+**`sdkConfiguration`**  
 If you are qualifying FreeRTOS with any modifications to files and folder structure beyond what is required for porting, then you will need to configure your SDK information in this block\. If you're not qualifying with a ported FreeRTOS inside of an SDK, then you should omit this block entirely\.    
-`sdkConfiguration.name`  
+**`sdkConfiguration.name`**  
 The name of the SDK you're using with FreeRTOS\. If you're not using an SDK, then the entire `sdkConfiguration` block should be omitted\.  
-`sdkConfiguration.version`  
+**`sdkConfiguration.version`**  
 The version of the SDK you're using with FreeRTOS\. If you're not using an SDK, then the entire `sdkConfiguration` block should be omitted\.  
-`sdkConfiguration.path`  
+**`sdkConfiguration.path`**  
 The absolute path to your SDK directory that contains your FreeRTOS code\. If you're not using an SDK, then the entire `sdkConfiguration` block should be omitted\.
 
-`buildTool`  
+**`buildTool`**  
 The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}` and references to the SDK path should be replaced by `{{sdkPath}}`\.    
-`buildImageInfo`    
-`testsImageName`  
+**`buildImageInfo`**    
+**`testsImageName`**  
 The name of the file produced by the build command when building tests from the `freertos-source/tests` folder\.  
-`demosImageName`  
+**`demosImageName`**  
 The name of the file produced by the build command when building tests from the `freertos-source/demos` folder\.
 
-`flashTool`  
+**`testStartDelayms`**  
+Specifies how many milliseconds the FreeRTOS test runner will wait before starting to run tests\. This can be useful if the device under test begins outputting important test information before IDT has a chance to connect and start logging due to network or other latency\. The max allowed value is 30000 ms \(30 seconds\)\. This value is applicable to FreeRTOS test groups only, and not applicable to other test groups that do not utilize the FreeRTOS test runner, such as the OTA tests\.
+
+**`flashTool`**  
 Full path to your ﬂash script \(\.sh or \.bat\) that contains the ﬂash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for FreeRTOS variable `{{testdata.sourcePath}}` and all references to your SDK path must be replaced by the IDT for FreeRTOS variable `{{sdkPath}}`\.
 
-`clientWifiConfig`  
+**`clientWifiConfig`**  
 The client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. \(The two access points can be the same\.\) This attribute configures the Wi\-Fi settings for the first access point\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\. Please make sure both access points are on the same subnet as the host computer running IDT\.    
-`wifi_ssid`  
+**`wifi_ssid`**  
 The Wi\-Fi SSID\.  
-`wifi_password`  
+**`wifi_password`**  
 The Wi\-Fi password\.  
-`wifiSecurityType`  
+**`wifiSecurityType`**  
 The type of Wi\-Fi security used\. One of the values:  
 + `eWiFiSecurityOpen`
 + `eWiFiSecurityWEP`
@@ -356,13 +365,13 @@ The type of Wi\-Fi security used\. One of the values:
 + `eWiFiSecurityWPA3`
 If your board does not support Wi\-Fi, you must still include the `clientWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 
-`testWifiConfig`  
+**`testWifiConfig`**  
 The test Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. \(The two access points can be the same\.\) This attribute configures the Wi\-Fi setting for the second access point\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\. Please make sure both access points are on the same subnet as the host computer running IDT\.    
-`wifiSSID`  
+**`wifiSSID`**  
 The Wi\-Fi SSID\.  
-`wifiPassword`  
+**`wifiPassword`**  
 The Wi\-Fi password\.  
-`wifiSecurityType`  
+**`wifiSecurityType`**  
 The type of Wi\-Fi security used\. One of the values:  
 + `eWiFiSecurityOpen`
 + `eWiFiSecurityWEP`
@@ -371,95 +380,93 @@ The type of Wi\-Fi security used\. One of the values:
 + `eWiFiSecurityWPA3`
 If your board does not support Wi\-Fi, you must still include the `testWifiConfig` section in your `device.json` file, but you can omit values for these attributes\.
 
-`echoServerCertificateConfiguration`  
+**`echoServerCertificateConfiguration`**  
 The configurable echo server certificate generation placeholder for secure socket tests\. This field is required\.    
-`certificateGenerationMethod`  
+**`certificateGenerationMethod`**  
 Specifies whether the server certificate is generated automatically or provided manually\.  
-`customPath`  
+**`customPath`**  
 If `certificateGenerationMethod` is "Custom", `certificatePath` and `privateKeyPath` are required\.    
-`certificatePath`  
+**`certificatePath`**  
 Specifies the filepath for the server certificate\.  
-`privateKeyPath`  
+**`privateKeyPath`**  
 Specifies the filepath for the private key\.  
-`eccCurveFormat`  
+**`eccCurveFormat`**  
 Specifies the curve format supported by the board\. Required when `PKCS11` is set to "ecc" in `device.json`\. Valid values are "P224", "P256", "P384", or "P521"\.
 
-`echoServerConfiguration`  
+**`echoServerConfiguration`**  
 The configurable echo server ports for WiFi and secure sockets tests\. This field is optional\.    
-`securePortForSecureSocket`  
+**`securePortForSecureSocket`**  
 The port which is used to setup an echo server with TLS for the secure sockets test\. The default value is 33333\. Ensure the port configured is not blocked by a firewall or your corporate network\.  
-`insecurePortForSecureSocket`  
+**`insecurePortForSecureSocket`**  
 The port which is used to setup echo server without TLS for the secure sockets test\. The default value used in the test is 33334\. Ensure the port configured is not blocked by a firewall or your corporate network\.  
-`insecurePortForWiFi`  
+**`insecurePortForWiFi`**  
 The port which is used to setup echo server without TLS for WiFi test\. The default value used in the test is 33335\. Ensure the port configured is not blocked by a firewall or your corporate network\.
 
-`otaConfiguration`  
+**`otaConfiguration`**  
 The OTA configuration\. \[Optional\]    
-`otaFirmwareFilePath`  
+**`otaFirmwareFilePath`**  
 The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/relative-path/to/ota/image/from/source/root`\.  
-`deviceFirmwareFileName`  
+**`deviceFirmwareFileName`**  
 The full ﬁle path on the MCU device where the OTA ﬁrmware is located\. Some devices do not use this ﬁeld, but you still must provide a value\.  
-`otaDemoConfigFilePath`  
+**`otaDemoConfigFilePath`**  
 The full path to `aws_demo_config.h`, found in `afr-source/vendors/vendor/boards/board/aws_demos/config_files/`\. These files are included in the porting code template that FreeRTOS provides\.   
-`codeSigningConfiguration`  
+**`codeSigningConfiguration`**  
 The code signing configuration\.  
-`signingMethod`  
+**`signingMethod`**  
 The code signing method\. Possible values are `AWS` or `Custom`\.  
 For the Beijing and Ningxia Regions, use `Custom`\. `AWS` code signing isn't supported in these Regions\.  
-`signerHashingAlgorithm`  
+**`signerHashingAlgorithm`**  
 The hashing algorithm supported on the device\. Possible values are `SHA1` or `SHA256`\.   
-`signerSigningAlgorithm`  
+**`signerSigningAlgorithm`**  
 The signing algorithm supported on the device\. Possible values are `RSA` or `ECDSA`\.  
-`signerCertificate`  
+**`signerCertificate`**  
 The trusted certificate used for OTA\.  
 For AWS code signing method, use the Amazon Resource Name \(ARN\) for the trusted certificate uploaded to the AWS Certificate Manager\.  
 For Custom code signing method, use the absolute path to the signer certificate file\.  
 For more information about creating a trusted certificate, see [Create a code\-signing certificate](ota-code-sign-cert.md)\.   
-`signerCertificateFileName`  
+**`signerCertificateFileName`**  
 The location of the code signing certificate on the device\.  
-`compileSignerCertificate`  
+**`compileSignerCertificate`**  
 Set to `true` if the code signer signature verification certificate isn't provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate and compiles it into `aws_codesigner_certifiate.h`\.  
-`untrustedSignerCertificateArn`  
+**`untrustedSignerCertificateArn`**  
 The ARN for the code\-signing certificate uploaded to ACM\.  
-`signerPlatform`  
+**`signerPlatform`**  
 The signing and hashing algorithm that AWS Code Signer uses while creating the OTA update job\. Currently, the possible values for this field are `AmazonFreeRTOS-TI-CC3220SF` and `AmazonFreeRTOS-Default`\.   
 + Choose `AmazonFreeRTOS-TI-CC3220SF` if `SHA1` and `RSA`\. 
 + Choose `AmazonFreeRTOS-Default` if `SHA256` and `ECDSA`\.
 If you need `SHA256` \| `RSA` or `SHA1` \| `ECDSA` for your configuration, contact us for further support\.  
 Configure `signCommand` if you chose `Custom` for `signingMethod`\.  
-`signCommand`  
+**`signCommand`**  
 The command used to perform custom code signing\. You can find the template in the `/configs/script_templates` directory\.   
-Two placeholders `{{inputImageFilePath}}` and `{{outputSignatureFilePath}}` are required in the command\. `{{inputImageFilePath}}` is the file path of the image built by IDT to be signed\. `{{outputSignatureFilePath}}` is the file path of the signature which will be generated by the script\.  
-`otaDemoConfigFilePath`  
-The full path to `aws_demo_config.h`, found within `afr-source/vendors/vendor/boards/board/aws_demos/config_files/`\. These files are included in the porting code template provided by FreeRTOS\.
+Two placeholders `{{inputImageFilePath}}` and `{{outputSignatureFilePath}}` are required in the command\. `{{inputImageFilePath}}` is the file path of the image built by IDT to be signed\. `{{outputSignatureFilePath}}` is the file path of the signature which will be generated by the script\.
 
-`cmakeConfiguration`  
+**`cmakeConfiguration`**  
 CMake configuration \[Optional\]  
 To execute CMake test cases, you must provide the board name, vendor name, and either the `frToolchainPath` or `compilerName`\. You may also provide the `cmakeToolchainPath` if you have a custom path to the CMake toolchain\.  
-`boardName`  
+**`boardName`**  
 The name of the board under test\. The board name should be the same as the folder name under `path/to/afr/source/code/vendors/vendor/boards/board`\.  
-`vendorName`  
+**`vendorName`**  
 The vendor name for the board under test\. The vendor should be the same as the folder name under `path/to/afr/source/code/vendors/vendor`\.  
-`compilerName`  
+**`compilerName`**  
 The compiler name\.  
-`frToolchainPath`  
+**`frToolchainPath`**  
 The fully\-qualified path to the compiler toolchain  
-`cmakeToolchainPath`   
+**`cmakeToolchainPath` **  
 The fully\-qualified path to the CMake toolchain\. This field is optional
 
-`freertosFileConfiguration`  
+**`freertosFileConfiguration`**  
 The configuration of the FreeRTOS files that IDT modifies before running tests\.    
-`required`  
+**`required`**  
 This section specifies required tests whose config files you have moved, for example, PKCS11, TLS, and so on\.    
-`configName`  
+**`configName`**  
 The name of the test that is being configured\.  
-`filePath`  
+**`filePath`**  
 The absolute path to the configuration files within the `freertos` repo\. Use the `{{testData.sourcePath}}` variable to define the path\.  
-`optional`  
+**`optional`**  
 This section specifies optional tests whose config files you have moved, for example OTA, WiFi, and so on\.    
-`configName`  
+**`configName`**  
 The name of the test that is being configured\.  
-`filePath`  
+**`filePath`**  
 The absolute path to the configuration files within the `freertos` repo\. Use the `{{testData.sourcePath}}` variable to define the path\.
 
 **Note**  
@@ -473,23 +480,23 @@ The commands to build your code and flash the device might require connectivity 
 
 IDT for FreeRTOS defines the following path variables that can be used in command lines and configuration files:
 
-`{{testData.sourcePath}}`  
+**`{{testData.sourcePath}}`**  
 Expands to the source code path\. If you use this variable, it must be used in both the flash and build commands\.
 
-`{{sdkPath}}`  
+**`{{sdkPath}}`**  
 Expands to the value in your `userData.sdkConfiguration.path` when used in the build and flash commands\.
 
-`{{device.connectivity.serialPort}}`  
+**`{{device.connectivity.serialPort}}`**  
 Expands to the serial port\.
 
-`{{device.identifiers[?(@.name == 'serialNo')].value[0]}}`  
+**`{{device.identifiers[?(@.name == 'serialNo')].value[0]}}`**  
 Expands to the serial number of your device\.
 
-`{{enableTests}}`  
+**`{{enableTests}}`**  
 Integer value indicating whether the build is for tests \(value 1\) or demos \(value 0\)\.
 
-`{{buildImageName}}`  
+**`{{buildImageName}}`**  
 The file name of the image built by the build command\.
 
-`{{otaCodeSignerPemFile}}`  
+**`{{otaCodeSignerPemFile}}`**  
 PEM file for the OTA code signer\.

@@ -24,7 +24,7 @@ If your device does not support Wi\-Fi, you can use an ethernet connection to co
 
 1. [Configuring the coreHTTP library for testing](afr-porting-corehttp.md)
 
-1. [Porting the OTA library](afr-porting-ota.md)
+1. [Porting the AWS IoT over\-the\-air update library](afr-porting-ota.md)
 **Note**  
 Currently, a port of the FreeRTOS OTA update library is not required for qualification\.
 

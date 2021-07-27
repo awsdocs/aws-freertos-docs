@@ -15,7 +15,7 @@ The FreeRTOS kernel and components are released individually and use semantic ve
 + M represents the month\.
 + N represents the release order within the designated month \(00 being the first release\)\.
 
-For example, a second release in June 2021 would be 202106\.01\. 
+For example, a second release in July 2021 would be 202107\.01\. 
 
 Previously, FreeRTOS releases used semantic versioning for major releases\. Although it has moved to date\-based versioning \(FreeRTOS 1\.4\.8 updated to FreeRTOS AWS Reference Integrations 201906\.00\), the FreeRTOS kernel and each individual FreeRTOS library still retain semantic versioning\. In semantic versioning, the version number itself \(X\.Y\.Z\) indicates whether the release is a major, minor, or point release\.  You can use the semantic version of a library to assess the scope and impact of a new release on your application\.
 
@@ -39,7 +39,7 @@ The device that you port to FreeRTOS must be a microcontroller board that meets 
 + 25MHz processing speed
 + 64KB RAM
 + 128KB program memory per executable image stored on the MCU
-+ \(If [Porting the OTA library](afr-porting-ota.md)\) Two executable images stored on the MCU
++ \(If [Porting the AWS IoT over\-the\-air update library](afr-porting-ota.md)\) Two executable images stored on the MCU
 
 ### Porting older versions of FreeRTOS<a name="porting-older"></a>
 
@@ -50,6 +50,7 @@ If you are porting an older version of FreeRTOS, go to the [FreeRTOS AWS Referen
 
 |  Date  |  Documentation version for the Porting and Qualification guides  |  Change history  |  FreeRTOS version  | 
 | --- | --- | --- | --- | 
+|  July, 2021  |  [ 202107\.00](https://github.com/aws/amazon-freertos/blob/202107.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202107\.00](https://github.com/aws/amazon-freertos/blob/202107.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202107\.00](https://github.com/aws/amazon-freertos/tree/202107.00)  | 
 |  December, 2020  |  [ 202012\.00](https://github.com/aws/amazon-freertos/blob/202012.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202012\.00](https://github.com/aws/amazon-freertos/blob/202012.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202012\.00](https://github.com/aws/amazon-freertos/tree/202012.00)  | 
 |  November, 2020  |  [ 202011\.00](https://github.com/aws/amazon-freertos/blob/202011.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202011\.00](https://github.com/aws/amazon-freertos/blob/202011.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202011\.00](https://github.com/aws/amazon-freertos/tree/202011.00)  | 
 |  July, 2020  |  [ 202007\.00](https://github.com/aws/amazon-freertos/blob/202007.00/doc/freertos_port_qual/FreeRTOS_Porting_Guide.pdf) \(Porting Guide\) [ 202007\.00](https://github.com/aws/amazon-freertos/blob/202007.00/doc/freertos_port_qual/FreeRTOS_Qualification_Guide.pdf) \(Qualification Guide\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/porting-guide.html)  |  [202007\.00](https://github.com/aws/amazon-freertos/tree/202007.00)  | 

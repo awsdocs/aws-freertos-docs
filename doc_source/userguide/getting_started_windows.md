@@ -58,13 +58,13 @@ After you install CMake, open the CMake GUI\. On Windows, you can find this from
 1. Configure the CMake Project\.
 
    In the CMake GUI, choose **Add Entry**, and on the **Add Cache Entry** window, set the following values:  
-Name  
+**Name**  
 AFR\_BOARD  
-Type  
+**Type**  
 STRING  
-Value  
+**Value**  
 pc\.windows  
-Description  
+**Description**  
 \(Optional\)
 
 1. Choose **Configure**\. If CMake prompts you to create the build directory, choose **Yes**, and then select a generator under **Specify the generator for this project**\. We recommend using Visual Studio as the generator, but Ninja is also supported\. \(Note that when using Visual Studio 2019, the platform should be set to Win32 instead of its default setting\.\) Leave the other generator options unchanged and choose **Finish**\.

@@ -10,27 +10,27 @@ To use the Greengrass Discovery library, you must create a thing in AWS IoT, inc
 
 You must set values for the following constants in the `freertos/demos/include/aws_clientcredential.h` file:
 
-`clientcredentialMQTT_BROKER_ENDPOINT`  
+**`clientcredentialMQTT_BROKER_ENDPOINT`**  
 Your AWS IoT endpoint\.
 
-`clientcredentialIOT_THING_NAME`  
+**`clientcredentialIOT_THING_NAME`**  
 The name of your IoT thing\.
 
-`clientcredentialWIFI_SSID`  
+**`clientcredentialWIFI_SSID`**  
 The SSID for your Wi\-Fi network\.
 
-`clientcredentialWIFI_PASSWORD`  
+**`clientcredentialWIFI_PASSWORD`**  
 Your Wi\-Fi password\.
 
-`clientcredentialWIFI_SECURITY`  
+**`clientcredentialWIFI_SECURITY`**  
 The type of security used by your Wi\-Fi network\.
 
 You must also set values for the following constants in the `freertos/demos/include/aws_clientcredential_keys.h` file:
 
-`keyCLIENT_CERTIFICATE_PEM`  
+**`keyCLIENT_CERTIFICATE_PEM`**  
 The certificate PEM associated with your thing\.
 
-`keyCLIENT_PRIVATE_KEY_PEM`  
+**`keyCLIENT_PRIVATE_KEY_PEM`**  
 The private key PEM associated with your thing\.
 
 You must have a Greengrass group and core device set up in the console\. For more information, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/)\.
@@ -57,18 +57,18 @@ If only one Greengrass core is present, call `GGD_GetGGCIPandCertificate` to req
 
 For more customization options, like dynamically allocating certificates, you must call the following APIs:
 
-`GGD_JSONRequestStart`  
+**`GGD_JSONRequestStart`**  
 Makes an HTTP GET request to AWS IoT to initiate the discovery request to discover a Greengrass core\. `GD_SecureConnect_Send` is used to send the request to AWS IoT\.
 
-`GGD_JSONRequestGetSize`  
+**`GGD_JSONRequestGetSize`**  
 Gets the size of the JSON file from the HTTP response\.
 
-`GGD_JSONRequestGetFile`  
+**`GGD_JSONRequestGetFile`**  
 Gets the JSON object string\. `GGD_JSONRequestGetSize` and `GGD_JSONRequestGetFile` use `GGD_SecureConnect_Read` to get the JSON data from the socket\. `GGD_JSONRequestStart`, `GGD_SecureConnect_Send`, `GGD_JSONRequestGetSize` must be called to receive the JSON data from AWS IoT\.
 
-`GGD_GetIPandCertificateFromJSON`  
+**`GGD_GetIPandCertificateFromJSON`**  
 Extracts the IP address and the Greengrass core certificate from the JSON data\. You can turn on automatic selection by setting the `xAutoSelectFlag` to `True`\. Automatic selection finds the first core device your FreeRTOS device can connect to\. To connect to a Greengrass core, call the `GGD_SecureConnect_Connect` function, passing in the IP address, port, and certificate of the core device\. To use manual selection, set the following fields of the `HostParameters_t` parameter:    
-`pcGroupName`  
+**`pcGroupName`**  
 The ID of the Greengrass group to which the core belongs\. You can use the `aws greengrass list-groups` CLI command to find the ID of your Greengrass groups\.  
-`pcCoreAddress`  
+**`pcCoreAddress`**  
 The ARN of the Greengrass core to which you are connecting\.

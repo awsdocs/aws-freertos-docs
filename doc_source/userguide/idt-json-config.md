@@ -2,19 +2,19 @@
 
 This section describes the formats in which you create JSON configuration files that you include when you write a custom test suite\.Required JSON files
 
-`suite.json`  
+**`suite.json`**  
 Contains information about the test suite\. See [Configure suite\.json](#suite-json)\.
 
-`group.json`  
+**`group.json`**  
 Contains information about a test group\. You must create a `group.json` file for each test group in your test suite\. See [Configure group\.json](#group-json)\.
 
-`test.json`  
+**`test.json`**  
 Contains information about a test case\. You must create a `test.json` file for each test case in your test suite\. See [Configure test\.json](#test-json)\.Optional JSON files
 
-`state_machine.json`  
+**`state_machine.json`**  
 Defines how tests are run when IDT runs the test suite\. See [Configure state\_machine\.json](#state-machine-json)\.
 
-`userdata_schema.json`  
+**`userdata_schema.json`**  
 Defines the schema for the [`userdata.json` file](set-config-custom.md#userdata-config-custom) that test runners can include in their setting configuration\. The `userdata.json` file is used for any additional configuration information that is required to run the test but is not present in the `device.json` file\. See [Configure userdata\_schema\.json](#userdata-schema-json)\.
 
 JSON configuration files are placed in your `<custom-test-suite-folder>` as shown here\.
@@ -57,26 +57,26 @@ The `suite.json` file sets environment variables and determines whether user dat
 
 All fields that contain values are required as described here:
 
-`id`  
+**`id`**  
 A unique user\-defined ID for the test suite\. The value of `id` must match the name of the test suite folder in which the `suite.json` file is located\. The suite name and suite version must also meet the following requirements:   
 + `<suite-name>` cannot contain underscores\.
 + `<suite-version>` is denoted as `x.x.x`, where `x` is a number\.
 The ID is shown in IDT\-generated test reports\.
 
-`title`  
+**`title`**  
 A user\-defined name for the product or feature being tested by this test suite\. The name is displayed in the IDT CLI for test runners\.
 
-`details`  
+**`details`**  
 A short description of the purpose of the test suite\.
 
-`userDataRequired`  
+**`userDataRequired`**  
 Defines whether test runners need to include custom information in a `userdata.json` file\. If you set this value to `true`, you must also include the [`userdata_schema.json` file](#userdata-schema-json) in your test suite folder\.
 
-`environmentVariables`  
+**`environmentVariables`**  
 Optional\. An array of environment variables to set for this test suite\.    
-`environmentVariables.key`  
+**`environmentVariables.key`**  
 The name of the environment variable\.  
-`environmentVariables.value`  
+**`environmentVariables.value`**  
 The value of the environment variable\.
 
 ## Configure group\.json<a name="group-json"></a>
@@ -94,16 +94,16 @@ The `group.json` file defines whether a test group is required or optional\. Use
 
 All fields that contain values are required as described here:
 
-`id`  
+**`id`**  
 A unique user\-defined ID for the test group\. The value of `id` must match the name of the test group folder in which the `group.json` file is located\. The ID is used in IDT\-generated test reports\.
 
-`title`  
+**`title`**  
 A descriptive name for the test group\. The name is displayed in the IDT CLI for test runners\.
 
-`details`  
+**`details`**  
 A short description of the purpose of the test group\.
 
-`optional`  
+**`optional`**  
 Optional\. Set to `true` to display this test group as an optional group after IDT finishes running required tests\. Default value is `false`\.
 
 ## Configure test\.json<a name="test-json"></a>
@@ -162,46 +162,46 @@ Use the following template to configure your `<custom-test-suite-folder>/suite/<
 
 All fields that contain values are required as described here:
 
-`id`  
+**`id`**  
 A unique user\-defined ID for the test case\. The value of `id` must match the name of the test case folder in which the `test.json` file is located\. The ID is used in IDT\-generated test reports\.
 
-`title`  
+**`title`**  
 A descriptive name for the test case\. The name is displayed in the IDT CLI for test runners\.
 
-`details`  
+**`details`**  
 A short description of the purpose of the test case\.
 
-`requireDUT`  
+**`requireDUT`**  
 Optional\. Set to `true` if a device is required to run this test, otherwise set to `false`\. Default value is `true`\. Test runners will configure the devices they will use to run the test in their `device.json` file\.
 
-`requiredResources`  
+**`requiredResources`**  
 Optional\. An array that provides information about resource devices needed to run this test\.     
-`requiredResources.name`  
+**`requiredResources.name`**  
 The unique name to give the resource device when this test is running\.  
-`requiredResources.features`  
+**`requiredResources.features`**  
 An array of user\-defined resource device features\.     
-`requiredResources.features.name`  
+**`requiredResources.features.name`**  
 The name of the feature\. The device feature for which you want to use this device\. This name is matched against the feature name provided by the test runner in the `resource.json` file\.  
-`requiredResources.features.version`  
+**`requiredResources.features.version`**  
 Optional\. The version of the feature\. This value is matched against the feature version provided by the test runner in the `resource.json` file\. If a version is not provided, then the feature is not checked\. If a version number is not required for the feature, leave this field blank\.  
-`requiredResources.features.jobSlots`  
+**`requiredResources.features.jobSlots`**  
 Optional\. The number of simultaneous tests that this feature can support\. The default value is `1`\. If you want IDT to use distinct devices for individual features, then we recommend that you set this value to `1`\.
 
-`execution.timeout`  
+**`execution.timeout`**  
 The amount of time \(in milliseconds\) that IDT waits for the test to finish running\. For more information about setting this value, see [Create IDT test case executables](test-executables.md)\.
 
-`execution.os`  
+**`execution.os`**  
 The test case executables to run based on the operating system of the host computer that runs IDT\. Supported values are `linux`, `mac`, and `win`\.     
-`execution.os.cmd`  
+**`execution.os.cmd`**  
 The path to the test case executable that you want to run for the specified operating system\. This location must be in the system path\.  
-`execution.os.args`  
+**`execution.os.args`**  
 Optional\. The arguments to provide to run the test case executable\.
 
-`environmentVariables`  
+**`environmentVariables`**  
 Optional\. An array of environment variables set for this test case\.     
-`environmentVariables.key`  
+**`environmentVariables.key`**  
 The name of the environment variable\.  
-`environmentVariables.value`  
+**`environmentVariables.value`**  
 The value of the environment variable\.
 If you specify the same environment variable in the `test.json` file and in the `suite.json` file, the value in the `test.json` file takes precedence\. 
 

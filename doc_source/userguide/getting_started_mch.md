@@ -1,5 +1,8 @@
 # Getting started with the Microchip Curiosity PIC32MZ EF<a name="getting_started_mch"></a>
 
+**Note**  
+In agreement with Microchip, we are removing the Curiosity PIC32MZEF \(DM320104\) from the FreeRTOS Reference Integration repository main branch and will no longer carry it in new releases\. Microchip has issued an [official notice](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/DM320104) that the PIC32MZEF \(DM320104\) is no longer recommended for new designs\. The PIC32MZEF projects and source code can still be accessed through the previous release tags\. Microchip recommends that customers use the Curiosity [ PIC32MZ\-EF\-2\.0 Development board \(DM320209\)](https://devices.amazonaws.com/detail/a3G0h0000077I69EAE/Curiosity-PIC32MZ-EF-2-0-Development-Board) for new designs\. The PIC32MZv1 platform can still be found in [v202012\.00](https://github.com/aws/amazon-freertos/tree/202012.00) of the FreeRTOS Reference Integration repository\. However, the platform is no longer supported by [v202107\.00](https://github.com/aws/amazon-freertos/tree/202107.00) of the FreeRTOS Reference\.
+
 This tutorial provides instructions for getting started with the Microchip Curiosity PIC32MZ EF\. If you do not have the Microchip Curiosity PIC32MZ EF bundle, visit the AWS Partner Device Catalog to purchase one from our [ partner](https://devices.amazonaws.com/detail/a3G0L00000AANscUAH/Curiosity-PIC32MZ-EF-Amazon-FreeRTOS-Bundle)\.
 
 The bundle includes the following items:
@@ -18,6 +21,17 @@ Before you begin, you must configure AWS IoT and your FreeRTOS download to conne
 In this topic, the path to the FreeRTOS download directory is referred to as `freertos`\.
 Space characters in the `freertos` path can cause build failures\. When you clone or copy the repository, make sure the path that you create doesn't contain space characters\.
 The maximum length of a file path on Microsoft Windows is 260 characters\. Long FreeRTOS download directory paths can cause build failures\.
+Because the source code may contain symbolic links, if you're using Windows to extract the archive, you may have to:  
+Enable [ Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) or, 
+Use a console that is elevated as administrator\.
+In this way, Windows can properly create symbolic links when it extracts the archive\. Otherwise, symbolic links will be written as normal files that contain the paths of the symbolic links as text or are empty\. For more information, see the blog entry [ Symlinks in Windows 10\!](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/)\.  
+If you use Git under Windows, you must enable Developer Mode or you must:   
+Set `core.symlinks` to true with the following command:  
+
+    ```
+    git config --global core.symlinks true
+    ```
+Use a console that is elevated as administrator whenever you use a git command that writes to the system \(for example, git pull, git clone, and git submodule update \-\-init \-\-recursive\)\.
 
 ## Overview<a name="getting_started_mch_overview"></a>
 

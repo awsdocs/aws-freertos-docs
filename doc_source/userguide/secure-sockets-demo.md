@@ -2,7 +2,7 @@
 
 The following example uses a single RTOS task\. The source code for this example can be found at `demos/tcp/aws_tcp_echo_client_single_task.c`\.
 
-Before you begin, verify that you have downloaded FreeRTOS to your microcontroller and built and run the FreeRTOS demo projects\. You can clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/master/README.md) file for instructions\. 
+Before you begin, verify that you have downloaded FreeRTOS to your microcontroller and built and run the FreeRTOS demo projects\. You can clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file for instructions\. 
 
 **To run the demo**
 
@@ -32,6 +32,6 @@ The TCP server and client demos are currently not supported on the Cypress CYW94
 
 1. Use the tool `tools/certificate_configuration/PEMfileToCString.html` to copy the server certificate \(`server.pem`\) to `cTlsECHO_SERVER_CERTIFICATE_PEM` in the file `aws_tcp_echo_client_single_task.c`\.
 
-1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_TCP_ECHO_CLIENT_DEMO_ENABLED`\.
+1. Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define `CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED` or `CONFIG_OTA_HTTP_UPDATE_DEMO_ENABLED`\.
 
 The microcontroller and the TLS Echo Server should be on the same network\. When the demo starts \(`main.c`\), you should see a log message that reads Received correct string from echo server\.

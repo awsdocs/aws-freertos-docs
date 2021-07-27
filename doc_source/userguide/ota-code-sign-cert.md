@@ -6,7 +6,6 @@ Different platforms require different types of code\-signing certificates\. The 
 
 **Topics**
 + [Creating a code\-signing certificate for the Texas Instruments CC3220SF\-LAUNCHXL](ota-code-sign-cert-ti.md)
-+ [Creating a code\-signing certificate for the Microchip Curiosity PIC32MZEF](ota-code-sign-cert-mchip.md)
 + [Creating a code\-signing certificate for the Espressif ESP32](ota-code-sign-cert-esp.md)
 + [Creating a code\-signing certificate for the Nordic nrf52840\-dk](ota-code-sign-cert-nordic.md)
 + [Creating a code\-signing certificate for the FreeRTOS Windows simulator](ota-code-sign-cert-win.md)

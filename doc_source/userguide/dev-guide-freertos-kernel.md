@@ -41,19 +41,19 @@ When applications need memory, they can allocate it from the FreeRTOS heap\. Fre
 
 The FreeRTOS kernel includes five heap implementations:
 
-`heap_1`  
+**`heap_1`**  
 Is the simplest implementation\. Does not permit memory to be freed\.
 
-`heap_2`  
+**`heap_2`**  
 Permits memory to be freed, but not does coalesce adjacent free blocks\.
 
-`heap_3`  
+**`heap_3`**  
 Wraps the standard `malloc()` and `free()` for thread safety\.
 
-`heap_4`  
+**`heap_4`**  
 Coalesces adjacent free blocks to avoid fragmentation\. Includes an absolute address placement option\.
 
-`heap_5`  
+**`heap_5`**  
 Is similar to heap\_4\. Can span the heap across multiple, non\-adjacent memory areas\.
 
 ## Intertask coordination<a name="inter-task-coordination"></a>

@@ -75,7 +75,7 @@ If you are downloading FreeRTOS from the FreeRTOS console, choose **Connect to A
 
 1. [Configuring the FreeRTOS demos](freertos-prereqs.md#freertos-configure)\.
 
-   Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
+   Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define  `CONFIG_GREENGRASS_DISCOVERY_DEMO_ENABLED`\.
 
 After you set up AWS IoT and AWS IoT Greengrass, and after you download and configure FreeRTOS, you can build, flash, and run the Greengrass demo on your device\. To set up your board's hardware and software development environment, follow the instructions in the [Board\-specific getting started guides](getting-started-guides.md)\.
 
@@ -117,6 +117,6 @@ Message from Thing to Greengrass Core: Address of Greengrass Core found! 1234567
 **Subscriptions**    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/userguide/gg-demo.html)
 
-SOURCE: It is the name given to IOT thing that is created in IOT console while registering the board. For example: TIGG1 can be an example name for the IOT thing.
+   Where "Source" is the name given to the AWS IoT thing created in the AWS IoT console when you registered your board \- "TIGG1" in the example given here\.
 
 1. Start a deployment of your AWS IoT Greengrass group and make sure that the deployment is successful\. You should now be able to successfully run the AWS IoT Greengrass discovery demo\.

@@ -11,7 +11,7 @@ This library can be freely used and is distributed under the [MIT open source li
 
 ****  
 
-| Code Size of AWS IoT Jobs \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| Code Size of AWS IoT Jobs \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
-| jobs\.c | 1\.7K | 1\.4K | 
-| Total estimate | 1\.7K | 1\.4K | 
+| jobs\.c | 1\.8K | 1\.5K | 
+| Total estimates | 1\.8K | 1\.5K | 

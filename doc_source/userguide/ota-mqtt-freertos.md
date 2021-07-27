@@ -3,47 +3,14 @@
 This section describes the general requirements for using MQTT to perform over\-the\-air \(OTA updates\)\.
 
 ## Minimum requirements<a name="ota-mqtt-freertos-min-requirements"></a>
-+ Device firmware must include the necessary FreeRTOS libraries \(coreMQTT, OTA Agent, and their dependencies\)\.
++ Device firmware must include the necessary FreeRTOS libraries \(coreMQTT Agent, OTA update, and their dependencies\)\.
 + FreeRTOS version 1\.4\.0 or later is required\. However, we recommend that you use the latest version when possible\.
 
 ## Configurations<a name="ota-mqtt-freertos-config"></a>
 
 Beginning with version 201912\.00, FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from AWS IoT to devices\. If you specify both protocols when you create an OTA update in FreeRTOS, each device will determine the protocol used to transfer the image\. See [Prerequisites for OTA updates using HTTP](ota-http-freertos.md) for more information\.
 
-By default, the configuration of the OTA protocols in `aws_ota_agent_config.h` is to use the MQTT protocol:
-
-```
-/**
- * @brief The protocol selected for OTA control operations.
- * This configuration parameter sets the default protocol for all the OTA control
- * operations like requesting OTA job, updating the job status etc.
- *
- * Note - Only MQTT is supported at this time for control operations.
- */
-#define configENABLED_CONTROL_PROTOCOL       ( OTA_CONTROL_OVER_MQTT )
-/**
- * @brief The protocol selected for OTA data operations.
- * This configuration parameter sets the protocols selected for the data operations
- * like requesting file blocks from the service.
- *
- * Note - Both MQTT and HTTP are supported for data transfer. This configuration parameter
- * can be set to the following -
- * Enable data over MQTT - ( OTA_DATA_OVER_MQTT )
- * Enable data over HTTP - ( OTA_DATA_OVER_HTTP)
- * Enable data over both MQTT & HTTP ( OTA_DATA_OVER_MQTT | OTA_DATA_OVER_HTTP )
- */
-#define configENABLED_DATA_PROTOCOLS         ( OTA_DATA_OVER_MQTT )
- /**
-  * @brief The preferred protocol selected for OTA data operations.
-  *
-  * Primary data protocol will be the protocol used for downloading files if more than
-  * one protocol is selected while creating OTA job. Default primary data protocol is MQTT
-  * and the following update here switches to HTTP as primary.
-  *
-  * Note - use OTA_DATA_OVER_HTTP for HTTP as primary data protocol.
-  */
-#define configOTA_PRIMARY_DATA_PROTOCOL     ( OTA_DATA_OVER_MQTT )
-```
+By default, the configuration of the OTA protocols in [ `ota_config.h`](https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h) is to use the MQTT protocol\.
 
 ## Device specific configurations<a name="ota-mqtt-freertos-dev-config"></a>
 

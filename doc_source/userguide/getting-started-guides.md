@@ -21,5 +21,6 @@ You do not need to complete the [First steps](freertos-prereqs.md) for the follo
 [Getting started with the Microchip ATECC608A Secure Element with Windows simulator](getting_started_atecc608a.md)
 [Getting started with the Espressif ESP32\-DevKitC and the ESP\-WROVER\-KIT](getting_started_espressif.md)
 [Getting started with the Espressif ESP32\-WROOM\-32SE](getting_started_esp32wroom-32se.md)
+[Getting started with the Espressif ESP32\-S2](getting_started_esp32-s2.md)
 [Getting started with the Infineon OPTIGA Trust X and XMC4800 IoT Connectivity Kit](getting_started_infineon_trust_x.md)
 [Getting started with the Nordic nRF52840\-DK](getting_started_nordic.md)

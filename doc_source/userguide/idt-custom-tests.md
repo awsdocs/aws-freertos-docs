@@ -4,11 +4,11 @@
 
 Use IDT to develop and run custom test suites, as follows:
 
-**To develop custom test suites**  
+****To develop custom test suites****  
 + Create test suites with custom test logic for the device that you want to test\.
 + Provide IDT with your custom test suites to test runners\. Include information about specific settings configurations for your test suites\.
 
-**To run custom test suites**  
+****To run custom test suites****  
 + Set up the device that you want to test\.
 + Implement the settings configurations as required by the test suites that you want to use\.
 + Use IDT to run your custom test suites\.

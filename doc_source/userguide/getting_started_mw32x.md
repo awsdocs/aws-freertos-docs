@@ -393,10 +393,10 @@ Run the `cmake` command every time you switch between the `aws_demos` project an
 
 ## Troubleshooting<a name="gsg-mw32x-troubleshooting"></a>
 
-Network issues  
+**Network issues**  
 Check your network credentials\. See "Provisioning" in [Build and run the FreeRTOS demo project](#gsg-mw32x-build-and-run)\.
 
-Enabling additional logs  
+**Enabling additional logs**  
 + Enable board specific logs\.
 
   Enable calls to `wmstdio_init(UART0_ID, 0)` in the function `prvMiscInitialization` in the `main.c` file for tests or demos\.
@@ -404,7 +404,7 @@ Enabling additional logs
 
   Enable the macro `CONFIG_WLCMGR_DEBUG` in the  `freertos/vendors/marvell/WMSDK/mw320/sdk/src/incl/autoconf.h` file\. 
 
-Using GDB  
+**Using GDB**  
 We recommend that you use the `arm-none-eabi-gdb` and `gdb` command files packaged along with the SDK\. Navigate to the directory\.  
 
 ```

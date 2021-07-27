@@ -24,9 +24,9 @@ This MQTT library doesn't have platform dependencies, such as threading or synch
 
 ****  
 
-| Code Size of coreMQTT \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| Code Size of coreMQTT \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
 | core\_mqtt\.c | 3\.0K | 2\.6K | 
 | core\_mqtt\_state\.c | 1\.4K | 1\.1K | 
 | core\_mqtt\_serializer\.c | 2\.5K | 2\.0K | 
-| Total estimate | 6\.9K | 5\.7K | 
+| Total estimates | 6\.9K | 5\.7K | 

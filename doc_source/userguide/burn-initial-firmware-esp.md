@@ -4,12 +4,14 @@ This guide is written with the assumption that you have already performed the st
 
 **To flash an initial factory image to the board**
 
-1.  Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`, comment out `#define CONFIG_MQTT_DEMO_ENABLED`, and define `CONFIG_OTA_UPDATE_DEMO_ENABLED`\.
+1. Open `freertos/vendors/vendor/boards/board/aws_demos/config_files/aws_demo_config.h`,  comment out `#define CONFIG_CORE_MQTT_MUTUAL_AUTH_DEMO_ENABLED`, and define `CONFIG_OTA_MQTT_UPDATE_DEMO_ENABLED` or `CONFIG_OTA_HTTP_UPDATE_DEMO_ENABLED`\.
 
-1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [OTA update prerequisites](ota-prereqs.md) to `demos/include/aws_ota_codesigner_certificate.h`\. It should be formatted in following way\.
+1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [OTA update prerequisites](ota-prereqs.md) to `vendors/vendor/boards/board/aws_demos/config_files/ota_demo_config.h`\. It should be formatted in following way\.
 
    ```
-   static const char signingcredentialSIGNING_CERTIFICATE_PEM[] = "-----BEGIN CERTIFICATE-----\n"
+   #define otapalconfigCODE_SIGNING_CERTIFICATE [] =  "-----BEGIN CERTIFICATE-----\n"
+                 
+             
    "...base64 data...\n"
    "-----END CERTIFICATE-----\n";
    ```

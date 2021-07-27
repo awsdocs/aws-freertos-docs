@@ -1,4 +1,4 @@
-# Porting the OTA library<a name="afr-porting-ota"></a>
+# Porting the AWS IoT over\-the\-air update library<a name="afr-porting-ota"></a>
 
 With FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Deploy new firmware images to a single device, a group of devices, or your entire fleet\.
@@ -8,9 +8,9 @@ With FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Debug a failed deployment\.
 + Digitally sign firmware using Code Signing for AWS IoT\.
 
-For more information, see [ FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide*\.
+For more information, see [FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide* along with the [ AWS IoT Over\-the\-air Update Documentation](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/index.html)\.
 
-You can use the OTA agent library to integrate OTA functionality into your FreeRTOS applications\. For more information, see [FreeRTOS OTA Agent Library](https://docs.aws.amazon.com/freertos/latest/userguide/ota-agent-library.html) in the *FreeRTOS User Guide*\.
+You can use the OTA update library to integrate OTA functionality into your FreeRTOS applications\. For more information, see [FreeRTOS OTA update Library](https://docs.aws.amazon.com/freertos/latest/userguide/ota-update-library.html) in the *FreeRTOS User Guide*\.
 
 FreeRTOS devices must enforce cryptographic code\-signing verification on the OTA firmware images that they receive\. We recommend the following algorithms:
 + Elliptic\-Curve Digital Signature Algorithm \(ECDSA\)
@@ -18,50 +18,53 @@ FreeRTOS devices must enforce cryptographic code\-signing verification on the OT
 + SHA\-256 hash
 
 **Note**  
-A port of the FreeRTOS OTA update library is currently not required for qualification\.
+A port of the FreeRTOS OTA update library is currently not required for device qualification\.
 
 ## Prerequisites<a name="porting-prereqs-ota"></a>
-
-To port the OTA agent library, you need the following:
-+ A port of the TLS library\.
++ Complete the instructions in [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
++ Create a port of the TLS library\.
 
   For information, see [Porting the TLS library](afr-porting-tls.md)\.
-+ A bootloader that can support OTA updates\.
++ Create a bootloader that can support OTA updates\.
 
   For more information about porting a bootloader demo application, see [Porting the bootloader demo](#afr-porting-bootloader)\.
 
-## Porting<a name="porting-steps-ota"></a>
+## Platform porting<a name="porting-steps-ota"></a>
 
-`freertos/vendors/vendor/boards/board/ports/ota/aws_ota_pal.c` contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. Implement at least the set of functions listed in this table\.
+You must provide an implementation of the OTA portable abstraction layer \(PAL\) to port the OTA library to a new device\. The `freertos/vendors/vendor/boards/board/ports/ota_pal_for_aws/` directory contains the `ota_pal.h` and `ota_pal.c` template files\. The `ota_pal.c` file contains empty definitions of a set of platform abstraction layer \(PAL\) functions\. At a minimum, you must implement the set of functions listed in the following table\. For an example, see the [ Windows Simulator OTA PAL implementation](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/ports/ota_pal_for_aws/ota_pal.c)\.
 
 
-| Function | Description | 
+| Function name | Description | 
 | --- | --- | 
-| prvPAL\_Abort | Aborts an OTA update\. | 
-| prvPAL\_CreateFileForRx | Creates a file to store the data chunks as they are received\. | 
-| prvPAL\_CloseFile | Closes the specified file\. This might authenticate the file if storage that implements cryptographic protection is being used\. | 
-| prvPAL\_WriteBlock | Writes a block of data to the specified file at the given offset\. On success, returns the number of bytes written\. Otherwise, a negative error code\. | 
-| prvPAL\_ActivateNewImage | Activates or launches the new firmware image\. For some ports, if the device is programmatically reset synchronously, this function might not return\. | 
-| prvPAL\_SetPlatformImageState | Does what is required by the platform to accept or reject the most recent OTA firmware image \(or bundle\)\. To determine how to implement this function, consult the documentation for your board \(platform\) details and architecture\. \. | 
-| prvPAL\_GetPlatformImageState | Gets the state of the OTA update image\. | 
+| `otaPal_Abort` | Stops an OTA update\. | 
+| `otaPal_CreateFileForRx` | Creates a file to store the received data chunks\. | 
+| `otaPal_CloseFile` | Closes the specified file\. This might authenticate the file if you use storage that implements cryptographic protection\. | 
+| `otaPal_WriteBlock` | Writes a block of data to the specified file at the given offset\. On success, the function returns the number of bytes written\. Otherwise, the function returns a negative error code\. The block size will always be a power of two and so will be aligned\. For more information, see the [ OTA library configuration documentation](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/ota_config.html)\. | 
+| `otaPal_ActivateNewImage` | Activates or launches the new firmware image\. For some ports, if the device is programmatically reset synchronously, this function might not return\. | 
+| `otaPal_SetPlatformImageState` | Does what is required by the platform to accept or reject the most recent OTA firmware image \(or bundle\)\. To determine how to implement this function, see the documentation for your board \(platform\) details and architecture\. | 
+| `otaPal_GetPlatformImageState` | Gets the state of the OTA update image\. | 
 
 Implement the functions in this table if your device has built\-in support for them\.
 
 
-| Function | Description | 
+| Function name | Description | 
 | --- | --- | 
-| prvPAL\_CheckFileSignature | Verifies the signature of the specified file\. | 
-| prvPAL\_ReadAndAssumeCertificate | Reads the specified signer certificate from the file system and returns it to the caller\. | 
+| `otaPal_CheckFileSignature` | Verifies the signature of the specified file\. | 
+| `otaPal_ReadAndAssumeCertificate` | Reads the specified signer certificate from the file system and returns it to the caller\. | 
+| `otaPal_ResetDevice` | Resets the device\. | 
 
-Make sure that you have a bootloader that can support OTA updates\. For instructions on porting the bootloader demo application provided with FreeRTOS or creating your IoT device bootloader, see [IoT device bootloader](#afr-bootloader)\.
+**Note**  
+Make sure that you have a bootloader that can support OTA updates\. For instructions about how to port the bootloader demo application provided with FreeRTOS or create your IoT device bootloader, see [IoT device bootloader](#afr-bootloader)\.
+
+### Additional Information<a name="porting-steps-ota-additional"></a>
+
+The portable abstraction layer \(PAL\) enables the OTA update library to be independent of any specific hardware platform\. The OTA library depends on interfaces to remain independent of the operating system and MQTT protocol implementation\. If your application performs OTA over HTTP, then there is also an interface for the HTTP protocol implementation\. The example applications in FreeRTOS use ports for these interfaces that are common to all of the platforms\. Because of this, the PAL is the only interface that must be ported before a new platform can use the OTA library\. Information on these interfaces can be found in the [ FreeRTOS documentation for the OTA update library](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/ota_design.html#ota_design_library)\. 
 
 ## IoT device bootloader<a name="afr-bootloader"></a>
 
 ### Porting the bootloader demo<a name="afr-porting-bootloader"></a>
 
-FreeRTOS includes a demo bootloader application for the Microchip Curiosity PIC32MZEF platform\. For more information, see [Demo Bootloader for the Microchip Curiosity PIC32MZEF](https://docs.aws.amazon.com/freertos/latest/userguide/microchip-bootloader.html) in the *FreeRTOS User Guide*\. You can port this demo to other platforms\.
-
-If you choose not to port the demo to your platform, you can use your own bootloader application\. [Threat modeling for the IoT device bootloader](#afr-threat-model-for-bootloader) discusses threat modeling to help you write your own secure bootloader application\.
+The [v202012\.00 release](https://github.com/aws/amazon-freertos/tree/202012.00) of FreeRTOS includes a demo bootloader application for the Microchip Curiosity PIC32MZEF platform\. For more information, see [Demo Bootloader for the Microchip Curiosity PIC32MZEF](https://docs.aws.amazon.com/freertos/latest/userguide/microchip-bootloader.html) in the *FreeRTOS User Guide*\. You can port this demo to other platforms\. If you don't port the demo to your platform, you can use your own bootloader application\. For more information about how to write your own secure bootloader application, see [Threat modeling for the IoT device bootloader](#afr-threat-model-for-bootloader)\.
 
 ### Threat modeling for the IoT device bootloader<a name="afr-threat-model-for-bootloader"></a>
 
@@ -97,7 +100,7 @@ Some attacks will have multiple mitigations; for example, a network man\-in\-the
 
 **Mitigation examples**
   + Upon boot, the bootloader verifies, as previously described\. When verification fails with no previous image available, the bootloader halts\.
-  + Upon boot, the bootloader verifies, as previously described\. When verification fails with no previous image available, the bootloader enters a failsafe OTA\-only mode\.
+  + Upon boot, the bootloader verifies, as previously described\. When verification fails with no previous image available, the bootloader enters a fail safe OTA only mode\.
 + An attacker boots the device to a previously stored image, which is exploitable\.
 
 **Mitigation examples**
@@ -156,24 +159,48 @@ This threat model considers only the bootloader\. Further threat modeling could 
 
 ## Testing<a name="porting-testing-ota"></a>
 
-If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
+If you're using an IDE to build test projects, you need to set up your library port in the IDE project\.
 
 ### Setting up the IDE test project<a name="testing-ide-ota"></a>
 
-If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
+If you're using an IDE for porting and testing, you must add some source files to the IDE test project before you can test your ported code\. This includes code for the OTA library, PAL port, and OTA test code\.
 
 **Important**  
-In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Do not create duplicate copies of source files\.
+In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Don't create duplicate copies of source files\.
 
-**To set up the OTA library in the IDE project**
+In this procedure, you add files for the OTA library, OTA port, and OTA test code to your test IDE project\.
 
-1. Add the source file `freertos/vendors/vendor/boards/board/ports/ota/aws_ota_pal.c` to the `aws_tests` IDE project\.
+**To set up your IDE test project**
 
-1. Add the following test source files to the `aws_tests` IDE project:
-   + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_cbor.c`
-   + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_agent.c`
-   + `freertos/libraries/freertos_plus/aws/ota/test/aws_test_ota_pal.c`
-   + `freertos/demos/ota/aws_iot_ota_update_demo.c`
+1. Add the OTA library code to your project: 
+
+   1. In a text editor, open the `freertos/libraries/ota_for_aws/otaFilePaths.cmake` file to see various CMake variables related to building the OTA library\.
+
+   1. Add the files listed in the variables `OTA_SOURCES`, `OTA_OS_FREERTOS_SOURCES`, `OTA_HTTP_SOURCES` \(for the OTA over HTTP demo\), and `OTA_MQTT_SOURCES` to your IDE project\.
+
+   1. Add the include paths listed in the variables `OTA_INCLUDE_PUBLIC_DIRS`, `OTA_INCLUDE_PRIVATE_DIRS`, and `OTA_INCLUDE_OS_FREERTOS_DIRS` to your IDE project\.
+
+1. Add the OTA PAL code to the project: 
+
+   1. Add `freertos/vendors/vendor/boards/board/ports/ota_pal_for_aws/` to your include path\.
+
+   1. Add the `ota_pal.c` and `ota_pal.h` files located in the `freertos/vendors/vendor/boards/board/ports/ota_pal_for_aws/` directory to your project\.
+
+   1. Add any platform specific files or include paths to your project\.
+
+1. Add the OTA test source file to the project: 
+
+   1. Add all source files located in `freertos\tests\integration_test\ota_pal` and its subdirectories to your project\.
+
+   1. Add `freertos\tests\integration_test\ota_pal` and `freertos\tests\integration_test\ota_pal\test_files` to the include path of your test project\.
+
+1. Add the OTA related config files to the test project: 
+
+   1. Add the `ota_config.h` file \(for the aws\_demo project\) and the `aws_test_ota_config.h` file \(for the aws\_test project\) to the config files directory at `freertos/vendors/vendor/boards/board/aws_tests/config_files`\. 
+
+     You can find examples in the `freertos/vendors/vendor/boards/board/aws_tests/config_files` directory\. 
+
+For an example of an IDE test project for OTA, see the [ GitHub](https://github.com/aws/amazon-freertos/tree/main/projects/pc/windows/visual_studio/aws_tests) website\.
 
 ### Configuring the `CMakeLists.txt` file<a name="testing-cmake-ota"></a>
 
@@ -186,25 +213,52 @@ The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/bo
 The following is an example of a portable layer target definition for the OTA library\.
 
 ```
-# OTA
+# Over-the-air Updates
 afr_mcu_port(ota)
 target_sources(
     AFR::ota::mcu_port
-    INTERFACE "path/aws_ota_pal.c"
+    INTERFACE
+        "${afr_ports_dir}/ota_pal_for_aws/ota_pal.c"
+        "${afr_ports_dir}/ota_pal_for_aws/ota_pal.h"
+        # Add platform specific files that are required to build ota_pal.c.
 )
+
+target_include_directories(
+    AFR::ota::mcu_port
+    INTERFACE "${afr_ports_dir}/ota_pal_for_aws"
+    # Add platform specific include paths that are required to build ota_pal.c.
+)
+
+target_link_libraries(
+    AFR::ota::mcu_port
+    INTERFACE
+        AFR::crypto
+        AFR::ota
+        # Add platform specific target dependencies that are required to build ota_pal.c.
+)
+
+# The qualification tests for the OTA PAL port requires this include path to run.
+if(AFR_ENABLE_TESTS)
+    target_include_directories(
+        AFR::ota::mcu_port
+        INTERFACE "${PROJECT_SOURCE_DIR}/tests/integration_test/ota_pal"
+    )
+endif()
 ```
 
-There are two sets of tests for the OTA library port: [OTA agent and OTA PAL tests](#testing-agent-pal) and [OTA end\-to\-end tests](#testing-e2e)\.
+You can find an example `CMakeLists.txt` file for the Windows Simulator platform on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/CMakeLists.txt)\.
 
-### OTA agent and OTA PAL tests<a name="testing-agent-pal"></a>
+### OTA PAL tests<a name="testing-update-pal"></a>
 
-#### Setting up your local testing environment<a name="testing-local-ota-agent"></a>
+#### Setting up the local testing environment<a name="testing-local-ota-update"></a>
 
-**To configure the source and header files for the OTA agent and OTA PAL tests**
+**To configure the source and header files for the OTA PAL tests**
 
-1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_OTA_AGENT_ENABLED` and `testrunnerFULL_OTA_PAL_ENABLED` macros to `1` to enable the agent and PAL tests\.
+1. In a text editor, open the `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h` file, and set the `testrunnerFULL_OTA_PAL_ENABLED` macro to **1** to enable the PAL tests\.
 
-1. Choose a signing certificate for your device from `ota/test`\. The certificate are used in OTA tests for verification\. 
+1. Open the `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_ota_config.h` file, and configure it for your platform\. You can find the specific details on what configurations exist and how to set them in the configuration file\.
+
+1. Choose a signing certificate for your device from `freertos/tests/integration_test/ota_pal/test_files`\. The certificates are used in the OTA tests for verification\. 
 
    Three types of signing certificates are available in the test code:
    + RSA/SHA1
@@ -213,32 +267,21 @@ There are two sets of tests for the OTA library port: [OTA agent and OTA PAL tes
 
    RSA/SHA1 and RSA/SHA256 are available for existing platforms only\. ECDSA/SHA256 is recommended for OTA updates\. If you have a different scheme, [contact the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
-#### Running the tests<a name="testing-run-ota-agent"></a>
+#### Running the tests<a name="testing-run-ota-update"></a>
 
-**To execute the OTA agent and OTA PAL tests**
+**To run the OTA PAL tests**
 
-1. Build the test project, and then flash it to your device for execution\.
+1. Build the test project, and then flash it to your device to run the tests\.
 
 1. Check the test results in the UART console\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-ota-tests1.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/ex_tests_passing.png)
 
-   `...`  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-ota-tests2.png)
+Your platform passes the OTA PAL tests if there are 25 tests that ran with 0 failures and 0 ignores\. At this point your platform can be used to run the OTA demo if you have configured your demo project\.
 
-### OTA end\-to\-end tests<a name="testing-e2e"></a>
-
-**To set up and run the end\-to\-end OTA tests**
-
-1. Follow the setup instructions in the README file \(`freertos/tools/ota_e2e_test/README.md`\)\. 
-
-1. Make sure that running the agent and PAL tests do not modify the `aws_clientcredential.h`, `aws_clientcredential_keys.h`, `aws_application_version.h`, or `aws_ota_codesigner_certificate.h` header files\.
-
-1. To run the OTA end\-to\-end test script, follow the example in the README file \(`freertos/tools/ota_e2e_test/README.md`\)\. 
-
-## Validation<a name="w3aac11c37c25"></a>
+## Validation<a name="w3aac11c39c27"></a>
 
 To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
 
 After you have ported the FreeRTOS OTA library and the bootloader demo, you can start porting the Bluetooth Low Energy library\. For instructions, see [Porting the Bluetooth Low Energy library](afr-porting-ble.md)\.
 
-If your device does not support Bluetooth Low Energy functionality, then you are finished and can start the FreeRTOS qualification process\. For more information, see the [FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.
+If your device does not support Bluetooth Low Energy functionality, then you are finished and can start the FreeRTOS qualification process\. For more information, see the [ FreeRTOS Qualification Guide](https://docs.aws.amazon.com/freertos/latest/qualificationguide/)\.

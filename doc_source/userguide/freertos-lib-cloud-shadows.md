@@ -11,7 +11,7 @@ This library can be freely used and is distributed under the [MIT open source li
 
 ****  
 
-| Code Size of AWS IoT Device Shadow \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimisation | With \-Os Optimisation | 
+| Code Size of AWS IoT Device Shadow \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
-| shadow\.c | 1\.2K | 0\.7K | 
-| Total estimate | 1\.2K | 0\.7K | 
+| shadow\.c | 1\.2K | 0\.9K | 
+| Total estimates | 1\.2K | 0\.9K | 

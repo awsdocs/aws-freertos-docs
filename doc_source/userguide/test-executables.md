@@ -10,7 +10,7 @@ When all devices are ready for a test case to run, IDT reads the following files
 + The `test.json` for the selected test case determines the processes to start and the environment variables to set\.
 + The `suite.json` for the test suite determines the environment variables to set\. 
 
-IDT starts the required test exexutable process based on the commands and arguments specified in the `test.json` file, and passes the required environment variables to the process\. 
+IDT starts the required test executable process based on the commands and arguments specified in the `test.json` file, and passes the required environment variables to the process\. 
 
 ## Use the IDT Client SDK<a name="idt-client-sdk"></a>
 
@@ -29,13 +29,13 @@ These SDKs are located in the `<device-tester-extract-location>/sdks` folder\. W
 
 The following commands enable you to communicate with the device under test without having to implement any additional device interaction and connectivity management functions\.
 
-`ExecuteOnDevice`  
+**`ExecuteOnDevice`**  
 Allows test suites to run shell commands on a device that support SSH or Docker shell connections\.
 
-`CopyToDevice`  
+**`CopyToDevice`**  
 Allows test suites to copy a local file from the host machine that runs IDT to a specified location on a device that supports SSH or Docker shell connections\.
 
-`ReadFromDevice`  
+**`ReadFromDevice`**  
 Allows test suites to read from the serial port of devices that support UART connections\.
 
 **Note**  
@@ -46,44 +46,44 @@ To make a direct connection, retrieve the information in the `device.connectivit
 
 The following commands enable your test suites to communicate with IDT\.
 
-`PollForNotifications`  
+**`PollForNotifications`**  
 Allows test suites to check for notifications from IDT\.
 
-`GetContextValue ` and `GetContextString`  
+**`GetContextValue ` and `GetContextString`**  
 Allows test suites to retrieve values from the IDT context\. For more information, see [Use the IDT context](idt-context.md)\.
 
-`SendResult`  
+**`SendResult`**  
 Allows test suites to report test case results to IDT\. This command must be called at the end of each test case in a test suite\.
 
 ### Host interaction<a name="api-host-interaction"></a>
 
 The following command enable your test suites to communicate with the host machine\.
 
-`PollForNotifications`  
+**`PollForNotifications`**  
 Allows test suites to check for notifications from IDT\.
 
-`GetContextValue ` and `GetContextString`  
+**`GetContextValue ` and `GetContextString`**  
 Allows test suites to retrieve values from the IDT context\. For more information, see [Use the IDT context](idt-context.md)\.
 
-`ExecuteOnHost`  
+**`ExecuteOnHost`**  
 Allows test suites to run commands on the local machine and lets IDT manage the test case executable lifecycle\.
 
 ## Enable IDT CLI commands<a name="idt-cli-coop"></a>
 
 The `run-suite` command IDT CLI provides several options that let test runner customize test execution\. To allow test runners to use these options to run your custom test suite, you implement support for the IDT CLI\. If you do not implement support, test runners will still be able to run tests, but some CLI options will not function correctly\. To provide an ideal customer experience, we recommend that you implement support for the following arguments for the `run-suite` command in the IDT CLI:
 
-`timeout-multiplier`  
+**`timeout-multiplier`**  
 Specifies a value greater than 1\.0 that will be applied to all timeouts while running tests\.   
 Test runners can use this argument to increase the timeout for the test cases that they want to run\. When a test runner specifies this argument in their `run-suite` command, IDT uses it to calculate the value of the IDT\_TEST\_TIMEOUT environment variable and sets the `config.timeoutMultiplier` field in the IDT context\. To support this argument, you must do the following:  
 + Instead of directly using the timeout value from the `test.json` file, read the IDT\_TEST\_TIMEOUT environment variable to obtain the correctly calculated timeout value\.
 + Retrieve the `config.timeoutMultiplier` value from the IDT context and apply it to long running timeouts\.
 For more information about exiting early because of timeout events, see [Specify exit behavior](#test-exec-exiting)\.
 
-`stop-on-first-failure`  
+**`stop-on-first-failure`**  
 Specifies that IDT should stop running all tests if it encounters a failure\.   
 When a test runner specifies this argument in their `run-suite` command, IDT will stop running tests as soon as it encounters a failure\. However, if test cases are running in parallel, then this can lead to unexpected results\. To implement support, make sure that if IDT encounters this event, your test logic instructs all running test cases to stop, clean up temporary resources, and report a test result to IDT\. For more information about exiting early on failures, see [Specify exit behavior](#test-exec-exiting)\.
 
-`group-id` and `test-id`  
+**`group-id` and `test-id`**  
 Specifies that IDT should run only the selected test groups or test cases\.   
 Test runners can use these arguments with their `run-suite` command to specify the following test execution behavior:   
 + Run all tests inside the specified test groups\.
@@ -129,16 +129,16 @@ Configure your text executable to always exit with an exit code of 0, even if a 
 
 IDT might request or expect a test case to stop running before it has finished in the following events\. Use this information to configure your test case executable to detect each of these events from the test case:
 
-**Timeout**  
+****Timeout****  
 Occurs when a test case runs for longer than the timeout value specified in the `test.json` file\. If the test runner used the `timeout-multiplier` argument to specify a timeout multiplier, then IDT calculates the timeout value with the multiplier\.   
 To detect this event, use the IDT\_TEST\_TIMEOUT environment variable\. When a test runner launches a test, IDT sets the value of the IDT\_TEST\_TIMEOUT environment variable to the calculated timeout value \(in seconds\) and passes the variable to the test case executable\. You can read the variable value to set an appropriate timer\.
 
-**Interrupt**  
+****Interrupt****  
 Occurs when the test runner interrupts IDT\. For example, by pressing Ctrl\+C\.  
 Because terminals propagate signals to all child processes, you can simply configure a signal handler in your test cases to detect interrupt signals\.   
 Alternatively, you can periodically poll the API to check the value of the `CancellationRequested` boolean in the `PollForNotifications` API response\. When IDT receives an interrupt signal, it sets the value of the `CancellationRequested` boolean to `true`\.
 
-**Stop on first failure**  
+****Stop on first failure****  
 Occurs when a test case that is running in parallel with the current test case fails and the test runner used the `stop-on-first-failure` argument to specify that IDT should stop when it encounters any failure\.  
 To detect this event, you can periodically poll the API to check the value of the `CancellationRequested` boolean in the `PollForNotifications` API response\. When IDT encounters a failure and is configured to stop on first failure, it sets the value of the `CancellationRequested` boolean to `true`\.
 

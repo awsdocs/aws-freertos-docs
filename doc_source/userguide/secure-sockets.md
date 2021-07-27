@@ -29,7 +29,7 @@ FreeRTOS Secure Sockets library features include:
 
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w37aac17c39c11b5"></a>
+### Error codes<a name="w44aac17c43c13b5"></a>
 
 The error codes that the FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 
@@ -40,10 +40,10 @@ If the FreeRTOS Secure Sockets API returns an error code, the [coreMQTT library]
 
 The FreeRTOS Secure Sockets library includes two helper macros for handling IP addresses:
 
-`SOCKETS_inet_addr_quick`  
+**`SOCKETS_inet_addr_quick`**  
 This macro converts an IP address that is expressed as four separate numeric octets into an IP address that is expressed as a 32\-bit number in network\-byte order\.
 
-`SOCKETS_inet_ntoa`  
+**`SOCKETS_inet_ntoa`**  
 This macro converts an IP address that is expressed as a 32\-bit number in network byte order to a string in decimal\-dot notation\.
 
 ## Usage restrictions<a name="freertos-secure-sockets-restrictions"></a>

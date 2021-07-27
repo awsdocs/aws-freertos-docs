@@ -4,7 +4,7 @@ If the process of creating an OTA update job fails, there may be actions you can
 
 1. Install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)\.
 
-1. Run `aws configure` and enter the following information\.
+1. Run aws configure and enter the following information\.
 
    ```
    $ aws configure

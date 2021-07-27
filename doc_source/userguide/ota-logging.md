@@ -44,10 +44,10 @@ You can view your logs in the [CloudWatch console\.](https://console.aws.amazon.
 
 OTA update logs can contain the following properties:
 
-accountId  
+**accountId**  
 The AWS account ID in which the log was generated\.
 
-actionType  
+**actionType**  
 The action that generated the log\. This can be set to one of the following values:  
 + `CreateOTAUpdate`: An OTA update was created\.
 + `DeleteOTAUpdate`: An OTA update was deleted\.
@@ -57,39 +57,39 @@ The action that generated the log\. This can be set to one of the following valu
 + `GetStream`: A request for a stream was sent to the AWS IoT MQTT\-based file delivery feature\.
 + `DescribeStream`: A request for information about a stream was sent to the AWS IoT MQTT\-based file delivery feature\.
 
-awsJobId  
+**awsJobId**  
 The AWS IoT job ID that generated the log\.
 
-clientId  
+**clientId**  
 The MQTT client ID that made the request that generated the log\.
 
-clientToken  
+**clientToken**  
 The client token associated with the request that generated the log\.
 
-details  
+**details**  
 More information about the operation that generated the log\.
 
-logLevel  
+**logLevel**  
 The logging level of the log\. For OTA update logs, this is always set to `DEBUG`\.
 
-otaUpdateId  
+**otaUpdateId**  
 The ID of the OTA update that generated the log\.
 
-protocol  
+**protocol**  
 The protocol used to make the request that generated the log\.
 
-status  
+**status**  
 The status of the operation that generated the log\. Valid values are:  
 + Success
 + Failure
 
-streamId  
+**streamId**  
 The AWS IoT stream ID that generated the log\.
 
-timestamp  
+**timestamp**  
 The time when the log was generated\.
 
-topicName  
+**topicName**  
 An MQTT topic used to make the request that generated the log\.
 
 ### Example logs<a name="ota-example-logs"></a>
