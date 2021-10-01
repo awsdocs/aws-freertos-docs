@@ -10,6 +10,7 @@ For Fleet Provisioning, use the `v4_beta_deprecated` version of the AWS IoT Devi
 The AWS IoT Device SDK for Embedded C is generally targeted at resource constrained devices that require an optimized C language runtime\. You can use the SDK on any operating system and host it on any processor type \(for example, MCUs and MPUs\)\. However, if your devices have sufficient memory and processing resources, we recommend that you use one of the higher order [AWS IoT Device SDKs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html#iot-device-sdks)\.
 
 For more information, see the following:
++ [AWS IoT Device SDK for Embedded C](https://docs.aws.amazon.com/embedded-csdk/latest/lib-ref/)
 + [AWS IoT Device SDK for Embedded C on GitHub](https://github.com/aws/aws-iot-device-sdk-embedded-C)
 + [AWS IoT Device SDK for Embedded C Readme](https://github.com/aws/aws-iot-device-sdk-embedded-C#aws-iot-device-sdk-for-embedded-c)
 + [ AWS IoT Device SDK for Embedded C Samples](https://docs.aws.amazon.com/embedded-csdk/202012.00/lib-ref/docs/doxygen/output/html/demos_main.html)

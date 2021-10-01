@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the STMicroelectron
 
 Make sure you have installed the latest Wi\-Fi firmware\. To download the latest Wi\-Fi firmware, see [STM32L4 Discovery kit IoT node, low\-power wireless, Bluetooth Low Energy, NFC, SubGHz, Wi\-Fi](https://www.st.com/resource/en/utilities/inventek_fw_updater.zip)\. Under **Binary Resources**, choose **Inventek ISM 43362 Wi\-Fi module firmware update \(read the readme file for instructions\) **\.
 
-Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
+Before you begin, you must configure AWS IoT, your FreeRTOS download, and Wi\-Fi to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions \. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
 ## Overview<a name="w44aac13c31c44c11"></a>
 

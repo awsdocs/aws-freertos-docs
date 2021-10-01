@@ -91,7 +91,7 @@ Before you create the AWS IoT Policy, you need to know your AWS region and AWS a
 
 1. In the upper\-right corner, choose your account and under **My Account** make a note of your 12\-digit account ID\.
 
-1. In the left navigation pane, choose **Settings**\. Under **Custom endpoint**, make a note of the endpoint value\. The endpoint should be something like "*xxxxxxxxxxxxxx*\.iot\.*us\-west\-2*\.amazonaws\.com"\. In this example, the AWS region is "us\-west\-2"\.
+1. In the left navigation pane, choose **Settings**\. Under **Device data endpoint**, make a note of the endpoint value\. The endpoint should be something like "*xxxxxxxxxxxxxx*\.iot\.*us\-west\-2*\.amazonaws\.com"\. In this example, the AWS region is "us\-west\-2"\.
 
 1. In the left navigation pane, choose **Secure**, choose **Policies**, and then choose **Create**\.
 

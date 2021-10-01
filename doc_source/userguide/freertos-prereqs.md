@@ -208,9 +208,9 @@ You must provide FreeRTOS with your AWS IoT endpoint so the application running 
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the navigation pane, choose **Settings**\.
+1. In the left navigation pane, choose **Settings**\.
 
-   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `1234567890123-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
+   Your AWS IoT endpoint is displayed in **Device data endpoint**\. It should look like `1234567890123-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
 
 1. In the navigation pane, choose **Manage**, and then choose **Things**\.
 

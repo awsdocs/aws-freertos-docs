@@ -132,7 +132,7 @@ To begin, you select the latest version of the FreeRTOS package, and this will b
 
    1. Open the [AWS IoT console](https://console.aws.amazon.com/iot/home)\.
 
-   1. In the left navigation pane, choose **Settings**\. Make a note of your custom **Endpoint**\.
+   1. In the left navigation pane, choose **Settings**\. Make a note of your custom endpoint in the **Device data endpoint** text box\.
 
    1. Choose **Manage**, and then choose **Things**\. Make a note of the AWS IoT thing name of your board\.
 

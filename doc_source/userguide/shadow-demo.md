@@ -107,7 +107,7 @@ xPublishToTopic( SHADOW_TOPIC_STRING_UPDATE( THING_NAME ),
 
 ## Handle shadow delta messages and shadow update messages<a name="shadow-demo-delta-and-update"></a>
 
-The user callback function, that was registered to the [coreMQTT Client Library](https://freertos-wordpress.corp.amazon.com/shadow/device-shadow-demo.html#handle-shadow-messages) using the `MQTT_Init` function, will notify us about an incoming packet event\. See the callback function [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/main/demos/device_shadow_for_aws/shadow_demo_main.c#L671-L753) on GitHub\.
+The user callback function, that was registered to the [coreMQTT Client Library](https://www.freertos.org/iot-device-shadow/device-shadow-demo.html#handle-shadow-messages) using the `MQTT_Init` function, will notify us about an incoming packet event\. See the callback function [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/main/demos/device_shadow_for_aws/shadow_demo_main.c#L671-L753) on GitHub\.
 
 The callback function confirms the incoming packet is of type `MQTT_PACKET_TYPE_PUBLISH`, and uses the Device Shadow Library API `Shadow_MatchTopic` to confirm that the incoming message is a shadow message\.
 

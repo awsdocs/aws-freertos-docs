@@ -95,7 +95,7 @@ The `group.json` file defines whether a test group is required or optional\. Use
 All fields that contain values are required as described here:
 
 **`id`**  
-A unique user\-defined ID for the test group\. The value of `id` must match the name of the test group folder in which the `group.json` file is located\. The ID is used in IDT\-generated test reports\.
+A unique user\-defined ID for the test group\. The value of `id` must match the name of the test group folder in which the `group.json` file is located and should not have underscores \(`_`\)\. The ID is used in IDT\-generated test reports\.
 
 **`title`**  
 A descriptive name for the test group\. The name is displayed in the IDT CLI for test runners\.
@@ -163,7 +163,7 @@ Use the following template to configure your `<custom-test-suite-folder>/suite/<
 All fields that contain values are required as described here:
 
 **`id`**  
-A unique user\-defined ID for the test case\. The value of `id` must match the name of the test case folder in which the `test.json` file is located\. The ID is used in IDT\-generated test reports\.
+A unique user\-defined ID for the test case\. The value of `id` must match the name of the test case folder in which the `test.json` file is located and should not have underscores \(`_`\)\. The ID is used in IDT\-generated test reports\.
 
 **`title`**  
 A descriptive name for the test case\. The name is displayed in the IDT CLI for test runners\.

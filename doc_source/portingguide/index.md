@@ -46,7 +46,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Porting the Bluetooth Low Energy library](afr-porting-ble.md)
    + [Perform Over the Air Updates using Bluetooth Low Energy](ota-updates-ble.md)
    + [Porting the common I/O libraries](freertos-porting-commonio.md)
-   + [Porting the Cellular library](freertos-porting-cellular.md)
+   + [Porting the Cellular Interface library](freertos-porting-cellular.md)
 + [Migrating from Version 1.4.x to Version 201906.00 (and newer)](porting-migration.md)
 + [Migrating from version 1 to version 3 for OTA applications](porting-migration-ota.md)
 + [Migrating from version 1 to version 3 for OTA Pal port](porting-migration-ota-pal.md)

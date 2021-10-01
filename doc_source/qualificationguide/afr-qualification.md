@@ -69,6 +69,9 @@ Q: *We will be hosting our FreeRTOS port in our own repo as per the qualificatio
 A: Host all the files and folders necessary to make the port work as an out of the box experience for a customer who downloads it from the repository\. You should include your entire `freertos_kernel`, `libraries`, and `tools` folders, along with a `docs` folder for your documents, a `projects` folder for your IDE projects, and a `vendors` folder for your vendor\-specifc files\. Also include your entire demo folder\.   
 The coreMQTT Agent demo must be supported\. Other demos are at your discretion\. Also, the `tools` folder isn't required\. However, we recommend that you host this folder to assist customers with testing\.
 
+Q: *My device uses only cellular connectivity\. Can I still qualify?*  
+A: The FreeRTOS Cellular Interface library supports the AT commands of a TCP offloaded Cellular abstraction Layer\. These are available from [GitHub](https://github.com/FreeRTOS/FreeRTOS-Cellular-Interface)\. There are qualified devices that use the FreeRTOS Cellular Interface library, such as the STM32L4\+ Discovery IoT Node with STEVAL\-STMODLTE that uses a Quectel BG96 cellular modem\. For more information, see [Porting the Cellular Interface library](https://docs.aws.amazon.com/freertos/latest/portingguide/freertos-porting-cellular.html) in the *FreeRTOS Porting Guide*\.
+
 If you have questions about qualification that are not answered on this page or in the rest of the *FreeRTOS Qualification Guide*, contact your AWS representative or [the FreeRTOS engineering team](https://freertos.org/RTOS-contact-and-support.html)\.
 
 ### Documentation history<a name="afr-doc-history"></a>

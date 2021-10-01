@@ -49,18 +49,18 @@ The following earlier versions of IDT for FreeRTOS are also supported\.
 + FRQ\_1\.6\.0
   + Released 2021\.07\.21
 
-**IDT v4\.0\.3 and test suite version 1\.5\.0 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
-+ IDT v4\.0\.3 with test suite FRQ\_1\.5\.0 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.3.zip)
-+ IDT v4\.0\.3 with test suite FRQ\_1\.5\.0 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.3.zip)
-+ IDT v4\.0\.3 with test suite FRQ\_1\.5\.0 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.3.zip)
+**IDT v4\.0\.3 and test suite version 1\.5\.1 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
++ IDT v4\.0\.3 with test suite FRQ\_1\.5\.1 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.3.zip)
++ IDT v4\.0\.3 with test suite FRQ\_1\.5\.1 for [ macOS](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_mac_4.0.3.zip)
++ IDT v4\.0\.3 with test suite FRQ\_1\.5\.1 for [ Windows](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_win_4.0.3.zip)
 
 **Release notes**
 + Support for qualification of devices with locked\-down credentials on a Hardware Security Module\.
 + Minor bug fixes and improvements\.
 
 **Test suite versions**
-+ FRQ\_1\.5\.0
-  + Released 2021\.04\.16\.
++ FRQ\_1\.5\.1
+  + Released 2021\.07\.30\.
 
 **IDT v4\.0\.1 and test suite version 1\.4\.1 for FreeRTOS 202012\.00 \(uses FreeRTOS 202012\.00 LTS libraries\)**
 + IDT v4\.0\.1 with test suite FRQ\_1\.4\.1 for [ Linux](https://docs.aws.amazon.com/freertos/latest/userguide/freertos/devicetester_freertos_linux_4.0.1.zip)

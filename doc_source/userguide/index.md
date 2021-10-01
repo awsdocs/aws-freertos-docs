@@ -85,6 +85,7 @@ Amazon's trademarks and trade dress may not be used in
    + [backoffAlgorithm library](backoffalgorithm-library.md)
    + [Bluetooth Low Energy library](freertos-ble-library.md)
       + [Mobile SDKs for FreeRTOS Bluetooth devices](freertos-ble-mobile.md)
+   + [Cellular Interface library](cellular-interface.md)
    + [Common I/O](common-io.md)
    + [AWS IoT Device Defender library](afr-device-defender-library.md)
    + [AWS IoT Greengrass Discovery library](freertos-lib-gg-connectivity.md)

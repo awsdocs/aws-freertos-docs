@@ -70,7 +70,7 @@ After you obtain your certificates and keys from the AWS IoT console, you need t
 
 1. In the navigation pane, choose **Settings**\.
 
-   Your AWS IoT endpoint is displayed in **Endpoint**\. It should look like `123456789012-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
+   Your AWS IoT endpoint is displayed in **Device data endpoint**\. It should look like `123456789012-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
 
 1. In the navigation pane, choose **Manage**, and then choose **Things**\.
 

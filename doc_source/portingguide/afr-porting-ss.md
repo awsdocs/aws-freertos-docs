@@ -18,7 +18,7 @@ To port the Secure Sockets library, you need the following:
   For information about porting the Wi\-Fi library, see [Porting the Wi\-Fi library](afr-porting-wifi.md)\.
 + If your board has cellular connectivity, you must provide a Secure Sockets library that uses the cellular modem as transport\. You can implement the Secure Sockets library in two ways:
   + Implement the Secure Sockets API by using the AT commands of your modem directly\.
-  + Use the Cellular library provided by FreeRTOS, which hides the AT commands and provides a socket\-like API\. For more information, see [Porting the Cellular library](freertos-porting-cellular.md)\.
+  + Use the Cellular Interface library provided by FreeRTOS, which hides the AT commands and provides a socket\-like API\. For more information, see [Porting the Cellular Interface library](freertos-porting-cellular.md)\.
 + A port of a TCP/IP stack\.
 
   For information about porting a TCP/IP stack, see [Porting a TCP/IP stack](afr-porting-tcp.md)\.

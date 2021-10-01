@@ -104,7 +104,7 @@ To enable the demo, you need to configure your project to work with AWS IoT\. To
 
 1. In the navigation pane, choose **Settings**\.
 
-   Your AWS IoT endpoint appears in the **Endpoint** text box\. It should look like `1234567890123-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
+   Your AWS IoT endpoint appears in the **Device data endpoint** text box\. It should look like `1234567890123-ats.iot.us-east-1.amazonaws.com`\. Make a note of this endpoint\.
 
 1. In the navigation pane, choose **Manage**, and then choose **Things**\. Make a note of the AWS IoT thing name for your device\. 
 

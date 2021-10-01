@@ -22,10 +22,11 @@ The following porting libraries are included in configurations of FreeRTOS that 
 | FreeRTOS\+POSIX | [FreeRTOS\+POSIX API Reference](https://freertos.org/Documentation/api-ref/POSIX/index.html) |  You can use the FreeRTOS\+POSIX library to port POSIX\-compliant applications to the FreeRTOS ecosystem\. For more information, see [FreeRTOS\+POSIX](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_POSIX/index.html)\.  | 
 | Secure Sockets | [ Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html) | For more information, see [Secure Sockets library](secure-sockets.md)\. | 
 | FreeRTOS\+TCP | [ FreeRTOS\+TCP API Reference](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/FreeRTOS_TCP_API_Functions.html) |  FreeRTOS\+TCP is a scalable, open source and thread safe TCP/IP stack for FreeRTOS\. For more information, see [FreeRTOS\+TCP](https://freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/index.html)\.   | 
-| Wi\-Fi | [Wi\-Fi API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/wifi/index.html) |  The FreeRTOS Wi\-Fi library enables you to interface with your microcontroller's lower\-level wireless stack\. For more information, see [Wi\-Fi library](freertos-wifi.md)\. | 
-| corePKCS11 |  |  The corePKCS11 library is a reference implementation of the Public Key Cryptography Standard \#11, to support provisioning and TLS client authentication\. For more information, see [corePKCS11 library](security-pkcs.md)\.  | 
+| Wi\-Fi | [Wi\-Fi API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/wifi/index.html) |  The FreeRTOS Wi\-Fi library enables you to interface with your microcontroller's lower\-level wireless stack\. For more information, see the [Wi\-Fi library](freertos-wifi.md)\.  | 
+| corePKCS11 |  |  The corePKCS11 library is a reference implementation of the Public Key Cryptography Standard \#11, to support provisioning and TLS client authentication\. For more information, see the [corePKCS11 library](security-pkcs.md)\.  | 
 | TLS |  |  For more information, see [Transport Layer Security](security-tls.md)\.  | 
 | Common I/O | Common I/O API Reference |  For more information, see [Common I/O](common-io.md)\.  | 
+| Cellular Interface | Cellular Interface API Reference |  The FreeRTOS Cellular Interface library exposes the capabilities of a few popular cellular modems through a uniform API\. For more information, see the [Cellular Interface library](cellular-interface.md)\.  | 
 
 ## FreeRTOS application libraries<a name="dev-guide-freertos-application-libraries"></a>
 
