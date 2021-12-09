@@ -246,7 +246,7 @@ if(AFR_ENABLE_TESTS)
 endif()
 ```
 
-You can find an example `CMakeLists.txt` file for the Windows Simulator platform on  [ GitHub](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/CMakeLists.txt)\.
+You can find an example `CMakeLists.txt` file for the Windows Simulator platform on [ GitHub](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/CMakeLists.txt)\.
 
 ### OTA PAL tests<a name="testing-update-pal"></a>
 

@@ -337,18 +337,18 @@ The version of the SDK you're using with FreeRTOS\. If you're not using an SDK, 
 The absolute path to your SDK directory that contains your FreeRTOS code\. If you're not using an SDK, then the entire `sdkConfiguration` block should be omitted\.
 
 **`buildTool`**  
-The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}` and references to the SDK path should be replaced by `{{sdkPath}}`\.    
-**`buildImageInfo`**    
-**`testsImageName`**  
-The name of the file produced by the build command when building tests from the `freertos-source/tests` folder\.  
-**`demosImageName`**  
-The name of the file produced by the build command when building tests from the `freertos-source/demos` folder\.
+The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}` and references to the SDK path should be replaced by `{{sdkPath}}`\.
 
 **`testStartDelayms`**  
 Specifies how many milliseconds the FreeRTOS test runner will wait before starting to run tests\. This can be useful if the device under test begins outputting important test information before IDT has a chance to connect and start logging due to network or other latency\. The max allowed value is 30000 ms \(30 seconds\)\. This value is applicable to FreeRTOS test groups only, and not applicable to other test groups that do not utilize the FreeRTOS test runner, such as the OTA tests\.
 
 **`flashTool`**  
-Full path to your ﬂash script \(\.sh or \.bat\) that contains the ﬂash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for FreeRTOS variable `{{testdata.sourcePath}}` and all references to your SDK path must be replaced by the IDT for FreeRTOS variable `{{sdkPath}}`\.
+Full path to your flash script \(\.sh or \.bat\) that contains the flash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for FreeRTOS variable `{{testdata.sourcePath}}` and all references to your SDK path must be replaced by the IDT for FreeRTOS variable `{{sdkPath}}`\.    
+**`buildImageInfo`**    
+**`testsImageName`**  
+The name of the file produced by the build command when building tests from the `freertos-source/tests` folder\.  
+**`demosImageName`**  
+The name of the file produced by the build command when building tests from the `freertos-source/demos` folder\.
 
 **`clientWifiConfig`**  
 The client Wi\-Fi configuration\. The Wi\-Fi library tests require an MCU board to connect to two access points\. \(The two access points can be the same\.\) This attribute configures the Wi\-Fi settings for the first access point\. Some of the Wi\-Fi test cases expect the access point to have some security and not to be open\. Please make sure both access points are on the same subnet as the host computer running IDT\.    
@@ -407,7 +407,7 @@ The OTA configuration\. \[Optional\]
 **`otaFirmwareFilePath`**  
 The full path to the OTA image created after the build\. For example, `{{testData.sourcePath}}/relative-path/to/ota/image/from/source/root`\.  
 **`deviceFirmwareFileName`**  
-The full ﬁle path on the MCU device where the OTA ﬁrmware is located\. Some devices do not use this ﬁeld, but you still must provide a value\.  
+The full file path on the MCU device where the OTA firmware is located\. Some devices do not use this field, but you still must provide a value\.  
 **`otaDemoConfigFilePath`**  
 The full path to `aws_demo_config.h`, found in `afr-source/vendors/vendor/boards/board/aws_demos/config_files/`\. These files are included in the porting code template that FreeRTOS provides\.   
 **`codeSigningConfiguration`**  
@@ -425,7 +425,8 @@ For AWS code signing method, use the Amazon Resource Name \(ARN\) for the truste
 For Custom code signing method, use the absolute path to the signer certificate file\.  
 For more information about creating a trusted certificate, see [Create a code\-signing certificate](ota-code-sign-cert.md)\.   
 **`signerCertificateFileName`**  
-The location of the code signing certificate on the device\.  
+The file name of the code signing certificate on the device\. This value must match the file name that you provided when you ran the `aws acm import-certificate` command\.  
+For more information, see [Create a code\-signing certificate](ota-code-sign-cert.md)\.   
 **`compileSignerCertificate`**  
 Set to `true` if the code signer signature verification certificate isn't provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate and compiles it into `aws_codesigner_certifiate.h`\.  
 **`untrustedSignerCertificateArn`**  

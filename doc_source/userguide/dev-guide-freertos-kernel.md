@@ -4,6 +4,7 @@ The FreeRTOS kernel is a real\-time operating system that supports numerous arch
 + A multitasking scheduler\.
 + Multiple memory allocation options \(including the ability to create completely statically\-allocated systems\)\. 
 + Intertask coordination primitives, including task notifications, message queues, multiple types of semaphore, and stream and message buffers\.
++ Support for symmetric multiprocessing \(SMP\) on multi\-core microcontrollers\.
 
 The FreeRTOS kernel never performs non\-deterministic operations, such as walking a linked list, inside a critical section or interrupt\. The FreeRTOS kernel includes an efficient software timer implementation that does not use any CPU time unless a timer needs servicing\. Blocked tasks do not require time\-consuming periodic servicing\. Direct\-to\-task notifications allow fast task signaling, with practically no RAM overhead\. They can be used in most intertask and interrupt\-to\-task signaling scenarios\.
 
@@ -135,6 +136,18 @@ You can change this default behavior by providing your own implementation of `sb
 `xMessageBufferReceive()` is used to read data from a message buffer in a task\. `xMessageBufferReceiveFromISR()` is used to read data from a message buffer in an interrupt service routine \(ISR\)\. `xMessageBufferReceive()` allows a block time to be specified\. If `xMessageBufferReceive()` is called with a non\-zero block time to read from a message buffer and the buffer is empty, the task is placed into the Blocked state until either data becomes available, or the block time expires\.
 
 `sbRECEIVE_COMPLETED()` and `sbRECEIVE_COMPLETED_FROM_ISR()` are macros that are called \(internally, by the FreeRTOS API\) when data is read from a stream buffer\. The macros check to see if there is a task blocked on the stream buffer waiting for space to become available within the buffer, and if so, they remove the task from the Blocked state\. You can change the default behavior of `sbRECEIVE_COMPLETED()` by providing an alternative implementation in [`FreeRTOSConfig.h`](#freertos-config)\.
+
+## Symmetric multiprocessing \(SMP\) support<a name="smp-support"></a>
+
+[SMP support in the FreeRTOS Kernel](https://freertos.org/symmetric-multiprocessing-introduction.html) enables one instance of the FreeRTOS kernel to schedule tasks across multiple identical processor cores\. The core architectures must be identical and share the same memory\.
+
+### Modifying applications to use the FreeRTOS\-SMP kernel<a name="porting-smp-with-freertos"></a>
+
+The FreeRTOS API remains substantially the same between single\-core and SMP versions, except for [these additional APIs](https://freertos.org/symmetric-multiprocessing-introduction.html#smp-specific-apis)\. Therefore, an application written for the FreeRTOS single\-core version should compile with the SMP version with minimal to no effort\. However, there might be some functional issues, because some assumptions that were true for single\-core applications might no longer be true for multi\-core applications\.
+
+One common assumption is that a lower priority task can't run while a higher priority task is running\. While this was true on a single\-core system, it's no longer true for multi\-core systems because multiple tasks can run simultaneously\. If the application relies on relative task priorities to provide mutual exclusion, it might observe unexpected results in a multi\-core environment\.
+
+One other common assumption is that ISRs can't run simultaneously with each other or with other tasks\. This is no longer true in a multi\-core environment\. The application writer needs to ensure proper mutual exclusion while accessing data shared between tasks and ISRs\.
 
 ## Software timers<a name="software-timers"></a>
 

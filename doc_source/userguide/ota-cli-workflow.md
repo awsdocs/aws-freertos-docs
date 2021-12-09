@@ -309,11 +309,11 @@ aws iot  create-ota-update \
 |   `numberOfSucceededThings`  |  integer  \(min:1\)  |  When this number of things have succeeded in their job execution, it will initiate an increase in the rollout rate\.  | 
 | `awsJobPresignedUrlConfig` |  |  Configuration information for pre\-signed URLs\. | 
 |   `expiresInSec`  |  long |  How long \(in seconds\) pre\-signed URLs are valid\. Valid values are 60 \- 3600, the default value is 1800 seconds\. Pre\-signed URLs are generated when a request for the job document is received\.  | 
-|   `awsJobAbortConfig`  |   |  The criteria that determine when and how a job abort takes place\. | 
-|   `abortCriteriaList`  |  list  |  The list of criteria that determine when and how to abort the job\. | 
-|   `failureType`  |  string |  The type of job execution failures that can initiate a job abort\.  enum: FAILED \| REJECTED \| TIMED\_OUT \| ALL  | 
-|   `action`  |  string |  The type of job action to take to initiate the job abort\.  enum: CANCEL  | 
-|   `minNumberOfExecutedThings`  |  integer  \(min:1\)  |  The minimum number of things which must receive job execution notifications before the job can be aborted\.  | 
+|   `awsJobAbortConfig`  |   |  The criteria that determine when and how a job stoppage takes place\. | 
+|   `abortCriteriaList`  |  list  |  The list of criteria that determine when and how to stop the job\. | 
+|   `failureType`  |  string |  The type of job execution failures that can initiate a job stoppage\.  enum: FAILED \| REJECTED \| TIMED\_OUT \| ALL  | 
+|   `action`  |  string |  The type of job action to take to initiate the job stoppage\.  enum: CANCEL  | 
+|   `minNumberOfExecutedThings`  |  integer  \(min:1\)  |  The minimum number of things which must receive job execution notifications before the job can be stopped\.  | 
 |   `awsJobTimeoutConfig`  |   |  Specifies the amount of time each device has to finish its execution of the job\. A timer is started when the job execution status is set to `IN_PROGRESS`\. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to `TIMED_OUT`\.  | 
 |   `inProgressTimeoutInMinutes`  |  long |  Specifies the amount of time, in minutes, this device has to finish execution of this job\. The timeout interval can be anywhere between 1 minute and 7 days \(1 to 10080 minutes\)\. The in progress timer can't be updated and will apply to all job executions for the job\. Whenever a job execution remains in the IN\_PROGRESS status for longer than this interval, the job execution will fail and switch to the terminal `TIMED_OUT` status\.  | 
 |   `files`  |  list  |  The files to be streamed by the OTA update\. | 

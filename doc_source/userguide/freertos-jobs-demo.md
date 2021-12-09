@@ -71,7 +71,7 @@ The source code for the Jobs demo entry point function can be found on  [ GitHub
 
 ### Callback for received MQTT messages<a name="freertos-jobs-demo-functionality-callback"></a>
 
-The [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L773-L967) function calls `Jobs_MatchTopic` from the AWS IoT Jobs library to classify the incoming MQTT message\. If the message type corresponds to a new job, `prvNextJobHandler()` is called\.
+The [ prvEventCallback](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L674-L769) function calls `Jobs_MatchTopic` from the AWS IoT Jobs library to classify the incoming MQTT message\. If the message type corresponds to a new job, `prvNextJobHandler()` is called\.
 
 The [ prvNextJobHandler](https://github.com/aws/amazon-freertos/blob/main/demos/jobs_for_aws/jobs_demo.c#L601-L670) function, and the functions it calls, parse the job document from the JSON\-formatted message, and run the action specified by the job\. Of particular interest is the `prvSendUpdateForJob` function\.
 

@@ -81,7 +81,7 @@ If you see failures in the FullWiFi test group, and the "`AFQP_WiFiConnectMultip
 
 Because new features are being added to IDT for FreeRTOS, changes to the configuration files might be introduced\. Using an old configuration file might break your configuration\. If this happens, the `test_group_id__test_case_id.log` file under the `results/execution-id/logs` directory explicitly lists all missing parameters\. IDT for FreeRTOS validates your JSON configuration file schemas to ensure that the latest supported version has been used\.
 
-### Debugging a "could not start test" error<a name="could-not-start-test"></a>
+### Debugging a "test could not start" error<a name="could-not-start-test"></a>
 
 You might see errors that point to failures during test start\. Because there are several possible causes, check the following areas for correctness:
 + Make sure that the pool name you've included in your execution command actually exists\. This is referenced directly from your `device.json` file\.

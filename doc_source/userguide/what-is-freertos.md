@@ -1,37 +1,48 @@
 # What is FreeRTOS?<a name="what-is-freertos"></a>
 
-Developed in partnership with the world's leading chip companies over a 15\-year period, and now downloaded every 175 seconds, FreeRTOS is a market\-leading real\-time operating system \(RTOS\) for microcontrollers and small microprocessors\. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries suitable for use across all industry sectors\. FreeRTOS is built with an emphasis on reliability and ease of use\.
+Developed in partnership with the world's leading chip companies over a 15\-year period, and now downloaded every 170 seconds, FreeRTOS is a market\-leading real\-time operating system \(RTOS\) for microcontrollers and small microprocessors\. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of libraries suitable for use across all industry sectors\. FreeRTOS is built with an emphasis on reliability and ease of use\.
 
 FreeRTOS includes libraries for connectivity, security, and over\-the\-air \(OTA\) updates\. FreeRTOS also includes demo applications that show FreeRTOS features on [qualified boards](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
 
-FreeRTOS is an open\-source project\. You can download the source code, contribute changes or enhancements, or report issues on the GitHub site at [ https://github\.com/aws/amazon\-freertos](https://github.com/aws/amazon-freertos)\. We release FreeRTOS code under the MIT open source license, so you can use it in commercial and personal projects\.
+FreeRTOS is an open\-source project\. You can download the source code, contribute changes or enhancements, or report issues on the GitHub site at [ https://github\.com/FreeRTOS/FreeRTOS](https://github.com/FreeRTOS/FreeRTOS)\.
 
-We also welcome contributions to the FreeRTOS documentation \(*FreeRTOS User Guide*, *FreeRTOS Porting Guide*, and *FreeRTOS Qualification Guide*\)\. The markdown source for the documentation is available at [https://github\.com/awsdocs/aws\-freertos\-docs](https://github.com/awsdocs/aws-freertos-docs)\. It is released under the Creative Commons \(CC BY\-ND\) license\.
+We release FreeRTOS code under the MIT open source license, so you can use it in commercial and personal projects\.
+
+We also welcome contributions to the FreeRTOS documentation \(*FreeRTOS User Guide*, *FreeRTOS Porting Guide*, and *FreeRTOS Qualification Guide*\)\. To view the markdown source for the documentation, see [https://github\.com/awsdocs/aws\-freertos\-docs](https://github.com/awsdocs/aws-freertos-docs)\. It's released under the Creative Commons \(CC BY\-ND\) license\.
 
 ## Downloading FreeRTOS source code<a name="freertos-mds-projects-github"></a>
 
-You can download versions of FreeRTOS that are configured for FreeRTOS\-qualified platforms from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For a list of qualified platforms, see [FreeRTOS\-qualified hardware platforms](#freertos-hardware) or the [FreeRTOS Partners](https://aws.amazon.com/freertos/partners/) website\.
-
-You can also clone or download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos)\. See the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file for instructions\. 
+Download the latest FreeRTOS and Long Term Support \(LTS\) packages from the Downloads page on [freertos\.org](https://www.freertos.org/)\.
 
 ## FreeRTOS versioning<a name="freertos-versioning"></a>
 
-The FreeRTOS kernel and components are released individually and use semantic versioning\. Integrated FreeRTOS releases are made periodically\.  All releases use date\-based versioning with the format YYYYMM\.NN, where:
-+ Y represents the year\.
-+ M represents the month\.
-+ N represents the release order within the designated month \(00 being the first release\)\.
+Individual libraries use x\.y\.z style version numbers, similar to semantic versioning\. x is the major version number, y the minor version number, and z a point release number\. LTS libraries may also have a patch number\. For example, if version x\.y\.z of coreMQTT was an LTS release, and that LTS library has since had two patches applied, its version number would be *coreHTTP x\.y\.z LTS Patch 2*\.
 
-For example, a second release in July 2021 would be 202107\.01\. 
+Library packages use yyyymm\.x style date stamp version numbers\. yyyy is the year, mm the month, and x an optional sequence number showing the release order within the month\. In the case of the LTS package, x is a sequential patch number for that LTS release\. The individual libraries contained in a package are whatever the latest version of that library was on that date\. For the LTS package, it's the latest patch version of the LTS libraries originally released as an LTS version on that date\.
 
-Previously, FreeRTOS releases used semantic versioning for major releases\. Although it has moved to date\-based versioning \(FreeRTOS 1\.4\.8 updated to FreeRTOS AWS Reference Integrations 201906\.00\), the FreeRTOS kernel and each individual FreeRTOS library still retain semantic versioning\. In semantic versioning, the version number itself \(X\.Y\.Z\) indicates whether the release is a major, minor, or point release\.  You can use the semantic version of a library to assess the scope and impact of a new release on your application\.
+## FreeRTOS Long Term Support<a name="freertos-longterm-support"></a>
 
-LTS releases are maintained differently than other release types\. Major and minor releases are frequently updated with new features in addition to defect resolutions\. LTS releases are only updated with changes to address critical defects and security vulnerabilities\. No new features are introduced in a given LTS release after launch\. They are maintained for at least three calendar years after release, and provide device manufacturers the option to use a stable baseline as opposed to a more dynamic baseline represented by major and minor releases\.
+FreeRTOS Long Term Support \(LTS\) releases receive security and critical bug fixes \(should any be necessary\) for at least two years following their release\. With this ongoing maintenance, you can incorporate bug fixes throughout a development and deployment cycle without the expensive disruption of updating to new major versions of FreeRTOS libraries\. 
+
+With FreeRTOS LTS, you get the complete set of libraries needed to build secure connected IoT and embedded products\. LTS helps reduce maintenance and testing costs associated with updating libraries on your devices already in production\.
+
+FreeRTOS LTS includes the FreeRTOS kernel and IoT libraries: FreeRTOS\+TCP, coreMQTT, coreHTTP, corePKCS11, coreJSON, AWS IoT OTA, AWS IoT Jobs, AWS IoT Device Defender, and AWS IoT Device Shadow\. For more information, see the FreeRTOS [LTS libraries](https://freertos.org/lts-libraries.html)\. 
+
+## FreeRTOS Extended Maintenance Plan<a name="freetos-EMP"></a>
+
+AWS also offers FreeRTOS Extended Maintenance Plan \(EMP\), which provides security patches and critical bug fixes on your chosen FreeRTOS Long Term Support \(LTS\) version for up to ten additional years\. With FreeRTOS EMP, your FreeRTOS based long\-lived devices can rely on a version that has feature stability and receives security updates for years\. You receive timely notifications of upcoming patches on FreeRTOS libraries, so you can plan the deployment of security patches on your Internet of Things \(IoT\) devices\. 
+
+To learn more about FreeRTOS EMP, see the [Features](https://aws.amazon.com/freertos/features/) page\.
 
 ## FreeRTOS architecture<a name="freertos-architecture"></a>
 
-FreeRTOS is typically flashed to devices as a single compiled image with all of the components required for device applications\. This image combines functionality for the applications written by the embedded developer, the software libraries provided by Amazon, the FreeRTOS kernel, and drivers and board support packages \(BSPs\) for the hardware platform\. Independent of the individual microcontroller being used, embedded application developers can expect the same standardized interfaces to the FreeRTOS kernel and all FreeRTOS software libraries\.
+FreeRTOS contains two types of repositories, single library repositories and package repositories\. Each single library repository contains the source code for one library without any build projects or examples\. Package repositories contain multiple libraries, and can contain preconfigured projects that demonstrate the library’s use\. 
 
+While package repositories contain multiple libraries, they don't contain copies of those libraries\. Instead, package repositories reference the libraries they contain as git submodules\. Using submodules ensures that there is a single source of truth for each individual library\.
 
+The individual library git repositories are split between two GitHub organizations\. Repositories containing FreeRTOS specific libraries \(such as FreeRTOS\+TCP\) or generic libraries \(such as coreMQTT, which is cloud agnostic because it works with any MQTT broker\) are in the FreeRTOS GitHub organization\. Repositories containing AWS IoT specific libraries \(such as the AWS IoT over\-the\-air update client\) are in the AWS GitHub organization\. The following diagram explains the structure\. 
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/freertos-github.png)
 
 ## FreeRTOS\-qualified hardware platforms<a name="freertos-hardware"></a>
 
@@ -72,9 +83,9 @@ You start development by downloading FreeRTOS\. You unzip the package and import
 ## Additional resources<a name="resources"></a>
 
 These resources might be helpful to you\.
-+ Additional [FreeRTOS Documentation](https://www.freertos.org/Documentation/RTOS_book.html) is available on [freertos\.org](https://www.freertos.org) including the [FreeRTOS v10\.0\.0 Reference Manual](https://www.freertos.org/fr-content-src/uploads/2018/07/FreeRTOS_Reference_Manual_V10.0.0.pdf)\.
++ For additional [FreeRTOS Documentation](https://www.freertos.org/Documentation/RTOS_book.html), see [freertos\.org](https://www.freertos.org)\.
 + For questions about FreeRTOS for the FreeRTOS engineering team, you can open an issue [on the FreeRTOS GitHub page](https://github.com/aws/amazon-freertos/issues)\.
-+ For technical questions about FreeRTOS visit the [FreeRTOS Community Forums](https://forums.freertos.org/)\.
-+ For more information about connecting devices to AWS IoT, see the [AWS IoT Core Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide) and the chapter on [Device Provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html) in that guide\.
-+ For technical support for AWS, visit the [AWS Support Center](https://aws.amazon.com/support)\.
-+ For questions about AWS billing, account services, events, abuse, or other issues with AWS, visit the [Contact Us](https://aws.amazon.com/contact-us/) page\.
++ For technical questions about FreeRTOS, see the [FreeRTOS Community Forums](https://forums.freertos.org/)\.
++ For more information about connecting devices to AWS IoT, see [Device Provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/iot-provision.html) in the [AWS IoT Core Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide)\.
++ For technical support for AWS, see [AWS Support Center](https://aws.amazon.com/support)\.
++ For questions about AWS billing, account services, events, abuse, or other issues with AWS, see the [Contact Us](https://aws.amazon.com/contact-us/) page\.

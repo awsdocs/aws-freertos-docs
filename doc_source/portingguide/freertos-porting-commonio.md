@@ -170,7 +170,7 @@ struct IotI2CDescriptor
 
 **Hardware Setup**
 
-If you're using an onboard sensor as a slave device, you can skip this step\.
+If you're using an onboard sensor as a secondary device, you can skip this step\.
 
 If you use an external device, you need to wire the SDA \(data\) lines and SCL \(clock\) lines of the two devices\.
 
@@ -216,11 +216,11 @@ Not used\. Define it as an array of null to compile\.
    
    #define I2C_TEST_SET                                         1
    
-   /* Slave address. */
+   /* Secondary address. */
    const uint8_t i2cTestSlaveAddr[ I2C_TEST_SET ] = { 0xD4 };
    /* Register address. */
    const uint8_t i2cTestDeviceRegister[ I2C_TEST_SET ] = { 0x73 };
-   /* A value that is written to slave device during test. */
+   /* A value that is written to secondary device during test. */
    const uint8_t i2cTestWriteVal[ I2C_TEST_SET ] = { 0b01101010 };
    /* I2C instance ID. */
    const uint8_t i2cTestInstanceIdx[ I2C_TEST_SET ] = { 1 };

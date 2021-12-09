@@ -18,4 +18,4 @@ If you're using Code Signing for AWS IoT, the command that you use to create a c
 
 1. Choose **Create bucket**\.
 
-For more information about Amazon S3, see [Amazon Simple Storage Service Console User Guide](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/)\.
+For more information about Amazon S3, see [Amazon Simple Storage Service User Guide](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/)\.

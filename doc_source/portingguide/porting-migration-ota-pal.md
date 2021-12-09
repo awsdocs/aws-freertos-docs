@@ -46,7 +46,7 @@ The exact name of the PAL is technically open ended, but to be compatible with t
 
   Version 3: `OtaPalStatus_t otaPal_Abort( OtaFileContext_t * const *pFileContext* );`
 
-  Notes: Abort an OTA transfer\.
+  Notes: Stop an OTA transfer\.
 + Version 1: `OTA_Err_t prvPAL_SetPlatformImageState( OTA_ImageState_t *eState* );`
 
   Version 3: `OtaPalStatus_t otaPal_SetPlatformImageState( OtaFileContext_t * const pFileContext, OtaImageState_t eState );`

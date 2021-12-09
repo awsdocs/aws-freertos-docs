@@ -30,7 +30,7 @@ This demo uses a pre\-signed URL to connect to the Amazon S3 HTTP server and aut
       1. Grant permission to your AWS account to access FreeRTOS and AWS IoT by adding this policy:
          + AmazonS3FullAccess
 
-1. Create a bucket in Amazon S3 by following the steps in [How do I create an S3 bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) in the *Amazon Simple Storage Service Console User Guide*\.
+1. Create a bucket in Amazon S3 by following the steps in [How do I create an S3 bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-bucket.html) in the *Amazon Simple Storage Service User Guide*\.
 
 1. Upload a file to Amazon S3 by following the steps in [How do I upload files and folders to an S3 bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html)\.
 

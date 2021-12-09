@@ -18,7 +18,7 @@ We don't recommend that multiple users run IDT from a shared location, such as a
 
 **Release notes**
 + Supports FreeRTOS 202107\.00 that uses FreeRTOS 202107\.00 LTS libraries\. For more information about what's included in the FreeRTOS 202107\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202107.00/CHANGELOG.md) file on GitHub\. 
-+ Adds the ability to configure and run AWS IoT Device Tester for FreeRTOS through a web based user interface\. See [Setup and run AWS IoT Device Tester for FreeRTOS with the user interface](device-tester-ui.md) to get started\.
++ Adds the ability to configure and run AWS IoT Device Tester for FreeRTOS through a web based user interface\. See [Use the IDT for FreeRTOS user interface to run the FreeRTOS qualification suite](device-tester-ui.md) to get started\.
 
 **Test suite versions**
 + FRQ\_1\.6\.1

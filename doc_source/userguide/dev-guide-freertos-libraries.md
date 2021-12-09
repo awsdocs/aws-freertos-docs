@@ -26,7 +26,7 @@ The following porting libraries are included in configurations of FreeRTOS that 
 | corePKCS11 |  |  The corePKCS11 library is a reference implementation of the Public Key Cryptography Standard \#11, to support provisioning and TLS client authentication\. For more information, see the [corePKCS11 library](security-pkcs.md)\.  | 
 | TLS |  |  For more information, see [Transport Layer Security](security-tls.md)\.  | 
 | Common I/O | Common I/O API Reference |  For more information, see [Common I/O](common-io.md)\.  | 
-| Cellular Interface | Cellular Interface API Reference |  The FreeRTOS Cellular Interface library exposes the capabilities of a few popular cellular modems through a uniform API\. For more information, see the [Cellular Interface library](cellular-interface.md)\.  | 
+| Cellular Interface | Cellular Interface API Reference |  The Cellular Interface library exposes the capabilities of a few popular cellular modems through a uniform API\. For more information, see the [Cellular Interface library](cellular-interface.md)\.  | 
 
 ## FreeRTOS application libraries<a name="dev-guide-freertos-application-libraries"></a>
 

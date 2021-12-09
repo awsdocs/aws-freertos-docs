@@ -1,4 +1,4 @@
-# Setup and run AWS IoT Device Tester for FreeRTOS with the user interface<a name="device-tester-ui"></a>
+# Use the IDT for FreeRTOS user interface to run the FreeRTOS qualification suite<a name="device-tester-ui"></a>
 
 Starting with IDT v4\.3\.0, AWS IoT Device Tester for FreeRTOS \(IDT\-FreeRTOS\) includes a web\-based user interface that enables you to interact with the IDT command line executable and related configuration files\. You can use the IDT\-FreeRTOS UI to create a new configuration to run IDT tests, or to modify an existing configuration\. You can also use the UI to invoke the IDT executable and run tests\. 
 

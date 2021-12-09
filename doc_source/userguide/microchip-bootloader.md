@@ -106,7 +106,7 @@ The application image on the flash device must contain the image descriptor foll
 |  Reserved  |  4 bytes  | 
 
 **Sequence Number**  
-The sequence number must be incremented before building a new OTA image\. See the `ota-descriptor.config` file\. The bootloader uses this number to determine the image to boot\. Valid values are from 1 to ‭4294967295‬\.
+The sequence number must be incremented before building a new OTA image\. See the `ota-descriptor.config` file\. The bootloader uses this number to determine the image to boot\. Valid values are from 1 to 4294967295\.
 
 **Start Address**  
 The starting address of the application image on the device\. As the image descriptor is prepended to the application binary, this address is the start of the image descriptor\.

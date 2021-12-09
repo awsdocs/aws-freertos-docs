@@ -1,8 +1,8 @@
 # AWS IoT Device Tester for FreeRTOS test suite versions<a name="idt-test-suite-versions"></a>
 
-IDT for FreeRTOS organizes tests into test suites and test groups\.
+IDT for FreeRTOS organizes test resources into test suites and test groups:
 + A test suite is the set of test groups used to verify that a device works with particular versions of FreeRTOS\.
-+ A test group is the set of individual tests related to a particular feature, such as PKCS, MQTT, or OTA\.
++ A test group is the set of individual tests related to a particular feature, such as BLE and MQTT messaging\.
 
 Starting in IDT v3\.0\.0, test suites are versioned using a `major`\.`minor`\.`patch` format starting from 1\.0\.0\. When you download IDT, the package includes the latest test suite version\.
 

@@ -43,7 +43,7 @@ The device that you port to FreeRTOS must be a microcontroller board that meets 
 
 ### Porting older versions of FreeRTOS<a name="porting-older"></a>
 
-If you are porting an older version of FreeRTOS, go to the [FreeRTOS AWS Reference Integrations repository](https://github.com/aws/amazon-freertos), and checkout the version of FreeRTOS that you are porting by its version tag\. The qualification and testing documentation will be in PDF format, in the [https://github.com/aws/amazon-freertos/tree/master/tests](https://github.com/aws/amazon-freertos/tree/master/tests) folder\. See the table below for the qualification and testing documentation history\.
+If you are porting an older version of FreeRTOS, go to the [FreeRTOS AWS Reference Integrations repository](https://github.com/aws/amazon-freertos), and checkout the version of FreeRTOS that you are porting by its version tag\. The qualification and testing documentation will be in PDF format, in the [https://github.com/aws/amazon-freertos/tree/main/tests](https://github.com/aws/amazon-freertos/tree/main/tests) folder\. See the table below for the qualification and testing documentation history\.
 
 
 **Revision history of FreeRTOS porting and qualification documentation**  
