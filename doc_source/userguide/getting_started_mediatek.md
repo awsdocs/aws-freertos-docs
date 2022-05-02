@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the MediaTek MT7697
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w44aac14c31c31b9"></a>
+## Overview<a name="w43aac14c31c31b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -39,12 +39,21 @@ Keil MDK is supported on Windows 7, Windows 8, and Windows 10 64\-bit machines o
 
 ## Establish a serial connection<a name="mediatek-serial-connection"></a>
 
-To establish a serial connection with the MediaTek MT7697Hx Development Kit, you must install the Arm Mbed Windows serial port driver\. You can download the driver from [Mbed](https://os.mbed.com/docs/latest/tutorials/windows-serial-driver.html)\. Follow the steps on the **Windows serial driver** page to download and install the driver for the MediaTek MT7697Hx Development Kit\. 
+Connect the board to your host computer with a USB cable\. A COM port appears in the Windows Device Manager\. For debugging, you can open a session to the port with a terminal utility tool such as HyperTerminal or TeraTerm\.
 
-After you install the driver, a COM port appears in the Windows Device Manager\. For debugging, you can open a session to the port with a terminal utility tool such as HyperTerminal or TeraTerm\.
+## Monitoring MQTT messages on the cloud<a name="gsg-mediatek-monitor-mqtt"></a>
 
-**Note**  
-If you are having trouble connecting to your board after you install the driver, you might need to reboot your machine\.
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter  ***your\-thing\-name*example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
 
 ## Build and run the FreeRTOS demo project with Keil MDK<a name="mediatek-build-and-run-keil"></a>
 
@@ -75,18 +84,6 @@ If you are having trouble connecting to your board after you install the driver,
 1. Use a terminal utility to open the serial console window\. Set the serial port to 115200 bps, none\-parity, 8\-bits, and 1 stop\-bit\.
 
 1. Choose the **RESET** button on your MediaTek MT7697Hx Development Kit\.
-
-### Monitoring MQTT messages on the cloud<a name="gsg-mediatek-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter  ***your\-thing\-name*example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="mediatek-troubleshooting"></a>
 

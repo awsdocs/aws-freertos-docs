@@ -72,9 +72,9 @@ The Linux commands in this tutorial require that you use the Bash shell\.
 
 1. Set up the Espressif hardware\.
 
-   For information about setting up the ESP32\-WROOM\-32SE development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
+   For information about setting up the ESP32\-WROOM\-32SE development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/index.html#installation-step-by-step)\.
 **Important**  
-When you reach the **Get Started** section of the Espressif guides, stop, and then follow the remaining steps here\.
+When you reach the **Installation Step by Step** section of the guide, follow till you complete Step 4 \(Set up the environment variables\)\. Stop after you complete Step 4 and follow the remaining steps here\.
 
 1. Set up your development environment\.
 
@@ -111,7 +111,9 @@ When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and t
 
 **Download and configure FreeRTOS**
 
-1. After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file on the GitHub website\.
+1. After you set up your environment, you can download FreeRTOS from either
+   +  [GitHub](https://github.com/aws/amazon-freertos) \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
+   +  [FreeRTOS console](https://console.aws.amazon.com/freertos) \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32\-DevKitC with ATECC608A**"\.\) 
 **Important**  
 The ATECC608A device has a one\-time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
 
@@ -129,6 +131,18 @@ The ATECC608A device has a one\-time initialization that is locked onto the devi
 
 1. Load the CA certificate and device certificate onto the device by following the instructions for [Developer\-mode key provisioning](dev-mode-key-provisioning.md)\.
 
+### Monitoring MQTT messages on the AWS Cloud<a name="gsg-esp32wroom-32se-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT Test Client**\.
+
+1. In **Subscription topic**, enter `your-thing-name/example/topic` and then choose **Subscribe to topic**\.
+
 ### Build, flash, and run the FreeRTOS demo project using the idf\.py script<a name="build-and-run-example-esp32wroom-32se-idf42"></a>
 
 You can use Espressif's IDF utility \(`idf.py`\) to generate the build files, build the application binary, and flash the binaries onto your device\.
@@ -145,11 +159,13 @@ idf.py -p /dev/cu.usbserial-00101301B flash
 1. Navigate to the root of your FreeRTOS download directory\.
 
 1. In a command line window, enter the following command to add the ESP\-IDF tools to your terminal's PATH:  
-**Windows**  
+**Windows \("Command" app\)**  
 
    ```
    vendors\espressif\esp-idf\export.bat
    ```  
+**Windows \("ESP\-IDF 4\.x CMD" app\)**  
+\(This has already been done when you opened the app\.\)  
 **Linux / macOS**  
 
    ```
@@ -265,18 +281,6 @@ Besides using the `idf.py` script provided by the IDF SDK to build and run your 
    ```
    ninja -C ./YOUR_BUILD_DIRECTORY flash
    ```
-
-## Monitoring MQTT messages on the AWS Cloud<a name="gsg-esp32wroom-32se-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. To open the MQTT client, in the navigation pane, choose **Test**\.
-
-1. In **Subscription topic**, enter `your-thing-name/example/topic` and then choose **Subscribe to topic**\.
 
 ## Additional information<a name="getting_started_esp32wroom-32se-additional"></a>
 

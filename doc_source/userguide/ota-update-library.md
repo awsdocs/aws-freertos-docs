@@ -2,7 +2,7 @@
 
 ## Introduction<a name="ota-update-library-intro"></a>
 
-The [ AWS IoT Over\-the\-air \(OTA\) update library](https://docs.aws.amazon.com/embedded-csdk/latest/lib-ref/libraries/aws/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/index.html) enables you to manage the notification, download, and verification of firmware updates for FreeRTOS devices using HTTP or MQTT as the protocol\. By using the OTA Agent library, you can logically separate firmware updates and the application running on your devices\. The OTA Agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA Agent library lets you define application\-specific logic for testing, committing, or rolling back a firmware update\.
+The [AWS IoT Over\-the\-air \(OTA\) update library](https://docs.aws.amazon.com/embedded-csdk/latest/lib-ref/libraries/aws/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/index.html) enables you to manage the notification, download, and verification of firmware updates for FreeRTOS devices using HTTP or MQTT as the protocol\. By using the OTA Agent library, you can logically separate firmware updates and the application running on your devices\. The OTA Agent can share a network connection with the application\. By sharing a network connection, you can potentially save a significant amount of RAM\. In addition, the OTA Agent library lets you define application\-specific logic for testing, committing, or rolling back a firmware update\.
 
 The Internet of Things \(IoT\) extends internet connectivity to embedded devices that were traditionally not connected\. These devices can be programmed to communicate usable data over the internet, and can be remotely monitored and controlled\. With advances in technology, these traditional embedded devices are getting internet capabilities in consumer, industrial, and enterprise spaces at a fast pace\.
 
@@ -89,7 +89,7 @@ Status code to string conversion for OTA OS status\.
 
 ## API reference<a name="freertos-ota-api"></a>
 
-For more information, see the [ AWS IoT Over\-the\-air Update: Functions](https://docs.aws.amazon.com/freertos/latest/lib-ref/embedded-csdk/libraries/aws/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/ota_functions.html)\.
+For more information, see the [AWS IoT Over\-the\-air Update: Functions](https://docs.aws.amazon.com/freertos/latest/lib-ref/embedded-csdk/libraries/aws/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/ota_functions.html)\.
 
 ## Example usage<a name="freertos-ota-example"></a>
 
@@ -116,10 +116,10 @@ For information about porting OTA functionality to your platform, see [Porting t
 
 | Code Size of AWS IoT OTA \(example generated with GCC for ARM Cortex\-M\) | File | With \-O1 Optimization | With \-Os Optimization | 
 | --- | --- | --- | --- | 
-| ota\.c | 8\.0K | 7\.1K | 
+| ota\.c | 8\.0K | 7\.2K | 
 | ota\_interface\.c | 0\.1K | 0\.1K | 
 | ota\_base64\.c | 0\.6K | 0\.6K | 
-| ota\_mqtt\.c | 2\.2K | 2\.1K | 
+| ota\_mqtt\.c | 2\.3K | 2\.2K | 
 | ota\_cbor\.c | 0\.8K | 0\.6K | 
 | ota\_http\.c | 0\.3K | 0\.3K | 
-| Total estimates | 12\.0K | 10\.8K | 
+| Total estimates | 12\.1K | 11\.0K | 

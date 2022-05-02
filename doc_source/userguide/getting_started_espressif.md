@@ -124,11 +124,15 @@ When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and t
 
 ### Download and configure FreeRTOS<a name="download-and-configure-espressif-idf42"></a>
 
-After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos), or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file on the GitHub website\.
+After you set up your environment, you can download FreeRTOS from either
++  [GitHub](https://github.com/aws/amazon-freertos) \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
++  [FreeRTOS console](https://console.aws.amazon.com/freertos) \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32\-DevKitC**"\.\) 
+
+For this tutorial, the FreeRTOS configuration file is located at `freertos/vendors/espressif/boards/board-name/aws_demos/config_files/FreeRTOSConfig.h`\. \(For example, if `AFR_BOARD espressif.esp32_devkitc` is chosen, the configuration file is located at `freertos/vendors/espressif/boards/esp32/aws_demos/config_files/FreeRTOSConfig.h`\.\) 
 
 **Configure the FreeRTOS demo applications**
 
-1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open `mingw32.exe`\. \([ MinGW](https://sourceforge.net/projects/mingw-w64/files/) is a minimalist development environment for native Microsoft Windows applications\.\) 
+1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the "ESP\-IDF 4\.x CMD" app \(if you included this option when you installed the ESP\-IDF toolchain\), or the "Command Prompt" app otherwise\.  
 
 1. To verify that you have Python3 installed, run 
 
@@ -138,7 +142,7 @@ After you set up your environment, you can download FreeRTOS from [GitHub](https
 
    The version installed is displayed\. If you don't have Python 3\.0\.1 or later installed, you can install it from the [Python](https://www.python.org/downloads/) website\.
 
-1. You need the AWS Command Line Interface \(CLI\) to run AWS IoT commands\. If you're running Windows, use the `easy_install awscli` to install the AWS CLI in the mingw32 environment\.
+1. You need the AWS Command Line Interface \(CLI\) to run AWS IoT commands\. If you're running Windows, use the `easy_install awscli` command to install the AWS CLI in the "Command" or "ESP\-IDF 4\.x CMD" app\. 
 
    If you're running macOS or Linux, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\. 
 
@@ -151,7 +155,7 @@ After you set up your environment, you can download FreeRTOS from [GitHub](https
    and configure the AWS CLI with your AWS access key ID, secret access key, and default AWS Region\. For more information, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 1. Use the following command to install the AWS SDK for Python \(boto3\):
-   + On Windows, in the mingw32 environment, run
+   + On Windows, in the "Command" or "ESP\-IDF 4\.x CMD" app,  run
 
      ```
      easy_install boto3
@@ -187,7 +191,7 @@ The following are valid security types:
 
 1. Run the configuration script\.
 
-   1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the `mingw32.exe` file\.
+   1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the "ESP\-IDF 4\.x CMD" or "Command" app\. 
 
    1. Navigate to the `freertos/tools/aws_config_quick_start` directory and run 
 
@@ -205,6 +209,20 @@ The certificate is hardcoded for demonstration purposes only\. Production\-level
 
       For more information about `SetupAWS.py`, see the `README.md` in the `freertos/tools/aws_config_quick_start` directory\.
 
+### Monitoring MQTT messages on the cloud<a name="gsg-espressif-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Navigate to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT Test Client**\.
+
+1. In **Subscription topic**, enter `your-thing-name/example/topic`, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
+
 ### Build, flash, and run the FreeRTOS demo project using the idf\.py script<a name="build-and-run-example-espressif-idf42"></a>
 
 You can use Espressif's IDF utility \(`idf.py`\) to build the project and flash the binaries onto your device\.
@@ -221,11 +239,13 @@ idf.py -p /dev/cu.usbserial-00101301B flash
 1. Navigate to the root of your FreeRTOS download directory\.
 
 1. In a command line window, enter the following command to add the ESP\-IDF tools to your terminal's PATH\.  
-**Windows**  
+**Windows \("Command" app\)**  
 
    ```
    vendors\espressif\esp-idf\export.bat
    ```  
+**Windows \("ESP\-IDF 4\.x CMD" app\)**  
+\(This has already been done when you opened the app\.\)  
 **Linux / macOS**  
 
    ```
@@ -355,18 +375,6 @@ In addition to the `idf.py` script provided by the IDF SDK to build and run your
    ninja -C ./YOUR_BUILD_DIRECTORY flash
    ```
 
-## Monitoring MQTT messages on the cloud<a name="gsg-espressif-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Navigate to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. To open the MQTT client, in the navigation pane, choose **Test**\.
-
-1. In **Subscription topic**, enter `your-thing-name/example/topic`, and then choose **Subscribe to topic**\.
-
 ## Run the Bluetooth Low Energy demos<a name="espressif-run-ble"></a>
 
 FreeRTOS supports [Bluetooth Low Energy library](freertos-ble-library.md) connectivity\.
@@ -423,9 +431,8 @@ cmake_minimum_required(VERSION 3.13)
 
 project(freertos_examples)
 
-add_executable(my_app src/main.c)
-
 # Tell IDF build to link against this target.
+set(IDF_EXECUTABLE_SRCS "<complete_path>/src/main.c")
 set(IDF_PROJECT_EXECUTABLE my_app)
 
 # Add FreeRTOS as a subdirectory. AFR_BOARD tells which board to target.
@@ -434,7 +441,7 @@ add_subdirectory(freertos)
 
 # Link against the mqtt library so that we can use it. Dependencies are transitively
 # linked.
-target_link_libraries(my_app PRIVATE AFR::mqtt)
+target_link_libraries(my_app PRIVATE AFR::core_mqtt)
 ```
 
 To build the project, run the following CMake commands\. Make sure the ESP32 compiler is in the PATH environment variable\.
@@ -444,7 +451,7 @@ cmake -S . -B build-directory -DCMAKE_TOOLCHAIN_FILE=freertos/tools/cmake/toolch
 ```
 
 ```
-cmake --build build 
+cmake --build build-directory 
 ```
 
 To flash the application to your board, run the following command\.
@@ -515,11 +522,11 @@ FreeRTOS modules:
 =========================================================================
 ```
 
-You can reference any components from the `Modules to build` list\. To link them into your application, put the `AFR::` namespace in front of the name, for example, `AFR::mqtt`, `AFR::ota`, and so on\.
+You can reference any components from the `Modules to build` list\. To link them into your application, put the `AFR::` namespace in front of the name, for example, `AFR::core_mqtt`, `AFR::ota`, and so on\.
 
-### Add custom components to ESP\-IDF<a name="getting_started_espressif_cmake_project_espidf"></a>
+### Add custom components using ESP\-IDF<a name="getting_started_espressif_cmake_project_espidf"></a>
 
-You can add more components to the ESP\-IDF build environment\. For example, assuming you want to add a component called `example_component`, and your project looks like this:
+You can add more components while using ESP\-IDF\. For example, assuming you want to add a component called `example_component`, and your project looks like this:
 
 ```
 - freertos
@@ -535,51 +542,23 @@ You can add more components to the ESP\-IDF build environment\. For example, ass
 - CMakeLists.txt
 ```
 
-The following is an example of the `CMakeLists.txt` file for your component\.
+The following is an example of the `CMakeLists.txt` file for your component\. 
 
 ```
-# include paths of this components.
-set(COMPONENT_ADD_INCLUDEDIRS include)
-
-# source files of this components.
-set(COMPONENT_SRCDIRS src)
-# Alternatively, use COMPONENT_SRCS to specify source files explicitly
-# set(COMPONENT_SRCS src/example_component.c)
-
-# add this components, this will define a CMake library target.
-register_component()
+add_library(example_component src/example_component.c)
+target_include_directories(example_component PUBLIC include)
 ```
 
-You can also specify dependencies by using the standard CMake function `target_link_libraries`\. Note that the target name for your component is stored in the variable `COMPONENT_TARGET`, defined by the ESP\-IDF\.
+Then, in the top level `CMakeLists.txt` file, add the component by inserting the following line just after `add_subdirectory(freertos)`\.
 
 ```
-# add this component, this will define a CMake library target.
-register_component()
-
-# standard CMake function can be used to specify dependencies. ${COMPONENT_TARGET} is defined
-# from esp-idf when you call register_component, by default it's idf_component_<folder_name>.
-target_link_libraries(${COMPONENT_TARGET} PRIVATE AFR::mqtt)
+add_subdirectory(component/example_component) 
 ```
 
-For ESP components, this is done by setting two variables, `COMPONENT_REQUIRES` and `COMPONENT_PRIV_REQUIRES`\. For information, see [Build System \(CMake\)](https://docs.espressif.com/projects/esp-idf/en/v4.2/api-guides/build-system-cmake.html)\) in the *ESP\-IDF Programming Guide v4\.2*\.
+Then, modify `target_link_libraries` to include your component\.
 
 ```
-# If the dependencies are from ESP-IDF, use these 2 variables. Note these need to be
-# set before calling register_component().
-set(COMPONENT_REQUIRES log)
-set(COMPONENT_PRIV_REQUIRES lwip)
-```
-
-Then, in the top level `CMakeLists.txt` file, you tell ESP\-IDF where to find these components\. Add the following lines anywhere before `add_subdirectory(freertos)`\.
-
-```
-# Add some extra components. IDF_EXTRA_COMPONENT_DIRS is a variable used by ESP-IDF
-# to collect extra components.
-get_filename_component(
-    EXTRA_COMPONENT_DIRS
-    "components/example_component" ABSOLUTE
-)
-list(APPEND IDF_EXTRA_COMPONENT_DIRS ${EXTRA_COMPONENT_DIRS})
+target_link_libraries(my_app PRIVATE AFR::core_mqtt PRIVATE example_component) 
 ```
 
 This component is now automatically linked to your application code by default\. You can now include its header files and call the functions it defines\.
@@ -616,6 +595,8 @@ cmake -S . -B build-directory -DIDF_SDKCONFIG_DEFAULTS=path_to_your_sdkconfig_de
 
 If you don't specify a location for your own `sdkconfig.default` file, FreeRTOS uses the default file located at `freertos/vendors/espressif/boards/esp32/aws_demos/sdkconfig.defaults`\.
 
+For more information, see [Project Configuration](https://docs.espressif.com/projects/esp-idf/en/v4.2-beta1/esp32s2/api-reference/kconfig.html) in the Espressif *API Reference* and, if you encounter issues after you have successfully compiled, see the section on [ Deprecated options and their replacements](https://docs.espressif.com/projects/esp-idf/en/v4.2-beta1/esp32s2/api-reference/kconfig.html#deprecated-options-and-their-replacements) on that page\.
+
 ### Summary<a name="getting_started_espressif_cmake_project_summary"></a>
 
 If you have a project with a component called `example_component`, and you want to override some configurations, here's a complete example of the top level `CMakeLists.txt` file\.
@@ -625,7 +606,8 @@ cmake_minimum_required(VERSION 3.13)
 
 project(freertos_examples)
 
-add_executable(my_app src/main.c)
+set(IDF_PROJECT_EXECUTABLE my_app)
+set(IDF_EXECUTABLE_SRCS "src/main.c")
 
 # Tell IDF build to link against this target.
 set(IDF_PROJECT_EXECUTABLE my_app)
@@ -647,7 +629,7 @@ add_subdirectory(freertos)
 
 # Link against the mqtt library so that we can use it. Dependencies are transitively
 # linked.
-target_link_libraries(my_app PRIVATE AFR::mqtt)
+target_link_libraries(my_app PRIVATE AFR::core_mqtt)
 ```
 
 ## Troubleshooting<a name="getting_started_espressif_troubleshooting"></a>

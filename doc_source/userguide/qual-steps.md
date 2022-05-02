@@ -202,14 +202,14 @@ Build, flash, and test settings are made in the `configs/userdata.json` file\. W
         "name": "your-build-tool-name",
         "version": "your-build-tool-version",
         "command": [
-            "/absolute-path-to/build-parallel.sh {{testData.sourcePath}} {{enableTests}}"
+            "{{config.idtRootPath}}/relative-path-to/build-parallel.sh {{testData.sourcePath}} {{enableTests}}"
         ]
     },
     "flashTool": {
         "name": "your-flash-tool-name",
         "version": "your-flash-tool-version",
         "command": [
-            "/absolute-path-to/flash-parallel.sh {{testData.sourcePath}} {{device.connectivity.serialPort}} {{buildImageName}}"
+            "/{{config.idtRootPath}}/relative-path-to/flash-parallel.sh {{testData.sourcePath}} {{device.connectivity.serialPort}} {{buildImageName}}"
         ],
         "buildImageInfo" : {
             "testsImageName": "tests-image-name",
@@ -337,13 +337,13 @@ The version of the SDK you're using with FreeRTOS\. If you're not using an SDK, 
 The absolute path to your SDK directory that contains your FreeRTOS code\. If you're not using an SDK, then the entire `sdkConfiguration` block should be omitted\.
 
 **`buildTool`**  
-The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}` and references to the SDK path should be replaced by `{{sdkPath}}`\.
+The full path to your build script \(\.bat or \.sh\) that contains the commands to build your source code\. All references to the source code path in the build command must be replaced by the AWS IoT Device Tester variable `{{testdata.sourcePath}}` and references to the SDK path should be replaced by `{{sdkPath}}`\. Use the `{{config.idtRootPath}}` placeholder to reference the absolute or relative IDT path\. 
 
 **`testStartDelayms`**  
 Specifies how many milliseconds the FreeRTOS test runner will wait before starting to run tests\. This can be useful if the device under test begins outputting important test information before IDT has a chance to connect and start logging due to network or other latency\. The max allowed value is 30000 ms \(30 seconds\)\. This value is applicable to FreeRTOS test groups only, and not applicable to other test groups that do not utilize the FreeRTOS test runner, such as the OTA tests\.
 
 **`flashTool`**  
-Full path to your flash script \(\.sh or \.bat\) that contains the flash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for FreeRTOS variable `{{testdata.sourcePath}}` and all references to your SDK path must be replaced by the IDT for FreeRTOS variable `{{sdkPath}}`\.    
+Full path to your flash script \(\.sh or \.bat\) that contains the flash commands for your device\. All references to the source code path in the ﬂash command must be replaced by the IDT for FreeRTOS variable `{{testdata.sourcePath}}` and all references to your SDK path must be replaced by the IDT for FreeRTOS variable `{{sdkPath}}`\.Use the `{{config.idtRootPath}}` placeholder to reference the absolute or relative IDT path\.    
 **`buildImageInfo`**    
 **`testsImageName`**  
 The name of the file produced by the build command when building tests from the `freertos-source/tests` folder\.  
@@ -429,8 +429,8 @@ The file name of the code signing certificate on the device\. This value must ma
 For more information, see [Create a code\-signing certificate](ota-code-sign-cert.md)\.   
 **`compileSignerCertificate`**  
 Set to `true` if the code signer signature verification certificate isn't provisioned or flashed, so it must be compiled into the project\. AWS IoT Device Tester fetches the trusted certificate and compiles it into `aws_codesigner_certifiate.h`\.  
-**`untrustedSignerCertificateArn`**  
-The ARN for the code\-signing certificate uploaded to ACM\.  
+**`untrustedSignerCertificate`**  
+The ARN or filepath for a second certificate used in some OTA tests as an untrusted certificate\. For more information about creating a certificate, see [ Create a code\-signing certificate](https://docs.aws.amazon.com/freertos/latest/userguide/ota-code-sign-cert.html)\.  
 **`signerPlatform`**  
 The signing and hashing algorithm that AWS Code Signer uses while creating the OTA update job\. Currently, the possible values for this field are `AmazonFreeRTOS-TI-CC3220SF` and `AmazonFreeRTOS-Default`\.   
 + Choose `AmazonFreeRTOS-TI-CC3220SF` if `SHA1` and `RSA`\. 
@@ -501,3 +501,6 @@ The file name of the image built by the build command\.
 
 **`{{otaCodeSignerPemFile}}`**  
 PEM file for the OTA code signer\.
+
+**`{{config.idtRootPath}}`**  
+Expands to the AWS IoT Device Tester root path\. This variable replaces the absolute path for IDT when used by the build and flash commands\.

@@ -79,7 +79,7 @@ If you are downloading FreeRTOS from the FreeRTOS console, choose **Connect to A
 
 After you set up AWS IoT and AWS IoT Greengrass, and after you download and configure FreeRTOS, you can build, flash, and run the Greengrass demo on your device\. To set up your board's hardware and software development environment, follow the instructions in the [Board\-specific getting started guides](getting-started-guides.md)\.
 
-The Greengrass demo publishes a series of messages to the Greengrass core, and to the AWS IoT MQTT client\. To view the messages in the AWS IoT MQTT client, open the [AWS IoT console](https://console.aws.amazon.com/iotv2/), choose **Test**, and then add a subscription to `freertos/demos/ggd`\.
+The Greengrass demo publishes a series of messages to the Greengrass core, and to the AWS IoT MQTT client\. To view the messages in the AWS IoT MQTT client, open the [AWS IoT console](https://console.aws.amazon.com/iotv2/), choose **Test**, choose **MQTT test client** and then add a subscription to `freertos/demos/ggd`\.
 
 In the MQTT client, you should see the following strings:
 

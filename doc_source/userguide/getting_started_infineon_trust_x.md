@@ -70,15 +70,17 @@ Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi C
 
 ## Monitoring MQTT messages on the cloud<a name="infineon_trust_x_monitoring"></a>
 
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\. You might want to set this up before the device runs the demo project\.
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
 
 **To subscribe to the MQTT topic with the AWS IoT MQTT client**
 
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 
-1. In the navigation pane, choose **Test** to open the MQTT client\.
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
 
 1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
 
 ## Build and run the FreeRTOS demo project<a name="infineon_trust_x_build_and_run_example"></a>
 
@@ -166,7 +168,7 @@ If you prefer not to use an IDE for FreeRTOS development, you can use CMake to b
 
 1. Set up the GNU Arm Embedded Toolchain\.
 
-   1. Download a Windows version of the toolchain from the [Arm Embedded Toolchain download page](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)\. 
+   1. Download a Windows version of the toolchain from the [ Arm Embedded Toolchain download page](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)\. 
 **Note**  
 Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274) in the objcopy utility, we recommend that you download a version other than "8\-2018\-q4\-major\."
 
@@ -211,7 +213,7 @@ Due to [a bug reported](https://bugs.launchpad.net/gcc-arm-embedded/+bug/1810274
       JLINK_PATH\JLink.exe  -device XMC4800-2048 -if SWD -speed auto -CommanderScript flash.jlink
       ```
 
-      The application logs should be visible through [ the serial connection](getting_started_infineon.md#install-serial-connection) that you established with the board\. Continue to the public key extraction step in [Option \#2: onboard private key generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. After all the steps are complete, go to the AWS IoT console\. The MQTT client you set up previously should display the MQTT messages sent by your device\. 
+      The application logs should be visible through [the serial connection](getting_started_infineon.md#install-serial-connection) that you established with the board\. Continue to the public key extraction step in [Option \#2: onboard private key generation](dev-mode-key-provisioning.md#dev-mode-key-provisioning-option2)\. After all the steps are complete, go to the AWS IoT console\. The MQTT client you set up previously should display the MQTT messages sent by your device\. 
 
 ### Troubleshooting<a name="infineon_trust_x_troubleshooting"></a>
 

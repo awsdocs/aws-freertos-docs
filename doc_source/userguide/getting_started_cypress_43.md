@@ -103,6 +103,18 @@ The WICED Studio installer creates two separate folders named `WICED-Studio-m.n`
 
 For more information about installing a terminal and setting up a serial connection, see [Installing a terminal emulator](gsg-troubleshooting.md#uart-term)\.
 
+## Monitoring MQTT messages on the cloud<a name="cypress43-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
 ## Build and run the FreeRTOS demo project<a name="gsg-cypress43-build-and-run-example"></a>
 
 After you set up a serial connection to your board, you can build the FreeRTOS demo project, flash the demo to your board, and then run the demo\.
@@ -120,18 +132,6 @@ After you set up a serial connection to your board, you can build the FreeRTOS d
 1. Expand the **WICED Platform** menu and choose **WICED Filters off**\.
 
 1. In the **Make Target** window, expand **aws\_demo**, right\-click the `demo.aws_demo` file, and then choose **Build Target** to build and download the demo to your board\. The demo should run automatically after it is built and downloaded to your board\.
-
-### Monitoring MQTT messages on the cloud<a name="cypress43-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="cypress43-troubleshooting"></a>
 + If you are using Windows, you might receive the following error when you build and run the demo project:

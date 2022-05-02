@@ -2,7 +2,7 @@
 
 A test suite combines the following:
 + Test executables that contain the test logic
-+ JSON configuration files that describe the test suite
++ Configuration files that describe the test suite
 
 This tutorial shows you how to use IDT for FreeRTOS to develop a Python test suite that contains a single test case\. Although this tutorial uses SSH, it is useful to learn how to use AWS IoT Device Tester with FreeRTOS devices\.
 
@@ -10,7 +10,7 @@ In this tutorial, you will complete the following steps:
 
 1. [Create a test suite directory](#test-suite-dir)
 
-1. [Create JSON configuration files](#test-suite-json)
+1. [Create configuration files](#test-suite-json)
 
 1. [Create the test case executable](#test-suite-exe)
 
@@ -69,9 +69,9 @@ MyTestSuite_1.0.0
         └── myTestCase
 ```
 
-## Create JSON configuration files<a name="test-suite-json"></a>
+## Create configuration files<a name="test-suite-json"></a>
 
-Your test suite must contain the following required [JSON configuration files](idt-json-config.md):Required JSON files
+Your test suite must contain the following required [configuration files](idt-json-config.md):Required files
 
 **`suite.json`**  
 Contains information about the test suite\. See [Configure suite\.json](idt-json-config.md#suite-json)\.

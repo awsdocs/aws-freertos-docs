@@ -12,7 +12,7 @@ Because test suites depend on IDT to interact with devices, provide the context,
 devicetester_[linux | mac | win_x86-64] debug-test-suite -h
 ```
 
-When you run IDT in debug mode, IDT does not actually launch the test suite or run the state machine; instead, it interacts with your IDE to responds to requests made from the test suite running in the IDE and prints the logs to the console\. IDT does not time out and waits to exit until manually interrupted\. In debug mode, IDT also does not run the state machine and will not generate any report files\. To debug your test suite, you must use your IDE to provide some information that IDT usually obtains from the configuration JSON files\. Make sure you provide the following information:
+When you run IDT in debug mode, IDT does not actually launch the test suite or run the test orchestrator; instead, it interacts with your IDE to responds to requests made from the test suite running in the IDE and prints the logs to the console\. IDT does not time out and waits to exit until manually interrupted\. In debug mode, IDT also does not run the test orchestrator and will not generate any report files\. To debug your test suite, you must use your IDE to provide some information that IDT usually obtains from the configuration files\. Make sure you provide the following information:
 + Environment variables and arguments for each test\. IDT will not read this information from `test.json` or `suite.json`\.
 + Arguments to select resource devices\. IDT will not read this information from `test.json`\.
 

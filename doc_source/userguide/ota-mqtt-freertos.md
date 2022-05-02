@@ -10,7 +10,7 @@ This section describes the general requirements for using MQTT to perform over\-
 
 Beginning with version 201912\.00, FreeRTOS OTA can use either the HTTP or MQTT protocol to transfer firmware update images from AWS IoT to devices\. If you specify both protocols when you create an OTA update in FreeRTOS, each device will determine the protocol used to transfer the image\. See [Prerequisites for OTA updates using HTTP](ota-http-freertos.md) for more information\.
 
-By default, the configuration of the OTA protocols in [ `ota_config.h`](https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h) is to use the MQTT protocol\.
+By default, the configuration of the OTA protocols in [https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h](https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h) is to use the MQTT protocol\.
 
 ## Device specific configurations<a name="ota-mqtt-freertos-dev-config"></a>
 

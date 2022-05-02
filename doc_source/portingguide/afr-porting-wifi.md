@@ -50,7 +50,7 @@ In the following steps, make sure that you add the source files to your IDE proj
 
 1. Add the source file `freertos/vendors/vendor/boards/board/ports/wifi/iot_wifi.c` to your `aws_tests` IDE project\.
 
-1. Add the source file `aws_test_wifi.c` to the `aws_tests` IDE project\.
+1. Add the source files `iot_test_wifi.c` and `iot_test_wifi.h` to the `aws_tests` IDE project\.
 
 ### Configuring the `CMakeLists.txt` file<a name="testing-cmake-wifi"></a>
 
@@ -84,7 +84,7 @@ After you set up the library in the IDE project, you need to configure some othe
 1. Open `freertos/tests/include/aws_clientcredential.h`, and set the macros in the following table for the first AP\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html)
 
-1. Open `freertos/libraries/abstractions/wifi/test/aws_test_wifi.h`, and set the macros in the following table for the second AP\.    
+1. Open `freertos/libraries/abstractions/wifi/test/iot_test_wifi.h`, and set the macros in the following table for the second AP\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-wifi.html)
 
 1. To enable the Wi\-Fi tests, open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_WIFI_ENABLED` to `1`\. 

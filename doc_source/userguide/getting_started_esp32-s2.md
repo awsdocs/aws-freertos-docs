@@ -108,11 +108,13 @@ When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and t
 
 ### Download and configure FreeRTOS<a name="download-and-configure-esp32-s2-idf42"></a>
 
-After you set up your environment, you can download FreeRTOS from [GitHub](https://github.com/aws/amazon-freertos) or from the [FreeRTOS console](https://console.aws.amazon.com/freertos)\. For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file on the GitHub website\.
+After you set up your environment, you can download FreeRTOS from either
++  [GitHub](https://github.com/aws/amazon-freertos) \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
++  [FreeRTOS console](https://console.aws.amazon.com/freertos) \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32S2\-Saola\-1**"\.\) 
 
 **Configure the FreeRTOS demo applications**
 
-1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open `mingw32.exe`\. \([ MinGW](https://sourceforge.net/projects/mingw-w64/files/) is a minimalist development environment for native Microsoft Windows applications\.\)
+1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the "ESP\-IDF 4\.x CMD" app \(if you included this option when you installed the ESP\-IDF toolchain\), or the "Command Prompt" app otherwise\.  
 
 1. To verify that you have Python3 installed, run the following:
 
@@ -122,7 +124,7 @@ After you set up your environment, you can download FreeRTOS from [GitHub](https
 
    The version installed is displayed\. If you don't have Python 3\.0\.1 or later installed, you can install it from the [Python](https://www.python.org/downloads/) website\.
 
-1. You need the AWS Command Line Interface \(CLI\) to run AWS IoT commands\. If you're running Windows, use the easy\_install awscli to install the AWS CLI in the mingw32 environment\.
+1. You need the AWS Command Line Interface \(CLI\) to run AWS IoT commands\. If you're running Windows, use the `easy_install awscli` command to install the AWS CLI in the "Command" or "ESP\-IDF 4\.x CMD" app\. 
 
    If you're running macOS or Linux, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)\.
 
@@ -135,7 +137,7 @@ After you set up your environment, you can download FreeRTOS from [GitHub](https
    and configure the AWS CLI with your AWS access key ID, secret access key, and default AWS Region\. For more information, see [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 1. Use the following command to install the AWS SDK for Python \(boto3\):
-   + On Windows, in the mingw32 environment, run
+   + On Windows, in the "Command" or "ESP\-IDF 4\.x CMD" app,  run
 
      ```
      easy_install boto3
@@ -172,7 +174,7 @@ The security type for your Wi\-Fi network\. The following are valid security typ
    + `eWiFiSecurityWPA` \(WPA security\)
    + `eWiFiSecurityWPA2` \(WPA2 security\)
 
-1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the `mingw32.exe` file\.
+1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the "ESP\-IDF 4\.x CMD" or "Command" app\. 
 
 1. Navigate to the `freertos/tools/aws_config_quick_start` directory and run
 
@@ -189,6 +191,20 @@ The security type for your Wi\-Fi network\. The following are valid security typ
 The certificate is hardcoded for demonstration purposes only\. Production\-level applications should store these files in a secure location\.
 
    For more information about `SetupAWS.py`, see the `README.md` in the `freertos/tools/aws_config_quick_start` directory\.
+
+### Monitoring MQTT messages on the AWS Cloud<a name="gsg-esp32-s2-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT Test Client**\.
+
+1. In **Subscription topic**, enter `your-thing-name/example/topic`, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
 
 ### Build, flash, and run the FreeRTOS demo project using the idf\.py script<a name="build-and-run-example-esp32-s2-idf42"></a>
 
@@ -209,17 +225,19 @@ idf.py -p /dev/cu.usbserial-00101301B flash
 
 1. Navigate to the root of your FreeRTOS download directory\.
 
-1. In a command line window, enter the following command to add the ESP\-IDF tools to your terminal's PATH: 
-   + Windows
+1. In a command line window, enter the following command to add the ESP\-IDF tools to your terminal's PATH:   
+**Windows \("Command" app\)**  
 
-     ```
-     vendors\espressif\esp-idf\export.bat
-     ```
-   + Linux / MacOS
+   ```
+   vendors\espressif\esp-idf\export.bat
+   ```  
+**Windows \("ESP\-IDF 4\.x CMD" app\)**  
+\(This has already been done when you opened the app\.\)  
+**Linux / macOS**  
 
-     ```
-     source vendors/espressif/esp-idf/export.sh
-     ```
+   ```
+   source vendors/espressif/esp-idf/export.sh
+   ```
 
 1. Configure cmake in the `build` directory and build the firmware image with the following command\.
 
@@ -342,18 +360,6 @@ Besides using the `idf.py` script provided by the IDF SDK to build and run your 
      ```
      ninja -C ./YOUR_BUILD_DIRECTORY flash
      ```
-
-## Monitoring MQTT messages on the AWS Cloud<a name="gsg-esp32-s2-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter `your-thing-name/example/topic`, and then choose **Subscribe to topic**\.
 
 ## Additional information<a name="getting_started_esp32-s2-additional"></a>
 

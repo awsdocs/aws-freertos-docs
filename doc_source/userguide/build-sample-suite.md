@@ -157,7 +157,7 @@ cd <device-tester-extract-location>/samples/python/build-scripts
 
 ------
 
-This creates the sample test suite in the `IDTSampleSuitePython_1.0.0` folder within the `<device-tester-extract-location>/tests` folder\. Review the files in the `IDTSampleSuitePython_1.0.0` folder to understand how the sample test suite is structured and see various examples of test case executables and test configuration JSON files\. 
+This creates the sample test suite in the `IDTSampleSuitePython_1.0.0` folder within the `<device-tester-extract-location>/tests` folder\. Review the files in the `IDTSampleSuitePython_1.0.0` folder to understand how the sample test suite is structured and see various examples of test case executables and test configuration files\. 
 
 Next step: Use IDT to [run the sample test suite](#run-sample) that you created\.
 

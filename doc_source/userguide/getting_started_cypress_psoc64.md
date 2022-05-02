@@ -102,6 +102,17 @@ In this section you build and run the demo\.
 
       Make sure the project compiles without errors\.
 
+1. 
+
+**Monitoring MQTT Messages on the Cloud**  
+Before you run the demo, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\. To subscribe to the MQTT topic with the AWS IoT MQTT client, follow these steps\.
+
+   1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+   1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+   1. For **Subscription topic**,  enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
 1. **Run the FreeRTOS demo project**
 
    1. Select the project `aws_demos` in the workspace\.
@@ -155,19 +166,6 @@ You can also use CMake to build and run the demo application\. To set up CMake a
       ```
 
    1. Finally, program the `cm0.hex` and `cm4.hex` files generated under `build_dir` by using Cypress Programmer\.
-
-1. 
-
-**Monitoring MQTT Messages on the Cloud**  
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\. To subscribe to the MQTT topic with the AWS IoT MQTT client, follow these steps\.
-
-   1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-   1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-   1. For **Subscription topic**,  enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
-
-   1. Reset the kit to force it to publish MQTT messages, which can then be seen on the console test client\.
 
 ### Running other demos<a name="getting_started_cypress_psoc64_demos"></a>
 

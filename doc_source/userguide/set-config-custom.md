@@ -1,6 +1,6 @@
 # Configure settings for test runners<a name="set-config-custom"></a>
 
-To run custom test suites, test runners must configure their settings based on the test suite that they want to run\. Settings are specified based on JSON configuration file templates located in the `<device-tester-extract-location>/configs/` folder\. If required, test runners must also set up AWS credentials that IDT will use to connect to the AWS cloud\. 
+To run custom test suites, test runners must configure their settings based on the test suite that they want to run\. Settings are specified based on configuration file templates located in the `<device-tester-extract-location>/configs/` folder\. If required, test runners must also set up AWS credentials that IDT will use to connect to the AWS cloud\. 
 
 As a test writer, you will need to configure these files to [debug your test suite](run-tests-custom.md)\. You must provide instructions to test runners so that they can configure the following settings as needed to run your test suites\. 
 

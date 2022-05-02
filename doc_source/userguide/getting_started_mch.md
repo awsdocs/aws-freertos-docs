@@ -118,6 +118,20 @@ FreeRTOS AWS Reference Integrations v202007\.00 is currently supported on MPLabv
    + Stop bits: 1
    + Flow control: None
 
+## Monitoring MQTT messages in the cloud<a name="getting_started_mch_monitor_mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
+
 ## Build and run the FreeRTOS demo project<a name="mch-build-and-run-example"></a>
 
 ### Open the FreeRTOS demo in the MPLAB IDE<a name="mch-freertos-import-project"></a><a name="mch-load-project"></a>
@@ -172,18 +186,6 @@ You must specify the correct paths to the Hexmate and toolchain binaries, such a
 For more information, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
 
 To use Ethernet to connect, you must define the preprocessor macro `PIC32_USE_ETHERNET`\. 
-
-### Monitoring MQTT messages in the cloud<a name="getting_started_mch_monitor_mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_mch_troubleshooting"></a>
 

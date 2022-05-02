@@ -12,3 +12,4 @@ Throughout this tutorial, we assume that you are familiar with AWS IoT and the A
 + [Using CMake with FreeRTOS](getting-started-cmake.md)
 + [Developer\-mode key provisioning](dev-mode-key-provisioning.md)
 + [Board\-specific getting started guides](getting-started-guides.md)
++ [Next steps with FreeRTOS](getting-started-next-steps.md)

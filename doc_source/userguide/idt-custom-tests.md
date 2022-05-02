@@ -25,13 +25,13 @@ Windows has a path length limitation of 260 characters\. If you are using Window
 ## Test suite creation workflow<a name="custom-test-workflow"></a>
 
 Test suites are composed of three types of files:
-+ JSON configuration files that provide IDT with information on how to execute the test suite\.
++ Configuration files that provide IDT with information on how to execute the test suite\.
 + Test executable files that IDT uses to run test cases\.
 + Additional files required to run tests\.
 
 Complete the following basic steps to create custom IDT tests:
 
-1. [Create JSON configuration files](idt-json-config.md) for your test suite\.
+1. [Create configuration files](idt-json-config.md) for your test suite\.
 
 1. [Create test case executables](test-executables.md) that contain the test logic for your test suite\. 
 

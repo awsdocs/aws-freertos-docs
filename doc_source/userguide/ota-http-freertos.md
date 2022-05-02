@@ -12,7 +12,7 @@ When you specify both MQTT and HTTP protocols for the OTA update job, the setup 
 
 ## Configurations<a name="ota-http-freertos-config"></a>
 
-See the following configuration of the OTA protocols in the [ `\vendors\boards\board\aws_demos\config_files\ota_config.h` ](https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h) file\.
+See the following configuration of the OTA protocols in the [https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h](https://github.com/aws/amazon-freertos/blob/main/vendors/vendor/boards/board/aws_demos/config_files/ota_config.h) file\.
 
 **To enable OTA data transfer over HTTP**
 
@@ -26,7 +26,7 @@ HTTP is only supported for OTA data operations\. For control operations, you mus
 ## Device specific configurations<a name="ota-http-freertos-device-configuration"></a>
 
 **ESP32**  
-Due to a limited amount of RAM, you must turn off BLE when you enable HTTP as an OTA data protocol\. In the [ `vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h` ](https://github.com/aws/amazon-freertos/blob/main/vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h) file, change `configENABLED_NETWORKS` to `AWSIOT_NETWORK_TYPE_WIFI` only\.  
+Due to a limited amount of RAM, you must turn off BLE when you enable HTTP as an OTA data protocol\. In the [https://github.com/aws/amazon-freertos/blob/main/vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h](https://github.com/aws/amazon-freertos/blob/main/vendors/espressif/boards/esp32/aws_demos/config_files/aws_iot_network_config.h) file, change `configENABLED_NETWORKS` to `AWSIOT_NETWORK_TYPE_WIFI` only\.  
 
 ```
 /**

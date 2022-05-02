@@ -8,7 +8,7 @@ With FreeRTOS over\-the\-air \(OTA\) updates, you can do the following:
 + Debug a failed deployment\.
 + Digitally sign firmware using Code Signing for AWS IoT\.
 
-For more information, see [FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide* along with the [ AWS IoT Over\-the\-air Update Documentation](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/index.html)\.
+For more information, see [FreeRTOS Over\-the\-Air Updates](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-ota-dev.html) in the *FreeRTOS User Guide* along with the [AWS IoT Over\-the\-air Update Documentation](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/index.html)\.
 
 You can use the OTA update library to integrate OTA functionality into your FreeRTOS applications\. For more information, see [FreeRTOS OTA update Library](https://docs.aws.amazon.com/freertos/latest/userguide/ota-update-library.html) in the *FreeRTOS User Guide*\.
 

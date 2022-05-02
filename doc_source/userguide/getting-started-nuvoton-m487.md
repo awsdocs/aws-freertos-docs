@@ -56,7 +56,7 @@ You can use the MQTT client in the AWS IoT console to monitor the messages that 
 
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2)\.
 
-1. In the navigation pane, choose **Test** to open the MQTT client\. 
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\. 
 
 1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\. 
 
@@ -89,7 +89,7 @@ You can also use the MQTT client in the AWS IoT console to monitor the messages 
 
 1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2)\.
 
-1. In the navigation pane, choose **Test** to open the MQTT client\. 
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\. 
 
 1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\. 
 

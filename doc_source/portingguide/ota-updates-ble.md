@@ -465,4 +465,4 @@ W (146348) BT_SMP: FOR LE SC LTK IS USED INSTEAD OF STK
 
 ## References<a name="ota-updates-ble-reference"></a>
 
-1. [ AWS Blog on OTA updates over Bluetooth Low Energy](https://aws.amazon.com/blogs/iot/perform-ota-firmware-updates-on-espressif-esp32-devices-using-amazon-freertos-bluetooth-low-energy-mqtt-proxy/)\.
+1. [AWS Blog on OTA updates over Bluetooth Low Energy](https://aws.amazon.com/blogs/iot/perform-ota-firmware-updates-on-espressif-esp32-devices-using-amazon-freertos-bluetooth-low-energy-mqtt-proxy/)\.

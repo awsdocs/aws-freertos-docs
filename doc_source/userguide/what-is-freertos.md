@@ -16,7 +16,7 @@ Download the latest FreeRTOS and Long Term Support \(LTS\) packages from the Dow
 
 ## FreeRTOS versioning<a name="freertos-versioning"></a>
 
-Individual libraries use x\.y\.z style version numbers, similar to semantic versioning\. x is the major version number, y the minor version number, and z a point release number\. LTS libraries may also have a patch number\. For example, if version x\.y\.z of coreMQTT was an LTS release, and that LTS library has since had two patches applied, its version number would be *coreHTTP x\.y\.z LTS Patch 2*\.
+Individual libraries use x\.y\.z style version numbers, similar to semantic versioning\. x is the major version number, y the minor version number, and starting from 2022, z is a patch number\. Before 2022, z was a point release number, which required the first LTS libraries to have a patch number of the form *"x\.y\.z LTS Patch 2"*\. 
 
 Library packages use yyyymm\.x style date stamp version numbers\. yyyy is the year, mm the month, and x an optional sequence number showing the release order within the month\. In the case of the LTS package, x is a sequential patch number for that LTS release\. The individual libraries contained in a package are whatever the latest version of that library was on that date\. For the LTS package, it's the latest patch version of the LTS libraries originally released as an LTS version on that date\.
 

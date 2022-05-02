@@ -29,7 +29,7 @@ FreeRTOS Secure Sockets library features include:
 
 ## Troubleshooting<a name="freertos-secure-sockets-troubleshooting"></a>
 
-### Error codes<a name="w44aac18c45c13b5"></a>
+### Error codes<a name="w43aac18c45c13b5"></a>
 
 The error codes that the FreeRTOS Secure Sockets library returns are negative values\. For more information about each error code, see Secure Sockets Error Codes in the [Secure Sockets API Reference](https://docs.aws.amazon.com/freertos/latest/lib-ref/html2/secure_sockets/index.html)\.
 

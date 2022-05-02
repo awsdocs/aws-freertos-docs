@@ -66,6 +66,18 @@ If your computer does not detect the MicroZed's USB\-UART connection, install th
 
 For more information about XSDK, see the [Getting Started with Xilinx SDK](https://www.xilinx.com/html_docs/xilinx2018_2/SDK_Doc/index.html) on the Xilink website\.
 
+## Monitoring MQTT messages on the cloud<a name="xilinx-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
 ## Build and run the FreeRTOS demo project<a name="xilinx-build-and-run-example"></a>
 
 ### Open the FreeRTOS demo in the XSDK IDE<a name="xilinx-freertos-import-project"></a>
@@ -188,18 +200,6 @@ If you are using the Xilinx Smart Lync JTAG cable, you must create a hardware se
 Be sure to back up any content that you have on the MicroSD card\.
 
 1. Press the RST button to reset the device and start booting the application\. You can also unplug the USB\-UART cable from the USB\-UART port, and then reinsert the cable\.
-
-### Monitoring MQTT messages on the cloud<a name="xilinx-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="xilinx-troubleshooting"></a>
 

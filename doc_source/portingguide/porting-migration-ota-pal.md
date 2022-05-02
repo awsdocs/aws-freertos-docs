@@ -4,7 +4,7 @@ The Over\-the\-air Updates Library introduced some changes in the folder structu
 
 ## Changes to OTA PAL<a name="porting-migration-ota-pal-changes"></a>
 + The OTA PAL port directory name has been updated from `ota` to `ota_pal_for_aws`\. This folder must contain 2 files: `ota_pal.c` and `ota_pal.h`\. The PAL header file `libraries/freertos_plus/aws/ota/src/aws_iot_ota_pal.h` has been deleted from the OTA library and must be defined inside the port\.
-+ The return codes \(`OTA_Err_t`\) are translated into an enum `OTAMainStatus_t`\. Refer to [  ota\_platform\_interface\.h](https://github.com/aws/ota-for-aws-iot-embedded-sdk/blob/v3.0.0/source/include/ota_platform_interface.h#L68-L90) for translated return codes\. [  Helper macros](https://github.com/aws/ota-for-aws-iot-embedded-sdk/blob/666241d0f643b07d5146a3715b649d80f8135e0b/source/include/ota_platform_interface.h#L105-L111) are also provided to combine `OtaPalMainStatus` and `OtaPalSubStatus` codes and extract `OtaMainStatus` from `OtaPalStatus` and similar\.
++ The return codes \(`OTA_Err_t`\) are translated into an enum `OTAMainStatus_t`\. Refer to [ ota\_platform\_interface\.h](https://github.com/aws/ota-for-aws-iot-embedded-sdk/blob/v3.0.0/source/include/ota_platform_interface.h#L68-L90) for translated return codes\. [ Helper macros](https://github.com/aws/ota-for-aws-iot-embedded-sdk/blob/666241d0f643b07d5146a3715b649d80f8135e0b/source/include/ota_platform_interface.h#L105-L111) are also provided to combine `OtaPalMainStatus` and `OtaPalSubStatus` codes and extract `OtaMainStatus` from `OtaPalStatus` and similar\.
 + Logging in the PAL 
   + Removed the `DEFINE_OTA_METHOD_NAME` macro\.
   + Earlier: `OTA_LOG_L1( "[%s] Receive file created.\r\n", OTA_METHOD_NAME );`\.
@@ -98,7 +98,7 @@ The exact name of the PAL is technically open ended, but to be compatible with t
 
 ### Configuration changes<a name="porting-migration-ota-pal-config-changes"></a>
 
-The file `aws_ota_agent_config.h` was renamed to [ `ota_config.h`](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/aws_demos/config_files/ota_config.h) which changes the include guards from `_AWS_OTA_AGENT_CONFIG_H_` to `OTA_CONFIG_H_`\.
+The file `aws_ota_agent_config.h` was renamed to [https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/aws_demos/config_files/ota_config.h](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/aws_demos/config_files/ota_config.h) which changes the include guards from `_AWS_OTA_AGENT_CONFIG_H_` to `OTA_CONFIG_H_`\.
 + The file `aws_ota_codesigner_certificate.h` has been deleted\.
 + Included the new logging stack to print debug messages:
 
@@ -135,7 +135,7 @@ The file `aws_ota_agent_config.h` was renamed to [ `ota_config.h`](https://githu
   #define otaconfigFILE_BLOCK_SIZE ( 1UL << otaconfigLOG2_FILE_BLOCK_SIZE )
   ```
 
-**New File:** [ `ota_demo_config.h`](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/aws_demos/config_files/ota_demo_config.h) contains the configs that are required by the OTA demo such as the code signing certificate and application version\.
+**New File:** [https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/aws_demos/config_files/ota_demo_config.h](https://github.com/aws/amazon-freertos/blob/main/vendors/pc/boards/windows/aws_demos/config_files/ota_demo_config.h) contains the configs that are required by the OTA demo such as the code signing certificate and application version\.
 + `signingcredentialSIGNING_CERTIFICATE_PEM` which was defined in `demos/include/aws_ota_codesigner_certificate.h` has been moved to `ota_demo_config.h` as `otapalconfigCODE_SIGNING_CERTIFICATE` and can can be accessed from the PAL files as: 
 
   ```
@@ -184,5 +184,5 @@ Use this checklist to make sure you follow the steps required for migration:
   + Update the printing macros to use the logging stack\.
   + Update the `signingcredentialSIGNING_CERTIFICATE_PEM` to be `otapalconfigCODE_SIGNING_CERTIFICATE`\.
   + Update `otaPal_CheckFileSignature` and `otaPal_ReadAndAssumeCertificate` function comments\.
-+ Update the [ `CMakeLists.txt`](https://github.com/aws/amazon-freertos/pull/3208/commits/432e13fcb8dfbfeb6de25110a3d2ea14ccaf1b9a) file\.
++ Update the [https://github.com/aws/amazon-freertos/pull/3208/commits/432e13fcb8dfbfeb6de25110a3d2ea14ccaf1b9a](https://github.com/aws/amazon-freertos/pull/3208/commits/432e13fcb8dfbfeb6de25110a3d2ea14ccaf1b9a) file\.
 + Update the IDE projects\.

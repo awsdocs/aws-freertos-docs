@@ -144,5 +144,5 @@ For information about porting the corePKCS11 library to your platform, see [Port
 | --- | --- | --- | --- | 
 | core\_pkcs11\.c | 0\.8K | 0\.8K | 
 | core\_pki\_utils\.c | 0\.5K | 0\.3K | 
-| core\_pkcs11\_mbedtls\.c | 8\.6K | 7\.1K | 
-| Total estimates | 9\.9K | 8\.2K | 
+| core\_pkcs11\_mbedtls\.c | 8\.7K | 7\.3K | 
+| Total estimates | 10\.0K | 8\.4K | 

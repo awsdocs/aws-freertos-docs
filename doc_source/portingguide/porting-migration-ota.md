@@ -194,7 +194,7 @@ The OTA PAL interface is a set of APIs that must be implemented for the device t
     otaInterfaces.pal.createFile = otaPal_CreateFileForRx;
 ```  
 **Changes in return \-**  
-The return is changed from OTA agent state to OTA error code\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
+The return is changed from OTA agent state to OTA error code\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
 
 ### OTA\_Shutdown<a name="porting-migration-ota-shutdown"></a>
 
@@ -222,7 +222,7 @@ Flag to indicate if unsubscribe operations should be performed from the job topi
 
 **Changes in return \-**  
 OtaState\_t \-   
-The enum for OTA Agent state and its members are renamed\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga1cb476a5e0ee81fa486f605e64419dcc)\.
+The enum for OTA Agent state and its members are renamed\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga1cb476a5e0ee81fa486f605e64419dcc)\.
 
 ### OTA\_GetState<a name="porting-migration-ota-get-state"></a>
 
@@ -242,7 +242,7 @@ OtaState_t OTA_GetState( void );
 
 **Changes in return \-**  
 OtaState\_t \-   
-The enum for OTA Agent state and its members are renamed\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga1cb476a5e0ee81fa486f605e64419dcc)\.
+The enum for OTA Agent state and its members are renamed\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga1cb476a5e0ee81fa486f605e64419dcc)\.
 
 ### OTA\_GetStatistics<a name="porting-migration-ota-get-stats"></a>
 
@@ -296,7 +296,7 @@ OTA_Err_t OTA_ActivateNewImage( void );
 ```
 OtaErr_t OTA_ActivateNewImage( void );
 ```
-The return OTA error code enum is changed and new error codes are added\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
+The return OTA error code enum is changed and new error codes are added\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
 
 **Example usage \- **  
 
@@ -321,8 +321,8 @@ OTA_Err_t OTA_SetImageState( OTA_ImageState_t eState );
 ```
 OtaErr_t OTA_SetImageState( OtaImageState_t state ); 
 ```
-The input parameter is renamed to OtaImageState\_t\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#gad4909faa8b9c8672e7f7bef1bc6b5b84)\.  
-The return OTA error code enum is changed and new error codes are added\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 / OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
+The input parameter is renamed to OtaImageState\_t\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#gad4909faa8b9c8672e7f7bef1bc6b5b84)\.  
+The return OTA error code enum is changed and new error codes are added\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 / OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
 
 **Example usage \- **  
 
@@ -347,7 +347,7 @@ OTA_ImageState_t OTA_GetImageState( void );
 ```
 OtaImageState_t OTA_GetImageState( void ); 
 ```
-The return enum is renamed to OtaImageState\_t\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 : OtaImageState\_t ](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#gad4909faa8b9c8672e7f7bef1bc6b5b84)\.
+The return enum is renamed to OtaImageState\_t\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 : OtaImageState\_t ](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#gad4909faa8b9c8672e7f7bef1bc6b5b84)\.
 
 **Example usage \- **  
 
@@ -371,7 +371,7 @@ OTA_Err_t OTA_Suspend( void );
 ```
 OtaErr_t OTA_Suspend( void ); 
 ```
-The return OTA error code enum is changed and new error codes are added\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\. 
+The return OTA error code enum is changed and new error codes are added\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\. 
 
 **Example usage \- **  
 
@@ -396,7 +396,7 @@ OTA_Err_t OTA_Resume( void * pxConnection );
 ```
 OtaErr_t OTA_Resume( void ); 
 ```
-The return OTA error code enum is changed and new error codes are added\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
+The return OTA error code enum is changed and new error codes are added\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
 
 **Example usage \- **  
 
@@ -421,7 +421,7 @@ OTA_Err_t OTA_CheckForUpdate( void );
 ```
 OtaErr_t OTA_CheckForUpdate( void ) 
 ```
-The return OTA error code enum is changed and new error codes are added\. Please refer to [ AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
+The return OTA error code enum is changed and new error codes are added\. Please refer to [AWS IoT Over\-the\-air Update v3\.0\.0 : OtaErr\_t](https://freertos.org/Documentation/api-ref/ota-for-aws-iot-embedded-sdk/docs/doxygen/output/html/group__ota__enum__types.html#ga7ab3c74dc057383c56c6cb9aa6bf0b2d)\.
 
 ### OTA\_EventProcessingTask<a name="porting-migration-ota-event"></a>
 

@@ -4,7 +4,7 @@ The OTA Agent included with FreeRTOS checks the version of any update and instal
 
 1. Open the `aws_demos` project in your IDE\.
 
-1. Open `demos/include/aws_application_version.h` and increment the `APP_VERSION_BUILD` token value\.
+1. Locate the file ` /vendors/vendor/boards/board/aws_demos/config_files/ota_demo_config.h` and increment the value of **APP\_VERSION\_BUILD**\. 
 
 1. To schedule an update to a Renesas rx65n platform with a filetype other than 0 \(non\-firmware files\), you must sign the file with the Renesas Secure Flash Programmer tool, otherwise it will fail the signature check on the device\. The tool creates a signed file package with the extension `.rsu` which is a proprietery file type for Renesas\. The tool can be found on [Github](https://github.com/renesas/Amazon-FreeRTOS-Tools)\. You can use the following example command to generate the image:
 

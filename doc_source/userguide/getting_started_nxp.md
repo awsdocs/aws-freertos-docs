@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the NXP LPC54018 Io
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w44aac14c31c40b9"></a>
+## Overview<a name="w43aac14c31c40b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -73,6 +73,20 @@ Versions 2\.5 and later are supported\.
 
 If you experience issues during installation, see [NXP Support](https://www.nxp.com/support/support:SUPPORTHOME?tid=sbmenu) or [NXP Developer Resources](https://www.nxp.com/support/developer-resources:DEVELOPER_HOME)\.
 
+## Monitoring MQTT messages on the cloud<a name="getting_started_nxp_mqtt_monitoring"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
+
 ## Build and run the FreeRTOS Demo project<a name="nxp-build-and-run"></a>
 
 ### Import the FreeRTOS demo into your IDE<a name="nxp-freertos-import-project"></a><a name="nxp-load-project"></a>
@@ -118,18 +132,6 @@ If a **J\-Link Device Selection** dialog box opens, choose **OK** to continue\. 
 When the debugger stops at the breakpoint in `main()`, press the debug restart button ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/userguide/images/reset.png) once to reset the debugging session\. \(This is required due to a bug with MCUXpresso debugger for NXP54018\-IoT\-Module\)\.
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Debug** menu, choose **Go**\.
-
-### Monitoring MQTT messages on the cloud<a name="w44aac14c31c40c15b7"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="getting_started_nxp_troubleshooting"></a>
 

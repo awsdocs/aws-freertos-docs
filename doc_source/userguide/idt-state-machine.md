@@ -1,5 +1,8 @@
 # Configure the IDT state machine<a name="idt-state-machine"></a>
 
+**Important**  
+Starting in IDT v4\.5\.2, this state machine is deprecated\. We strongly recommend that you use the new test orchestrator\. For more information, see [Configure the IDT test orchestrator](idt-test-orchestrator.md)\.
+
 A state machine is a construct that controls the test suite execution flow\. It determines the starting state of a test suite, manages state transitions based on user\-defined rules, and continues to transition through those states until it reaches the end state\. 
 
 If your test suite doesn't include a user\-defined state machine, IDT will generate a state machine for you\. The default state machine performs the following functions:

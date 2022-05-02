@@ -9,10 +9,9 @@ This guide is written with the assumption that you have already performed the st
 1. Copy your SHA\-256/ECDSA PEM\-formatted code\-signing certificate that you generated in the [OTA update prerequisites](ota-prereqs.md) to `vendors/vendor/boards/board/aws_demos/config_files/ota_demo_config.h`\. It should be formatted in following way\.
 
    ```
-   #define otapalconfigCODE_SIGNING_CERTIFICATE [] =  "-----BEGIN CERTIFICATE-----\n"
-                 
-             
-   "...base64 data...\n"
+   #define otapalconfigCODE_SIGNING_CERTIFICATE  \
+   "-----BEGIN CERTIFICATE-----\n" \
+   "...base64 data...\n" \
    "-----END CERTIFICATE-----\n";
    ```
 

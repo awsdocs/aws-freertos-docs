@@ -108,6 +108,20 @@ Now that you have configured the demo project, you are ready to build and run th
 
    The build console issues a warning message that the License Manager is not installed\. You can ignore this message unless you have a license key for the CC\-RX compiler\. To install the License Manager, see the [License Manager](https://www.renesas.com/us/en/document/swr/license-manager-v20301) download page\.
 
+### Monitoring MQTT messages on the cloud<a name="gsg-renesas-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
+
 ### Run the FreeRTOS project<a name="renesas-run"></a>
 
 **To run the project in e2studio**
@@ -129,18 +143,6 @@ Now that you have configured the demo project, you are ready to build and run th
    The green 'ACT' LED on the E2 Lite Debugger illuminates\.
 
 1. After the code is downloaded to the board, choose **Resume** to run the code up to the first line of the main function\. Choose **Resume** again to run the rest of the code\.
-
-### Monitoring MQTT messages on the cloud<a name="gsg-renesas-monitor-mqtt"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter  ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 For the latest projects released by Renesas, see the `renesas-rx` fork of the `amazon-freertos` repository on [GitHub](https://github.com/renesas-rx/amazon-freertos)\.
 

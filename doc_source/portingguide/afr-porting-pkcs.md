@@ -48,7 +48,7 @@ To port the corePKCS11 library, you need the following:
 1. Add support for a cryptographically random entropy source to your port:
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\):
 
-     1. Implement the [  mbedtls\_hardware\_poll\(\)](https://github.com/ARMmbed/mbedtls/blob/master/library/entropy_poll.h#L49-L60) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c`\. 
+     1. Implement the [ mbedtls\_hardware\_poll\(\)](https://github.com/ARMmbed/mbedtls/blob/master/library/entropy_poll.h#L49-L60) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c`\. 
    + If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG:
 
      1. Make a copy of `freertos/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
@@ -57,7 +57,7 @@ To port the corePKCS11 library, you need the following:
 
      1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
 
-        For information about implementing these functions, see the comments in the [  mbedtls/library/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/library/entropy_poll.h#L62-L70) and [ mbedtls/include/mbedtls/platform\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/platform.h#L315-L355) mbedTLS header files\.
+        For information about implementing these functions, see the comments in the [ mbedtls/library/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/library/entropy_poll.h#L62-L70) and [ mbedtls/include/mbedtls/platform\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/platform.h#L315-L355) mbedTLS header files\.
 **Important**  
 A seed file with an NIST\-approved entropy source must be supplied to the device at manufacturing time\.
 **Note**  

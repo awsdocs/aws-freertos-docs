@@ -1,6 +1,6 @@
 # Create IDT test suite configuration files<a name="idt-json-config"></a>
 
-This section describes the formats in which you create JSON configuration files that you include when you write a custom test suite\.Required JSON files
+This section describes the formats in which you create configuration files that you include when you write a custom test suite\.Required configuration files
 
 **`suite.json`**  
 Contains information about the test suite\. See [Configure suite\.json](#suite-json)\.
@@ -9,21 +9,22 @@ Contains information about the test suite\. See [Configure suite\.json](#suite-j
 Contains information about a test group\. You must create a `group.json` file for each test group in your test suite\. See [Configure group\.json](#group-json)\.
 
 **`test.json`**  
-Contains information about a test case\. You must create a `test.json` file for each test case in your test suite\. See [Configure test\.json](#test-json)\.Optional JSON files
+Contains information about a test case\. You must create a `test.json` file for each test case in your test suite\. See [Configure test\.json](#test-json)\.Optional configuration files
 
-**`state_machine.json`**  
-Defines how tests are run when IDT runs the test suite\. See [Configure state\_machine\.json](#state-machine-json)\.
+**`test_orchestrator.yaml` or `state_machine.json`**  
+Defines how tests are run when IDT runs the test suite\. SSe [Configure test\_orchestrator\.yaml](#test-orchestrator-config)\.  
+Starting in IDT v4\.5\.2, you use the `test_orchestrator.yaml` file to define the test workflow\. In previous versions of IDT, you use the `state_machine.json` file\. For information about the state machine, see [Configure the IDT state machine](idt-state-machine.md)\.
 
 **`userdata_schema.json`**  
 Defines the schema for the [`userdata.json` file](set-config-custom.md#userdata-config-custom) that test runners can include in their setting configuration\. The `userdata.json` file is used for any additional configuration information that is required to run the test but is not present in the `device.json` file\. See [Configure userdata\_schema\.json](#userdata-schema-json)\.
 
-JSON configuration files are placed in your `<custom-test-suite-folder>` as shown here\.
+Configuration files are placed in your `<custom-test-suite-folder>` as shown here\.
 
 ```
 <custom-test-suite-folder>
 └── suite
     ├── suite.json
-    ├── state_machine.json
+    ├── test_orchestrator.yaml
     ├── userdata_schema.json
     ├── <test-group-folder>
         ├── group.json
@@ -205,16 +206,18 @@ The name of the environment variable\.
 The value of the environment variable\.
 If you specify the same environment variable in the `test.json` file and in the `suite.json` file, the value in the `test.json` file takes precedence\. 
 
-## Configure state\_machine\.json<a name="state-machine-json"></a>
+## Configure test\_orchestrator\.yaml<a name="test-orchestrator-config"></a>
 
-A state machine is a construct that controls the test suite execution flow\. It determines the starting state of a test suite, manages state transitions based on user\-defined rules, and continues to transition through those states until it reaches the end state\. 
+A test orchestrator is a construct that controls the test suite execution flow\. It determines the starting state of a test suite, manages state transitions based on user\-defined rules, and continues to transition through those states until it reaches the end state\. 
 
-If your test suite doesn't include a user\-defined state machine, IDT will generate a state machine for you\. The default state machine performs the following functions:
+If your test suite doesn't include a user\-defined test orchestrator, IDT will generate a test orchestrator for you\.
+
+The default test orchestrator performs the following functions:
 + Provides test runners with the ability to select and run specific test groups, instead of the entire test suite\.
 + If specific test groups are not selected, runs every test group in the test suite in a random order\. 
 + Generates reports and prints a console summary that shows the test results for each test group and test case\.
 
-For more information about how the IDT state machine functions, see [Configure the IDT state machine](idt-state-machine.md)\.
+For more information about how the IDT test orchestrator functions, see [Configure the IDT test orchestrator](idt-test-orchestrator.md)\.
 
 ## Configure userdata\_schema\.json<a name="userdata-schema-json"></a>
 
@@ -228,4 +231,4 @@ To indicate that test runners must provide a `userdata.json` file:
 
 1. Edit the `userdata_schema.json` file to create a valid [IETF Draft v4 JSON Schema](https://json-schema.org/specification-links.html#draft-4)\.
 
-When IDT runs your test suite, it automatically reads the schema and uses it to validate the `userdata.json` file provided by the test runner\. If valid, the contents of the `userdata.json` file are available in both the [IDT context](idt-context.md) and in the [state machine context](idt-state-machine.md#state-machine-context)\.
+When IDT runs your test suite, it automatically reads the schema and uses it to validate the `userdata.json` file provided by the test runner\. If valid, the contents of the `userdata.json` file are available in both the [IDT context](idt-context.md) and in the [test orchestrator context](idt-test-orchestrator.md#idt-test-orchestrator-context)\.

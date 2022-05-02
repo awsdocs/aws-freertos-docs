@@ -6,7 +6,7 @@ If you want to open a serial connection with the board to view logging and debug
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w44aac14c31c25c11"></a>
+## Overview<a name="w43aac14c31c25c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -58,6 +58,20 @@ Power is supplied from the USB debugging port, so do not connect your serial ada
 Some serial cables use a 5V signaling level\. The XMC4800 board and the Wi\-Fi Click module require a 3\.3V\. Do not use the board's IOREF jumper to change the board's signals to 5V\.
 
  With the cable connected, you can open a serial connection on a terminal emulator such as [GNU Screen](https://www.gnu.org/software/screen/)\. The baud rate is set to 115200 by default with 8 data bits, no parity, and 1 stop bit\. 
+
+## Monitoring MQTT messages on the cloud<a name="infineon-monitor-mqtt"></a>
+
+Before you run the FreeRTOS demo, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
 
 ## Build and run the FreeRTOS demo project<a name="infineon-build-and-run-example"></a>
 
@@ -203,18 +217,6 @@ On the final page of the installation wizard, select **Add path to environment v
       ```
 
       The application logs should be visible through [the serial connection](#install-serial-connection) that you established with the board\.
-
-### Monitoring MQTT messages on the cloud<a name="w44aac14c31c25c17b9"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="infineon-troubleshooting"></a>
 

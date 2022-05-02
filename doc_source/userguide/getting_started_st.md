@@ -6,7 +6,7 @@ Make sure you have installed the latest Wi\-Fi firmware\. To download the latest
 
 Before you begin, you must configure AWS IoT, your FreeRTOS download, and Wi\-Fi to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions \. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w44aac14c31c44c11"></a>
+## Overview<a name="w43aac14c31c44c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 
@@ -44,9 +44,23 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. From the **Project** menu, choose **Build All**\. Confirm the project compiles without any errors\.
 
+### Monitoring MQTT messages on the cloud<a name="w43aac14c31c44c15b5"></a>
+
+Before you run the FreeRTOS demo project, you can set up the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
+
+**To subscribe to the MQTT topic with the AWS IoT MQTT client**
+
+1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
+
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
+
+1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
+
+When the demo project successfully runs on your device you see "Hello World\!" sent multiple times to the topic that you subscribed to\.
+
 ### Run the FreeRTOS demo project<a name="st-run-example"></a>
 
-1. Use a USB cable to connect your STMicroelectronics STM32L4 Discovery Kit IoT Node to your computer\. 
+1. Use a USB cable to connect your STMicroelectronics STM32L4 Discovery Kit IoT Node to your computer\. \(Check the manufacturer's documentation that came with your board for the correct USB port to use\.\)
 
 1. From **Project Explorer**, right\-click `aws_demos`, choose **Debug As**, and then choose **Ac6 STM32 C/C\+\+ Application**\.
 
@@ -64,7 +78,7 @@ If you experience issues during installation, see the FAQs on the [System Workbe
 
 1. When the debugger stops at the breakpoint in `main()`, from the **Run** menu, choose **Resume**\.
 
-### Using CMake with FreeRTOS<a name="w44aac14c31c44c15b7"></a>
+### Using CMake with FreeRTOS<a name="w43aac14c31c44c15b9"></a>
 
 If you prefer not to use an IDE for FreeRTOS development, you can alternatively use CMake to build and run the demo applications or applications that you have developed using third\-party code editors and debugging tools\.
 
@@ -83,18 +97,6 @@ If `arm-none-eabi-gcc` is not in your shell path, you also need to set the `AFR_
 ```
 
 For more information about using CMake with FreeRTOS, see [Using CMake with FreeRTOS](getting-started-cmake.md)\.
-
-### Monitoring MQTT messages on the cloud<a name="w44aac14c31c44c15b9"></a>
-
-You can use the MQTT client in the AWS IoT console to monitor the messages that your device sends to the AWS Cloud\.
-
-**To subscribe to the MQTT topic with the AWS IoT MQTT client**
-
-1. Sign in to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
-
-1. In the navigation pane, choose **Test** to open the MQTT client\.
-
-1. In **Subscription topic**, enter ***your\-thing\-name*/example/topic**, and then choose **Subscribe to topic**\.
 
 ## Troubleshooting<a name="st-troubleshooting"></a>
 

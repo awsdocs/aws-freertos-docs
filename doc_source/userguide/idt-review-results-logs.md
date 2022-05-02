@@ -47,7 +47,7 @@ The ID of the test case current running\.
 **`deviceId`**  
 A ID of the device under test that the current test case is using\.
 
-To print a test summary to the console when a IDT finishes running a test, you must include a [`Report` state](idt-state-machine.md#state-report) in your state machine\. The test summary contains information about the test suite, the test results for each group that was run, and the locations of the generated logs and report files\. The following example shows a test summary message\.
+The test summary contains information about the test suite, the test results for each group that was run, and the locations of the generated logs and report files\. The following example shows a test summary message\.
 
 ```
 ========== Test Summary ==========

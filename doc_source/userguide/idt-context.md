@@ -12,7 +12,8 @@ The IDT context uses the following format:
 {
     "config": {
         <config-json-content>
-        "timeoutMultiplier": timeout-multiplier
+        "timeoutMultiplier": timeout-multiplier,
+        "idtRootPath": <path/to/IDT/root>
     },
     "device": {
         <device-json-device-element>
@@ -43,9 +44,11 @@ The IDT context uses the following format:
 ```
 
 **`config`**  
-Information from the [`config.json` file](set-config-custom.md#config-json-custom)\. The `config` field also contains the following additional field:    
+Information from the [`config.json` file](set-config-custom.md#config-json-custom)\. The `config` field also contains the following additional fields:    
 **`config.timeoutMultiplier`**  
-The multiplier for the any timeout value used by the test suite\. This value is specified by the test runner from the IDT CLI\. The default value is `1`\.
+The multiplier for the any timeout value used by the test suite\. This value is specified by the test runner from the IDT CLI\. The default value is `1`\.  
+**`config.idRootPath`**  
+This value is a placeholder for the absolute path value of IDT while configuring the `userdata.json` file\. This is used by the build and flash commands\.
 
 **`device`**  
 Information about the device selected for the test run\. This information is equivalent to the `devices` array element in the [`device.json` file](set-config-custom.md#device-config-custom) for the selected device\.
@@ -71,7 +74,7 @@ Information provided by the test runner in the [`userdata.json` file](set-config
 
 ## Access data in the context<a name="accessing-context-data"></a>
 
-You can query the context using JSONPath notation from your JSON files and from your text executable with the `GetContextValue` and `GetContextString` APIs\. The syntax for JSONPath strings to access the IDT context varies as follows:
+You can query the context using JSONPath notation from your configuration files and from your text executable with the `GetContextValue` and `GetContextString` APIs\. The syntax for JSONPath strings to access the IDT context varies as follows:
 + In `suite.json` and `test.json`, you use `{{query}}`\. That is, do not use the root element `$.` to start your expression\.
 + In `statemachine.json`, you use `{{$.query}}`\.
 + In API commands, you use `query` or `{{$.query}}`, depending on the command\. For more information, see the inline documentation in the SDKs\. 

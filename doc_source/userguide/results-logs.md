@@ -116,7 +116,7 @@ When a test fails or an error occurs, `<failure>` or `<error>` tags are added to
 </testcase>
 ```
 
-For more information, see [Troubleshooting](dt-afr-troublshooting.md)\.
+For more information, see [Troubleshooting](dt-afr-troubleshooting.md)\.
 
 ### Viewing logs<a name="view-logs"></a>
 

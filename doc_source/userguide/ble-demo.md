@@ -327,7 +327,7 @@ In the MQTT over Bluetooth Low Energy demo, your microcontroller publishes messa
 
 1. Sign in to the AWS IoT console\.
 
-1. In the navigation pane, choose **Test** to open the MQTT client\.
+1. In the navigation pane, choose **Test**, then choose **MQTT test client** to open the MQTT client\.
 
 1. In **Subscription topic**, enter ***thing\-name*/example/topic1**, and then choose **Subscribe to topic**\.
 

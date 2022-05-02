@@ -24,7 +24,10 @@ The OTA Update service assumes this role to create and manage OTA update jobs on
 
 1. Enter a role name and description, and then choose **Create role**\.
 
-For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)\.<a name="add-ota-permissions"></a>
+For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)\.
+
+**Important**  
+To address the confused deputy security issue, you must follow instructions in the [AWS IoT Core](https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html) guide\.<a name="add-ota-permissions"></a>
 
 **To add OTA update permissions to your OTA service role**
 

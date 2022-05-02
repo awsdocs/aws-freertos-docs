@@ -2,7 +2,7 @@
 
 Save the following text to a file named `ca.config` in your current working directory\.
 
-This file is a modified version of the [ `openssl.cnf`](https://github.com/openssl/openssl/blob/master/apps/openssl.cnf) OpenSSL example configuration file\.
+This file is a modified version of the [https://github.com/openssl/openssl/blob/master/apps/openssl.cnf](https://github.com/openssl/openssl/blob/master/apps/openssl.cnf) OpenSSL example configuration file\.
 
 ```
 #

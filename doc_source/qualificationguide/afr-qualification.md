@@ -29,7 +29,7 @@ Those in the Amazon Partner Network can use the AWS Device Qualification Program
 
 Qualified boards are eligible for listing on the [AWS Partner Device Catalog](https://devices.amazonaws.com/search?page=1&sv=freertos)\.
 
-To qualify a device for FreeRTOS, you must port FreeRTOS to your device, and then follow the AWS Device Qualification Program steps\. For information, see the [AWS Device Qualification Program page](https://aws.amazon.com/partners/dqp/) and the [ AWS Device Qualification Program Guide](https://partnercentral.awspartner.com/sfc/#version?selectedDocumentId=0690L000005HXjb)\.
+To qualify a device for FreeRTOS, you must port FreeRTOS to your device, and then follow the AWS Device Qualification Program steps\. For information, see the [AWS Device Qualification Program page](https://aws.amazon.com/partners/dqp/) and the [AWS Device Qualification Program Guide](https://partnercentral.awspartner.com/sfc/#version?selectedDocumentId=0690L000005HXjb)\.
 
 For information about qualifying your device for FreeRTOS, see [Qualifying your device](freertos-qualification.md)\.
 
