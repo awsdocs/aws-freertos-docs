@@ -81,8 +81,8 @@ The Linux commands in this tutorial require that you use the Bash shell\.
 
 ### Set up the Espressif Hardware
 
-* For information about setting up the ESP32\-DevKitC development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
-* For information about setting up the ESP\-WROVER\-KIT development board hardware, see the [ ESP\-WROVER\-KIT V4\.1 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-wrover-kit.html)\.
++ For information about setting up the ESP32\-DevKitC development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
++ For information about setting up the ESP\-WROVER\-KIT development board hardware, see the [ ESP\-WROVER\-KIT V4\.1 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-wrover-kit.html)\.
 **Important**  
 When you reach the **Get Started** section of the Espressif guides, stop, and then return to the instructions on this page\.
 
