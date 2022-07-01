@@ -74,63 +74,88 @@ For more information about IAM and user accounts, see the [IAM User Guide](https
 
 For more information about policies, see [Permissions and policies in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
-## Get started with the ESP\-IDF v4\.2<a name="setup-espressif-idf42"></a>
+## Get started<a name="setup-espressif-idf42"></a>
 
 **Note**  
 The Linux commands in this tutorial require that you use the Bash shell\.
 
-1. Set up the Espressif hardware\.
+### Set up the Espressif Hardware
 
-   For information about setting up the ESP32\-DevKitC development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
-
-   For information about setting up the ESP\-WROVER\-KIT development board hardware, see the [ ESP\-WROVER\-KIT V4\.1 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-wrover-kit.html)\.
++ For information about setting up the ESP32\-DevKitC development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-devkitc.html)\.
++ For information about setting up the ESP\-WROVER\-KIT development board hardware, see the [ ESP\-WROVER\-KIT V4\.1 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/hw-reference/esp32/get-started-wrover-kit.html)\.
 **Important**  
 When you reach the **Get Started** section of the Espressif guides, stop, and then return to the instructions on this page\.
 
-1. Set up your development environment\.
+### Download Amazon FreeRTOS<a name="download-and-configure-espressif-idf42"></a>
 
-   To communicate with your board, you must download and install a toolchain\. Follow these instructions for your host machine's operating system:
-   + [ Standard Setup of Toolchain and prerequisites \(ESP\-IDF v4\.2\) for Windows](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/windows-setup.html)\.
-   + [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for macOS](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/macos-setup.html)\.
-   + [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for Linux](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/linux-setup.html)\.
+You can download Amazon FreeRTOS from either
++  [GitHub](https://github.com/aws/amazon-freertos) \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
++  [FreeRTOS console](https://console.aws.amazon.com/freertos) \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32\-DevKitC**"\.\) 
+
+### Set up your development environment\.
+
+To communicate with your board, you must install a toolchain\. Espressif provides ESP-IDF to develop for their boards. Since ESP-IDF has its own version of the FreeRTOS Kernel integrated as a component, Amazon FreeRTOS includes a custom version of ESP-IDF v4.2 with the FreeRTOS Kernel removed to fix problems with duplicate files when compiling\. To use the custom version of ESP-IDF v4.2 included with Amazon FreeRTOS, follow the below instructions for your host machine's operating system\.
+
+#### Windows
+1. Download ESP-IDF's **Universal Online Installer** for Windows from [here](https://dl.espressif.com/dl/esp-idf/?idf=4.2)\.
+
+1. Run the **Universal Online Installer**\. 
+
+1. When you get to the **Download or use ESP-IDF** step, choose **Use an existing ESP-IDF directory** and set the **Choose existing ESP-IDF directory** to `freertos/vendors/espressif/esp-idf`\.
+
+1. Complete the installation.
+
+#### macOS
+
+1. Follow [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for macOS](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/macos-setup.html)\.
 **Important**  
 When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and then return to the instructions on this page\.
 
-1. Complete the installation \(Linux / macOS\)\.
+1. Open a command line window\.
 
-   The ESP\-IDF Windows installer installs all of the necessary tools\. The Linux and macOS platforms require an additional step to complete the installation\. Please follow the steps below after you [Download and configure FreeRTOS](#download-and-configure-espressif-idf42)\. 
-
-   1. Open a command line window\.
-
-   1. Navigate to the FreeRTOS download directory, and then run the following script to download and install the espressif toolchain for your platform\.
+1. Navigate to the FreeRTOS download directory, and then run the following script to download and install the espressif toolchain for your platform\.
 
       ```
       vendors/espressif/esp-idf/install.sh
       ```
 
-   1. Add the ESP\\\-IDF toolchain tools to your terminal's path with the following command\.
+1. Add the ESP-IDF toolchain tools to your terminal's path with the following command\.
 
       ```
       source vendors/espressif/esp-idf/export.sh
       ```
 
-1. Establish a serial connection\.
+#### Linux
+
+1. Follow [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for Linux](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/linux-setup.html)\.
+**Important**  
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and then return to the instructions on this page\.
+
+1. Open a command line window\.
+
+1. Navigate to the FreeRTOS download directory, and then run the following script to download and install the espressif toolchain for your platform\.
+
+      ```
+      vendors/espressif/esp-idf/install.sh
+      ```
+
+1. Add the ESP-IDF toolchain tools to your terminal's path with the following command\.
+
+      ```
+      source vendors/espressif/esp-idf/export.sh
+      ```
+
+### Establish a serial connection
 
    To establish a serial connection between your host machine and the ESP32\-DevKitC, you must install the CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [ Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\.
 
    To establish a serial connection between your host machine and the ESP32\-WROVER\-KIT, you must install the FTDI virtual COM port driver\. You can download this driver from [FTDI](https://www.ftdichip.com/Drivers/VCP.htm)\.
 
-   For more information, see [ Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.
+   For more information, see [ Establish Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/establish-serial-connection.html)\. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it to flash the demo\.
 
-### Download and configure FreeRTOS<a name="download-and-configure-espressif-idf42"></a>
-
-After you set up your environment, you can download FreeRTOS from either
-+  [GitHub](https://github.com/aws/amazon-freertos) \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
-+  [FreeRTOS console](https://console.aws.amazon.com/freertos) \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32\-DevKitC**"\.\) 
+### Configure the FreeRTOS demo applications
 
 For this tutorial, the FreeRTOS configuration file is located at `freertos/vendors/espressif/boards/board-name/aws_demos/config_files/FreeRTOSConfig.h`\. \(For example, if `AFR_BOARD espressif.esp32_devkitc` is chosen, the configuration file is located at `freertos/vendors/espressif/boards/esp32/aws_demos/config_files/FreeRTOSConfig.h`\.\) 
-
-**Configure the FreeRTOS demo applications**
 
 1. If you're running macOS or Linux, open a terminal prompt\. If you're running Windows, open the "ESP\-IDF 4\.x CMD" app \(if you included this option when you installed the ESP\-IDF toolchain\), or the "Command Prompt" app otherwise\.  
 
