@@ -65,55 +65,93 @@ For more information about IAM, see the [IAM User Guide](https://docs.aws.amazon
 
 For more information about policies, see [Permissions and policies in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html)\.
 
-## Get started with ESP\-IDF v4\.2<a name="setup-esp32wroom-32se-idf42"></a>
+## Get started<a name="setup-esp32wroom-32s-idf42"></a>
 
 **Note**  
 The Linux commands in this tutorial require that you use the Bash shell\.
 
-1. Set up the Espressif hardware\.
+1. **Set up the Espressif hardware\.**
 
    For information about setting up the ESP32\-WROOM\-32SE development board hardware, see the [ ESP32\-DevKitC V4 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/index.html#installation-step-by-step)\.
 **Important**  
 When you reach the **Installation Step by Step** section of the guide, follow till you complete Step 4 \(Set up the environment variables\)\. Stop after you complete Step 4 and follow the remaining steps here\.
 
-1. Set up your development environment\.
+1. **Download Amazon FreeRTOS**
 
-   To communicate with your board, you need to download and install a toolchain\. Follow the instructions for your host machine's operating system:
-   + [ Standard Setup of Toolchain and prerequisites \(ESP\-IDF v4\.2\) for Windows](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/windows-setup.html)
-   + [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for macOS](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/macos-setup.html)
-   + [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for Linux](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/linux-setup.html)
+   You can download Amazon FreeRTOS from either:
+   + [GitHub](https://github.com/aws/amazon-freertos)
+
+     \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
+   + [FreeRTOS console](https://console.aws.amazon.com/freertos)
+
+     \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32\-DevKitC with ATECC608A**"\.\)
+
+1. **Set up your development environment**\.
+
+   To communicate with your board, you must install a toolchain\. Espressif provides the ESP\-IDF to develop software for their boards\. Since the ESP\-IDF has its own version of the FreeRTOS Kernel integrated as a component, Amazon FreeRTOS includes a custom version of the ESP\-IDF v4\.2 that has the FreeRTOS Kernel removed\. This fixes problems with duplicate files when you compile\. To use the custom version of the ESP\-IDF v4\.2 included with Amazon FreeRTOS, follow the instructions below for your host machine's operating system\.
+
+   **Windows**
+
+   1. Download ESP\-IDF's [ Universal Online Installer](https://dl.espressif.com/dl/esp-idf/?idf=4.2) for Windows\.
+
+   1. Run the **Universal Online Installer**\.
+
+   1. When you get to the step **Download or use ESP\-IDF**, select **Use an existing ESP\-IDF directory** and set **Choose existing ESP\-IDF directory** to `freertos/vendors/espressif/esp-idf`\.
+
+   1. Complete the installation\.
+
+   **macOS**
+
+   1. Follow the instructions in the [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for macOS](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/macos-setup.html)\.
 **Important**  
-When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and then return to these instructions\.
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and then return to the instructions on this page\.
 
-1. Complete the installation \(Linux / macOS\)\.
+   1. Open a command line window\.
 
-   The ESP\-IDF Windows installer installs all of the necessary tools\. The Linux and mac OS X platforms require an additional step in order to complete the installation\. Please follow the steps below after you [download and configure FreeRTOS](#setup-esp32wroom-32se-idf42-download-freertos)\.
-
-   1. Open a command line window, navigate to the FreeRTOS download directory, and then run the following script to download and install the espressif toolchain for your platform\.
+   1. Navigate to the FreeRTOS download directory, and then run the following script to download and install the espressif toolchain for your platform\.
 
       ```
       vendors/espressif/esp-idf/install.sh
       ```
 
-   1. Next, add the ESP\-IDF toolchain tools to your terminal's path with the following command\.
+   1. Add the ESP\-IDF toolchain tools to your terminal's path with the following command\.
 
       ```
       source vendors/espressif/esp-idf/export.sh
       ```
 
-**Establish a serial connection**
+   **Linux**
 
-1. To establish a serial connection between your host machine and the ESP32\-WROOM\-32SE, install the CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\.
+   1. Follow the instructions in the [ Standard Setup of Toolchain prerequisites \(ESP\-IDF v4\.2\) for Linux](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/linux-setup.html)\.
+**Important**  
+When you reach the "Get ESP\-IDF" instructions under **Next Steps**, stop, and then return to the instructions on this page\.
 
-1. Follow the steps to [ Establish a Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/establish-serial-connection.html)\.
+   1. Open a command line window\.
 
-1. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it when you build the demo\.<a name="setup-esp32wroom-32se-idf42-download-freertos"></a>
+   1. Navigate to the FreeRTOS download directory, and then run the following script to download and install the Espressif toolchain for your platform\.
 
-**Download and configure FreeRTOS**
+      ```
+      vendors/espressif/esp-idf/install.sh
+      ```
 
-1. After you set up your environment, you can download FreeRTOS from either
-   +  [GitHub](https://github.com/aws/amazon-freertos) \(For instructions, see the [README\.md](https://github.com/aws/amazon-freertos/blob/main/README.md) file\.\)
-   +  [FreeRTOS console](https://console.aws.amazon.com/freertos) \(Select the correct **Configuration** and **Hardware Platform** that matches your device, for example "**Connect to AWS IoT \- ESP32\-DevKitC with ATECC608A**"\.\) 
+   1. Add the ESP\-IDF toolchain tools to your terminal's path with the following command\.
+
+      ```
+      source vendors/espressif/esp-idf/export.sh
+      ```
+
+1. **Establish a serial connection\.**
+
+   1. To establish a serial connection between your host machine and the ESP32\-WROOM\-32SE, install the CP210x USB to UART Bridge VCP drivers\. You can download these drivers from [ Silicon Labs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)\.
+
+   1. Follow the steps to [ Establish a Serial Connection with ESP32](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/get-started/establish-serial-connection.html)\.
+
+   1. After you establish a serial connection, make a note of the serial port for your board's connection\. You need it to flash the demo\.
+
+### Configure the FreeRTOS demo applications<a name="configure-demos-esp32wroom-32s-idf42"></a>
+
+For this tutorial, the FreeRTOS configuration file is located at `freertos/vendors/espressif/boards/board-name/aws_demos/config_files/FreeRTOSConfig.h`\. \(For example, if `AFR_BOARD espressif.esp32_devkitc` is chosen, the configuration file is located at `freertos/vendors/espressif/boards/esp32/aws_demos/config_files/FreeRTOSConfig.h`\.\) 
+
 **Important**  
 The ATECC608A device has a one\-time initialization that is locked onto the device the first time a project is run \(during the call to `C_InitToken`\)\. However, the FreeRTOS demo project and test project have different configurations\. If the device is locked during the demo project configurations, not all tests in the test project will succeed\.
 

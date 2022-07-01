@@ -477,7 +477,7 @@ To execute CMake test cases, you must provide the board name, vendor name, and e
 
 The commands to build your code and flash the device might require connectivity or other information about your devices to run successfully\. AWS IoT Device Tester allows you to reference device information in flash and build commands using [JsonPath](http://goessner.net/articles/JsonPath/)\. By using simple JsonPath expressions, you can fetch the required information specified in your `device.json` file\.
 
-#### Path variables<a name="path-variables"></a>
+#### Path variables<a name="path-variables-frq"></a>
 
 IDT for FreeRTOS defines the following path variables that can be used in command lines and configuration files:
 

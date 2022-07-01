@@ -1,7 +1,7 @@
 # Getting started guide template<a name="getting_started_template"></a>
 
 Write an overview that provides a brief description of the board\. This section should answer the following questions:
-+ Which hardware is required to run the FreeRTOS Hello World demo?
++ Which hardware is required to run the demo application?
 
   Provide links to pages on your company website for more detail\.
 + Which IDEs are supported for developing applications for the board?
@@ -36,16 +36,13 @@ These instructions include the following:
 + Downloading and installing a supported IDE\.
 + Any other software that is required to develop and debug applications for the device\.
 
-## Build and run the FreeRTOS demo project<a name="template-build-and-run-example"></a>
+## Build and run the demo application<a name="template-build-and-run-example"></a>
 
-### Build the FreeRTOS demo<a name="template-freertos-import-project"></a>
+### Build the demo application<a name="template-freertos-import-project"></a>
 
-In this section, provide instructions for building the FreeRTOS demo code in a supported IDE, or with supported command line tools\.
+In this section, provide instructions for building the provided demo application in a supported IDE, or with supported command line tools\.
 
-**Note**  
-You must provide instructions for building the demo application on your board with CMake\.
-
-### Run the FreeRTOS demo project<a name="template-run-examples"></a>
+### Run the demo application project<a name="template-run-examples"></a>
 
 In this section, provide instructions for flashing and running the FreeRTOS demo code on your board\.
 
@@ -56,3 +53,5 @@ In this section, provide instructions for using on\-board or external debuggers\
 ## Troubleshooting<a name="template-troubleshooting"></a>
 
 In this section, provide troubleshooting tips for resolving common or potential problems\.
+
+A **Getting Started Guide** template is available for download from the [APN Partner Portal](https://partnercentral.awspartner.com/ContentFolderPartner?id=0690h000009VVzsAAG) here\. Credentials to sign in are required\.

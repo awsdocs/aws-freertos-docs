@@ -1,16 +1,16 @@
 # FreeRTOS manifest file instructions<a name="afq-checklist-manifest-instr"></a>
 
-A manifest file is required in all LTS\-based FreeRTOS projects to help customers delineate between dependency versions that are being used, which libraries are LTS, and other metadata that helps customers evaluate and use the software more quickly\.
+A manifest file is required for AWS IoT Device Tester to identify versions and libraries being used\. It helps customers delineate versions, libraries dependencies, and metadata\.
 
 The file should meet the following requirements:
-+ Named `manifest.yml`
-+ Placed in the `freertos/vendors/vendor/boards/board/` directory
-+ Be in YAML format and follow the [YAML 1\.2 specification](https://yaml.org/spec/1.2/spec.html)
++ The file must be named `manifest.yml`\.
++ It must be in the base folder of the library or package\.
++ It must be in YAML format and follow the [YAML 1\.2 specifications](https://yaml.org/spec/1.2/spec.html)\.
 
-The parameters can be in any order, but we recommended that you put them in the order listed below for optimal readability\. Add comments to the file that help customers use or understand your package\.
+The parameters can be in any order, but we recommend that you put them in the order listed below for optimal readability\. Add comments to the file to help customers use your package\.
 
 **File path**  
-Located at the root of a package or library\. There is only one manifest per package\. Dependencies that are brought in might have their own manifest files\.
+Located at the root of a package or library\. There is only one manifest file per package\. Dependencies that are brought in may have their own manifest files\.
 
 **Parameters**    
 **name**  
@@ -32,7 +32,7 @@ The human\-readable description of the package\. The description should clearly 
 + minLength: 30
 + maxLength: 255  
 **dependencies**  
-A list of all first level dependencies that are required for a user to successfully build this package and which can be retrieved by a Git, Subversion, or Mercurial source code host\. Don't include dependencies that are not available through Git, SVG, or hg\. Don't include dependencies used for tests, documentation generation, or development\. To ensure a good experience for the general public, we recommend that you avoid listing dependencies that are gated or private\.  
+A list of all first\-level dependencies that are required for a user to successfully build this package and which can be retrieved by a Git, Subversion, or Mercurial source code host\. Don't include dependencies that are not available through Git, SVG, or hg\. Don't include dependencies used for tests, documentation generation, or development\. To promote a good experience, we recommend you avoid listing dependencies that are gated or private\.  
 + type: array
 + required: false
 + minLength: 0  
@@ -61,8 +61,12 @@ The type of repository\.
 The URL of the location of the repository\. This must be a full URL with a protocol prefix \(for example, https://github\.com/*ACCOUNT\_NAME*/*REPO\_NAME*\)\.  
 + type: string
 + required: true  
+**dependencies\[\]\.repository\.path**  
+The relative path from the project workspace for the dependency\.  
++ type: string
++ required: true  
 **dependencies\[\]\.repository\.branch**  
-The branch of the dependency that is used\. If the package uses the default main branch, don't include this parameter to keep the length of the manifest at a minimum\.  
+The branch of the dependency that is used\. If the package uses the release branch of libraries, don't include this parameter to keep the length of the manifest at a minimum\.  
 + type: string
 + required: false  
 **license**  

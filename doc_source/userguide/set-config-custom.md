@@ -29,12 +29,14 @@ Test runners can provide this information using the following template `device.j
         ],     
         "devices": [
             {
-                "id": "<device-id>",              
+                "id": "<device-id>",    
+                "pairedResource": "<device-id>", //used for no-op protocol
                 "connectivity": {
-                    "protocol": "ssh | uart | docker",                   
+                    "protocol": "ssh | uart | docker | no-op",                   
                     // ssh
                     "ip": "<ip-address>",
                     "port": <port-number>,
+                    "publicKeyPath": "<public-key-path>",
                     "auth": {
                         "method": "pki | password",
                         "credentials": {
@@ -86,9 +88,12 @@ The supported setting values\.
 An array of devices in the pool to be tested\. At least one device is required\.    
 **`devices.id`**  
 A user\-defined unique identifier for the device being tested\.  
+**`devices.pairedResource`**  
+A user\-defined unique identifier for a resource device\. This value is required when you test devices using the `no-op` connectivity protocol\.  
 **`connectivity.protocol`**  
 The communication protocol used to communicate with this device\. Each device in a pool must use the same protocol\.  
-Currently, the only supported values are `ssh` and `uart` for physical devices, and `docker` for Docker containers\.  
+Currently, the only supported values are `ssh` and `uart` for physical devices, `docker` for Docker containers, and `no-op` for devices who don't have a direct connection with the IDT host machine but require a resource device as physical middleware to communicate with the host machine\.   
+For no\-op devices, you configure the resource device ID in `devices.pairedResource`\. You must also specify this ID in the `resource.json` file\. The paired device must be a device that is physically paired with the device under test\. After IDT identifies and connects to the paired resource device, IDT will not connect to other resource devices according to the features described in the `test.json` file\.  
 **`connectivity.ip`**  
 The IP address of the device being tested\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
@@ -96,6 +101,9 @@ This property applies only if `connectivity.protocol` is set to `ssh`\.
 Optional\. The port number to use for SSH connections\.  
 The default value is 22\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
+**`connectivity.publicKeyPath`**  
+ Optional\. The full path to the public key used to authenticate connections to the device under test\. When you specify the `publicKeyPath`, IDT validates the device’s public key when it establishes an SSH connection to the device under test\. If this value is not specified, IDT creates an SSH connection, but doesn’t validate the device’s public key\.   
+We strongly recommend that you specify the path to the public key, and that you use a secure method to fetch this public key\. For standard command line\-based SSH clients, the public key is provided in the `known_hosts` file\. If you specify a separate public key file, this file must use the same format as the `known_hosts` file, that is, `ip-address key-type public-key`\.   
 **`connectivity.auth`**  
 Authentication information for the connection\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.    
@@ -156,6 +164,7 @@ Test runners can provide this information using the following template `resource
                     // ssh
                     "ip": "<ip-address>",
                     "port": <port-number>,
+                    "publicKeyPath": "<public-key-path>",
                     "auth": {
                         "method": "pki | password",
                         "credentials": {
@@ -209,6 +218,9 @@ This property applies only if `connectivity.protocol` is set to `ssh`\.
 Optional\. The port number to use for SSH connections\.  
 The default value is 22\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.  
+**`connectivity.publicKeyPath`**  
+ Optional\. The full path to the public key used to authenticate connections to the device under test\. When you specify the `publicKeyPath`, IDT validates the device’s public key when it establishes an SSH connection to the device under test\. If this value is not specified, IDT creates an SSH connection, but doesn’t validate the device’s public key\.   
+We strongly recommend that you specify the path to the public key, and that you use a secure method to fetch this public key\. For standard command line\-based SSH clients, the public key is provided in the `known_hosts` file\. If you specify a separate public key file, this file must use the same format as the `known_hosts` file, that is, `ip-address key-type public-key`\.   
 **`connectivity.auth`**  
 Authentication information for the connection\.  
 This property applies only if `connectivity.protocol` is set to `ssh`\.    

@@ -1,8 +1,8 @@
-# Creating a getting started with FreeRTOS guide for your device<a name="afq-gsg"></a>
+# Creating a Getting Started with FreeRTOS guide for your board<a name="afq-gsg"></a>
 
-To qualify for FreeRTOS, you need to create a Getting Started with FreeRTOS guide for your device\. This guide walks users through setting up the hardware and development environment for developing applications for FreeRTOS devices, and building, running, and flashing the FreeRTOS Hello World demo on a device\.
+To qualify for FreeRTOS, you must create a Getting Started with FreeRTOS guide for your board\. This guide walks users through setting up the hardware and development environment for developing applications for FreeRTOS devices, and building, running, and flashing the created demo application on a device\.
 
-This guide must be available to customers on a public website\. The URL to the guide is a requirement for listing a qualified board in the AWS Partner Device Catalog\.
+This guide must be available to customers from a public website\. The URL to the guide is a requirement for listing a qualified board in the AWS Partner Device Catalog\.
 
 Your guide must include the following instructions:
 + Setting up the device hardware\.
@@ -19,4 +19,4 @@ We also recommend that your guide includes:
 **Important**  
 Where instructions differ by operating system, you must provide instructions for Windows, Linux, and macOS operating systems\.
 
-Follow the [Getting started guide template](getting_started_template.md) when you write the guide for your board\. You can find examples of published guides for other qualified boards in the [FreeRTOS User Guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\.
+Follow the [Getting started guide template](getting_started_template.md) while writing the guide for your board\. You can find examples of published guides for other qualified boards in the [FreeRTOS User Guide](https://docs.aws.amazon.com/freertos/latest/userguide/freertos-getting-started.html)\. A template for a Getting Started Guide is available at [ APN Partner Central](https://partnercentral.awspartner.com/)\.

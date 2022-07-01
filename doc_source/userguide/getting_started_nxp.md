@@ -4,7 +4,7 @@ This tutorial provides instructions for getting started with the NXP LPC54018 Io
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w43aac14c31c40b9"></a>
+## Overview<a name="w47aac14c31c40b9"></a>
 
 This tutorial contains instructions for the following getting started steps:
 

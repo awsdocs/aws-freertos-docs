@@ -1,4 +1,6 @@
-# Use IDT with the FreeRTOS qualification suite \(FRQ\)<a name="idt-freertos-qualification"></a>
+# Use IDT with FreeRTOS qualification suite 1\.0 \(FRQ 1\.0\)<a name="idt-freertos-qualification"></a>
+
+We do not recommend new devices to qualify using FRQ 1\.0\. Instead use [Use IDT with FreeRTOS qualification suite 2\.0 \(FRQ 2\.0\)](lts-idt-freertos-qualification.md) 
 
  You can use IDT for FreeRTOS qualification to verify that the FreeRTOS operating system works locally on your device and can communicate with AWS IoT\. Specifically, it verifies that the porting layer interfaces for the FreeRTOS libraries are implemented correctly\. It also performs end\-to\-end tests with AWS IoT Core\. For example, it verifies your board can send and receive MQTT messages and process them correctly\. The tests run by IDT for FreeRTOS are defined in the [FreeRTOS GitHub repository](https://github.com/aws/amazon-freertos)\.
 
@@ -26,5 +28,4 @@ When you run IDT for FreeRTOS on your host computer, it performs the following s
 + [Use the IDT for FreeRTOS user interface to run the FreeRTOS qualification suite](device-tester-ui.md)
 + [Running Bluetooth Low Energy tests](afr-bridgekeeper-dt-bt.md)
 + [Running the FreeRTOS qualification suite](run-tests.md)
-+ [AWS IoT Device Tester for FreeRTOS test suite versions](idt-test-suite-versions.md)
 + [Understanding results and logs](results-logs.md)

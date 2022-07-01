@@ -88,11 +88,13 @@ To register your board, follow the procedures below\.
 
    ```
    {
-       "endpointAddress": "xxxxxxxxxxxxxx.iot.us-west-2.amazonaws.com"
+       "endpointAddress": "xxxxxxxxxxxxxx-ats.iot.us-west-2.amazonaws.com"
    }
    ```
 
    In this example, the region is `us-west-2`\.
+**Note**  
+We recommend using ATS endpoints as seen in the example\.
 
 1. Browse to the [AWS IoT console](https://console.aws.amazon.com/iotv2/)\.
 

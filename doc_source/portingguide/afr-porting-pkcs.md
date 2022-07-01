@@ -1,143 +1,161 @@
 # Porting the corePKCS11 library<a name="afr-porting-pkcs"></a>
 
-The corePKCS11 library contains a software\-based mock implementation of the PKCS \#11 interface \(API\) that uses the cryptographic functionality provided by Mbed TLS\. Storing private keys in general\-purpose flash memory can be convenient in evaluation and rapid prototyping scenarios\. In production scenarios, to reduce the threats of data theft and device duplication, we recommend that you use dedicated cryptographic hardware\. Cryptographic hardware includes components with features that prevent cryptographic secret keys from being exported\. 
+The Public Key Cryptography Standard \#11 defines a platform\-independent API to manage and use cryptographic tokens\. [PKCS 11](https://en.wikipedia.org/wiki/PKCS_11) refers to the standard and the APIs defined by it\. The PKCS \#11 cryptographic API abstracts key storage, get/set properties for cryptographic objects, and session semantics\. It's widely used for manipulating common cryptographic objects\. Its functions allow application software to use, create, modify, and delete cryptographic objects, without exposing those objects to the application's memory\. 
 
-To use dedicated cryptographic hardware with FreeRTOS, port the PKCS \#11 API for the hardware you are using\. Generally, vendors for secure cryptoprocessors, such as Trusted Platform Module \(TPM\), Hardware Security Module \(HSM\), Secure Element, or any other type of secure hardware enclave, distribute a PKCS \#11 implementation with the hardware\. You can add the library to CMake and your IDE project, compile it and run the PKCS \#11 test suite\.
+FreeRTOS libraries and reference integrations use a subset of the PCKS \#11 interface standard, with a focus on the operations involving asymmetric keys, random number generation, and hashing\. The below table lists the use cases and required PKCS \#11 APIs to support\.
 
-This section describes how to use the FreeRTOS corePKCS11 library as the basis of your own port of the PKCS \#11 API\. Only a subset of the PKCS \#11 standard is implemented, with a focus on operations involving asymmetric keys, random number generation, and hashing\. PKCS \#11 API calls are made by the TLS helper interface in order to perform TLS client authentication during `SOCKETS_Connect`\. PKCS \#11 API calls are also made by our one\-time developer provisioning workflow to import a TLS client certificate and private key for authentication to the AWS IoT MQTT broker\. Those two use cases, provisioning and TLS client authentication, require implementation of only a small subset of the PKCS \#11 interface standard\.
 
-For information about the FreeRTOS corePKCS11 library, see [FreeRTOS corePKCS11 Library](https://docs.aws.amazon.com/freertos/latest/userguide/security-pkcs.html) in the *FreeRTOS User Guide*\.
+**Use Cases**  
 
-## Prerequisites<a name="porting-prereqs-pkcs"></a>
+| Use Case | Required PKCS \#11 API Family | 
+| --- | --- | 
+| All | Initialize, Finalize, Open/Close Session, GetSlotList, Login | 
+| Provisioning | GenerateKeyPair, CreateObject, DestroyObject, InitToken, GetTokenInfo | 
+| TLS | Random, Sign, FindObject, GetAttributeValue | 
+| FreeRTOS\+TCP | Random, Digest | 
+| OTA | Verify, Digest, FindObject, GetAttributeValue | 
 
-To port the corePKCS11 library, you need the following:
-+ An IDE project or `CMakeLists.txt` list file that includes vendor\-supplied drivers that are suitable for sensitive data\.
+## When to implement a complete PKCS \#11 module<a name="implemeting-pkcs"></a>
 
-  For information about setting up a test project, see [Setting Up Your FreeRTOS Source Code for Porting](porting-set-up-project.md)\.
-+ A validated configuration of the FreeRTOS kernel\.
+Storing private keys in general\-purpose flash memory can be convenient in evaluation and rapid prototyping scenarios\. We recommend you use dedicated cryptographic hardware to reduce the threats of data theft and device duplication in production scenarios\. Cryptographic hardware includes components with features that prevent cryptographic secret keys from being exported\. To support this, you will have to implement a subset of PKCS \#11 required to work with FreeRTOS libraries as defined in the above table\. 
 
-  For information about configuring the FreeRTOS kernel for your platform, see [Configuring a FreeRTOS kernel port](afr-porting-kernel.md)\.
+## When to use FreeRTOS corePKCS11<a name="using-pkcs"></a>
 
-## Porting<a name="porting-steps-pkcs"></a>
+The corePKCS11 library contains a software\-based implementation of the PKCS \#11 interface \(API\) that uses the cryptographic functionality provided by [Mbed TLS](https://tls.mbed.org/)\. This is provided for rapid prototyping and evaluation scenarios where the hardware does not have a dedicated cryptographic hardware\. In this case, you only have to implement corePKCS11 PAL to make the corePKCS11 software\-based implementation to work with your hardware platform\. 
 
-**To port the corePKCS11 library**
+## Porting corePKCS11<a name="porting-core-pkcs"></a>
 
-1. Port the PKCS \#11 API functions implemented by corePKCS11\.
+You will have to have implementations to read and write cryptographic objects to non\-volatile memory \(NVM\), such as on\-board flash memory\. Cryptographic objects must be stored in a section of NVM that is not initialized and is not erased on device reprogramming\. Users of the corePKCS11 library will provision devices with credentials, and then reprogram the device with a new application that accesses these credentials through the corePKCS11 interface\. The corePKCS11 PAL ports must provide a location to store: 
++ The device client certificate
++ The device client private key
++ The device client public key
++ A trusted root CA
++ A code\-verification public key \(or a certificate that contains the code\-verification public key\) for secure boot\-loader and over\-the\-air \(OTA\) updates
++ A Just\-In\-Time provisioning certificate
 
-   The PKCS \#11 API is dependent on the implementation of cryptographic primitives, such as SHA256 hashing and Elliptic Curve Digital Signature Algorithm \(ECDSA\) signing\.
+Include [the header file](https://github.com/FreeRTOS/corePKCS11/blob/main/source/include/core_pkcs11_pal.h) and implement the PAL APIs defined\.
 
-   The FreeRTOS implementation of PKCS \#11 uses the cryptographic primitives implemented in the mbedTLS library\. FreeRTOS includes a port for mbedTLS\. If your target hardware offloads crypto to a separate module, or if you want to use a software implementation of the cryptographic primitives other than mbedTLS, you need to modify the existing PKCS \#11 implementation\.
 
-1. Port the corePKCS11 Platform Abstraction Layer \(PAL\) for device\-specific certificate and key storage\.
+**PAL APIs**  
 
-   If you decide to use the FreeRTOS implementation of PKCS \#11, little customization is required to read and write cryptographic objects to non\-volatile memory \(NVM\), such as onboard flash memory\.
-
-   Cryptographic objects should be stored in a section of NVM that is not initialized and is not erased on device reprogramming\. Users of the corePKCS11 library should be able to provision devices with credentials, and then reprogram the device with a new application that accesses these credentials through the corePKCS11 interface\.
-
-   corePKCS11 PAL ports must provide a location to store:
-   + The device client certificate\. 
-   + The device client private key\.
-   + The device client public key\.
-   + A trusted root CA\.
-   + A code\-verification public key \(or a certificate that contains the code\-verification public key\) for secure bootloader and over\-the\-air \(OTA\) updates\.
-   + A Just\-In\-Time provisioning certificate\.
-
-    `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c` contains empty definitions for the PAL functions\. You must provide ports for, at minimum, the functions listed in this table:    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-pkcs.html)
-
-1. Add support for a cryptographically random entropy source to your port:
-   + If your ports use the mbedTLS library for underlying cryptographic and TLS support, and your device has a true random number generator \(TRNG\):
-
-     1. Implement the [ mbedtls\_hardware\_poll\(\)](https://github.com/ARMmbed/mbedtls/blob/master/library/entropy_poll.h#L49-L60) function to seed the deterministic random bit generator \(DRBG\) that mbedTLS uses to produce a cryptographically random bit stream\. The `mbedtls_hardware_poll()` function is located in `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c`\. 
-   + If your ports use the mbedTLS library for underlying cryptographic and TLS support, but your device does not have a TRNG:
-
-     1. Make a copy of `freertos/libraries/3rdparty/mbedtls/include/mbedtls/config.h`, and in that copy, uncomment `MBEDTLS_ENTROPY_NV_SEED`, and comment out `MBEDTLS_ENTROPY_HARDWARE_ALT`\.
-
-        Save the modified version of `config.h` to `freertos/vendors/vendor/boards/board/aws_tests/config_files/config.h`\. Do not overwrite the original file\.
-
-     1. Implement the functions `mbedtls_nv_seed_poll()`, `nv_seed_read_func()`, and `nv_seed_write_func()`\.
-
-        For information about implementing these functions, see the comments in the [ mbedtls/library/mbedtls/entropy\_poll\.h](https://github.com/ARMmbed/mbedtls/blob/master/library/entropy_poll.h#L62-L70) and [ mbedtls/include/mbedtls/platform\.h](https://github.com/ARMmbed/mbedtls/blob/master/include/mbedtls/platform.h#L315-L355) mbedTLS header files\.
-**Important**  
-A seed file with an NIST\-approved entropy source must be supplied to the device at manufacturing time\.
-**Note**  
-If you are interested in the FreeRTOS Qualification Program, please read our requirements for [RNG](https://docs.aws.amazon.com/freertos/latest/qualificationguide/afq-checklist.html)\.
-
-   For more information about NIST\-approved DRBGs and entropy sources, see the following NIST publications:
-   + [ Recommendation for Random Number Generation Using Deterministic Random Bit Generators](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf)
-   + [ Recommendation for Random Bit Generator \(RBG\) Constructions](https://csrc.nist.gov/csrc/media/publications/sp/800-90c/draft/documents/draft-sp800-90c.pdf)
+| Function | Description | 
+| --- | --- | 
+| PKCS11\_PAL\_Initialize |  Initializes the PAL layer\. Called by the corePKCS11 library at the start of its initialization sequence\.  | 
+| PKCS11\_PAL\_SaveObject |  Writes data to non\-volatile storage\.  | 
+| PKCS11\_PAL\_FindObject |  Uses a PKCS \#11 `CKA_LABEL` to search for a corresponding PKCS \#11 object in non\-volatile storage, and returns that object’s handle, if it exists\.  | 
+| PKCS11\_PAL\_GetObjectValue |  Retrieves the value of an object, given the handle\.  | 
+| PKCS11\_PAL\_GetObjectValueCleanup |  Cleanup for the `PKCS11_PAL_GetObjectValue` call\. Can be used to free memory allocated in a `PKCS11_PAL_GetObjectValue` call\.  | 
 
 ## Testing<a name="porting-testing-pkcs"></a>
 
-If you are using an IDE to build test projects, you need to set up your library port in the IDE project\.
+If you use the FreeRTOS corePKCS11 library or implement the required subset of PKCS11 APIs, you must pass FreeRTOS PKCS11 tests\. These test if the required functions for FreeRTOS libraries perform as expected\.
 
-### Setting up the IDE test project<a name="testing-ide-pkcs"></a>
+This section also describes how you can locally run the FreeRTOS PKCS11 tests with the qualification tests\.
 
-If you are using an IDE for porting and testing, you need to add some source files to the IDE test project before you can test your ported code\.
+### Prerequisites<a name="porting-testing-prereqs"></a>
 
-**Important**  
-In the following steps, make sure that you add the source files to your IDE project from their on\-disk location\. Do not create duplicate copies of source files\.
+To set up the FreeRTOS PKCS11 tests, the following has to be implemented\.
++ A supported port of PKCS11 APIs\.
++ An implementation of FreeRTOS qualification tests [platform functions](https://github.com/FreeRTOS/Labs-FreeRTOS-Libraries-Integration-Tests/blob/dev-core-pkcs11-test/src/common/platform_function.h) which include the following:
+  + `FRTest_ThreadCreate`
+  + `FRTest_ThreadTimedJoin`
+  + `FRTest_MemoryAlloc`
+  + `FRTest_MemoryFree`
 
-**To set up the corePKCS11 library in the IDE project**
+### Porting tests<a name="porting-tests-pkcs11"></a>
++ Add [ FreeRTOS\-Libraries\-Integration\-Tests](https://github.com/FreeRTOS/FreeRTOS-Libraries-Integration-Tests/tree/dev-core-pkcs11-test) as a submodule into your project\. The submodule can be placed in any directory of the project, as long as it can be built\.
++ Copy `config_template/test_execution_config_template.h` and `config_template/test_param_config_template.h` to a project location in the build path, and rename them to `test_execution_config.h` and `test_param_config.h`\. 
++ Include relevant files into the build system\. If using `CMake`, `qualification_test.cmake` and `src/pkcs11_tests.cmake` can be used to include relevant files\.
++ Implement `UNITY_OUTPUT_CHAR` so that test output logs and device logs do not interleave\.
++ Integrate the MbedTLS, which verifies the cryptoki operation result\.
++ Call `RunQualificationTest()` from the application\.
 
-1. Add the source file `freertos/vendors/vendor/boards/board/ports/pkcs11/core_pkcs11_pal.c` to the `aws_tests` IDE project\.
+### Configuring tests<a name="configure-pkcs11-tests"></a>
 
-1. Add all of the files in the `freertos/libraries/abstractions/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\.
+The PKCS11 test suite must be configured according to the PKCS11 implementation\. The following table lists the configuration required by PKCS11 tests in the `test_param_config.h` header file\.
 
-1. Add all of the files in the `freertos/libraries/freertos_plus/standard/pkcs11` directory and its subdirectories to the `aws_tests` IDE project\. These files implement wrappers for commonly grouped PKCS \#11 function sets\.
 
-1. Add the source file `freertos/libraries/freertos_plus/standard/crypto/src/iot_crypto.c` to the `aws_tests` IDE project\. This file implements the CRYPTO abstraction wrapper for mbedTLS\.
+**PKSC11 test configurations**  
 
-1. Add all of the source and header files from `freertos/libraries/3rdparty/mbedtls` and its subdirectories to the `aws_tests` IDE project\.
+| Configuration | Description | 
+| --- | --- | 
+| PKCS11\_TEST\_RSA\_KEY\_SUPPORT |  The porting supports RSA key functions\.  | 
+| PKCS11\_TEST\_EC\_KEY\_SUPPORT |  The porting supports EC key functions\.  | 
+| PKCS11\_TEST\_IMPORT\_PRIVATE\_KEY\_SUPPORT |  The porting supports the import of the private key\. RSA and EC key import are validated in the test if the supporting key functions are enabled\.  | 
+| PKCS11\_TEST\_GENERATE\_KEYPAIR\_SUPPORT |  The porting supports keypair generation\. EC keypair generation is validated in the test if the supporting key functions are enabled\.  | 
+| PKCS11\_TEST\_PREPROVISIONED\_SUPPORT |  The porting has pre\-provisioned credentials\. `PKCS11_TEST_LABEL_DEVICE_PRIVATE_KEY_FOR_TLS`, `PKCS11_TEST_LABEL_DEVICE_PUBLIC_KEY_FOR_TLS` and `PKCS11_TEST_LABEL_DEVICE_CERTIFICATE_FOR_TLS`, are examples of the credentials\.  | 
+| PKCS11\_TEST\_LABEL\_DEVICE\_PRIVATE\_KEY\_FOR\_TLS |  The label of the private key used in the test\.  | 
+| PKCS11\_TEST\_LABEL\_DEVICE\_PUBLIC\_KEY\_FOR\_TLS |  The label of the public key used in the test\.  | 
+| PKCS11\_TEST\_LABEL\_DEVICE\_CERTIFICATE\_FOR\_TLS |  The label of the certificate used in the test\.  | 
+| PKCS11\_TEST\_JITP\_CODEVERIFY\_ROOT\_CERT\_SUPPORTED |  The porting supports storage for JITP\. Set this to 1 to enable the JITP `codeverify` test\.  | 
+| PKCS11\_TEST\_LABEL\_CODE\_VERIFICATION\_KEY |  The label of the code verification key used in JITP `codeverify` test\.  | 
+| PKCS11\_TEST\_LABEL\_JITP\_CERTIFICATE |  The label of the JITP certificate used in JITP `codeverify` test\.  | 
+| PKCS11\_TEST\_LABEL\_ROOT\_CERTIFICATE |  The label of the root certificate used in JITP `codeverify` test\.  | 
 
-1. Add `freertos/libraries/3rdparty/mbedtls/include` and `freertos/libraries/abstractions/pkcs11` to the compiler's include path\.
+FreeRTOS libraries and reference integrations must support a minimum of one key function configuration like RSA or Elliptic curve keys, and one key provisioning mechanism supported by the PKCS11 APIs\. The test must enable the following configurations: 
++ At least one of the following key function configurations:
+  + PKCS11\_TEST\_RSA\_KEY\_SUPPORT
+  + PKCS11\_TEST\_EC\_KEY\_SUPPORT
++ At least one of the following key provisioning configurations:
+  + PKCS11\_TEST\_IMPORT\_PRIVATE\_KEY\_SUPPORT
+  + PKCS11\_TEST\_GENERATE\_KEYPAIR\_SUPPORT
+  + PKCS11\_TEST\_PREPROVISIONED\_SUPPORT 
 
-### Configuring the `CMakeLists.txt` file<a name="testing-cmake-pkcs"></a>
+The pre\-provisioned device credential test must run under the following conditions:
++ `PKCS11_TEST_PREPROVISIONED_SUPPORT` must be enabled and other provisioning mechanisms disabled\.
++ Only one key function, either `PKCS11_TEST_RSA_KEY_SUPPORT` or `PKCS11_TEST_EC_KEY_SUPPORT`, is enabled\.
++ Set up the pre\-provisioned key labels according to your key function, including `PKCS11_TEST_LABEL_DEVICE_PRIVATE_KEY_FOR_TLS`, `PKCS11_TEST_LABEL_DEVICE_PUBLIC_KEY_FOR_TLS` and `PKCS11_TEST_LABEL_DEVICE_CERTIFICATE_FOR_TLS`\. These credentials must exist before running the test\.
 
-If you're using CMake to build your test project, you need to define a portable layer target for the library in your CMake list file\.
+The test may need to run several times with different configurations, if the implementation supports pre\-provisioned credentials and other provisioning mechanisms\.
 
-To define a library's portable layer target in `CMakeLists.txt`, follow the instructions in [FreeRTOS portable layers](cmake-template.md#cmake-portable)\.
+**Note**  
+The objects with labels `PKCS11_TEST_LABEL_DEVICE_PRIVATE_KEY_FOR_TLS`, `PKCS11_TEST_LABEL_DEVICE_PUBLIC_KEY_FOR_TLS` and `PKCS11_TEST_LABEL_DEVICE_CERTIFICATE_FOR_TLS` are destroyed during the test if either `PKCS11_TEST_GENERATE_KEYPAIR_SUPPORT` or `PKCS11_TEST_GENERATE_KEYPAIR_SUPPORT` is enabled\.
 
-The `CMakeLists.txt` template list file under `freertos/vendors/vendor/boards/board/CMakeLists.txt` includes example portable layer target definitions\. You can uncomment the definition for the library that you are porting, and modify it to fit your platform\.
+### Running tests<a name="running-tests"></a>
 
-See the following example portable layer target definition for the corePKCS11 library that uses the mbedTLS\-based software implementation of PKCS \#11 and supplies a port\-specific corePKCS11 PAL file\.
+This section describes how you can locally test the PKCS11 interface with the qualification tests\. Alternatively, you can also use IDT to automate the execution\. See [AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the *FreeRTOS User Guide* for details\.
+
+The following instructions describe how to run the tests:
++ Open `test_execution_config.h` and define **CORE\_PKCS11\_TEST\_ENABLED** to 1\.
++ Build and flash the application to your device to run\. The test result are output to the serial port\.
+
+The following is an example of the output test result\.
 
 ```
-# PKCS11
-afr_mcu_port(pkcs11_implementation DEPENDS AFR::pkcs11_mbedtls)
-target_sources(
-    AFR::pkcs11_implementation::mcu_port
-    INTERFACE
-    "${afr_ports_dir}/pkcs11/core_pkcs11_pal.c"
-)
+TEST(Full_PKCS11_StartFinish, PKCS11_StartFinish_FirstTest) PASS
+TEST(Full_PKCS11_StartFinish, PKCS11_GetFunctionList) PASS
+TEST(Full_PKCS11_StartFinish, PKCS11_InitializeFinalize) PASS
+TEST(Full_PKCS11_StartFinish, PKCS11_GetSlotList) PASS
+TEST(Full_PKCS11_StartFinish, PKCS11_OpenSessionCloseSession) PASS
+TEST(Full_PKCS11_Capabilities, PKCS11_Capabilities) PASS
+TEST(Full_PKCS11_NoObject, PKCS11_Digest) PASS
+TEST(Full_PKCS11_NoObject, PKCS11_Digest_ErrorConditions) PASS
+TEST(Full_PKCS11_NoObject, PKCS11_GenerateRandom) PASS
+TEST(Full_PKCS11_NoObject, PKCS11_GenerateRandomMultiThread) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_CreateObject) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_FindObject) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_GetAttributeValue) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_Sign) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_FindObjectMultiThread) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_GetAttributeValueMultiThread) PASS
+TEST(Full_PKCS11_RSA, PKCS11_RSA_DestroyObject) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_GenerateKeyPair) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_CreateObject) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_FindObject) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_GetAttributeValue) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_Sign) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_Verify) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_FindObjectMultiThread) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_GetAttributeValueMultiThread) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_SignVerifyMultiThread) PASS
+TEST(Full_PKCS11_EC, PKCS11_EC_DestroyObject) PASS
+
+-----------------------
+27 Tests 0 Failures 0 Ignored
+OK
 ```
 
-### Setting up your local testing environment<a name="testing-local-pkcs"></a>
+ Testing is complete when all tests pass\.
 
-After you set up the library in the IDE project, you need to configure some other files for testing\.
-
-**To configure the source and header files for the PKCS \#11 tests**
-
-1. If you have ported the Secure Sockets library, open `freertos/libraries/freertos_plus/standard/utils/src/iot_system_init.c`, and in the function `SYSTEM_Init()`, uncomment calls to `SOCKETS_Init()`\.
-
-1. Open `freertos/vendors/vendor/boards/board/aws_tests/config_files/aws_test_runner_config.h`, and set the `testrunnerFULL_PKCS11_ENABLED` macro to `1` to enable the PKCS \#11 test\.
-
-### Running the tests<a name="testing-run-pkcs"></a>
-
-**To execute the PKCS \#11 tests**
-
-1. Build the test project, and then flash it to your device for execution\.
-
-1. Check the test results in the UART console\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-pkcs-tests1.png)
-
-   `...`  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/freertos/latest/portingguide/images/porting-pkcs-tests2.png)
-
-   Testing is complete when all tests pass\.
-
-## Validation<a name="pkcs-validation"></a>
-
-To officially qualify a device for FreeRTOS, you need to validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the Device Tester `configs` folder\.
-
-After you finish porting the corePKCS11 library to your device, you can start porting the TLS library\. See [Porting the TLS library](afr-porting-tls.md) for instructions\.
+**Note**  
+To officially qualify a device for FreeRTOS, you must validate the device's ported source code with AWS IoT Device Tester\. Follow the instructions in [Using AWS IoT Device Tester for FreeRTOS](https://docs.aws.amazon.com/freertos/latest/userguide/device-tester-for-freertos-ug.html) in the FreeRTOS User Guide to set up AWS IoT Device Tester for port validation\. To test a specific library's port, the correct test group must be enabled in the `device.json` file in the AWS IoT Device Tester `configs` folder\.

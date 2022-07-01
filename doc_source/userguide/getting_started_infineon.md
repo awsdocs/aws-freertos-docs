@@ -6,7 +6,7 @@ If you want to open a serial connection with the board to view logging and debug
 
 Before you begin, you must configure AWS IoT and your FreeRTOS download to connect your device to the AWS Cloud\. See [First steps](freertos-prereqs.md) for instructions\. In this tutorial, the path to the FreeRTOS download directory is referred to as `freertos`\.
 
-## Overview<a name="w43aac14c31c25c11"></a>
+## Overview<a name="w47aac14c31c25c11"></a>
 
 This tutorial contains instructions for the following getting started steps:
 

@@ -1,4 +1,4 @@
-# AWS IoT Greengrass discovery demo application<a name="gg-demo"></a>
+# AWS IoT Greengrass V1 discovery demo application<a name="gg-demov1"></a>
 
 Before you run the AWS IoT Greengrass Discovery demo for FreeRTOS, you need to set up AWS, AWS IoT Greengrass, and AWS IoT\. To set up AWS, follow the instructions at [Setting up your AWS account and permissions](freertos-prereqs.md#freertos-account-and-permissions)\. To set up AWS IoT Greengrass, you need to create a Greengrass group and then add a Greengrass core\. For more information about setting up AWS IoT Greengrass, see [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html)\. 
 
@@ -99,7 +99,7 @@ Message from Thing to Greengrass Core: Address of Greengrass Core found! 1234567
 
 1. Choose the **Inbound rules** tab then choose **Edit inbound rules** and add the following rules\.  
 **Inbound rules**    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/userguide/gg-demo.html)
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/userguide/gg-demov1.html)
 
 1. In the AWS IoT console choose **Greengrass**, then **Groups**, and choose the Greengrass group that you previously created\. Choose **Settings**\. Change the **Local connection detection** to **Manually manage connection information**\.
 
@@ -115,7 +115,7 @@ Message from Thing to Greengrass Core: Address of Greengrass Core found! 1234567
 
 1. Add the necessary subscriptions— in the **Greengrass Group** page, choose **Subscriptions** then choose **Add Subscription** and enter information as shown here\.  
 **Subscriptions**    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/userguide/gg-demo.html)
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/freertos/latest/userguide/gg-demov1.html)
 
    Where "Source" is the name given to the AWS IoT thing created in the AWS IoT console when you registered your board \- "TIGG1" in the example given here\.
 

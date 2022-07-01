@@ -2,9 +2,72 @@
 
 This section lists unsupported versions of IDT for FreeRTOS\. Unsupported versions do not receive bug fixes or updates\. For more information, see [Support policy for AWS IoT Device Tester for FreeRTOS](idt-support-policy.md)\.
 
-The following versions of IDT\-FreeRTOS are no longer supported\.
+The following versions of IDT\-FreeRTOS are no longer supported\.IDT v4\.5\.5 and test suite version 2\.1\.1 for FreeRTOS 202112\.00 and 202012\.04\-LTS \(uses FreeRTOS LTS libraries\)
 
-**IDT v4\.0\.1 and test suite version 1\.4\.1 for FreeRTOS 202012\.00**
+  
+
+**Release notes**
++ Supports testing against FreeRTOS 202112\.00 or FreeRTOS 202012\.04\-LTS that uses FreeRTOS LTS libraries\.
+
+  For more information about what's included in the FreeRTOS 202012\.04\-LTS release, see the [CHANGELOG\.md](https://github.com/FreeRTOS/FreeRTOS-LTS/blob/202012-LTS/CHANGELOG.md) file on GitHub\.
++ Adds new test group `FullCloudIoT` which tests the board against AWS IoT Core Device Advisor\.
++ Resolved an issue affecting the FreeRTOSVersion and FreeRTOSIntegrity test cases\.
++ Minor bug fixes and improvements\.
+
+  
+
+**Test suite versions**
++ FRQ\_2\.1\.1
+  + Released 2022\.06\.06IDT v4\.5\.5 and test suite version 2\.1\.0 for FreeRTOS 202107\.00 \(202112\.00 and 202012\.04\-LTS \(uses FreeRTOS LTS libraries\)
+
+  
+
+**Release notes**
++ Supports testing against FreeRTOS 202112\.00 or FreeRTOS 202012\.04\-LTS that uses FreeRTOS LTS libraries\.
+
+  For more information about what's included in the FreeRTOS 202012\.04\-LTS release, see the [CHANGELOG\.md](https://github.com/FreeRTOS/FreeRTOS-LTS/blob/202012-LTS/CHANGELOG.md) file on GitHub\.
++ Adds new test group `FullCloudIoT` which tests the board against AWS IoT Core Device Advisor\.
++ Minor bug fixes and improvements\.
+
+  
+
+**Test suite versions**
++ FRQ\_2\.1\.0
+  + Released 2022\.05\.31IDT v4\.3\.0 and test suite version 1\.6\.1 for FreeRTOS 202107\.00 \(uses FreeRTOS 202107\.00 LTS libraries\)
+
+  
+
+**Release notes**
++ Supports FreeRTOS 202107\.00 that uses FreeRTOS 202107\.00 LTS libraries\. For more information about what's included in the FreeRTOS 202107\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202107.00/CHANGELOG.md) file on GitHub\. 
++ Adds the ability to configure and run AWS IoT Device Tester for FreeRTOS through a web based user interface\. See [Use the IDT for FreeRTOS user interface to run the FreeRTOS qualification suite](device-tester-ui.md) to get started\.
+
+  
+
+**Test suite versions**
++ FRQ\_1\.6\.1
+  + Released 2021\.07\.26IDT v4\.1\.0 and test suite version 1\.6\.0 for FreeRTOS 202107\.00
+
+  
+
+**Release notes**
++ Supports FreeRTOS 202107\.00\. For more information about what's included in the FreeRTOS 202107\.00 release, see the [ CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202107.00/CHANGELOG.md) file on GitHub\. 
++ Removes the following test cases from OTA qualification:
+  + OTA Agent
+  + OTA Missing Filename
+  + OTA Max Configured Number of Blocks
++ Removes the OTA Dataplane `Both` test group from OTA Qualification\. In the [`device.json` file](qual-steps.md#cfg-dt-dp), the `OTADataPlaneProtocol` configuration now accepts only `HTTP` or `MQTT` as supported values\.
++ Implements the following changes to the `freertosFileConfiguration` configuration in the [`userdata.json` file](qual-steps.md#cfg-dt-ud) for changes to the FreeRTOS source code:
+  + Changes the file name that is specified for `otaAgentTestsConfig` and `otaAgentDemosConfig` from `aws_ota_agent_config.h` to `ota_config.h`\.
+  + Adds a new `otaDemosConfig` optional configuration to specify the file path to the new `ota_demo_config.h` file\.
++ Adds a new field `testStartDelayms` to `userdata.json` to specify a delay between the time a device is flashed to run a FreeRTOS test group and when it starts running tests\. The value should be given in milliseconds\. This delay can be used to give IDT a chance to connect so that no test output is missed\.
+
+  
+
+**Test suite versions**
++ FRQ\_1\.6\.0
+  + Released 2021\.07\.21IDT v4\.0\.1 and test suite version 1\.4\.1 for FreeRTOS 202012\.00
+
+  
 
 **Release notes**
 + Supports FreeRTOS 202012\.00 that uses FreeRTOS LTS libraries\. For more information about what's included in the FreeRTOS 202012\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202012.00/CHANGELOG.md) file in GitHub\.
@@ -16,17 +79,21 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + Provides code signed IDT applications, so you don't need to grant permissions when you run it under Windows or macOS\.
 + Refined the BLE test result parsing logic\.
 
+  
+
 **Test suite versions**
 + FRQ\_1\.4\.1
-  + Released 2021\.01\.19\.
+  + Released 2021\.01\.19\.IDT v3\.4\.0 and test suite version 1\.3\.0 for FreeRTOS 202011\.01
 
-**IDT v3\.4\.0 and test suite version 1\.3\.0 for FreeRTOS 202011\.01**
+  
 
 **Release notes**
 + Supports FreeRTOS 202011\.01\. For more information about what's included in the FreeRTOS 202011\.01 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202011.01/CHANGELOG.md) file in GitHub\.
 + Fixed bug where 'RSA' was not a valid PKCS11 configuration option\.
 + Fixed bug where Amazon S3 buckets aren't cleaned up correctly after OTA tests\.
 + Updates to support the new test cases inside of the FullMQTT test group\.
+
+  
 
 **Test suite versions**
 + FRQ\_1\.3\.0
@@ -52,6 +119,8 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 
 **IDT v3\.0\.2 for FreeRTOS 202002\.00**
 
+  
+
 **Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
 + Adds automatic update of test suites within IDT\. IDT can now download the latest test suites that are available for your FreeRTOS version\. With this feature, you can:
@@ -69,10 +138,14 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + Adds `list-test-cases` command – Lists the test cases that are available in a test group\.
 + Adds the `test-id` option for the `run-suite` command – Use this option to run individual test cases in a test group\.
 
+  
+
 **Test suite versions**
 + FRQ\_1\.0\.1
 
 **IDT v1\.7\.1 for FreeRTOS 202002\.00**
+
+  
 
 **Release notes**
 + Supports FreeRTOS 202002\.00\. For more information about what's included in the FreeRTOS 202002\.00 release, see the [ CHANGELOG\.md](https://github.com/aws/amazon-freertos/blob/202002.00/CHANGELOG.md) file in GitHub\.
@@ -83,6 +156,8 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 
 **IDT v1\.6\.2 for FreeRTOS 201912\.00**
 
+  
+
 **Release notes**
 + Supports FreeRTOS 201912\.00\.
 + Supports optional tests for OTA over HTTPS to qualify your FreeRTOS development boards\.
@@ -90,6 +165,8 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 + Supports capability to inform users on latest IDT version before start of test suite\.
 
 **IDT v1\.5\.2 for FreeRTOS 201910\.00**
+
+  
 
 **Release notes**
 + Supports qualification of FreeRTOS devices with secure element \(onboard key\)\.
@@ -100,34 +177,36 @@ The following versions of IDT\-FreeRTOS are no longer supported\.
 
 **IDT v1\.4\.1 for FreeRTOS 201908\.00**
 
+  
+
 **Release notes**
 + Added support for new PKCS11 library and test case updates\.
 + Introduced actionable error codes\. For more information, see [IDT error codes](dt-afr-troubleshooting.md#idt-error-codes)
-+ Updated IAM policy used to run IDT\. 
++ Updated IAM policy used to run IDT\. IDT v1\.3\.2 for FreeRTOS 201906\.00 Major
 
-**IDT v1\.3\.2 for FreeRTOS 201906\.00 Major**
+  
 
 **Release notes**
 + Added support for testing Bluetooth Low Energy \(BLE\)\.
 + Improved user experience for IDT command line interface \(CLI\) commands\.
-+ Updated IAM policy used to run IDT\.
++ Updated IAM policy used to run IDT\.IDT\-FreeRTOS v1\.2
 
-**IDT\-FreeRTOS v1\.2**
-+ FreeRTOS Versions:
-  + FreeRTOS v1\.4\.9
-  + FreeRTOS v1\.4\.8
-+ Release Notes:
-  + Added support for FreeRTOS v1\.4\.8 and v1\.4\.9\.
-  + Added support for testing FreeRTOS devices with the CMAKE build system\.
+FreeRTOS Versions:  
++ FreeRTOS v1\.4\.9
++ FreeRTOS v1\.4\.8
 
-**IDT\-FreeRTOS v1\.1**
-+ FreeRTOS Versions:
-  + FreeRTOS v1\.4\.7
+  
 
-**IDT\-FreeRTOS v1\.0**
-+ FreeRTOS Versions:
-  + FreeRTOS v1\.4\.6
-  + FreeRTOS v1\.4\.5
-  + FreeRTOS v1\.4\.4
-  + FreeRTOS v1\.4\.3
-  + FreeRTOS v1\.4\.2
+**Release Notes:**
++ Added support for FreeRTOS v1\.4\.8 and v1\.4\.9\.
++ Added support for testing FreeRTOS devices with the CMAKE build system\.IDT\-FreeRTOS v1\.1
+
+FreeRTOS Versions:  
++ FreeRTOS v1\.4\.7IDT\-FreeRTOS v1\.0
+
+FreeRTOS Versions:  
++ FreeRTOS v1\.4\.6
++ FreeRTOS v1\.4\.5
++ FreeRTOS v1\.4\.4
++ FreeRTOS v1\.4\.3
++ FreeRTOS v1\.4\.2

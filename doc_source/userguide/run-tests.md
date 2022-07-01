@@ -130,7 +130,7 @@ Specifies the device pool to test\. If you only have one device pool, you can om
 
 ------
 
-## IDT for FreeRTOS commands<a name="dt-cli"></a>
+## IDT for FreeRTOS commands<a name="dt-cli-frq"></a>
 
 The IDT for FreeRTOS command supports the following operations:
 

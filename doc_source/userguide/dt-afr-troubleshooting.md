@@ -19,7 +19,7 @@ We recommend the following workflow for troubleshooting:
    + Device configuration, such as JSON configuration files in the `/configs/` folder\.
    + Device interface\. Check the logs to determine which interface is failing\.
    + Device tooling\. Make sure that the toolchains for building and flashing the device are installed and configured correctly\.
-   + Make sure that you have a clean, cloned version of the FreeRTOS source code\. FreeRTOS releases are tagged according to the FreeRTOS version\. To clone a specific version of the code, use the following commands:
+   + For FRQ 1\.x\.x make sure that a clean, cloned version of the FreeRTOS source code is available\. FreeRTOS releases are tagged according to the FreeRTOS version\. To clone a specific version of the code, use the following commands:
 
      ```
      git clone --branch version-number https://github.com/aws/amazon-freertos.git
@@ -59,6 +59,8 @@ Occasionally, a typo in a JSON configuration can lead to parsing errors\. Most o
 
 ### Debugging integrity check failures<a name="integrity-check"></a>
 
+If using FRQ 1\.x\.x version of FreeRTOS the following integrity checks apply\.
+
 When you run the FreeRTOSIntegrity test group and you encounter failures, first make sure that you haven't modified any of the `freertos` directory files\. If you haven’t, and are still seeing issues, make sure you are using the correct branch\. If you run IDT's `list-supported-products` command, you can find which tagged branch of the `freertos` repo you should be using\.
 
 If you cloned the correct tagged branch of the `freertos` repo and still have issues, make sure you have also run the `submodule update` command\. The clone workflow for the `freertos` repo is as follows\. 
@@ -75,7 +77,7 @@ If you run IDT with an SDK and have modified some files in your `freertos` direc
 
 ### Debugging FullWiFi test group failures<a name="full-wifi-failures"></a>
 
-If you see failures in the FullWiFi test group, and the "`AFQP_WiFiConnectMultipleAP`" test fails, this could be because both access points aren't in the same subnet as the host computer running IDT\. Make sure that both access points are in the same subnet as the host computer running IDT\.
+If you are using FRQ 1\.x\.x and encounter failures in the FullWiFi test group, and the "`AFQP_WiFiConnectMultipleAP`" test fails, this could be because both access points aren't in the same subnet as the host computer running IDT\. Make sure that both access points are in the same subnet as the host computer running IDT\.
 
 ### Debugging a "required parameter missing" error<a name="param-missing"></a>
 
@@ -91,7 +93,21 @@ You might see errors that point to failures during test start\. Because there ar
 
 You might see errors when IDT attempts to parse the results output by the device under test\. There are several possible causes, so check the following areas for correctness: 
 + Make sure that the device under test has a stable connection to your host machine\. You can check the log file for a test that shows these errors to see what IDT is receiving\.
-+ If the device under test is connected via a slow network or other interface, or you do not see the "\-\-\-\-\-\-\-\-\-STARTING TESTS\-\-\-\-\-\-\-\-\-" flag in a FreeRTOS test group log along with other FreeRTOS test group outputs, you can try increasing the value of `testStartDelayms` in your userdata configuration\. For more information, see [Configure build, flash, and test settings](qual-steps.md#cfg-dt-ud)\.
++ If using FRQ 1\.x\.x, and the device under test is connected via a slow network or other interface, or you do not see the "\-\-\-\-\-\-\-\-\-STARTING TESTS\-\-\-\-\-\-\-\-\-" flag in a FreeRTOS test group log along with other FreeRTOS test group outputs, you can try increasing the value of `testStartDelayms` in your userdata configuration\. For more information, see [Configure build, flash, and test settings](qual-steps.md#cfg-dt-ud)\.
+
+### Debugging a "Test failure:expected \_\_ results but saw \_\_\_" error<a name="expected-but-saw-different"></a>
+
+You might see errors that point to a test failure during testing\. The test expects a certain number of results, and does not see it during testing\. Some FreeRTOS tests run before IDT sees the output from the device\. If you see this error, you can try increasing the value of `testStartDelayms` in your *userdata* configuration\. For more information, see [Configure build, flash, and test settings](lts-qual-steps.md#lts-cfg-dt-ud)\. 
+
+### Debugging a "\_\_\_\_\_\_\_\_ was unselected due to ConditionalTests constraints" error<a name="unselected-conditional-tests"></a>
+
+This means that you are running a test on a device pool that is incompatible with the test\. This may happen with the OTA E2E tests\. For example, while running the `OTADataplaneMQTT` test group and in your `device.json` config file, you have chosen OTA as **No** or `OTADataPlaneProtocol` as **HTTP**\. The test group chosen to run must match your `device.json` capability selections\. 
+
+### Debugging an IDT timeout during device output monitoring<a name="idt-timeout"></a>
+
+IDT can timeout due to a number of reasons\. If a timeout happens during the device output monitoring phase of a test, and you can see the results inside of the IDT test case log, it means that the results were incorrectly parsed by IDT\. One reason could be the interleaved log messages in the middle of the test results\. If this is the case, please refer to the [FreeRTOS Porting Guide](https://docs.aws.amazon.com/freertos/latest/portingguide/afr-porting-ota.html) for further details on how the UNITY logs should be setup\.
+
+ Another reason for a timeout during device output monitoring could be a device rebooting after a single TLS test case failure\. The device then runs the flashed image and causes an infinite loop which is seen in the logs\. If this happens, make sure your device does not reboot after a test failure\. 
 
 ### Debugging a "not authorized to access resource" error<a name="not-authorized-to-access"></a>
 
