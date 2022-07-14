@@ -1,10 +1,12 @@
 # Creating an OTA update \(AWS IoT console\)<a name="ota-console-workflow"></a>
 
-1. In the navigation pane of the AWS IoT console, choose **Manage**, and then choose **Jobs**\.
+1. In the navigation pane of the AWS IoT console, under **Manage** select **Remote actions**, and then choose **Jobs**\.
 
-1. Choose **Create**\.
+1. Choose **Create Job**\.
 
-1. Under **Create a FreeRTOS Over\-the\-Air \(OTA\) update job**, choose **Create OTA update job**\.
+1. Choose **Create a FreeRTOS Over\-the\-Air \(OTA\) update job**, then click the  **Next** button\.
+
+1. Provide a name for the job in the **Job Name** box, and optionally provide a description of the job, then click the **Next** button\.
 
 1. You can deploy an OTA update to a single device or a group of devices\. Under **Select devices to update**, choose **Select**\. To update a single device, choose the **Things** tab\. To update a group of devices, choose the **Thing Groups** tab\.
 
