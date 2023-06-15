@@ -1,3 +1,0 @@
-# Test for re\-qualification<a name="requal-test"></a>
-
-As new versions of IDT for FreeRTOS qualification tests are released, or as you update your board\-specific packages or device drivers, you can use IDT for FreeRTOS to test your microcontroller boards\. For subsequent qualifications, make sure that you have the latest versions of FreeRTOS and IDT for FreeRTOS and run the qualification tests again\.
